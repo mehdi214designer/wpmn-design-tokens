@@ -1,0 +1,197 @@
+/**
+ * WPMN Design System — Button
+ * Source: Figma node 48:148413
+ *
+ * Types:  Primary · Secondary · Tertiary
+ * Sizes:  extra-large · large · medium · small · extra-small
+ * States: enabled · hovered · pressed · focused · disabled
+ */
+
+/* ─── Base ─────────────────────────────────────────────────── */
+.wpmn-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  outline: none;
+  /* Default border placeholder — overridden per type/state */
+  border: 1.5px solid transparent;
+}
+
+/* ─── Sizes ────────────────────────────────────────────────── */
+
+/* Extra Large  — h:64px  px:32px  gap:8px  r:8px  Semi Bold 600  23px/28px */
+.wpmn-btn--xl {
+  height: 64px;
+  padding: 0 32px;
+  gap: 8px;
+  border-radius: var(--primitive-radius-xs, 8px);
+  font-size: var(--font-size-btn-xl, 23px);
+  line-height: var(--font-lh-btn-xl, 28px);
+  font-weight: var(--font-weight-semibold, 600);
+}
+.wpmn-btn--xl .wpmn-btn__icon-right { width: 32px; height: 32px; }
+
+/* Large  — h:56px  px:32px  gap:8px  r:8px  Semi Bold 600  20px/24px */
+.wpmn-btn--lg {
+  height: 56px;
+  padding: 0 32px;
+  gap: 8px;
+  border-radius: var(--primitive-radius-xs, 8px);
+  font-size: var(--font-size-btn-lg, 20px);
+  line-height: var(--font-lh-btn-lg, 24px);
+  font-weight: var(--font-weight-semibold, 600);
+}
+.wpmn-btn--lg .wpmn-btn__icon-right { width: 28px; height: 28px; }
+
+/* Medium  — h:48px  px:24px  gap:8px  r:8px  Medium 500  18px/20px */
+.wpmn-btn--md {
+  height: 48px;
+  padding: 0 24px;
+  gap: 8px;
+  border-radius: var(--primitive-radius-xs, 8px);
+  font-size: var(--font-size-btn-md, 18px);
+  line-height: var(--font-lh-btn-md, 20px);
+  font-weight: var(--font-weight-medium, 500);
+}
+.wpmn-btn--md .wpmn-btn__icon-right { width: 24px; height: 24px; }
+
+/* Small  — h:40px  px:20px  gap:4px  r:8px  Medium 500  16px/18px */
+.wpmn-btn--sm {
+  height: 40px;
+  padding: 0 20px;
+  gap: 4px;
+  border-radius: var(--primitive-radius-xs, 8px);
+  font-size: var(--font-size-btn-sm, 16px);
+  line-height: var(--font-lh-btn-sm, 18px);
+  font-weight: var(--font-weight-medium, 500);
+}
+.wpmn-btn--sm .wpmn-btn__icon-right { width: 20px; height: 20px; }
+
+/* Extra Small  — h:32px  px:16px  gap:4px  r:4px  Medium 500  13px/16px */
+.wpmn-btn--xs {
+  height: 32px;
+  padding: 0 16px;
+  gap: 4px;
+  border-radius: var(--primitive-radius-xxs, 4px);
+  font-size: var(--font-size-btn-xs, 13px);
+  line-height: var(--font-lh-btn-xs, 16px);
+  font-weight: var(--font-weight-medium, 500);
+}
+.wpmn-btn--xs .wpmn-btn__icon-right { width: 16px; height: 16px; }
+
+/* Left icon is always 24px */
+.wpmn-btn__icon-left  { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.wpmn-btn__icon-right { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+/* ─── TYPE: PRIMARY (filled) ───────────────────────────────── */
+.wpmn-btn--primary {
+  background-color: var(--btn-bg-enable);
+  color: var(--color-text-primary-invert, #fff);
+  border-color: transparent;
+  /* Inner glow — present on all primary states */
+  box-shadow: inset 3px 4px 4px 0px var(--btn-bg-glow, rgba(255,255,255,0.3));
+}
+.wpmn-btn--primary:hover:not(:disabled):not(.wpmn-btn--disabled) {
+  background-color: var(--btn-bg-hovered);
+}
+.wpmn-btn--primary:active:not(:disabled):not(.wpmn-btn--disabled) {
+  background-color: var(--btn-bg-pressed);
+}
+/* Focused: keep enabled bg, add 3px solid border in focused colour */
+.wpmn-btn--primary.wpmn-btn--focused,
+.wpmn-btn--primary:focus-visible:not(:disabled):not(.wpmn-btn--disabled) {
+  background-color: var(--btn-bg-enable);
+  border: 3px solid var(--btn-bg-focused);
+}
+
+/* ─── TYPE: SECONDARY (outline) ───────────────────────────── */
+.wpmn-btn--secondary {
+  background-color: transparent;
+  color: var(--btn-bg-enable);
+  border: 1.5px solid var(--btn-bg-enable);
+  box-shadow: none;
+}
+.wpmn-btn--secondary:hover:not(:disabled):not(.wpmn-btn--disabled) {
+  background-color: var(--btn-bg-enable);
+  color: var(--color-text-primary-invert, #fff);
+}
+.wpmn-btn--secondary:active:not(:disabled):not(.wpmn-btn--disabled) {
+  background-color: var(--btn-bg-hovered);
+  border-color: var(--btn-bg-hovered);
+  color: var(--color-text-primary-invert, #fff);
+}
+.wpmn-btn--secondary.wpmn-btn--focused,
+.wpmn-btn--secondary:focus-visible:not(:disabled):not(.wpmn-btn--disabled) {
+  border: 3px solid var(--btn-bg-focused);
+}
+
+/* ─── TYPE: TERTIARY (ghost / text only) ──────────────────── */
+.wpmn-btn--tertiary {
+  background-color: transparent;
+  color: var(--btn-bg-enable);
+  border-color: transparent;
+  box-shadow: none;
+}
+.wpmn-btn--tertiary:hover:not(:disabled):not(.wpmn-btn--disabled) {
+  background-color: var(--btn-bg-focused);
+}
+.wpmn-btn--tertiary:active:not(:disabled):not(.wpmn-btn--disabled) {
+  background-color: var(--btn-bg-focused);
+  color: var(--btn-bg-hovered);
+}
+.wpmn-btn--tertiary.wpmn-btn--focused,
+.wpmn-btn--tertiary:focus-visible:not(:disabled):not(.wpmn-btn--disabled) {
+  border: 3px solid var(--btn-bg-focused);
+}
+
+/* ─── DISABLED (all types) ─────────────────────────────────── */
+.wpmn-btn:disabled,
+.wpmn-btn--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.wpmn-btn--primary:disabled,
+.wpmn-btn--primary.wpmn-btn--disabled {
+  background-color: var(--btn-bg-disabled);
+  color: var(--color-text-primary-invert, #fff);
+  border-color: transparent;
+  box-shadow: none;
+}
+.wpmn-btn--secondary:disabled,
+.wpmn-btn--secondary.wpmn-btn--disabled {
+  background-color: transparent;
+  color: var(--btn-bg-disabled);
+  border-color: var(--btn-bg-disabled);
+}
+.wpmn-btn--tertiary:disabled,
+.wpmn-btn--tertiary.wpmn-btn--disabled {
+  color: var(--btn-bg-disabled);
+}
+
+/* ─── LOADING ───────────────────────────────────────────────── */
+.wpmn-btn--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+.wpmn-btn__spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: wpmn-spin 0.55s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes wpmn-spin { to { transform: rotate(360deg); } }
+
+/* ─── FULL WIDTH ────────────────────────────────────────────── */
+.wpmn-btn--full { width: 100%; }

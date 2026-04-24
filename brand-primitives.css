@@ -1,0 +1,398 @@
+/**
+ * WPMN Design System — Brand Primitive Tokens
+ * Source: Figma variable JSON exports per product
+ * Last updated: 2026-04-24
+ *
+ * HOW IT WORKS
+ * ─────────────────────────────────────────────────────────────
+ * Apply data-brand="<key>" to <html>, <body>, or any container.
+ * The attribute selector overrides --primitive-primary-* and
+ * --primitive-accent-* for that subtree.
+ * All semantic tokens (tokens.css) cascade automatically.
+ *
+ * WPManageNinja is the default palette (defined in primitives.css).
+ *
+ * Supported brands:
+ *   wpmanagenia        fluentforms     fluentcrm
+ *   fluentbooking*     fluentcommunity* ninjatables
+ *   paymattic*         fluentboards    fluentsmtp*
+ *   fluentsupport      fluentaffiliate azonpress*
+ *   wpsocialninja      fluentcart      fluentplayer
+ *
+ * * = token file not yet uploaded, using existing values
+ *
+ * USAGE
+ * ─────────────────────────────────────────────────────────────
+ * document.documentElement.setAttribute('data-brand', 'fluentforms');
+ * <section data-brand="fluentsupport"> … </section>
+ */
+
+/* ============================================================
+   WPManageNinja  (primary: #0D5FFF · accent: #4C5C73)
+   ============================================================ */
+[data-brand="wpmanagenia"] {
+  --primitive-primary-50:  #E6EFFE;
+  --primitive-primary-100: #CEDFFF;
+  --primitive-primary-200: #9FBFFF;
+  --primitive-primary-300: #6D9FFF;
+  --primitive-primary-400: #3E7DFF;
+  --primitive-primary-500: #0D5FFF;
+  --primitive-primary-600: #094CCB;
+  --primitive-primary-700: #083999;
+  --primitive-primary-800: #062666;
+  --primitive-primary-900: #011333;
+  --primitive-primary-950: #000919;
+  --primitive-accent-50:  #EDEEF1;
+  --primitive-accent-100: #DCDEE2;
+  --primitive-accent-200: #B7BEC7;
+  --primitive-accent-300: #939DAB;
+  --primitive-accent-400: #6E7D8F;
+  --primitive-accent-500: #4C5C73;
+  --primitive-accent-600: #3C4A5C;
+  --primitive-accent-700: #2D3745;
+  --primitive-accent-800: #1D252E;
+  --primitive-accent-900: #101217;
+  --primitive-accent-950: #07090B;
+}
+
+/* ============================================================
+   FluentForms  (primary: #2B6CFF · accent: #089DFF )
+   ============================================================ */
+[data-brand="fluentforms"] {
+  --primitive-primary-50:  #EFF0FE;
+  --primitive-primary-100: #D3E1FF;
+  --primitive-primary-200: #AAC4FF;
+  --primitive-primary-300: #80A6FF;
+  --primitive-primary-400: #5789FF;
+  --primitive-primary-500: #2B6CFF;
+  --primitive-primary-600: #2356CC;
+  --primitive-primary-700: #1A4098;
+  --primitive-primary-800: #122B66;
+  --primitive-primary-900: #081533;
+  --primitive-primary-950: #040A19;
+  --primitive-accent-50:  #E6F5FF;
+  --primitive-accent-100: #CDEBFF;
+  --primitive-accent-200: #9DD7FF;
+  --primitive-accent-300: #6AC4FF;
+  --primitive-accent-400: #3AB0FE;
+  --primitive-accent-500: #089DFF;
+  --primitive-accent-600: #077DCC;
+  --primitive-accent-700: #055E98;
+  --primitive-accent-800: #023E66;
+  --primitive-accent-900: #011F33;
+  --primitive-accent-950: #000F19;
+}
+
+/* ============================================================
+   FluentCRM  (primary: #BA4CDE · accent: #7742E6 )
+   ============================================================ */
+[data-brand="fluentcrm"] {
+  --primitive-primary-50:  #F8EDFC;
+  --primitive-primary-100: #F1DBF8;
+  --primitive-primary-200: #E3B7F2;
+  --primitive-primary-300: #D694EB;
+  --primitive-primary-400: #C870E5;
+  --primitive-primary-500: #BA4CDE;
+  --primitive-primary-600: #953DB2;
+  --primitive-primary-700: #702E85;
+  --primitive-primary-800: #4A1E59;
+  --primitive-primary-900: #250F2C;
+  --primitive-primary-950: #130816;
+  --primitive-accent-50:  #F1ECFC;
+  --primitive-accent-100: #E4D9FA;
+  --primitive-accent-200: #C9B3F5;
+  --primitive-accent-300: #AD8EF0;
+  --primitive-accent-400: #9268EB;
+  --primitive-accent-500: #7742E6;
+  --primitive-accent-600: #5F35B8;
+  --primitive-accent-700: #47288A;
+  --primitive-accent-800: #301A5C;
+  --primitive-accent-900: #180D2E;
+  --primitive-accent-950: #0C0717;
+}
+
+/* ============================================================
+   FluentBooking  (primary: #2653C5)
+   * Accent data not yet available
+   ============================================================ */
+[data-brand="fluentbooking"] {
+  --primitive-primary-50:  #e7e9ee;
+  --primitive-primary-100: #d2d7e5;
+  --primitive-primary-200: #a2b1d8;
+  --primitive-primary-300: #6a87d2;
+  --primitive-primary-400: #406ad4;
+  --primitive-primary-500: #2653c5;
+  --primitive-primary-600: #1b409d;
+  --primitive-primary-700: #122d73;
+  --primitive-primary-800: #0c1c46;
+  --primitive-primary-900: #070f22;
+  --primitive-primary-950: #04060c;
+}
+
+/* ============================================================
+   FluentCommunity  (primary: #485CE0)
+   * Accent data not yet available
+   ============================================================ */
+[data-brand="fluentcommunity"] {
+  --primitive-primary-50:  #f6f6f9;
+  --primitive-primary-100: #f5f6f9;
+  --primitive-primary-200: #ccd0eb;
+  --primitive-primary-300: #97a1e2;
+  --primitive-primary-400: #707fe1;
+  --primitive-primary-500: #485ce0;
+  --primitive-primary-600: #1f37d6;
+  --primitive-primary-700: #162aac;
+  --primitive-primary-800: #12207d;
+  --primitive-primary-900: #111a55;
+  --primitive-primary-950: #10163c;
+}
+
+/* ============================================================
+   Ninja Tables  (primary: #046EC0 · accent: #00AC9E)
+   ============================================================ */
+[data-brand="ninjatables"] {
+  --primitive-primary-50:  #CCE3F3;
+  --primitive-primary-100: #B3D3ED;
+  --primitive-primary-200: #7FB6DF;
+  --primitive-primary-300: #4D99D2;
+  --primitive-primary-400: #197CC7;
+  --primitive-primary-500: #046EC0;
+  --primitive-primary-600: #015899;
+  --primitive-primary-700: #004274;
+  --primitive-primary-800: #002C4C;
+  --primitive-primary-900: #011526;
+  --primitive-primary-950: #000B13;
+  --primitive-accent-50:  #CDEEEB;
+  --primitive-accent-100: #B3E5E1;
+  --primitive-accent-200: #7FD5CF;
+  --primitive-accent-300: #4DC5BC;
+  --primitive-accent-400: #19B4A7;
+  --primitive-accent-500: #00AC9E;
+  --primitive-accent-600: #00887E;
+  --primitive-accent-700: #01675E;
+  --primitive-accent-800: #00443F;
+  --primitive-accent-900: #00332F;
+  --primitive-accent-950: #00100F;
+}
+
+/* ============================================================
+   Paymattic  (primary: #FF6A00)
+   * Accent data not yet available
+   ============================================================ */
+[data-brand="paymattic"] {
+  --primitive-primary-50:  #f7f4f2;
+  --primitive-primary-100: #f0e4db;
+  --primitive-primary-200: #e9c1a5;
+  --primitive-primary-300: #ee9d63;
+  --primitive-primary-400: #f68331;
+  --primitive-primary-500: #ff6a00;
+  --primitive-primary-600: #cc5500;
+  --primitive-primary-700: #994000;
+  --primitive-primary-800: #662b00;
+  --primitive-primary-900: #3c1a02;
+  --primitive-primary-950: #200f04;
+}
+
+/* ============================================================
+   FluentBoards  (primary: #F1EB62 · accent: #6268F1 )
+   ============================================================ */
+[data-brand="fluentboards"] {
+  --primitive-primary-50:  #FEFDEF;
+  --primitive-primary-100: #FBF9D0;
+  --primitive-primary-200: #F8F5B1;
+  --primitive-primary-300: #F5F191;
+  --primitive-primary-400: #F4EF81;
+  --primitive-primary-500: #F1EB62;
+  --primitive-primary-600: #C1BC4E;
+  --primitive-primary-700: #A9A545;
+  --primitive-primary-800: #797631;
+  --primitive-primary-900: #48471D;
+  --primitive-primary-950: #18180A;
+  --primitive-accent-50:  #EFF0FE;
+  --primitive-accent-100: #D0D2FB;
+  --primitive-accent-200: #B1B4F8;
+  --primitive-accent-300: #9195F5;
+  --primitive-accent-400: #8186F4;
+  --primitive-accent-500: #6268F1;
+  --primitive-accent-600: #4E53C1;
+  --primitive-accent-700: #3B3E91;
+  --primitive-accent-800: #272A60;
+  --primitive-accent-900: #141530;
+  --primitive-accent-950: #0A0A18;
+}
+
+/* ============================================================
+   FluentSMTP  (primary: #C516C0)
+   * Accent data not yet available
+   ============================================================ */
+[data-brand="fluentsmtp"] {
+  --primitive-primary-50:  #e9dde8;
+  --primitive-primary-100: #e2c6e1;
+  --primitive-primary-200: #d992d6;
+  --primitive-primary-300: #d954d5;
+  --primitive-primary-400: #df26d8;
+  --primitive-primary-500: #c516c0;
+  --primitive-primary-600: #9b0d96;
+  --primitive-primary-700: #6d086a;
+  --primitive-primary-800: #3d053b;
+  --primitive-primary-900: #160316;
+  --primitive-primary-950: #080208;
+}
+
+/* ============================================================
+   FluentSupport  (primary: #00B36D · accent: #FFCA6D )
+   ============================================================ */
+[data-brand="fluentsupport"] {
+  --primitive-primary-50:  #E6F8F1;
+  --primitive-primary-100: #CCEFE1;
+  --primitive-primary-200: #9AE0C4;
+  --primitive-primary-300: #66D1A7;
+  --primitive-primary-400: #32C28A;
+  --primitive-primary-500: #00B36D;
+  --primitive-primary-600: #038F57;
+  --primitive-primary-700: #006C41;
+  --primitive-primary-800: #00472B;
+  --primitive-primary-900: #002315;
+  --primitive-primary-950: #00100A;
+  --primitive-accent-50:  #FFF9F0;
+  --primitive-accent-100: #FFF5E1;
+  --primitive-accent-200: #FFE9C4;
+  --primitive-accent-300: #FFDFA6;
+  --primitive-accent-400: #FFD489;
+  --primitive-accent-500: #FFCA6D;
+  --primitive-accent-600: #CCA157;
+  --primitive-accent-700: #997940;
+  --primitive-accent-800: #67502C;
+  --primitive-accent-900: #332915;
+  --primitive-accent-950: #19140A;
+}
+
+/* ============================================================
+   FluentAffiliate  (primary: #2C6AE2 · accent: #2CC5E2)
+   ============================================================ */
+[data-brand="fluentaffiliate"] {
+  --primitive-primary-50:  #E9F0FC;
+  --primitive-primary-100: #D3E1F9;
+  --primitive-primary-200: #AAC3F3;
+  --primitive-primary-300: #81A5ED;
+  --primitive-primary-400: #5687E7;
+  --primitive-primary-500: #2C6AE2;
+  --primitive-primary-600: #2354B4;
+  --primitive-primary-700: #1B3F87;
+  --primitive-primary-800: #112A5A;
+  --primitive-primary-900: #08152D;
+  --primitive-primary-950: #040A16;
+  --primitive-accent-50:  #E9F8FC;
+  --primitive-accent-100: #D4F3F9;
+  --primitive-accent-200: #AAE7F3;
+  --primitive-accent-300: #80DCEC;
+  --primitive-accent-400: #56D0E7;
+  --primitive-accent-500: #2CC5E2;
+  --primitive-accent-600: #239DB4;
+  --primitive-accent-700: #1B7687;
+  --primitive-accent-800: #124E59;
+  --primitive-accent-900: #08272D;
+  --primitive-accent-950: #041316;
+}
+
+/* ============================================================
+   AzonPress  (primary: #FFC800)
+   * Accent data not yet available
+   ============================================================ */
+[data-brand="azonpress"] {
+  --primitive-primary-50:  #f7f6f2;
+  --primitive-primary-100: #f0ebdb;
+  --primitive-primary-200: #e9daa5;
+  --primitive-primary-300: #eed063;
+  --primitive-primary-400: #f6cc31;
+  --primitive-primary-500: #ffc800;
+  --primitive-primary-600: #cca000;
+  --primitive-primary-700: #997800;
+  --primitive-primary-800: #665000;
+  --primitive-primary-900: #3c2f02;
+  --primitive-primary-950: #201a04;
+}
+
+/* ============================================================
+   WP Social Ninja  (primary: #5B2DD4 · accent: #FF0C79 )
+   ============================================================ */
+[data-brand="wpsocialninja"] {
+  --primitive-primary-50:  #EEE9FA;
+  --primitive-primary-100: #DED5F7;
+  --primitive-primary-200: #BDAAED;
+  --primitive-primary-300: #9D80E5;
+  --primitive-primary-400: #7C56DD;
+  --primitive-primary-500: #5B2DD4;
+  --primitive-primary-600: #4823AA;
+  --primitive-primary-700: #361A7F;
+  --primitive-primary-800: #241154;
+  --primitive-primary-900: #11082A;
+  --primitive-primary-950: #090415;
+  --primitive-accent-50:  #EEE9FA;
+  --primitive-accent-100: #FFCEE4;
+  --primitive-accent-200: #FF9FCA;
+  --primitive-accent-300: #FF6DAE;
+  --primitive-accent-400: #FF3D93;
+  --primitive-accent-500: #FF0C79;
+  --primitive-accent-600: #CC0B60;
+  --primitive-accent-700: #990848;
+  --primitive-accent-800: #660430;
+  --primitive-accent-900: #330218;
+  --primitive-accent-950: #19010B;
+}
+
+/* ============================================================
+   FluentCart  (primary: #0000D9 · accent: #00009F)
+   ============================================================ */
+[data-brand="fluentcart"] {
+  --primitive-primary-50:  #E5E5FB;
+  --primitive-primary-100: #B2B2F4;
+  --primitive-primary-200: #8080EC;
+  --primitive-primary-300: #4D4DE4;
+  --primitive-primary-400: #1A1ADD;
+  --primitive-primary-500: #0000D9;
+  --primitive-primary-600: #0000AE;
+  --primitive-primary-700: #000082;
+  --primitive-primary-800: #000057;
+  --primitive-primary-900: #00002B;
+  --primitive-primary-950: #000016;
+  --primitive-accent-50:  #E5E5F5;
+  --primitive-accent-100: #B2B2E2;
+  --primitive-accent-200: #6666C5;
+  --primitive-accent-300: #4D4DBC;
+  --primitive-accent-400: #1A1AA9;
+  --primitive-accent-500: #00009F;
+  --primitive-accent-600: #00007F;
+  --primitive-accent-700: #00005F;
+  --primitive-accent-800: #000040;
+  --primitive-accent-900: #000020;
+  --primitive-accent-950: #000010;
+}
+
+/* ============================================================
+   FluentPlayer  (primary: #0163DD · accent: #DD1E13 )
+   ============================================================ */
+[data-brand="fluentplayer"] {
+  --primitive-primary-50:  #E5EFFB;
+  --primitive-primary-100: #CCE0F8;
+  --primitive-primary-200: #99C0F1;
+  --primitive-primary-300: #66A1EA;
+  --primitive-primary-400: #3182E3;
+  --primitive-primary-500: #0163DD;
+  --primitive-primary-600: #004EB0;
+  --primitive-primary-700: #003A84;
+  --primitive-primary-800: #002758;
+  --primitive-primary-900: #00122C;
+  --primitive-primary-950: #000916;
+  --primitive-accent-50:  #FBE8E8;
+  --primitive-accent-100: #F8D3CF;
+  --primitive-accent-200: #F1A5A0;
+  --primitive-accent-300: #EA7871;
+  --primitive-accent-400: #E34B42;
+  --primitive-accent-500: #DD1E13;
+  --primitive-accent-600: #B1180E;
+  --primitive-accent-700: #84120B;
+  --primitive-accent-800: #590B06;
+  --primitive-accent-900: #2C0603;
+  --primitive-accent-950: #150301;
+}

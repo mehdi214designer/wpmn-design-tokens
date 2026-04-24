@@ -1,0 +1,312 @@
+/**
+ * WPMN Design System — Semantic Tokens
+ * Collection: Tokens (Desktop Light / Desktop Dark / Mobile Light / Mobile Dark)
+ *
+ * These tokens map semantic meaning onto raw Primitives.
+ * Use these variables in all components — never use primitives.css values directly.
+ *
+ * Light mode is the default (:root). Dark mode is toggled via [data-theme="dark"].
+ * Mobile overrides are applied via media query or [data-viewport="mobile"].
+ */
+
+@import "./primitives.css";
+
+/* ============================================================
+   LIGHT MODE (default — Desktop Light)
+   ============================================================ */
+:root {
+
+  /* --- Text --- */
+  --color-text-primary: var(--primitive-dark-800);
+  /* #07090c */
+  --color-text-secondary: var(--primitive-light-900);
+  /* #4e5d78 */
+  --color-text-primary-invert: var(--primitive-light-0);
+  /* #ffffff */
+  --color-text-brand: var(--primitive-accent-300);
+  /* #939dab */
+
+  /* --- Surface --- */
+  --color-surface-primary: var(--primitive-light-0);
+  /* #ffffff */
+  --color-surface-secondary: var(--primitive-dark-800);
+  /* #07090c */
+  --color-surface-icon-primary: var(--primitive-dark-700);
+  /* #0f1218 */
+  --color-surface-icon-primary-invert: var(--primitive-light-0);
+  /* #ffffff */
+
+  /* --- Brand Surface --- */
+  --color-brand-surface: var(--primitive-accent-400);
+  /* #6e7d8f */
+  --color-brand-surface-secondary: var(--primitive-primary-200);
+  /* #9fbfff */
+
+  /* --- Border --- */
+  --color-border-primary: var(--primitive-light-100);
+  /* #dbdee4 */
+  --color-border-primary-invert: var(--primitive-dark-700);
+  /* #0f1218 */
+
+  /* --- Feedback --- */
+  --color-success-primary: var(--primitive-success-600);
+  /* #22b814 */
+  --color-success-invert: var(--primitive-success-400);
+  /* #55eb47 */
+  --color-warning-primary: var(--primitive-warning-600);
+  /* #cc6600 */
+  --color-warning-invert: var(--primitive-warning-400);
+  /* #ff9933 */
+  --color-error-primary: var(--primitive-error-400);
+  /* #ff3333 */
+  --color-error-invert: var(--primitive-error-500);
+  /* #ff0000 */
+
+  /* --- Button States (Default) --- */
+  --btn-bg-enable: var(--primitive-primary-500);
+  /* #0d5fff */
+  --btn-bg-hovered: var(--primitive-primary-700);
+  /* #083999 */
+  --btn-bg-pressed: var(--primitive-primary-800);
+  /* #062666 */
+  --btn-bg-focused: var(--primitive-primary-100);
+  /* #cedfff */
+  --btn-bg-disabled: var(--primitive-primary-100);
+  /* #cedfff */
+
+  /* --- Button States (Invert) --- */
+  --btn-bg-enable-invert: var(--primitive-primary-100);
+  /* #cedfff */
+  --btn-bg-hovered-invert: var(--primitive-primary-200);
+  /* #9fbfff */
+  --btn-bg-pressed-invert: var(--primitive-primary-300);
+  /* #6d9fff */
+  --btn-bg-focused-invert: var(--primitive-primary-600);
+  /* #094ccb */
+  --btn-bg-disabled-invert: var(--primitive-primary-800);
+  /* #062666 */
+
+  /* --- Border Radius (semantic aliases) --- */
+  --radius-xsm: var(--primitive-radius-xs);
+  /* 8px */
+  --radius-sm: var(--primitive-radius-sm);
+  /* 12px */
+  --radius-md: var(--primitive-radius-md);
+  /* 16px */
+  --radius-lg: var(--primitive-radius-lg);
+  /* 32px */
+
+  /* --- Section & Layout Spacing --- */
+  --spacing-section-gap-desktop: 80px;
+  --spacing-section-padding-tb-desktop: 96px;
+  --spacing-section-gap-mobile: 48px;
+  --spacing-section-padding-tb-mobile: 64px;
+
+  /* --- Heading-to-body Spacing --- */
+  --spacing-h-xxl-to-large: 16px;
+  --spacing-h-xl-to-medium: 12px;
+  --spacing-h-l-to-medium: 12px;
+  --spacing-h-m-to-base: 8px;
+  --spacing-h-s-to-base: 8px;
+  --spacing-h-xs-to-small: 8px;
+
+  /* --- Button Spacing --- */
+  --spacing-btn-gap-sm: 8px;
+  --spacing-btn-gap-md: 12px;
+  --spacing-btn-gap-lg: 16px;
+  --spacing-btn-in-section-md: 20px;
+  --spacing-btn-in-section-xl: 24px;
+
+  /* --- Input — Stroke borders --- */
+  --input-stroke-default: #c9ced6;
+  /* color/input/stroke/default  — Light/200 */
+  --input-stroke-hover: #a6aebb;
+  /* color/input/stroke/hover    — Light/600 */
+  --input-stroke-active: #1a1add;
+  /* color/input/stroke/active   — focused blue */
+  --input-stroke-error: #ff6666;
+  /* color/input/stroke/error    — Error/300 */
+  --input-stroke-success: #80f075;
+  /* color/input/stroke/success  — Success/300 */
+  --input-stroke-disable: #c9ced6;
+  /* color/input/stroke/disable  — Light/200 */
+
+  /* --- Input — Text / placeholder colours --- */
+  --input-text-default: #a6aebb;
+  /* color/input/text/default    — placeholder */
+  --input-text-hover: #4e5d78;
+  /* color/input/text/hover      — Light/900 */
+  --input-text-active: #272e3c;
+  /* color/input/text/active     — typed value */
+  --input-text-error: #ff0000;
+  /* color/input/text/error */
+  --input-text-success: #22b814;
+  /* color/input/text/success    — Success/600 */
+  --input-text-disable: #b8bec9;
+  /* color/input/text/disable    — Light/300 */
+
+  /* --- Input — Fill background --- */
+  --input-fill-default: #edeef1;
+  /* color/input/fill/default    — Light/50 */
+  --input-fill-hover: #e3e5e9;
+  /* color/input/fill/hover */
+  --input-fill-active: #ffffff;
+  /* color/input/fill/active — white when focused */
+  --input-fill-disable: #f6f7f8;
+  /* color/input/fill/disable */
+
+  /* --- Input — Label & hint --- */
+  --input-label-color: var(--color-text-primary);
+  --input-hint-color: var(--color-text-secondary);
+
+  /* ============================================================
+     SHADOW TOKENS — Figma: Elevation (Shadows) — node 39:12034
+     ============================================================ */
+
+  /* Hard shadows — crisp, direct drop shadows. Color: rgba(0,0,0,α).
+     Use for interactive elements, cards, menus. Scale 100–1000. */
+  --shadow-hard-100:  0px 1px  3px  0px rgba(0, 0, 0, 0.20);
+  --shadow-hard-200:  0px 2px  2px  0px rgba(0, 0, 0, 0.17);
+  --shadow-hard-300:  0px 3px  4px  0px rgba(0, 0, 0, 0.17);
+  --shadow-hard-400:  0px 4px  5px  0px rgba(0, 0, 0, 0.15);
+  --shadow-hard-500:  0px 6px  10px 0px rgba(0, 0, 0, 0.10);
+  --shadow-hard-600:  0px 8px  10px 0px rgba(0, 0, 0, 0.10);
+  --shadow-hard-700:  0px 9px  12px 0px rgba(0, 0, 0, 0.10);
+  --shadow-hard-800:  0px 12px 17px 0px rgba(0, 0, 0, 0.10);
+  --shadow-hard-900:  0px 16px 24px 0px rgba(0, 0, 0, 0.10);
+  --shadow-hard-1000: 0px 24px 38px 0px rgba(0, 0, 0, 0.10);
+
+  /* Soft shadows — negative spread, floating/diffused effect. Color: rgba(0,0,16,α).
+     Use for modals, tooltips, elevated surfaces. Scale 100–800. */
+  --shadow-soft-100: 0px  12px  12px -15px rgba(0, 0, 16, 0.10); /* xs-small  */
+  --shadow-soft-200: 0px  24px  12px -24px rgba(0, 0, 16, 0.15); /* x-small   */
+  --shadow-soft-300: 0px  24px  24px -24px rgba(0, 0, 16, 0.15); /* small     */
+  --shadow-soft-400: 0px  24px  48px -20px rgba(0, 0, 16, 0.10); /* medium    */
+  --shadow-soft-500: 30px 45px  84px -25px rgba(0, 0, 16, 0.15); /* x-medium  */
+  --shadow-soft-600: 0px  72px  72px -40px rgba(0, 0, 16, 0.10); /* large     */
+  --shadow-soft-700: 0px  96px  96px -45px rgba(0, 0, 16, 0.10); /* x-large   */
+  --shadow-soft-800: 0px  72px  96px -18px rgba(0, 0, 16, 0.10); /* xx-large  */
+
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+[data-theme="dark"] {
+
+  /* --- Text --- */
+  --color-text-primary: var(--primitive-light-0);
+  /* #ffffff */
+  --color-text-secondary: var(--primitive-light-100);
+  /* #dbdee4 */
+  --color-text-primary-invert: var(--primitive-dark-800);
+  /* #07090c */
+  --color-text-brand: var(--primitive-accent-200);
+  /* #b7bec7 */
+
+  /* --- Surface --- */
+  --color-surface-primary: var(--primitive-dark-800);
+  /* #07090c */
+  --color-surface-secondary: var(--primitive-light-0);
+  /* #ffffff */
+  --color-surface-icon-primary: var(--primitive-light-0);
+  /* #ffffff */
+  --color-surface-icon-primary-invert: var(--primitive-dark-700);
+  /* #0f1218 */
+
+  /* --- Brand Surface --- */
+  --color-brand-surface: var(--primitive-primary-200);
+  /* #9fbfff */
+  --color-brand-surface-secondary: var(--primitive-accent-100);
+  /* #dcdee2 */
+
+  /* --- Border --- */
+  --color-border-primary: var(--primitive-dark-700);
+  /* #0f1218 */
+  --color-border-primary-invert: var(--primitive-light-100);
+  /* #dbdee4 */
+
+  /* --- Feedback --- */
+  --color-success-primary: var(--primitive-success-400);
+  /* #55eb47 */
+  --color-success-invert: var(--primitive-success-600);
+  /* #22b814 */
+  --color-warning-primary: var(--primitive-warning-400);
+  /* #ff9933 */
+  --color-warning-invert: var(--primitive-warning-600);
+  /* #cc6600 */
+  --color-error-primary: var(--primitive-error-500);
+  /* #ff0000 */
+  --color-error-invert: var(--primitive-error-400);
+  /* #ff3333 */
+
+  /* --- Button States (Default) --- */
+  --btn-bg-enable: var(--primitive-primary-100);
+  /* #cedfff */
+  --btn-bg-hovered: var(--primitive-primary-200);
+  /* #9fbfff */
+  --btn-bg-pressed: var(--primitive-primary-300);
+  /* #6d9fff */
+  --btn-bg-focused: var(--primitive-primary-600);
+  /* #094ccb */
+  --btn-bg-disabled: var(--primitive-primary-800);
+  /* #062666 */
+
+  /* --- Button States (Invert) --- */
+  --btn-bg-enable-invert: var(--primitive-accent-500);
+  /* #4c5c73 */
+  --btn-bg-hovered-invert: var(--primitive-accent-700);
+  /* #2d3745 */
+  --btn-bg-pressed-invert: var(--primitive-accent-800);
+  /* #1d252e */
+  --btn-bg-focused-invert: var(--primitive-primary-100);
+  /* #cedfff */
+  --btn-bg-disabled-invert: var(--primitive-primary-100);
+  /* #cedfff */
+
+  /* --- Input — Stroke (dark mode) --- */
+  --input-stroke-default: #2e3748;
+  /* Static Dark/300 */
+  --input-stroke-hover: #3d4f69;
+  --input-stroke-active: #6d9fff;
+  /* Primary/300 — blue focus ring in dark */
+  --input-stroke-error: #ff6666;
+  --input-stroke-success: #55eb47;
+  --input-stroke-disable: #2e3748;
+
+  /* --- Input — Text (dark mode) --- */
+  --input-text-default: #838da0;
+  /* Static Light/600 — placeholder */
+  --input-text-hover: #dbdee4;
+  /* Light/100 */
+  --input-text-active: #ffffff;
+  --input-text-disable: #4e5d78;
+
+  /* --- Input — Fill (dark mode) --- */
+  --input-fill-default: #1d252e;
+  /* Dark/800 fill bg */
+  --input-fill-hover: #2d3745;
+  --input-fill-active: #07090c;
+  --input-fill-disable: #151b24;
+
+}
+
+/* ============================================================
+   MOBILE OVERRIDES (Light)
+   ============================================================ */
+@media (max-width: 768px) {
+  :root {
+    --color-brand-surface: var(--primitive-accent-500);
+    /* #4c5c73 — Mobile Light uses Accent/500 */
+  }
+}
+
+/* ============================================================
+   MOBILE OVERRIDES (Dark)
+   ============================================================ */
+@media (max-width: 768px) {
+  [data-theme="dark"] {
+    --btn-bg-enable-invert: var(--primitive-accent-500);
+    /* Mobile Dark differs */
+  }
+}

@@ -1,0 +1,162 @@
+/**
+ * WPMN Design System — Primitives
+ * Collection: Primitives (WPManageNinja brand mode)
+ *
+ * This file contains all raw base values.
+ * Do NOT use these directly in components — use tokens.css instead.
+ * These are the single source of truth that semantic tokens reference.
+ *
+ * Multi-brand note: The Primitives collection has 10 brand modes:
+ * FluentCart, FluentCRM, FluentAffiliate, WPManageNinja, Ninja Tables,
+ * WP Social Ninja, FluentSupport, FluentForms, FluentPlayer, FluentBoards.
+ * This file reflects the WPManageNinja brand mode.
+ */
+
+:root {
+
+   /* ============================================================
+     STATIC COLORS — Light Scale (neutral grays, same across brands)
+     ============================================================ */
+   --primitive-light-0: #ffffff;
+   --primitive-light-25: #f6f7f8;
+   --primitive-light-50: #edeef1;
+   --primitive-light-100: #dbdee4;
+   --primitive-light-200: #c9ced6;
+   --primitive-light-300: #b8bec9;
+   --primitive-light-400: #a6aebb;
+   --primitive-light-500: #949dae;
+   --primitive-light-600: #838da0;
+   --primitive-light-700: #717d93;
+   --primitive-light-800: #5f6d85;
+   --primitive-light-900: #4e5d78;
+
+   /* ============================================================
+     STATIC COLORS — Dark Scale (same across brands)
+     ============================================================ */
+   --primitive-dark-50: #46536c;
+   --primitive-dark-100: #3e4a60;
+   --primitive-dark-200: #364154;
+   --primitive-dark-300: #2e3748;
+   --primitive-dark-400: #272e3c;
+   --primitive-dark-500: #1f2530;
+   --primitive-dark-600: #171b24;
+   --primitive-dark-700: #0f1218;
+   --primitive-dark-800: #07090c;
+   --primitive-dark-900: #000000;
+
+   /* ============================================================
+     BRAND COLORS — Accent (WPManageNinja: slate/gray scale)
+     ============================================================ */
+   --primitive-accent-50: #edeef1;
+   --primitive-accent-100: #dcdee2;
+   --primitive-accent-200: #b7bec7;
+   --primitive-accent-300: #939dab;
+   --primitive-accent-400: #6e7d8f;
+   --primitive-accent-500: #4c5c73;
+   --primitive-accent-600: #3c4a5c;
+   --primitive-accent-700: #2d3745;
+   --primitive-accent-800: #1d252e;
+   --primitive-accent-900: #101217;
+   --primitive-accent-950: #07090b;
+
+      /* ============================================================
+     BRAND COLORS — Primary (WPManageNinja: blue scale)
+     ============================================================ */
+   --primitive-primary-50: #e6effe;
+   --primitive-primary-100: #cedfff;
+   --primitive-primary-200: #9fbfff;
+   --primitive-primary-300: #6d9fff;
+   --primitive-primary-400: #3e7dff;
+   --primitive-primary-500: #0d5fff;
+   --primitive-primary-600: #094ccb;
+   --primitive-primary-700: #083999;
+   --primitive-primary-800: #062666;
+   --primitive-primary-900: #011333;
+   --primitive-primary-950: #000919;
+
+   /* ============================================================
+     STATIC COLORS — Success
+     ============================================================ */
+   --primitive-success-50: #eafce8;
+   --primitive-success-100: #d5fad1;
+   --primitive-success-200: #aaf5a3;
+   --primitive-success-300: #80f075;
+   --primitive-success-400: #55eb47;
+   --primitive-success-500: #2be51a;
+   --primitive-success-600: #22b814;
+   --primitive-success-700: #1a8a0f;
+   --primitive-success-800: #115c0a;
+   --primitive-success-900: #092e05;
+   --primitive-success-950: #041703;
+
+   /* ============================================================
+     STATIC COLORS — Warning
+     ============================================================ */
+   --primitive-warning-50: #fff2e5;
+   --primitive-warning-100: #ffe5cc;
+   --primitive-warning-200: #ffcc99;
+   --primitive-warning-300: #ffb266;
+   --primitive-warning-400: #ff9933;
+   --primitive-warning-500: #ff8000;
+   --primitive-warning-600: #cc6600;
+   --primitive-warning-700: #994d00;
+   --primitive-warning-800: #663300;
+   --primitive-warning-900: #331a00;
+   --primitive-warning-950: #1a0d00;
+
+   /* ============================================================
+     STATIC COLORS — Error
+     ============================================================ */
+   --primitive-error-50: #ffe5e6;
+   --primitive-error-100: #ffcccc;
+   --primitive-error-200: #ff9999;
+   --primitive-error-300: #ff6666;
+   --primitive-error-400: #ff3333;
+   --primitive-error-500: #ff0000;
+   --primitive-error-600: #cc0000;
+   --primitive-error-700: #990000;
+   --primitive-error-800: #660000;
+   --primitive-error-900: #330000;
+   --primitive-error-950: #1a0000;
+
+   /* ============================================================
+     SPACING
+     ============================================================ */
+   --primitive-space-none: 0px;
+   --primitive-space-2: 2px;
+   --primitive-space-4: 4px;
+   --primitive-space-8: 8px;
+   --primitive-space-12: 12px;
+   --primitive-space-16: 16px;
+   --primitive-space-20: 20px;
+   --primitive-space-24: 24px;
+   --primitive-space-32: 32px;
+   --primitive-space-40: 40px;
+   --primitive-space-48: 48px;
+   --primitive-space-56: 56px;
+   --primitive-space-64: 64px;
+   --primitive-space-80: 80px;
+   --primitive-space-96: 96px;
+   --primitive-space-120: 120px;
+   --primitive-space-128: 128px;
+   --primitive-space-160: 160px;
+   --primitive-space-192: 192px;
+   --primitive-space-224: 224px;
+   --primitive-space-256: 256px;
+
+   /* ============================================================
+     BORDER RADIUS
+     ============================================================ */
+   --primitive-radius-none: 0px;
+   --primitive-radius-xxs: 4px;
+   --primitive-radius-xs: 8px;
+   --primitive-radius-sm: 12px;
+   --primitive-radius-md: 16px;
+   --primitive-radius-md-lg: 24px;
+   --primitive-radius-lg: 32px;
+   --primitive-radius-xl: 48px;
+   --primitive-radius-2xl: 64px;
+   --primitive-radius-3xl: 128px;
+   --primitive-radius-4xl: 256px;
+
+}

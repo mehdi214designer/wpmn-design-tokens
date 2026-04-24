@@ -1,0 +1,112 @@
+/**
+ * WPMN Design System — Badge
+ * Figma source: "Badge ✅" (node 40:12056)
+ *
+ * 2 shape variants × 5 semantic types × light + dark theme = full coverage
+ *
+ * Font: SF Pro Expanded Semibold (font-variation-settings: 'wdth' 132)
+ * Falls back to system-ui → sans-serif if SF Pro is unavailable.
+ */
+
+/* ── Base ────────────────────────────────────────────────────── */
+.wpmn-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  white-space: nowrap;
+  font-family: "SF Pro", "SF Pro Display", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 650;
+  font-variation-settings: 'wdth' 132;
+  text-transform: uppercase;
+  /* color/bg set by type modifier below */
+  background-color: var(--badge-bg);
+  color: var(--badge-color);
+}
+
+/* ── Variant: pill ───────────────────────────────────────────── */
+/* Small, fully-rounded — bedge light/dark rounded */
+.wpmn-badge--pill {
+  padding: 8px 24px;
+  border-radius: 100px;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: -0.2px;
+}
+
+/* ── Variant: soft ───────────────────────────────────────────── */
+/* Large, softly-rounded — bedge light soft-round */
+.wpmn-badge--soft {
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-size: 26px;
+  line-height: 40px;
+  letter-spacing: -0.26px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TYPE COLORS — LIGHT MODE (default)
+   ══════════════════════════════════════════════════════════════ */
+
+/* surface/theme_light/warning_accent_1 + text/theme_light/warning_on_accentLight */
+.wpmn-badge--in_progress {
+  --badge-bg:    #FFF5DB;
+  --badge-color: #D07D00;
+}
+
+/* surface/theme_light/secondary_accent_1 + text/theme_light/success_on_accentLight */
+.wpmn-badge--completed {
+  --badge-bg:    #E9FFEA;
+  --badge-color: #0A9C55;
+}
+
+/* surface/theme_light/info_accent_1 + text/theme_light/info_on_accentLight */
+.wpmn-badge--experimental {
+  --badge-bg:    #E9F4FF;
+  --badge-color: #0076E2;
+}
+
+/* surface/theme_light/danger_accent_1 + text/theme_light/danger_on_accentLight */
+.wpmn-badge--deprecated {
+  --badge-bg:    #FFF1F1;
+  --badge-color: #CF2A2A;
+}
+
+/* surface/primary_accent_1 (light) + color/primary/500 */
+.wpmn-badge--handoff_ready {
+  --badge-bg:    rgba(115, 87, 255, 0.12);
+  --badge-color: #7357FF;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TYPE COLORS — DARK MODE
+   ══════════════════════════════════════════════════════════════ */
+
+/* surface/theme_dark/warning_accent_1 + text/theme_dark/warning_on_accentDark */
+[data-theme="dark"] .wpmn-badge--in_progress {
+  --badge-bg:    rgba(255, 203, 69, 0.2);
+  --badge-color: #FFDD86;
+}
+
+/* surface/theme_dark/success_accent_1 + text/theme_dark/success_on_accentDark */
+[data-theme="dark"] .wpmn-badge--completed {
+  --badge-bg:    rgba(111, 218, 166, 0.2);
+  --badge-color: #A6E9C8;
+}
+
+/* surface/theme_dark/info_accent_1 + text/theme_dark/info_on_accentDark */
+[data-theme="dark"] .wpmn-badge--experimental {
+  --badge-bg:    rgba(113, 187, 255, 0.2);
+  --badge-color: #A0D2FF;
+}
+
+/* surface/theme_dark/danger_accent_1 + text/theme_dark/danger_on_accentDark */
+[data-theme="dark"] .wpmn-badge--deprecated {
+  --badge-bg:    rgba(255, 167, 167, 0.2);
+  --badge-color: #FFC7C7;
+}
+
+/* surface/theme_dark/primary_accent_1 + text/theme_dark/white */
+[data-theme="dark"] .wpmn-badge--handoff_ready {
+  --badge-bg:    rgba(188, 175, 255, 0.2);
+  --badge-color: #FFFFFF;
+}

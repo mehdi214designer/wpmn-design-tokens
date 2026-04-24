@@ -1,0 +1,179 @@
+/**
+ * WPMN Design System — Footer
+ * Figma source: node 957-4223
+ *
+ * Layout: full-width, max 1440px, 96px top/bottom · 120px side padding
+ * Top section: brand col (361px) + 3 nav columns, space-between
+ * Bottom bar:  logo left · copyright + links right
+ */
+
+/* ── Shell ────────────────────────────────────────────────────── */
+.wpmn-footer {
+  width: 100%;
+  background-color: var(--color-surface-primary);
+  padding: 96px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 128px;
+  box-sizing: border-box;
+  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+}
+
+/* ── Top: 4 columns ───────────────────────────────────────────── */
+.wpmn-footer__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: 40px;
+}
+
+/* Brand / address column */
+.wpmn-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 361px;
+  flex-shrink: 0;
+}
+
+.wpmn-footer__address {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--color-text-primary, #000016);
+  margin: 0;
+}
+
+/* Social icon row */
+.wpmn-footer__social {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wpmn-footer__social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6.4px;
+  background: linear-gradient(180deg, rgba(0,0,16,0.05) 0%, rgba(0,0,16,0.02) 100%);
+  color: var(--color-text-primary, #000016);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 120ms ease;
+}
+
+.wpmn-footer__social-btn:hover { opacity: 0.6; }
+
+/* Nav columns */
+.wpmn-footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.wpmn-footer__nav-title {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text-primary, #07090c);
+  margin: 0;
+  padding: 10px 10px 10px 16px;
+  white-space: nowrap;
+}
+
+.wpmn-footer__nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wpmn-footer__nav-link {
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--color-text-secondary, #4e5d78);
+  text-decoration: none;
+  padding: 10px 10px 10px 16px;
+  white-space: nowrap;
+  transition: color 120ms ease;
+}
+
+.wpmn-footer__nav-link:hover { color: var(--color-text-primary, #07090c); }
+
+/* ── Bottom bar ───────────────────────────────────────────────── */
+.wpmn-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.wpmn-footer__bottom-logo { flex-shrink: 0; }
+
+.wpmn-footer__logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.wpmn-footer__logo-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.wpmn-footer__bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.wpmn-footer__copyright {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000040;
+}
+
+.wpmn-footer__bottom-link {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000040;
+  text-decoration: none;
+  transition: opacity 120ms ease;
+}
+
+.wpmn-footer__bottom-link:hover { opacity: 0.65; }
+
+/* ── Dark mode ────────────────────────────────────────────────── */
+[data-theme="dark"] .wpmn-footer__social-btn {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
+  color: var(--color-text-primary, #ffffff);
+}
+
+[data-theme="dark"] .wpmn-footer__copyright,
+[data-theme="dark"] .wpmn-footer__bottom-link {
+  color: var(--color-text-secondary);
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .wpmn-footer { padding: 64px 48px; gap: 80px; }
+  .wpmn-footer__brand { width: 280px; }
+}
+
+@media (max-width: 768px) {
+  .wpmn-footer { padding: 48px 24px; gap: 56px; }
+  .wpmn-footer__top { flex-wrap: wrap; gap: 48px; }
+  .wpmn-footer__brand { width: 100%; }
+  .wpmn-footer__bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .wpmn-footer__bottom-right { flex-wrap: wrap; gap: 16px; }
+}

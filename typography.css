@@ -1,0 +1,139 @@
+/**
+ * WPMN Design System — Typography
+ * Collection: Typography (Desktop + Mobile modes)
+ *
+ * Font family: Work Sans
+ * Weights: Regular (400) · Medium (500) · Semi Bold (600) · Bold (700)
+ *
+ * Desktop is the default. Mobile values are applied via @media query.
+ * Token naming: --font-size-{scope}-{variant}, --font-lh-{scope}-{variant}
+ */
+
+/* ============================================================
+   FONT IMPORT
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+
+  /* ============================================================
+     FONT FAMILY & WEIGHTS
+     ============================================================ */
+  --font-family-base:      'Work Sans', sans-serif;
+  --font-weight-regular:   400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
+
+  /* ============================================================
+     DESKTOP — Font Sizes
+     ============================================================ */
+  --font-size-h1:           61px;
+  --font-size-h2:           49px;
+  --font-size-h3:           39px;
+  --font-size-h4:           31px;
+  --font-size-h5:           25px;
+  --font-size-h6:           20px;
+
+  --font-size-body-large:   20px;
+  --font-size-body-medium:  18px;
+  --font-size-body-base:    16px;
+  --font-size-body-small:   14px;
+  --font-size-body-label:   13px;
+  --font-size-body-mono:    10px;
+
+  /* ============================================================
+     DESKTOP — Line Heights
+     ============================================================ */
+  --font-lh-h1:             73px;
+  --font-lh-h2:             59px;
+  --font-lh-h3:             47px;
+  --font-lh-h4:             37px;
+  --font-lh-h5:             30px;
+  --font-lh-h6:             24px;
+
+  --font-lh-body-large:     30px;
+  --font-lh-body-medium:    27px;
+  --font-lh-body-base:      24px;
+  --font-lh-body-small:     21px;
+  --font-lh-body-label:     20px;
+  --font-lh-body-mono:      15px;
+
+  /* ============================================================
+     BUTTON — Font Sizes & Line Heights (same on Desktop + Mobile)
+     ============================================================ */
+  --font-size-btn-xl:       23px;
+  --font-size-btn-lg:       20px;
+  --font-size-btn-md:       18px;
+  --font-size-btn-sm:       16px;
+  --font-size-btn-xs:       13px;
+
+  --font-lh-btn-xl:         28px;
+  --font-lh-btn-lg:         24px;
+  --font-lh-btn-md:         20px;
+  --font-lh-btn-sm:         18px;
+  --font-lh-btn-xs:         16px;
+
+}
+
+/* ============================================================
+   MOBILE — Font Sizes
+   ============================================================ */
+@media (max-width: 768px) {
+  :root {
+    --font-size-h1:           32px;
+    --font-size-h2:           28px;
+    --font-size-h3:           25px;
+    --font-size-h4:           22px;
+    --font-size-h5:           20px;
+    --font-size-h6:           18px;
+
+    --font-size-body-large:   18px;
+    --font-size-body-medium:  16px;
+    --font-size-body-base:    14px;
+    --font-size-body-small:   12px;
+    --font-size-body-label:   11px;
+    --font-size-body-mono:    10px;
+
+    --font-lh-h1:             38px;
+    --font-lh-h2:             34px;
+    --font-lh-h3:             30px;
+    --font-lh-h4:             26px;
+    --font-lh-h5:             24px;
+    --font-lh-h6:             22px;
+
+    --font-lh-body-large:     27px;
+    --font-lh-body-medium:    24px;
+    --font-lh-body-base:      21px;
+    --font-lh-body-small:     18px;
+    --font-lh-body-label:     17px;
+    --font-lh-body-mono:      15px;
+  }
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* Headings */
+.text-h1 { font-family: var(--font-family-base); font-size: var(--font-size-h1); line-height: var(--font-lh-h1); font-weight: var(--font-weight-bold); }
+.text-h2 { font-family: var(--font-family-base); font-size: var(--font-size-h2); line-height: var(--font-lh-h2); font-weight: var(--font-weight-bold); }
+.text-h3 { font-family: var(--font-family-base); font-size: var(--font-size-h3); line-height: var(--font-lh-h3); font-weight: var(--font-weight-semibold); }
+.text-h4 { font-family: var(--font-family-base); font-size: var(--font-size-h4); line-height: var(--font-lh-h4); font-weight: var(--font-weight-semibold); }
+.text-h5 { font-family: var(--font-family-base); font-size: var(--font-size-h5); line-height: var(--font-lh-h5); font-weight: var(--font-weight-medium); }
+.text-h6 { font-family: var(--font-family-base); font-size: var(--font-size-h6); line-height: var(--font-lh-h6); font-weight: var(--font-weight-medium); }
+
+/* Body */
+.text-body-large  { font-family: var(--font-family-base); font-size: var(--font-size-body-large);  line-height: var(--font-lh-body-large);  font-weight: var(--font-weight-regular); }
+.text-body-medium { font-family: var(--font-family-base); font-size: var(--font-size-body-medium); line-height: var(--font-lh-body-medium); font-weight: var(--font-weight-regular); }
+.text-body-base   { font-family: var(--font-family-base); font-size: var(--font-size-body-base);   line-height: var(--font-lh-body-base);   font-weight: var(--font-weight-regular); }
+.text-body-small  { font-family: var(--font-family-base); font-size: var(--font-size-body-small);  line-height: var(--font-lh-body-small);  font-weight: var(--font-weight-regular); }
+.text-body-label  { font-family: var(--font-family-base); font-size: var(--font-size-body-label);  line-height: var(--font-lh-body-label);  font-weight: var(--font-weight-medium); }
+.text-body-mono   { font-family: monospace;                font-size: var(--font-size-body-mono);   line-height: var(--font-lh-body-mono);   font-weight: var(--font-weight-regular); }
+
+/* Button text */
+.text-btn-xl { font-family: var(--font-family-base); font-size: var(--font-size-btn-xl); line-height: var(--font-lh-btn-xl); font-weight: var(--font-weight-semibold); }
+.text-btn-lg { font-family: var(--font-family-base); font-size: var(--font-size-btn-lg); line-height: var(--font-lh-btn-lg); font-weight: var(--font-weight-semibold); }
+.text-btn-md { font-family: var(--font-family-base); font-size: var(--font-size-btn-md); line-height: var(--font-lh-btn-md); font-weight: var(--font-weight-semibold); }
+.text-btn-sm { font-family: var(--font-family-base); font-size: var(--font-size-btn-sm); line-height: var(--font-lh-btn-sm); font-weight: var(--font-weight-medium); }
+.text-btn-xs { font-family: var(--font-family-base); font-size: var(--font-size-btn-xs); line-height: var(--font-lh-btn-xs); font-weight: var(--font-weight-medium); }

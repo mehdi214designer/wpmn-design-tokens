@@ -1,0 +1,30 @@
+/**
+ * WPMN Design System — Main Entry Point
+ *
+ * Import this single file to get the full design system:
+ *   @import 'wpmn-design-tokens/index.css';
+ *
+ * Load order matters:
+ *   1. primitives.css        — raw values for default brand (WPManageNinja)
+ *   2. brand-primitives.css  — brand overrides via [data-brand="..."]
+ *   3. tokens.css            — semantic tokens (use these in components)
+ *   4. typography.css        — type scale + utility classes
+ *
+ * Usage:
+ *   color: var(--color-text-primary);
+ *   background: var(--color-surface-primary);
+ *   font-size: var(--font-size-body-base);
+ *   border-radius: var(--radius-md);
+ *
+ * Brand switching:
+ *   document.documentElement.setAttribute('data-brand', 'fluentforms');
+ *   <section data-brand="fluentsupport"> … </section>
+ *
+ * Dark mode:   add data-theme="dark" to <html>
+ * Mobile mode: handled automatically via @media (max-width: 768px)
+ */
+
+@import "./primitives.css";
+@import "./brand-primitives.css";
+@import "./tokens.css";
+@import "./typography.css";

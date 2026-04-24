@@ -1,0 +1,67 @@
+/**
+ * WPMN Design System — Logo
+ *
+ * SVG colours are baked in by Figma — no colour overrides needed here.
+ * This file handles sizing, layout, and usage guidance per variant/type.
+ *
+ * Variants:
+ *   .wpmn-logo--logo   → icon mark + wordmark
+ *   .wpmn-logo--icon   → icon mark only
+ *
+ * Types (background intent):
+ *   .wpmn-logo--primary   → full colour, designed for light backgrounds
+ *   .wpmn-logo--dark      → full colour, designed for dark backgrounds
+ *   .wpmn-logo--inverted  → inverted colour, designed for brand-colour backgrounds
+ *   .wpmn-logo--black     → monochrome black, for light backgrounds / print
+ *   .wpmn-logo--white     → monochrome white, for dark backgrounds / reversed print
+ */
+
+/* ── Base ──────────────────────────────────────────────────────── */
+.wpmn-logo {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* ── Variant: logo (icon + wordmark) ───────────────────────────── */
+.wpmn-logo--logo {
+  /* Wordmark logos are wider — no additional constraints needed */
+}
+
+/* ── Variant: icon (icon mark only) ───────────────────────────── */
+.wpmn-logo--icon {
+  /* Square-ish marks — aspect ratio preserved via height: auto */
+}
+
+/* ── Type: primary ─────────────────────────────────────────────── */
+/* Full colour. Use on white / light grey surfaces.               */
+.wpmn-logo--primary {
+  /* No background enforcement — caller controls the surface */
+}
+
+/* ── Type: dark ────────────────────────────────────────────────── */
+/* Full colour, dark-bg optimised. Use on dark surfaces.          */
+.wpmn-logo--dark {
+  /* Pair with dark backgrounds e.g. var(--color-surface-inverse) */
+}
+
+/* ── Type: inverted ────────────────────────────────────────────── */
+/* Reversed palette. Use on brand-colour (blue) backgrounds.      */
+.wpmn-logo--inverted {
+  /* Pair with brand-colour backgrounds e.g. var(--btn-bg-enable)  */
+}
+
+/* ── Type: black ───────────────────────────────────────────────── */
+/* Monochrome black. Use on light backgrounds or for print.       */
+.wpmn-logo--black {
+  /* Suitable for single-colour printing and greyscale contexts    */
+}
+
+/* ── Type: white ───────────────────────────────────────────────── */
+/* Monochrome white. Use on dark or brand-colour backgrounds.     */
+.wpmn-logo--white {
+  /* Pair with dark / coloured surfaces to ensure visibility       */
+}

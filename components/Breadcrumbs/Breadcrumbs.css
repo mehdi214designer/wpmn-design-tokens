@@ -1,0 +1,245 @@
+/**
+ * WPMN Design System — Breadcrumbs
+ * Figma source: node 482-46694
+ *
+ * 4 style variants:  border · flat · transparent · text
+ * 2 themes:          light (default) · dark (via [data-theme="dark"])
+ *
+ * Color rules per Figma:
+ *   border     light → items: text-secondary (#4e5d78), active: text-secondary
+ *   border     dark  → items: white, active: #8080ec (brand-secondary)
+ *   flat       light → items: text-primary (#07090c),  active: #1a1aa9 (brand)
+ *   flat       dark  → items: white, active: #8080ec
+ *   transparent light→ items: text-primary, active: #1a1aa9
+ *   transparent dark → items: white, active: #8080ec
+ *   text       light → items: text-primary, active: #1a1aa9
+ *   text       dark  → items: white, active: #8080ec
+ */
+
+/* ── Shell ────────────────────────────────────────────────────────────────── */
+.wpmn-breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.wpmn-breadcrumbs__list {
+  display: inline-flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.wpmn-breadcrumbs__list-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Items ────────────────────────────────────────────────────────────────── */
+.wpmn-breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 16.8px;
+  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--color-text-secondary, #4e5d78);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 120ms ease, background-color 120ms ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Icon-first item — extra horizontal padding from Figma spec (px-20px) */
+.wpmn-breadcrumbs__item--icon {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.wpmn-breadcrumbs__item-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Active / current page — border variant default: stays text-secondary */
+.wpmn-breadcrumbs__item--active {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Separator ────────────────────────────────────────────────────────────── */
+.wpmn-breadcrumbs__sep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* Two sep images — swap based on theme */
+.wpmn-breadcrumbs__sep-dark  { display: none; }
+
+[data-theme="dark"] .wpmn-breadcrumbs__sep-light { display: none; }
+[data-theme="dark"] .wpmn-breadcrumbs__sep-dark  { display: block; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   STYLE VARIANTS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── border ───────────────────────────────────────────────────────────────── */
+/* Container border + radius. Items are text-secondary (incl. active). */
+.wpmn-breadcrumbs--border {
+  height: 64px;
+  border: 1.5px solid var(--color-border-primary, #dbdee4);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 0 4px;
+}
+
+.wpmn-breadcrumbs--border .wpmn-breadcrumbs__item {
+  height: 100%;
+  border-radius: 16px;
+  color: var(--color-text-secondary, #4e5d78);
+}
+
+.wpmn-breadcrumbs--border .wpmn-breadcrumbs__item:hover {
+  color: #1a1aa9;
+}
+
+.wpmn-breadcrumbs--border .wpmn-breadcrumbs__item--active {
+  color: var(--color-text-secondary, #4e5d78);
+}
+
+/* ── flat ─────────────────────────────────────────────────────────────────── */
+/* Container has a light background fill. Items text-primary, active brand. */
+.wpmn-breadcrumbs--flat {
+  height: 64px;
+  background-color: #f6f7f8;
+  border-radius: 16px;
+  padding: 0 4px;
+}
+
+.wpmn-breadcrumbs--flat .wpmn-breadcrumbs__item {
+  height: 100%;
+  color: var(--color-text-primary, #07090c);
+}
+
+.wpmn-breadcrumbs--flat .wpmn-breadcrumbs__item:hover {
+  color: #1a1aa9;
+}
+
+.wpmn-breadcrumbs--flat .wpmn-breadcrumbs__item--active {
+  color: #1a1aa9;
+}
+
+/* ── transparent ──────────────────────────────────────────────────────────── */
+/* No container styling. Items text-primary, active brand. */
+.wpmn-breadcrumbs--transparent {
+  height: 64px;
+}
+
+.wpmn-breadcrumbs--transparent .wpmn-breadcrumbs__item {
+  color: var(--color-text-primary, #07090c);
+}
+
+.wpmn-breadcrumbs--transparent .wpmn-breadcrumbs__item:hover {
+  color: #1a1aa9;
+}
+
+.wpmn-breadcrumbs--transparent .wpmn-breadcrumbs__item--active {
+  color: #1a1aa9;
+}
+
+/* ── text ─────────────────────────────────────────────────────────────────── */
+/* Minimal inline style — smaller font, tighter padding, no hover bg. */
+.wpmn-breadcrumbs--text .wpmn-breadcrumbs__item {
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: var(--color-text-primary, #07090c);
+}
+
+.wpmn-breadcrumbs--text .wpmn-breadcrumbs__item:hover {
+  color: #1a1aa9;
+  background: transparent;
+}
+
+.wpmn-breadcrumbs--text .wpmn-breadcrumbs__item--active {
+  color: #1a1aa9;
+  font-weight: 600;
+}
+
+.wpmn-breadcrumbs--text .wpmn-breadcrumbs__sep {
+  width: 20px;
+  opacity: 0.4;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DARK MODE
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* border dark */
+[data-theme="dark"] .wpmn-breadcrumbs--border {
+  border-color: #0f1218;
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--border .wpmn-breadcrumbs__item {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--border .wpmn-breadcrumbs__item--active {
+  color: #8080ec;
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--border .wpmn-breadcrumbs__item:hover {
+  color: #8080ec;
+}
+
+/* flat dark */
+[data-theme="dark"] .wpmn-breadcrumbs--flat {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--flat .wpmn-breadcrumbs__item {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--flat .wpmn-breadcrumbs__item:hover {
+  color: #8080ec;
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--flat .wpmn-breadcrumbs__item--active {
+  color: #8080ec;
+}
+
+/* transparent dark */
+[data-theme="dark"] .wpmn-breadcrumbs--transparent .wpmn-breadcrumbs__item {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--transparent .wpmn-breadcrumbs__item--active {
+  color: #8080ec;
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--transparent .wpmn-breadcrumbs__item:hover {
+  color: #8080ec;
+}
+
+/* text dark */
+[data-theme="dark"] .wpmn-breadcrumbs--text .wpmn-breadcrumbs__item {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .wpmn-breadcrumbs--text .wpmn-breadcrumbs__item--active {
+  color: #8080ec;
+}

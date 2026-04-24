@@ -1,0 +1,212 @@
+/**
+ * WPMN Design System — Input
+ *
+ * Rebuilt from Figma node 646:105572
+ * Tokens: --input-stroke-*, --input-text-*, --input-fill-*, --color-text-*
+ *
+ * Variants : stroke (default) | fill
+ * Sizes     : lg (56px) | md (48px, default) | sm (40px)
+ * States    : default | hover | focused | error | success | disabled
+ */
+
+/* ── Wrapper ──────────────────────────────────────────────────── */
+.wpmn-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+/* ── Label ────────────────────────────────────────────────────── */
+.wpmn-input__label {
+  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+  font-size: var(--font-size-body-label, 13px);
+  line-height: var(--font-lh-body-label, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--input-label-color);
+}
+.wpmn-input__label--required::after {
+  content: ' *';
+  color: var(--color-error-primary);
+}
+
+/* ── Field shell (positions icon + input together) ────────────── */
+.wpmn-input__field-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* ── Input field — base ───────────────────────────────────────── */
+.wpmn-input__field {
+  width: 100%;
+  height: 48px;                          /* md default */
+  padding: 0 12px;
+  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+  font-size: var(--font-size-body-small, 14px);
+  line-height: var(--font-lh-body-small, 21px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--input-text-active);       /* typed value colour */
+  background-color: transparent;
+  border: 1px solid var(--input-stroke-default);
+  border-radius: var(--primitive-radius-xs, 8px);
+  outline: none;
+  transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+
+.wpmn-input__field::placeholder {
+  color: var(--input-text-default);      /* placeholder = token/text/default */
+}
+
+/* ── Sizes ────────────────────────────────────────────────────── */
+.wpmn-input--lg .wpmn-input__field { height: 56px; }
+.wpmn-input--sm .wpmn-input__field { height: 40px; }
+
+/* ── Variant: stroke (default) ────────────────────────────────── */
+/* Hover */
+.wpmn-input--stroke .wpmn-input__field:hover:not(:disabled) {
+  border-color: var(--input-stroke-hover);
+}
+.wpmn-input--stroke .wpmn-input__field:hover:not(:disabled)::placeholder {
+  color: var(--input-text-hover);
+}
+
+/* Focused */
+.wpmn-input--stroke .wpmn-input__field:focus:not(:disabled) {
+  border-color: var(--input-stroke-active);
+  color: var(--input-text-active);
+}
+
+/* Error */
+.wpmn-input--stroke.wpmn-input--error .wpmn-input__field {
+  border-color: var(--input-stroke-error);
+  color: var(--input-text-error);
+}
+.wpmn-input--stroke.wpmn-input--error .wpmn-input__field::placeholder {
+  color: var(--input-text-error);
+}
+
+/* Success */
+.wpmn-input--stroke.wpmn-input--success .wpmn-input__field {
+  border-color: var(--input-stroke-success);
+  color: var(--input-text-success);
+}
+
+/* Disabled */
+.wpmn-input--stroke .wpmn-input__field:disabled {
+  border-color: var(--input-stroke-disable);
+  color: var(--input-text-disable);
+  background-color: transparent;
+  cursor: not-allowed;
+}
+.wpmn-input--stroke .wpmn-input__field:disabled::placeholder {
+  color: var(--input-text-disable);
+}
+
+/* ── Variant: fill ────────────────────────────────────────────── */
+.wpmn-input--fill .wpmn-input__field {
+  background-color: var(--input-fill-default);
+  border-color: transparent;
+}
+
+.wpmn-input--fill .wpmn-input__field:hover:not(:disabled) {
+  background-color: var(--input-fill-hover);
+  border-color: transparent;
+}
+.wpmn-input--fill .wpmn-input__field:hover:not(:disabled)::placeholder {
+  color: var(--input-text-hover);
+}
+
+.wpmn-input--fill .wpmn-input__field:focus:not(:disabled) {
+  background-color: var(--input-fill-active);
+  border-color: var(--input-stroke-active);
+  color: var(--input-text-active);
+}
+
+.wpmn-input--fill.wpmn-input--error .wpmn-input__field {
+  background-color: var(--primitive-error-50, #ffe5e6);
+  border-color: transparent;
+  color: var(--input-text-error);
+}
+
+.wpmn-input--fill.wpmn-input--success .wpmn-input__field {
+  background-color: var(--primitive-success-50, #eafce8);
+  border-color: transparent;
+  color: var(--input-text-success);
+}
+
+.wpmn-input--fill .wpmn-input__field:disabled {
+  background-color: var(--input-fill-disable);
+  border-color: transparent;
+  color: var(--input-text-disable);
+  cursor: not-allowed;
+}
+
+/* ── Icon padding adjustments ─────────────────────────────────── */
+/* When icon on left: left-pad = 12px outer + 20px icon + 8px gap = 40px */
+.wpmn-input__field--icon-left  { padding-left: 40px; }
+/* When icon on right: right-pad = 12px outer + 20px icon + 8px gap = 40px */
+.wpmn-input__field--icon-right { padding-right: 40px; }
+/* Error icon is 24px, so right-pad = 12 + 24 + 8 = 44px */
+.wpmn-input__field--icon-right-lg { padding-right: 44px; }
+/* Both sides */
+.wpmn-input__field--icon-both  { padding-left: 40px; padding-right: 40px; }
+
+/* ── Icons ────────────────────────────────────────────────────── */
+.wpmn-input__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--input-text-default);
+}
+
+.wpmn-input__icon--left {
+  left: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+.wpmn-input__icon--right {
+  right: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Error icon is 24px */
+.wpmn-input__icon--right-error {
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  color: var(--input-text-error);
+}
+
+/* Success icon colour */
+.wpmn-input--success .wpmn-input__icon--right {
+  color: var(--input-text-success);
+}
+
+/* Hover / focus icon colour adjustments */
+.wpmn-input__field-wrap:has(.wpmn-input__field:hover:not(:disabled)) .wpmn-input__icon {
+  color: var(--input-text-hover);
+}
+.wpmn-input__field-wrap:has(.wpmn-input__field:focus:not(:disabled)) .wpmn-input__icon {
+  color: var(--input-text-active);
+}
+
+/* ── Hint / error / success message ──────────────────────────── */
+.wpmn-input__hint {
+  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+  font-size: var(--font-size-body-small, 14px);
+  line-height: var(--font-lh-body-small, 21px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--input-hint-color);
+}
+.wpmn-input__hint--error   { color: var(--input-text-error);   }
+.wpmn-input__hint--success { color: var(--input-text-success); }

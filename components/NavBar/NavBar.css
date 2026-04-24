@@ -1,0 +1,214 @@
+/**
+ * WPMN Design System — NavBar
+ *
+ * Rebuilt from Figma node 341:657
+ *   Desktop (320:32776) — 1440px container, 96px height
+ *   Mobile  (341:790)   —  440px container, 64px height
+ *
+ * Tokens: --color-surface-primary, --color-text-*, --btn-bg-*, --color-border-primary
+ */
+
+/* ── Outer shell ──────────────────────────────────────────────── */
+.wpmn-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 120px;            /* Desktop: 24px top/bottom, 120px artboard margin */
+  background-color: var(--color-surface-primary);
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;             /* anchor for mobile drawer */
+}
+
+/* ── Logo slot ────────────────────────────────────────────────── */
+.wpmn-navbar__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+/* ── Desktop nav (links + CTA) ────────────────────────────────── */
+.wpmn-navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;                      /* gap-spacing-lg between link list and CTA */
+}
+
+/* Link list */
+.wpmn-navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;                       /* gap-8px between items */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual link */
+.wpmn-navbar__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;             /* 10px vertical, 12px horizontal — exact Figma */
+  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+  font-size: 18px;                /* font/size/Desktop/body-large = 18px */
+  line-height: 27px;              /* font/line-height/Desktop/body-large = 27px */
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: var(--primitive-radius-xs, 8px);
+  transition: color 120ms ease, background-color 120ms ease;
+}
+
+.wpmn-navbar__link:hover {
+  color: var(--color-text-primary);
+  background-color: var(--primitive-light-25, #f6f7f8);
+}
+
+.wpmn-navbar__link--active {
+  color: var(--btn-bg-enable);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* ── CTA button (shared base) ─────────────────────────────────── */
+.wpmn-navbar__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 12px 24px;
+  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+  font-size: 18px;                /* font/size/Button/medium */
+  line-height: 20px;              /* font/line-height/Button/medium */
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: var(--primitive-radius-xs, 8px);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  flex-shrink: 0;
+}
+
+/* Desktop CTA — primary filled */
+.wpmn-navbar__cta--primary {
+  background-color: var(--btn-bg-enable);
+  color: var(--color-text-primary-invert);
+  border: none;
+  box-shadow: inset 3px 4px 4px 0px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+.wpmn-navbar__cta--primary:hover {
+  background-color: var(--btn-bg-hovered);
+}
+.wpmn-navbar__cta--primary:active {
+  background-color: var(--btn-bg-pressed);
+}
+.wpmn-navbar__cta--primary:focus-visible {
+  outline: 3px solid var(--btn-bg-focused);
+  outline-offset: 2px;
+}
+
+/* Mobile CTA — secondary outlined (hidden on desktop) */
+.wpmn-navbar__cta--secondary {
+  display: none;
+  background-color: transparent;
+  color: var(--btn-bg-enable);
+  border: 1.5px solid var(--btn-bg-enable);
+}
+.wpmn-navbar__cta--secondary:hover {
+  background-color: var(--primitive-primary-50, #e6effe);
+}
+.wpmn-navbar__cta--secondary:focus-visible {
+  outline: 3px solid var(--btn-bg-focused);
+  outline-offset: 2px;
+}
+
+/* ── Hamburger button (hidden on desktop) ─────────────────────── */
+.wpmn-navbar__hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  line-height: 0;
+  flex-shrink: 0;
+}
+.wpmn-navbar__hamburger:focus-visible {
+  outline: 2px solid var(--btn-bg-focused);
+  border-radius: 4px;
+}
+
+/* ── Mobile controls wrapper (hidden on desktop) ──────────────── */
+.wpmn-navbar__mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ── Mobile drawer ────────────────────────────────────────────── */
+.wpmn-navbar__mobile-menu {
+  display: none;
+}
+
+/* ── Mobile breakpoint ────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .wpmn-navbar {
+    padding: 8px 16px;            /* spacing-md horizontal, spacing-sm vertical */
+  }
+
+  /* Hide desktop nav */
+  .wpmn-navbar__nav {
+    display: none;
+  }
+
+  /* Show mobile controls */
+  .wpmn-navbar__mobile-controls {
+    display: flex;
+  }
+
+  .wpmn-navbar__cta--secondary {
+    display: inline-flex;
+  }
+
+  .wpmn-navbar__hamburger {
+    display: flex;
+  }
+
+  /* Open mobile drawer */
+  .wpmn-navbar[data-mobile-open] .wpmn-navbar__mobile-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-surface-primary);
+    border-top: 1px solid var(--color-border-primary);
+    padding: 8px 16px 20px;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .wpmn-navbar__mobile-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .wpmn-navbar__mobile-menu .wpmn-navbar__link {
+    justify-content: flex-start;
+    width: 100%;
+    padding: 12px;
+  }
+}

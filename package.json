@@ -1,0 +1,35 @@
+{
+  "name": "wpmn-design-tokens",
+  "version": "1.0.0",
+  "description": "WPMN Design System — tokens, components, and brand variables for WPManageNinja products",
+  "main": "index.js",
+  "module": "index.js",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./tokens": "./tokens.css",
+    "./primitives": "./primitives.css",
+    "./brand-primitives": "./brand-primitives.css",
+    "./typography": "./typography.css",
+    "./index.css": "./index.css"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "react",
+    "wpmanagenia",
+    "css-variables"
+  ],
+  "author": "WPManageNinja",
+  "license": "ISC",
+  "dependencies": {
+    "@hugeicons/react-pro": "^0.3.2"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  }
+}

@@ -1,0 +1,43 @@
+/**
+ * WPMN Design System — SocialIcons
+ * Figma source: footer social icons group (node 957:5265)
+ */
+
+.wpmn-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  justify-content: space-between;
+}
+
+.wpmn-social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--si-size, 32px);
+  height: var(--si-size, 32px);
+  border-radius: 6.4px;
+  background: linear-gradient(180deg, rgba(0, 0, 16, 0.05) 0%, rgba(0, 0, 16, 0.02) 100%);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.wpmn-social-icon-btn:hover {
+  opacity: 0.65;
+  transform: translateY(-1px);
+}
+
+.wpmn-social-icon-btn img {
+  display: block;
+  pointer-events: none;
+}
+
+/* Dark mode — invert the icons (they're dark SVGs on light bg) */
+[data-theme="dark"] .wpmn-social-icon-btn {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+[data-theme="dark"] .wpmn-social-icon-btn img {
+  filter: invert(1);
+}
