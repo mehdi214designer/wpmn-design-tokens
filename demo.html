@@ -432,6 +432,7 @@
       --color-text-primary: var(--primitive-dark-800);
       --color-text-secondary: var(--primitive-light-900);
       --color-text-primary-invert: var(--primitive-light-0);
+      --color-text-secondary-invert: var(--primitive-light-100);
       --color-text-brand: var(--primitive-accent-300);
       --color-surface-primary: var(--primitive-light-0);
       --color-surface-secondary: var(--primitive-dark-800);
@@ -526,6 +527,7 @@
       --color-text-primary: var(--primitive-light-0);
       --color-text-secondary: var(--primitive-light-100);
       --color-text-primary-invert: var(--primitive-dark-800);
+      --color-text-secondary-invert: var(--primitive-dark-500);
       --color-text-brand: var(--primitive-accent-200);
       --color-surface-primary: var(--primitive-dark-800);
       --color-surface-secondary: var(--primitive-light-0);
@@ -1594,6 +1596,675 @@
       );
     };
 
+    /* ── Guidelines page ───────────────────────────────────── */
+    const GuidelinesPage = ({ theme, brand }) => {
+      var b = BRANDS.find(x => x.key === brand) || BRANDS[0];
+      var logoType = theme === 'dark' ? 'white' : 'primary';
+
+      return (
+        <div>
+          <div className="page-header">
+            <h1 className="text-h4" style={{margin:'0 0 8px',color:'var(--color-text-primary)'}}>Design Guidelines</h1>
+            <p className="text-body-base" style={{color:'var(--color-text-secondary)',margin:0}}>Layout, spacing, color, logo, and component rules for all WPMN product websites.</p>
+          </div>
+
+          {/* ── LAYOUT SYSTEM ── */}
+          <div className="section">
+            <div className="section-title">Layout System</div>
+
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:24}}>
+              <div className="card" style={{textAlign:'center',padding:'28px 20px'}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--color-text-secondary)',marginBottom:8}}>Container Max Width</div>
+                <div style={{fontSize:40,fontWeight:700,color:'var(--btn-bg-enable)',lineHeight:1}}>1200px</div>
+                <div style={{fontSize:13,color:'var(--color-text-secondary)',marginTop:8}}>Centered via margin: 0 auto. No horizontal padding.</div>
+              </div>
+              <div className="card" style={{textAlign:'center',padding:'28px 20px'}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--color-text-secondary)',marginBottom:8}}>Section Padding</div>
+                <div style={{fontSize:40,fontWeight:700,color:'var(--btn-bg-enable)',lineHeight:1}}>96px</div>
+                <div style={{fontSize:13,color:'var(--color-text-secondary)',marginTop:8}}>Top and bottom on every section. No exceptions.</div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* ── SECTION STRUCTURE ── */}
+          <div className="section">
+            <div className="section-title">Section Structure</div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Header Anatomy</div>
+            <div className="card" style={{textAlign:'center',padding:'40px 32px',marginBottom:16}}>
+              <div style={{display:'inline-flex',flexDirection:'column',gap:14,alignItems:'center',maxWidth:600}}>
+                <div style={{display:'flex',alignItems:'center',gap:8}}>
+                  <div style={{width:8,height:8,borderRadius:'50%',background:'var(--btn-bg-enable)'}}></div>
+                  <span style={{fontSize:12,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--btn-bg-enable)'}}>SECTION BADGE</span>
+                  <span style={{fontSize:11,color:'var(--color-text-secondary)',fontStyle:'italic'}}>(optional)</span>
+                </div>
+                <h2 className="text-h3" style={{margin:0,color:'var(--color-text-primary)',textAlign:'center'}}>Section Heading — Always Required</h2>
+                <div style={{display:'flex',alignItems:'center',gap:8}}>
+                  <p className="text-body-large" style={{margin:0,color:'var(--color-text-secondary)',textAlign:'center'}}>Supporting subtext. Keep it short. Max width 800px.</p>
+                  <span style={{fontSize:11,color:'var(--color-text-secondary)',fontStyle:'italic',whiteSpace:'nowrap'}}>(optional)</span>
+                </div>
+              </div>
+            </div>
+
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:12,marginBottom:24}}>
+              {[
+                {label:'Badge',color:'var(--btn-bg-enable)',note:'Optional. Short label, uppercase, dot prefix.'},
+                {label:'Heading',color:'var(--color-text-primary)',note:'Always required. Max 800px, center-aligned.'},
+                {label:'Subtext',color:'var(--color-text-secondary)',note:'Optional. One or two sentences max.'}
+              ].map(item => (
+                <div key={item.label} className="card" style={{padding:16}}>
+                  <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:item.color,marginBottom:6}}>{item.label}</div>
+                  <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>{item.note}</div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>CTA Buttons — Always Side by Side</div>
+            <div className="card" style={{marginBottom:24}}>
+              <p style={{margin:'0 0 16px',fontSize:13,color:'var(--color-text-secondary)'}}>Always primary + secondary. Never just one, never stacked.</p>
+              <div style={{display:'flex',gap:12}}>
+                <Button type="primary" size="lg">Free Download</Button>
+                <Button type="secondary" size="lg">Buy Now</Button>
+              </div>
+            </div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Section Backgrounds</div>
+            <div style={{borderRadius:16,overflow:'hidden',border:'1px solid var(--color-border-primary)'}}>
+              {[
+                {bg:'var(--primitive-light-0)',  label:'Primary',       semantic:'--color-surface-primary',       primitive:'--primitive-light-0',  note:'White',     headingColor:'var(--color-text-primary)',        paraColor:'var(--color-text-secondary)'},
+                {bg:'var(--primitive-dark-800)', label:'Secondary',     semantic:'--color-surface-secondary',     primitive:'--primitive-dark-800', note:'Dark',      headingColor:'var(--color-text-primary-invert)', paraColor:'var(--color-text-secondary-invert)'},
+                {bg:'var(--primitive-light-25)', label:'Alt',           semantic:'--color-surface-alt',           primitive:'--primitive-light-25', note:'Soft Gray', headingColor:'var(--color-text-primary)',        paraColor:'var(--color-text-secondary)'},
+                {bg:'var(--primitive-dark-600)', label:'Secondary-alt', semantic:'--color-surface-secondary-alt', primitive:'--primitive-dark-600', note:'Soft Dark', headingColor:'var(--color-text-primary-invert)', paraColor:'var(--color-text-secondary-invert)'},
+              ].map((row,i,arr) => (
+                <div key={i} style={{padding:'20px 24px',background:row.bg,display:'flex',justifyContent:'space-between',alignItems:'center',borderBottom: i < arr.length-1 ? '1px solid rgba(128,128,128,0.15)' : 'none'}}>
+                  <div style={{display:'flex',flexDirection:'column',gap:4}}>
+                    <span style={{fontSize:13,fontWeight:700,color:row.headingColor}}>{row.label} · {row.note}</span>
+                    <code style={{fontSize:11,color:row.paraColor,fontFamily:'monospace'}}>{row.semantic} · {row.primitive}</code>
+                  </div>
+                  <div style={{display:'flex',flexDirection:'column',gap:4,textAlign:'right'}}>
+                    <code style={{fontSize:11,fontFamily:'monospace',color:row.headingColor}}>{row.headingColor.includes('invert') ? '--color-text-primary-invert' : '--color-text-primary'}</code>
+                    <code style={{fontSize:11,fontFamily:'monospace',color:row.paraColor}}>--color-text-secondary-invert</code>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── SECTION ALTERNATION ── */}
+          <div className="section">
+            <div className="section-title">Section Alternation</div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Token Pairings</div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr 1fr',gap:12,marginBottom:24}}>
+              {[
+                {bg:'var(--primitive-light-0)',   label:'primary',       heading:'var(--color-text-primary)',        para:'var(--color-text-secondary)',        dark:false},
+                {bg:'var(--primitive-dark-800)',  label:'secondary',     heading:'var(--color-text-primary-invert)', para:'var(--color-text-secondary-invert)', dark:true},
+                {bg:'var(--primitive-light-25)',  label:'alt',           heading:'var(--color-text-primary)',        para:'var(--color-text-secondary)',        dark:false},
+                {bg:'var(--primitive-dark-600)',  label:'secondary-alt', heading:'var(--color-text-primary-invert)', para:'var(--color-text-secondary-invert)', dark:true},
+              ].map(function(s) {
+                return (
+                  <div key={s.label} style={{borderRadius:14,overflow:'hidden',border:'1px solid var(--color-border-primary)'}}>
+                    <div style={{background:s.bg,padding:'20px 16px',minHeight:90,display:'flex',flexDirection:'column',justifyContent:'center',gap:6}}>
+                      <div style={{fontSize:12,fontWeight:700,color:s.heading}}>H: text-primary{s.dark ? '-invert' : ''}</div>
+                      <div style={{fontSize:12,color:s.para}}>P: text-secondary{s.dark ? '-invert' : ''}</div>
+                    </div>
+                    <div style={{padding:'10px 14px',background:'var(--primitive-light-0)',borderTop:'1px solid var(--color-border-primary)'}}>
+                      <code style={{fontSize:11,color:'var(--color-text-secondary)',fontFamily:'monospace'}}>{s.label}</code>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Page-Level Sequence</div>
+            <div className="card" style={{marginBottom:16}}>
+              <p style={{margin:'0 0 16px',fontSize:13,color:'var(--color-text-secondary)'}}>Alternate light sections by default. Use dark sections sparingly — max 1–2 per page, never back to back.</p>
+              <div style={{display:'flex',flexDirection:'column',gap:0,borderRadius:12,overflow:'hidden',border:'1px solid var(--color-border-primary)'}}>
+                {[
+                  {section:'Hero',      surface:'primary',       bg:'var(--primitive-light-0)',  dark:false, note:'Always white. Sets a clean starting point.'},
+                  {section:'Features',  surface:'alt',           bg:'var(--primitive-light-25)', dark:false, note:'Soft gray separates from hero without a hard contrast jump.'},
+                  {section:'Showcase',  surface:'primary',       bg:'var(--primitive-light-0)',  dark:false, note:'Back to white.'},
+                  {section:'Dark CTA',  surface:'secondary',     bg:'var(--primitive-dark-800)', dark:true,  note:'One dark section for emphasis — CTA, testimonial, or stat block.'},
+                  {section:'Pricing',   surface:'alt',           bg:'var(--primitive-light-25)', dark:false, note:'Back to light immediately after dark.'},
+                  {section:'Footer',    surface:'secondary',     bg:'var(--primitive-dark-800)', dark:true,  note:'Footer is always dark. Does not count as the dark section budget.'},
+                ].map(function(row, i, arr) {
+                  return (
+                    <div key={row.section} style={{
+                      display:'flex', alignItems:'center', gap:16, padding:'14px 20px',
+                      background:row.bg,
+                      borderBottom: i < arr.length-1 ? '1px solid rgba(128,128,128,0.12)' : 'none'
+                    }}>
+                      <span style={{fontSize:11,fontWeight:700,minWidth:72,color:row.dark ? 'var(--color-text-primary-invert)' : 'var(--color-text-primary)'}}>{row.section}</span>
+                      <code style={{fontSize:11,fontFamily:'monospace',minWidth:110,color:row.dark ? 'var(--color-text-secondary-invert)' : 'var(--color-text-secondary)'}}>{row.surface}</code>
+                      <span style={{fontSize:12,color:row.dark ? 'var(--color-text-secondary-invert)' : 'var(--color-text-secondary)'}}>{row.note}</span>
+
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+              <div className="card" style={{border:'2px solid var(--color-success-primary)',padding:16}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-success-primary)',marginBottom:10}}>DO</div>
+                {['primary','alt','primary','secondary','alt','primary'].map(function(s,i){
+                  var dark = s === 'secondary';
+                  return (
+                    <div key={i} style={{padding:'6px 10px',marginBottom:3,borderRadius:6,background: dark ? 'var(--primitive-dark-800)' : s === 'alt' ? 'var(--primitive-light-25)' : 'var(--primitive-light-0)',border:'1px solid var(--color-border-primary)'}}>
+                      <code style={{fontSize:11,color: dark ? 'var(--color-text-secondary-invert)' : 'var(--color-text-secondary)'}}>{s}</code>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="card" style={{border:'2px solid var(--color-error-primary)',padding:16}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-error-primary)',marginBottom:10}}>DON'T</div>
+                {[
+                  {s:'primary', note:''},
+                  {s:'secondary', note:'← dark'},
+                  {s:'secondary', note:'← dark again, back to back'},
+                  {s:'alt', note:''},
+                  {s:'secondary-alt', note:'← 3rd dark section'},
+                  {s:'primary', note:''},
+                ].map(function(row,i){
+                  var dark = row.s === 'secondary' || row.s === 'secondary-alt';
+                  return (
+                    <div key={i} style={{padding:'6px 10px',marginBottom:3,borderRadius:6,background: dark ? 'var(--primitive-dark-800)' : row.s === 'alt' ? 'var(--primitive-light-25)' : 'var(--primitive-light-0)',border: (row.s === 'secondary' || row.s === 'secondary-alt') && i > 0 ? '1px solid var(--color-error-primary)' : '1px solid var(--color-border-primary)',display:'flex',justifyContent:'space-between',alignItems:'center',gap:8}}>
+                      <code style={{fontSize:11,color: dark ? 'var(--color-text-secondary-invert)' : 'var(--color-text-secondary)'}}>{row.s}</code>
+                      {row.note && <span style={{fontSize:10,color:'var(--color-error-primary)',fontStyle:'italic'}}>{row.note}</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* ── TYPOGRAPHY RULES ── */}
+          <div className="section">
+            <div className="section-title">Typography Rules</div>
+
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:24}}>
+              <div className="card" style={{textAlign:'center',padding:'24px 20px'}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--color-text-secondary)',marginBottom:8}}>Centered Text Max Width</div>
+                <div style={{fontSize:36,fontWeight:700,color:'var(--btn-bg-enable)',lineHeight:1}}>800px</div>
+                <div style={{fontSize:12,color:'var(--color-text-secondary)',marginTop:8}}>Headings and body in full-width sections.</div>
+              </div>
+              <div className="card" style={{textAlign:'center',padding:'24px 20px'}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--color-text-secondary)',marginBottom:8}}>Section Alignment</div>
+                <div style={{fontSize:36,fontWeight:700,color:'var(--btn-bg-enable)',lineHeight:1}}>Center</div>
+                <div style={{fontSize:12,color:'var(--color-text-secondary)',marginTop:8}}>Headings, subtext, toggles, CTAs — all centered.</div>
+              </div>
+            </div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Highlighted / Accented Text</div>
+            <div className="card" style={{textAlign:'center',padding:'36px 32px',marginBottom:16}}>
+              <h2 className="text-h2" style={{margin:'0 0 16px',color:'var(--color-text-primary)'}}>
+                The Next-Generation <span style={{color:'var(--btn-bg-enable)'}}>Video Player</span> for WordPress
+              </h2>
+              <p style={{margin:0,fontSize:13,color:'var(--color-text-secondary)'}}>
+                Highlighted word uses <code style={{background:'var(--primitive-light-25)',padding:'2px 8px',borderRadius:6}}>--color-primary</code> (brand color) — never gray, never hardcoded
+              </p>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+              <div className="card" style={{border:'2px solid var(--color-success-primary)',padding:20}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-success-primary)',marginBottom:12}}>DO</div>
+                <h5 className="text-h5" style={{margin:'0 0 8px',color:'var(--color-text-primary)'}}>The Best <span style={{color:'var(--btn-bg-enable)'}}>Form Builder</span></h5>
+                <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>Uses brand --color-primary</div>
+              </div>
+              <div className="card" style={{border:'2px solid var(--color-error-primary)',padding:20}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-error-primary)',marginBottom:12}}>DON'T</div>
+                <h5 className="text-h5" style={{margin:'0 0 8px',color:'var(--color-text-primary)'}}>The Best <span style={{color:'#6b7280'}}>Form Builder</span></h5>
+                <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>Hardcoded gray — breaks brand theming</div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── RADIUS RULES ── */}
+          <div className="section">
+            <div className="section-title">Radius Rules</div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+              <div className="card" style={{padding:24}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--color-text-secondary)',marginBottom:16}}>Card Radius</div>
+                <div style={{height:80,borderRadius:16,border:'2px solid var(--btn-bg-enable)',background:'var(--btn-bg-focused)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:12}}>
+                  <span style={{fontSize:20,fontWeight:700,color:'var(--btn-bg-enable)',fontFamily:'monospace'}}>16px</span>
+                </div>
+                <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>Cards, feature tiles, pricing cards, image frames</div>
+              </div>
+              <div className="card" style={{padding:24}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--color-text-secondary)',marginBottom:16}}>Container / Section Wrapper</div>
+                <div style={{height:80,borderRadius:32,border:'2px solid var(--btn-bg-enable)',background:'var(--btn-bg-focused)',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:12}}>
+                  <span style={{fontSize:20,fontWeight:700,color:'var(--btn-bg-enable)',fontFamily:'monospace'}}>32px</span>
+                </div>
+                <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>Large section containers, mockup wrappers, feature showcase blocks</div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── BRAND & COLOR ── */}
+          <div className="section">
+            <div className="section-title">Brand & Color</div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Always Set data-brand</div>
+            <div className="card" style={{marginBottom:24}}>
+              <p style={{margin:'0 0 14px',fontSize:13,color:'var(--color-text-secondary)'}}>
+                Every product page must have <code style={{background:'var(--primitive-light-25)',padding:'2px 6px',borderRadius:4}}>data-brand="x"</code> on the root element. This activates the correct primary and accent scales across all components.
+              </p>
+              <div style={{background:'var(--primitive-dark-800)',borderRadius:10,padding:'12px 16px',fontFamily:'monospace',fontSize:13,border:'1px solid var(--color-border-primary)',color:'var(--color-text-primary-invert)'}}>
+                &lt;div data-brand="fluentforms"&gt; ... &lt;/div&gt;
+              </div>
+            </div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Button Color</div>
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+              <div className="card" style={{border:'2px solid var(--color-success-primary)',padding:24}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-success-primary)',marginBottom:16}}>DO</div>
+                <Button type="primary" size="md">Free Download</Button>
+                <div style={{fontSize:12,color:'var(--color-text-secondary)',marginTop:12}}>Uses --btn-bg-enable (brand primary token)</div>
+              </div>
+              <div className="card" style={{border:'2px solid var(--color-error-primary)',padding:24}}>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-error-primary)',marginBottom:16}}>DON'T</div>
+                <button style={{background:'#4b5563',color:'white',border:'none',padding:'10px 20px',borderRadius:8,cursor:'pointer',fontWeight:600,fontSize:14}}>Free Download</button>
+                <div style={{fontSize:12,color:'var(--color-text-secondary)',marginTop:12}}>Hardcoded gray — breaks brand theming entirely</div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── LOGO USAGE ── */}
+          <div className="section">
+            <div className="section-title">Logo Usage</div>
+
+            <p style={{margin:'0 0 20px',fontSize:13,color:'var(--color-text-secondary)'}}>
+              Always use the SVG from <code style={{background:'var(--primitive-light-25)',padding:'2px 6px',borderRadius:4}}>logos/{'<brand>'}/{'<variant>'}-{'<type>'}.svg</code>. Never use placeholders, raster images, or plain text.
+            </p>
+
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:16}}>
+              <div style={{borderRadius:16,overflow:'hidden',border:'1px solid var(--color-border-primary)'}}>
+                <div style={{padding:'28px 24px',background:'#ffffff',display:'flex',flexDirection:'column',alignItems:'center',gap:18}}>
+                  <Logo brand="fluentforms" variant="logo" type="dark" height={26} />
+                  <Logo brand="fluentcrm" variant="logo" type="dark" height={26} />
+                  <Logo brand="ninjatables" variant="logo" type="dark" height={26} />
+                </div>
+                <div style={{padding:'12px 16px',background:'var(--primitive-dark-800)',borderTop:'1px solid var(--color-border-primary)',display:'flex',gap:8,alignItems:'center'}}>
+                  <div style={{width:8,height:8,borderRadius:2,background:'var(--color-success-primary)',flexShrink:0}}></div>
+                  <span style={{fontSize:12,fontWeight:700,color:'var(--color-success-primary)'}}>Light / White Background</span>
+                </div>
+                <div style={{padding:'8px 16px 16px',background:'var(--primitive-dark-800)'}}>
+                  <code style={{fontSize:12,color:'var(--color-text-primary-invert)'}}>type="dark"</code>
+                  <div style={{fontSize:12,color:'var(--color-text-secondary-invert)',marginTop:4}}>Colored icon + dark text. Use on white or light gray sections.</div>
+                </div>
+              </div>
+
+              <div style={{borderRadius:16,overflow:'hidden',border:'1px solid var(--color-border-primary)'}}>
+                <div style={{padding:'28px 24px',background:'#0f172a',display:'flex',flexDirection:'column',alignItems:'center',gap:18}}>
+                  <Logo brand="fluentforms" variant="logo" type="inverted" height={26} />
+                  <Logo brand="fluentcrm" variant="logo" type="inverted" height={26} />
+                  <Logo brand="ninjatables" variant="logo" type="inverted" height={26} />
+                </div>
+                <div style={{padding:'12px 16px',background:'var(--primitive-dark-800)',borderTop:'1px solid var(--color-border-primary)',display:'flex',gap:8,alignItems:'center'}}>
+                  <div style={{width:8,height:8,borderRadius:2,background:'var(--color-success-primary)',flexShrink:0}}></div>
+                  <span style={{fontSize:12,fontWeight:700,color:'var(--color-success-primary)'}}>Dark Background</span>
+                </div>
+                <div style={{padding:'8px 16px 16px',background:'var(--primitive-dark-800)'}}>
+                  <code style={{fontSize:12,color:'var(--color-text-primary-invert)'}}>type="inverted"</code>
+                  <div style={{fontSize:12,color:'var(--color-text-secondary-invert)',marginTop:4}}>White icon + white text. Use on dark sections, footers, dark navbars.</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card" style={{border:'2px solid var(--color-error-primary)',padding:20}}>
+              <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-error-primary)',marginBottom:14}}>NEVER DO THIS</div>
+              <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:10}}>
+                <div style={{width:32,height:32,background:'#e5e7eb',borderRadius:4,border:'1px solid #d1d5db',flexShrink:0}}></div>
+                <span style={{fontSize:16,fontWeight:600,color:'var(--color-text-primary)'}}>ProductName</span>
+              </div>
+              <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>Placeholder box + plain text. Use the actual SVG from the logos folder.</div>
+            </div>
+          </div>
+
+          {/* ── NAVBAR & FOOTER LOGO RULES ── */}
+          <div className="section">
+            <div className="section-title">Navbar & Footer Logo Rules</div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Navbar</div>
+            <div className="card" style={{marginBottom:16}}>
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+                <div>
+                  <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-success-primary)',marginBottom:12}}>Light Navbar (default)</div>
+                  <div style={{background:'#ffffff',borderRadius:12,padding:'16px 20px',border:'1px solid var(--color-border-primary)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+                    <Logo brand="fluentforms" variant="logo" type="dark" height={22} />
+                    <div style={{display:'flex',gap:16,alignItems:'center'}}>
+                      <span style={{fontSize:13,color:'var(--color-text-secondary)'}}>Features</span>
+                      <span style={{fontSize:13,color:'var(--color-text-secondary)'}}>Pricing</span>
+                      <button className="wpmn-btn wpmn-btn--primary wpmn-btn--sm">Get Started</button>
+                    </div>
+                  </div>
+                  <div style={{fontSize:12,color:'var(--color-text-secondary)',marginTop:8}}>Use <code style={{background:'var(--primitive-light-25)',padding:'1px 5px',borderRadius:4}}>type="dark"</code> logo</div>
+                </div>
+                <div>
+                  <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-success-primary)',marginBottom:12}}>Dark Navbar</div>
+                  <div style={{background:'#0f172a',borderRadius:12,padding:'16px 20px',border:'1px solid var(--color-border-primary)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+                    <Logo brand="fluentforms" variant="logo" type="inverted" height={22} />
+                    <div style={{display:'flex',gap:16,alignItems:'center'}}>
+                      <span style={{fontSize:13,color:'var(--color-text-secondary-invert)'}}>Features</span>
+                      <span style={{fontSize:13,color:'var(--color-text-secondary-invert)'}}>Pricing</span>
+                      <button className="wpmn-btn wpmn-btn--primary wpmn-btn--sm">Get Started</button>
+                    </div>
+                  </div>
+                  <div style={{fontSize:12,color:'var(--color-text-secondary)',marginTop:8}}>Use <code style={{background:'var(--primitive-light-25)',padding:'1px 5px',borderRadius:4}}>type="inverted"</code> logo</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{marginBottom:8,fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',textTransform:'uppercase',letterSpacing:'0.06em'}}>Footer</div>
+            <div className="card">
+              <div style={{background:'#0f172a',borderRadius:12,padding:'32px 28px',marginBottom:12}}>
+                <div style={{display:'flex',gap:40,alignItems:'flex-start'}}>
+                  <div style={{flexShrink:0}}>
+                    <Logo brand="fluentforms" variant="logo" type="inverted" height={22} style={{marginBottom:12}} />
+                    <p style={{margin:0,fontSize:13,color:'var(--color-text-secondary-invert)',maxWidth:200}}>The best form builder for WordPress.</p>
+                  </div>
+                  <div style={{display:'flex',gap:40}}>
+                    {['Product','Resources','Company'].map(col => (
+                      <div key={col}>
+                        <div style={{fontSize:12,fontWeight:700,color:'var(--color-text-primary-invert)',marginBottom:10}}>{col}</div>
+                        {['Link','Link','Link'].map((l,i) => (
+                          <div key={i} style={{fontSize:12,color:'var(--color-text-secondary-invert)',marginBottom:6}}>{l}</div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div style={{fontSize:12,color:'var(--color-text-secondary)',marginBottom:16}}>Dark footer — use <code style={{background:'var(--primitive-light-25)',padding:'1px 5px',borderRadius:4}}>type="inverted"</code> logo.</div>
+
+              {/* Light footer */}
+              <div style={{background:'var(--primitive-light-25)',borderRadius:12,padding:'32px 28px',marginBottom:12,border:'1px solid var(--color-border-primary)'}}>
+                <div style={{display:'flex',gap:40,alignItems:'flex-start'}}>
+                  <div style={{flexShrink:0}}>
+                    <Logo brand="fluentforms" variant="logo" type="dark" height={22} style={{marginBottom:12}} />
+                    <p style={{margin:0,fontSize:13,color:'var(--color-text-secondary)',maxWidth:200}}>The best form builder for WordPress.</p>
+                  </div>
+                  <div style={{display:'flex',gap:40}}>
+                    {['Product','Resources','Company'].map(col => (
+                      <div key={col}>
+                        <div style={{fontSize:12,fontWeight:700,color:'var(--color-text-primary)',marginBottom:10}}>{col}</div>
+                        {['Link','Link','Link'].map((l,i) => (
+                          <div key={i} style={{fontSize:12,color:'var(--color-text-secondary)',marginBottom:6}}>{l}</div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>Light footer — use <code style={{background:'var(--primitive-light-25)',padding:'1px 5px',borderRadius:4}}>type="dark"</code> logo. Never use a placeholder.</div>
+            </div>
+          </div>
+
+          {/* ── MOCKUP TREATMENT ── */}
+          <div className="section">
+            <div className="section-title">Mockup & Screenshot Treatment</div>
+
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:16}}>
+              <div>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-success-primary)',marginBottom:12}}>DO</div>
+                <div className="card" style={{padding:0,overflow:'hidden'}}>
+                  <div style={{background:'var(--color-surface-secondary)',padding:24,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    <div style={{
+                      width:'100%',maxWidth:280,background:'#ffffff',
+                      borderRadius:16,
+                      border:'1px solid var(--color-border-primary)',
+                      boxShadow:'var(--shadow-soft-400, 0 20px 60px rgba(0,0,0,0.12))',
+                      overflow:'hidden'
+                    }}>
+                      <div style={{background:'var(--primitive-light-25)',padding:'10px 14px',borderBottom:'1px solid var(--color-border-primary)',display:'flex',gap:6}}>
+                        {['#ff5f57','#febc2e','#28c840'].map(c=><div key={c} style={{width:10,height:10,borderRadius:'50%',background:c}}></div>)}
+                      </div>
+                      <div style={{padding:'20px 16px'}}>
+                        <div style={{height:8,borderRadius:4,background:'var(--primitive-light-25)',marginBottom:8,width:'60%'}}></div>
+                        <div style={{height:8,borderRadius:4,background:'var(--primitive-light-25)',marginBottom:8,width:'90%'}}></div>
+                        <div style={{height:8,borderRadius:4,background:'var(--primitive-light-25)',width:'75%'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{padding:'12px 16px'}}>
+                    <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>Radius: 16px · Soft shadow · Light border · Contained in a surface-secondary bg wrapper</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.06em',color:'var(--color-error-primary)',marginBottom:12}}>DON'T</div>
+                <div className="card" style={{padding:0,overflow:'hidden'}}>
+                  <div style={{background:'#ffffff',padding:24,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    <div style={{
+                      width:'100%',maxWidth:280,background:'#ffffff',
+                      borderRadius:4,
+                      border:'1px solid #e5e7eb',
+                      overflow:'hidden'
+                    }}>
+                      <div style={{background:'#f3f4f6',padding:'10px 14px',borderBottom:'1px solid #e5e7eb',display:'flex',gap:6}}>
+                        {['#ff5f57','#febc2e','#28c840'].map(c=><div key={c} style={{width:10,height:10,borderRadius:'50%',background:c}}></div>)}
+                      </div>
+                      <div style={{padding:'20px 16px'}}>
+                        <div style={{height:8,borderRadius:4,background:'#f3f4f6',marginBottom:8,width:'60%'}}></div>
+                        <div style={{height:8,borderRadius:4,background:'#f3f4f6',marginBottom:8,width:'90%'}}></div>
+                        <div style={{height:8,borderRadius:4,background:'#f3f4f6',width:'75%'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{padding:'12px 16px'}}>
+                    <div style={{fontSize:12,color:'var(--color-text-secondary)'}}>No shadow, tiny radius, floating on white — looks flat and unpolished</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card">
+              <div style={{fontSize:11,fontWeight:700,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--color-text-secondary)',marginBottom:12}}>Rules</div>
+              <div style={{display:'flex',flexDirection:'column',gap:10}}>
+                {[
+                  ['Border radius','16px on the mockup frame itself'],
+                  ['Shadow','Use --shadow-soft-400 or higher. Never no shadow.'],
+                  ['Border','1px solid --color-border-primary'],
+                  ['Background wrapper','Always place mockup inside a surface-secondary or brand-surface container — never float on white'],
+                  ['Container radius','32px on the outer wrapper that holds the mockup'],
+                ].map(([rule, note]) => (
+                  <div key={rule} style={{display:'flex',gap:16,alignItems:'baseline',paddingBottom:10,borderBottom:'1px solid var(--color-border-primary)'}}>
+                    <span style={{fontSize:11,fontWeight:700,color:'var(--btn-bg-enable)',minWidth:140,flexShrink:0}}>{rule}</span>
+                    <span style={{fontSize:13,color:'var(--color-text-secondary)'}}>{note}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ── MULTI-COLUMN GRIDS ── */}
+          <div className="section">
+            <div className="section-title">Multi-Column Grids</div>
+
+            {/* helper sub-component */}
+            {(function() {
+              var GridLabel = function(props) {
+                return (
+                  <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:10}}>
+                    <span style={{fontSize:13,fontWeight:600,color:'var(--color-text-primary)'}}>{props.title}</span>
+                    <span style={{fontSize:11,fontWeight:700,color:'var(--btn-bg-enable)',fontFamily:'monospace'}}>{props.meta}</span>
+                  </div>
+                );
+              };
+              var ColBlock = function(props) {
+                return (
+                  <div style={{
+                    background:'var(--primitive-light-25)',
+                    borderRadius:12,
+                    padding:props.pad || '20px 16px',
+                    display:'flex',
+                    flexDirection:'column',
+                    alignItems:'center',
+                    justifyContent:'center',
+                    gap:6,
+                    minHeight: props.h || 80,
+                  }}>
+                    <span style={{fontSize:12,fontWeight:700,color:'var(--color-text-secondary)',fontFamily:'monospace'}}>{props.ratio}</span>
+                    {props.use && <span style={{fontSize:11,color:'var(--color-text-secondary)',textAlign:'center'}}>{props.use}</span>}
+                  </div>
+                );
+              };
+
+              return (
+                <div style={{display:'flex',flexDirection:'column',gap:24}}>
+
+                  {/* 1 — 12/12 full width */}
+                  <div className="card">
+                    <GridLabel title="Full Width" meta="12/12 · single column" />
+                    <ColBlock ratio="12 / 12" use="Hero, CTA banner, testimonials, full-width feature" h={72} />
+                  </div>
+
+                  {/* 2 — 6/6 equal 2-col */}
+                  <div className="card">
+                    <GridLabel title="Equal 2-Column" meta="6 / 6 · gap 48px" />
+                    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:48}}>
+                      <ColBlock ratio="6 / 12" use="Text content" h={80} />
+                      <ColBlock ratio="6 / 12" use="Mockup / media" h={80} />
+                    </div>
+                  </div>
+
+                  {/* 3 — 4/4/4 equal 3-col */}
+                  <div className="card">
+                    <GridLabel title="Equal 3-Column" meta="4 / 4 / 4 · gap 32px" />
+                    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:32}}>
+                      {[1,2,3].map(function(n){ return <ColBlock key={n} ratio={'4 / 12'} use={'Feature ' + n} h={80} />; })}
+                    </div>
+                  </div>
+
+                  {/* 4 — 3/3/3/3 equal 4-col */}
+                  <div className="card">
+                    <GridLabel title="Equal 4-Column" meta="3 / 3 / 3 / 3 · gap 24px" />
+                    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr 1fr',gap:24}}>
+                      {[1,2,3,4].map(function(n){ return <ColBlock key={n} ratio={'3 / 12'} use={'Feature ' + n} h={72} />; })}
+                    </div>
+                  </div>
+
+                  {/* 5 — 5/7 asymmetric */}
+                  <div className="card">
+                    <GridLabel title="Asymmetric 5 / 7" meta="5 / 7 · gap 48px" />
+                    <div style={{display:'grid',gridTemplateColumns:'5fr 7fr',gap:48}}>
+                      <ColBlock ratio="5 / 12" use="Text + CTA (smaller side)" h={80} />
+                      <ColBlock ratio="7 / 12" use="Mockup / visual (larger side)" h={80} />
+                    </div>
+                  </div>
+
+                  {/* 6 — 4/8 asymmetric */}
+                  <div className="card">
+                    <GridLabel title="Asymmetric 4 / 8" meta="4 / 8 · gap 48px" />
+                    <div style={{display:'grid',gridTemplateColumns:'4fr 8fr',gap:48}}>
+                      <ColBlock ratio="4 / 12" use="Label / sidebar / nav" h={80} />
+                      <ColBlock ratio="8 / 12" use="Main content / feature detail" h={80} />
+                    </div>
+                  </div>
+
+                  {/* 7 — 6 + stacked 6/6 */}
+                  <div className="card">
+                    <GridLabel title="6 + Stacked 6/6" meta="6 / 6 outer · gap 48px · inner gap 24px" />
+                    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:48}}>
+                      <ColBlock ratio="6 / 12" use="Large card (mockup or feature)" h={184} />
+                      <div style={{display:'flex',flexDirection:'column',gap:24}}>
+                        <ColBlock ratio="6 / 12" use="Card 1" h={80} />
+                        <ColBlock ratio="6 / 12" use="Card 2" h={80} />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* ── SECTION SPACING ── */}
+          <div className="section">
+            <div className="section-title">Spacing Within Sections</div>
+            <div className="card">
+              <div style={{display:'flex',flexDirection:'column',gap:0}}>
+                {[
+                  {label:'Badge → Heading gap',value:'12px'},
+                  {label:'Heading → Subtext gap',value:'16px'},
+                  {label:'Subtext → Content gap',value:'48px'},
+                  {label:'Section header → CTA gap',value:'32px'},
+                  {label:'Between feature cards (3-col)',value:'32px'},
+                  {label:'Between feature cards (4-col)',value:'24px'},
+                  {label:'Icon → Heading (within card)',value:'12px'},
+                  {label:'Heading → Body (within card)',value:'8px'},
+                ].map((row,i,arr) => (
+                  <div key={row.label} style={{
+                    display:'flex',justifyContent:'space-between',alignItems:'center',
+                    padding:'14px 0',
+                    borderBottom: i < arr.length-1 ? '1px solid var(--color-border-primary)' : 'none'
+                  }}>
+                    <span style={{fontSize:13,color:'var(--color-text-primary)'}}>{row.label}</span>
+                    <span style={{fontSize:13,fontWeight:700,color:'var(--btn-bg-enable)',fontFamily:'monospace'}}>{row.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ── ICON USAGE ── */}
+          <div className="section">
+            <div className="section-title">Icon Usage</div>
+            <div className="card" style={{marginBottom:16}}>
+              <div style={{display:'flex',flexDirection:'column',gap:0}}>
+                {[
+                  {label:'Library',value:'@hugeicons/react-pro v0.3.2'},
+                  {label:'Variant',value:'solid.rounded — always, no exceptions'},
+                  {label:'Usage',value:'Always inline as SVG path data — no runtime imports'},
+                  {label:'Default size',value:'24×24px'},
+                  {label:'Small size (in buttons, inputs)',value:'20×20px'},
+                  {label:'Large size (feature icons)',value:'32×32px or 40×40px'},
+                  {label:'Color',value:'currentColor — inherits from parent text color'},
+                ].map((row,i,arr) => (
+                  <div key={row.label} style={{
+                    display:'flex',justifyContent:'space-between',alignItems:'center',gap:24,
+                    padding:'14px 0',
+                    borderBottom: i < arr.length-1 ? '1px solid var(--color-border-primary)' : 'none'
+                  }}>
+                    <span style={{fontSize:13,color:'var(--color-text-primary)',flexShrink:0}}>{row.label}</span>
+                    <span style={{fontSize:13,fontWeight:600,color:'var(--btn-bg-enable)',textAlign:'right'}}>{row.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{background:'var(--primitive-dark-800)',borderRadius:12,padding:'14px 18px',fontFamily:'monospace',fontSize:12,border:'1px solid var(--color-border-primary)',color:'var(--color-text-primary-invert)'}}>
+              {'const _IconName = ({ s, c }) => <svg width={s} height={s} viewBox="0 0 24 24" fill="none"><path d="..." fill={c} /></svg>'}
+            </div>
+          </div>
+
+          {/* ── RESPONSIVE BASICS ── */}
+          <div className="section">
+            <div className="section-title">Responsive Basics</div>
+            <div className="card">
+              <div style={{display:'flex',flexDirection:'column',gap:0}}>
+                {[
+                  {breakpoint:'Desktop',value:'≥ 1200px',rule:'Full layout, max-width container centered'},
+                  {breakpoint:'Tablet',value:'768px – 1199px',rule:'Container fills width with 40px side padding. 2-col layouts stay 2-col.'},
+                  {breakpoint:'Mobile',value:'< 768px',rule:'All columns stack to 1-col. Side padding 20px. Section padding reduces to 64px.'},
+                ].map((row,i,arr) => (
+                  <div key={row.breakpoint} style={{
+                    display:'grid',gridTemplateColumns:'100px 140px 1fr',gap:16,alignItems:'baseline',
+                    padding:'16px 0',
+                    borderBottom: i < arr.length-1 ? '1px solid var(--color-border-primary)' : 'none'
+                  }}>
+                    <span style={{fontSize:13,fontWeight:700,color:'var(--color-text-primary)'}}>{row.breakpoint}</span>
+                    <span style={{fontSize:12,fontFamily:'monospace',color:'var(--btn-bg-enable)'}}>{row.value}</span>
+                    <span style={{fontSize:13,color:'var(--color-text-secondary)'}}>{row.rule}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      );
+    };
+
     /* ── App shell ──────────────────────────────────────────── */
     const App = () => {
       const [theme, setTheme] = useState('light');
@@ -1610,11 +2281,12 @@
       }, [theme, brand]);
 
       const navItems = [
-        { id: 'components', label: '⚡ Components' },
-        { id: 'brand',      label: 'Brand Preview' },
-        { id: 'allbrands',  label: 'All Brands' },
-        { id: 'tokens',     label: 'Tokens' },
-        { id: 'typography', label: 'Typography' },
+        { id: 'components',  label: '⚡ Components' },
+        { id: 'brand',       label: 'Brand Preview' },
+        { id: 'allbrands',   label: 'All Brands' },
+        { id: 'tokens',      label: 'Tokens' },
+        { id: 'typography',  label: 'Typography' },
+        { id: 'guidelines',  label: '📐 Guidelines' },
       ];
 
       return (
@@ -1656,7 +2328,8 @@
               {page === 'brand'      && <BrandPage brand={brand} theme={theme} />}
               {page === 'allbrands'  && <AllBrandsPage theme={theme} />}
               {page === 'tokens'     && <TokensPage />}
-              {page === 'typography' && <TypographyPage />}
+              {page === 'typography'  && <TypographyPage />}
+              {page === 'guidelines'  && <GuidelinesPage theme={theme} brand={brand} />}
             </CompErrorBoundary>
           </div>
         </div>

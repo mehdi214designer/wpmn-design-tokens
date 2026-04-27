@@ -293,17 +293,29 @@
                    >
                      Components
                    </div>
-                   <div 
+                   <div
                      onClick={() => setActiveTab('tokens')}
-                     style={{ 
-                       padding: '12px 0', 
-                       cursor: 'pointer', 
+                     style={{
+                       padding: '12px 0',
+                       cursor: 'pointer',
                        borderBottom: activeTab === 'tokens' ? '2px solid var(--btn-bg-enable)' : 'none',
                        color: activeTab === 'tokens' ? 'var(--btn-bg-enable)' : 'var(--color-text-secondary)',
                        fontWeight: activeTab === 'tokens' ? 600 : 400
                      }}
                    >
                      Tokens
+                   </div>
+                   <div
+                     onClick={() => setActiveTab('guidelines')}
+                     style={{
+                       padding: '12px 0',
+                       cursor: 'pointer',
+                       borderBottom: activeTab === 'guidelines' ? '2px solid var(--btn-bg-enable)' : 'none',
+                       color: activeTab === 'guidelines' ? 'var(--btn-bg-enable)' : 'var(--color-text-secondary)',
+                       fontWeight: activeTab === 'guidelines' ? 600 : 400
+                     }}
+                   >
+                     Guidelines
                    </div>
                 </div>
 
@@ -437,7 +449,7 @@
                        </div>
                     </div>
                   </div>
-                ) : (
+                ) : activeTab === 'tokens' ? (
                   <div>
                     <div className="demo-section">
                       <Text variant="h1">Design Tokens</Text>
@@ -560,6 +572,285 @@
                           </div>
                        </div>
                     </div>
+                  </div>
+                ) : (
+                  <div>
+
+                    {/* ── HEADER ─────────────────────────────────────── */}
+                    <div className="demo-section">
+                      <Text variant="h1">Design Guidelines</Text>
+                      <Text variant="body-large" color="secondary">Layout, spacing, color, logo, and component rules for all WPMN product websites.</Text>
+                    </div>
+
+                    {/* ── LAYOUT SYSTEM ──────────────────────────────── */}
+                    <div className="demo-section">
+                      <Text variant="h4" className="demo-section-title">Layout System</Text>
+
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:24, marginBottom:32}}>
+                        <div style={{padding:24, borderRadius:16, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" color="secondary" style={{display:'block', marginBottom:8}}>Container Max Width</Text>
+                          <Text variant="h2" style={{color:'var(--btn-bg-enable)'}}>1200px</Text>
+                          <Text variant="body-small" color="secondary" style={{marginTop:6}}>Centered via margin: 0 auto. No horizontal padding.</Text>
+                        </div>
+                        <div style={{padding:24, borderRadius:16, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" color="secondary" style={{display:'block', marginBottom:8}}>Section Padding</Text>
+                          <Text variant="h2" style={{color:'var(--btn-bg-enable)'}}>96px</Text>
+                          <Text variant="body-small" color="secondary" style={{marginTop:6}}>Top and bottom on every section. No exceptions.</Text>
+                        </div>
+                      </div>
+
+                      {/* Container visual */}
+                      <div style={{marginBottom:40, padding:20, border:'2px dashed var(--color-border-primary)', borderRadius:16, position:'relative'}}>
+                        <Text variant="body-mono" color="secondary" style={{fontSize:10, position:'absolute', top:-10, left:16, background:'var(--color-surface-primary)', padding:'0 8px'}}>Full viewport width</Text>
+                        <div style={{background:'var(--color-brand-surface)', borderRadius:12, padding:'20px 16px', maxWidth:'100%', margin:'0 auto', textAlign:'center'}}>
+                          <Text variant="body-small" style={{color:'var(--btn-bg-enable)', fontWeight:600}}>max-width: 1200px · margin: 0 auto</Text>
+                        </div>
+                      </div>
+
+                      {/* Column layouts */}
+                      <Text variant="h6" style={{marginBottom:16}}>Column Layouts</Text>
+
+                      <div style={{marginBottom:24}}>
+                        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10}}>
+                          <Text variant="body-label" color="secondary">Hero Section</Text>
+                          <Text variant="body-mono" style={{fontSize:11, color:'var(--btn-bg-enable)', fontWeight:700}}>50 / 50 · gutter 48px</Text>
+                        </div>
+                        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:48, padding:20, background:'var(--color-surface-secondary)', borderRadius:12, border:'1px solid var(--color-border-primary)'}}>
+                          <div style={{background:'var(--color-brand-surface)', borderRadius:10, padding:'28px 20px', textAlign:'center'}}>
+                            <Text variant="body-small" style={{color:'var(--btn-bg-enable)', fontWeight:600}}>Text Content · 50%</Text>
+                          </div>
+                          <div style={{background:'var(--color-surface-primary)', borderRadius:10, padding:'28px 20px', textAlign:'center', border:'1px solid var(--color-border-primary)'}}>
+                            <Text variant="body-small" color="secondary">Mockup / Media · 50%</Text>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10}}>
+                          <Text variant="body-label" color="secondary">Feature Section</Text>
+                          <Text variant="body-mono" style={{fontSize:11, color:'var(--btn-bg-enable)', fontWeight:700}}>60 / 40 · gutter 48px</Text>
+                        </div>
+                        <div style={{display:'grid', gridTemplateColumns:'3fr 2fr', gap:48, padding:20, background:'var(--color-surface-secondary)', borderRadius:12, border:'1px solid var(--color-border-primary)'}}>
+                          <div style={{background:'var(--color-brand-surface)', borderRadius:10, padding:'28px 20px', textAlign:'center'}}>
+                            <Text variant="body-small" style={{color:'var(--btn-bg-enable)', fontWeight:600}}>Text Content · 60%</Text>
+                          </div>
+                          <div style={{background:'var(--color-surface-primary)', borderRadius:10, padding:'28px 20px', textAlign:'center', border:'1px solid var(--color-border-primary)'}}>
+                            <Text variant="body-small" color="secondary">Mockup · 40%</Text>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ── SECTION STRUCTURE ──────────────────────────── */}
+                    <div className="demo-section">
+                      <Text variant="h4" className="demo-section-title">Section Structure</Text>
+
+                      {/* Header anatomy */}
+                      <Text variant="h6" style={{marginBottom:16}}>Header Anatomy</Text>
+                      <div style={{padding:48, background:'var(--color-surface-secondary)', borderRadius:16, border:'1px solid var(--color-border-primary)', textAlign:'center', marginBottom:16}}>
+                        <div style={{display:'inline-flex', flexDirection:'column', gap:16, alignItems:'center', maxWidth:600}}>
+                          <div style={{display:'flex', alignItems:'center', gap:8}}>
+                            <div style={{width:8, height:8, borderRadius:'50%', background:'var(--btn-bg-enable)'}}></div>
+                            <Text variant="body-small" style={{color:'var(--btn-bg-enable)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em'}}>SECTION BADGE</Text>
+                            <Text variant="body-small" color="secondary" style={{fontStyle:'italic'}}>(optional)</Text>
+                          </div>
+                          <Text variant="h2" style={{textAlign:'center', maxWidth:800}}>Section Heading — Always Required</Text>
+                          <div style={{display:'flex', alignItems:'center', gap:8}}>
+                            <Text variant="body-large" color="secondary" style={{textAlign:'center'}}>Supporting subtext goes here. Keep it short. Max width 800px.</Text>
+                            <Text variant="body-small" color="secondary" style={{fontStyle:'italic', whiteSpace:'nowrap'}}>(optional)</Text>
+                          </div>
+                        </div>
+                      </div>
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:16, marginBottom:40}}>
+                        <div style={{padding:16, borderRadius:12, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" style={{color:'var(--btn-bg-enable)', display:'block', marginBottom:6}}>Badge</Text>
+                          <Text variant="body-small" color="secondary">Optional. Short label, uppercase, dot prefix.</Text>
+                        </div>
+                        <div style={{padding:16, borderRadius:12, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" style={{display:'block', marginBottom:6}}>Heading</Text>
+                          <Text variant="body-small" color="secondary">Always required. Max 800px wide, center-aligned.</Text>
+                        </div>
+                        <div style={{padding:16, borderRadius:12, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" color="secondary" style={{display:'block', marginBottom:6}}>Subtext</Text>
+                          <Text variant="body-small" color="secondary">Optional. One or two sentences max.</Text>
+                        </div>
+                      </div>
+
+                      {/* CTA rule */}
+                      <Text variant="h6" style={{marginBottom:16}}>CTA Buttons</Text>
+                      <div style={{padding:24, background:'var(--color-surface-secondary)', borderRadius:16, border:'1px solid var(--color-border-primary)', marginBottom:40}}>
+                        <Text variant="body-small" color="secondary" style={{display:'block', marginBottom:20}}>Always primary + secondary side by side. Never just one, never stacked.</Text>
+                        <div style={{display:'flex', gap:12}}>
+                          <Button type="primary" size="lg">Free Download</Button>
+                          <Button type="secondary" size="lg">Buy Now</Button>
+                        </div>
+                      </div>
+
+                      {/* Section backgrounds */}
+                      <Text variant="h6" style={{marginBottom:16}}>Section Backgrounds</Text>
+                      <div style={{borderRadius:16, overflow:'hidden', border:'1px solid var(--color-border-primary)'}}>
+                        <div style={{padding:'20px 24px', background:'#ffffff', display:'flex', justifyContent:'space-between', alignItems:'center', borderBottom:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-small" style={{fontWeight:600}}>Section 1</Text>
+                          <Text variant="body-mono" style={{fontSize:11, color:'var(--color-text-secondary)'}}>White · #ffffff</Text>
+                        </div>
+                        <div style={{padding:'20px 24px', background:'var(--color-surface-secondary)', display:'flex', justifyContent:'space-between', alignItems:'center', borderBottom:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-small" style={{fontWeight:600}}>Section 2</Text>
+                          <Text variant="body-mono" style={{fontSize:11, color:'var(--color-text-secondary)'}}>Light Gray · --color-surface-secondary</Text>
+                        </div>
+                        <div style={{padding:'20px 24px', background:'#ffffff', display:'flex', justifyContent:'space-between', alignItems:'center', borderBottom:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-small" style={{fontWeight:600}}>Section 3</Text>
+                          <Text variant="body-mono" style={{fontSize:11, color:'var(--color-text-secondary)'}}>White · alternates back</Text>
+                        </div>
+                        <div style={{padding:'20px 24px', background:'#0f172a', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                          <Text variant="body-small" style={{fontWeight:600, color:'#fff'}}>Section X (selective)</Text>
+                          <Text variant="body-mono" style={{fontSize:11, color:'rgba(255,255,255,0.45)'}}>Dark · used on select sections only</Text>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ── TYPOGRAPHY RULES ───────────────────────────── */}
+                    <div className="demo-section">
+                      <Text variant="h4" className="demo-section-title">Typography Rules</Text>
+
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:24, marginBottom:32}}>
+                        <div style={{padding:24, borderRadius:16, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" color="secondary" style={{display:'block', marginBottom:8}}>Centered Text Max Width</Text>
+                          <Text variant="h2" style={{color:'var(--btn-bg-enable)'}}>800px</Text>
+                          <Text variant="body-small" color="secondary" style={{marginTop:6}}>Headings and body text in full-width sections. Prevents overly long lines.</Text>
+                        </div>
+                        <div style={{padding:24, borderRadius:16, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" color="secondary" style={{display:'block', marginBottom:8}}>Section Content Alignment</Text>
+                          <Text variant="h2" style={{color:'var(--btn-bg-enable)'}}>Center</Text>
+                          <Text variant="body-small" color="secondary" style={{marginTop:6}}>All content center-aligned: headings, subtext, toggles, CTAs.</Text>
+                        </div>
+                      </div>
+
+                      {/* Highlighted text rule */}
+                      <Text variant="h6" style={{marginBottom:16}}>Highlighted / Accented Text in Headings</Text>
+                      <div style={{padding:40, background:'var(--color-surface-secondary)', borderRadius:16, border:'1px solid var(--color-border-primary)', textAlign:'center', marginBottom:16}}>
+                        <Text variant="h2" style={{textAlign:'center', maxWidth:700, margin:'0 auto'}}>
+                          The Next-Generation <span style={{color:'var(--btn-bg-enable)'}}>Video Player</span> for WordPress
+                        </Text>
+                        <Text variant="body-small" color="secondary" style={{marginTop:16}}>
+                          Highlighted word uses <code style={{background:'var(--color-surface-primary)', padding:'2px 8px', borderRadius:6, fontFamily:'monospace'}}>--color-primary</code> (brand color) — never gray, never hardcoded
+                        </Text>
+                      </div>
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:16}}>
+                        <div style={{padding:20, borderRadius:12, border:'2px solid var(--color-success-primary)', background:'var(--color-surface-secondary)'}}>
+                          <Text variant="body-label" style={{color:'var(--color-success-primary)', display:'block', marginBottom:12}}>DO</Text>
+                          <Text variant="h5">The Best <span style={{color:'var(--btn-bg-enable)'}}>Form Builder</span></Text>
+                          <Text variant="body-small" color="secondary" style={{marginTop:8}}>Uses brand --color-primary</Text>
+                        </div>
+                        <div style={{padding:20, borderRadius:12, border:'2px solid var(--color-error-primary)', background:'var(--color-surface-secondary)'}}>
+                          <Text variant="body-label" style={{color:'var(--color-error-primary)', display:'block', marginBottom:12}}>DON'T</Text>
+                          <Text variant="h5">The Best <span style={{color:'#6b7280'}}>Form Builder</span></Text>
+                          <Text variant="body-small" color="secondary" style={{marginTop:8}}>Hardcoded gray — breaks brand theming</Text>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ── RADIUS RULES ───────────────────────────────── */}
+                    <div className="demo-section">
+                      <Text variant="h4" className="demo-section-title">Radius Rules</Text>
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:24}}>
+                        <div style={{padding:24, borderRadius:16, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" color="secondary" style={{display:'block', marginBottom:16}}>Card Radius</Text>
+                          <div style={{width:'100%', height:80, borderRadius:16, background:'var(--color-surface-primary)', border:'2px solid var(--btn-bg-enable)', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                            <Text variant="body-mono" style={{color:'var(--btn-bg-enable)', fontWeight:700, fontSize:18}}>16px</Text>
+                          </div>
+                          <Text variant="body-small" color="secondary" style={{marginTop:12}}>Cards, feature tiles, pricing cards, image frames</Text>
+                        </div>
+                        <div style={{padding:24, borderRadius:16, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-label" color="secondary" style={{display:'block', marginBottom:16}}>Container / Section Wrapper Radius</Text>
+                          <div style={{width:'100%', height:80, borderRadius:32, background:'var(--color-surface-primary)', border:'2px solid var(--btn-bg-enable)', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                            <Text variant="body-mono" style={{color:'var(--btn-bg-enable)', fontWeight:700, fontSize:18}}>32px</Text>
+                          </div>
+                          <Text variant="body-small" color="secondary" style={{marginTop:12}}>Large section containers, mockup wrappers, feature showcase blocks</Text>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ── BRAND & COLOR ──────────────────────────────── */}
+                    <div className="demo-section">
+                      <Text variant="h4" className="demo-section-title">Brand & Color</Text>
+
+                      <Text variant="h6" style={{marginBottom:16}}>Always Set data-brand</Text>
+                      <div style={{padding:24, borderRadius:16, background:'var(--color-surface-secondary)', border:'1px solid var(--color-border-primary)', marginBottom:24}}>
+                        <Text variant="body-small" color="secondary" style={{display:'block', marginBottom:16}}>
+                          Every product page must have <code style={{background:'var(--color-surface-primary)', padding:'2px 8px', borderRadius:6, fontFamily:'monospace'}}>data-brand="x"</code> on the root element. This activates the correct primary and accent color scales across all components.
+                        </Text>
+                        <div style={{background:'var(--color-surface-primary)', borderRadius:10, padding:'14px 18px', fontFamily:'monospace', fontSize:13, border:'1px solid var(--color-border-primary)'}}>
+                          <Text variant="body-mono" style={{fontSize:13}}>&lt;div data-brand="fluentforms"&gt; ... &lt;/div&gt;</Text>
+                        </div>
+                      </div>
+
+                      <Text variant="h6" style={{marginBottom:16}}>Button Color</Text>
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:16}}>
+                        <div style={{padding:24, borderRadius:12, border:'2px solid var(--color-success-primary)', background:'var(--color-surface-secondary)'}}>
+                          <Text variant="body-label" style={{color:'var(--color-success-primary)', display:'block', marginBottom:16}}>DO</Text>
+                          <Button type="primary" size="md">Free Download</Button>
+                          <Text variant="body-small" color="secondary" style={{marginTop:12}}>Uses --btn-bg-enable (brand primary token)</Text>
+                        </div>
+                        <div style={{padding:24, borderRadius:12, border:'2px solid var(--color-error-primary)', background:'var(--color-surface-secondary)'}}>
+                          <Text variant="body-label" style={{color:'var(--color-error-primary)', display:'block', marginBottom:16}}>DON'T</Text>
+                          <button style={{background:'#4b5563', color:'white', border:'none', padding:'10px 20px', borderRadius:8, cursor:'pointer', fontWeight:600, fontSize:14}}>Free Download</button>
+                          <Text variant="body-small" color="secondary" style={{marginTop:12}}>Hardcoded gray — breaks brand theming entirely</Text>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ── LOGO USAGE ─────────────────────────────────── */}
+                    <div className="demo-section">
+                      <Text variant="h4" className="demo-section-title">Logo Usage</Text>
+
+                      <Text variant="body-small" color="secondary" style={{display:'block', marginBottom:24}}>
+                        Always use the SVG from <code style={{background:'var(--color-surface-secondary)', padding:'2px 8px', borderRadius:6, fontFamily:'monospace'}}>logos/{'<brand>'}/<variant>-{'<type>'}.svg</code>. Never use placeholders, raster images, or inline text as a logo.
+                      </Text>
+
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:24, marginBottom:24}}>
+                        <div style={{borderRadius:16, overflow:'hidden', border:'1px solid var(--color-border-primary)'}}>
+                          <div style={{padding:'32px 24px', background:'#ffffff', display:'flex', flexDirection:'column', alignItems:'center', gap:20}}>
+                            <Logo brand="fluentforms" variant="logo" type="primary" height={26} />
+                            <Logo brand="fluentcrm" variant="logo" type="primary" height={26} />
+                            <Logo brand="ninjatables" variant="logo" type="primary" height={26} />
+                          </div>
+                          <div style={{padding:'12px 16px', background:'var(--color-surface-secondary)', borderTop:'1px solid var(--color-border-primary)', display:'flex', gap:8, alignItems:'center'}}>
+                            <div style={{width:8, height:8, borderRadius:2, background:'var(--color-success-primary)', flexShrink:0}}></div>
+                            <Text variant="body-small" style={{color:'var(--color-success-primary)', fontWeight:600}}>Light / White Background</Text>
+                          </div>
+                          <div style={{padding:'10px 16px 16px', background:'var(--color-surface-secondary)'}}>
+                            <code style={{fontFamily:'monospace', fontSize:12, color:'var(--color-text-secondary)'}}>type="primary"</code>
+                            <Text variant="body-small" color="secondary" style={{marginTop:4}}>Colored icon + dark text. Use on white or light gray sections.</Text>
+                          </div>
+                        </div>
+
+                        <div style={{borderRadius:16, overflow:'hidden', border:'1px solid var(--color-border-primary)'}}>
+                          <div style={{padding:'32px 24px', background:'#0f172a', display:'flex', flexDirection:'column', alignItems:'center', gap:20}}>
+                            <Logo brand="fluentforms" variant="logo" type="inverted" height={26} />
+                            <Logo brand="fluentcrm" variant="logo" type="inverted" height={26} />
+                            <Logo brand="ninjatables" variant="logo" type="inverted" height={26} />
+                          </div>
+                          <div style={{padding:'12px 16px', background:'var(--color-surface-secondary)', borderTop:'1px solid var(--color-border-primary)', display:'flex', gap:8, alignItems:'center'}}>
+                            <div style={{width:8, height:8, borderRadius:2, background:'var(--color-success-primary)', flexShrink:0}}></div>
+                            <Text variant="body-small" style={{color:'var(--color-success-primary)', fontWeight:600}}>Dark Background</Text>
+                          </div>
+                          <div style={{padding:'10px 16px 16px', background:'var(--color-surface-secondary)'}}>
+                            <code style={{fontFamily:'monospace', fontSize:12, color:'var(--color-text-secondary)'}}>type="inverted"</code>
+                            <Text variant="body-small" color="secondary" style={{marginTop:4}}>White icon + white text. Use on dark sections, footers, dark navbars.</Text>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style={{padding:20, borderRadius:12, border:'2px solid var(--color-error-primary)', background:'var(--color-surface-secondary)'}}>
+                        <Text variant="body-label" style={{color:'var(--color-error-primary)', display:'block', marginBottom:14}}>NEVER DO THIS</Text>
+                        <div style={{display:'flex', alignItems:'center', gap:12}}>
+                          <div style={{width:32, height:32, background:'#e5e7eb', borderRadius:4, border:'1px solid #d1d5db', flexShrink:0}}></div>
+                          <Text variant="body-base" style={{fontWeight:600}}>ProductName</Text>
+                        </div>
+                        <Text variant="body-small" color="secondary" style={{marginTop:10}}>Placeholder box + plain text. Use the actual SVG from the logos folder instead.</Text>
+                      </div>
+                    </div>
+
                   </div>
                 )}
               </div>

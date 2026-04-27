@@ -23,6 +23,8 @@
   /* #4e5d78 */
   --color-text-primary-invert: var(--primitive-light-0);
   /* #ffffff */
+  --color-text-secondary-invert: var(--primitive-light-100);
+  /* #dbdee4 */
   --color-text-brand: var(--primitive-accent-300);
   /* #939dab */
 
@@ -201,6 +203,7 @@
   /* #dbdee4 */
   --color-text-primary-invert: var(--primitive-dark-800);
   /* #07090c */
+  --color-text-secondary-invert: var(--primitive-dark-500);
   --color-text-brand: var(--primitive-accent-200);
   /* #b7bec7 */
 
