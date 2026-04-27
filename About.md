@@ -20,7 +20,7 @@
 | `index.css` | Main entry — imports all four in the correct order. |
 
 **Brands with both primary + accent scales:**
-wpmanagenia, fluentforms, fluentcrm, ninjatables, wpsocialninja, fluentsupport, fluentaffiliate, fluentboards, fluentcart, fluentplayer
+wpmanagenia, fluentforms, fluentcrm, ninjatables, wpsocialninja, fluentsupport, fluentaffiliate, fluentboards, fluentcart, fluentplayer, fluentmembers
 
 **Brands with primary only (accent files not yet provided):**
 fluentbooking, fluentcommunity, paymattic, fluentsmtp, azonpress

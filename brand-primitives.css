@@ -1,7 +1,7 @@
 /**
  * WPMN Design System — Brand Primitive Tokens
  * Source: Figma variable JSON exports per product
- * Last updated: 2026-04-24
+ * Last updated: 2026-04-27
  *
  * HOW IT WORKS
  * ─────────────────────────────────────────────────────────────
@@ -18,6 +18,7 @@
  *   paymattic*         fluentboards    fluentsmtp*
  *   fluentsupport      fluentaffiliate azonpress*
  *   wpsocialninja      fluentcart      fluentplayer
+ *   fluentmembers
  *
  * * = token file not yet uploaded, using existing values
  *
@@ -395,4 +396,32 @@
   --primitive-accent-800: #590B06;
   --primitive-accent-900: #2C0603;
   --primitive-accent-950: #150301;
+}
+
+/* ============================================================
+   FluentMembers  (primary: #D5014A · accent: #FFBB10)
+   ============================================================ */
+[data-brand="fluentmembers"] {
+  --primitive-primary-50:  #FBE5EC;
+  --primitive-primary-100: #F6CCDA;
+  --primitive-primary-200: #EE99B6;
+  --primitive-primary-300: #E66693;
+  --primitive-primary-400: #DE326E;
+  --primitive-primary-500: #D5014A;
+  --primitive-primary-600: #AA013B;
+  --primitive-primary-700: #7F002C;
+  --primitive-primary-800: #55001D;
+  --primitive-primary-900: #2A000E;
+  --primitive-primary-950: #150007;
+  --primitive-accent-50:  #FFF8E7;
+  --primitive-accent-100: #FFF2CF;
+  --primitive-accent-200: #FFE3A0;
+  --primitive-accent-300: #FFD66F;
+  --primitive-accent-400: #FFC83F;
+  --primitive-accent-500: #FFBB10;
+  --primitive-accent-600: #CC950D;
+  --primitive-accent-700: #997008;
+  --primitive-accent-800: #664A05;
+  --primitive-accent-900: #332503;
+  --primitive-accent-950: #191201;
 }
