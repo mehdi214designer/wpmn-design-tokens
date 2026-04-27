@@ -5,7 +5,7 @@
 **Stack:** Plain CSS custom properties + React. No build step required for development.
 **Figma file:** `54BG58iHusICXloB0fauSM` (WPMN Design System Beta)
 **GitHub:** https://github.com/mehdi214designer/wpmn-design-tokens (branch: master)
-**Current version:** v1.0.0
+**Current version:** v1.1.0
 
 ---
 
@@ -65,6 +65,7 @@ fluentbooking, fluentcommunity, paymattic, fluentsmtp, azonpress
 
 | Version | Date | Notes |
 |---------|------|-------|
+| v1.1.0 | 2026-04-27 | Design guidelines + context files + `--color-text-secondary-invert` token |
 | v1.0.0 | 2026-04-24 | Initial commit — token system + core components + logos |
 
 ---
