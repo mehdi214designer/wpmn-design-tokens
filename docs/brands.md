@@ -12,31 +12,26 @@ All semantic tokens in `tokens.css` cascade automatically once `data-brand` is s
 
 ---
 
-## Brands — Primary + Accent Scales
+## All Brands
 
 | Brand | Key | Primary (500) | Accent (500) |
 |---|---|---|---|
 | WPManageNinja | `wpmanagenia` | #0D5FFF | #4C5C73 |
-| FluentForms | `fluentforms` | #4150E8 | — |
-| FluentCRM | `fluentcrm` | #5E0EDE | — |
-| NinjaTables | `ninjatables` | #006187 | — |
-| FluentSupport | `fluentsupport` | #25B05A | — |
-| FluentAffiliate | `fluentaffiliate` | — | — |
-| FluentBoards | `fluentboards` | #B8D400 | — |
+| FluentForms | `fluentforms` | #2B6CFF | #089DFF |
+| FluentCRM | `fluentcrm` | #BA4CDE | #7742E6 |
+| NinjaTables | `ninjatables` | #046EC0 | #00AC9E |
+| FluentSupport | `fluentsupport` | #00B36D | #FFCA6D |
+| FluentAffiliate | `fluentaffiliate` | #2C6AE2 | #2CC5E2 |
+| FluentBoards | `fluentboards` | #F1EB62 | #6268F1 |
 | FluentCart | `fluentcart` | #0000D9 | #00009F |
 | FluentPlayer | `fluentplayer` | #0163DD | #DD1E13 |
 | WPSocialNinja | `wpsocialninja` | #5B2DD4 | #FF0C79 |
 | FluentMembers | `fluentmembers` | #D5014A | #FFBB10 |
-
-## Brands — Primary Only (accent not yet available)
-
-| Brand | Key | Primary (500) |
-|---|---|---|
-| FluentBooking | `fluentbooking` | — |
-| FluentCommunity | `fluentcommunity` | — |
-| FluentSMTP | `fluentsmtp` | — |
-| AzonPress | `azonpress` | #FFC800 |
-| Paymattic | `paymattic` | — |
+| FluentBooking | `fluentbooking` | #2653C5 | — |
+| FluentCommunity | `fluentcommunity` | #485CE0 | — |
+| FluentSMTP | `fluentsmtp` | #C516C0 | — |
+| AzonPress | `azonpress` | #FFC800 | — |
+| Paymattic | `paymattic` | #FF6A00 | — |
 
 ---
 
