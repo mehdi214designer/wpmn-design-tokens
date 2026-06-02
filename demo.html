@@ -425,6 +425,31 @@
       --primitive-accent-950: #150301;
     }
 
+    [data-brand="fluentmembers"] {
+      --primitive-primary-50:  #F3EDFD;
+      --primitive-primary-100: #E6DCFB;
+      --primitive-primary-200: #CDB8F7;
+      --primitive-primary-300: #B495F3;
+      --primitive-primary-400: #9B71EF;
+      --primitive-primary-500: #824EEB;
+      --primitive-primary-600: #683EBC;
+      --primitive-primary-700: #4E2F8D;
+      --primitive-primary-800: #341F5E;
+      --primitive-primary-900: #1A102F;
+      --primitive-primary-950: #0D0817;
+      --primitive-accent-50:  #EFE8FD;
+      --primitive-accent-100: #DFD2FB;
+      --primitive-accent-200: #C0A4F7;
+      --primitive-accent-300: #A077F3;
+      --primitive-accent-400: #8149EF;
+      --primitive-accent-500: #611CEB;
+      --primitive-accent-600: #4E16BC;
+      --primitive-accent-700: #3A118D;
+      --primitive-accent-800: #270B5E;
+      --primitive-accent-900: #13062F;
+      --primitive-accent-950: #0A0317;
+    }
+
     /* ============================================================
        SEMANTIC TOKENS — Light Mode
        ============================================================ */
@@ -858,6 +883,7 @@
       { key: 'wpsocialninja',  name: 'WP Social Ninja',color: '#5B2DD4' },
       { key: 'fluentcart',     name: 'FluentCart',     color: '#0000D9' },
       { key: 'fluentplayer',   name: 'FluentPlayer',   color: '#0163DD' },
+      { key: 'fluentmembers',  name: 'FluentMembers',  color: '#824EEB' },
     ];
 
     const SCALE_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
@@ -1289,7 +1315,7 @@
         <div className="page-header">
           <h1 className="text-h4" style={{ margin:'0 0 8px', color:'var(--color-text-primary)' }}>All Brands</h1>
           <p className="text-body-base" style={{ color:'var(--color-text-secondary)', margin:0 }}>
-            15 brands — each gets its own <code>--primitive-primary-*</code> scale via <code>[data-brand]</code>. Click a brand in the sidebar to preview it live.
+            16 brands — each gets its own <code>--primitive-primary-*</code> scale via <code>[data-brand]</code>. Click a brand in the sidebar to preview it live.
           </p>
         </div>
         <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
