@@ -63,19 +63,19 @@ const Input = ({
   onChange,
   ...rest
 }) => {
-  const autoId = useId();
-  const fieldId  = providedId || autoId;
-  const messageId = `${fieldId}-msg`;
+  var autoId = useId();
+  var fieldId  = providedId || autoId;
+  var messageId = `${fieldId}-msg`;
 
   /* Derive the right-side icon:
      - explicit prop wins
      - error state  → AlertCircle (24px)
      - success state → CheckCircle (20px)
   */
-  const hasError   = Boolean(error);
-  const hasSuccess = Boolean(success) && !hasError;
+  var hasError   = Boolean(error);
+  var hasSuccess = Boolean(success) && !hasError;
 
-  const rightIcon = iconRight
+  var rightIcon = iconRight
     ? iconRight
     : hasError
       ? <AlertCircleIcon />
@@ -83,12 +83,12 @@ const Input = ({
         ? <CheckCircleIcon />
         : null;
 
-  const hasLeftIcon  = Boolean(iconLeft);
-  const hasRightIcon = Boolean(rightIcon);
-  const rightIsError = hasError && !iconRight;   // built-in error icon (24px)
+  var hasLeftIcon  = Boolean(iconLeft);
+  var hasRightIcon = Boolean(rightIcon);
+  var rightIsError = hasError && !iconRight;   // built-in error icon (24px)
 
   /* Field padding class */
-  const iconPaddingClass = (() => {
+  var iconPaddingClass = (() => {
     if (hasLeftIcon && hasRightIcon) return 'wpmn-input__field--icon-both';
     if (hasLeftIcon)                 return 'wpmn-input__field--icon-left';
     if (hasRightIcon && rightIsError) return 'wpmn-input__field--icon-right-lg';
@@ -97,7 +97,7 @@ const Input = ({
   })();
 
   /* Wrapper class */
-  const wrapperClass = [
+  var wrapperClass = [
     'wpmn-input-wrapper',
     `wpmn-input--${variant}`,
     size !== 'md' ? `wpmn-input--${size}` : '',
@@ -109,8 +109,8 @@ const Input = ({
     .join(' ');
 
   /* Message below field */
-  const message    = error || success || hint || null;
-  const messageClass = [
+  var message    = error || success || hint || null;
+  var messageClass = [
     'wpmn-input__hint',
     hasError   ? 'wpmn-input__hint--error'   : '',
     hasSuccess ? 'wpmn-input__hint--success' : '',

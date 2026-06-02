@@ -42,9 +42,9 @@ const Button = ({
   children,
   ...rest
 }) => {
-  const isDisabled = disabled || state === 'disabled' || loading;
+  var isDisabled = disabled || state === 'disabled' || loading;
 
-  const classes = [
+  var classes = [
     'wpmn-btn',
     `wpmn-btn--${type}`,
     `wpmn-btn--${size}`,

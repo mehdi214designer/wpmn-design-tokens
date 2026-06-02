@@ -54,13 +54,13 @@ const NavBar = ({
   onCtaClick = undefined,
   className  = '',
 }) => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  var [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleCtaClick = onCtaClick
+  var handleCtaClick = onCtaClick
     ? (e) => { e.preventDefault(); onCtaClick(e); }
     : undefined;
 
-  const closeMobileMenu = () => setMobileOpen(false);
+  var closeMobileMenu = () => setMobileOpen(false);
 
   return (
     <header

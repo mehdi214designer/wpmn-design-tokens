@@ -70,22 +70,22 @@ const Logo = ({
     return null;
   }
 
-  const key    = `${variant}-${type}`;
-  const svgStr = logos[brand]?.[key];
+  var key    = `${variant}-${type}`;
+  var svgStr = logos[brand]?.[key];
 
   if (!svgStr) {
     console.warn(`[Logo] No SVG found for brand="${brand}" variant="${variant}" type="${type}".`);
     return null;
   }
 
-  const brandName  = BRAND_NAMES[brand] || brand;
-  const typeStr    = type !== 'primary' ? ` (${type})` : '';
-  const label      = variant === 'icon'
+  var brandName  = BRAND_NAMES[brand] || brand;
+  var typeStr    = type !== 'primary' ? ` (${type})` : '';
+  var label      = variant === 'icon'
     ? `${brandName} icon mark${typeStr}`
     : `${brandName} logo${typeStr}`;
 
   /* Inject width/height as inline style so aspect ratio is always preserved */
-  const wrapStyle = {
+  var wrapStyle = {
     display:     'inline-block',
     lineHeight:  0,
     flexShrink:  0,
@@ -95,7 +95,7 @@ const Logo = ({
   };
 
   /* Size the inner SVG to fill the wrapper */
-  const svgWithSize = height || width
+  var svgWithSize = height || width
     ? svgStr
         .replace(/<svg /, '<svg style="height:100%;width:100%;" ')
     : svgStr;

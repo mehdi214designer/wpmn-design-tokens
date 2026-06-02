@@ -71,12 +71,12 @@ const Text = ({
   children,
   ...rest
 }) => {
-  const config = VARIANT_MAP[variant] || VARIANT_MAP['body-base'];
-  const Tag = as || config.tag;
+  var config = VARIANT_MAP[variant] || VARIANT_MAP['body-base'];
+  var Tag = as || config.tag;
 
-  const resolvedWeight = weight || config.defaultWeight;
+  var resolvedWeight = weight || config.defaultWeight;
 
-  const inlineStyle = {
+  var inlineStyle = {
     ...COLOR_STYLES[color],
     ...WEIGHT_STYLES[resolvedWeight],
     ...(align ? { textAlign: align } : {}),

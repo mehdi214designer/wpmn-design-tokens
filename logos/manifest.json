@@ -178,5 +178,17 @@
     "icon-inverted": "logos/fluentplayer/icon-inverted.svg",
     "icon-black": "logos/fluentplayer/icon-black.svg",
     "icon-white": "logos/fluentplayer/icon-white.svg"
+  },
+  "fluentmembers": {
+    "logo-primary": "logos/fluentmembers/logo-primary.svg",
+    "logo-dark": "logos/fluentmembers/logo-dark.svg",
+    "logo-inverted": "logos/fluentmembers/logo-inverted.svg",
+    "logo-black": "logos/fluentmembers/logo-black.svg",
+    "logo-white": "logos/fluentmembers/logo-white.svg",
+    "icon-primary": "logos/fluentmembers/icon-primary.svg",
+    "icon-dark": "logos/fluentmembers/icon-dark.svg",
+    "icon-inverted": "logos/fluentmembers/icon-inverted.svg",
+    "icon-black": "logos/fluentmembers/icon-black.svg",
+    "icon-white": "logos/fluentmembers/icon-white.svg"
   }
 }
