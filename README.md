@@ -8,9 +8,9 @@ Built with plain CSS custom properties and React — no build step required for 
 
 ## Products
 
-15 brands, all driven by a single token system with per-brand overrides via `[data-brand="x"]` on the root element:
+16 brands, all driven by a single token system with per-brand overrides via `[data-brand="x"]` on the root element:
 
-`wpmanagenia` · `fluentforms` · `fluentcrm` · `fluentbooking` · `fluentcommunity` · `ninjatables` · `paymattic` · `fluentboards` · `fluentsmtp` · `fluentsupport` · `fluentaffiliate` · `azonpress` · `wpsocialninja` · `fluentcart` · `fluentplayer`
+`wpmanagenia` · `fluentforms` · `fluentcrm` · `fluentbooking` · `fluentcommunity` · `ninjatables` · `paymattic` · `fluentboards` · `fluentsmtp` · `fluentsupport` · `fluentaffiliate` · `azonpress` · `wpsocialninja` · `fluentcart` · `fluentplayer` · `fluentmembers`
 
 ---
 
@@ -51,7 +51,7 @@ import { Button, Badge, Input, Text, NavBar, Logo, Footer, Breadcrumbs, SocialIc
 | `Input` | standard input props |
 | `Text` | typography scale |
 | `NavBar` | navigation bar |
-| `Logo` | `brand` (any of 15 brands), imports `BRANDS` constant |
+| `Logo` | `brand` (any of 16 brands), imports `BRANDS` constant |
 | `Footer` | nav columns, social icons, brand logo |
 | `Breadcrumbs` | `variant` (border/flat/transparent/text), `theme` (light/dark) |
 | `SocialIcons` | standalone social icon group |
