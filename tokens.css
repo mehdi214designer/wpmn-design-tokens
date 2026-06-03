@@ -33,10 +33,16 @@
   /* #ffffff */
   --color-surface-secondary: var(--primitive-dark-800);
   /* #07090c */
+  --color-surface-alt: var(--primitive-light-25);
+  /* Soft gray — alternate section bg */
+  --color-surface-secondary-alt: var(--primitive-dark-600);
+  /* Soft dark — alternate dark section bg */
   --color-surface-icon-primary: var(--primitive-dark-700);
   /* #0f1218 */
   --color-surface-icon-primary-invert: var(--primitive-light-0);
   /* #ffffff */
+  --color-surface-icon-brand: var(--primitive-primary-400);
+  /* Brand-tinted icon bg — light mode */
 
   /* --- Brand Surface --- */
   --color-brand-surface: var(--primitive-accent-400);
@@ -112,12 +118,23 @@
   --spacing-h-s-to-base: 8px;
   --spacing-h-xs-to-small: 8px;
 
-  /* --- Button Spacing --- */
+  /* --- Content-gap Spacing (Figma: Spacing-new/Content-gap) --- */
+  --spacing-content-gap-xxl: 48px;  /* h_xxl-content-gap */
+  --spacing-content-gap-xl: 48px;   /* h_xl-content-gap  */
+  --spacing-content-gap-l: 40px;    /* h_l-content-gap   */
+  --spacing-content-gap-m: 24px;    /* h_m-content-gap   */
+  --spacing-content-gap-s: 20px;    /* h_s-content-gap   */
+  --spacing-content-gap-sm: 16px;   /* h_sm-content-gap  */
+
+  /* --- Button in Section Spacing (Figma: Spacing-new/Button/Button in section) --- */
   --spacing-btn-gap-sm: 8px;
   --spacing-btn-gap-md: 12px;
   --spacing-btn-gap-lg: 16px;
-  --spacing-btn-in-section-md: 20px;
-  --spacing-btn-in-section-xl: 24px;
+  --spacing-btn-in-section-xs: 16px;  /* extra small-button gap */
+  --spacing-btn-in-section-sm: 20px;  /* small-button gap       */
+  --spacing-btn-in-section-md: 24px;  /* medium-button-gap      */
+  --spacing-btn-in-section-lg: 32px;  /* large-button-gap       */
+  --spacing-btn-in-section-xl: 32px;  /* extra large-button-gap */
 
   /* --- Input — Stroke borders --- */
   --input-stroke-default: #c9ced6;
@@ -216,6 +233,8 @@
   /* #ffffff */
   --color-surface-icon-primary-invert: var(--primitive-dark-700);
   /* #0f1218 */
+  --color-surface-icon-brand: var(--primitive-primary-200);
+  /* Brand-tinted icon bg — dark mode (invert) */
 
   /* --- Brand Surface --- */
   --color-brand-surface: var(--primitive-primary-200);
@@ -301,6 +320,13 @@
   :root {
     --color-brand-surface: var(--primitive-accent-500);
     /* #4c5c73 — Mobile Light uses Accent/500 */
+
+    /* --- Button in Section Spacing (mobile) --- */
+    --spacing-btn-in-section-xs: 8px;
+    --spacing-btn-in-section-sm: 12px;
+    --spacing-btn-in-section-md: 16px;
+    --spacing-btn-in-section-lg: 24px;
+    --spacing-btn-in-section-xl: 24px;
   }
 }
 
