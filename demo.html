@@ -1456,6 +1456,50 @@
       return <div ref={ref} />;
     };
 
+    /* ── Scaled section thumbnail — renders the live section at 1440px
+       desktop width and scales it down to fit the card, like a mini
+       browser shot (but real, interactive HTML) ── */
+    const ScaledSection = ({ html, designWidth = 1440, maxH = 460 }) => {
+      const outerRef = React.useRef(null);
+      const innerRef = React.useRef(null);
+      const [box, setBox] = useState({ scale: 0.4, h: 320 });
+
+      useEffect(() => {
+        if (!innerRef.current) return;
+        innerRef.current.innerHTML = html;
+        innerRef.current.querySelectorAll('script').forEach(old => {
+          const s = document.createElement('script');
+          s.textContent = old.textContent;
+          old.replaceWith(s);
+        });
+        const measure = () => {
+          if (!outerRef.current || !innerRef.current) return;
+          const w = outerRef.current.clientWidth;
+          if (!w) return;
+          const scale = w / designWidth;
+          const natural = innerRef.current.scrollHeight || 800;
+          setBox({ scale, h: Math.min(natural * scale, maxH) });
+        };
+        measure();
+        const t1 = setTimeout(measure, 150);   /* after fonts/layout settle */
+        const t2 = setTimeout(measure, 600);
+        let ro = null;
+        if ('ResizeObserver' in window && outerRef.current) {
+          ro = new ResizeObserver(measure);
+          ro.observe(outerRef.current);
+        }
+        return () => { clearTimeout(t1); clearTimeout(t2); if (ro) ro.disconnect(); };
+      }, [html, designWidth, maxH]);
+
+      return (
+        <div ref={outerRef} style={{ overflow: 'hidden', height: box.h, borderRadius: 12,
+          border: '1px solid var(--color-border-primary)', boxShadow: 'var(--shadow-hard-200)' }}>
+          <div ref={innerRef} style={{ width: designWidth, transform: 'scale(' + box.scale + ')',
+            transformOrigin: 'top left', background: 'var(--color-surface-primary)' }} />
+        </div>
+      );
+    };
+
     // Per-component demo renderers — add new ones here as components are built
     const COMPONENT_DEMOS = {
       Button: () => (
@@ -1635,7 +1679,7 @@
       const [kinds, setKinds]     = useState([]);                  // multi-select: react | html
       const [q, setQ]             = useState('');
       const [sort, setSort]       = useState('default');
-      const [density, setDensity] = useState(1);
+      const [density, setDensity] = useState(mode === 'sections' ? 2 : 1);
       const [catOpen, setCatOpen] = useState(true);
       const [kindOpen, setKindOpen] = useState(true);
       const searchRef             = React.useRef(null);
@@ -1848,7 +1892,7 @@
         const meta     = comp.meta;
         const isHtml   = comp.type === 'html';
         const tags     = (meta && meta.tags) || [];
-        const wide     = density === 2 && meta && meta.span === 2;
+        const wide     = mode !== 'sections' && density > 1 && meta && meta.span === 2;
 
         const copyPrompt = () => fetchTextLib(meta.prompt);
         const copyCode   = async () => {
@@ -1864,14 +1908,14 @@
               border:'1.5px solid var(--color-border-primary)', borderRadius:'var(--radius-md)', overflow:'hidden',
               display:'flex', flexDirection:'column', background:'var(--color-surface-primary)'}}>
             {/* preview on top, like the reference */}
-            <div style={{borderBottom:'1.5px solid var(--color-border-primary)', padding:32, overflowX:'auto',
+            <div style={{borderBottom:'1.5px solid var(--color-border-primary)', padding: isHtml ? 20 : 32, overflowX: isHtml ? 'hidden' : 'auto',
               background:'color-mix(in srgb, var(--color-text-primary) 3%, var(--color-surface-primary))'}}>
               {state === 'ok' && isHtml && htmlMap[comp.name] && (
-                <div style={{margin:-32}}>
-                  <LazyMount placeholder={220}>
-                    <CompErrorBoundary key={comp.name + '-html'}><HtmlSection html={htmlMap[comp.name]} /></CompErrorBoundary>
-                  </LazyMount>
-                </div>
+                <LazyMount placeholder={220}>
+                  <CompErrorBoundary key={comp.name + '-html'}>
+                    <ScaledSection html={htmlMap[comp.name]} maxH={density === 1 ? 640 : density === 2 ? 440 : 320} />
+                  </CompErrorBoundary>
+                </LazyMount>
               )}
               {state === 'ok' && !isHtml && DemoFn && (
                 <LazyMount placeholder={160}>
@@ -1954,8 +1998,11 @@
               <span style={densityBtn(density === 1)} onClick={() => setDensity(1)} title="List view">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="6" rx="1.5" stroke="currentColor" strokeWidth="2"/><rect x="3" y="14" width="18" height="6" rx="1.5" stroke="currentColor" strokeWidth="2"/></svg>
               </span>
-              <span style={densityBtn(density === 2)} onClick={() => setDensity(2)} title="Grid view">
+              <span style={densityBtn(density === 2)} onClick={() => setDensity(2)} title="2-column grid">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="2"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="2"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="2"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="2"/></svg>
+              </span>
+              <span style={densityBtn(density === 3)} onClick={() => setDensity(3)} title="3-column grid">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="3" width="5.4" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.8"/><rect x="9.3" y="3" width="5.4" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.8"/><rect x="16.1" y="3" width="5.4" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.8"/><rect x="2.5" y="13" width="5.4" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.8"/><rect x="9.3" y="13" width="5.4" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.8"/><rect x="16.1" y="13" width="5.4" height="8" rx="1.2" stroke="currentColor" strokeWidth="1.8"/></svg>
               </span>
             </span>
           </div>
@@ -2035,7 +2082,7 @@
                 </div>
               )}
 
-              <div style={{display:'grid',gap:24,gridTemplateColumns: density === 2 ? 'repeat(2, minmax(0, 1fr))' : '1fr'}}>
+              <div style={{display:'grid',gap:24,gridTemplateColumns: 'repeat(' + density + ', minmax(0, 1fr))'}}>
                 {shown.map(renderCard)}
               </div>
             </div>
