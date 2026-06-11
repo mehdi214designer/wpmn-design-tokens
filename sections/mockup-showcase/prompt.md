@@ -16,6 +16,12 @@ The reference implementation is the source of truth. Fetch it and reproduce stru
 - Class scoping: every rule is prefixed with `.wpmn-sec-mockup-showcase` so sections can coexist on one page.
 - Font: Work Sans via the WPMN typography tokens.
 
+## Surface and text pairing (hard rule)
+
+- Light surfaces (--color-surface-primary, soft grey fills): headings use --color-text-primary, body uses --color-text-secondary. Never white or invert text on light surfaces.
+- Dark surfaces (--color-surface-secondary) and brand-color surfaces (--color-brand-surface): headings use --color-text-primary-invert, body uses --color-text-secondary-invert. Never dark text or dark elements on these surfaces.
+- Light elements (white mockup cards, white buttons) on dark surfaces are correct. Dark text on a dark stage is always wrong, light text on a light stage is always wrong.
+
 ## Required token CSS
 
 Load `https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/index.css` (primitives -> brand-primitives -> tokens -> typography) before the section markup.
