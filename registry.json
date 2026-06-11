@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T12:46:18.641Z",
+  "generatedAt": "2026-06-11T12:58:14.908Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -1127,6 +1127,65 @@
         "posts"
       ],
       "role": "Blog"
+    },
+    {
+      "id": "builder-cta",
+      "name": "Builder CTA Card",
+      "type": "html",
+      "status": "stable",
+      "description": "Large CTA card with a brand-tinted gradient, kicker pill, logo-in-heading, two-column icon feature list, paired CTAs, and a product screenshot that fades into the card on the right.",
+      "files": {
+        "html": "sections/builder-cta/section.html"
+      },
+      "prompt": "sections/builder-cta/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-builder-cta",
+      "interactions": [
+        "primary button hover: invert-color overlay fades to 12%, 200ms cubic-bezier(.6,.6,0,1); active swaps to btn-bg-pressed, 50ms",
+        "light button hover: shadow lifts soft-300 -> soft-500",
+        "screenshot panel is clipped and double-faded (right 85% + bottom 65% gradients) into the card stage color",
+        "below 1024px: side panel hidden, inline screenshot below content",
+        "prefers-reduced-motion: button transitions off"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--btn-bg-enable",
+        "--btn-bg-pressed",
+        "--radius-lg",
+        "--radius-md",
+        "--radius-xsm",
+        "--shadow-soft-300",
+        "--shadow-soft-500",
+        "--font-family-base",
+        "--font-size-h3",
+        "--font-size-body-base",
+        "--font-size-body-label",
+        "--font-size-btn-md",
+        "--font-weight-semibold",
+        "--font-weight-medium"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact",
+      "role": "CTA",
+      "span": 2,
+      "tags": [
+        "cta",
+        "call to action",
+        "gradient card",
+        "feature list",
+        "screenshot",
+        "conversion"
+      ]
     },
     {
       "id": "carousel-slider",
@@ -2274,6 +2333,72 @@
         "popular"
       ],
       "role": "Pricing"
+    },
+    {
+      "id": "pricing-toggle",
+      "name": "Pricing Toggle",
+      "type": "html",
+      "status": "stable",
+      "description": "Three-plan pricing with a sliding monthly/yearly toggle, a dark featured plan, dashed dividers, icon feature lists, and a full-width enterprise row. Prices swap from data attributes.",
+      "files": {
+        "html": "sections/pricing-toggle/section.html"
+      },
+      "prompt": "sections/pricing-toggle/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-pricing-toggle",
+      "interactions": [
+        "toggle pill slides 0 <-> 160px, 300ms cubic-bezier(.4,0,.2,1)",
+        "toggle buttons crossfade color and weight; discount badge flips from grey to brand tint",
+        "prices swap from data-monthly / data-yearly attributes",
+        "buttons: primary hover btn-bg-hovered, light hover shadow lift, dark hover lighten; active transition 50ms",
+        "prefers-reduced-motion: toggle and button transitions off"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-surface-secondary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--color-text-secondary-invert",
+        "--btn-bg-enable",
+        "--btn-bg-hovered",
+        "--btn-bg-pressed",
+        "--radius-lg",
+        "--radius-xsm",
+        "--shadow-soft-300",
+        "--shadow-soft-500",
+        "--font-family-base",
+        "--font-size-h2",
+        "--font-size-h3",
+        "--font-size-h5",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-size-btn-md",
+        "--font-weight-semibold",
+        "--font-weight-medium",
+        "--font-weight-regular"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Interactive",
+      "role": "Pricing",
+      "span": 2,
+      "tags": [
+        "pricing",
+        "plans",
+        "toggle",
+        "monthly yearly",
+        "billing switch",
+        "enterprise",
+        "feature list"
+      ]
     },
     {
       "id": "product-showcase",

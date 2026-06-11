@@ -1,0 +1,80 @@
+<!-- WPMN Section: Builder CTA Card — gradient card, feature list, fading screenshot panel (imported, tokenized) -->
+<section class="wpmn-sec-builder-cta">
+  <style>
+    .wpmn-sec-builder-cta{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:96px 16px;--bcta-tint-a:color-mix(in srgb,var(--btn-bg-enable) 16%,var(--color-surface-primary));--bcta-tint-b:color-mix(in srgb,var(--btn-bg-enable) 7%,var(--color-surface-primary));--bcta-stage:color-mix(in srgb,var(--color-text-primary) 4%,var(--color-surface-primary));--bcta-stroke:color-mix(in srgb,var(--color-text-primary) 12%,transparent)}
+    .wpmn-sec-builder-cta .bcta-wrap{max-width:1160px;margin:0 auto}
+    .wpmn-sec-builder-cta .card{position:relative;overflow:hidden;border-radius:var(--radius-lg);background-image:linear-gradient(114.58deg,var(--bcta-tint-a) -1.34%,var(--bcta-tint-b) 24.05%,var(--bcta-stage) 74.82%)}
+    .wpmn-sec-builder-cta .content{position:relative;z-index:10;max-width:576px;padding:60px 0 60px 60px}
+    .wpmn-sec-builder-cta .kicker{display:flex;align-items:center;gap:4px;width:max-content;margin-bottom:12px;padding:5px 10px;background:color-mix(in srgb,var(--color-text-primary) 4%,transparent);border-radius:999px;color:var(--color-text-secondary);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.05em;text-transform:uppercase}
+    .wpmn-sec-builder-cta h2{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);letter-spacing:-0.01em;max-width:516px;text-wrap:balance;color:var(--color-text-primary)}
+    .wpmn-sec-builder-cta .logo{width:44px;height:44px;border-radius:var(--radius-xsm);display:inline-flex;align-items:center;justify-content:center;vertical-align:bottom;margin-right:8px;background:var(--btn-bg-enable);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-builder-cta .logo svg{width:24px;height:24px;color:var(--color-text-primary-invert)}
+    .wpmn-sec-builder-cta .desc{margin-top:16px;max-width:516px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-builder-cta ul{list-style:none;margin:28px 0 0;padding:0;max-width:512px;display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-builder-cta li{display:flex;align-items:flex-start;gap:12px}
+    .wpmn-sec-builder-cta .li-icon{margin-top:1px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:color-mix(in srgb,var(--color-text-primary) 36%,transparent);flex-shrink:0}
+    .wpmn-sec-builder-cta .li-icon svg{width:22px;height:22px;display:block}
+    .wpmn-sec-builder-cta .actions{margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+    .wpmn-sec-builder-cta .btn{position:relative;border:0;border-radius:var(--radius-xsm);padding:11px 20px;cursor:pointer;font-family:var(--font-family-base);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);transition:all .2s cubic-bezier(.6,.6,0,1);overflow:hidden}
+    .wpmn-sec-builder-cta .btn:active{transition-duration:50ms}
+    .wpmn-sec-builder-cta .btn span{display:flex;align-items:center;justify-content:center;gap:4px;position:relative;z-index:1}
+    .wpmn-sec-builder-cta .btn-primary{min-width:170px;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-builder-cta .btn-primary::after{content:'';position:absolute;inset:0;background:var(--color-text-primary-invert);opacity:0;transition:opacity .2s cubic-bezier(.6,.6,0,1)}
+    .wpmn-sec-builder-cta .btn-primary:hover::after{opacity:.12}
+    .wpmn-sec-builder-cta .btn-primary:active{background:var(--btn-bg-pressed)}
+    .wpmn-sec-builder-cta .btn-light{min-width:158px;background:var(--color-surface-primary);color:var(--color-text-primary);box-shadow:var(--shadow-soft-300),0 0 0 1px var(--bcta-stroke)}
+    .wpmn-sec-builder-cta .btn-light:hover{box-shadow:var(--shadow-soft-500),0 0 0 1px var(--bcta-stroke)}
+    .wpmn-sec-builder-cta .btn-light:active{box-shadow:0 0 0 1px var(--bcta-stroke)}
+    .wpmn-sec-builder-cta .shot-panel{pointer-events:none;position:absolute;top:0;bottom:0;right:0;left:558px;overflow:hidden}
+    .wpmn-sec-builder-cta .shot{position:absolute;left:141px;top:56px;width:800px;height:622px}
+    .wpmn-sec-builder-cta .shot img{width:100%;height:100%;object-fit:cover;object-position:0 0;border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-text-primary) 8%,transparent);display:block}
+    .wpmn-sec-builder-cta .fade-r{position:absolute;top:0;bottom:0;right:0;width:85%;background-image:linear-gradient(to left,var(--bcta-stage),color-mix(in srgb,var(--bcta-stage) 90%,transparent),transparent)}
+    .wpmn-sec-builder-cta .fade-b{position:absolute;left:0;right:0;bottom:0;height:65%;background-image:linear-gradient(to top,var(--bcta-stage),color-mix(in srgb,var(--bcta-stage) 90%,transparent),transparent)}
+    .wpmn-sec-builder-cta .shot-mobile{display:none}
+    @media(max-width:1024px){
+      .wpmn-sec-builder-cta .shot-panel{display:none}
+      .wpmn-sec-builder-cta .content{max-width:none;padding:40px}
+      .wpmn-sec-builder-cta .shot-mobile{display:block;position:relative;margin-top:24px;height:260px;border-radius:var(--radius-md);overflow:hidden}
+      .wpmn-sec-builder-cta .shot-mobile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0 0;border-radius:var(--radius-md)}
+    }
+    @media(max-width:640px){
+      .wpmn-sec-builder-cta{padding:64px 16px}
+      .wpmn-sec-builder-cta .content{padding:24px}
+      .wpmn-sec-builder-cta ul{grid-template-columns:1fr}
+      .wpmn-sec-builder-cta .shot-mobile{height:220px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-builder-cta .btn,.wpmn-sec-builder-cta .btn-primary::after{transition:none}
+    }
+  </style>
+  <div class="bcta-wrap">
+    <div class="card">
+      <div class="content">
+        <div class="kicker">Code Optional</div>
+        <h2>Turn your WordPress site into a complete marketing stack with</h2>
+        <h2><span class="logo" role="img" aria-label="Fluent Suite logo"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="currentColor"/></svg></span>the Fluent Suite</h2>
+        <p class="desc">A visual setup flow takes your existing site and wires up forms, email, and support in just a few minutes. No code required.</p>
+        <ul>
+        <li><span class="li-icon"><svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M4.95817 3.5C4.613 3.5 4.33317 3.77983 4.33317 4.125C4.33317 4.47018 4.613 4.75 4.95817 4.75H17.0415C17.3867 4.75 17.6665 4.47018 17.6665 4.125C17.6665 3.77983 17.3867 3.5 17.0415 3.5H4.95817Z" fill="currentColor"></path><path d="M4.95817 6C3.69252 6 2.6665 7.02602 2.6665 8.29167V15.375C2.6665 16.6407 3.69252 17.6667 4.95817 17.6667H17.0415C18.3072 17.6667 19.3332 16.6407 19.3332 15.375V8.29167C19.3332 7.02602 18.3072 6 17.0415 6H4.95817Z" fill="currentColor"></path></svg></span><span>Simple visual setup</span></li>
+        <li><span class="li-icon"><svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M3.5 6C3.5 4.61929 4.61929 3.5 6 3.5H16C17.3807 3.5 18.5 4.61929 18.5 6V16C18.5 17.3807 17.3807 18.5 16 18.5H6C4.61929 18.5 3.5 17.3807 3.5 16V6ZM8.5 15.1667C8.03976 15.1667 7.66667 14.7936 7.66667 14.3333C7.66667 13.8731 8.03976 13.5 8.5 13.5H13.5C13.9602 13.5 14.3333 13.8731 14.3333 14.3333C14.3333 14.7936 13.9602 15.1667 13.5 15.1667H8.5ZM13.2559 10.7559L11.5893 12.4226C11.2638 12.748 10.7362 12.748 10.4107 12.4226L8.74408 10.7559C8.41864 10.4305 8.41864 9.90285 8.74408 9.57741C9.06951 9.25197 9.59715 9.25197 9.92259 9.57741L10.1667 9.82149V7.66667C10.1667 7.20643 10.5398 6.83333 11 6.83333C11.4602 6.83333 11.8333 7.20643 11.8333 7.66667V9.82149L12.0774 9.57741C12.4028 9.25197 12.9305 9.25197 13.2559 9.57741C13.5814 9.90285 13.5814 10.4305 13.2559 10.7559Z" fill="currentColor" fill-rule="evenodd"></path></svg></span><span>Native WordPress integration</span></li>
+        <li><span class="li-icon"><svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M9.22961 4.76012C8.91963 4.72228 8.5873 4.78634 8.23374 5.02637C7.68225 5.40078 7.41085 5.84276 7.30496 6.31276C7.19515 6.80015 7.25244 7.37061 7.45933 7.99384C7.81198 9.05618 8.55997 10.1523 9.34675 11.0008C10.2113 10.169 11.0825 9.62333 11.9467 9.47483C11.8988 8.77317 11.8101 8.1461 11.6964 7.65236C11.482 6.72092 10.9182 5.77726 10.2322 5.22665C9.89383 4.95514 9.55175 4.79943 9.22961 4.76012ZM13.2043 9.55484C13.1562 8.73616 13.0552 7.98248 12.9146 7.37193C12.6447 6.19958 11.9448 4.99835 11.0145 4.25176C10.5446 3.87466 9.99025 3.59368 9.38108 3.51933C8.75972 3.44348 8.12585 3.58877 7.53163 3.99218C6.73121 4.53558 6.26473 5.2426 6.08552 6.03803C5.91023 6.81605 6.02062 7.62743 6.27299 8.38766C6.70567 9.69108 7.595 10.9643 8.4913 11.9161C8.3947 12.0295 8.29761 12.1468 8.20006 12.2679C7.8468 12.7066 7.5134 13.3176 7.26127 13.9637C7.21415 14.0844 7.16928 14.2079 7.12724 14.3333H2.4585C2.11332 14.3333 1.8335 14.6132 1.8335 14.9583C1.8335 15.3035 2.11332 15.5833 2.4585 15.5833H6.8287C6.80921 15.7284 6.79575 15.8725 6.7892 16.0145C6.75878 16.6726 6.87257 17.4079 7.37147 17.925C7.89953 18.4723 8.68763 18.6067 9.61416 18.4204C11.0508 18.1317 11.9323 16.9408 12.4567 15.5833H19.5418C19.887 15.5833 20.1668 15.3035 20.1668 14.9583C20.1668 14.6132 19.887 14.3333 19.5418 14.3333H12.8395C13.0977 13.2508 13.2154 12.0718 13.2337 10.9572C13.6752 11.2678 14.1243 11.87 14.541 12.8953C14.6386 13.1352 14.8006 13.4428 15.1057 13.5995C15.5031 13.8037 15.8655 13.6373 16.0647 13.4809C16.2496 13.3358 16.3959 13.1318 16.5061 12.9583C16.6233 12.7735 16.7368 12.5618 16.8422 12.3577C16.8932 12.2588 16.9423 12.1622 16.9897 12.0688C17.0789 11.8931 17.1624 11.7285 17.2434 11.5802C17.2425 11.6345 17.2412 11.6922 17.2397 11.7537C17.2392 11.7793 17.2386 11.8056 17.2379 11.8326L17.2378 11.8365C17.2324 12.0823 17.2243 12.4475 17.3223 12.7536C17.3765 12.9229 17.4769 13.1226 17.6696 13.2774C17.8693 13.4379 18.1057 13.5 18.3367 13.5H19.5418C19.887 13.5 20.1668 13.2202 20.1668 12.875C20.1668 12.5298 19.887 12.25 19.5418 12.25H18.4925C18.4854 12.1639 18.4837 12.0394 18.4877 11.8603C18.4882 11.8334 18.489 11.8053 18.4897 11.7759C18.4957 11.5417 18.5037 11.2333 18.4617 10.9594C18.4143 10.6505 18.2776 10.2043 17.8268 9.96367C17.4512 9.76317 17.0917 9.8845 16.8659 10.0443C16.6657 10.1858 16.5097 10.391 16.3941 10.5652C16.2071 10.8468 16.0183 11.2195 15.8527 11.5465C15.8107 11.6294 15.7701 11.7095 15.7315 11.7843C15.6717 11.9002 15.6152 12.0066 15.5614 12.1021C14.9894 10.8255 14.2219 9.87834 13.2043 9.55484ZM17.1946 11.0283C17.1946 11.0283 17.1957 11.0295 17.1975 11.0332C17.1953 11.0303 17.1946 11.0283 17.1946 11.0283ZM11.9859 10.7464C11.512 10.8752 10.937 11.2141 10.2579 11.8588C10.3919 11.9663 10.5196 12.0598 10.6384 12.1383C10.9265 12.3284 11.0059 12.7161 10.8157 13.0042C10.6257 13.2923 10.2379 13.3717 9.94983 13.1816C9.77275 13.0647 9.589 12.9277 9.40241 12.7743C9.32686 12.8638 9.25058 12.9563 9.1736 13.0519C8.93394 13.3495 8.67306 13.8066 8.45947 14.3333H11.5499C11.8481 13.231 11.9792 11.9567 11.9859 10.7464ZM11.0977 15.5833H8.09319C8.06399 15.7523 8.04506 15.9163 8.03786 16.0722C8.0137 16.5948 8.12457 16.9053 8.271 17.0571C8.38829 17.1786 8.6662 17.336 9.36783 17.1949C10.0779 17.0523 10.659 16.498 11.0977 15.5833ZM2.01655 9.51642C2.26063 9.27233 2.65636 9.27233 2.90044 9.51642L3.91683 10.5328L4.93322 9.51642C5.1773 9.27233 5.57303 9.27233 5.8171 9.51642C6.06118 9.7605 6.06118 10.1562 5.8171 10.4003L4.80071 11.4167L5.8171 12.4331C6.06118 12.6772 6.06118 13.0728 5.8171 13.3169C5.57303 13.561 5.1773 13.561 4.93322 13.3169L3.91683 12.3006L2.90044 13.3169C2.65636 13.561 2.26063 13.561 2.01655 13.3169C1.77248 13.0728 1.77248 12.6772 2.01655 12.4331L3.03295 11.4167L2.01655 10.4003C1.77248 10.1562 1.77248 9.7605 2.01655 9.51642Z" fill="currentColor" fill-rule="evenodd"></path></svg></span><span>Privacy & GDPR handled</span></li>
+        <li><span class="li-icon"><svg fill="none" height="22" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M3.50016 5.79167C3.50016 4.52602 4.52618 3.5 5.79183 3.5H16.2085C17.4742 3.5 18.5002 4.52602 18.5002 5.79167V14.3333H19.5418C19.887 14.3333 20.1668 14.6132 20.1668 14.9583V16.2083C20.1668 17.474 19.1408 18.5 17.8752 18.5H4.12516C2.85951 18.5 1.8335 17.474 1.8335 16.2083V14.9583C1.8335 14.6132 2.11332 14.3333 2.4585 14.3333H3.50016V5.79167ZM3.0835 15.5833V16.2083C3.0835 16.7837 3.54986 17.25 4.12516 17.25H17.8752C18.4505 17.25 18.9168 16.7837 18.9168 16.2083V15.5833H3.0835Z" fill="currentColor" fill-rule="evenodd"></path></svg></span><span>Forms · CRM · Support · More</span></li>
+        </ul>
+        <div class="actions">
+          <a href="#" onclick="return false"><button class="btn btn-primary"><span>More information <span>&rarr;</span></span></button></a>
+          <a href="#" onclick="return false"><button class="btn btn-light"><span>Compare plans</span></button></a>
+        </div>
+        <div class="shot-mobile">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80" alt="Dashboard view" loading="lazy">
+        </div>
+      </div>
+      <div class="shot-panel">
+        <div class="shot">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Dashboard view" loading="lazy">
+          <div class="fade-r"></div>
+          <div class="fade-b"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
