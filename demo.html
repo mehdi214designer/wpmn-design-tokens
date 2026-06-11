@@ -1456,68 +1456,113 @@
       return <div ref={ref} />;
     };
 
-    /* ── Scaled thumbnail — renders live content (HTML section or React
-       node) at desktop width, scaled to fit the card width. Sections
-       taller than the frame become scrollable INSIDE the frame, so
-       scroll-driven interactions (pins, shades, card stacks) can be
-       played without scrolling the page. Very short strips re-render
-       at a narrower design width so they read larger. ── */
+    /* ── Scaled thumbnail.
+       HTML sections render inside a scaled IFRAME: no transform ancestor
+       inside the document, so position:sticky, pins and vw-math behave
+       exactly like a real page, and the section scrolls natively inside
+       the frame. Token CSS (already fetched into the parent head) is
+       inlined into the iframe; brand/theme attributes stay in sync.
+       React nodes (no sticky needs) keep the lighter div-scale path. ── */
+    const tokenStylesHtml = () =>
+      /* every style sheet in the parent: demo.html's inline token system +
+         the component CSS injected by the loader. Section markup is scoped
+         (.wpmn-sec-*) so the extra app rules are inert inside the iframe. */
+      Array.from(document.querySelectorAll('style'))
+        .map(s => '<style>' + s.textContent + '</style>').join('');
+
     const ScaledSection = ({ html, children, avail = 452 }) => {
       const wrapRef  = React.useRef(null);
+      const frameRef = React.useRef(null);
       const innerRef = React.useRef(null);
       const [designW, setDesignW] = useState(1440);
-      const [box, setBox] = useState({ scale: 0.3, h: 240, scrolls: false });
+      const [st, setSt] = useState({ scale: 0.35, viewH: avail / 0.35, frameH: avail });
 
+      const srcdoc = React.useMemo(() => {
+        if (!html) return '';
+        const root = document.documentElement;
+        const brandAttr = root.getAttribute('data-brand') ? ' data-brand="' + root.getAttribute('data-brand') + '"' : '';
+        const themeAttr = root.getAttribute('data-theme') ? ' data-theme="' + root.getAttribute('data-theme') + '"' : '';
+        return '<!DOCTYPE html><html' + brandAttr + themeAttr + '><head><meta charset="utf-8">' +
+          tokenStylesHtml() +
+          '<style>html,body{margin:0}body{background:var(--color-surface-primary)}' +
+          'html{scrollbar-width:none}body::-webkit-scrollbar,html::-webkit-scrollbar{width:0;height:0}</style>' +
+          '</head><body>' + html + '</body></html>';
+      }, [html]);
+
+      /* keep iframe brand/theme synced with the app */
       useEffect(() => {
-        if (!html || !innerRef.current) return;
-        innerRef.current.innerHTML = html;
-        innerRef.current.querySelectorAll('script').forEach(old => {
-          const s = document.createElement('script');
-          s.textContent = old.textContent;
-          old.replaceWith(s);
-        });
+        if (!html) return;
+        const sync = () => {
+          try {
+            const dst = frameRef.current && frameRef.current.contentDocument &&
+              frameRef.current.contentDocument.documentElement;
+            if (!dst) return;
+            const src = document.documentElement;
+            ['data-brand', 'data-theme'].forEach(a => {
+              const v = src.getAttribute(a);
+              if (v) dst.setAttribute(a, v); else dst.removeAttribute(a);
+            });
+          } catch (e) {}
+        };
+        const mo = new MutationObserver(sync);
+        mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-brand', 'data-theme'] });
+        return () => mo.disconnect();
       }, [html]);
 
       useEffect(() => {
         const measure = () => {
-          if (!wrapRef.current || !innerRef.current) return;
+          if (!wrapRef.current) return;
           const frameW = wrapRef.current.clientWidth;
           if (!frameW) return;
-          const natural = innerRef.current.scrollHeight || 600;
-          const scale = frameW / designW;            /* width-fit; height scrolls */
-          const drawnH = natural * scale;
+          const scale = frameW / designW;
+          const viewH = avail / scale;             /* iframe viewport height (unscaled) */
+          let natural = viewH;
+          if (html) {
+            try {
+              const doc = frameRef.current && frameRef.current.contentDocument;
+              if (doc && doc.documentElement) natural = doc.documentElement.scrollHeight || viewH;
+            } catch (e) {}
+          } else if (innerRef.current) {
+            natural = innerRef.current.scrollHeight || viewH;
+          }
           /* readability boost: short strips get a narrower canvas */
-          if (drawnH < 110 && designW > 900) { setDesignW(820); return; }
-          setBox(prev => {
-            const next = { scale, h: Math.min(drawnH, avail), drawnH, scrolls: drawnH > avail + 8 };
-            return (Math.abs(prev.scale - scale) < 0.001 && Math.abs((prev.drawnH || 0) - drawnH) < 2)
-              ? prev : next;
+          if (natural * scale < 110 && designW > 900) { setDesignW(820); return; }
+          const shownH = Math.min(natural, viewH); /* shrink frame for short content */
+          setSt(prev => {
+            const next = { scale, viewH: shownH, frameH: shownH * scale };
+            return (Math.abs(prev.scale - scale) < 0.001 && Math.abs(prev.viewH - shownH) < 2) ? prev : next;
           });
         };
         measure();
-        const t1 = setTimeout(measure, 150);   /* after fonts/layout settle */
-        const t2 = setTimeout(measure, 600);
-        const t3 = setTimeout(measure, 1600);  /* late JS-driven layout (shade wrappers) */
+        const t1 = setTimeout(measure, 200);
+        const t2 = setTimeout(measure, 800);
+        const t3 = setTimeout(measure, 2000);   /* late JS-driven layout */
         let ro = null;
-        if ('ResizeObserver' in window && wrapRef.current && innerRef.current) {
+        if ('ResizeObserver' in window && wrapRef.current) {
           ro = new ResizeObserver(measure);
           ro.observe(wrapRef.current);
-          ro.observe(innerRef.current);
         }
         return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); if (ro) ro.disconnect(); };
       }, [html, avail, designW]);
 
       return (
         <div ref={wrapRef} style={{ width: '100%' }}>
-          <div style={{ overflowX: 'hidden', overflowY: box.scrolls ? 'auto' : 'hidden',
-            overscrollBehavior: 'contain', height: box.h, borderRadius: 12,
+          <div style={{ overflow: 'hidden', height: st.frameH, borderRadius: 12,
             border: '1px solid var(--color-border-primary)', boxShadow: 'var(--shadow-hard-200)',
             background: 'var(--color-surface-primary)' }}
-            title={box.scrolls ? 'Scroll inside to play the interaction' : undefined}>
-            <div style={{ height: box.drawnH || box.h, position: 'relative' }}>
-              <div ref={innerRef} style={{ width: designW, transform: 'scale(' + box.scale + ')',
-                transformOrigin: 'top left', background: 'var(--color-surface-primary)' }}>{html ? null : children}</div>
-            </div>
+            title="Scroll inside the frame to play the interaction">
+            {html ? (
+              <iframe ref={frameRef} srcDoc={srcdoc} title="Live section preview"
+                onLoad={() => { setTimeout(() => { try { frameRef.current.contentWindow.dispatchEvent(new Event('resize')); } catch (e) {} }, 50); }}
+                style={{ width: designW, height: st.viewH, border: 'none', display: 'block',
+                  transform: 'scale(' + st.scale + ')', transformOrigin: 'top left',
+                  background: 'var(--color-surface-primary)' }} />
+            ) : (
+              <div style={{ height: st.viewH * st.scale, position: 'relative', overflow: 'hidden' }}>
+                <div ref={innerRef} style={{ width: designW, transform: 'scale(' + st.scale + ')',
+                  transformOrigin: 'top left', background: 'var(--color-surface-primary)' }}>{children}</div>
+              </div>
+            )}
           </div>
         </div>
       );
