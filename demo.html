@@ -1605,7 +1605,7 @@
     );
 
     /* ── Components page — filter rail + tabs + sort + density ── */
-    const ComponentsPage = ({ theme, brand }) => {
+    const ComponentsPage = ({ theme, brand, mode = 'components' }) => {
       const [comps, setComps]     = useState([]);
       const [loaded, setLoaded]   = useState({});
       const [htmlMap, setHtmlMap] = useState({});
@@ -1623,6 +1623,17 @@
       useEffect(() => {
         let cancelled = false;
         const init = async () => {
+          /* shared cache so switching Components/Sections pages doesn't refetch everything */
+          window.__libCache = window.__libCache || { registry: null, html: {}, loaded: {} };
+          const cache = window.__libCache;
+          if (cache.registry) {
+            if (cancelled) return;
+            setComps(cache.list);
+            setHtmlMap(cache.html);
+            setLoaded(cache.loaded);
+            setStatus('ready');
+            return;
+          }
           let registry = null;
           try { registry = JSON.parse(await fetchTextLib('registry.json')); }
           catch (e1) {
@@ -1664,21 +1675,27 @@
                 }
               }
               if (comp.type === 'html' && comp.html) {
-                const html = await fetchTextLib(comp.html);
+                const html = cache.html[comp.name] || await fetchTextLib(comp.html);
+                cache.html[comp.name] = html;
                 if (!cancelled) setHtmlMap(prev => ({ ...prev, [comp.name]: html }));
-              } else if (comp.jsx) {
+              } else if (comp.jsx && !(window.DS && window.DS[comp.name])) {
                 await loadComponent(comp.jsx, comp.name, comp.data);
               }
-              if (comp.meta && comp.meta.demo && !COMPONENT_DEMOS[comp.name]) {
+              if (comp.meta && comp.meta.demo && !COMPONENT_DEMOS[comp.name] &&
+                  !(window.DS && window.DS.__demos && window.DS.__demos[comp.name])) {
                 try { await loadDemoFile(comp.meta.demo, comp.name); }
                 catch (e) { console.warn(`[DS] demo load failed for ${comp.name}:`, e.message); }
               }
+              cache.loaded[comp.name] = 'ok';
               if (!cancelled) setLoaded(prev => ({ ...prev, [comp.name]: 'ok' }));
             } catch (e) {
               console.warn(`[DS] Could not load ${comp.name}:`, e.message);
+              cache.loaded[comp.name] = 'error';
               if (!cancelled) setLoaded(prev => ({ ...prev, [comp.name]: 'error' }));
             }
           }
+          cache.registry = true;
+          cache.list = list;
           if (!cancelled) setStatus('ready');
         };
         init();
@@ -1717,15 +1734,21 @@
       const catOf = c => (c.meta && c.meta.category) || 'Other';
       const subOf = c => (c.meta && c.meta.subcategory) || 'General';
 
+      // Components tab = atoms (Foundations/Components/Brand). Sections tab = page patterns.
+      const isSection = c => catOf(c) === 'Sections';
+      const base = comps.filter(c => mode === 'sections' ? isSection(c) : !isSection(c));
+      // in sections mode the top tabs are the section groups (subcategories)
+      const groupOf = mode === 'sections' ? subOf : catOf;
+
       // top-level tabs with counts
-      const tabCounts = { All: comps.length };
-      comps.forEach(c => { tabCounts[catOf(c)] = (tabCounts[catOf(c)] || 0) + 1; });
+      const tabCounts = { All: base.length };
+      base.forEach(c => { tabCounts[groupOf(c)] = (tabCounts[groupOf(c)] || 0) + 1; });
       const tabs = ['All', ...Object.keys(tabCounts).filter(t => t !== 'All').sort()];
 
       // subcategory cloud (within active tab) with counts
       const subCounts = {};
-      comps.forEach(c => {
-        if (tab !== 'All' && catOf(c) !== tab) return;
+      base.forEach(c => {
+        if (tab !== 'All' && groupOf(c) !== tab) return;
         subCounts[subOf(c)] = (subCounts[subOf(c)] || 0) + 1;
       });
 
@@ -1739,8 +1762,8 @@
         ((c.meta && c.meta.tags) ? c.meta.tags.join(' ') : '')
       ).toLowerCase();
 
-      let shown = comps.filter(c => {
-        if (tab !== 'All' && catOf(c) !== tab) return false;
+      let shown = base.filter(c => {
+        if (tab !== 'All' && groupOf(c) !== tab) return false;
         if (subs.length && !subs.includes(subOf(c))) return false;
         if (kinds.length && !kinds.includes(c.type)) return false;
         if (words.length) {
@@ -1868,9 +1891,11 @@
       return (
         <div>
           <div className="page-header">
-            <h1 className="text-h4" style={{margin:'0 0 8px',color:'var(--color-text-primary)'}}>Components</h1>
+            <h1 className="text-h4" style={{margin:'0 0 8px',color:'var(--color-text-primary)'}}>{mode === 'sections' ? 'Sections' : 'Components'}</h1>
             <p className="text-body-base" style={{color:'var(--color-text-secondary)',margin:0}}>
-              Live from <code>registry.json</code>. <strong>Copy Prompt</strong> gives an AI build spec, <strong>Copy Code</strong> gives the full source.
+              {mode === 'sections'
+                ? <>Ready-made page patterns: heroes, grids, pricing, scroll effects, and more. Token-driven, brand-aware, copy-paste ready. <strong>Copy Prompt</strong> gives an AI build spec, <strong>Copy Code</strong> gives the section source.</>
+                : <>UI building blocks from the design system: buttons, inputs, navigation, brand assets. <strong>Copy Prompt</strong> gives an AI build spec, <strong>Copy Code</strong> gives the full source.</>}
             </p>
           </div>
 
@@ -1950,9 +1975,9 @@
                 <div style={groupLabel} onClick={() => setKindOpen(o => !o)}>Kind {chev(kindOpen)}</div>
                 {kindOpen && (
                   <div style={{display:'flex',flexWrap:'wrap',gap:8,marginTop:10}}>
-                    <FilterChip label="React component" count={comps.filter(c=>c.type==='react').length}
+                    <FilterChip label="React component" count={base.filter(c=>c.type==='react').length}
                       active={kinds.includes('react')} onClick={() => toggle(kinds, setKinds, 'react')} />
-                    <FilterChip label="HTML section" count={comps.filter(c=>c.type==='html').length}
+                    <FilterChip label="HTML section" count={base.filter(c=>c.type==='html').length}
                       active={kinds.includes('html')} onClick={() => toggle(kinds, setKinds, 'html')} />
                   </div>
                 )}
@@ -1961,7 +1986,7 @@
 
             <div style={{flex:1,minWidth:0}}>
               <div style={{display:'flex',alignItems:'center',gap:10,flexWrap:'wrap',marginBottom:14}}>
-                <span style={{fontSize:13,color:'var(--color-text-secondary)'}}>{shown.length} of {comps.length} components</span>
+                <span style={{fontSize:13,color:'var(--color-text-secondary)'}}>{shown.length} of {base.length} {mode === 'sections' ? 'sections' : 'components'}</span>
                 {shown.length > 1 && (
                   <div style={{display:'flex',gap:6,overflowX:'auto',flex:1,minWidth:0,paddingBottom:2}}>
                     {shown.map(c => (
@@ -2675,6 +2700,7 @@
 
       const navItems = [
         { id: 'components',  label: '⚡ Components' },
+        { id: 'sections',    label: '🧱 Sections' },
         { id: 'brand',       label: 'Brand Preview' },
         { id: 'allbrands',   label: 'All Brands' },
         { id: 'tokens',      label: 'Tokens' },
@@ -2717,7 +2743,8 @@
           {/* Main content */}
           <div className="main">
             <CompErrorBoundary key={page}>
-              {page === 'components' && <ComponentsPage theme={theme} brand={brand} />}
+              {page === 'components' && <ComponentsPage theme={theme} brand={brand} mode="components" />}
+              {page === 'sections'   && <ComponentsPage theme={theme} brand={brand} mode="sections" />}
               {page === 'brand'      && <BrandPage brand={brand} theme={theme} />}
               {page === 'allbrands'  && <AllBrandsPage theme={theme} />}
               {page === 'tokens'     && <TokensPage />}
