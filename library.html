@@ -49,8 +49,7 @@
     background: transparent; color: var(--color-text-primary);
     cursor: pointer; transition: background-color 120ms ease;
   }
-  .lib-toggle:hover { background: var(--primitive-light-25, #f6f7f8); }
-  [data-theme="dark"] .lib-toggle:hover { background: var(--primitive-dark-600, #171b24); }
+  .lib-toggle:hover { background: color-mix(in srgb, var(--color-text-primary) 5%, transparent); }
 
   .lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
   .lib-card {
@@ -70,7 +69,7 @@
   .lib-card__type {
     font-size: 11px; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase;
     padding: 3px 10px; border-radius: 100px;
-    background: var(--btn-bg-focused, #cedfff); color: var(--btn-bg-hovered, #083999);
+    background: var(--btn-bg-focused); color: var(--btn-bg-hovered);
     white-space: nowrap;
   }
   .lib-card__desc {
@@ -97,7 +96,7 @@
     white-space: nowrap;
   }
   .lib-btn--prompt {
-    background: var(--btn-bg-enable); color: var(--color-text-primary-invert, #fff);
+    background: var(--btn-bg-enable); color: var(--color-text-primary-invert);
     border: none;
   }
   .lib-btn--prompt:hover { background: var(--btn-bg-hovered); }
@@ -105,7 +104,7 @@
     background: transparent; color: var(--btn-bg-enable);
     border: 1.5px solid var(--btn-bg-enable);
   }
-  .lib-btn--code:hover { background: var(--btn-bg-enable); color: var(--color-text-primary-invert, #fff); }
+  .lib-btn--code:hover { background: var(--btn-bg-enable); color: var(--color-text-primary-invert); }
   .lib-btn--copied { background: var(--color-success-primary) !important; border-color: var(--color-success-primary) !important; color: #fff !important; }
 
   .lib-note {
@@ -115,10 +114,10 @@
     font-size: 14px; line-height: 21px; color: var(--color-text-secondary);
   }
   .lib-note code {
-    background: var(--primitive-light-25, #f6f7f8); padding: 2px 6px; border-radius: 4px;
+    background: color-mix(in srgb, var(--color-text-primary) 6%, transparent);
+    padding: 2px 6px; border-radius: 4px;
     font-size: 13px; color: var(--color-text-primary);
   }
-  [data-theme="dark"] .lib-note code { background: var(--primitive-dark-600, #171b24); }
   .lib-error { color: var(--color-error-primary); font-size: 16px; padding: 40px 0; }
 </style>
 </head>
