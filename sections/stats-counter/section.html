@@ -1,0 +1,59 @@
+<!-- WPMN Section: Stat Callout / Counter Grid — large numbers count up on scroll -->
+<section class="wpmn-sec-stats-counter">
+  <style>
+    .wpmn-sec-stats-counter { padding: 96px 0; background: var(--color-surface-primary); font-family: var(--font-family-base); }
+    .wpmn-sec-stats-counter .sc-container { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .wpmn-sec-stats-counter .sc-badge { display: inline-flex; align-items: center; gap: 8px; font-size: var(--font-size-body-label); line-height: var(--font-lh-body-label); font-weight: var(--font-weight-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--btn-bg-enable); margin-bottom: 12px; }
+    .wpmn-sec-stats-counter .sc-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--btn-bg-enable); }
+    .wpmn-sec-stats-counter .sc-heading { max-width: 800px; margin: 0 auto; font-size: var(--font-size-h2); line-height: var(--font-lh-h2); font-weight: var(--font-weight-semibold); color: var(--color-text-primary); }
+    .wpmn-sec-stats-counter .sc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+    .wpmn-sec-stats-counter .sc-stat { padding: 40px 24px; border: 1.5px solid var(--color-border-primary); border-radius: var(--radius-md); }
+    .wpmn-sec-stats-counter .sc-number { font-size: var(--font-size-h2); line-height: var(--font-lh-h2); font-weight: var(--font-weight-bold); color: var(--btn-bg-enable); }
+    .wpmn-sec-stats-counter .sc-label { margin-top: 8px; font-size: var(--font-size-body-base); line-height: var(--font-lh-body-base); color: var(--color-text-secondary); }
+    @media (max-width: 1199px) { .wpmn-sec-stats-counter .sc-container { padding: 0 40px; } }
+    @media (max-width: 900px) { .wpmn-sec-stats-counter .sc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .wpmn-sec-stats-counter { padding: 64px 0; } .wpmn-sec-stats-counter .sc-container { padding: 0 20px; } }
+    @media (max-width: 560px) { .wpmn-sec-stats-counter .sc-grid { grid-template-columns: 1fr; } }
+  </style>
+  <div class="sc-container">
+    <span class="sc-badge">By the Numbers</span>
+    <h2 class="sc-heading">Trusted by businesses worldwide</h2>
+    <div class="sc-grid">
+      <div class="sc-stat"><div class="sc-number" data-count="300000" data-suffix="+">0</div><div class="sc-label">Active installs</div></div>
+      <div class="sc-stat"><div class="sc-number" data-count="4.9" data-decimals="1" data-suffix="/5">0</div><div class="sc-label">Average rating</div></div>
+      <div class="sc-stat"><div class="sc-number" data-count="120" data-suffix="+">0</div><div class="sc-label">Countries served</div></div>
+      <div class="sc-stat"><div class="sc-number" data-count="24" data-suffix="/7">0</div><div class="sc-label">Expert support</div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var section = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-stats-counter');
+      if (!section) return;
+      var done = false;
+      function animate() {
+        if (done) return; done = true;
+        section.querySelectorAll('.sc-number').forEach(function (el) {
+          var target = parseFloat(el.getAttribute('data-count'));
+          var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+          var suffix = el.getAttribute('data-suffix') || '';
+          var t0 = null;
+          function frame(t) {
+            if (!t0) t0 = t;
+            var p = Math.min((t - t0) / 1200, 1);
+            var eased = 1 - Math.pow(1 - p, 3);
+            var val = target * eased;
+            el.textContent = (decimals ? val.toFixed(decimals) : Math.round(val).toLocaleString()) + suffix;
+            if (p < 1) requestAnimationFrame(frame);
+          }
+          requestAnimationFrame(frame);
+        });
+      }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { animate(); io.disconnect(); } });
+        }, { threshold: 0.3 });
+        io.observe(section);
+      } else { animate(); }
+    })();
+  </script>
+</section>

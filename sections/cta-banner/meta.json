@@ -1,0 +1,45 @@
+{
+  "id": "cta-banner",
+  "name": "CTA Impact Banner",
+  "type": "html",
+  "status": "stable",
+  "description": "High-contrast dark panel (surface-secondary, radius 32) with H2, subtext, primary + ghost CTA pair, and a guarantee note. The one dark section per page.",
+  "files": {
+    "html": "sections/cta-banner/section.html"
+  },
+  "prompt": "sections/cta-banner/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-cta-banner",
+  "slots": [
+    "heading",
+    "subtext",
+    "cta-pair",
+    "note"
+  ],
+  "interactions": [
+    "none"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-soft-400"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile",
+    "headingMaxWidth": "800px centered"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Banners & Impact"
+}

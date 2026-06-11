@@ -1,0 +1,44 @@
+{
+  "id": "stats-counter",
+  "name": "Stat Counter Grid",
+  "type": "html",
+  "status": "stable",
+  "description": "4-column metric grid with large brand-colored numbers that count up when scrolled into view. data-count/data-suffix/data-decimals attributes drive the animation.",
+  "files": {
+    "html": "sections/stats-counter/section.html"
+  },
+  "prompt": "sections/stats-counter/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-stats-counter",
+  "slots": [
+    "badge",
+    "heading",
+    "stat-grid-4col"
+  ],
+  "interactions": [
+    "count-up on IntersectionObserver, 1.2s ease-out cubic"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-soft-400"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile",
+    "headingMaxWidth": "800px centered"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Banners & Impact"
+}

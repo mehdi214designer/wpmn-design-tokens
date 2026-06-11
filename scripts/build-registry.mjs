@@ -25,17 +25,23 @@ const BRANDS = [
 ];
 
 function collectComponents() {
-  const componentsDir = join(ROOT, 'components');
-  const entries = readdirSync(componentsDir, { withFileTypes: true })
+  const components = [];
+  const warnings = [];
+  for (const dir of ['components', 'sections']) {
+    collectFromDir(join(ROOT, dir), components, warnings);
+  }
+  return { components, warnings };
+}
+
+function collectFromDir(baseDir, components, warnings) {
+  if (!existsSync(baseDir)) return;
+  const entries = readdirSync(baseDir, { withFileTypes: true })
     .filter((e) => e.isDirectory())
     .map((e) => e.name)
     .sort();
 
-  const components = [];
-  const warnings = [];
-
   for (const name of entries) {
-    const metaPath = join(componentsDir, name, 'meta.json');
+    const metaPath = join(baseDir, name, 'meta.json');
     if (!existsSync(metaPath)) {
       warnings.push(`components/${name}: no meta.json, skipped`);
       continue;
@@ -61,8 +67,6 @@ function collectComponents() {
 
     components.push(meta);
   }
-
-  return { components, warnings };
 }
 
 function build() {

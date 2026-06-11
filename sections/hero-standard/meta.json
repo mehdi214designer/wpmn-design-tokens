@@ -1,0 +1,46 @@
+{
+  "id": "hero-standard",
+  "name": "Standard Hero",
+  "type": "html",
+  "status": "stable",
+  "description": "Page-opening hero: dot badge, H1 with brand accent, subtext, paired CTAs, 16:9 mockup inside a brand-surface container (radius 32, mockup radius 16 + soft shadow).",
+  "files": {
+    "html": "sections/hero-standard/section.html"
+  },
+  "prompt": "sections/hero-standard/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-hero-standard",
+  "slots": [
+    "badge",
+    "heading",
+    "subtext",
+    "cta-pair",
+    "mockup-showcase"
+  ],
+  "interactions": [
+    "none"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-soft-400"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile",
+    "headingMaxWidth": "800px centered"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Banners & Impact"
+}

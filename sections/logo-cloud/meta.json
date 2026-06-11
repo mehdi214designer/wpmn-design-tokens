@@ -1,0 +1,43 @@
+{
+  "id": "logo-cloud",
+  "name": "Logo Cloud",
+  "type": "html",
+  "status": "stable",
+  "description": "Trust strip: one-line label + centered flex row of grayscale logos at 65% opacity, full opacity on hover. Ships with placeholder wordmarks to swap for real client SVGs.",
+  "files": {
+    "html": "sections/logo-cloud/section.html"
+  },
+  "prompt": "sections/logo-cloud/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-logo-cloud",
+  "slots": [
+    "label",
+    "logo-row"
+  ],
+  "interactions": [
+    "logo hover: opacity 0.65 to 1, 120ms"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-soft-400"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile",
+    "headingMaxWidth": "800px centered"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Banners & Impact"
+}

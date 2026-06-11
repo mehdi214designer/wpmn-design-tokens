@@ -1,0 +1,45 @@
+{
+  "id": "faq-accordion",
+  "name": "FAQ Accordion",
+  "type": "html",
+  "status": "stable",
+  "description": "Centered section header + 800px accordion list. One item open at a time, plus icon rotates 45deg to an X, border highlights in brand color, max-height transition 250ms.",
+  "files": {
+    "html": "sections/faq-accordion/section.html"
+  },
+  "prompt": "sections/faq-accordion/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-faq-accordion",
+  "slots": [
+    "badge",
+    "heading",
+    "subtext",
+    "accordion-list"
+  ],
+  "interactions": [
+    "single-open accordion, max-height 250ms ease, icon rotate 200ms, aria-expanded wired"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-soft-400"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile",
+    "headingMaxWidth": "800px centered"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Interactive"
+}

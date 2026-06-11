@@ -1352,17 +1352,30 @@
       </div>
     );
 
+    /* ── Library fetch base — registry-driven, works without serve.py ── */
+    const RAW_LIB_BASE = 'https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/';
+    let LIB_BASE = '';
+    async function fetchTextLib(path) {
+      const res = await fetch(LIB_BASE + path);
+      if (!res.ok) throw new Error(`HTTP ${res.status} loading ${path}`);
+      return res.text();
+    }
+    function stripModuleSyntax(code) {
+      return code
+        .replace(/^import\s[\s\S]*?from\s+['"].*?['"];?\s*$/gm, '')
+        .replace(/^import\s+['"].*?['"];?\s*$/gm, '')
+        .replace(/^export\s+default\s+/gm, '')
+        .replace(/^export\s+/gm, '');
+    }
+
     /* ── Dynamic component loader ───────────────────────────── */
-    // Strips import/export syntax, transpiles JSX with Babel, evals into window.DS
-    async function loadComponent(jsxPath, name) {
-      const res = await fetch(jsxPath);
-      if (!res.ok) throw new Error(`HTTP ${res.status} loading ${jsxPath}`);
-      let code = await res.text();
-      // strip ES module syntax
-      code = code.replace(/^import\s[\s\S]*?from\s+['"].*?['"];?\s*$/gm, '');
-      code = code.replace(/^import\s+['"].*?['"];?\s*$/gm, '');
-      code = code.replace(/^export\s+default\s+/gm, '');
-      code = code.replace(/^export\s+/gm, '');
+    // Strips import/export syntax, transpiles JSX with Babel, evals into window.DS.
+    // Optional dataPath (e.g. Logo's logos.js) is fetched and prepended.
+    async function loadComponent(jsxPath, name, dataPath) {
+      const sources = [];
+      if (dataPath) sources.push(await fetchTextLib(dataPath));
+      sources.push(await fetchTextLib(jsxPath));
+      let code = sources.map(stripModuleSyntax).join('\n\n');
       // find the main exported name (heuristic: last function/class/const declaration)
       const nameMatch = code.match(/(?:function|class)\s+(\w+)|const\s+(\w+)\s*=/g);
       const exportedName = nameMatch
@@ -1372,12 +1385,56 @@
         const {useState,useEffect,useId,useMemo,useCallback,useRef,useContext,createContext}=React;
         ${code}
         window.DS = window.DS || {};
-        window.DS['${name}'] = typeof ${exportedName} !== 'undefined' ? ${exportedName} : undefined;
+        window.DS['${name}'] = typeof ${name} !== 'undefined' ? ${name} : (typeof ${exportedName} !== 'undefined' ? ${exportedName} : undefined);
       })();`;
       const transpiled = Babel.transform(wrapped, { presets: ['react'] }).code;
       // eslint-disable-next-line no-eval
       eval(transpiled);
     }
+
+    /* ── Demo file loader — components/<Name>/demo.jsx ──────── */
+    async function loadDemoFile(demoPath, name) {
+      const source = stripModuleSyntax(await fetchTextLib(demoPath));
+      const wrapped = `(function(){
+        const {useState,useEffect,useId}=React;
+        ${source}
+        window.DS = window.DS || {};
+        window.DS.__demos = window.DS.__demos || {};
+        window.DS.__demos['${name}'] = typeof Demo !== 'undefined' ? Demo : undefined;
+      })();`;
+      eval(Babel.transform(wrapped, { presets: ['react'] }).code);
+    }
+
+    /* ── Copy button (prompt / code) ─────────────────────────── */
+    const CopyBtn = ({ label, secondary, getText }) => {
+      const [st, setSt] = useState('idle');
+      const cls = 'wpmn-btn wpmn-btn--xs ' + (secondary ? 'wpmn-btn--secondary' : 'wpmn-btn--primary');
+      return (
+        <button className={cls} onClick={async () => {
+          try {
+            const text = await getText();
+            await navigator.clipboard.writeText(text);
+            setSt('done');
+          } catch (e) { console.warn('[DS] copy failed:', e.message); setSt('fail'); }
+          setTimeout(() => setSt('idle'), 1500);
+        }}>{st === 'done' ? '✓ Copied' : st === 'fail' ? 'Failed' : label}</button>
+      );
+    };
+
+    /* ── HTML section renderer — injects markup + runs its scripts ── */
+    const HtmlSection = ({ html }) => {
+      const ref = React.useRef(null);
+      useEffect(() => {
+        if (!ref.current) return;
+        ref.current.innerHTML = html;
+        ref.current.querySelectorAll('script').forEach(old => {
+          const s = document.createElement('script');
+          s.textContent = old.textContent;
+          old.replaceWith(s);
+        });
+      }, [html]);
+      return <div ref={ref} />;
+    };
 
     // Per-component demo renderers — add new ones here as components are built
     const COMPONENT_DEMOS = {
@@ -1514,46 +1571,85 @@
       ),
     };
 
-    /* ── Components page — auto-discovers & renders all components ── */
+    /* ── Components page — registry-driven library with filters ── */
     const ComponentsPage = ({ theme, brand }) => {
       const [comps, setComps]     = useState([]);
       const [loaded, setLoaded]   = useState({});
+      const [htmlMap, setHtmlMap] = useState({});
       const [status, setStatus]   = useState('loading'); // loading | ready | error
+      const [cat, setCat]         = useState('All');
+      const [sub, setSub]         = useState(null);
+      const [q, setQ]             = useState('');
 
       useEffect(() => {
         let cancelled = false;
         const init = async () => {
-          try {
-            const res  = await fetch('/api/components');
-            const list = await res.json();
-            if (cancelled) return;
-            setComps(list);
-
-            for (const comp of list) {
-              // inject CSS if not already present
-              if (comp.css && !document.querySelector(`link[href="${comp.css}"]`)) {
-                const link = Object.assign(document.createElement('link'), { rel:'stylesheet', href: comp.css });
-                document.head.appendChild(link);
-              }
-              try {
-                await loadComponent(comp.jsx, comp.name);
-                if (!cancelled) setLoaded(prev => ({ ...prev, [comp.name]: 'ok' }));
-              } catch (e) {
-                console.warn(`[DS] Could not load ${comp.name}:`, e.message);
-                if (!cancelled) setLoaded(prev => ({ ...prev, [comp.name]: 'error' }));
-              }
-            }
-            if (!cancelled) setStatus('ready');
-          } catch (e) {
-            if (!cancelled) setStatus('error');
-            console.error('[DS] component discovery failed:', e);
+          // 1. resolve component list: registry.json → GitHub raw → serve.py API
+          let registry = null;
+          try { registry = JSON.parse(await fetchTextLib('registry.json')); }
+          catch (e1) {
+            try { LIB_BASE = RAW_LIB_BASE; registry = JSON.parse(await fetchTextLib('registry.json')); }
+            catch (e2) { LIB_BASE = ''; }
           }
+          let list = [];
+          if (registry) {
+            list = registry.components.map(c => ({
+              name: c.name,
+              type: c.type === 'html' ? 'html' : 'react',
+              jsx:  c.files && c.files.jsx,
+              css:  c.files && c.files.css,
+              data: c.files && c.files.data,
+              html: c.files && c.files.html,
+              meta: c,
+            }));
+          } else {
+            try {
+              const res  = await fetch('/api/components');
+              const api  = await res.json();
+              list = api.map(c => ({ ...c, type: 'react', meta: null }));
+            } catch (e3) {
+              if (!cancelled) setStatus('error');
+              return;
+            }
+          }
+          if (cancelled) return;
+          setComps(list);
+
+          // 2. load styles + code + demos
+          for (const comp of list) {
+            try {
+              if (comp.css) {
+                if (!document.querySelector(`style[data-css="${comp.css}"]`)) {
+                  const css = await fetchTextLib(comp.css);
+                  const tag = document.createElement('style');
+                  tag.setAttribute('data-css', comp.css);
+                  tag.textContent = css.replace(/@import[^;]+;/g, '');
+                  document.head.appendChild(tag);
+                }
+              }
+              if (comp.type === 'html' && comp.html) {
+                const html = await fetchTextLib(comp.html);
+                if (!cancelled) setHtmlMap(prev => ({ ...prev, [comp.name]: html }));
+              } else if (comp.jsx) {
+                await loadComponent(comp.jsx, comp.name, comp.data);
+              }
+              if (comp.meta && comp.meta.demo && !COMPONENT_DEMOS[comp.name]) {
+                try { await loadDemoFile(comp.meta.demo, comp.name); }
+                catch (e) { console.warn(`[DS] demo load failed for ${comp.name}:`, e.message); }
+              }
+              if (!cancelled) setLoaded(prev => ({ ...prev, [comp.name]: 'ok' }));
+            } catch (e) {
+              console.warn(`[DS] Could not load ${comp.name}:`, e.message);
+              if (!cancelled) setLoaded(prev => ({ ...prev, [comp.name]: 'error' }));
+            }
+          }
+          if (!cancelled) setStatus('ready');
         };
         init();
         return () => { cancelled = true; };
       }, []);
 
-      if (status === 'loading') return (
+      if (status === 'loading' && comps.length === 0) return (
         <div style={{display:'flex',alignItems:'center',justifyContent:'center',height:300,flexDirection:'column',gap:16}}>
           <div style={{width:36,height:36,border:'3px solid var(--color-border-primary)',borderTopColor:'var(--btn-bg-enable)',borderRadius:'50%',animation:'wpmn-spin 0.7s linear infinite'}} />
           <span style={{color:'var(--color-text-secondary)',fontSize:14}}>Discovering components…</span>
@@ -1562,44 +1658,133 @@
 
       if (status === 'error') return (
         <div style={{color:'var(--color-error-primary)',padding:32}}>
-          Could not reach <code>/api/components</code>. Make sure <code>serve.py</code> is running.
+          Could not load <code>registry.json</code> (or reach <code>/api/components</code>). Check your connection, or run <code>node scripts/build-registry.mjs</code> and reload.
         </div>
       );
+
+      // taxonomy from meta
+      const cats = {};
+      comps.forEach(c => {
+        const cc = (c.meta && c.meta.category) || 'Other';
+        const ss = (c.meta && c.meta.subcategory) || 'General';
+        cats[cc] = cats[cc] || {};
+        cats[cc][ss] = (cats[cc][ss] || 0) + 1;
+      });
+
+      const shown = comps.filter(c => {
+        const cc = (c.meta && c.meta.category) || 'Other';
+        const ss = (c.meta && c.meta.subcategory) || 'General';
+        if (cat !== 'All' && cc !== cat) return false;
+        if (sub && ss !== sub) return false;
+        if (q) {
+          const hay = (c.name + ' ' + cc + ' ' + ss + ' ' + ((c.meta && c.meta.description) || '')).toLowerCase();
+          if (hay.indexOf(q.toLowerCase()) === -1) return false;
+        }
+        return true;
+      });
+
+      const chipStyle = active => ({
+        padding:'6px 14px', borderRadius:99, fontSize:13, cursor:'pointer', userSelect:'none',
+        fontWeight: active ? 600 : 400,
+        background: active ? 'var(--btn-bg-enable)' : 'transparent',
+        color: active ? 'var(--color-text-primary-invert)' : 'var(--color-text-secondary)',
+        border: active ? '1.5px solid var(--btn-bg-enable)' : '1.5px solid var(--color-border-primary)',
+        transition: 'background-color 120ms ease, color 120ms ease',
+      });
 
       return (
         <div>
           <div className="page-header">
             <h1 className="text-h4" style={{margin:'0 0 8px',color:'var(--color-text-primary)'}}>Components</h1>
             <p className="text-body-base" style={{color:'var(--color-text-secondary)',margin:0}}>
-              Auto-discovered from <code>components/</code>. New components appear here the moment their files are created. Each section hot-reloads on save.
+              Live from <code>registry.json</code>. <strong>Copy Prompt</strong> gives an AI build spec, <strong>Copy Code</strong> gives the full source.
             </p>
           </div>
 
-          {comps.map(comp => {
+          {/* search + category filters */}
+          <div style={{display:'flex',flexDirection:'column',gap:12,margin:'20px 0 8px'}}>
+            <input
+              value={q}
+              onChange={e => setQ(e.target.value)}
+              placeholder="Search components & sections…"
+              style={{height:44,padding:'0 16px',fontFamily:'inherit',fontSize:15,maxWidth:480,
+                color:'var(--input-text-active)',border:'1px solid var(--input-stroke-default)',
+                borderRadius:'var(--radius-xsm)',background:'transparent',outline:'none'}}
+            />
+            <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+              <span style={chipStyle(cat === 'All')} onClick={() => { setCat('All'); setSub(null); }}>All ({comps.length})</span>
+              {Object.keys(cats).sort().map(cc => (
+                <span key={cc} style={chipStyle(cat === cc)} onClick={() => { setCat(cc); setSub(null); }}>
+                  {cc} ({Object.values(cats[cc]).reduce((a,b)=>a+b,0)})
+                </span>
+              ))}
+            </div>
+            {cat !== 'All' && cats[cat] && Object.keys(cats[cat]).length > 1 && (
+              <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+                <span style={chipStyle(!sub)} onClick={() => setSub(null)}>All {cat}</span>
+                {Object.keys(cats[cat]).sort().map(ss => (
+                  <span key={ss} style={chipStyle(sub === ss)} onClick={() => setSub(ss)}>{ss} ({cats[cat][ss]})</span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {shown.length === 0 && (
+            <div style={{padding:48,textAlign:'center',color:'var(--color-text-secondary)'}}>Nothing matches this filter.</div>
+          )}
+
+          {shown.map(comp => {
             const state    = loaded[comp.name];
-            const DemoFn   = COMPONENT_DEMOS[comp.name];
+            const DemoFn   = COMPONENT_DEMOS[comp.name] || (window.DS && window.DS.__demos && window.DS.__demos[comp.name]);
             const Comp     = window.DS?.[comp.name];
+            const meta     = comp.meta;
+            const crumb    = meta ? `${meta.category || 'Other'} / ${meta.subcategory || 'General'}` : '';
+            const isHtml   = comp.type === 'html';
+
+            const copyPrompt = () => fetchTextLib(meta.prompt);
+            const copyCode   = async () => {
+              const paths = Object.values(meta.files || {});
+              const contents = await Promise.all(paths.map(fetchTextLib));
+              const header = `/*\n * WPMN Design System — ${comp.name}\n * Requires token CSS loaded first:\n * ${RAW_LIB_BASE}index.css\n */\n\n`;
+              return header + contents.map((c, i) => `/* ===== ${paths[i]} ===== */\n\n${c}`).join('\n\n');
+            };
 
             return (
               <div key={comp.name} className="section">
-                <div className="section-title" style={{display:'flex',alignItems:'center',gap:10}}>
+                <div className="section-title" style={{display:'flex',alignItems:'center',gap:10,flexWrap:'wrap'}}>
                   {comp.name}
+                  {crumb && <span style={{fontSize:11,fontWeight:400,color:'var(--color-text-secondary)'}}>{crumb}</span>}
                   {state === 'ok'    && <span style={{fontSize:10,fontWeight:700,color:'var(--color-success-primary)',background:'var(--primitive-success-50)',padding:'2px 8px',borderRadius:99}}>loaded</span>}
                   {state === 'error' && <span style={{fontSize:10,fontWeight:700,color:'var(--color-error-primary)',background:'var(--primitive-error-50)',padding:'2px 8px',borderRadius:99}}>error</span>}
                   {!state            && <span style={{fontSize:10,color:'var(--color-text-secondary)'}}>loading…</span>}
-                  <span style={{fontSize:10,color:'var(--color-text-secondary)',fontFamily:'monospace',marginLeft:'auto'}}>{comp.jsx}</span>
+                  {meta && (
+                    <span style={{marginLeft:'auto',display:'flex',gap:8}}>
+                      <CopyBtn label="Copy Prompt" getText={copyPrompt} />
+                      <CopyBtn label="Copy Code" secondary getText={copyCode} />
+                    </span>
+                  )}
                 </div>
+                {meta && meta.description && (
+                  <p style={{fontSize:13,lineHeight:'20px',color:'var(--color-text-secondary)',margin:'0 0 12px',maxWidth:760}}>{meta.description}</p>
+                )}
                 <div className="card">
-                  {state === 'ok' && DemoFn && (
+                  {state === 'ok' && isHtml && htmlMap[comp.name] && (
+                    <div style={{margin:-32,borderRadius:'inherit',overflow:'hidden'}}>
+                      <CompErrorBoundary key={comp.name + '-html'}>
+                        <HtmlSection html={htmlMap[comp.name]} />
+                      </CompErrorBoundary>
+                    </div>
+                  )}
+                  {state === 'ok' && !isHtml && DemoFn && (
                     <CompErrorBoundary key={comp.name + '-demo'}>
                       <DemoFn />
                     </CompErrorBoundary>
                   )}
-                  {state === 'ok' && !DemoFn && Comp && (
+                  {state === 'ok' && !isHtml && !DemoFn && Comp && (
                     <div>
                       <Comp />
                       <p style={{fontSize:11,color:'var(--color-text-secondary)',marginTop:12}}>
-                        No demo config defined — rendered with no props. Add an entry to <code>COMPONENT_DEMOS</code> in demo.html for a richer preview.
+                        No demo found — rendered with no props. Add <code>demo.jsx</code> next to the component.
                       </p>
                     </div>
                   )}

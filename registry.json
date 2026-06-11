@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T06:05:48.427Z",
+  "generatedAt": "2026-06-11T06:26:11.138Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -824,6 +824,274 @@
         "jsx": "<div style={{maxWidth:560}}><Text variant='h4'>Design once, ship 16 brands</Text><Text variant='body-base' color='secondary'>Every heading and paragraph maps to the WPMN type scale tokens.</Text></div>"
       },
       "demo": "components/Text/demo.jsx"
+    },
+    {
+      "id": "cta-banner",
+      "name": "CTA Impact Banner",
+      "type": "html",
+      "status": "stable",
+      "description": "High-contrast dark panel (surface-secondary, radius 32) with H2, subtext, primary + ghost CTA pair, and a guarantee note. The one dark section per page.",
+      "files": {
+        "html": "sections/cta-banner/section.html"
+      },
+      "prompt": "sections/cta-banner/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-cta-banner",
+      "slots": [
+        "heading",
+        "subtext",
+        "cta-pair",
+        "note"
+      ],
+      "interactions": [
+        "none"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-soft-400"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile",
+        "headingMaxWidth": "800px centered"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact"
+    },
+    {
+      "id": "faq-accordion",
+      "name": "FAQ Accordion",
+      "type": "html",
+      "status": "stable",
+      "description": "Centered section header + 800px accordion list. One item open at a time, plus icon rotates 45deg to an X, border highlights in brand color, max-height transition 250ms.",
+      "files": {
+        "html": "sections/faq-accordion/section.html"
+      },
+      "prompt": "sections/faq-accordion/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-faq-accordion",
+      "slots": [
+        "badge",
+        "heading",
+        "subtext",
+        "accordion-list"
+      ],
+      "interactions": [
+        "single-open accordion, max-height 250ms ease, icon rotate 200ms, aria-expanded wired"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-soft-400"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile",
+        "headingMaxWidth": "800px centered"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Interactive"
+    },
+    {
+      "id": "hero-standard",
+      "name": "Standard Hero",
+      "type": "html",
+      "status": "stable",
+      "description": "Page-opening hero: dot badge, H1 with brand accent, subtext, paired CTAs, 16:9 mockup inside a brand-surface container (radius 32, mockup radius 16 + soft shadow).",
+      "files": {
+        "html": "sections/hero-standard/section.html"
+      },
+      "prompt": "sections/hero-standard/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-hero-standard",
+      "slots": [
+        "badge",
+        "heading",
+        "subtext",
+        "cta-pair",
+        "mockup-showcase"
+      ],
+      "interactions": [
+        "none"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-soft-400"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile",
+        "headingMaxWidth": "800px centered"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact"
+    },
+    {
+      "id": "hero-typographic",
+      "name": "Typographic Hero",
+      "type": "html",
+      "status": "stable",
+      "description": "Minimalist hero built on massive type: clamp(48px, 8vw, 96px) bold headline with brand accent span, subtext, paired CTAs. No imagery.",
+      "files": {
+        "html": "sections/hero-typographic/section.html"
+      },
+      "prompt": "sections/hero-typographic/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-hero-typographic",
+      "slots": [
+        "badge",
+        "heading",
+        "subtext",
+        "cta-pair"
+      ],
+      "interactions": [
+        "none"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-soft-400"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile",
+        "headingMaxWidth": "800px centered"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact"
+    },
+    {
+      "id": "logo-cloud",
+      "name": "Logo Cloud",
+      "type": "html",
+      "status": "stable",
+      "description": "Trust strip: one-line label + centered flex row of grayscale logos at 65% opacity, full opacity on hover. Ships with placeholder wordmarks to swap for real client SVGs.",
+      "files": {
+        "html": "sections/logo-cloud/section.html"
+      },
+      "prompt": "sections/logo-cloud/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-logo-cloud",
+      "slots": [
+        "label",
+        "logo-row"
+      ],
+      "interactions": [
+        "logo hover: opacity 0.65 to 1, 120ms"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-soft-400"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile",
+        "headingMaxWidth": "800px centered"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact"
+    },
+    {
+      "id": "stats-counter",
+      "name": "Stat Counter Grid",
+      "type": "html",
+      "status": "stable",
+      "description": "4-column metric grid with large brand-colored numbers that count up when scrolled into view. data-count/data-suffix/data-decimals attributes drive the animation.",
+      "files": {
+        "html": "sections/stats-counter/section.html"
+      },
+      "prompt": "sections/stats-counter/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-stats-counter",
+      "slots": [
+        "badge",
+        "heading",
+        "stat-grid-4col"
+      ],
+      "interactions": [
+        "count-up on IntersectionObserver, 1.2s ease-out cubic"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-soft-400"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile",
+        "headingMaxWidth": "800px centered"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact"
     }
   ]
 }

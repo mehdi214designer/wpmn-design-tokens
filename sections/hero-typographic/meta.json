@@ -1,0 +1,45 @@
+{
+  "id": "hero-typographic",
+  "name": "Typographic Hero",
+  "type": "html",
+  "status": "stable",
+  "description": "Minimalist hero built on massive type: clamp(48px, 8vw, 96px) bold headline with brand accent span, subtext, paired CTAs. No imagery.",
+  "files": {
+    "html": "sections/hero-typographic/section.html"
+  },
+  "prompt": "sections/hero-typographic/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-hero-typographic",
+  "slots": [
+    "badge",
+    "heading",
+    "subtext",
+    "cta-pair"
+  ],
+  "interactions": [
+    "none"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-soft-400"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile",
+    "headingMaxWidth": "800px centered"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Banners & Impact"
+}

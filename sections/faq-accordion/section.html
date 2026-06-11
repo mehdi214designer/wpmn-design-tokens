@@ -1,0 +1,83 @@
+<!-- WPMN Section: FAQ Accordion — question/answer list with expand/collapse -->
+<section class="wpmn-sec-faq-accordion">
+  <style>
+    .wpmn-sec-faq-accordion { padding: 96px 0; background: var(--color-surface-primary); font-family: var(--font-family-base); }
+    .wpmn-sec-faq-accordion .fa-container { max-width: 1200px; margin: 0 auto; }
+    .wpmn-sec-faq-accordion .fa-header { text-align: center; margin-bottom: 48px; }
+    .wpmn-sec-faq-accordion .fa-badge { display: inline-flex; align-items: center; gap: 8px; font-size: var(--font-size-body-label); line-height: var(--font-lh-body-label); font-weight: var(--font-weight-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--btn-bg-enable); margin-bottom: 12px; }
+    .wpmn-sec-faq-accordion .fa-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--btn-bg-enable); }
+    .wpmn-sec-faq-accordion .fa-heading { max-width: 800px; margin: 0 auto; font-size: var(--font-size-h2); line-height: var(--font-lh-h2); font-weight: var(--font-weight-semibold); color: var(--color-text-primary); }
+    .wpmn-sec-faq-accordion .fa-subtext { max-width: 800px; margin: 16px auto 0; font-size: var(--font-size-body-medium); line-height: var(--font-lh-body-medium); color: var(--color-text-secondary); }
+    .wpmn-sec-faq-accordion .fa-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .wpmn-sec-faq-accordion .fa-item { border: 1.5px solid var(--color-border-primary); border-radius: var(--radius-md); overflow: hidden; transition: border-color 120ms ease; }
+    .wpmn-sec-faq-accordion .fa-item[data-open] { border-color: var(--btn-bg-enable); }
+    .wpmn-sec-faq-accordion .fa-q { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; padding: 24px; background: transparent; border: none; cursor: pointer; text-align: left; font-family: inherit; font-size: var(--font-size-h6); line-height: var(--font-lh-h6); font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
+    .wpmn-sec-faq-accordion .fa-icon { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: var(--btn-bg-enable); transition: transform 200ms ease; }
+    .wpmn-sec-faq-accordion .fa-item[data-open] .fa-icon { transform: rotate(45deg); }
+    .wpmn-sec-faq-accordion .fa-a { max-height: 0; overflow: hidden; transition: max-height 250ms ease; }
+    .wpmn-sec-faq-accordion .fa-a-inner { padding: 0 24px 24px; font-size: var(--font-size-body-base); line-height: var(--font-lh-body-base); color: var(--color-text-secondary); }
+    @media (max-width: 1199px) { .wpmn-sec-faq-accordion .fa-container { padding: 0 40px; } }
+    @media (max-width: 768px) { .wpmn-sec-faq-accordion { padding: 64px 0; } .wpmn-sec-faq-accordion .fa-container { padding: 0 20px; } }
+  </style>
+  <div class="fa-container">
+    <div class="fa-header">
+      <span class="fa-badge">FAQ</span>
+      <h2 class="fa-heading">Frequently asked questions</h2>
+      <p class="fa-subtext">Everything you need to know. Can't find an answer? Reach out to our support team.</p>
+    </div>
+    <div class="fa-list">
+      <div class="fa-item" data-open>
+        <button class="fa-q" aria-expanded="true">Do I need coding skills to use this?
+          <span class="fa-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="fa-a"><div class="fa-a-inner">Not at all. Everything is drag and drop. If you can use WordPress, you can build forms, automations, and full pages without touching code.</div></div>
+      </div>
+      <div class="fa-item">
+        <button class="fa-q" aria-expanded="false">Does it work with my theme?
+          <span class="fa-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="fa-a"><div class="fa-a-inner">Yes. It inherits your theme styles by default and ships with its own design presets when you want full control.</div></div>
+      </div>
+      <div class="fa-item">
+        <button class="fa-q" aria-expanded="false">Can I upgrade or downgrade anytime?
+          <span class="fa-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="fa-a"><div class="fa-a-inner">Anytime. Your license scales with you, and the price difference is prorated automatically.</div></div>
+      </div>
+      <div class="fa-item">
+        <button class="fa-q" aria-expanded="false">What does the refund policy look like?
+          <span class="fa-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="fa-a"><div class="fa-a-inner">14 days, no questions asked. If it's not the right fit, you get a full refund.</div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var section = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-faq-accordion');
+      if (!section) return;
+      function setOpen(item, open) {
+        var a = item.querySelector('.fa-a');
+        var q = item.querySelector('.fa-q');
+        if (open) {
+          item.setAttribute('data-open', '');
+          q.setAttribute('aria-expanded', 'true');
+          a.style.maxHeight = a.scrollHeight + 'px';
+        } else {
+          item.removeAttribute('data-open');
+          q.setAttribute('aria-expanded', 'false');
+          a.style.maxHeight = '0px';
+        }
+      }
+      var items = section.querySelectorAll('.fa-item');
+      items.forEach(function (item) {
+        setOpen(item, item.hasAttribute('data-open'));
+        item.querySelector('.fa-q').addEventListener('click', function () {
+          var isOpen = item.hasAttribute('data-open');
+          items.forEach(function (other) { if (other !== item) setOpen(other, false); });
+          setOpen(item, !isOpen);
+        });
+      });
+    })();
+  </script>
+</section>
