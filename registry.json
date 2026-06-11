@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T07:59:17.073Z",
+  "generatedAt": "2026-06-11T09:47:09.104Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -2042,6 +2042,67 @@
         "popular"
       ],
       "role": "Pricing"
+    },
+    {
+      "id": "product-showcase",
+      "name": "Product Showcase",
+      "type": "html",
+      "status": "stable",
+      "description": "E-commerce best picks grid: large featured product card spanning two rows + 2x2 grid of smaller cards. Soft grey card fills, image zoom + lift on hover, staggered fade-up reveal on scroll, View All pill.",
+      "files": {
+        "html": "sections/product-showcase/section.html"
+      },
+      "prompt": "sections/product-showcase/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-product-showcase",
+      "slots": [
+        "heading",
+        "view-all-pill",
+        "featured-card",
+        "product-grid-2x2"
+      ],
+      "interactions": [
+        "staggered reveal: cards fade-up (16px, 500ms ease, 80ms stagger) via IntersectionObserver",
+        "card hover: lift -2px + --shadow-soft-300, image scale 1.04 (300ms ease)",
+        "View All pill hover: fills --btn-bg-enable with invert text",
+        "prefers-reduced-motion: all transforms disabled"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-*",
+        "--btn-bg-enable",
+        "--color-border-primary",
+        "--radius-md",
+        "--radius-xsm",
+        "--radius-lg",
+        "--font-*",
+        "--shadow-soft-300"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile",
+        "grid": "2fr 1fr 1fr, featured spans 2 rows, 24px gap"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "role": "Showcase",
+      "tags": [
+        "ecommerce",
+        "products",
+        "best picks",
+        "featured",
+        "shop",
+        "cards",
+        "pricing",
+        "store"
+      ]
     },
     {
       "id": "read-more",
