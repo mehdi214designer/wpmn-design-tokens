@@ -1,0 +1,45 @@
+{
+  "id": "zigzag-features",
+  "name": "Zig-Zag Features",
+  "type": "html",
+  "status": "stable",
+  "description": "Alternating image/text rows (even rows flip order). Kicker, heading, body, arrow link per row. Stacks image-first on mobile.",
+  "files": {
+    "html": "sections/zigzag-features/section.html"
+  },
+  "prompt": "sections/zigzag-features/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-zigzag-features",
+  "interactions": [
+    "none or CSS-only"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Lists & Feeds",
+  "tags": [
+    "zigzag",
+    "alternating",
+    "image text",
+    "rows",
+    "features"
+  ]
+}

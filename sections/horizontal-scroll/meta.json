@@ -1,0 +1,45 @@
+{
+  "id": "horizontal-scroll",
+  "name": "Horizontal Scroll",
+  "type": "html",
+  "status": "stable",
+  "description": "300vh tall wrapper pins a viewport; vertical scroll progress translates a horizontal panel track. Falls back to native overflow for reduced motion.",
+  "files": {
+    "html": "sections/horizontal-scroll/section.html"
+  },
+  "prompt": "sections/horizontal-scroll/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-horizontal-scroll",
+  "interactions": [
+    "see section.html script block, scoped IIFE"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "tags": [
+    "horizontal scroll",
+    "pin",
+    "scroll jack",
+    "panels",
+    "story"
+  ]
+}

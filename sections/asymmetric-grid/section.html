@@ -1,0 +1,30 @@
+<!-- WPMN Section: Asymmetric / Broken Grid — offset editorial layout -->
+<section class="wpmn-sec-asymmetric-grid">
+  <style>
+    .wpmn-sec-asymmetric-grid{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-asymmetric-grid .ag-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-asymmetric-grid .ag-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
+    .wpmn-sec-asymmetric-grid .ag-title{grid-column:1/6;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);margin:0}
+    .wpmn-sec-asymmetric-grid .ag-title em{font-style:normal;color:var(--btn-bg-enable)}
+    .wpmn-sec-asymmetric-grid .ag-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:28px}
+    .wpmn-sec-asymmetric-grid .ag-card h3{margin:0;font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-asymmetric-grid .ag-card p{margin:8px 0 0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-asymmetric-grid .ag-img{border-radius:var(--radius-md);background:var(--color-brand-surface);min-height:200px;display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert);font-size:var(--font-size-body-small)}
+    .wpmn-sec-asymmetric-grid .ag-a{grid-column:7/13;margin-top:64px}
+    .wpmn-sec-asymmetric-grid .ag-b{grid-column:1/7;margin-top:-24px}
+    .wpmn-sec-asymmetric-grid .ag-d{grid-column:8/13;margin-top:48px}
+    .wpmn-sec-asymmetric-grid .ag-e{grid-column:2/8;margin-top:-40px}
+    @media(max-width:1199px){.wpmn-sec-asymmetric-grid .ag-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-asymmetric-grid .ag-grid{grid-template-columns:1fr}.wpmn-sec-asymmetric-grid .ag-title,.wpmn-sec-asymmetric-grid .ag-a,.wpmn-sec-asymmetric-grid .ag-b,.wpmn-sec-asymmetric-grid .ag-d,.wpmn-sec-asymmetric-grid .ag-e{grid-column:1/-1;margin-top:0}}
+    @media(max-width:768px){.wpmn-sec-asymmetric-grid{padding:64px 0}.wpmn-sec-asymmetric-grid .ag-c{padding:0 20px}}
+  </style>
+  <div class="ag-c">
+    <div class="ag-grid">
+      <h2 class="ag-title">Design that <em>breaks the grid</em> on purpose</h2>
+      <div class="ag-a ag-img" style="min-height:260px">Editorial image 16:10</div>
+      <div class="ag-b ag-card"><h3>Offset rhythm</h3><p>Cards step off the baseline to create motion without animation. Offsets collapse on mobile so nothing overlaps.</p></div>
+      <div class="ag-d ag-card"><h3>Intentional whitespace</h3><p>The empty columns are part of the design. Resist the urge to fill them.</p></div>
+      <div class="ag-e ag-img" style="min-height:180px">Detail image 21:9</div>
+    </div>
+  </div>
+</section>

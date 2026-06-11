@@ -1,0 +1,54 @@
+<!-- WPMN Section: Content Accordion — generic disclosure list with rich content -->
+<section class="wpmn-sec-content-accordion">
+  <style>
+    .wpmn-sec-content-accordion{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-content-accordion .ca-c{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:start}
+    .wpmn-sec-content-accordion .ca-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
+    .wpmn-sec-content-accordion .ca-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
+    .wpmn-sec-content-accordion .ca-heading{margin:0;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-content-accordion .ca-sub{margin:16px 0 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-content-accordion .ca-item{border-bottom:1.5px solid var(--color-border-primary)}
+    .wpmn-sec-content-accordion .ca-q{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:24px 4px;background:transparent;border:none;cursor:pointer;text-align:left;font-family:inherit;font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
+    .wpmn-sec-content-accordion .ca-num{font-size:var(--font-size-body-label);color:var(--color-text-secondary);margin-right:12px}
+    .wpmn-sec-content-accordion .ca-icon{flex-shrink:0;color:var(--btn-bg-enable);transition:transform 200ms ease}
+    .wpmn-sec-content-accordion .ca-item[data-open] .ca-icon{transform:rotate(180deg)}
+    .wpmn-sec-content-accordion .ca-a{max-height:0;overflow:hidden;transition:max-height 250ms ease}
+    .wpmn-sec-content-accordion .ca-a-in{padding:0 4px 24px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    @media(max-width:1199px){.wpmn-sec-content-accordion .ca-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-content-accordion .ca-c{grid-template-columns:1fr;gap:32px}}
+    @media(max-width:768px){.wpmn-sec-content-accordion{padding:64px 0}.wpmn-sec-content-accordion .ca-c{padding:0 20px}}
+  </style>
+  <div class="ca-c">
+    <div>
+      <span class="ca-badge">Capabilities</span>
+      <h2 class="ca-heading">Everything your team needs, in one place</h2>
+      <p class="ca-sub">Expand each capability to see how it works. Built to keep dense information scannable.</p>
+    </div>
+    <div class="ca-list">
+      <div class="ca-item" data-open>
+        <button class="ca-q" aria-expanded="true"><span><span class="ca-num">01</span>Visual automation builder</span><svg class="ca-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ca-a"><div class="ca-a-in">Map customer journeys on a drag and drop canvas. Triggers, conditions, and actions chain together visually, so the whole team can read the flow at a glance.</div></div>
+      </div>
+      <div class="ca-item">
+        <button class="ca-q" aria-expanded="false"><span><span class="ca-num">02</span>Smart segmentation</span><svg class="ca-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ca-a"><div class="ca-a-in">Slice your audience by behavior, purchase history, or any custom field. Segments update in real time as contacts change.</div></div>
+      </div>
+      <div class="ca-item">
+        <button class="ca-q" aria-expanded="false"><span><span class="ca-num">03</span>Revenue tracking</span><svg class="ca-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ca-a"><div class="ca-a-in">Attribute every dollar to the campaign that earned it. Works out of the box with WooCommerce and EDD.</div></div>
+      </div>
+      <div class="ca-item">
+        <button class="ca-q" aria-expanded="false"><span><span class="ca-num">04</span>Team collaboration</span><svg class="ca-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="ca-a"><div class="ca-a-in">Roles, permissions, and shared inboxes keep everyone on the same page without stepping on each other.</div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var s=document.currentScript?document.currentScript.parentElement:document.querySelector('.wpmn-sec-content-accordion');if(!s)return;
+      function set(it,open){var a=it.querySelector('.ca-a'),q=it.querySelector('.ca-q');if(open){it.setAttribute('data-open','');q.setAttribute('aria-expanded','true');a.style.maxHeight=a.scrollHeight+'px'}else{it.removeAttribute('data-open');q.setAttribute('aria-expanded','false');a.style.maxHeight='0px'}}
+      var items=s.querySelectorAll('.ca-item');
+      items.forEach(function(it){set(it,it.hasAttribute('data-open'));it.querySelector('.ca-q').addEventListener('click',function(){var o=it.hasAttribute('data-open');items.forEach(function(x){if(x!==it)set(x,false)});set(it,!o)})});
+    })();
+  </script>
+</section>

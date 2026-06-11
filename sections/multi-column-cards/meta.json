@@ -1,0 +1,45 @@
+{
+  "id": "multi-column-cards",
+  "name": "Multi-Column Cards",
+  "type": "html",
+  "status": "stable",
+  "description": "Classic 3-column feature cards (guideline grid #3, 32px gutter): icon tile, heading, body. Hover lift.",
+  "files": {
+    "html": "sections/multi-column-cards/section.html"
+  },
+  "prompt": "sections/multi-column-cards/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-multi-column-cards",
+  "interactions": [
+    "none or CSS-only"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "tags": [
+    "cards",
+    "3 column",
+    "features",
+    "grid",
+    "uniform"
+  ]
+}

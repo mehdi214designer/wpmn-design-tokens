@@ -1,0 +1,45 @@
+{
+  "id": "carousel-slider",
+  "name": "Carousel Slider",
+  "type": "html",
+  "status": "stable",
+  "description": "Scroll-snap horizontal belt, 3-up responsive, arrow buttons, auto-generated page dots that track scroll position.",
+  "files": {
+    "html": "sections/carousel-slider/section.html"
+  },
+  "prompt": "sections/carousel-slider/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-carousel-slider",
+  "interactions": [
+    "see section.html script block, scoped IIFE"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "tags": [
+    "carousel",
+    "slider",
+    "swipe",
+    "scroll snap",
+    "gallery"
+  ]
+}

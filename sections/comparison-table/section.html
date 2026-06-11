@@ -1,0 +1,37 @@
+<!-- WPMN Section: Competitor Comparison — us vs them feature matrix -->
+<section class="wpmn-sec-comparison-table">
+  <style>
+    .wpmn-sec-comparison-table{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-comparison-table .ct-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-comparison-table .ct-head{text-align:center;margin-bottom:48px}
+    .wpmn-sec-comparison-table .ct-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-comparison-table .ct-table{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);overflow:hidden;max-width:900px;margin:0 auto}
+    .wpmn-sec-comparison-table .ct-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;align-items:center}
+    .wpmn-sec-comparison-table .ct-row>div{padding:18px 24px;font-size:var(--font-size-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-comparison-table .ct-row+.ct-row{border-top:1.5px solid var(--color-border-primary)}
+    .wpmn-sec-comparison-table .ct-row--head{background:color-mix(in srgb,var(--color-text-primary) 4%,transparent)}
+    .wpmn-sec-comparison-table .ct-row--head>div{font-size:var(--font-size-body-small);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);text-align:center}
+    .wpmn-sec-comparison-table .ct-row--head>div:first-child{text-align:left}
+    .wpmn-sec-comparison-table .ct-us{color:var(--btn-bg-enable)!important;font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-comparison-table .ct-feature{font-weight:var(--font-weight-medium);color:var(--color-text-primary)!important}
+    .wpmn-sec-comparison-table .ct-mark{display:flex;justify-content:center}
+    .wpmn-sec-comparison-table .ct-yes{color:var(--color-success-primary)}
+    .wpmn-sec-comparison-table .ct-no{color:var(--color-error-primary);opacity:.7}
+    .wpmn-sec-comparison-table .ct-cta{text-align:center;margin-top:32px}
+    .wpmn-sec-comparison-table .ct-btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border-radius:var(--radius-xsm);background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);text-decoration:none;box-shadow:inset 3px 4px 4px 0 rgba(255,255,255,.3);transition:background-color 120ms ease}
+    .wpmn-sec-comparison-table .ct-btn:hover{background:var(--btn-bg-hovered)}
+    @media(max-width:1199px){.wpmn-sec-comparison-table .ct-c{padding:0 40px}}
+    @media(max-width:768px){.wpmn-sec-comparison-table{padding:64px 0}.wpmn-sec-comparison-table .ct-c{padding:0 20px}.wpmn-sec-comparison-table .ct-row>div{padding:12px 10px;font-size:var(--font-size-body-small)}}
+  </style>
+  <div class="ct-c">
+    <div class="ct-head"><h2 class="ct-heading">How we stack up</h2></div>
+    <div class="ct-table">
+      <div class="ct-row ct-row--head"><div>Feature</div><div class="ct-us">Us</div><div>Competitor A</div><div>Competitor B</div></div>
+      <div class="ct-row"><div class="ct-feature">Self-hosted data</div><div class="ct-mark ct-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="ct-mark ct-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="ct-mark ct-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+      <div class="ct-row"><div class="ct-feature">Unlimited contacts</div><div class="ct-mark ct-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div>From $99/mo</div><div>From $149/mo</div></div>
+      <div class="ct-row"><div class="ct-feature">Visual automations</div><div class="ct-mark ct-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="ct-mark ct-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="ct-mark ct-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+      <div class="ct-row"><div class="ct-feature">One-time pricing option</div><div class="ct-mark ct-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="ct-mark ct-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="ct-mark ct-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="ct-cta"><a class="ct-btn" href="#">Switch and save</a></div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+{
+  "id": "before-after-slider",
+  "name": "Before/After Slider",
+  "type": "html",
+  "status": "stable",
+  "description": "Draggable divider over two stacked panels using clip-path inset, pointer events, 16:9 frame with knob handle.",
+  "files": {
+    "html": "sections/before-after-slider/section.html"
+  },
+  "prompt": "sections/before-after-slider/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-before-after-slider",
+  "interactions": [
+    "see section.html script block, scoped IIFE"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Interactive",
+  "tags": [
+    "before after",
+    "comparison slider",
+    "drag",
+    "reveal",
+    "image compare"
+  ]
+}

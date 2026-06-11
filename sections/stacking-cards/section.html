@@ -1,0 +1,29 @@
+<!-- WPMN Section: Stacking Cards — cards pin and stack while scrolling (CSS sticky) -->
+<section class="wpmn-sec-stacking-cards">
+  <style>
+    .wpmn-sec-stacking-cards{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-stacking-cards .sk-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-stacking-cards .sk-head{text-align:center;margin-bottom:48px}
+    .wpmn-sec-stacking-cards .sk-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-stacking-cards .sk-sub{max-width:800px;margin:16px auto 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-stacking-cards .sk-card{position:sticky;border-radius:var(--radius-lg);padding:64px 48px;min-height:320px;margin-bottom:32px;border:1.5px solid var(--color-border-primary);background:var(--color-surface-primary);box-shadow:var(--shadow-soft-300);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+    .wpmn-sec-stacking-cards .sk-card:nth-child(1){top:80px}
+    .wpmn-sec-stacking-cards .sk-card:nth-child(2){top:104px}
+    .wpmn-sec-stacking-cards .sk-card:nth-child(3){top:128px}
+    .wpmn-sec-stacking-cards .sk-n{font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable)}
+    .wpmn-sec-stacking-cards .sk-card h3{margin:8px 0 0;font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-stacking-cards .sk-card p{margin:12px 0 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-stacking-cards .sk-img{border-radius:var(--radius-md);background:var(--btn-bg-focused);min-height:220px;display:flex;align-items:center;justify-content:center;color:var(--btn-bg-hovered);font-size:var(--font-size-body-small)}
+    @media(max-width:1199px){.wpmn-sec-stacking-cards .sk-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-stacking-cards .sk-card{grid-template-columns:1fr;padding:40px 24px}}
+    @media(max-width:768px){.wpmn-sec-stacking-cards{padding:64px 0}.wpmn-sec-stacking-cards .sk-c{padding:0 20px}}
+  </style>
+  <div class="sk-c">
+    <div class="sk-head"><h2 class="sk-heading">Scroll, pin, stack</h2><p class="sk-sub">Each card sticks to the top and the next one slides over it. Pure CSS, no scroll hijacking.</p></div>
+    <div class="sk-stack">
+      <div class="sk-card"><div><span class="sk-n">Step 01</span><h3>Capture</h3><p>Forms, chat, and landing pages feed every lead into one contact timeline.</p></div><div class="sk-img">Visual 16:10</div></div>
+      <div class="sk-card"><div><span class="sk-n">Step 02</span><h3>Nurture</h3><p>Automated sequences warm leads with the right message at the right moment.</p></div><div class="sk-img">Visual 16:10</div></div>
+      <div class="sk-card"><div><span class="sk-n">Step 03</span><h3>Convert</h3><p>Deals close inside the same dashboard, with revenue attributed to its source.</p></div><div class="sk-img">Visual 16:10</div></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+<!-- WPMN Section: Timeline / Roadmap — chronological points on a central axis -->
+<section class="wpmn-sec-timeline-roadmap">
+  <style>
+    .wpmn-sec-timeline-roadmap{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-timeline-roadmap .tl-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-timeline-roadmap .tl-head{text-align:center;margin-bottom:48px}
+    .wpmn-sec-timeline-roadmap .tl-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-timeline-roadmap .tl-line{position:relative;max-width:800px;margin:0 auto;padding-left:40px}
+    .wpmn-sec-timeline-roadmap .tl-line::before{content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--color-border-primary)}
+    .wpmn-sec-timeline-roadmap .tl-item{position:relative;padding-bottom:40px}
+    .wpmn-sec-timeline-roadmap .tl-item:last-child{padding-bottom:0}
+    .wpmn-sec-timeline-roadmap .tl-dot{position:absolute;left:-40px;top:4px;width:24px;height:24px;border-radius:50%;border:2px solid var(--color-border-primary);background:var(--color-surface-primary);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-timeline-roadmap .tl-item[data-done] .tl-dot{border-color:var(--color-success-primary);background:var(--color-success-primary);color:var(--color-text-primary-invert)}
+    .wpmn-sec-timeline-roadmap .tl-item[data-now] .tl-dot{border-color:var(--btn-bg-enable)}
+    .wpmn-sec-timeline-roadmap .tl-item[data-now] .tl-dot::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--btn-bg-enable)}
+    .wpmn-sec-timeline-roadmap .tl-when{font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary)}
+    .wpmn-sec-timeline-roadmap .tl-item[data-now] .tl-when{color:var(--btn-bg-enable)}
+    .wpmn-sec-timeline-roadmap h3{margin:6px 0 0;font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-timeline-roadmap p{margin:8px 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);max-width:640px}
+    @media(max-width:1199px){.wpmn-sec-timeline-roadmap .tl-c{padding:0 40px}}
+    @media(max-width:768px){.wpmn-sec-timeline-roadmap{padding:64px 0}.wpmn-sec-timeline-roadmap .tl-c{padding:0 20px}}
+  </style>
+  <div class="tl-c">
+    <div class="tl-head"><h2 class="tl-heading">Where we're headed</h2></div>
+    <div class="tl-line">
+      <div class="tl-item" data-done>
+        <span class="tl-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tl-when">Q1 — Shipped</span><h3>Visual automation canvas</h3><p>Rebuilt flow editor with drag and drop branching and inline testing.</p>
+      </div>
+      <div class="tl-item" data-done>
+        <span class="tl-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tl-when">Q2 — Shipped</span><h3>Revenue attribution</h3><p>Campaign-level revenue tracking for WooCommerce and EDD.</p>
+      </div>
+      <div class="tl-item" data-now>
+        <span class="tl-dot"></span>
+        <span class="tl-when">Q3 — In progress</span><h3>AI writing assistant</h3><p>Subject lines, body copy, and send-time suggestions inside the composer.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot"></span>
+        <span class="tl-when">Q4 — Planned</span><h3>Multi-brand workspaces</h3><p>Run every client brand from a single dashboard with isolated data.</p>
+      </div>
+    </div>
+  </div>
+</section>

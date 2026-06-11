@@ -1,0 +1,45 @@
+{
+  "id": "infinite-marquee",
+  "name": "Infinite Marquee",
+  "type": "html",
+  "status": "stable",
+  "description": "Continuous auto-scrolling logo band via duplicated track + translateX keyframes (28s loop). Pauses on hover, honors reduced motion.",
+  "files": {
+    "html": "sections/infinite-marquee/section.html"
+  },
+  "prompt": "sections/infinite-marquee/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-infinite-marquee",
+  "interactions": [
+    "see section.html script block, scoped IIFE"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "tags": [
+    "marquee",
+    "ticker",
+    "auto scroll",
+    "logos",
+    "band"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "stacking-cards",
+  "name": "Stacking Cards",
+  "type": "html",
+  "status": "stable",
+  "description": "Cards pin with position:sticky at stepped offsets and stack as the page scrolls. Pure CSS, no scroll hijack.",
+  "files": {
+    "html": "sections/stacking-cards/section.html"
+  },
+  "prompt": "sections/stacking-cards/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-stacking-cards",
+  "interactions": [
+    "see section.html script block, scoped IIFE"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "tags": [
+    "stacking",
+    "sticky",
+    "pin",
+    "scroll",
+    "steps"
+  ]
+}

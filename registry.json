@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T06:35:46.176Z",
+  "generatedAt": "2026-06-11T06:59:40.433Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -897,6 +897,457 @@
       ]
     },
     {
+      "id": "announcement-bar",
+      "name": "Announcement Bar",
+      "type": "html",
+      "status": "stable",
+      "description": "Slim dark dismissible bar for promos: bold lead-in, arrow link, close button. Sits above the navbar.",
+      "files": {
+        "html": "sections/announcement-bar/section.html"
+      },
+      "prompt": "sections/announcement-bar/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-announcement-bar",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "tags": [
+        "announcement",
+        "promo bar",
+        "top bar",
+        "banner",
+        "sale",
+        "dismissible"
+      ]
+    },
+    {
+      "id": "asymmetric-grid",
+      "name": "Asymmetric Grid",
+      "type": "html",
+      "status": "stable",
+      "description": "12-column broken grid with intentional vertical offsets for an editorial feel. Offsets collapse to a clean stack on mobile.",
+      "files": {
+        "html": "sections/asymmetric-grid/section.html"
+      },
+      "prompt": "sections/asymmetric-grid/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-asymmetric-grid",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "tags": [
+        "asymmetric",
+        "broken grid",
+        "editorial",
+        "offset",
+        "overlap"
+      ]
+    },
+    {
+      "id": "before-after-slider",
+      "name": "Before/After Slider",
+      "type": "html",
+      "status": "stable",
+      "description": "Draggable divider over two stacked panels using clip-path inset, pointer events, 16:9 frame with knob handle.",
+      "files": {
+        "html": "sections/before-after-slider/section.html"
+      },
+      "prompt": "sections/before-after-slider/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-before-after-slider",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Interactive",
+      "tags": [
+        "before after",
+        "comparison slider",
+        "drag",
+        "reveal",
+        "image compare"
+      ]
+    },
+    {
+      "id": "bento-grid",
+      "name": "Bento Grid",
+      "type": "html",
+      "status": "stable",
+      "description": "4-column bento with span-2 and tall boxes, icon tiles, one inverted dark box with a big stat. Hover lifts shadow.",
+      "files": {
+        "html": "sections/bento-grid/section.html"
+      },
+      "prompt": "sections/bento-grid/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-bento-grid",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "tags": [
+        "bento",
+        "grid",
+        "boxes",
+        "features",
+        "mosaic"
+      ]
+    },
+    {
+      "id": "blog-cards",
+      "name": "Blog Cards",
+      "type": "html",
+      "status": "stable",
+      "description": "3-column article cards: 16:9 cover, category + read time meta, title, excerpt. Whole card is the link with hover lift.",
+      "files": {
+        "html": "sections/blog-cards/section.html"
+      },
+      "prompt": "sections/blog-cards/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-blog-cards",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Lists & Feeds",
+      "tags": [
+        "blog",
+        "articles",
+        "resources",
+        "cards",
+        "posts"
+      ]
+    },
+    {
+      "id": "carousel-slider",
+      "name": "Carousel Slider",
+      "type": "html",
+      "status": "stable",
+      "description": "Scroll-snap horizontal belt, 3-up responsive, arrow buttons, auto-generated page dots that track scroll position.",
+      "files": {
+        "html": "sections/carousel-slider/section.html"
+      },
+      "prompt": "sections/carousel-slider/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-carousel-slider",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Scroll & Motion",
+      "tags": [
+        "carousel",
+        "slider",
+        "swipe",
+        "scroll snap",
+        "gallery"
+      ]
+    },
+    {
+      "id": "collapsible-drawer",
+      "name": "Collapsible Drawer",
+      "type": "html",
+      "status": "stable",
+      "description": "Slide-out side panel over a stage area. 300ms transform, close button, aria-hidden wiring. For secondary info on demand.",
+      "files": {
+        "html": "sections/collapsible-drawer/section.html"
+      },
+      "prompt": "sections/collapsible-drawer/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-collapsible-drawer",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Disclosure",
+      "tags": [
+        "drawer",
+        "panel",
+        "slide out",
+        "side panel",
+        "off canvas"
+      ]
+    },
+    {
+      "id": "comparison-table",
+      "name": "Competitor Comparison",
+      "type": "html",
+      "status": "stable",
+      "description": "Us-vs-them matrix: highlighted Us column, success checks and error crosses, mixed text cells, CTA below.",
+      "files": {
+        "html": "sections/comparison-table/section.html"
+      },
+      "prompt": "sections/comparison-table/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-comparison-table",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Interactive",
+      "tags": [
+        "comparison",
+        "versus",
+        "competitor",
+        "matrix",
+        "switch"
+      ]
+    },
+    {
+      "id": "content-accordion",
+      "name": "Content Accordion",
+      "type": "html",
+      "status": "stable",
+      "description": "Two-column disclosure: pinned heading left, numbered single-open accordion right. Max-height transition 250ms, chevron rotates 180deg.",
+      "files": {
+        "html": "sections/content-accordion/section.html"
+      },
+      "prompt": "sections/content-accordion/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-content-accordion",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Disclosure",
+      "tags": [
+        "accordion",
+        "disclosure",
+        "collapse",
+        "expand",
+        "capabilities"
+      ]
+    },
+    {
+      "id": "content-tabs",
+      "name": "Feature Tabs",
+      "type": "html",
+      "status": "stable",
+      "description": "Centered header + pill tab bar switching content panels. Each panel pairs text with a 16:10 mockup inside a brand-surface stage.",
+      "files": {
+        "html": "sections/content-tabs/section.html"
+      },
+      "prompt": "sections/content-tabs/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-content-tabs",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Disclosure",
+      "tags": [
+        "tabs",
+        "toggle",
+        "switch",
+        "panels",
+        "product tour"
+      ]
+    },
+    {
       "id": "cta-banner",
       "name": "CTA Impact Banner",
       "type": "html",
@@ -947,6 +1398,51 @@
         "dark section",
         "conversion",
         "impact"
+      ]
+    },
+    {
+      "id": "expandable-table",
+      "name": "Expandable Table",
+      "type": "html",
+      "status": "stable",
+      "description": "Comparison table whose rows expand inline (max-height transition) to reveal a 3-fact detail grid. Header hides on mobile.",
+      "files": {
+        "html": "sections/expandable-table/section.html"
+      },
+      "prompt": "sections/expandable-table/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-expandable-table",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Lists & Feeds",
+      "tags": [
+        "table",
+        "expandable",
+        "rows",
+        "details",
+        "compare"
       ]
     },
     {
@@ -1111,6 +1607,141 @@
       ]
     },
     {
+      "id": "horizontal-scroll",
+      "name": "Horizontal Scroll",
+      "type": "html",
+      "status": "stable",
+      "description": "300vh tall wrapper pins a viewport; vertical scroll progress translates a horizontal panel track. Falls back to native overflow for reduced motion.",
+      "files": {
+        "html": "sections/horizontal-scroll/section.html"
+      },
+      "prompt": "sections/horizontal-scroll/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-horizontal-scroll",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Scroll & Motion",
+      "tags": [
+        "horizontal scroll",
+        "pin",
+        "scroll jack",
+        "panels",
+        "story"
+      ]
+    },
+    {
+      "id": "infinite-marquee",
+      "name": "Infinite Marquee",
+      "type": "html",
+      "status": "stable",
+      "description": "Continuous auto-scrolling logo band via duplicated track + translateX keyframes (28s loop). Pauses on hover, honors reduced motion.",
+      "files": {
+        "html": "sections/infinite-marquee/section.html"
+      },
+      "prompt": "sections/infinite-marquee/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-infinite-marquee",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Scroll & Motion",
+      "tags": [
+        "marquee",
+        "ticker",
+        "auto scroll",
+        "logos",
+        "band"
+      ]
+    },
+    {
+      "id": "integration-grid",
+      "name": "Integration Grid",
+      "type": "html",
+      "status": "stable",
+      "description": "4-column app tiles: logo tile, name, one-line purpose. Hover highlights border in brand color. Browse-all link below.",
+      "files": {
+        "html": "sections/integration-grid/section.html"
+      },
+      "prompt": "sections/integration-grid/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-integration-grid",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "tags": [
+        "integrations",
+        "apps",
+        "connect",
+        "ecosystem",
+        "tiles"
+      ]
+    },
+    {
       "id": "logo-cloud",
       "name": "Logo Cloud",
       "type": "html",
@@ -1159,6 +1790,412 @@
         "social proof",
         "press",
         "wall of love"
+      ]
+    },
+    {
+      "id": "masonry-grid",
+      "name": "Masonry Grid",
+      "type": "html",
+      "status": "stable",
+      "description": "Pinterest-style packing via CSS columns (3/2/1 responsive). Cards with variable-height media placeholders.",
+      "files": {
+        "html": "sections/masonry-grid/section.html"
+      },
+      "prompt": "sections/masonry-grid/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-masonry-grid",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "tags": [
+        "masonry",
+        "pinterest",
+        "columns",
+        "gallery",
+        "showcase"
+      ]
+    },
+    {
+      "id": "mockup-showcase",
+      "name": "Mockup Showcase",
+      "type": "html",
+      "status": "stable",
+      "description": "Browser-framed screenshot (chrome dots + URL bar) on a dark surface stage, following the guideline mockup rules: 16px frame radius, soft-500 shadow, 32px stage radius.",
+      "files": {
+        "html": "sections/mockup-showcase/section.html"
+      },
+      "prompt": "sections/mockup-showcase/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-mockup-showcase",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact",
+      "tags": [
+        "mockup",
+        "screenshot",
+        "browser frame",
+        "showcase",
+        "product shot"
+      ]
+    },
+    {
+      "id": "multi-column-cards",
+      "name": "Multi-Column Cards",
+      "type": "html",
+      "status": "stable",
+      "description": "Classic 3-column feature cards (guideline grid #3, 32px gutter): icon tile, heading, body. Hover lift.",
+      "files": {
+        "html": "sections/multi-column-cards/section.html"
+      },
+      "prompt": "sections/multi-column-cards/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-multi-column-cards",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "tags": [
+        "cards",
+        "3 column",
+        "features",
+        "grid",
+        "uniform"
+      ]
+    },
+    {
+      "id": "newsletter-signup",
+      "name": "Newsletter Signup",
+      "type": "html",
+      "status": "stable",
+      "description": "Bordered 32px-radius panel, icon tile, heading, single email input + subscribe button, privacy note. Stacks on mobile.",
+      "files": {
+        "html": "sections/newsletter-signup/section.html"
+      },
+      "prompt": "sections/newsletter-signup/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-newsletter-signup",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "tags": [
+        "newsletter",
+        "subscribe",
+        "email capture",
+        "signup",
+        "lead magnet"
+      ]
+    },
+    {
+      "id": "pricing-table",
+      "name": "Pricing Table",
+      "type": "html",
+      "status": "stable",
+      "description": "3 tiers with a Most Popular highlight (2px brand border + shadow), monthly/yearly toggle swapping prices via data attributes, check-listed features.",
+      "files": {
+        "html": "sections/pricing-table/section.html"
+      },
+      "prompt": "sections/pricing-table/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-pricing-table",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Interactive",
+      "tags": [
+        "pricing",
+        "plans",
+        "tiers",
+        "comparison",
+        "monthly yearly",
+        "popular"
+      ]
+    },
+    {
+      "id": "read-more",
+      "name": "Read More",
+      "type": "html",
+      "status": "stable",
+      "description": "Long text truncated at 170px with a bottom fade. Trigger expands to full height (350ms) and flips to Read less.",
+      "files": {
+        "html": "sections/read-more/section.html"
+      },
+      "prompt": "sections/read-more/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-read-more",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Disclosure",
+      "tags": [
+        "read more",
+        "truncate",
+        "expand",
+        "fade",
+        "long text"
+      ]
+    },
+    {
+      "id": "split-screen",
+      "name": "Split Screen 50/50",
+      "type": "html",
+      "status": "stable",
+      "description": "Even two-column split: brand-surface visual left, badge + heading + inline email capture right. Stacks on mobile.",
+      "files": {
+        "html": "sections/split-screen/section.html"
+      },
+      "prompt": "sections/split-screen/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-split-screen",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "tags": [
+        "split screen",
+        "50 50",
+        "two column",
+        "form",
+        "waitlist"
+      ]
+    },
+    {
+      "id": "stacked-list",
+      "name": "Stacked List",
+      "type": "html",
+      "status": "stable",
+      "description": "Uniform feed rows: date column, title + excerpt, tag pill. Row hover tint. For blogs, changelogs, results.",
+      "files": {
+        "html": "sections/stacked-list/section.html"
+      },
+      "prompt": "sections/stacked-list/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-stacked-list",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Lists & Feeds",
+      "tags": [
+        "list",
+        "feed",
+        "blog list",
+        "rows",
+        "changelog"
+      ]
+    },
+    {
+      "id": "stacking-cards",
+      "name": "Stacking Cards",
+      "type": "html",
+      "status": "stable",
+      "description": "Cards pin with position:sticky at stepped offsets and stack as the page scrolls. Pure CSS, no scroll hijack.",
+      "files": {
+        "html": "sections/stacking-cards/section.html"
+      },
+      "prompt": "sections/stacking-cards/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-stacking-cards",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Scroll & Motion",
+      "tags": [
+        "stacking",
+        "sticky",
+        "pin",
+        "scroll",
+        "steps"
       ]
     },
     {
@@ -1212,6 +2249,277 @@
         "milestones",
         "social proof",
         "count up"
+      ]
+    },
+    {
+      "id": "steps-walkthrough",
+      "name": "Steps Walkthrough",
+      "type": "html",
+      "status": "stable",
+      "description": "4 numbered cards with connecting arrows. Brand-filled number circles with the button inner-glow treatment.",
+      "files": {
+        "html": "sections/steps-walkthrough/section.html"
+      },
+      "prompt": "sections/steps-walkthrough/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-steps-walkthrough",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Interactive",
+      "tags": [
+        "steps",
+        "process",
+        "how it works",
+        "walkthrough",
+        "onboarding"
+      ]
+    },
+    {
+      "id": "sticky-scroll",
+      "name": "Sticky Side-by-Side",
+      "type": "html",
+      "status": "stable",
+      "description": "5/7 split where the left heading pins (sticky top 96px) while feature cards scroll on the right.",
+      "files": {
+        "html": "sections/sticky-scroll/section.html"
+      },
+      "prompt": "sections/sticky-scroll/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-sticky-scroll",
+      "interactions": [
+        "see section.html script block, scoped IIFE"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Scroll & Motion",
+      "tags": [
+        "sticky",
+        "pinned",
+        "side by side",
+        "scroll",
+        "tour"
+      ]
+    },
+    {
+      "id": "team-grid",
+      "name": "Team Grid",
+      "type": "html",
+      "status": "stable",
+      "description": "4-column people cards: circular avatar, name, role, social icon links. Hover lifts shadow.",
+      "files": {
+        "html": "sections/team-grid/section.html"
+      },
+      "prompt": "sections/team-grid/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-team-grid",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "tags": [
+        "team",
+        "people",
+        "about us",
+        "staff",
+        "avatars"
+      ]
+    },
+    {
+      "id": "testimonial-grid",
+      "name": "Testimonial Grid",
+      "type": "html",
+      "status": "stable",
+      "description": "Wall-of-love masonry (CSS columns) of quote cards with star rows, avatar initials, names and roles.",
+      "files": {
+        "html": "sections/testimonial-grid/section.html"
+      },
+      "prompt": "sections/testimonial-grid/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-testimonial-grid",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "tags": [
+        "testimonials",
+        "wall of love",
+        "reviews",
+        "quotes",
+        "social proof",
+        "stars"
+      ]
+    },
+    {
+      "id": "timeline-roadmap",
+      "name": "Timeline Roadmap",
+      "type": "html",
+      "status": "stable",
+      "description": "Vertical axis with status dots: done (success check), in progress (brand pulse dot), planned (empty). Quarter labels + descriptions.",
+      "files": {
+        "html": "sections/timeline-roadmap/section.html"
+      },
+      "prompt": "sections/timeline-roadmap/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-timeline-roadmap",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Interactive",
+      "tags": [
+        "timeline",
+        "roadmap",
+        "milestones",
+        "chronological",
+        "quarters"
+      ]
+    },
+    {
+      "id": "zigzag-features",
+      "name": "Zig-Zag Features",
+      "type": "html",
+      "status": "stable",
+      "description": "Alternating image/text rows (even rows flip order). Kicker, heading, body, arrow link per row. Stacks image-first on mobile.",
+      "files": {
+        "html": "sections/zigzag-features/section.html"
+      },
+      "prompt": "sections/zigzag-features/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-zigzag-features",
+      "interactions": [
+        "none or CSS-only"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-border-primary",
+        "--radius-*",
+        "--font-*",
+        "--shadow-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Lists & Feeds",
+      "tags": [
+        "zigzag",
+        "alternating",
+        "image text",
+        "rows",
+        "features"
       ]
     }
   ]

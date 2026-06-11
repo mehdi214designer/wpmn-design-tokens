@@ -1,0 +1,43 @@
+<!-- WPMN Section: Bento Grid — mismatched tightly-fitting feature boxes -->
+<section class="wpmn-sec-bento-grid">
+  <style>
+    .wpmn-sec-bento-grid{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-bento-grid .bg-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-bento-grid .bg-head{text-align:center;margin-bottom:48px}
+    .wpmn-sec-bento-grid .bg-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
+    .wpmn-sec-bento-grid .bg-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
+    .wpmn-sec-bento-grid .bg-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-bento-grid .bg-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:24px}
+    .wpmn-sec-bento-grid .bg-box{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:28px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;position:relative;transition:box-shadow 120ms ease}
+    .wpmn-sec-bento-grid .bg-box:hover{box-shadow:var(--shadow-soft-300)}
+    .wpmn-sec-bento-grid .bg-box--w2{grid-column:span 2}
+    .wpmn-sec-bento-grid .bg-box--h2{grid-row:span 2}
+    .wpmn-sec-bento-grid .bg-box--fill{background:var(--color-surface-secondary)}
+    .wpmn-sec-bento-grid .bg-box--fill h3,.wpmn-sec-bento-grid .bg-box--fill p{color:var(--color-text-primary-invert)}
+    .wpmn-sec-bento-grid .bg-box--fill p{color:var(--color-text-secondary-invert)}
+    .wpmn-sec-bento-grid .bg-icon{width:40px;height:40px;border-radius:var(--radius-xsm);background:var(--btn-bg-focused);color:var(--btn-bg-enable);display:flex;align-items:center;justify-content:center;margin-bottom:auto}
+    .wpmn-sec-bento-grid .bg-box h3{margin:12px 0 0;font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-bento-grid .bg-box p{margin:8px 0 0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-bento-grid .bg-big{font-size:var(--font-size-h2);font-weight:var(--font-weight-bold);color:var(--btn-bg-enable);line-height:1;margin-bottom:auto}
+    @media(max-width:1199px){.wpmn-sec-bento-grid .bg-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-bento-grid .bg-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.wpmn-sec-bento-grid{padding:64px 0}.wpmn-sec-bento-grid .bg-c{padding:0 20px}}
+    @media(max-width:560px){.wpmn-sec-bento-grid .bg-grid{grid-template-columns:1fr;grid-auto-rows:auto}.wpmn-sec-bento-grid .bg-box--w2,.wpmn-sec-bento-grid .bg-box--h2{grid-column:auto;grid-row:auto;min-height:180px}}
+  </style>
+  <div class="bg-c">
+    <div class="bg-head">
+      <span class="bg-badge">Features</span>
+      <h2 class="bg-heading">Built like a bento box</h2>
+    </div>
+    <div class="bg-grid">
+      <div class="bg-box bg-box--w2 bg-box--h2">
+        <span class="bg-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="currentColor"/></svg></span>
+        <h3>Automation engine</h3><p>Triggers, conditions, delays, and goals chained on a visual canvas. The flagship feature gets the biggest box.</p>
+      </div>
+      <div class="bg-box"><span class="bg-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M3 9h18" stroke="currentColor" stroke-width="2"/></svg></span><h3>Templates</h3><p>120+ ready layouts.</p></div>
+      <div class="bg-box bg-box--fill"><span class="bg-big">99.9%</span><h3>Uptime SLA</h3><p>Across all managed services.</p></div>
+      <div class="bg-box"><span class="bg-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Real-time sync</h3><p>Changes land everywhere instantly.</p></div>
+      <div class="bg-box bg-box--w2"><span class="bg-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><h3>GDPR-ready by default</h3><p>Self-hosted data, consent fields, and full export/erase tooling baked in.</p></div>
+    </div>
+  </div>
+</section>

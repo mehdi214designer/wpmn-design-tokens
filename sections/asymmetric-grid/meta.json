@@ -1,0 +1,45 @@
+{
+  "id": "asymmetric-grid",
+  "name": "Asymmetric Grid",
+  "type": "html",
+  "status": "stable",
+  "description": "12-column broken grid with intentional vertical offsets for an editorial feel. Offsets collapse to a clean stack on mobile.",
+  "files": {
+    "html": "sections/asymmetric-grid/section.html"
+  },
+  "prompt": "sections/asymmetric-grid/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-asymmetric-grid",
+  "interactions": [
+    "none or CSS-only"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "tags": [
+    "asymmetric",
+    "broken grid",
+    "editorial",
+    "offset",
+    "overlap"
+  ]
+}

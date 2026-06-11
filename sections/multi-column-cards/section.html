@@ -1,0 +1,34 @@
+<!-- WPMN Section: Multi-Column Cards — clean 3-col feature grid (guideline grid #3) -->
+<section class="wpmn-sec-multi-column-cards">
+  <style>
+    .wpmn-sec-multi-column-cards{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-multi-column-cards .mc-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-multi-column-cards .mc-head{text-align:center;margin-bottom:48px}
+    .wpmn-sec-multi-column-cards .mc-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
+    .wpmn-sec-multi-column-cards .mc-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
+    .wpmn-sec-multi-column-cards .mc-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-multi-column-cards .mc-sub{max-width:800px;margin:16px auto 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-multi-column-cards .mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+    .wpmn-sec-multi-column-cards .mc-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:32px 24px;transition:box-shadow 120ms ease,transform 120ms ease}
+    .wpmn-sec-multi-column-cards .mc-card:hover{box-shadow:var(--shadow-soft-300);transform:translateY(-2px)}
+    .wpmn-sec-multi-column-cards .mc-icon{width:40px;height:40px;border-radius:var(--radius-xsm);background:var(--btn-bg-focused);color:var(--btn-bg-enable);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-multi-column-cards .mc-card h3{margin:12px 0 0;font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-multi-column-cards .mc-card p{margin:8px 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    @media(max-width:1199px){.wpmn-sec-multi-column-cards .mc-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-multi-column-cards .mc-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
+    @media(max-width:768px){.wpmn-sec-multi-column-cards{padding:64px 0}.wpmn-sec-multi-column-cards .mc-c{padding:0 20px}}
+    @media(max-width:560px){.wpmn-sec-multi-column-cards .mc-grid{grid-template-columns:1fr}}
+  </style>
+  <div class="mc-c">
+    <div class="mc-head">
+      <span class="mc-badge">Why Us</span>
+      <h2 class="mc-heading">Three reasons teams switch</h2>
+      <p class="mc-sub">Uniform cards, 3-column grid, 32px gutter. The bread and butter of feature sections.</p>
+    </div>
+    <div class="mc-grid">
+      <div class="mc-card"><span class="mc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="currentColor"/></svg></span><h3>Faster by default</h3><p>No bloat, no jQuery, no render-blocking assets. Pages stay under 100kb.</p></div>
+      <div class="mc-card"><span class="mc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><h3>Your data stays yours</h3><p>Everything is self-hosted inside WordPress. No third-party lock-in, ever.</p></div>
+      <div class="mc-card"><span class="mc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg></span><h3>Support that answers</h3><p>Real humans, median first response under 4 hours, every day of the year.</p></div>
+    </div>
+  </div>
+</section>

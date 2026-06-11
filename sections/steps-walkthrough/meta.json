@@ -1,0 +1,45 @@
+{
+  "id": "steps-walkthrough",
+  "name": "Steps Walkthrough",
+  "type": "html",
+  "status": "stable",
+  "description": "4 numbered cards with connecting arrows. Brand-filled number circles with the button inner-glow treatment.",
+  "files": {
+    "html": "sections/steps-walkthrough/section.html"
+  },
+  "prompt": "sections/steps-walkthrough/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-steps-walkthrough",
+  "interactions": [
+    "none or CSS-only"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Interactive",
+  "tags": [
+    "steps",
+    "process",
+    "how it works",
+    "walkthrough",
+    "onboarding"
+  ]
+}

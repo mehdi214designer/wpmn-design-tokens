@@ -1,0 +1,46 @@
+<!-- WPMN Section: Horizontal Scroll — sticky viewport translates a horizontal track with page scroll -->
+<section class="wpmn-sec-horizontal-scroll">
+  <style>
+    .wpmn-sec-horizontal-scroll{background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-horizontal-scroll .hz-tall{height:300vh;position:relative}
+    .wpmn-sec-horizontal-scroll .hz-pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+    .wpmn-sec-horizontal-scroll .hz-head{max-width:1200px;margin:0 auto 40px;width:100%;text-align:center}
+    .wpmn-sec-horizontal-scroll h2{margin:0;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-horizontal-scroll .hz-sub{margin:12px 0 0;font-size:var(--font-size-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-horizontal-scroll .hz-track{display:flex;gap:32px;padding:0 max(calc((100vw - 1200px)/2),40px);will-change:transform}
+    .wpmn-sec-horizontal-scroll .hz-panel{flex:0 0 480px;border:1.5px solid var(--color-border-primary);border-radius:var(--radius-lg);padding:48px;background:var(--color-surface-primary)}
+    .wpmn-sec-horizontal-scroll .hz-num{font-size:var(--font-size-h3);font-weight:var(--font-weight-bold);color:var(--btn-bg-enable)}
+    .wpmn-sec-horizontal-scroll .hz-panel h3{margin:12px 0 0;font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-horizontal-scroll .hz-panel p{margin:12px 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    @media(max-width:768px){.wpmn-sec-horizontal-scroll .hz-panel{flex-basis:300px;padding:28px}}
+    @media(prefers-reduced-motion:reduce){.wpmn-sec-horizontal-scroll .hz-tall{height:auto}.wpmn-sec-horizontal-scroll .hz-pin{position:static;height:auto}.wpmn-sec-horizontal-scroll .hz-track{overflow-x:auto}}
+  </style>
+  <div class="hz-tall">
+    <div class="hz-pin">
+      <div class="hz-head"><h2>Scroll down, move sideways</h2><p class="hz-sub">Vertical scroll drives the horizontal track while the section stays pinned.</p></div>
+      <div class="hz-track">
+        <div class="hz-panel"><span class="hz-num">01</span><h3>Install</h3><p>One plugin, under a minute, no account required to start.</p></div>
+        <div class="hz-panel"><span class="hz-num">02</span><h3>Import</h3><p>Bring contacts, forms, and history from any tool with guided wizards.</p></div>
+        <div class="hz-panel"><span class="hz-num">03</span><h3>Automate</h3><p>Turn on prebuilt recipes or design your own flows on the canvas.</p></div>
+        <div class="hz-panel"><span class="hz-num">04</span><h3>Grow</h3><p>Dashboards show what converts, so doubling down is a data decision.</p></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var s=document.currentScript?document.currentScript.parentElement:document.querySelector('.wpmn-sec-horizontal-scroll');if(!s)return;
+      if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+      var tall=s.querySelector('.hz-tall'),track=s.querySelector('.hz-track');
+      function onScroll(){
+        var r=tall.getBoundingClientRect();
+        var total=r.height-window.innerHeight;
+        var p=Math.min(Math.max(-r.top/total,0),1);
+        var max=track.scrollWidth-track.parentElement.clientWidth;
+        track.style.transform='translateX('+(-p*Math.max(max,0))+'px)';
+      }
+      window.addEventListener('scroll',onScroll,{passive:true});
+      window.addEventListener('resize',onScroll);
+      onScroll();
+    })();
+  </script>
+</section>

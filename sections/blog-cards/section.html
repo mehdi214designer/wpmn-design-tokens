@@ -1,0 +1,31 @@
+<!-- WPMN Section: Blog / Resource Cards — 3-col article grid -->
+<section class="wpmn-sec-blog-cards">
+  <style>
+    .wpmn-sec-blog-cards{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-blog-cards .bc-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-blog-cards .bc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+    .wpmn-sec-blog-cards h2{margin:0;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-blog-cards .bc-all{font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable);text-decoration:none}
+    .wpmn-sec-blog-cards .bc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+    .wpmn-sec-blog-cards .bc-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow 120ms ease,transform 120ms ease}
+    .wpmn-sec-blog-cards .bc-card:hover{box-shadow:var(--shadow-soft-300);transform:translateY(-2px)}
+    .wpmn-sec-blog-cards .bc-img{aspect-ratio:16/9;background:var(--btn-bg-focused);display:flex;align-items:center;justify-content:center;color:var(--btn-bg-hovered);font-size:var(--font-size-body-small)}
+    .wpmn-sec-blog-cards .bc-body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+    .wpmn-sec-blog-cards .bc-meta{display:flex;gap:10px;align-items:center;font-size:var(--font-size-body-label);color:var(--color-text-secondary)}
+    .wpmn-sec-blog-cards .bc-cat{font-weight:var(--font-weight-medium);color:var(--btn-bg-enable);text-transform:uppercase;letter-spacing:.05em}
+    .wpmn-sec-blog-cards h3{margin:0;font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-blog-cards p{margin:0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);flex:1}
+    @media(max-width:1199px){.wpmn-sec-blog-cards .bc-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-blog-cards .bc-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
+    @media(max-width:768px){.wpmn-sec-blog-cards{padding:64px 0}.wpmn-sec-blog-cards .bc-c{padding:0 20px}}
+    @media(max-width:560px){.wpmn-sec-blog-cards .bc-grid{grid-template-columns:1fr}}
+  </style>
+  <div class="bc-c">
+    <div class="bc-head"><h2>Resources & guides</h2><a class="bc-all" href="#">Browse all →</a></div>
+    <div class="bc-grid">
+      <a class="bc-card" href="#"><div class="bc-img">Cover 16:9</div><div class="bc-body"><div class="bc-meta"><span class="bc-cat">Guide</span><span>8 min read</span></div><h3>The anatomy of a high-converting landing page</h3><p>Section order, copy length, and the CTA math behind pages that sell.</p></div></a>
+      <a class="bc-card" href="#"><div class="bc-img">Cover 16:9</div><div class="bc-body"><div class="bc-meta"><span class="bc-cat">Tutorial</span><span>12 min read</span></div><h3>Automating client onboarding end to end</h3><p>From signed proposal to kickoff call without touching a spreadsheet.</p></div></a>
+      <a class="bc-card" href="#"><div class="bc-img">Cover 16:9</div><div class="bc-body"><div class="bc-meta"><span class="bc-cat">Comparison</span><span>6 min read</span></div><h3>Self-hosted CRM vs SaaS: the real cost</h3><p>A three-year total cost breakdown across team sizes.</p></div></a>
+    </div>
+  </div>
+</section>

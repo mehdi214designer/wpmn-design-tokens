@@ -1,0 +1,45 @@
+{
+  "id": "expandable-table",
+  "name": "Expandable Table",
+  "type": "html",
+  "status": "stable",
+  "description": "Comparison table whose rows expand inline (max-height transition) to reveal a 3-fact detail grid. Header hides on mobile.",
+  "files": {
+    "html": "sections/expandable-table/section.html"
+  },
+  "prompt": "sections/expandable-table/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-expandable-table",
+  "interactions": [
+    "see section.html script block, scoped IIFE"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Lists & Feeds",
+  "tags": [
+    "table",
+    "expandable",
+    "rows",
+    "details",
+    "compare"
+  ]
+}

@@ -1,0 +1,37 @@
+<!-- WPMN Section: Alternating Zig-Zag — image/text rows flipping each step -->
+<section class="wpmn-sec-zigzag-features">
+  <style>
+    .wpmn-sec-zigzag-features{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-zigzag-features .zz-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-zigzag-features .zz-head{text-align:center;margin-bottom:48px}
+    .wpmn-sec-zigzag-features .zz-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-zigzag-features .zz-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:40px 0}
+    .wpmn-sec-zigzag-features .zz-row:nth-child(even) .zz-img{order:2}
+    .wpmn-sec-zigzag-features .zz-img{border-radius:var(--radius-md);background:var(--btn-bg-focused);min-height:300px;display:flex;align-items:center;justify-content:center;color:var(--btn-bg-hovered);font-size:var(--font-size-body-small)}
+    .wpmn-sec-zigzag-features .zz-kicker{font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable)}
+    .wpmn-sec-zigzag-features h3{margin:8px 0 0;font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-zigzag-features p{margin:12px 0 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-zigzag-features .zz-link{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable);text-decoration:none}
+    .wpmn-sec-zigzag-features .zz-link:hover{color:var(--btn-bg-hovered)}
+    @media(max-width:1199px){.wpmn-sec-zigzag-features .zz-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-zigzag-features .zz-row{grid-template-columns:1fr;gap:24px}.wpmn-sec-zigzag-features .zz-row:nth-child(even) .zz-img{order:0}.wpmn-sec-zigzag-features .zz-img{min-height:220px}}
+    @media(max-width:768px){.wpmn-sec-zigzag-features{padding:64px 0}.wpmn-sec-zigzag-features .zz-c{padding:0 20px}}
+  </style>
+  <div class="zz-c">
+    <div class="zz-head"><h2 class="zz-heading">Left, right, left</h2></div>
+    <div class="zz-rows">
+      <div class="zz-row">
+        <div class="zz-img">Feature image 4:3</div>
+        <div><span class="zz-kicker">Build</span><h3>Forms that feel native</h3><p>The builder mirrors the WordPress editor, so there's nothing new to learn. Fields snap into place and preview updates live.</p><a class="zz-link" href="#">Explore the builder<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+      <div class="zz-row">
+        <div class="zz-img">Feature image 4:3</div>
+        <div><span class="zz-kicker">Automate</span><h3>Follow-ups that send themselves</h3><p>Every submission can trigger emails, CRM updates, or Slack pings. Set it once and the robot handles the rest.</p><a class="zz-link" href="#">See automations<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+      <div class="zz-row">
+        <div class="zz-img">Feature image 4:3</div>
+        <div><span class="zz-kicker">Measure</span><h3>Know what converts</h3><p>Field-level analytics show exactly where people drop off, so fixing a leaky form takes minutes instead of guesses.</p><a class="zz-link" href="#">View analytics<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>

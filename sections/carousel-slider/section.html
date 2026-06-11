@@ -1,0 +1,56 @@
+<!-- WPMN Section: Carousel / Slider — horizontal belt with arrows + dots -->
+<section class="wpmn-sec-carousel-slider">
+  <style>
+    .wpmn-sec-carousel-slider{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-carousel-slider .cs-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-carousel-slider .cs-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+    .wpmn-sec-carousel-slider h2{margin:0;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-carousel-slider .cs-arrows{display:flex;gap:8px}
+    .wpmn-sec-carousel-slider .cs-arrow{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--color-border-primary);background:transparent;color:var(--color-text-primary);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background-color 120ms ease,color 120ms ease,border-color 120ms ease}
+    .wpmn-sec-carousel-slider .cs-arrow:hover{background:var(--btn-bg-enable);border-color:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
+    .wpmn-sec-carousel-slider .cs-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+    .wpmn-sec-carousel-slider .cs-track::-webkit-scrollbar{display:none}
+    .wpmn-sec-carousel-slider .cs-slide{flex:0 0 calc((100% - 48px)/3);scroll-snap-align:start;border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:28px}
+    .wpmn-sec-carousel-slider .cs-img{border-radius:var(--radius-xsm);background:var(--btn-bg-focused);height:160px;display:flex;align-items:center;justify-content:center;color:var(--btn-bg-hovered);font-size:var(--font-size-body-small);margin-bottom:16px}
+    .wpmn-sec-carousel-slider .cs-slide h3{margin:0;font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-carousel-slider .cs-slide p{margin:8px 0 0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-carousel-slider .cs-dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
+    .wpmn-sec-carousel-slider .cs-dot{width:8px;height:8px;border-radius:50%;border:none;padding:0;background:var(--color-border-primary);cursor:pointer;transition:background-color 120ms ease,width 200ms ease}
+    .wpmn-sec-carousel-slider .cs-dot[data-active]{background:var(--btn-bg-enable);width:24px;border-radius:99px}
+    @media(max-width:1199px){.wpmn-sec-carousel-slider .cs-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-carousel-slider .cs-slide{flex-basis:calc((100% - 24px)/2)}}
+    @media(max-width:768px){.wpmn-sec-carousel-slider{padding:64px 0}.wpmn-sec-carousel-slider .cs-c{padding:0 20px}}
+    @media(max-width:560px){.wpmn-sec-carousel-slider .cs-slide{flex-basis:100%}}
+  </style>
+  <div class="cs-c">
+    <div class="cs-head">
+      <h2>Slide through the lineup</h2>
+      <div class="cs-arrows">
+        <button class="cs-arrow" data-dir="-1" aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="cs-arrow" data-dir="1" aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    <div class="cs-track">
+      <div class="cs-slide"><div class="cs-img">Slide 1</div><h3>Forms</h3><p>Drag and drop builder with 30+ field types.</p></div>
+      <div class="cs-slide"><div class="cs-img">Slide 2</div><h3>CRM</h3><p>Email automation living inside WordPress.</p></div>
+      <div class="cs-slide"><div class="cs-img">Slide 3</div><h3>Support</h3><p>Helpdesk with SLA timers and reports.</p></div>
+      <div class="cs-slide"><div class="cs-img">Slide 4</div><h3>Booking</h3><p>Calendars, payments, and reminders.</p></div>
+      <div class="cs-slide"><div class="cs-img">Slide 5</div><h3>Tables</h3><p>Data tables that stay fast at 100k rows.</p></div>
+      <div class="cs-slide"><div class="cs-img">Slide 6</div><h3>Community</h3><p>Courses, spaces, and member feeds.</p></div>
+    </div>
+    <div class="cs-dots"></div>
+  </div>
+  <script>
+    (function(){
+      var s=document.currentScript?document.currentScript.parentElement:document.querySelector('.wpmn-sec-carousel-slider');if(!s)return;
+      var track=s.querySelector('.cs-track'),slides=s.querySelectorAll('.cs-slide'),dotsBox=s.querySelector('.cs-dots');
+      var pages=Math.max(1,Math.ceil(slides.length/3));
+      for(var i=0;i<pages;i++){var d=document.createElement('button');d.className='cs-dot';d.setAttribute('aria-label','Page '+(i+1));if(i===0)d.setAttribute('data-active','');(function(idx){d.addEventListener('click',function(){track.scrollTo({left:idx*track.clientWidth,behavior:'smooth'})})})(i);dotsBox.appendChild(d)}
+      s.querySelectorAll('.cs-arrow').forEach(function(b){b.addEventListener('click',function(){track.scrollBy({left:parseInt(b.getAttribute('data-dir'),10)*track.clientWidth,behavior:'smooth'})})});
+      track.addEventListener('scroll',function(){
+        var page=Math.round(track.scrollLeft/track.clientWidth);
+        dotsBox.querySelectorAll('.cs-dot').forEach(function(d,i){if(i===page)d.setAttribute('data-active','');else d.removeAttribute('data-active')});
+      },{passive:true});
+    })();
+  </script>
+</section>

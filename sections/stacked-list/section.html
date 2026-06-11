@@ -1,0 +1,27 @@
+<!-- WPMN Section: Stacked List / Feed — uniform rows for posts or updates -->
+<section class="wpmn-sec-stacked-list">
+  <style>
+    .wpmn-sec-stacked-list{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-stacked-list .sl-c{max-width:1200px;margin:0 auto}
+    .wpmn-sec-stacked-list .sl-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+    .wpmn-sec-stacked-list h2{margin:0;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-stacked-list .sl-all{font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable);text-decoration:none}
+    .wpmn-sec-stacked-list .sl-row{display:grid;grid-template-columns:110px 1fr auto;gap:24px;align-items:center;padding:24px 8px;border-bottom:1.5px solid var(--color-border-primary);text-decoration:none;transition:background-color 120ms ease}
+    .wpmn-sec-stacked-list .sl-row:hover{background:color-mix(in srgb,var(--color-text-primary) 3%,transparent)}
+    .wpmn-sec-stacked-list .sl-date{font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.04em;text-transform:uppercase;color:var(--color-text-secondary)}
+    .wpmn-sec-stacked-list .sl-row h3{margin:0;font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-stacked-list .sl-row p{margin:4px 0 0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-stacked-list .sl-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 12px;border-radius:99px;background:var(--btn-bg-focused);color:var(--btn-bg-hovered);white-space:nowrap}
+    @media(max-width:1199px){.wpmn-sec-stacked-list .sl-c{padding:0 40px}}
+    @media(max-width:768px){.wpmn-sec-stacked-list{padding:64px 0}.wpmn-sec-stacked-list .sl-c{padding:0 20px}.wpmn-sec-stacked-list .sl-row{grid-template-columns:1fr;gap:8px}}
+  </style>
+  <div class="sl-c">
+    <div class="sl-head"><h2>Latest from the blog</h2><a class="sl-all" href="#">View all →</a></div>
+    <div class="sl-list">
+      <a class="sl-row" href="#"><span class="sl-date">Jun 02, 2026</span><span><h3>Designing forms people actually finish</h3><p>Seven field-level changes that lifted completion 32% across 400 sites.</p></span><span class="sl-tag">Guide</span></a>
+      <a class="sl-row" href="#"><span class="sl-date">May 21, 2026</span><span><h3>v6.2: conditional payments are here</h3><p>Charge different amounts based on any answer in the form.</p></span><span class="sl-tag">Release</span></a>
+      <a class="sl-row" href="#"><span class="sl-date">May 09, 2026</span><span><h3>How an agency runs 70 client sites on one license</h3><p>Workflow, staging strategy, and the white-label setup behind it.</p></span><span class="sl-tag">Case Study</span></a>
+      <a class="sl-row" href="#"><span class="sl-date">Apr 28, 2026</span><span><h3>The GDPR checklist for WordPress forms</h3><p>Consent, retention, and erasure in plain language.</p></span><span class="sl-tag">Guide</span></a>
+    </div>
+  </div>
+</section>

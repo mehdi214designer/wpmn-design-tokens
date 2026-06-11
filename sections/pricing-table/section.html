@@ -1,0 +1,88 @@
+<!-- WPMN Section: Pricing Table — 3 tiers, popular highlight, monthly/yearly toggle -->
+<section class="wpmn-sec-pricing-table">
+  <style>
+    .wpmn-sec-pricing-table{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-pricing-table .pt-c{max-width:1200px;margin:0 auto;text-align:center}
+    .wpmn-sec-pricing-table .pt-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
+    .wpmn-sec-pricing-table .pt-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
+    .wpmn-sec-pricing-table .pt-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-pricing-table .pt-toggle{display:inline-flex;gap:4px;margin-top:32px;padding:6px;border:1.5px solid var(--color-border-primary);border-radius:99px}
+    .wpmn-sec-pricing-table .pt-mode{padding:10px 24px;border-radius:99px;border:none;background:transparent;cursor:pointer;font-family:inherit;font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);transition:background-color 120ms ease,color 120ms ease}
+    .wpmn-sec-pricing-table .pt-mode[data-active]{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
+    .wpmn-sec-pricing-table .pt-save{font-size:11px;font-weight:600;background:var(--color-success-primary);color:var(--color-text-primary-invert);border-radius:99px;padding:2px 8px;margin-left:6px}
+    .wpmn-sec-pricing-table .pt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;text-align:left;align-items:stretch}
+    .wpmn-sec-pricing-table .pt-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:40px 32px;display:flex;flex-direction:column;position:relative}
+    .wpmn-sec-pricing-table .pt-card--pop{border:2px solid var(--btn-bg-enable);box-shadow:var(--shadow-soft-400)}
+    .wpmn-sec-pricing-table .pt-pop{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:99px;padding:4px 14px;white-space:nowrap}
+    .wpmn-sec-pricing-table .pt-name{font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-pricing-table .pt-for{margin:4px 0 0;font-size:var(--font-size-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-pricing-table .pt-price{margin:24px 0 0;display:flex;align-items:baseline;gap:6px}
+    .wpmn-sec-pricing-table .pt-amount{font-size:var(--font-size-h2);line-height:1;font-weight:var(--font-weight-bold);color:var(--color-text-primary)}
+    .wpmn-sec-pricing-table .pt-per{font-size:var(--font-size-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-pricing-table .pt-list{list-style:none;margin:24px 0 32px;padding:0;display:flex;flex-direction:column;gap:12px;flex:1}
+    .wpmn-sec-pricing-table .pt-list li{display:flex;align-items:flex-start;gap:10px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-pricing-table .pt-list svg{flex-shrink:0;margin-top:4px;color:var(--color-success-primary)}
+    .wpmn-sec-pricing-table .pt-cta{height:48px;border-radius:var(--radius-xsm);font-family:inherit;font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);cursor:pointer;transition:background-color 120ms ease,color 120ms ease;display:flex;align-items:center;justify-content:center;text-decoration:none}
+    .wpmn-sec-pricing-table .pt-cta--primary{background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border:none;box-shadow:inset 3px 4px 4px 0 rgba(255,255,255,.3)}
+    .wpmn-sec-pricing-table .pt-cta--primary:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-pricing-table .pt-cta--secondary{background:transparent;color:var(--btn-bg-enable);border:1.5px solid var(--btn-bg-enable)}
+    .wpmn-sec-pricing-table .pt-cta--secondary:hover{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
+    @media(max-width:1199px){.wpmn-sec-pricing-table .pt-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-pricing-table .pt-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
+    @media(max-width:768px){.wpmn-sec-pricing-table{padding:64px 0}.wpmn-sec-pricing-table .pt-c{padding:0 20px}}
+  </style>
+  <div class="pt-c">
+    <span class="pt-badge">Pricing</span>
+    <h2 class="pt-heading">Plans that scale with you</h2>
+    <div class="pt-toggle">
+      <button class="pt-mode" data-mode="monthly">Monthly</button>
+      <button class="pt-mode" data-mode="yearly" data-active>Yearly<span class="pt-save">save 25%</span></button>
+    </div>
+    <div class="pt-grid">
+      <div class="pt-card">
+        <span class="pt-name">Starter</span><p class="pt-for">For a single site</p>
+        <div class="pt-price"><span class="pt-amount" data-m="59" data-y="44">$44</span><span class="pt-per">/year</span></div>
+        <ul class="pt-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>1 site license</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>All premium fields</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Email support</li>
+        </ul>
+        <a class="pt-cta pt-cta--secondary" href="#">Choose Starter</a>
+      </div>
+      <div class="pt-card pt-card--pop">
+        <span class="pt-pop">Most Popular</span>
+        <span class="pt-name">Pro</span><p class="pt-for">For growing businesses</p>
+        <div class="pt-price"><span class="pt-amount" data-m="129" data-y="97">$97</span><span class="pt-per">/year</span></div>
+        <ul class="pt-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>5 site licenses</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Payments + automations</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Priority support</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Advanced reports</li>
+        </ul>
+        <a class="pt-cta pt-cta--primary" href="#">Choose Pro</a>
+      </div>
+      <div class="pt-card">
+        <span class="pt-name">Agency</span><p class="pt-for">For client portfolios</p>
+        <div class="pt-price"><span class="pt-amount" data-m="259" data-y="194">$194</span><span class="pt-per">/year</span></div>
+        <ul class="pt-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited sites</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>White label mode</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Onboarding call</li>
+        </ul>
+        <a class="pt-cta pt-cta--secondary" href="#">Choose Agency</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var s=document.currentScript?document.currentScript.parentElement:document.querySelector('.wpmn-sec-pricing-table');if(!s)return;
+      var modes=s.querySelectorAll('.pt-mode'),amounts=s.querySelectorAll('.pt-amount'),pers=s.querySelectorAll('.pt-per');
+      modes.forEach(function(m){m.addEventListener('click',function(){
+        modes.forEach(function(x){x.removeAttribute('data-active')});m.setAttribute('data-active','');
+        var yearly=m.getAttribute('data-mode')==='yearly';
+        amounts.forEach(function(a){a.textContent='$'+a.getAttribute(yearly?'data-y':'data-m')});
+        pers.forEach(function(p){p.textContent=yearly?'/year':'/month'});
+      })});
+    })();
+  </script>
+</section>

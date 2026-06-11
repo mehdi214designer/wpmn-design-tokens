@@ -1,0 +1,45 @@
+{
+  "id": "timeline-roadmap",
+  "name": "Timeline Roadmap",
+  "type": "html",
+  "status": "stable",
+  "description": "Vertical axis with status dots: done (success check), in progress (brand pulse dot), planned (empty). Quarter labels + descriptions.",
+  "files": {
+    "html": "sections/timeline-roadmap/section.html"
+  },
+  "prompt": "sections/timeline-roadmap/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-timeline-roadmap",
+  "interactions": [
+    "none or CSS-only"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Interactive",
+  "tags": [
+    "timeline",
+    "roadmap",
+    "milestones",
+    "chronological",
+    "quarters"
+  ]
+}

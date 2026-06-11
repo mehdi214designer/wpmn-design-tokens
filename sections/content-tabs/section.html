@@ -1,0 +1,57 @@
+<!-- WPMN Section: Feature Tabs — switchable content views with mockup panel -->
+<section class="wpmn-sec-content-tabs">
+  <style>
+    .wpmn-sec-content-tabs{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-content-tabs .tb-c{max-width:1200px;margin:0 auto;text-align:center}
+    .wpmn-sec-content-tabs .tb-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
+    .wpmn-sec-content-tabs .tb-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
+    .wpmn-sec-content-tabs .tb-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-content-tabs .tb-tabs{display:inline-flex;gap:4px;margin-top:48px;padding:6px;border:1.5px solid var(--color-border-primary);border-radius:99px;flex-wrap:wrap;justify-content:center}
+    .wpmn-sec-content-tabs .tb-tab{padding:10px 24px;border-radius:99px;border:none;background:transparent;cursor:pointer;font-family:inherit;font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);transition:background-color 120ms ease,color 120ms ease}
+    .wpmn-sec-content-tabs .tb-tab[aria-selected="true"]{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
+    .wpmn-sec-content-tabs .tb-panel{display:none;margin-top:32px;text-align:left}
+    .wpmn-sec-content-tabs .tb-panel[data-active]{display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:center}
+    .wpmn-sec-content-tabs .tb-panel h3{margin:0;font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-content-tabs .tb-panel p{margin:12px 0 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-content-tabs .tb-mock{aspect-ratio:16/10;border-radius:var(--radius-md);border:1px solid var(--color-border-primary);box-shadow:var(--shadow-soft-400);background:var(--color-surface-primary);display:flex;align-items:center;justify-content:center;color:var(--color-text-secondary);font-size:var(--font-size-body-base)}
+    .wpmn-sec-content-tabs .tb-stage{margin-top:16px;padding:48px;border-radius:var(--radius-lg);background:var(--color-brand-surface)}
+    @media(max-width:1199px){.wpmn-sec-content-tabs .tb-c{padding:0 40px}}
+    @media(max-width:900px){.wpmn-sec-content-tabs .tb-panel[data-active]{grid-template-columns:1fr;gap:24px}}
+    @media(max-width:768px){.wpmn-sec-content-tabs{padding:64px 0}.wpmn-sec-content-tabs .tb-c{padding:0 20px}.wpmn-sec-content-tabs .tb-stage{padding:20px}}
+  </style>
+  <div class="tb-c">
+    <span class="tb-badge">Product Tour</span>
+    <h2 class="tb-heading">One plugin, every workflow</h2>
+    <div class="tb-tabs" role="tablist">
+      <button class="tb-tab" role="tab" aria-selected="true" data-panel="0">Forms</button>
+      <button class="tb-tab" role="tab" aria-selected="false" data-panel="1">Payments</button>
+      <button class="tb-tab" role="tab" aria-selected="false" data-panel="2">Reports</button>
+    </div>
+    <div class="tb-stage">
+      <div class="tb-panel" data-active>
+        <div><h3>Drag, drop, done</h3><p>30+ field types, conditional logic, and multi-step flows. Every form is responsive and accessible by default.</p></div>
+        <div class="tb-mock">Forms screenshot (16:10)</div>
+      </div>
+      <div class="tb-panel">
+        <div><h3>Get paid inside the form</h3><p>Stripe, PayPal, and local gateways. One-time, subscriptions, and donations without extra plugins.</p></div>
+        <div class="tb-mock">Payments screenshot (16:10)</div>
+      </div>
+      <div class="tb-panel">
+        <div><h3>Numbers that explain themselves</h3><p>Submission trends, conversion rates, and revenue charts. Export anything to CSV in one click.</p></div>
+        <div class="tb-mock">Reports screenshot (16:10)</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var s=document.currentScript?document.currentScript.parentElement:document.querySelector('.wpmn-sec-content-tabs');if(!s)return;
+      var tabs=s.querySelectorAll('.tb-tab'),panels=s.querySelectorAll('.tb-panel');
+      tabs.forEach(function(t){t.addEventListener('click',function(){
+        tabs.forEach(function(x){x.setAttribute('aria-selected','false')});
+        panels.forEach(function(p){p.removeAttribute('data-active')});
+        t.setAttribute('aria-selected','true');
+        panels[parseInt(t.getAttribute('data-panel'),10)].setAttribute('data-active','');
+      })});
+    })();
+  </script>
+</section>

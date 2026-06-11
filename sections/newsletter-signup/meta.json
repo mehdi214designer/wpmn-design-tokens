@@ -1,0 +1,45 @@
+{
+  "id": "newsletter-signup",
+  "name": "Newsletter Signup",
+  "type": "html",
+  "status": "stable",
+  "description": "Bordered 32px-radius panel, icon tile, heading, single email input + subscribe button, privacy note. Stacks on mobile.",
+  "files": {
+    "html": "sections/newsletter-signup/section.html"
+  },
+  "prompt": "sections/newsletter-signup/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-newsletter-signup",
+  "interactions": [
+    "see section.html script block, scoped IIFE"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Trust & Social Proof",
+  "tags": [
+    "newsletter",
+    "subscribe",
+    "email capture",
+    "signup",
+    "lead magnet"
+  ]
+}

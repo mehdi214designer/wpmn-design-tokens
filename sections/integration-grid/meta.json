@@ -1,0 +1,45 @@
+{
+  "id": "integration-grid",
+  "name": "Integration Grid",
+  "type": "html",
+  "status": "stable",
+  "description": "4-column app tiles: logo tile, name, one-line purpose. Hover highlights border in brand color. Browse-all link below.",
+  "files": {
+    "html": "sections/integration-grid/section.html"
+  },
+  "prompt": "sections/integration-grid/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-integration-grid",
+  "interactions": [
+    "none or CSS-only"
+  ],
+  "tokensUsed": [
+    "--color-surface-*",
+    "--color-text-*",
+    "--btn-bg-*",
+    "--color-border-primary",
+    "--radius-*",
+    "--font-*",
+    "--shadow-*"
+  ],
+  "layout": {
+    "container": "1200px centered",
+    "sectionPadding": "96px desktop / 64px mobile"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Trust & Social Proof",
+  "tags": [
+    "integrations",
+    "apps",
+    "connect",
+    "ecosystem",
+    "tiles"
+  ]
+}
