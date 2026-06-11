@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T09:47:09.104Z",
+  "generatedAt": "2026-06-11T11:07:29.296Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -1513,6 +1513,58 @@
       "role": "FAQ"
     },
     {
+      "id": "feature-card-stack",
+      "name": "Feature Card Stack",
+      "type": "html",
+      "status": "stable",
+      "description": "Sticky section heading with dark feature cards that stack over it on scroll; each pinned card scales down to 0.94 as the next slides over (rAF-driven, linear with scroll). Cards alternate text/image and carry an arrow-swap button with a brand gradient glow chip.",
+      "files": {
+        "html": "sections/feature-card-stack/section.html"
+      },
+      "prompt": "sections/feature-card-stack/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-feature-card-stack",
+      "interactions": [
+        "rAF scroll-linked scale 1 -> 0.94 on the covered card",
+        "arrow-swap button: icon slides out right, twin slides in from left (.8s expo)",
+        "gradient glow chip sharpens on hover (1.2s expo)",
+        "single column below 991px, image first"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-brand-surface-secondary",
+        "--radius-*",
+        "--font-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Scroll & Motion",
+      "role": "Features",
+      "tags": [
+        "stacking",
+        "scale",
+        "sticky",
+        "cards",
+        "scroll",
+        "features",
+        "dark cards",
+        "gradient"
+      ],
+      "source": "imported from Claude Code build, interactions preserved, colors/typography/spacing tokenized"
+    },
+    {
       "id": "hero-standard",
       "name": "Standard Hero",
       "type": "html",
@@ -2572,6 +2624,58 @@
         "quarters"
       ],
       "role": "Roadmap"
+    },
+    {
+      "id": "work-portfolio",
+      "name": "Work Portfolio Shade",
+      "type": "html",
+      "status": "stable",
+      "description": "Pinned window-shade portfolio: project rows collapse from full height to a thin strip sequentially as the page scrolls (1000px of scroll per item), with image hover zoom, an ink counter pill, and a See More button with text-slide + corner-arrow hover. Falls back to natural flow below 1024px.",
+      "files": {
+        "html": "sections/work-portfolio/section.html"
+      },
+      "prompt": "sections/work-portfolio/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-work-portfolio",
+      "interactions": [
+        "window-shade collapse driven by scroll position, scoped JS (scroll listener + rAF)",
+        "image hover scale 1.04 (.9s expo)",
+        "button label slide-up swap + corner arrows shift (.7s expo)",
+        "static stack below 1024px, reduced-motion safe"
+      ],
+      "tokensUsed": [
+        "--color-surface-*",
+        "--color-text-*",
+        "--btn-bg-*",
+        "--color-brand-surface-secondary",
+        "--radius-*",
+        "--font-*"
+      ],
+      "layout": {
+        "container": "1200px centered",
+        "sectionPadding": "96px desktop / 64px mobile"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Scroll & Motion",
+      "role": "Showcase",
+      "tags": [
+        "portfolio",
+        "work",
+        "case studies",
+        "window shade",
+        "pin",
+        "scroll",
+        "projects",
+        "agency"
+      ],
+      "source": "imported from Claude Code build, interactions preserved, colors/typography/spacing tokenized"
     },
     {
       "id": "zigzag-features",

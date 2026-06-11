@@ -1,0 +1,130 @@
+<!-- WPMN Section: Feature Card Stack — sticky heading + scaling dark card stack (imported, tokenized) -->
+<section class="wpmn-sec-feature-card-stack">
+  <style>
+    .wpmn-sec-feature-card-stack{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base);color:var(--color-text-primary)}
+    .wpmn-sec-feature-card-stack .fcs-container{position:relative;max-width:1200px;margin:0 auto}
+    .wpmn-sec-feature-card-stack .content-heading{position:sticky;top:100px;margin-bottom:480px}
+    .wpmn-sec-feature-card-stack .heading{font-size:var(--font-size-h1);line-height:var(--font-lh-h1);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;color:var(--color-text-primary);margin:0}
+    .wpmn-sec-feature-card-stack .content-wrap{display:flex;flex-direction:column;gap:360px}
+    .wpmn-sec-feature-card-stack .content-box{display:grid;grid-template-columns:1fr 1fr;position:sticky;top:210px;min-height:420px;background:var(--color-surface-secondary);border-radius:var(--radius-md);will-change:transform;transform-origin:50% 50%}
+    .wpmn-sec-feature-card-stack .content-box.mt-minus-400{margin-top:-400px}
+    .wpmn-sec-feature-card-stack .fcs-content{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:40px}
+    .wpmn-sec-feature-card-stack .card-h3{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-regular);letter-spacing:-0.02em;color:var(--color-text-primary-invert);margin:0}
+    .wpmn-sec-feature-card-stack .card-p{max-width:640px;font-size:var(--font-size-body-large);line-height:var(--font-lh-body-large);letter-spacing:-0.02em;color:var(--color-text-secondary-invert)}
+    .wpmn-sec-feature-card-stack .btn-wrap{margin-top:auto}
+    .wpmn-sec-feature-card-stack .fcs-img{padding:40px}
+    .wpmn-sec-feature-card-stack .fcs-img img{display:block;width:100%;height:392px;object-fit:cover;border-radius:var(--radius-xsm)}
+    .wpmn-sec-feature-card-stack .btn{display:flex;justify-content:space-between;align-items:center;gap:32px;min-width:200px;height:52px;padding:8px 8px 8px 16px;background:color-mix(in srgb,var(--color-text-primary-invert) 10%,transparent);border:1px solid transparent;border-radius:var(--radius-xsm);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);letter-spacing:-0.01em;color:var(--color-text-primary-invert);text-decoration:none;cursor:pointer}
+    .wpmn-sec-feature-card-stack .btn .label{white-space:nowrap}
+    .wpmn-sec-feature-card-stack .btn_right{position:relative;display:flex;justify-content:center;align-items:center;width:34px;height:34px;background:var(--color-surface-secondary);border-radius:var(--radius-xsm);overflow:clip}
+    .wpmn-sec-feature-card-stack .btn_icon{position:absolute;inset:11px;z-index:2;width:12px;height:12px;color:var(--color-text-primary-invert);transition:transform .8s cubic-bezier(.19,1,.22,1)}
+    .wpmn-sec-feature-card-stack .btn_icon.cc-2{transform:translateX(-1.6rem)}
+    .wpmn-sec-feature-card-stack .btn_icon.cc-1{transform:translateX(0)}
+    .wpmn-sec-feature-card-stack .btn_icon svg{display:block;width:100%;height:100%}
+    .wpmn-sec-feature-card-stack .btn_gradient{position:absolute;inset:-8.5px;z-index:1;background-image:linear-gradient(90deg,var(--btn-bg-enable) 71%,var(--color-brand-surface-secondary));filter:blur(8px);opacity:1;transform:scale(1);transition:opacity 1.2s cubic-bezier(.19,1,.22,1),transform 1.2s cubic-bezier(.19,1,.22,1),filter 1.2s cubic-bezier(.19,1,.22,1)}
+    @media(hover:hover){
+      .wpmn-sec-feature-card-stack .btn:hover .btn_icon.cc-1{transform:translateX(1.6rem)}
+      .wpmn-sec-feature-card-stack .btn:hover .btn_icon.cc-2{transform:translateX(0)}
+      .wpmn-sec-feature-card-stack .btn:hover .btn_gradient{transform:scale(1);filter:blur(0);opacity:1;border-radius:var(--radius-md)}
+    }
+    .wpmn-sec-feature-card-stack .runway{height:60vh}
+    @media(max-width:1199px){.wpmn-sec-feature-card-stack .fcs-container{padding:0 40px}}
+    @media(max-width:991px){
+      .wpmn-sec-feature-card-stack .content-box{grid-template-columns:1fr}
+      .wpmn-sec-feature-card-stack .content-box .fcs-img{order:-1}
+      .wpmn-sec-feature-card-stack .fcs-img img{height:auto;aspect-ratio:640/392}
+      .wpmn-sec-feature-card-stack .content-heading{margin-bottom:320px}
+      .wpmn-sec-feature-card-stack .content-box.mt-minus-400{margin-top:-260px}
+      .wpmn-sec-feature-card-stack .content-wrap{gap:240px}
+    }
+    @media(max-width:768px){.wpmn-sec-feature-card-stack{padding:64px 0}.wpmn-sec-feature-card-stack .fcs-container{padding:0 20px}}
+    @media(max-width:600px){
+      .wpmn-sec-feature-card-stack .fcs-content,.wpmn-sec-feature-card-stack .fcs-img{padding:24px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-feature-card-stack .btn_icon,.wpmn-sec-feature-card-stack .btn_gradient{transition:none}
+    }
+  </style>
+  <div class="fcs-container">
+    <div class="content-heading"><h2 class="heading">Build with us</h2></div>
+    <div class="content-wrap">
+      <div class="content-box mt-minus-400">
+        <div class="fcs-content">
+          <h3 class="card-h3">Real-time money movement</h3>
+          <div class="card-p">Bridge and swap payments across major gateways, vaults and markets in seconds, with institutional-grade reliability.</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn">
+              <span class="label">Explore Routes</span>
+              <span class="btn_right">
+                <span class="btn_icon cc-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
+                <span class="btn_icon cc-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
+                <span class="btn_gradient"></span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="fcs-img"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Real-time movement" loading="lazy"></div>
+      </div>
+      <div class="content-box">
+        <div class="fcs-img"><img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=80" alt="Simple UX" loading="lazy"></div>
+        <div class="fcs-content">
+          <h3 class="card-h3">Simplify checkout UX</h3>
+          <div class="card-p">Give users saved payment methods and one-click checkout, with single-click gasless transactions.</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn">
+              <span class="label">Learn more</span>
+              <span class="btn_right">
+                <span class="btn_icon cc-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
+                <span class="btn_icon cc-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
+                <span class="btn_gradient"></span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="content-box">
+        <div class="fcs-content">
+          <h3 class="card-h3">Program perfect execution</h3>
+          <div class="card-p">Powerful automation for complex settlement and orchestration flows. Set your limits, routing rules, and fallback conditions. We handle execution on your terms.</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn">
+              <span class="label">Learn more</span>
+              <span class="btn_right">
+                <span class="btn_icon cc-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
+                <span class="btn_icon cc-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
+                <span class="btn_gradient"></span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="fcs-img"><img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=1200&q=80" alt="Automation" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="runway"></div>
+  </div>
+  <script>
+    // Scroll-linked card stack (imported as-is, scoped to this section):
+    // as the next card slides over, the pinned card scales 1 -> 0.94,
+    // linear with scroll.
+    (function () {
+      var s = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-feature-card-stack');
+      if (!s) return;
+      var cards = Array.prototype.slice.call(s.querySelectorAll('.content-box'));
+      var STICKY_TOP = 210;
+      var MAX_SHRINK = 0.06;
+
+      function update() {
+        for (var i = 0; i < cards.length - 1; i++) {
+          var next = cards[i + 1].getBoundingClientRect();
+          var start = window.innerHeight;
+          var end = STICKY_TOP;
+          var p = Math.min(1, Math.max(0, (start - next.top) / (start - end)));
+          var sc = 1 - p * MAX_SHRINK;
+          cards[i].style.transform = 'translate3d(0,0,0) scale3d(' + sc + ', ' + sc + ', 1)';
+        }
+      }
+
+      (function tick() { update(); requestAnimationFrame(tick); })();
+    })();
+  </script>
+</section>
