@@ -9,22 +9,88 @@
     "css": "typography.css"
   },
   "prompt": "components/Text/prompt.md",
-  "dependsOn": ["typography.css", "tokens.css"],
+  "dependsOn": [
+    "typography.css",
+    "tokens.css"
+  ],
   "baseClass": "text-{variant}",
   "props": {
-    "variant": { "values": ["h1", "h2", "h3", "h4", "h5", "h6", "body-large", "body-medium", "body-base", "body-small", "body-label", "body-mono"], "default": "body-base" },
-    "as": { "type": "string", "note": "overrides the smart default HTML tag" },
-    "color": { "values": ["primary", "secondary", "brand", "invert"], "default": "primary" },
-    "weight": { "values": ["regular", "medium", "semibold", "bold"], "note": "overrides variant default" },
-    "align": { "values": ["left", "center", "right"] },
-    "truncate": { "type": "boolean", "default": false }
+    "variant": {
+      "values": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "body-large",
+        "body-medium",
+        "body-base",
+        "body-small",
+        "body-label",
+        "body-mono"
+      ],
+      "default": "body-base"
+    },
+    "as": {
+      "type": "string",
+      "note": "overrides the smart default HTML tag"
+    },
+    "color": {
+      "values": [
+        "primary",
+        "secondary",
+        "brand",
+        "invert"
+      ],
+      "default": "primary"
+    },
+    "weight": {
+      "values": [
+        "regular",
+        "medium",
+        "semibold",
+        "bold"
+      ],
+      "note": "overrides variant default"
+    },
+    "align": {
+      "values": [
+        "left",
+        "center",
+        "right"
+      ]
+    },
+    "truncate": {
+      "type": "boolean",
+      "default": false
+    }
   },
-  "states": ["static"],
-  "interactions": ["none"],
+  "states": [
+    "static"
+  ],
+  "interactions": [
+    "none"
+  ],
   "tokensUsed": [
-    "--font-family-base", "--font-size-h1..h6", "--font-size-body-*", "--font-lh-*", "--font-weight-*",
-    "--color-text-primary", "--color-text-secondary", "--color-text-brand", "--color-text-primary-invert"
+    "--font-family-base",
+    "--font-size-h1..h6",
+    "--font-size-body-*",
+    "--font-lh-*",
+    "--font-weight-*",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-brand",
+    "--color-text-primary-invert"
   ],
   "brands": "all",
-  "themes": ["light", "dark"]
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Foundations",
+  "subcategory": "Typography",
+  "preview": {
+    "jsx": "<div style={{maxWidth:560}}><Text variant='h4'>Design once, ship 16 brands</Text><Text variant='body-base' color='secondary'>Every heading and paragraph maps to the WPMN type scale tokens.</Text></div>"
+  }
 }

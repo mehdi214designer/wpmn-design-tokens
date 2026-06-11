@@ -10,13 +10,33 @@
   "prompt": "components/Icons/prompt.md",
   "dependsOn": [],
   "props": {
-    "size": { "type": "number", "default": 24 },
-    "color": { "type": "string", "default": "currentColor" }
+    "size": {
+      "type": "number",
+      "default": 24
+    },
+    "color": {
+      "type": "string",
+      "default": "currentColor"
+    }
   },
-  "states": ["static"],
-  "interactions": ["none"],
-  "tokensUsed": ["none, icons inherit color via currentColor"],
+  "states": [
+    "static"
+  ],
+  "interactions": [
+    "none"
+  ],
+  "tokensUsed": [
+    "none, icons inherit color via currentColor"
+  ],
   "iconStyle": "HugeIcons Pro, stroke.rounded variant (solid.rounded used inside Breadcrumbs/Footer/SocialIcons)",
   "brands": "all",
-  "themes": ["light", "dark"]
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Foundations",
+  "subcategory": "Icons",
+  "preview": {
+    "jsx": "<div style={{display:'flex',gap:18,flexWrap:'wrap',color:'var(--color-text-primary)'}}>{Object.values(DS.Icons||{}).map(function(I,i){return <I key={i} size={26}/>;})}</div>"
+  }
 }

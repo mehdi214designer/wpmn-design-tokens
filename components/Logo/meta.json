@@ -13,15 +13,64 @@
   "dependsOn": [],
   "baseClass": "wpmn-logo",
   "props": {
-    "brand": { "type": "string", "required": true, "values": ["wpmanagenia", "fluentforms", "fluentcrm", "ninjatables", "fluentcommunity", "fluentbooking", "paymattic", "fluentboards", "fluentsmtp", "fluentsupport", "fluentaffiliate", "azonpress", "wpsocialninja", "fluentcart", "fluentplayer", "fluentmembers"] },
-    "variant": { "values": ["logo", "icon"], "default": "logo", "note": "logo = icon mark + wordmark, icon = mark only" },
-    "type": { "values": ["primary", "dark", "inverted", "black", "white"], "default": "primary" },
-    "height": { "type": "number", "note": "px, width scales automatically" },
-    "width": { "type": "number", "note": "px, height scales automatically" }
+    "brand": {
+      "type": "string",
+      "required": true,
+      "values": [
+        "wpmanagenia",
+        "fluentforms",
+        "fluentcrm",
+        "ninjatables",
+        "fluentcommunity",
+        "fluentbooking",
+        "paymattic",
+        "fluentboards",
+        "fluentsmtp",
+        "fluentsupport",
+        "fluentaffiliate",
+        "azonpress",
+        "wpsocialninja",
+        "fluentcart",
+        "fluentplayer",
+        "fluentmembers"
+      ]
+    },
+    "variant": {
+      "values": [
+        "logo",
+        "icon"
+      ],
+      "default": "logo",
+      "note": "logo = icon mark + wordmark, icon = mark only"
+    },
+    "type": {
+      "values": [
+        "primary",
+        "dark",
+        "inverted",
+        "black",
+        "white"
+      ],
+      "default": "primary"
+    },
+    "height": {
+      "type": "number",
+      "note": "px, width scales automatically"
+    },
+    "width": {
+      "type": "number",
+      "note": "px, height scales automatically"
+    }
   },
-  "states": ["static"],
-  "interactions": ["none"],
-  "tokensUsed": ["none, SVG colors are baked in per type"],
+  "states": [
+    "static"
+  ],
+  "interactions": [
+    "none"
+  ],
+  "tokensUsed": [
+    "none, SVG colors are baked in per type"
+  ],
   "typeUsage": {
     "primary": "full color, for light backgrounds",
     "dark": "full color, for dark backgrounds",
@@ -30,6 +79,14 @@
     "white": "monochrome white, dark backgrounds / reversed print"
   },
   "brands": "all",
-  "themes": ["light", "dark"],
-  "assetsDir": "logos/"
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "assetsDir": "logos/",
+  "category": "Brand",
+  "subcategory": "Logos",
+  "preview": {
+    "jsx": "<div style={{display:'flex',gap:36,alignItems:'center',flexWrap:'wrap'}}><Logo brand='fluentforms' height={34}/><Logo brand='fluentcrm' height={34}/><Logo brand='fluentsupport' height={34}/></div>"
+  }
 }

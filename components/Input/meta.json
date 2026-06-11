@@ -10,23 +10,72 @@
     "css": "components/Input/Input.css"
   },
   "prompt": "components/Input/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-input-wrapper",
   "props": {
-    "variant": { "values": ["stroke", "fill"], "default": "stroke" },
-    "size": { "values": ["lg", "md", "sm"], "default": "md" },
-    "label": { "type": "string" },
-    "placeholder": { "type": "string" },
-    "hint": { "type": "string" },
-    "error": { "type": "string", "note": "drives error state" },
-    "success": { "type": "string", "note": "drives success state" },
-    "required": { "type": "boolean", "default": false },
-    "disabled": { "type": "boolean", "default": false },
-    "iconLeft": { "type": "ReactNode", "note": "20px box" },
-    "iconRight": { "type": "ReactNode", "note": "auto alert-circle 24px on error, check-circle 20px on success" },
-    "type": { "type": "string", "default": "text" }
+    "variant": {
+      "values": [
+        "stroke",
+        "fill"
+      ],
+      "default": "stroke"
+    },
+    "size": {
+      "values": [
+        "lg",
+        "md",
+        "sm"
+      ],
+      "default": "md"
+    },
+    "label": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "hint": {
+      "type": "string"
+    },
+    "error": {
+      "type": "string",
+      "note": "drives error state"
+    },
+    "success": {
+      "type": "string",
+      "note": "drives success state"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "iconLeft": {
+      "type": "ReactNode",
+      "note": "20px box"
+    },
+    "iconRight": {
+      "type": "ReactNode",
+      "note": "auto alert-circle 24px on error, check-circle 20px on success"
+    },
+    "type": {
+      "type": "string",
+      "default": "text"
+    }
   },
-  "states": ["default", "hover", "focused", "error", "success", "disabled"],
+  "states": [
+    "default",
+    "hover",
+    "focused",
+    "error",
+    "success",
+    "disabled"
+  ],
   "interactions": [
     "border-color/background-color/color transition 120ms ease",
     "placeholder color shifts on hover, value color on focus",
@@ -34,10 +83,25 @@
     "a11y: aria-invalid, aria-describedby wired to message, role=alert on error"
   ],
   "tokensUsed": [
-    "--input-stroke-*", "--input-text-*", "--input-fill-*", "--input-label-color", "--input-hint-color",
-    "--color-error-primary", "--primitive-radius-xs",
-    "--font-family-base", "--font-size-body-small", "--font-size-body-label"
+    "--input-stroke-*",
+    "--input-text-*",
+    "--input-fill-*",
+    "--input-label-color",
+    "--input-hint-color",
+    "--color-error-primary",
+    "--primitive-radius-xs",
+    "--font-family-base",
+    "--font-size-body-small",
+    "--font-size-body-label"
   ],
   "brands": "all",
-  "themes": ["light", "dark"]
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Components",
+  "subcategory": "Forms",
+  "preview": {
+    "jsx": "<div style={{display:'grid',gap:16,width:'100%',maxWidth:340}}><Input label='Email' placeholder='you@company.com'/><Input variant='fill' label='Password' type='password' placeholder='********' hint='Min 8 characters'/></div>"
+  }
 }

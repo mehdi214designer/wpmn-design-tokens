@@ -10,16 +10,52 @@
     "css": "components/Badge/Badge.css"
   },
   "prompt": "components/Badge/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-badge",
   "props": {
-    "variant": { "values": ["pill", "soft"], "default": "pill" },
-    "type": { "values": ["in_progress", "completed", "experimental", "deprecated", "handoff_ready"], "default": "in_progress" },
-    "children": { "type": "node", "note": "overrides the default type label" }
+    "variant": {
+      "values": [
+        "pill",
+        "soft"
+      ],
+      "default": "pill"
+    },
+    "type": {
+      "values": [
+        "in_progress",
+        "completed",
+        "experimental",
+        "deprecated",
+        "handoff_ready"
+      ],
+      "default": "in_progress"
+    },
+    "children": {
+      "type": "node",
+      "note": "overrides the default type label"
+    }
   },
-  "states": ["static"],
-  "interactions": ["none, purely presentational"],
-  "tokensUsed": ["component-scoped --badge-bg and --badge-color set per type, hardcoded by design (not brand-mapped)"],
+  "states": [
+    "static"
+  ],
+  "interactions": [
+    "none, purely presentational"
+  ],
+  "tokensUsed": [
+    "component-scoped --badge-bg and --badge-color set per type, hardcoded by design (not brand-mapped)"
+  ],
   "brands": "all (colors identical across brands by design)",
-  "themes": ["light", "dark"]
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Components",
+  "subcategory": "Feedback",
+  "preview": {
+    "jsx": "<div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Badge type='completed'/><Badge type='in_progress'/><Badge variant='soft' type='experimental'/></div>",
+    "zoom": 0.8,
+    "width": 760
+  }
 }

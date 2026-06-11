@@ -10,22 +10,52 @@
     "css": "components/Breadcrumbs/Breadcrumbs.css"
   },
   "prompt": "components/Breadcrumbs/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-breadcrumbs",
   "props": {
-    "variant": { "values": ["border", "flat", "transparent", "text"], "default": "border" },
-    "items": { "type": "Array<{label?, href?, icon?}>", "note": "icon:true renders home icon; omit href for the active/current item" }
+    "variant": {
+      "values": [
+        "border",
+        "flat",
+        "transparent",
+        "text"
+      ],
+      "default": "border"
+    },
+    "items": {
+      "type": "Array<{label?, href?, icon?}>",
+      "note": "icon:true renders home icon; omit href for the active/current item"
+    }
   },
-  "states": ["default", "hover", "active/current"],
+  "states": [
+    "default",
+    "hover",
+    "active/current"
+  ],
   "interactions": [
     "item hover: color shift to brand accent, 120ms ease",
     "active item: aria-current=page, pointer-events none",
     "a11y: nav aria-label=Breadcrumb, ordered list"
   ],
   "tokensUsed": [
-    "--color-text-primary", "--color-text-secondary", "--color-border-primary", "--font-family-base"
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-border-primary",
+    "--font-family-base"
   ],
   "knownExceptions": "hover/active accent colors #1a1aa9 (light) and #8080ec (dark) are hardcoded from Figma, not yet tokenized",
   "brands": "all",
-  "themes": ["light", "dark"]
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Components",
+  "subcategory": "Navigation",
+  "preview": {
+    "jsx": "<Breadcrumbs items={[{icon:true,href:'#'},{label:'Products',href:'#'},{label:'FluentForms'}]}/>",
+    "zoom": 0.85,
+    "width": 640
+  }
 }

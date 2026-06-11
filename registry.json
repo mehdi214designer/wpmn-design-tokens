@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T05:01:26.797Z",
+  "generatedAt": "2026-06-11T05:43:58.827Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -93,7 +93,14 @@
       "themes": [
         "light",
         "dark"
-      ]
+      ],
+      "category": "Components",
+      "subcategory": "Feedback",
+      "preview": {
+        "jsx": "<div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Badge type='completed'/><Badge type='in_progress'/><Badge variant='soft' type='experimental'/></div>",
+        "zoom": 0.8,
+        "width": 760
+      }
     },
     {
       "id": "breadcrumbs",
@@ -147,7 +154,14 @@
       "themes": [
         "light",
         "dark"
-      ]
+      ],
+      "category": "Components",
+      "subcategory": "Navigation",
+      "preview": {
+        "jsx": "<Breadcrumbs items={[{icon:true,href:'#'},{label:'Products',href:'#'},{label:'FluentForms'}]}/>",
+        "zoom": 0.85,
+        "width": 640
+      }
     },
     {
       "id": "button",
@@ -254,7 +268,12 @@
       "rules": [
         "Always pair primary + secondary side by side on marketing pages, never just one, never stacked",
         "Never hardcode button background, always --btn-bg-enable"
-      ]
+      ],
+      "category": "Components",
+      "subcategory": "Actions",
+      "preview": {
+        "jsx": "<div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Button type='primary'>Get Started</Button><Button type='secondary'>Learn More</Button><Button type='tertiary'>Docs</Button></div>"
+      }
     },
     {
       "id": "footer",
@@ -320,7 +339,15 @@
       "themes": [
         "light",
         "dark"
-      ]
+      ],
+      "category": "Sections",
+      "subcategory": "Footers",
+      "span": 2,
+      "preview": {
+        "jsx": "<Footer/>",
+        "zoom": 0.38,
+        "width": 1440
+      }
     },
     {
       "id": "icons",
@@ -357,7 +384,12 @@
       "themes": [
         "light",
         "dark"
-      ]
+      ],
+      "category": "Foundations",
+      "subcategory": "Icons",
+      "preview": {
+        "jsx": "<div style={{display:'flex',gap:18,flexWrap:'wrap',color:'var(--color-text-primary)'}}>{Object.values(DS.Icons||{}).map(function(I,i){return <I key={i} size={26}/>;})}</div>"
+      }
     },
     {
       "id": "input",
@@ -459,7 +491,12 @@
       "themes": [
         "light",
         "dark"
-      ]
+      ],
+      "category": "Components",
+      "subcategory": "Forms",
+      "preview": {
+        "jsx": "<div style={{display:'grid',gap:16,width:'100%',maxWidth:340}}><Input label='Email' placeholder='you@company.com'/><Input variant='fill' label='Password' type='password' placeholder='********' hint='Min 8 characters'/></div>"
+      }
     },
     {
       "id": "logo",
@@ -546,7 +583,12 @@
         "light",
         "dark"
       ],
-      "assetsDir": "logos/"
+      "assetsDir": "logos/",
+      "category": "Brand",
+      "subcategory": "Logos",
+      "preview": {
+        "jsx": "<div style={{display:'flex',gap:36,alignItems:'center',flexWrap:'wrap'}}><Logo brand='fluentforms' height={34}/><Logo brand='fluentcrm' height={34}/><Logo brand='fluentsupport' height={34}/></div>"
+      }
     },
     {
       "id": "navbar",
@@ -619,7 +661,15 @@
       "themes": [
         "light",
         "dark"
-      ]
+      ],
+      "category": "Components",
+      "subcategory": "Navigation",
+      "span": 2,
+      "preview": {
+        "jsx": "<NavBar logo={<Logo brand='fluentforms' height={28}/>} links={[{label:'Features',href:'#'},{label:'Pricing',href:'#'},{label:'Docs',href:'#',active:true}]} ctaLabel='Get Started'/>",
+        "zoom": 0.55,
+        "width": 1240
+      }
     },
     {
       "id": "socialicons",
@@ -662,7 +712,12 @@
       "themes": [
         "light",
         "dark"
-      ]
+      ],
+      "category": "Brand",
+      "subcategory": "Social",
+      "preview": {
+        "jsx": "<div style={{width:300}}><SocialIcons/></div>"
+      }
     },
     {
       "id": "text",
@@ -753,7 +808,12 @@
       "themes": [
         "light",
         "dark"
-      ]
+      ],
+      "category": "Foundations",
+      "subcategory": "Typography",
+      "preview": {
+        "jsx": "<div style={{maxWidth:560}}><Text variant='h4'>Design once, ship 16 brands</Text><Text variant='body-base' color='secondary'>Every heading and paragraph maps to the WPMN type scale tokens.</Text></div>"
+      }
     }
   ]
 }

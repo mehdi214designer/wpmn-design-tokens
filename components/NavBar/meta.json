@@ -10,16 +10,36 @@
     "css": "components/NavBar/NavBar.css"
   },
   "prompt": "components/NavBar/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-navbar",
   "props": {
-    "logo": { "type": "ReactNode" },
-    "links": { "type": "Array<{label, href, active?}>" },
-    "ctaLabel": { "type": "string", "default": "Sign Up" },
-    "ctaHref": { "type": "string", "default": "#" },
-    "onCtaClick": { "type": "function" }
+    "logo": {
+      "type": "ReactNode"
+    },
+    "links": {
+      "type": "Array<{label, href, active?}>"
+    },
+    "ctaLabel": {
+      "type": "string",
+      "default": "Sign Up"
+    },
+    "ctaHref": {
+      "type": "string",
+      "default": "#"
+    },
+    "onCtaClick": {
+      "type": "function"
+    }
   },
-  "states": ["desktop", "mobile-closed", "mobile-open", "link-hover", "link-active"],
+  "states": [
+    "desktop",
+    "mobile-closed",
+    "mobile-open",
+    "link-hover",
+    "link-active"
+  ],
   "interactions": [
     "link hover: color shift + light bg, 120ms ease",
     "CTA hover/active/focus follow button primary states",
@@ -28,12 +48,34 @@
     "a11y: aria-expanded, aria-controls, aria-current on active link"
   ],
   "tokensUsed": [
-    "--color-surface-primary", "--color-text-primary", "--color-text-secondary", "--color-text-primary-invert",
-    "--btn-bg-enable", "--btn-bg-hovered", "--btn-bg-pressed", "--btn-bg-focused",
-    "--color-border-primary", "--primitive-radius-xs", "--primitive-light-25", "--primitive-primary-50",
-    "--font-family-base", "--font-weight-regular", "--font-weight-medium"
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--btn-bg-enable",
+    "--btn-bg-hovered",
+    "--btn-bg-pressed",
+    "--btn-bg-focused",
+    "--color-border-primary",
+    "--primitive-radius-xs",
+    "--primitive-light-25",
+    "--primitive-primary-50",
+    "--font-family-base",
+    "--font-weight-regular",
+    "--font-weight-medium"
   ],
   "breakpoint": "768px",
   "brands": "all",
-  "themes": ["light", "dark"]
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Components",
+  "subcategory": "Navigation",
+  "span": 2,
+  "preview": {
+    "jsx": "<NavBar logo={<Logo brand='fluentforms' height={28}/>} links={[{label:'Features',href:'#'},{label:'Pricing',href:'#'},{label:'Docs',href:'#',active:true}]} ctaLabel='Get Started'/>",
+    "zoom": 0.55,
+    "width": 1240
+  }
 }

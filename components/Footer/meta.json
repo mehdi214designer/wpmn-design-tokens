@@ -10,27 +10,65 @@
     "css": "components/Footer/Footer.css"
   },
   "prompt": "components/Footer/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-footer",
   "props": {
-    "address": { "type": "string" },
-    "socialLinks": { "type": "Array<{key, href, label}>", "note": "key: facebook|instagram|x|linkedin|youtube|community|wordpress" },
-    "columns": { "type": "Array<{title, links: [{label, href}]}>" },
-    "logoSrc": { "type": "string" },
-    "logoAlt": { "type": "string", "default": "WPManageNinja" },
-    "copyright": { "type": "string" },
-    "bottomLinks": { "type": "Array<{label, href}>" }
+    "address": {
+      "type": "string"
+    },
+    "socialLinks": {
+      "type": "Array<{key, href, label}>",
+      "note": "key: facebook|instagram|x|linkedin|youtube|community|wordpress"
+    },
+    "columns": {
+      "type": "Array<{title, links: [{label, href}]}>"
+    },
+    "logoSrc": {
+      "type": "string"
+    },
+    "logoAlt": {
+      "type": "string",
+      "default": "WPManageNinja"
+    },
+    "copyright": {
+      "type": "string"
+    },
+    "bottomLinks": {
+      "type": "Array<{label, href}>"
+    }
   },
-  "states": ["link-hover", "social-hover"],
+  "states": [
+    "link-hover",
+    "social-hover"
+  ],
   "interactions": [
     "nav link hover: secondary -> primary text color, 120ms ease",
     "social button hover: opacity 0.6",
     "bottom link hover: opacity 0.65"
   ],
   "tokensUsed": [
-    "--color-surface-primary", "--color-text-primary", "--color-text-secondary", "--font-family-base"
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--font-family-base"
   ],
-  "breakpoints": { "1024px": "padding 64px 48px, gap 80px", "768px": "padding 48px 24px, columns wrap, bottom bar stacks" },
+  "breakpoints": {
+    "1024px": "padding 64px 48px, gap 80px",
+    "768px": "padding 48px 24px, columns wrap, bottom bar stacks"
+  },
   "brands": "all",
-  "themes": ["light", "dark"]
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Footers",
+  "span": 2,
+  "preview": {
+    "jsx": "<Footer/>",
+    "zoom": 0.38,
+    "width": 1440
+  }
 }
