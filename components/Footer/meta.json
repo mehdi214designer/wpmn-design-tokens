@@ -1,0 +1,36 @@
+{
+  "id": "footer",
+  "name": "Footer",
+  "type": "react",
+  "status": "stable",
+  "figmaNode": "957:4223",
+  "description": "Full site footer. Brand/address column + social icon row + 3 nav columns, bottom bar with logo, copyright and links. Responsive at 1024px and 768px.",
+  "files": {
+    "jsx": "components/Footer/Footer.jsx",
+    "css": "components/Footer/Footer.css"
+  },
+  "prompt": "components/Footer/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-footer",
+  "props": {
+    "address": { "type": "string" },
+    "socialLinks": { "type": "Array<{key, href, label}>", "note": "key: facebook|instagram|x|linkedin|youtube|community|wordpress" },
+    "columns": { "type": "Array<{title, links: [{label, href}]}>" },
+    "logoSrc": { "type": "string" },
+    "logoAlt": { "type": "string", "default": "WPManageNinja" },
+    "copyright": { "type": "string" },
+    "bottomLinks": { "type": "Array<{label, href}>" }
+  },
+  "states": ["link-hover", "social-hover"],
+  "interactions": [
+    "nav link hover: secondary -> primary text color, 120ms ease",
+    "social button hover: opacity 0.6",
+    "bottom link hover: opacity 0.65"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary", "--color-text-primary", "--color-text-secondary", "--font-family-base"
+  ],
+  "breakpoints": { "1024px": "padding 64px 48px, gap 80px", "768px": "padding 48px 24px, columns wrap, bottom bar stacks" },
+  "brands": "all",
+  "themes": ["light", "dark"]
+}

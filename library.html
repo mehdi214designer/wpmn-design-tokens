@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WPMN Component Library — AI-Friendly Browser</title>
+<link rel="stylesheet" href="index.css">
+<style>
+  /* Library browser styles only — the design system itself lives in index.css */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font-family-base, 'Work Sans', sans-serif);
+    background: var(--color-surface-primary);
+    color: var(--color-text-primary);
+  }
+  .lib-shell { max-width: 1100px; margin: 0 auto; padding: 64px 32px 120px; }
+  .lib-header { margin-bottom: 16px; }
+  .lib-header h1 {
+    font-size: var(--font-size-h3, 39px);
+    line-height: var(--font-lh-h3, 47px);
+    font-weight: var(--font-weight-semibold, 600);
+    margin: 0 0 8px;
+  }
+  .lib-header p {
+    font-size: var(--font-size-body-medium, 18px);
+    line-height: var(--font-lh-body-medium, 27px);
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 720px;
+  }
+  .lib-controls { display: flex; gap: 12px; align-items: center; margin: 32px 0 24px; flex-wrap: wrap; }
+  .lib-search {
+    flex: 1; min-width: 220px; height: 48px; padding: 0 16px;
+    font-family: inherit; font-size: 16px;
+    color: var(--input-text-active);
+    border: 1px solid var(--input-stroke-default);
+    border-radius: var(--radius-xsm, 8px);
+    background: transparent; outline: none;
+    transition: border-color 120ms ease;
+  }
+  .lib-search:focus { border-color: var(--input-stroke-active); }
+  .lib-search::placeholder { color: var(--input-text-default); }
+  .lib-toggle {
+    height: 48px; padding: 0 20px; font-family: inherit; font-size: 16px;
+    font-weight: var(--font-weight-medium, 500);
+    border: 1.5px solid var(--color-border-primary);
+    border-radius: var(--radius-xsm, 8px);
+    background: transparent; color: var(--color-text-primary);
+    cursor: pointer; transition: background-color 120ms ease;
+  }
+  .lib-toggle:hover { background: var(--primitive-light-25, #f6f7f8); }
+  [data-theme="dark"] .lib-toggle:hover { background: var(--primitive-dark-600, #171b24); }
+
+  .lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .lib-card {
+    border: 1.5px solid var(--color-border-primary);
+    border-radius: var(--radius-md, 16px);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: box-shadow 120ms ease;
+  }
+  .lib-card:hover { box-shadow: var(--shadow-soft-300); }
+  .lib-card__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .lib-card__name {
+    font-size: var(--font-size-h6, 20px);
+    font-weight: var(--font-weight-semibold, 600);
+    margin: 0;
+  }
+  .lib-card__type {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px;
+    background: var(--btn-bg-focused, #cedfff); color: var(--btn-bg-hovered, #083999);
+    white-space: nowrap;
+  }
+  .lib-card__desc {
+    font-size: var(--font-size-body-small, 14px);
+    line-height: var(--font-lh-body-small, 21px);
+    color: var(--color-text-secondary);
+    margin: 0; flex: 1;
+  }
+  .lib-card__meta {
+    font-size: 12px; color: var(--color-text-secondary);
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .lib-card__meta span {
+    border: 1px solid var(--color-border-primary);
+    border-radius: 6px; padding: 2px 8px;
+  }
+  .lib-card__actions { display: flex; gap: 8px; margin-top: 4px; }
+  .lib-btn {
+    flex: 1; height: 40px; padding: 0 12px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    font-family: inherit; font-size: 14px; font-weight: var(--font-weight-medium, 500);
+    border-radius: var(--radius-xsm, 8px); cursor: pointer;
+    transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+    white-space: nowrap;
+  }
+  .lib-btn--prompt {
+    background: var(--btn-bg-enable); color: var(--color-text-primary-invert, #fff);
+    border: none;
+  }
+  .lib-btn--prompt:hover { background: var(--btn-bg-hovered); }
+  .lib-btn--code {
+    background: transparent; color: var(--btn-bg-enable);
+    border: 1.5px solid var(--btn-bg-enable);
+  }
+  .lib-btn--code:hover { background: var(--btn-bg-enable); color: var(--color-text-primary-invert, #fff); }
+  .lib-btn--copied { background: var(--color-success-primary) !important; border-color: var(--color-success-primary) !important; color: #fff !important; }
+
+  .lib-note {
+    margin-top: 48px; padding: 20px 24px;
+    border: 1.5px solid var(--color-border-primary);
+    border-radius: var(--radius-md, 16px);
+    font-size: 14px; line-height: 21px; color: var(--color-text-secondary);
+  }
+  .lib-note code {
+    background: var(--primitive-light-25, #f6f7f8); padding: 2px 6px; border-radius: 4px;
+    font-size: 13px; color: var(--color-text-primary);
+  }
+  [data-theme="dark"] .lib-note code { background: var(--primitive-dark-600, #171b24); }
+  .lib-error { color: var(--color-error-primary); font-size: 16px; padding: 40px 0; }
+</style>
+</head>
+<body>
+<div class="lib-shell">
+  <header class="lib-header">
+    <h1>WPMN Component Library</h1>
+    <p>AI-friendly component browser. <strong>Copy Prompt</strong> gives you a build spec any AI can follow to recreate the component in any stack. <strong>Copy Code</strong> gives you the full source (JSX + CSS) ready to paste.</p>
+  </header>
+
+  <div class="lib-controls">
+    <input type="text" class="lib-search" id="search" placeholder="Search components...">
+    <button class="lib-toggle" id="themeToggle">Dark mode</button>
+  </div>
+
+  <div class="lib-grid" id="grid"></div>
+
+  <div class="lib-note">
+    <strong>For AI agents:</strong> fetch <code>registry.json</code> for the machine-readable index, or <code>llms.txt</code> for usage instructions. Raw base URL: <code>https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/</code><br><br>
+    <strong>Running locally:</strong> this page fetches files, so serve it over HTTP (e.g. <code>python3 serve.py</code> or <code>npx serve</code>) instead of opening the file directly.
+  </div>
+</div>
+
+<script>
+(function () {
+  var grid = document.getElementById('grid');
+  var search = document.getElementById('search');
+  var themeToggle = document.getElementById('themeToggle');
+  var registry = null;
+
+  /* ---- theme toggle ---- */
+  themeToggle.addEventListener('click', function () {
+    var html = document.documentElement;
+    var dark = html.getAttribute('data-theme') === 'dark';
+    if (dark) { html.removeAttribute('data-theme'); themeToggle.textContent = 'Dark mode'; }
+    else { html.setAttribute('data-theme', 'dark'); themeToggle.textContent = 'Light mode'; }
+  });
+
+  /* ---- fetch helpers ---- */
+  function fetchText(path) {
+    return fetch(path).then(function (r) {
+      if (!r.ok) throw new Error('Failed to fetch ' + path + ' (' + r.status + ')');
+      return r.text();
+    });
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    /* fallback */
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); resolve(); }
+      catch (e) { reject(e); }
+      document.body.removeChild(ta);
+    });
+  }
+
+  function flash(btn, label) {
+    var original = btn.textContent;
+    btn.textContent = label;
+    btn.classList.add('lib-btn--copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('lib-btn--copied');
+    }, 1600);
+  }
+
+  /* ---- copy actions ---- */
+  function copyPrompt(comp, btn) {
+    fetchText(comp.prompt)
+      .then(function (text) { return copyToClipboard(text); })
+      .then(function () { flash(btn, 'Copied!'); })
+      .catch(function (err) { flash(btn, 'Failed'); console.error(err); });
+  }
+
+  function copyCode(comp, btn) {
+    var files = comp.files || {};
+    var paths = Object.keys(files).map(function (k) { return files[k]; });
+    Promise.all(paths.map(fetchText))
+      .then(function (contents) {
+        var bundle = contents.map(function (c, i) {
+          return '/* ===== ' + paths[i] + ' ===== */\n\n' + c;
+        }).join('\n\n');
+        var header =
+          '/*\n' +
+          ' * WPMN Design System — ' + comp.name + '\n' +
+          ' * Requires token CSS loaded first:\n' +
+          ' * https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/index.css\n' +
+          ' */\n\n';
+        return copyToClipboard(header + bundle);
+      })
+      .then(function () { flash(btn, 'Copied!'); })
+      .catch(function (err) { flash(btn, 'Failed'); console.error(err); });
+  }
+
+  /* ---- render ---- */
+  function variantSummary(comp) {
+    var bits = [];
+    var props = comp.props || {};
+    Object.keys(props).forEach(function (key) {
+      var p = props[key];
+      if (p && p.values && p.values.length > 1 && key !== 'state') {
+        bits.push(key + ': ' + p.values.length);
+      }
+    });
+    if (comp.states && comp.states.length > 1) bits.push('states: ' + comp.states.length);
+    return bits.slice(0, 4);
+  }
+
+  function render(filter) {
+    grid.innerHTML = '';
+    var q = (filter || '').toLowerCase();
+    registry.components.forEach(function (comp) {
+      var hay = (comp.id + ' ' + comp.name + ' ' + (comp.description || '')).toLowerCase();
+      if (q && hay.indexOf(q) === -1) return;
+
+      var card = document.createElement('div');
+      card.className = 'lib-card';
+
+      var head = document.createElement('div');
+      head.className = 'lib-card__head';
+      var name = document.createElement('h2');
+      name.className = 'lib-card__name';
+      name.textContent = comp.name;
+      var type = document.createElement('span');
+      type.className = 'lib-card__type';
+      type.textContent = comp.type || 'react';
+      head.appendChild(name);
+      head.appendChild(type);
+
+      var desc = document.createElement('p');
+      desc.className = 'lib-card__desc';
+      desc.textContent = comp.description || '';
+
+      var meta = document.createElement('div');
+      meta.className = 'lib-card__meta';
+      variantSummary(comp).forEach(function (m) {
+        var s = document.createElement('span');
+        s.textContent = m;
+        meta.appendChild(s);
+      });
+
+      var actions = document.createElement('div');
+      actions.className = 'lib-card__actions';
+
+      var promptBtn = document.createElement('button');
+      promptBtn.className = 'lib-btn lib-btn--prompt';
+      promptBtn.textContent = 'Copy Prompt';
+      promptBtn.addEventListener('click', function () { copyPrompt(comp, promptBtn); });
+
+      var codeBtn = document.createElement('button');
+      codeBtn.className = 'lib-btn lib-btn--code';
+      codeBtn.textContent = 'Copy Code';
+      codeBtn.addEventListener('click', function () { copyCode(comp, codeBtn); });
+
+      actions.appendChild(promptBtn);
+      actions.appendChild(codeBtn);
+
+      card.appendChild(head);
+      card.appendChild(desc);
+      card.appendChild(meta);
+      card.appendChild(actions);
+      grid.appendChild(card);
+    });
+  }
+
+  search.addEventListener('input', function () { render(search.value); });
+
+  /* ---- boot ---- */
+  fetchText('registry.json')
+    .then(function (text) {
+      registry = JSON.parse(text);
+      render('');
+    })
+    .catch(function (err) {
+      grid.innerHTML = '<div class="lib-error">Could not load registry.json — serve this page over HTTP (python3 serve.py). ' + err.message + '</div>';
+    });
+})();
+</script>
+</body>
+</html>

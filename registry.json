@@ -1,0 +1,759 @@
+{
+  "$schema": "wpmn-registry-v1",
+  "name": "WPMN Design System",
+  "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
+  "version": "1.0.0",
+  "generatedAt": "2026-06-11T05:01:26.797Z",
+  "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
+  "aiEntryPoint": "llms.txt",
+  "tokens": {
+    "entry": "index.css",
+    "files": [
+      "primitives.css",
+      "brand-primitives.css",
+      "tokens.css",
+      "typography.css"
+    ],
+    "loadOrder": "primitives -> brand-primitives -> tokens -> typography (or just index.css)",
+    "usage": "Components must only use semantic tokens (--color-*, --btn-*, --input-*, --radius-*, --font-*, --shadow-*), never --primitive-* directly."
+  },
+  "brands": [
+    "wpmanagenia",
+    "fluentforms",
+    "fluentcrm",
+    "ninjatables",
+    "wpsocialninja",
+    "fluentsupport",
+    "fluentaffiliate",
+    "fluentboards",
+    "fluentcart",
+    "fluentplayer",
+    "fluentmembers",
+    "fluentbooking",
+    "fluentcommunity",
+    "paymattic",
+    "fluentsmtp",
+    "azonpress"
+  ],
+  "brandSwitching": "Set data-brand=\"<key>\" on the root or any section element.",
+  "darkMode": "Set data-theme=\"dark\" on <html>. Light is default.",
+  "mobileBreakpoint": "768px (automatic via media queries)",
+  "guidelines": "wpmn-design-guideline.md",
+  "docs": "docs/",
+  "components": [
+    {
+      "id": "badge",
+      "name": "Badge",
+      "type": "react",
+      "status": "stable",
+      "figmaNode": "40:12056",
+      "description": "Status badge. 2 shape variants x 5 semantic types, light + dark themes. Uppercase expanded type.",
+      "files": {
+        "jsx": "components/Badge/Badge.jsx",
+        "css": "components/Badge/Badge.css"
+      },
+      "prompt": "components/Badge/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-badge",
+      "props": {
+        "variant": {
+          "values": [
+            "pill",
+            "soft"
+          ],
+          "default": "pill"
+        },
+        "type": {
+          "values": [
+            "in_progress",
+            "completed",
+            "experimental",
+            "deprecated",
+            "handoff_ready"
+          ],
+          "default": "in_progress"
+        },
+        "children": {
+          "type": "node",
+          "note": "overrides the default type label"
+        }
+      },
+      "states": [
+        "static"
+      ],
+      "interactions": [
+        "none, purely presentational"
+      ],
+      "tokensUsed": [
+        "component-scoped --badge-bg and --badge-color set per type, hardcoded by design (not brand-mapped)"
+      ],
+      "brands": "all (colors identical across brands by design)",
+      "themes": [
+        "light",
+        "dark"
+      ]
+    },
+    {
+      "id": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "type": "react",
+      "status": "stable",
+      "figmaNode": "482:46694",
+      "description": "Breadcrumb navigation. 4 style variants (border/flat/transparent/text), light + dark, optional home icon, arrow separators.",
+      "files": {
+        "jsx": "components/Breadcrumbs/Breadcrumbs.jsx",
+        "css": "components/Breadcrumbs/Breadcrumbs.css"
+      },
+      "prompt": "components/Breadcrumbs/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-breadcrumbs",
+      "props": {
+        "variant": {
+          "values": [
+            "border",
+            "flat",
+            "transparent",
+            "text"
+          ],
+          "default": "border"
+        },
+        "items": {
+          "type": "Array<{label?, href?, icon?}>",
+          "note": "icon:true renders home icon; omit href for the active/current item"
+        }
+      },
+      "states": [
+        "default",
+        "hover",
+        "active/current"
+      ],
+      "interactions": [
+        "item hover: color shift to brand accent, 120ms ease",
+        "active item: aria-current=page, pointer-events none",
+        "a11y: nav aria-label=Breadcrumb, ordered list"
+      ],
+      "tokensUsed": [
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-border-primary",
+        "--font-family-base"
+      ],
+      "knownExceptions": "hover/active accent colors #1a1aa9 (light) and #8080ec (dark) are hardcoded from Figma, not yet tokenized",
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ]
+    },
+    {
+      "id": "button",
+      "name": "Button",
+      "type": "react",
+      "status": "stable",
+      "figmaNode": "48:148413",
+      "description": "Primary action button. 3 types, 5 sizes, 5 interactive states, optional icons, loading spinner, full-width mode.",
+      "files": {
+        "jsx": "components/Button/Button.jsx",
+        "css": "components/Button/Button.css"
+      },
+      "prompt": "components/Button/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-btn",
+      "props": {
+        "type": {
+          "values": [
+            "primary",
+            "secondary",
+            "tertiary"
+          ],
+          "default": "primary"
+        },
+        "size": {
+          "values": [
+            "xl",
+            "lg",
+            "md",
+            "sm",
+            "xs"
+          ],
+          "default": "md"
+        },
+        "state": {
+          "values": [
+            "enabled",
+            "hovered",
+            "pressed",
+            "focused",
+            "disabled"
+          ],
+          "default": "enabled"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "loading": {
+          "type": "boolean",
+          "default": false
+        },
+        "fullWidth": {
+          "type": "boolean",
+          "default": false
+        },
+        "iconLeft": {
+          "type": "ReactNode"
+        },
+        "iconRight": {
+          "type": "ReactNode"
+        },
+        "as": {
+          "type": "string|component",
+          "default": "button"
+        }
+      },
+      "states": [
+        "enabled",
+        "hovered",
+        "pressed",
+        "focused",
+        "disabled",
+        "loading"
+      ],
+      "interactions": [
+        "background-color/border-color/color transition 120ms ease",
+        "primary: inset glow box-shadow on all non-disabled states",
+        "focus-visible: 3px solid border in --btn-bg-focused",
+        "loading: 1em spinner, 0.55s linear infinite rotation, pointer-events none"
+      ],
+      "tokensUsed": [
+        "--btn-bg-enable",
+        "--btn-bg-hovered",
+        "--btn-bg-pressed",
+        "--btn-bg-focused",
+        "--btn-bg-disabled",
+        "--color-text-primary-invert",
+        "--primitive-radius-xs",
+        "--primitive-radius-xxs",
+        "--font-family-base",
+        "--font-size-btn-*",
+        "--font-lh-btn-*",
+        "--font-weight-medium",
+        "--font-weight-semibold"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "rules": [
+        "Always pair primary + secondary side by side on marketing pages, never just one, never stacked",
+        "Never hardcode button background, always --btn-bg-enable"
+      ]
+    },
+    {
+      "id": "footer",
+      "name": "Footer",
+      "type": "react",
+      "status": "stable",
+      "figmaNode": "957:4223",
+      "description": "Full site footer. Brand/address column + social icon row + 3 nav columns, bottom bar with logo, copyright and links. Responsive at 1024px and 768px.",
+      "files": {
+        "jsx": "components/Footer/Footer.jsx",
+        "css": "components/Footer/Footer.css"
+      },
+      "prompt": "components/Footer/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-footer",
+      "props": {
+        "address": {
+          "type": "string"
+        },
+        "socialLinks": {
+          "type": "Array<{key, href, label}>",
+          "note": "key: facebook|instagram|x|linkedin|youtube|community|wordpress"
+        },
+        "columns": {
+          "type": "Array<{title, links: [{label, href}]}>"
+        },
+        "logoSrc": {
+          "type": "string"
+        },
+        "logoAlt": {
+          "type": "string",
+          "default": "WPManageNinja"
+        },
+        "copyright": {
+          "type": "string"
+        },
+        "bottomLinks": {
+          "type": "Array<{label, href}>"
+        }
+      },
+      "states": [
+        "link-hover",
+        "social-hover"
+      ],
+      "interactions": [
+        "nav link hover: secondary -> primary text color, 120ms ease",
+        "social button hover: opacity 0.6",
+        "bottom link hover: opacity 0.65"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--font-family-base"
+      ],
+      "breakpoints": {
+        "1024px": "padding 64px 48px, gap 80px",
+        "768px": "padding 48px 24px, columns wrap, bottom bar stacks"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ]
+    },
+    {
+      "id": "icons",
+      "name": "Icons",
+      "type": "reference",
+      "status": "stable",
+      "description": "Inline SVG icon components extracted from @hugeicons/react-pro v0.3.2. No runtime imports, no bundler dependency. Reference file for icon path data used across components.",
+      "files": {
+        "jsx": "components/Icons/HugeIcons.jsx"
+      },
+      "prompt": "components/Icons/prompt.md",
+      "dependsOn": [],
+      "props": {
+        "size": {
+          "type": "number",
+          "default": 24
+        },
+        "color": {
+          "type": "string",
+          "default": "currentColor"
+        }
+      },
+      "states": [
+        "static"
+      ],
+      "interactions": [
+        "none"
+      ],
+      "tokensUsed": [
+        "none, icons inherit color via currentColor"
+      ],
+      "iconStyle": "HugeIcons Pro, stroke.rounded variant (solid.rounded used inside Breadcrumbs/Footer/SocialIcons)",
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ]
+    },
+    {
+      "id": "input",
+      "name": "Input",
+      "type": "react",
+      "status": "stable",
+      "figmaNode": "646:105572",
+      "description": "Text input with label, hint, error/success messaging, left/right icons. Stroke and fill variants, 3 sizes.",
+      "files": {
+        "jsx": "components/Input/Input.jsx",
+        "css": "components/Input/Input.css"
+      },
+      "prompt": "components/Input/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-input-wrapper",
+      "props": {
+        "variant": {
+          "values": [
+            "stroke",
+            "fill"
+          ],
+          "default": "stroke"
+        },
+        "size": {
+          "values": [
+            "lg",
+            "md",
+            "sm"
+          ],
+          "default": "md"
+        },
+        "label": {
+          "type": "string"
+        },
+        "placeholder": {
+          "type": "string"
+        },
+        "hint": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string",
+          "note": "drives error state"
+        },
+        "success": {
+          "type": "string",
+          "note": "drives success state"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "iconLeft": {
+          "type": "ReactNode",
+          "note": "20px box"
+        },
+        "iconRight": {
+          "type": "ReactNode",
+          "note": "auto alert-circle 24px on error, check-circle 20px on success"
+        },
+        "type": {
+          "type": "string",
+          "default": "text"
+        }
+      },
+      "states": [
+        "default",
+        "hover",
+        "focused",
+        "error",
+        "success",
+        "disabled"
+      ],
+      "interactions": [
+        "border-color/background-color/color transition 120ms ease",
+        "placeholder color shifts on hover, value color on focus",
+        "error replaces right icon with 24px alert-circle, success with 20px check-circle",
+        "a11y: aria-invalid, aria-describedby wired to message, role=alert on error"
+      ],
+      "tokensUsed": [
+        "--input-stroke-*",
+        "--input-text-*",
+        "--input-fill-*",
+        "--input-label-color",
+        "--input-hint-color",
+        "--color-error-primary",
+        "--primitive-radius-xs",
+        "--font-family-base",
+        "--font-size-body-small",
+        "--font-size-body-label"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ]
+    },
+    {
+      "id": "logo",
+      "name": "Logo",
+      "type": "react",
+      "status": "stable",
+      "description": "Inline SVG brand logo renderer. 16 brands x 2 variants (logo/icon) x 5 color types, all embedded in logos.js, no static file hosting needed.",
+      "files": {
+        "jsx": "components/Logo/Logo.jsx",
+        "css": "components/Logo/Logo.css",
+        "data": "components/Logo/logos.js"
+      },
+      "prompt": "components/Logo/prompt.md",
+      "dependsOn": [],
+      "baseClass": "wpmn-logo",
+      "props": {
+        "brand": {
+          "type": "string",
+          "required": true,
+          "values": [
+            "wpmanagenia",
+            "fluentforms",
+            "fluentcrm",
+            "ninjatables",
+            "fluentcommunity",
+            "fluentbooking",
+            "paymattic",
+            "fluentboards",
+            "fluentsmtp",
+            "fluentsupport",
+            "fluentaffiliate",
+            "azonpress",
+            "wpsocialninja",
+            "fluentcart",
+            "fluentplayer",
+            "fluentmembers"
+          ]
+        },
+        "variant": {
+          "values": [
+            "logo",
+            "icon"
+          ],
+          "default": "logo",
+          "note": "logo = icon mark + wordmark, icon = mark only"
+        },
+        "type": {
+          "values": [
+            "primary",
+            "dark",
+            "inverted",
+            "black",
+            "white"
+          ],
+          "default": "primary"
+        },
+        "height": {
+          "type": "number",
+          "note": "px, width scales automatically"
+        },
+        "width": {
+          "type": "number",
+          "note": "px, height scales automatically"
+        }
+      },
+      "states": [
+        "static"
+      ],
+      "interactions": [
+        "none"
+      ],
+      "tokensUsed": [
+        "none, SVG colors are baked in per type"
+      ],
+      "typeUsage": {
+        "primary": "full color, for light backgrounds",
+        "dark": "full color, for dark backgrounds",
+        "inverted": "reversed palette, for brand-color backgrounds",
+        "black": "monochrome black, light backgrounds / print",
+        "white": "monochrome white, dark backgrounds / reversed print"
+      },
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "assetsDir": "logos/"
+    },
+    {
+      "id": "navbar",
+      "name": "NavBar",
+      "type": "react",
+      "status": "stable",
+      "figmaNode": "341:657",
+      "description": "Responsive site header. Desktop: logo + nav links + primary CTA. Mobile: logo + secondary CTA + hamburger with slide-down drawer.",
+      "files": {
+        "jsx": "components/NavBar/NavBar.jsx",
+        "css": "components/NavBar/NavBar.css"
+      },
+      "prompt": "components/NavBar/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-navbar",
+      "props": {
+        "logo": {
+          "type": "ReactNode"
+        },
+        "links": {
+          "type": "Array<{label, href, active?}>"
+        },
+        "ctaLabel": {
+          "type": "string",
+          "default": "Sign Up"
+        },
+        "ctaHref": {
+          "type": "string",
+          "default": "#"
+        },
+        "onCtaClick": {
+          "type": "function"
+        }
+      },
+      "states": [
+        "desktop",
+        "mobile-closed",
+        "mobile-open",
+        "link-hover",
+        "link-active"
+      ],
+      "interactions": [
+        "link hover: color shift + light bg, 120ms ease",
+        "CTA hover/active/focus follow button primary states",
+        "hamburger toggles drawer, icon swaps hamburger/close",
+        "drawer link click closes drawer",
+        "a11y: aria-expanded, aria-controls, aria-current on active link"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--btn-bg-enable",
+        "--btn-bg-hovered",
+        "--btn-bg-pressed",
+        "--btn-bg-focused",
+        "--color-border-primary",
+        "--primitive-radius-xs",
+        "--primitive-light-25",
+        "--primitive-primary-50",
+        "--font-family-base",
+        "--font-weight-regular",
+        "--font-weight-medium"
+      ],
+      "breakpoint": "768px",
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ]
+    },
+    {
+      "id": "socialicons",
+      "name": "SocialIcons",
+      "type": "react",
+      "status": "stable",
+      "figmaNode": "957:5265",
+      "description": "Standalone social icon button group. 7 platforms, sizable, light + dark.",
+      "files": {
+        "jsx": "components/SocialIcons/SocialIcons.jsx",
+        "css": "components/SocialIcons/SocialIcons.css"
+      },
+      "prompt": "components/SocialIcons/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-social-icons",
+      "props": {
+        "links": {
+          "type": "Array<{icon, href, label}>",
+          "note": "icon: facebook|instagram|x|linkedin|youtube|community|wordpress"
+        },
+        "size": {
+          "type": "number",
+          "default": 32,
+          "note": "button box px; icon renders at 60% of box"
+        }
+      },
+      "states": [
+        "default",
+        "hover"
+      ],
+      "interactions": [
+        "hover: opacity 0.65 + translateY(-1px), 120ms ease"
+      ],
+      "tokensUsed": [
+        "gradient backgrounds hardcoded by design"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ]
+    },
+    {
+      "id": "text",
+      "name": "Text",
+      "type": "react",
+      "status": "stable",
+      "description": "Polymorphic typography component. One component for every type style: 6 headings + 6 body variants, with color/weight/align/truncate controls.",
+      "files": {
+        "jsx": "components/Text/Text.jsx",
+        "css": "typography.css"
+      },
+      "prompt": "components/Text/prompt.md",
+      "dependsOn": [
+        "typography.css",
+        "tokens.css"
+      ],
+      "baseClass": "text-{variant}",
+      "props": {
+        "variant": {
+          "values": [
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "body-large",
+            "body-medium",
+            "body-base",
+            "body-small",
+            "body-label",
+            "body-mono"
+          ],
+          "default": "body-base"
+        },
+        "as": {
+          "type": "string",
+          "note": "overrides the smart default HTML tag"
+        },
+        "color": {
+          "values": [
+            "primary",
+            "secondary",
+            "brand",
+            "invert"
+          ],
+          "default": "primary"
+        },
+        "weight": {
+          "values": [
+            "regular",
+            "medium",
+            "semibold",
+            "bold"
+          ],
+          "note": "overrides variant default"
+        },
+        "align": {
+          "values": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "truncate": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "states": [
+        "static"
+      ],
+      "interactions": [
+        "none"
+      ],
+      "tokensUsed": [
+        "--font-family-base",
+        "--font-size-h1..h6",
+        "--font-size-body-*",
+        "--font-lh-*",
+        "--font-weight-*",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-brand",
+        "--color-text-primary-invert"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ]
+    }
+  ]
+}

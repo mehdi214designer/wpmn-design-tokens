@@ -1,0 +1,22 @@
+{
+  "id": "icons",
+  "name": "Icons",
+  "type": "reference",
+  "status": "stable",
+  "description": "Inline SVG icon components extracted from @hugeicons/react-pro v0.3.2. No runtime imports, no bundler dependency. Reference file for icon path data used across components.",
+  "files": {
+    "jsx": "components/Icons/HugeIcons.jsx"
+  },
+  "prompt": "components/Icons/prompt.md",
+  "dependsOn": [],
+  "props": {
+    "size": { "type": "number", "default": 24 },
+    "color": { "type": "string", "default": "currentColor" }
+  },
+  "states": ["static"],
+  "interactions": ["none"],
+  "tokensUsed": ["none, icons inherit color via currentColor"],
+  "iconStyle": "HugeIcons Pro, stroke.rounded variant (solid.rounded used inside Breadcrumbs/Footer/SocialIcons)",
+  "brands": "all",
+  "themes": ["light", "dark"]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "breadcrumbs",
+  "name": "Breadcrumbs",
+  "type": "react",
+  "status": "stable",
+  "figmaNode": "482:46694",
+  "description": "Breadcrumb navigation. 4 style variants (border/flat/transparent/text), light + dark, optional home icon, arrow separators.",
+  "files": {
+    "jsx": "components/Breadcrumbs/Breadcrumbs.jsx",
+    "css": "components/Breadcrumbs/Breadcrumbs.css"
+  },
+  "prompt": "components/Breadcrumbs/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-breadcrumbs",
+  "props": {
+    "variant": { "values": ["border", "flat", "transparent", "text"], "default": "border" },
+    "items": { "type": "Array<{label?, href?, icon?}>", "note": "icon:true renders home icon; omit href for the active/current item" }
+  },
+  "states": ["default", "hover", "active/current"],
+  "interactions": [
+    "item hover: color shift to brand accent, 120ms ease",
+    "active item: aria-current=page, pointer-events none",
+    "a11y: nav aria-label=Breadcrumb, ordered list"
+  ],
+  "tokensUsed": [
+    "--color-text-primary", "--color-text-secondary", "--color-border-primary", "--font-family-base"
+  ],
+  "knownExceptions": "hover/active accent colors #1a1aa9 (light) and #8080ec (dark) are hardcoded from Figma, not yet tokenized",
+  "brands": "all",
+  "themes": ["light", "dark"]
+}

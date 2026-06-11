@@ -1,0 +1,35 @@
+{
+  "id": "logo",
+  "name": "Logo",
+  "type": "react",
+  "status": "stable",
+  "description": "Inline SVG brand logo renderer. 16 brands x 2 variants (logo/icon) x 5 color types, all embedded in logos.js, no static file hosting needed.",
+  "files": {
+    "jsx": "components/Logo/Logo.jsx",
+    "css": "components/Logo/Logo.css",
+    "data": "components/Logo/logos.js"
+  },
+  "prompt": "components/Logo/prompt.md",
+  "dependsOn": [],
+  "baseClass": "wpmn-logo",
+  "props": {
+    "brand": { "type": "string", "required": true, "values": ["wpmanagenia", "fluentforms", "fluentcrm", "ninjatables", "fluentcommunity", "fluentbooking", "paymattic", "fluentboards", "fluentsmtp", "fluentsupport", "fluentaffiliate", "azonpress", "wpsocialninja", "fluentcart", "fluentplayer", "fluentmembers"] },
+    "variant": { "values": ["logo", "icon"], "default": "logo", "note": "logo = icon mark + wordmark, icon = mark only" },
+    "type": { "values": ["primary", "dark", "inverted", "black", "white"], "default": "primary" },
+    "height": { "type": "number", "note": "px, width scales automatically" },
+    "width": { "type": "number", "note": "px, height scales automatically" }
+  },
+  "states": ["static"],
+  "interactions": ["none"],
+  "tokensUsed": ["none, SVG colors are baked in per type"],
+  "typeUsage": {
+    "primary": "full color, for light backgrounds",
+    "dark": "full color, for dark backgrounds",
+    "inverted": "reversed palette, for brand-color backgrounds",
+    "black": "monochrome black, light backgrounds / print",
+    "white": "monochrome white, dark backgrounds / reversed print"
+  },
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "assetsDir": "logos/"
+}

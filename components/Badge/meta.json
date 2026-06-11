@@ -1,0 +1,25 @@
+{
+  "id": "badge",
+  "name": "Badge",
+  "type": "react",
+  "status": "stable",
+  "figmaNode": "40:12056",
+  "description": "Status badge. 2 shape variants x 5 semantic types, light + dark themes. Uppercase expanded type.",
+  "files": {
+    "jsx": "components/Badge/Badge.jsx",
+    "css": "components/Badge/Badge.css"
+  },
+  "prompt": "components/Badge/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-badge",
+  "props": {
+    "variant": { "values": ["pill", "soft"], "default": "pill" },
+    "type": { "values": ["in_progress", "completed", "experimental", "deprecated", "handoff_ready"], "default": "in_progress" },
+    "children": { "type": "node", "note": "overrides the default type label" }
+  },
+  "states": ["static"],
+  "interactions": ["none, purely presentational"],
+  "tokensUsed": ["component-scoped --badge-bg and --badge-color set per type, hardcoded by design (not brand-mapped)"],
+  "brands": "all (colors identical across brands by design)",
+  "themes": ["light", "dark"]
+}

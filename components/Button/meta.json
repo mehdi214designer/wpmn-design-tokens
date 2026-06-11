@@ -1,0 +1,45 @@
+{
+  "id": "button",
+  "name": "Button",
+  "type": "react",
+  "status": "stable",
+  "figmaNode": "48:148413",
+  "description": "Primary action button. 3 types, 5 sizes, 5 interactive states, optional icons, loading spinner, full-width mode.",
+  "files": {
+    "jsx": "components/Button/Button.jsx",
+    "css": "components/Button/Button.css"
+  },
+  "prompt": "components/Button/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-btn",
+  "props": {
+    "type": { "values": ["primary", "secondary", "tertiary"], "default": "primary" },
+    "size": { "values": ["xl", "lg", "md", "sm", "xs"], "default": "md" },
+    "state": { "values": ["enabled", "hovered", "pressed", "focused", "disabled"], "default": "enabled" },
+    "disabled": { "type": "boolean", "default": false },
+    "loading": { "type": "boolean", "default": false },
+    "fullWidth": { "type": "boolean", "default": false },
+    "iconLeft": { "type": "ReactNode" },
+    "iconRight": { "type": "ReactNode" },
+    "as": { "type": "string|component", "default": "button" }
+  },
+  "states": ["enabled", "hovered", "pressed", "focused", "disabled", "loading"],
+  "interactions": [
+    "background-color/border-color/color transition 120ms ease",
+    "primary: inset glow box-shadow on all non-disabled states",
+    "focus-visible: 3px solid border in --btn-bg-focused",
+    "loading: 1em spinner, 0.55s linear infinite rotation, pointer-events none"
+  ],
+  "tokensUsed": [
+    "--btn-bg-enable", "--btn-bg-hovered", "--btn-bg-pressed", "--btn-bg-focused", "--btn-bg-disabled",
+    "--color-text-primary-invert",
+    "--primitive-radius-xs", "--primitive-radius-xxs",
+    "--font-family-base", "--font-size-btn-*", "--font-lh-btn-*", "--font-weight-medium", "--font-weight-semibold"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "rules": [
+    "Always pair primary + secondary side by side on marketing pages, never just one, never stacked",
+    "Never hardcode button background, always --btn-bg-enable"
+  ]
+}

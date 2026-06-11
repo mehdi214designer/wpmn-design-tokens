@@ -1,0 +1,56 @@
+# WPMN Design System
+
+> AI-friendly component library and CSS design token system for WPManageNinja products (FluentForms, FluentCRM, NinjaTables, and 13 more WordPress plugin brands). Plain CSS custom properties + React, no build step. 16 brands switch via a single `data-brand` attribute.
+
+This file tells AI agents how to fetch and use this design system.
+
+## How to use this repo as an AI agent
+
+1. Fetch `registry.json` first. It lists every component, its files, variants, and interactions.
+2. For each component you need, choose ONE of two paths:
+   - **Prompt path**: fetch the component's `prompt.md` and follow it as a build spec to recreate the component in any stack (HTML/CSS, React, Vue, etc.). Specs are exact: px values, token names, states, transition timings.
+   - **Code path**: fetch the component's source files (`.jsx` + `.css`) and use them as-is. They depend only on the token CSS files.
+3. Always load the token files before using any component code:
+   - `primitives.css` (raw values) -> `brand-primitives.css` (brand overrides) -> `tokens.css` (semantic tokens) -> `typography.css` (type scale). Or just `index.css` which imports all four in order.
+4. Components must only use semantic tokens (`--color-*`, `--btn-*`, `--input-*`, `--radius-*`, `--font-*`, `--shadow-*`). Never hardcode colors and never use `--primitive-*` directly in new component code.
+
+All files are fetchable via raw URLs:
+`https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/<path>`
+
+## Core rules
+
+- Brand switching: set `data-brand="<key>"` on the root or any section. Keys: wpmanagenia, fluentforms, fluentcrm, ninjatables, wpsocialninja, fluentsupport, fluentaffiliate, fluentboards, fluentcart, fluentplayer, fluentmembers, fluentbooking, fluentcommunity, paymattic, fluentsmtp, azonpress.
+- Dark mode: add `data-theme="dark"` to `<html>`. Light is default.
+- Mobile: handled automatically via `@media (max-width: 768px)`.
+- Font: Work Sans (400/500/600/700), loaded by `typography.css`.
+- Buttons: always pair primary + secondary side by side on marketing pages.
+- JSX convention: use `var`, not `const`, inside function bodies. Icons are inline SVG path data, no runtime imports.
+
+## Key files
+
+- [registry.json](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/registry.json): machine-readable component index. START HERE.
+- [index.css](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/index.css): single import for the full token system.
+- [tokens.css](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/tokens.css): semantic tokens (light/dark/mobile).
+- [brand-primitives.css](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/brand-primitives.css): all 16 brand color scales.
+- [typography.css](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/typography.css): type scale + utility classes.
+- [wpmn-design-guideline.md](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/wpmn-design-guideline.md): layout, spacing, section, and logo rules for full pages.
+
+## Components
+
+Each component folder contains: source files, `meta.json` (machine spec), `prompt.md` (AI build spec).
+
+- [Button](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Button/prompt.md): 3 types x 5 sizes x 5 states, loading spinner
+- [Input](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Input/prompt.md): stroke/fill variants, 3 sizes, error/success states
+- [Badge](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Badge/prompt.md): pill/soft variants, 5 semantic types
+- [Text](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Text/prompt.md): polymorphic typography component, 12 variants
+- [NavBar](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/NavBar/prompt.md): responsive nav with mobile drawer
+- [Logo](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Logo/prompt.md): 16 brands x logo/icon x 5 color types, inline SVG
+- [Footer](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Footer/prompt.md): full site footer with nav columns and social icons
+- [Breadcrumbs](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Breadcrumbs/prompt.md): 4 style variants, light + dark
+- [SocialIcons](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/SocialIcons/prompt.md): 7 platform icons, sizable button group
+
+## Optional
+
+- [demo.html](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/demo.html): browser demo of all components (Babel standalone, no build).
+- [library.html](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/library.html): human-facing library browser with Copy Prompt / Copy Code buttons.
+- [docs/](https://github.com/mehdi214designer/wpmn-design-tokens/tree/master/docs): per-topic markdown docs (brands, colors, components, icons, layout, logo, spacing, tokens, typography).

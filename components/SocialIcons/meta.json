@@ -1,0 +1,26 @@
+{
+  "id": "socialicons",
+  "name": "SocialIcons",
+  "type": "react",
+  "status": "stable",
+  "figmaNode": "957:5265",
+  "description": "Standalone social icon button group. 7 platforms, sizable, light + dark.",
+  "files": {
+    "jsx": "components/SocialIcons/SocialIcons.jsx",
+    "css": "components/SocialIcons/SocialIcons.css"
+  },
+  "prompt": "components/SocialIcons/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-social-icons",
+  "props": {
+    "links": { "type": "Array<{icon, href, label}>", "note": "icon: facebook|instagram|x|linkedin|youtube|community|wordpress" },
+    "size": { "type": "number", "default": 32, "note": "button box px; icon renders at 60% of box" }
+  },
+  "states": ["default", "hover"],
+  "interactions": [
+    "hover: opacity 0.65 + translateY(-1px), 120ms ease"
+  ],
+  "tokensUsed": ["gradient backgrounds hardcoded by design"],
+  "brands": "all",
+  "themes": ["light", "dark"]
+}
