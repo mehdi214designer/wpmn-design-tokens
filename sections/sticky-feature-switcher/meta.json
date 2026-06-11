@@ -1,0 +1,46 @@
+{
+  "id": "sticky-feature-switcher",
+  "name": "Sticky Feature Switcher",
+  "type": "html",
+  "status": "stable",
+  "description": "Pinned two-panel scroll story. Left panel crossfades 7 feature slides with per-word stagger and a lerped tab strip; right panel wipes media layers up as you scroll an 810vh track.",
+  "files": {
+    "html": "sections/sticky-feature-switcher/section.html"
+  },
+  "prompt": "sections/sticky-feature-switcher/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-sticky-feature-switcher",
+  "interactions": [
+    "section pins for 810vh; scroll progress drives everything via rAF + scroll listener",
+    "media layers wipe up with cubic ease-out translateY((1-e)*100%)",
+    "text slides crossfade; body words fade in with seeded random stagger",
+    "tab strip lerps horizontally (x += (target-x)*0.12); active tab fills via width-clipped dark copy",
+    "CTA hover: btn-bg-enable -> btn-bg-hovered, 400ms",
+    "below 900px: unpins, media panel hidden, slides stack"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--btn-bg-enable",
+    "--btn-bg-hovered",
+    "--radius-lg",
+    "--radius-xsm",
+    "--font-family-base",
+    "--font-size-h2",
+    "--font-size-body-base",
+    "--font-size-body-label",
+    "--font-size-btn-md",
+    "--font-weight-semibold",
+    "--font-weight-medium"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "role": "Features",
+  "span": 2,
+  "tags": ["sticky", "pinned", "scroll story", "feature switcher", "tabs", "media wipe", "scrollytelling"]
+}

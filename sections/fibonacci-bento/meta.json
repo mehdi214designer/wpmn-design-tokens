@@ -1,0 +1,48 @@
+{
+  "id": "fibonacci-bento",
+  "name": "Fibonacci Bento",
+  "type": "html",
+  "status": "stable",
+  "description": "Framed media bento on a Fibonacci-style 5-card grid. Dark frame, hover overlays tint cards with the brand color, titles thicken, and the heading letters rise in one by one.",
+  "files": {
+    "html": "sections/fibonacci-bento/section.html"
+  },
+  "prompt": "sections/fibonacci-bento/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-fibonacci-bento",
+  "interactions": [
+    "heading splits into letters, staggered translateY(110%) rise on first view (18ms/letter)",
+    "per-letter hover pop animation with reflow restart",
+    "card hover: overlay tints with btn-bg-enable multiply + backdrop blur, description fades up",
+    "title weight transitions 700 -> 900 via font-variation-settings on hover",
+    "frame shadow softens on grid hover",
+    "prefers-reduced-motion: all reveals and transitions disabled"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--btn-bg-enable",
+    "--radius-lg",
+    "--radius-sm",
+    "--shadow-soft-500",
+    "--shadow-hard-300",
+    "--font-family-base",
+    "--font-size-h2",
+    "--font-size-h5",
+    "--font-size-body-small",
+    "--font-size-body-label",
+    "--font-weight-bold",
+    "--font-weight-semibold"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "role": "Features",
+  "span": 2,
+  "tags": ["bento", "grid", "media cards", "hover overlay", "letter animation", "fibonacci", "showcase"]
+}

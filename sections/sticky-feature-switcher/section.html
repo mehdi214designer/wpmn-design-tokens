@@ -1,0 +1,197 @@
+<!-- WPMN Section: Sticky Feature Switcher — pinned two-panel scroll story (imported, tokenized) -->
+<section class="wpmn-sec-sticky-feature-switcher">
+  <style>
+    .wpmn-sec-sticky-feature-switcher{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);--sfs-u:0.69444vw}
+    .wpmn-sec-sticky-feature-switcher .sfs-track{height:810vh}
+    .wpmn-sec-sticky-feature-switcher .sfs-pin{position:sticky;top:0;display:flex;gap:calc(var(--sfs-u)*0.4);padding:var(--sfs-u);height:100vh}
+    .wpmn-sec-sticky-feature-switcher .panel-text{width:36.5%;height:calc(100vh - var(--sfs-u)*2);background:color-mix(in srgb,var(--color-text-primary) 4%,var(--color-surface-primary));border-radius:var(--radius-lg);display:flex;flex-direction:column;padding:0 calc(var(--sfs-u)*3) calc(var(--sfs-u)*3);position:relative;overflow:hidden}
+    .wpmn-sec-sticky-feature-switcher .dots{position:absolute;inset:0;background-image:radial-gradient(color-mix(in srgb,var(--color-text-primary) 10%,transparent) 1px,transparent 1.5px);background-size:22px 22px;opacity:.5;pointer-events:none}
+    .wpmn-sec-sticky-feature-switcher .slides{position:relative;flex:1}
+    .wpmn-sec-sticky-feature-switcher .slide{position:absolute;inset:0;display:flex;flex-direction:column;visibility:hidden}
+    .wpmn-sec-sticky-feature-switcher .slide.on{visibility:visible}
+    .wpmn-sec-sticky-feature-switcher .slide-title{width:80%;margin:calc(var(--sfs-u)*3) auto 0;height:45%;display:flex;align-items:center;justify-content:center;font-size:var(--font-size-h2);line-height:1;font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;text-align:center;color:var(--color-text-primary)}
+    .wpmn-sec-sticky-feature-switcher .slide-divider{position:relative;height:1px;width:100%;background:color-mix(in srgb,var(--color-text-primary) 10%,transparent);margin-bottom:calc(var(--sfs-u)*3.2)}
+    .wpmn-sec-sticky-feature-switcher .plus{position:absolute;left:50%;top:50%;width:10px;height:10px;transform:translate(-50%,-50%)}
+    .wpmn-sec-sticky-feature-switcher .plus::before,.wpmn-sec-sticky-feature-switcher .plus::after{content:'';position:absolute;background:var(--color-text-primary)}
+    .wpmn-sec-sticky-feature-switcher .plus::before{left:0;top:calc(50% - .5px);width:100%;height:1px}
+    .wpmn-sec-sticky-feature-switcher .plus::after{top:0;left:calc(50% - .5px);height:100%;width:1px}
+    .wpmn-sec-sticky-feature-switcher .slide-body{flex:1;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-sticky-feature-switcher .slide-body p{width:65%;margin:0 auto;text-align:center}
+    .wpmn-sec-sticky-feature-switcher .slide-body .word{display:inline-block;opacity:0}
+    .wpmn-sec-sticky-feature-switcher .bottom{margin-top:auto;position:relative}
+    .wpmn-sec-sticky-feature-switcher .bottom::before,.wpmn-sec-sticky-feature-switcher .bottom::after{content:'';position:absolute;top:0;width:1px;height:100%;background:color-mix(in srgb,var(--color-text-primary) 20%,transparent)}
+    .wpmn-sec-sticky-feature-switcher .bottom::before{left:0}
+    .wpmn-sec-sticky-feature-switcher .bottom::after{right:0}
+    .wpmn-sec-sticky-feature-switcher .tabstrip{overflow:hidden;height:calc(var(--sfs-u)*5.4)}
+    .wpmn-sec-sticky-feature-switcher .tabstrip-inner{display:inline-flex;align-items:center;height:100%;gap:calc(var(--sfs-u)*1.5);padding:0 var(--sfs-u);white-space:nowrap;will-change:transform}
+    .wpmn-sec-sticky-feature-switcher .tab{position:relative;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.05em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text-secondary) 55%,transparent)}
+    .wpmn-sec-sticky-feature-switcher .tab-fill{position:absolute;left:0;top:0;overflow:hidden;width:0;color:var(--color-text-primary)}
+    .wpmn-sec-sticky-feature-switcher .tab-fill > div{white-space:nowrap}
+    .wpmn-sec-sticky-feature-switcher .button-row{border-top:1px solid color-mix(in srgb,var(--color-text-primary) 20%,transparent);padding:calc(var(--sfs-u)*0.8) calc(var(--sfs-u)*0.8) 0;position:relative}
+    .wpmn-sec-sticky-feature-switcher .button-row .plus{left:1px;top:1px}
+    .wpmn-sec-sticky-feature-switcher .button-row .plus--r{left:auto;right:1px;transform:translate(50%,-53%)}
+    .wpmn-sec-sticky-feature-switcher .cta{display:flex;justify-content:center;align-items:center;width:100%;padding:calc(var(--sfs-u)*1.6) 0;background:var(--btn-bg-enable);border-radius:var(--radius-xsm);color:var(--color-text-primary-invert);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);letter-spacing:.03em;text-transform:uppercase;text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color .4s cubic-bezier(0,0,.2,1)}
+    .wpmn-sec-sticky-feature-switcher .cta:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-sticky-feature-switcher .cta svg{width:16px;height:14px;margin-left:12px}
+    .wpmn-sec-sticky-feature-switcher .panel-media{flex:1;height:calc(100vh - var(--sfs-u)*2);position:sticky;top:var(--sfs-u);border-radius:var(--radius-lg);overflow:hidden;z-index:1;background:var(--color-surface-secondary)}
+    .wpmn-sec-sticky-feature-switcher .media-layer{position:absolute;inset:0;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;transform:translateY(100%);will-change:transform}
+    .wpmn-sec-sticky-feature-switcher .media-layer:first-child{transform:none}
+    .wpmn-sec-sticky-feature-switcher .media-layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    @media(max-width:899px){
+      .wpmn-sec-sticky-feature-switcher .sfs-track{height:auto}
+      .wpmn-sec-sticky-feature-switcher .sfs-pin{position:static;flex-direction:column;height:auto}
+      .wpmn-sec-sticky-feature-switcher .panel-text{width:100%;height:auto;position:static;padding:0 20px 24px}
+      .wpmn-sec-sticky-feature-switcher .slides{min-height:60vh}
+      .wpmn-sec-sticky-feature-switcher .panel-media{display:none}
+      .wpmn-sec-sticky-feature-switcher .slide-title{font-size:34px}
+      .wpmn-sec-sticky-feature-switcher .slide-body{font-size:15px}
+      .wpmn-sec-sticky-feature-switcher .cta{font-size:14px;padding:18px 0}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-sticky-feature-switcher .cta{transition:none}
+    }
+  </style>
+  <div class="sfs-track">
+    <div class="sfs-pin">
+      <div class="panel-text">
+        <div class="dots"></div>
+        <div class="slides"></div>
+        <div class="bottom">
+          <div class="tabstrip"><div class="tabstrip-inner"></div></div>
+          <div class="button-row">
+            <span class="plus"></span>
+            <span class="plus plus--r"></span>
+            <a class="cta" href="#" onclick="return false">
+              Explore the full suite
+              <svg viewBox="0 0 19 17" fill="none"><path d="M10.5 1.5 17 8.5l-6.5 7M17 8.5H1" stroke="currentColor" stroke-width="1.6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="panel-media"></div>
+    </div>
+  </div>
+  <script>
+    // Pinned feature switcher (imported as-is, scoped): media layers wipe up,
+    // text crossfades with per-word stagger, tab strip lerps with clipped fills.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-sticky-feature-switcher');
+      if (!sec) return;
+
+      var SLIDES = [
+        { title: 'Drag & Drop Forms', tab: '1.Forms',
+          body: 'Build any form in minutes without touching code. 30+ field types, conditional logic, and multi-step flows out of the box.',
+          img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Email Automation', tab: '2.CRM',
+          body: 'Campaigns, sequences, and segmentation living inside WordPress. Your data stays yours, every send is attributed.',
+          img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Helpdesk Built In', tab: '3.Support',
+          body: 'Tickets, SLA timers, and satisfaction surveys run themselves so your team answers faster with less effort.',
+          img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Booking Without Friction', tab: '4.Booking',
+          body: 'Calendars, payments, and reminders in one flow. Customers pick a slot, you get paid, nobody emails back and forth.',
+          img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Tables That Stay Fast', tab: '5.Tables',
+          body: 'Data tables that keep their speed at a hundred thousand rows, with filtering and sorting your visitors actually use.',
+          img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'Community & Courses', tab: '6.Community',
+          body: 'Spaces, member feeds, and course content under your own roof. Panoramic control, zero platform fees.',
+          img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80' },
+        { title: 'One Dashboard', tab: '7.App',
+          body: 'Every plugin reports into the same place. No manual required to get started.',
+          img: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=1200&q=80' }
+      ];
+      var EXTRA_TAB = '8.And so much more';
+      var N = SLIDES.length;
+
+      var slidesEl = sec.querySelector('.slides');
+      var tabstrip = sec.querySelector('.tabstrip-inner');
+      var mediaStack = sec.querySelector('.panel-media');
+
+      var seed = 7;
+      function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+
+      SLIDES.forEach(function (s, i) {
+        var slide = document.createElement('div');
+        slide.className = 'slide';
+        var words = s.body.split(' ').map(function (w) {
+          return '<span class="word" data-d="' + rnd().toFixed(3) + '">' + w + '</span>';
+        }).join(' ');
+        slide.innerHTML = '<div class="slide-title">' + s.title + '</div>' +
+          '<div class="slide-divider"><span class="plus"></span></div>' +
+          '<div class="slide-body"><p>' + words + '</p></div>';
+        slidesEl.appendChild(slide);
+
+        var tab = document.createElement('div');
+        tab.className = 'tab';
+        tab.innerHTML = '<div>' + s.tab + '</div><div class="tab-fill"><div>' + s.tab + '</div></div>';
+        tabstrip.appendChild(tab);
+
+        var layer = document.createElement('div');
+        layer.className = 'media-layer';
+        layer.style.zIndex = i + 1;
+        layer.innerHTML = '<img src="' + s.img + '" alt="" loading="lazy">';
+        mediaStack.appendChild(layer);
+      });
+      var extra = document.createElement('div');
+      extra.className = 'tab';
+      extra.innerHTML = '<div>' + EXTRA_TAB + '</div>';
+      tabstrip.appendChild(extra);
+
+      var slideEls = Array.prototype.slice.call(slidesEl.children);
+      var tabEls = Array.prototype.slice.call(tabstrip.children);
+      var layerEls = Array.prototype.slice.call(mediaStack.children);
+
+      function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+      var track = sec.querySelector('.sfs-track');
+      var stripX = 0;
+
+      function update() {
+        if (innerWidth < 900) return;
+        var r = track.getBoundingClientRect();
+        var total = r.height - innerHeight;
+        var u = clamp(-r.top / total, 0, 1) * (N - 1);
+        var active = Math.round(u);
+
+        layerEls.forEach(function (layer, k) {
+          if (k === 0) return;
+          var p = clamp((u - (k - 0.45)) / 0.4, 0, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          layer.style.transform = 'translateY(' + ((1 - e) * 100) + '%)';
+        });
+
+        slideEls.forEach(function (slide, k) {
+          var fadeOut = 1 - clamp((u - (k + 0.45)) / 0.13, 0, 1);
+          var fadeIn = clamp((u - (k - 0.38)) / 0.3, 0, 1);
+          var vis = (k === 0 ? 1 : fadeIn) * fadeOut;
+          slide.classList.toggle('on', vis > 0.001);
+          slide.children[0].style.opacity = vis;
+          slide.children[1].style.opacity = vis;
+          slide.querySelectorAll('.word').forEach(function (w) {
+            var d = parseFloat(w.dataset.d) * 0.6;
+            var wp = clamp((((k === 0 ? 1 : fadeIn)) - d) / 0.4, 0, 1);
+            w.style.opacity = wp * fadeOut;
+          });
+        });
+
+        tabEls.forEach(function (tab, k) {
+          var fill = tab.querySelector('.tab-fill');
+          if (!fill) return;
+          var fillIn = clamp((u - (k - 0.5)) / 0.3, 0, 1);
+          var fillOut = 1 - clamp((u - (k + 0.5)) / 0.3, 0, 1);
+          fill.style.width = (fillIn * fillOut * 100) + '%';
+        });
+
+        var pad = parseFloat(getComputedStyle(tabstrip).paddingLeft) || 0;
+        var target = -(tabEls[clamp(active, 0, N - 1)].offsetLeft - pad);
+        stripX += (target - stripX) * 0.12;
+        tabstrip.style.transform = 'translateX(' + stripX + 'px)';
+      }
+
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+      (function tick() { update(); requestAnimationFrame(tick); })();
+      update();
+    })();
+  </script>
+</section>
