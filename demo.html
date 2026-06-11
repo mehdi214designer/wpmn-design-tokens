@@ -1456,46 +1456,59 @@
       return <div ref={ref} />;
     };
 
-    /* ── Scaled section thumbnail — renders the live section at 1440px
-       desktop width and scales it down to fit the card, like a mini
-       browser shot (but real, interactive HTML) ── */
-    const ScaledSection = ({ html, designWidth = 1440, maxH = 460 }) => {
-      const outerRef = React.useRef(null);
+    /* ── Scaled thumbnail — renders live content (HTML section or React
+       node) at desktop width and scales it to FIT the fixed card frame:
+       fit-by-width for normal sections, fit-by-height for tall ones
+       (footer, zigzag) so the whole section is always visible. Very
+       short strips re-render at a narrower design width so they read
+       larger instead of a hairline. ── */
+    const ScaledSection = ({ html, children, avail = 452 }) => {
+      const wrapRef  = React.useRef(null);
       const innerRef = React.useRef(null);
-      const [box, setBox] = useState({ scale: 0.4, h: 320 });
+      const [designW, setDesignW] = useState(1440);
+      const [box, setBox] = useState({ scale: 0.3, w: 400, h: 240 });
 
       useEffect(() => {
-        if (!innerRef.current) return;
+        if (!html || !innerRef.current) return;
         innerRef.current.innerHTML = html;
         innerRef.current.querySelectorAll('script').forEach(old => {
           const s = document.createElement('script');
           s.textContent = old.textContent;
           old.replaceWith(s);
         });
+      }, [html]);
+
+      useEffect(() => {
         const measure = () => {
-          if (!outerRef.current || !innerRef.current) return;
-          const w = outerRef.current.clientWidth;
-          if (!w) return;
-          const scale = w / designWidth;
-          const natural = innerRef.current.scrollHeight || 800;
-          setBox({ scale, h: Math.min(natural * scale, maxH) });
+          if (!wrapRef.current || !innerRef.current) return;
+          const frameW = wrapRef.current.clientWidth;
+          if (!frameW) return;
+          const natural = innerRef.current.scrollHeight || 600;
+          const scale = Math.min(frameW / designW, avail / natural);
+          const drawnH = natural * scale;
+          /* readability boost: short strips get a narrower canvas */
+          if (drawnH < 110 && designW > 900) { setDesignW(820); return; }
+          setBox({ scale, w: Math.min(designW * scale, frameW), h: Math.min(drawnH, avail) });
         };
         measure();
         const t1 = setTimeout(measure, 150);   /* after fonts/layout settle */
         const t2 = setTimeout(measure, 600);
         let ro = null;
-        if ('ResizeObserver' in window && outerRef.current) {
+        if ('ResizeObserver' in window && wrapRef.current) {
           ro = new ResizeObserver(measure);
-          ro.observe(outerRef.current);
+          ro.observe(wrapRef.current);
         }
         return () => { clearTimeout(t1); clearTimeout(t2); if (ro) ro.disconnect(); };
-      }, [html, designWidth, maxH]);
+      }, [html, avail, designW]);
 
       return (
-        <div ref={outerRef} style={{ overflow: 'hidden', height: box.h, borderRadius: 12,
-          border: '1px solid var(--color-border-primary)', boxShadow: 'var(--shadow-hard-200)' }}>
-          <div ref={innerRef} style={{ width: designWidth, transform: 'scale(' + box.scale + ')',
-            transformOrigin: 'top left', background: 'var(--color-surface-primary)' }} />
+        <div ref={wrapRef} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <div style={{ overflow: 'hidden', width: box.w, height: box.h, borderRadius: 12,
+            border: '1px solid var(--color-border-primary)', boxShadow: 'var(--shadow-hard-200)',
+            background: 'var(--color-surface-primary)' }}>
+            <div ref={innerRef} style={{ width: designW, transform: 'scale(' + box.scale + ')',
+              transformOrigin: 'top left', background: 'var(--color-surface-primary)' }}>{html ? null : children}</div>
+          </div>
         </div>
       );
     };
@@ -1902,8 +1915,9 @@
           return header + contents.map((c, i) => `/* ===== ${paths[i]} ===== */\n\n${c}`).join('\n\n');
         };
 
-        /* uniform frame height per density so every card matches */
-        const frameH = density === 1 ? 560 : density === 2 ? 400 : 300;
+        /* uniform frame for every card: 500px tall, 24px padding */
+        const frameH = 500;
+        const framed = mode === 'sections';
 
         return (
           <div key={comp.name} id={'lib-' + comp.name}
@@ -1911,7 +1925,7 @@
               border:'1.5px solid var(--color-border-primary)', borderRadius:'var(--radius-md)', overflow:'hidden',
               display:'flex', flexDirection:'column', background:'var(--color-surface-primary)'}}>
             {/* preview frame — same size for all cards, soft grey, thumbnail centered */}
-            <div style={isHtml
+            <div style={framed
               ? {height: frameH, padding: 24, display:'flex', alignItems:'center', overflow:'hidden',
                  borderBottom:'1.5px solid var(--color-border-primary)',
                  background:'color-mix(in srgb, var(--color-text-primary) 5%, var(--color-surface-primary))'}
@@ -1922,15 +1936,22 @@
                 <div style={{width:'100%'}}>
                   <LazyMount placeholder={120}>
                     <CompErrorBoundary key={comp.name + '-html'}>
-                      <ScaledSection html={htmlMap[comp.name]} maxH={frameH - 48} />
+                      <ScaledSection html={htmlMap[comp.name]} avail={frameH - 48} />
                     </CompErrorBoundary>
                   </LazyMount>
                 </div>
               )}
-              {state === 'ok' && !isHtml && DemoFn && (
-                <LazyMount placeholder={160}>
-                  <CompErrorBoundary key={comp.name + '-demo'}><DemoFn /></CompErrorBoundary>
-                </LazyMount>
+              {state === 'ok' && !isHtml && DemoFn && (framed
+                ? <div style={{width:'100%'}}>
+                    <LazyMount placeholder={120}>
+                      <CompErrorBoundary key={comp.name + '-demo'}>
+                        <ScaledSection avail={frameH - 48}><DemoFn /></ScaledSection>
+                      </CompErrorBoundary>
+                    </LazyMount>
+                  </div>
+                : <LazyMount placeholder={160}>
+                    <CompErrorBoundary key={comp.name + '-demo'}><DemoFn /></CompErrorBoundary>
+                  </LazyMount>
               )}
               {state === 'ok' && !isHtml && !DemoFn && Comp && <Comp />}
               {state === 'error' && <p style={{color:'var(--color-error-primary)',margin:'0 auto',fontSize:13}}>Failed to load — check the console.</p>}
