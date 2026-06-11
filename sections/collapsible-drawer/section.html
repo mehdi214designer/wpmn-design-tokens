@@ -1,30 +1,49 @@
-<!-- WPMN Section: Collapsible Drawer — slide-out panel for secondary info -->
+<!-- WPMN Section: Collapsible Drawer — slide-out panel over a mock app stage -->
 <section class="wpmn-sec-collapsible-drawer">
   <style>
-    .wpmn-sec-collapsible-drawer{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base);position:relative}
+    .wpmn-sec-collapsible-drawer{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
     .wpmn-sec-collapsible-drawer .dr-c{max-width:1200px;margin:0 auto;text-align:center}
     .wpmn-sec-collapsible-drawer .dr-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
     .wpmn-sec-collapsible-drawer .dr-sub{max-width:800px;margin:16px auto 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
-    .wpmn-sec-collapsible-drawer .dr-open{margin-top:32px;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 24px;border-radius:var(--radius-xsm);border:1.5px solid var(--btn-bg-enable);background:transparent;color:var(--btn-bg-enable);font-family:inherit;font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);cursor:pointer;transition:background-color 120ms ease,color 120ms ease}
-    .wpmn-sec-collapsible-drawer .dr-open:hover{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
-    .wpmn-sec-collapsible-drawer .dr-wrap{position:relative;margin-top:48px;border:1.5px solid var(--color-border-primary);border-radius:var(--radius-lg);overflow:hidden;height:420px;background:var(--color-surface-secondary)}
-    .wpmn-sec-collapsible-drawer .dr-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert);font-size:var(--font-size-body-medium)}
+    .wpmn-sec-collapsible-drawer .dr-wrap{position:relative;margin-top:48px;border:1.5px solid var(--color-border-primary);border-radius:var(--radius-lg);overflow:hidden;height:440px;background:color-mix(in srgb,var(--color-text-primary) 3%,var(--color-surface-primary));text-align:left}
+    .wpmn-sec-collapsible-drawer .dr-stage{padding:32px;height:100%;box-sizing:border-box}
+    .wpmn-sec-collapsible-drawer .dr-stagehead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+    .wpmn-sec-collapsible-drawer .dr-stagetitle{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-collapsible-drawer .dr-open{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 20px;border-radius:var(--radius-xsm);border:none;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-family:inherit;font-size:var(--font-size-btn-sm);font-weight:var(--font-weight-medium);cursor:pointer;box-shadow:inset 3px 4px 4px 0 rgba(255,255,255,.3);transition:background-color 120ms ease}
+    .wpmn-sec-collapsible-drawer .dr-open:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-collapsible-drawer .dr-row{display:flex;align-items:center;gap:16px;padding:16px 20px;border:1.5px solid var(--color-border-primary);border-radius:var(--radius-xsm);background:var(--color-surface-primary);margin-bottom:12px}
+    .wpmn-sec-collapsible-drawer .dr-avatar{width:36px;height:36px;border-radius:50%;background:var(--btn-bg-focused);color:var(--btn-bg-hovered);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-label);font-weight:var(--font-weight-semibold);flex-shrink:0}
+    .wpmn-sec-collapsible-drawer .dr-rowname{font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
+    .wpmn-sec-collapsible-drawer .dr-rowmeta{font-size:var(--font-size-body-label);color:var(--color-text-secondary)}
+    .wpmn-sec-collapsible-drawer .dr-pill{margin-left:auto;font-size:11px;font-weight:var(--font-weight-semibold);letter-spacing:.04em;text-transform:uppercase;padding:4px 12px;border-radius:var(--radius-lg);background:var(--btn-bg-focused);color:var(--btn-bg-hovered);white-space:nowrap}
     .wpmn-sec-collapsible-drawer .dr-panel{position:absolute;top:0;right:0;bottom:0;width:min(380px,85%);background:var(--color-surface-primary);border-left:1.5px solid var(--color-border-primary);box-shadow:var(--shadow-soft-500);transform:translateX(100%);transition:transform 300ms ease;display:flex;flex-direction:column;text-align:left}
     .wpmn-sec-collapsible-drawer .dr-wrap[data-open] .dr-panel{transform:translateX(0)}
     .wpmn-sec-collapsible-drawer .dr-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1.5px solid var(--color-border-primary)}
     .wpmn-sec-collapsible-drawer .dr-title{font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-collapsible-drawer .dr-close{width:32px;height:32px;border:none;background:transparent;cursor:pointer;color:var(--color-text-primary);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-collapsible-drawer .dr-close{width:32px;height:32px;border:none;background:transparent;cursor:pointer;color:var(--color-text-primary);display:flex;align-items:center;justify-content:center;border-radius:var(--radius-xsm);transition:background-color 120ms ease}
+    .wpmn-sec-collapsible-drawer .dr-close:hover{background:color-mix(in srgb,var(--color-text-primary) 6%,transparent)}
     .wpmn-sec-collapsible-drawer .dr-body{padding:24px;overflow-y:auto;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
     .wpmn-sec-collapsible-drawer .dr-body h4{margin:0 0 8px;font-size:var(--font-size-body-medium);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
     .wpmn-sec-collapsible-drawer .dr-body p{margin:0 0 16px}
+    @media(prefers-reduced-motion:reduce){.wpmn-sec-collapsible-drawer .dr-panel{transition:none}}
     @media(max-width:1199px){.wpmn-sec-collapsible-drawer .dr-c{padding:0 40px}}
-    @media(max-width:768px){.wpmn-sec-collapsible-drawer{padding:64px 0}.wpmn-sec-collapsible-drawer .dr-c{padding:0 20px}}
+    @media(max-width:768px){.wpmn-sec-collapsible-drawer{padding:64px 0}.wpmn-sec-collapsible-drawer .dr-c{padding:0 20px}.wpmn-sec-collapsible-drawer .dr-stage{padding:20px}}
   </style>
   <div class="dr-c">
     <h2 class="dr-heading">Details on demand</h2>
     <p class="dr-sub">Keep the main view clean and slide in secondary information only when the user asks for it.</p>
     <div class="dr-wrap">
-      <div class="dr-stage">Main content area — <button class="dr-open" type="button">Open details drawer</button></div>
+      <div class="dr-stage">
+        <div class="dr-stagehead">
+          <span class="dr-stagetitle">Recent orders</span>
+          <button class="dr-open" type="button">Open details
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="dr-row"><span class="dr-avatar">SD</span><span><span class="dr-rowname">Sarah D.</span><br><span class="dr-rowmeta">Pro plan · 5 sites · renews Jul 02</span></span><span class="dr-pill">Active</span></div>
+        <div class="dr-row"><span class="dr-avatar">MK</span><span><span class="dr-rowname">Marcus K.</span><br><span class="dr-rowmeta">Starter plan · 1 site · renews Aug 14</span></span><span class="dr-pill">Active</span></div>
+        <div class="dr-row"><span class="dr-avatar">AL</span><span><span class="dr-rowname">Aisha L.</span><br><span class="dr-rowmeta">Agency plan · 32 sites · renews Sep 01</span></span><span class="dr-pill">Trial</span></div>
+      </div>
       <aside class="dr-panel" aria-hidden="true">
         <div class="dr-head"><span class="dr-title">Plan details</span>
           <button class="dr-close" aria-label="Close drawer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
