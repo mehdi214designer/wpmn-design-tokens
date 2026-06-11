@@ -2083,17 +2083,8 @@
             </aside>
 
             <div style={{flex:1,minWidth:0}}>
-              <div style={{display:'flex',alignItems:'center',gap:10,flexWrap:'wrap',marginBottom:14}}>
+              <div style={{marginBottom:14}}>
                 <span style={{fontSize:13,color:'var(--color-text-secondary)'}}>{shown.length} of {base.length} {mode === 'sections' ? 'sections' : 'components'}</span>
-                {shown.length > 1 && (
-                  <div style={{display:'flex',gap:6,overflowX:'auto',flex:1,minWidth:0,paddingBottom:2}}>
-                    {shown.map(c => (
-                      <span key={c.name} onClick={() => jumpTo(c.name)}
-                        style={{fontSize:12,padding:'3px 10px',borderRadius:99,cursor:'pointer',flexShrink:0,
-                          border:'1px solid var(--color-border-primary)',color:'var(--color-text-secondary)'}}>{c.name}</span>
-                    ))}
-                  </div>
-                )}
               </div>
 
               {shown.length === 0 && (

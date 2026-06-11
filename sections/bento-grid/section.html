@@ -12,7 +12,8 @@
     .wpmn-sec-bento-grid .bg-box:hover{box-shadow:var(--shadow-soft-300)}
     .wpmn-sec-bento-grid .bg-box--w2{grid-column:span 2}
     .wpmn-sec-bento-grid .bg-box--h2{grid-row:span 2}
-    .wpmn-sec-bento-grid .bg-box--fill{background:var(--color-surface-secondary)}
+    .wpmn-sec-bento-grid .bg-box--fill{background:var(--color-surface-secondary);grid-row:span 2}
+    .wpmn-sec-bento-grid .bg-box--full{grid-column:1/-1}
     .wpmn-sec-bento-grid .bg-box--fill h3,.wpmn-sec-bento-grid .bg-box--fill p{color:var(--color-text-primary-invert)}
     .wpmn-sec-bento-grid .bg-box--fill p{color:var(--color-text-secondary-invert)}
     .wpmn-sec-bento-grid .bg-icon{width:40px;height:40px;border-radius:var(--radius-xsm);background:var(--btn-bg-focused);color:var(--btn-bg-enable);display:flex;align-items:center;justify-content:center;margin-bottom:auto}
@@ -22,7 +23,7 @@
     @media(max-width:1199px){.wpmn-sec-bento-grid .bg-c{padding:0 40px}}
     @media(max-width:900px){.wpmn-sec-bento-grid .bg-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:768px){.wpmn-sec-bento-grid{padding:64px 0}.wpmn-sec-bento-grid .bg-c{padding:0 20px}}
-    @media(max-width:560px){.wpmn-sec-bento-grid .bg-grid{grid-template-columns:1fr;grid-auto-rows:auto}.wpmn-sec-bento-grid .bg-box--w2,.wpmn-sec-bento-grid .bg-box--h2{grid-column:auto;grid-row:auto;min-height:180px}}
+    @media(max-width:560px){.wpmn-sec-bento-grid .bg-grid{grid-template-columns:1fr;grid-auto-rows:auto}.wpmn-sec-bento-grid .bg-box--w2,.wpmn-sec-bento-grid .bg-box--h2,.wpmn-sec-bento-grid .bg-box--fill,.wpmn-sec-bento-grid .bg-box--full{grid-column:auto;grid-row:auto;min-height:180px}}
   </style>
   <div class="bg-c">
     <div class="bg-head">
@@ -37,7 +38,7 @@
       <div class="bg-box"><span class="bg-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M3 9h18" stroke="currentColor" stroke-width="2"/></svg></span><h3>Templates</h3><p>120+ ready layouts.</p></div>
       <div class="bg-box bg-box--fill"><span class="bg-big">99.9%</span><h3>Uptime SLA</h3><p>Across all managed services.</p></div>
       <div class="bg-box"><span class="bg-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Real-time sync</h3><p>Changes land everywhere instantly.</p></div>
-      <div class="bg-box bg-box--w2"><span class="bg-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><h3>GDPR-ready by default</h3><p>Self-hosted data, consent fields, and full export/erase tooling baked in.</p></div>
+      <div class="bg-box bg-box--full"><span class="bg-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><h3>GDPR-ready by default</h3><p>Self-hosted data, consent fields, and full export/erase tooling baked in.</p></div>
     </div>
   </div>
 </section>
