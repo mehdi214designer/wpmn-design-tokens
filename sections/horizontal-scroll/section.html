@@ -38,7 +38,7 @@
         var max=track.scrollWidth-track.parentElement.clientWidth;
         track.style.transform='translateX('+(-p*Math.max(max,0))+'px)';
       }
-      window.addEventListener('scroll',onScroll,{passive:true});
+      window.addEventListener('scroll',onScroll,{passive:true,capture:true});
       window.addEventListener('resize',onScroll);
       onScroll();
     })();
