@@ -41,5 +41,6 @@
     "rows",
     "details",
     "compare"
-  ]
+  ],
+  "role": "Comparison"
 }

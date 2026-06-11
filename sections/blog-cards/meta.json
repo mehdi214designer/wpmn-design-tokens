@@ -41,5 +41,6 @@
     "resources",
     "cards",
     "posts"
-  ]
+  ],
+  "role": "Blog"
 }

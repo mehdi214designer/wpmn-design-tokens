@@ -41,5 +41,6 @@
     "connect",
     "ecosystem",
     "tiles"
-  ]
+  ],
+  "role": "Integrations"
 }

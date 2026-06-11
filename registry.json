@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T06:59:40.433Z",
+  "generatedAt": "2026-06-11T07:59:17.073Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -378,7 +378,8 @@
         "site footer",
         "links",
         "bottom"
-      ]
+      ],
+      "role": "Footer"
     },
     {
       "id": "icons",
@@ -940,7 +941,8 @@
         "banner",
         "sale",
         "dismissible"
-      ]
+      ],
+      "role": "Announcement"
     },
     {
       "id": "asymmetric-grid",
@@ -985,7 +987,8 @@
         "editorial",
         "offset",
         "overlap"
-      ]
+      ],
+      "role": "Showcase"
     },
     {
       "id": "before-after-slider",
@@ -1030,7 +1033,8 @@
         "drag",
         "reveal",
         "image compare"
-      ]
+      ],
+      "role": "Showcase"
     },
     {
       "id": "bento-grid",
@@ -1075,7 +1079,8 @@
         "boxes",
         "features",
         "mosaic"
-      ]
+      ],
+      "role": "Features"
     },
     {
       "id": "blog-cards",
@@ -1120,7 +1125,8 @@
         "resources",
         "cards",
         "posts"
-      ]
+      ],
+      "role": "Blog"
     },
     {
       "id": "carousel-slider",
@@ -1165,7 +1171,8 @@
         "swipe",
         "scroll snap",
         "gallery"
-      ]
+      ],
+      "role": "Showcase"
     },
     {
       "id": "collapsible-drawer",
@@ -1210,7 +1217,8 @@
         "slide out",
         "side panel",
         "off canvas"
-      ]
+      ],
+      "role": "Content"
     },
     {
       "id": "comparison-table",
@@ -1255,7 +1263,8 @@
         "competitor",
         "matrix",
         "switch"
-      ]
+      ],
+      "role": "Comparison"
     },
     {
       "id": "content-accordion",
@@ -1300,7 +1309,8 @@
         "collapse",
         "expand",
         "capabilities"
-      ]
+      ],
+      "role": "Features"
     },
     {
       "id": "content-tabs",
@@ -1345,7 +1355,8 @@
         "switch",
         "panels",
         "product tour"
-      ]
+      ],
+      "role": "Features"
     },
     {
       "id": "cta-banner",
@@ -1398,7 +1409,8 @@
         "dark section",
         "conversion",
         "impact"
-      ]
+      ],
+      "role": "CTA"
     },
     {
       "id": "expandable-table",
@@ -1443,7 +1455,8 @@
         "rows",
         "details",
         "compare"
-      ]
+      ],
+      "role": "Comparison"
     },
     {
       "id": "faq-accordion",
@@ -1496,7 +1509,8 @@
         "answers",
         "collapse",
         "disclosure"
-      ]
+      ],
+      "role": "FAQ"
     },
     {
       "id": "hero-standard",
@@ -1551,7 +1565,8 @@
         "mockup",
         "banner",
         "headline"
-      ]
+      ],
+      "role": "Hero"
     },
     {
       "id": "hero-typographic",
@@ -1604,7 +1619,8 @@
         "headline",
         "big type",
         "editorial"
-      ]
+      ],
+      "role": "Hero"
     },
     {
       "id": "horizontal-scroll",
@@ -1649,7 +1665,8 @@
         "scroll jack",
         "panels",
         "story"
-      ]
+      ],
+      "role": "How It Works"
     },
     {
       "id": "infinite-marquee",
@@ -1694,7 +1711,8 @@
         "auto scroll",
         "logos",
         "band"
-      ]
+      ],
+      "role": "Clients"
     },
     {
       "id": "integration-grid",
@@ -1739,7 +1757,8 @@
         "connect",
         "ecosystem",
         "tiles"
-      ]
+      ],
+      "role": "Integrations"
     },
     {
       "id": "logo-cloud",
@@ -1790,7 +1809,8 @@
         "social proof",
         "press",
         "wall of love"
-      ]
+      ],
+      "role": "Clients"
     },
     {
       "id": "masonry-grid",
@@ -1835,7 +1855,8 @@
         "columns",
         "gallery",
         "showcase"
-      ]
+      ],
+      "role": "Showcase"
     },
     {
       "id": "mockup-showcase",
@@ -1880,7 +1901,8 @@
         "browser frame",
         "showcase",
         "product shot"
-      ]
+      ],
+      "role": "Showcase"
     },
     {
       "id": "multi-column-cards",
@@ -1925,7 +1947,8 @@
         "features",
         "grid",
         "uniform"
-      ]
+      ],
+      "role": "Features"
     },
     {
       "id": "newsletter-signup",
@@ -1970,7 +1993,8 @@
         "email capture",
         "signup",
         "lead magnet"
-      ]
+      ],
+      "role": "Newsletter"
     },
     {
       "id": "pricing-table",
@@ -2016,7 +2040,8 @@
         "comparison",
         "monthly yearly",
         "popular"
-      ]
+      ],
+      "role": "Pricing"
     },
     {
       "id": "read-more",
@@ -2061,7 +2086,8 @@
         "expand",
         "fade",
         "long text"
-      ]
+      ],
+      "role": "Content"
     },
     {
       "id": "split-screen",
@@ -2106,7 +2132,8 @@
         "two column",
         "form",
         "waitlist"
-      ]
+      ],
+      "role": "Newsletter"
     },
     {
       "id": "stacked-list",
@@ -2151,7 +2178,8 @@
         "blog list",
         "rows",
         "changelog"
-      ]
+      ],
+      "role": "Blog"
     },
     {
       "id": "stacking-cards",
@@ -2196,7 +2224,8 @@
         "pin",
         "scroll",
         "steps"
-      ]
+      ],
+      "role": "How It Works"
     },
     {
       "id": "stats-counter",
@@ -2249,7 +2278,8 @@
         "milestones",
         "social proof",
         "count up"
-      ]
+      ],
+      "role": "Stats"
     },
     {
       "id": "steps-walkthrough",
@@ -2294,7 +2324,8 @@
         "how it works",
         "walkthrough",
         "onboarding"
-      ]
+      ],
+      "role": "How It Works"
     },
     {
       "id": "sticky-scroll",
@@ -2339,7 +2370,8 @@
         "side by side",
         "scroll",
         "tour"
-      ]
+      ],
+      "role": "Features"
     },
     {
       "id": "team-grid",
@@ -2384,7 +2416,8 @@
         "about us",
         "staff",
         "avatars"
-      ]
+      ],
+      "role": "Team"
     },
     {
       "id": "testimonial-grid",
@@ -2430,7 +2463,8 @@
         "quotes",
         "social proof",
         "stars"
-      ]
+      ],
+      "role": "Testimonial"
     },
     {
       "id": "timeline-roadmap",
@@ -2475,7 +2509,8 @@
         "milestones",
         "chronological",
         "quarters"
-      ]
+      ],
+      "role": "Roadmap"
     },
     {
       "id": "zigzag-features",
@@ -2520,7 +2555,8 @@
         "image text",
         "rows",
         "features"
-      ]
+      ],
+      "role": "Features"
     }
   ]
 }

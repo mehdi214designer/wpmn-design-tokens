@@ -41,5 +41,6 @@
     "blog list",
     "rows",
     "changelog"
-  ]
+  ],
+  "role": "Blog"
 }

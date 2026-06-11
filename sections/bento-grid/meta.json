@@ -41,5 +41,6 @@
     "boxes",
     "features",
     "mosaic"
-  ]
+  ],
+  "role": "Features"
 }

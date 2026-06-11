@@ -41,5 +41,6 @@
     "swipe",
     "scroll snap",
     "gallery"
-  ]
+  ],
+  "role": "Showcase"
 }
