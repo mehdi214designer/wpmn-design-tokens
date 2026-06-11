@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T05:43:58.827Z",
+  "generatedAt": "2026-06-11T06:05:48.427Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -100,7 +100,8 @@
         "jsx": "<div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Badge type='completed'/><Badge type='in_progress'/><Badge variant='soft' type='experimental'/></div>",
         "zoom": 0.8,
         "width": 760
-      }
+      },
+      "demo": "components/Badge/demo.jsx"
     },
     {
       "id": "breadcrumbs",
@@ -161,7 +162,8 @@
         "jsx": "<Breadcrumbs items={[{icon:true,href:'#'},{label:'Products',href:'#'},{label:'FluentForms'}]}/>",
         "zoom": 0.85,
         "width": 640
-      }
+      },
+      "demo": "components/Breadcrumbs/demo.jsx"
     },
     {
       "id": "button",
@@ -273,7 +275,8 @@
       "subcategory": "Actions",
       "preview": {
         "jsx": "<div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Button type='primary'>Get Started</Button><Button type='secondary'>Learn More</Button><Button type='tertiary'>Docs</Button></div>"
-      }
+      },
+      "demo": "components/Button/demo.jsx"
     },
     {
       "id": "footer",
@@ -347,7 +350,8 @@
         "jsx": "<Footer/>",
         "zoom": 0.38,
         "width": 1440
-      }
+      },
+      "demo": "components/Footer/demo.jsx"
     },
     {
       "id": "icons",
@@ -389,7 +393,8 @@
       "subcategory": "Icons",
       "preview": {
         "jsx": "<div style={{display:'flex',gap:18,flexWrap:'wrap',color:'var(--color-text-primary)'}}>{Object.values(DS.Icons||{}).map(function(I,i){return <I key={i} size={26}/>;})}</div>"
-      }
+      },
+      "demo": "components/Icons/demo.jsx"
     },
     {
       "id": "input",
@@ -496,7 +501,8 @@
       "subcategory": "Forms",
       "preview": {
         "jsx": "<div style={{display:'grid',gap:16,width:'100%',maxWidth:340}}><Input label='Email' placeholder='you@company.com'/><Input variant='fill' label='Password' type='password' placeholder='********' hint='Min 8 characters'/></div>"
-      }
+      },
+      "demo": "components/Input/demo.jsx"
     },
     {
       "id": "logo",
@@ -588,7 +594,8 @@
       "subcategory": "Logos",
       "preview": {
         "jsx": "<div style={{display:'flex',gap:36,alignItems:'center',flexWrap:'wrap'}}><Logo brand='fluentforms' height={34}/><Logo brand='fluentcrm' height={34}/><Logo brand='fluentsupport' height={34}/></div>"
-      }
+      },
+      "demo": "components/Logo/demo.jsx"
     },
     {
       "id": "navbar",
@@ -669,7 +676,8 @@
         "jsx": "<NavBar logo={<Logo brand='fluentforms' height={28}/>} links={[{label:'Features',href:'#'},{label:'Pricing',href:'#'},{label:'Docs',href:'#',active:true}]} ctaLabel='Get Started'/>",
         "zoom": 0.55,
         "width": 1240
-      }
+      },
+      "demo": "components/NavBar/demo.jsx"
     },
     {
       "id": "socialicons",
@@ -717,7 +725,8 @@
       "subcategory": "Social",
       "preview": {
         "jsx": "<div style={{width:300}}><SocialIcons/></div>"
-      }
+      },
+      "demo": "components/SocialIcons/demo.jsx"
     },
     {
       "id": "text",
@@ -813,7 +822,8 @@
       "subcategory": "Typography",
       "preview": {
         "jsx": "<div style={{maxWidth:560}}><Text variant='h4'>Design once, ship 16 brands</Text><Text variant='body-base' color='secondary'>Every heading and paragraph maps to the WPMN type scale tokens.</Text></div>"
-      }
+      },
+      "demo": "components/Text/demo.jsx"
     }
   ]
 }

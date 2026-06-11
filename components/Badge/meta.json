@@ -57,5 +57,6 @@
     "jsx": "<div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Badge type='completed'/><Badge type='in_progress'/><Badge variant='soft' type='experimental'/></div>",
     "zoom": 0.8,
     "width": 760
-  }
+  },
+  "demo": "components/Badge/demo.jsx"
 }

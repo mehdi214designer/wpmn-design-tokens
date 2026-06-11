@@ -57,5 +57,6 @@
     "jsx": "<Breadcrumbs items={[{icon:true,href:'#'},{label:'Products',href:'#'},{label:'FluentForms'}]}/>",
     "zoom": 0.85,
     "width": 640
-  }
+  },
+  "demo": "components/Breadcrumbs/demo.jsx"
 }

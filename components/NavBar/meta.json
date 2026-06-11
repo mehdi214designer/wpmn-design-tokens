@@ -77,5 +77,6 @@
     "jsx": "<NavBar logo={<Logo brand='fluentforms' height={28}/>} links={[{label:'Features',href:'#'},{label:'Pricing',href:'#'},{label:'Docs',href:'#',active:true}]} ctaLabel='Get Started'/>",
     "zoom": 0.55,
     "width": 1240
-  }
+  },
+  "demo": "components/NavBar/demo.jsx"
 }

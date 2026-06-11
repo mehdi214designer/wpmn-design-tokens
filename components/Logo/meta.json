@@ -88,5 +88,6 @@
   "subcategory": "Logos",
   "preview": {
     "jsx": "<div style={{display:'flex',gap:36,alignItems:'center',flexWrap:'wrap'}}><Logo brand='fluentforms' height={34}/><Logo brand='fluentcrm' height={34}/><Logo brand='fluentsupport' height={34}/></div>"
-  }
+  },
+  "demo": "components/Logo/demo.jsx"
 }

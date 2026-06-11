@@ -70,5 +70,6 @@
     "jsx": "<Footer/>",
     "zoom": 0.38,
     "width": 1440
-  }
+  },
+  "demo": "components/Footer/demo.jsx"
 }

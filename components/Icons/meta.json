@@ -38,5 +38,6 @@
   "subcategory": "Icons",
   "preview": {
     "jsx": "<div style={{display:'flex',gap:18,flexWrap:'wrap',color:'var(--color-text-primary)'}}>{Object.values(DS.Icons||{}).map(function(I,i){return <I key={i} size={26}/>;})}</div>"
-  }
+  },
+  "demo": "components/Icons/demo.jsx"
 }
