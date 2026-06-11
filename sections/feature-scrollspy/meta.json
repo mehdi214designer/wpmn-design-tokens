@@ -1,0 +1,50 @@
+{
+  "id": "feature-scrollspy",
+  "name": "Feature Scrollspy",
+  "type": "html",
+  "status": "stable",
+  "description": "Sticky scrollspy menu beside a column of feature cards. Active menu item gets a brand dot as cards cross the viewport; cards rise in on first view; one dark quote card breaks the rhythm.",
+  "files": {
+    "html": "sections/feature-scrollspy/section.html"
+  },
+  "prompt": "sections/feature-scrollspy/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-feature-scrollspy",
+  "interactions": [
+    "scrollspy: active card = last card whose top crossed the 40%-viewport line; menu color/weight/dot transition 250ms",
+    "menu item click smooth-scrolls its card to viewport center",
+    "cards + header reveal once at 88% viewport: opacity/translateY(40px), 1s cubic-bezier(0,0,0,1)",
+    "dual drive: passive scroll listener + permanent rAF loop",
+    "below 900px: menu unsticks and wraps horizontally, cards stack",
+    "prefers-reduced-motion: reveals render in place, transitions off"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--btn-bg-enable",
+    "--radius-md",
+    "--radius-xsm",
+    "--shadow-soft-300",
+    "--font-family-base",
+    "--font-size-h2",
+    "--font-size-h4",
+    "--font-size-h5",
+    "--font-size-h6",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-weight-semibold",
+    "--font-weight-medium",
+    "--font-weight-regular"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "role": "Features",
+  "span": 2,
+  "tags": ["scrollspy", "sticky menu", "feature cards", "reveal", "table of contents", "anchor nav", "quote card"]
+}

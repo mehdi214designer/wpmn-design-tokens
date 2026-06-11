@@ -1,0 +1,167 @@
+<!-- WPMN Section: Feature Scrollspy — sticky menu + reveal feature cards (imported, tokenized) -->
+<section class="wpmn-sec-feature-scrollspy">
+  <style>
+    .wpmn-sec-feature-scrollspy{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:96px 32px}
+    .wpmn-sec-feature-scrollspy .fs-container{max-width:1200px;margin:0 auto}
+    .wpmn-sec-feature-scrollspy .fs-title{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;color:var(--color-text-primary);margin-bottom:64px}
+    .wpmn-sec-feature-scrollspy .fs-grid{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:start}
+    .wpmn-sec-feature-scrollspy .fs-menu{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px;white-space:nowrap}
+    .wpmn-sec-feature-scrollspy .menu-item{position:relative;padding-left:18px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:color-mix(in srgb,var(--color-text-primary) 32%,transparent);transition:color .25s;cursor:pointer}
+    .wpmn-sec-feature-scrollspy .menu-item .toc-dot{position:absolute;left:0;top:50%;width:6px;height:6px;transform:translateY(-50%);border-radius:999px;background:var(--btn-bg-enable);opacity:0;transition:opacity .25s}
+    .wpmn-sec-feature-scrollspy .menu-item.active{color:var(--color-text-primary);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-feature-scrollspy .menu-item.active .toc-dot{opacity:1}
+    .wpmn-sec-feature-scrollspy .fs-cards{display:flex;flex-direction:column;gap:24px}
+    .wpmn-sec-feature-scrollspy .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s cubic-bezier(0,0,0,1)}
+    .wpmn-sec-feature-scrollspy .reveal.is-revealed{opacity:1;transform:none}
+    .wpmn-sec-feature-scrollspy .card{background:color-mix(in srgb,var(--color-text-primary) 4%,var(--color-surface-primary));border-radius:var(--radius-md);padding:48px;overflow:hidden}
+    .wpmn-sec-feature-scrollspy .card-title{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-feature-scrollspy .card-desc{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-feature-scrollspy .tags{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+    .wpmn-sec-feature-scrollspy .tag{display:flex;align-items:center;gap:8px;background:var(--color-surface-primary);border-radius:999px;padding:9px 14px;font-size:var(--font-size-body-small);line-height:1;color:var(--color-text-primary);white-space:nowrap}
+    .wpmn-sec-feature-scrollspy .tag .dot{width:6px;height:6px;border-radius:999px;background:var(--btn-bg-enable)}
+    .wpmn-sec-feature-scrollspy .card--quote{background:var(--color-surface-secondary)}
+    .wpmn-sec-feature-scrollspy .card--quote .card-title{color:var(--color-text-primary-invert);margin-bottom:32px}
+    .wpmn-sec-feature-scrollspy .quote-box{background:var(--color-surface-primary);border-radius:var(--radius-xsm);padding:32px;display:flex;flex-direction:column;gap:32px;margin-bottom:32px}
+    .wpmn-sec-feature-scrollspy .quote-box h4{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-regular);letter-spacing:-0.01em;color:var(--color-text-primary)}
+    .wpmn-sec-feature-scrollspy .quote-info{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+    .wpmn-sec-feature-scrollspy .quote-person .name{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
+    .wpmn-sec-feature-scrollspy .quote-person .role{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-feature-scrollspy .quote-client{font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
+    .wpmn-sec-feature-scrollspy .card--quote .card-desc{color:var(--color-text-secondary-invert)}
+    .wpmn-sec-feature-scrollspy .quote-bottom{display:grid;grid-template-columns:1.5fr 1fr;gap:48px}
+    .wpmn-sec-feature-scrollspy .card-split{display:grid;grid-template-columns:1fr 1.15fr;gap:40px}
+    .wpmn-sec-feature-scrollspy .card-split .left{display:flex;flex-direction:column;justify-content:space-between;gap:24px;max-width:420px}
+    .wpmn-sec-feature-scrollspy .card-split .card-title{margin-bottom:16px}
+    .wpmn-sec-feature-scrollspy .card-split img{width:100%;height:auto;display:block;object-fit:cover;border-radius:var(--radius-xsm);box-shadow:var(--shadow-soft-300)}
+    @media(max-width:900px){
+      .wpmn-sec-feature-scrollspy{padding:64px 20px}
+      .wpmn-sec-feature-scrollspy .fs-grid{grid-template-columns:1fr}
+      .wpmn-sec-feature-scrollspy .fs-menu{position:static;flex-direction:row;flex-wrap:wrap;gap:12px 24px}
+      .wpmn-sec-feature-scrollspy .card{padding:28px}
+      .wpmn-sec-feature-scrollspy .card-split{grid-template-columns:1fr}
+      .wpmn-sec-feature-scrollspy .quote-bottom{grid-template-columns:1fr;gap:24px}
+      .wpmn-sec-feature-scrollspy .fs-title{font-size:34px;line-height:1.15;margin-bottom:40px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-feature-scrollspy .reveal{opacity:1;transform:none;transition:none}
+      .wpmn-sec-feature-scrollspy .menu-item,.wpmn-sec-feature-scrollspy .menu-item .toc-dot{transition:none}
+    }
+  </style>
+  <div class="fs-container">
+    <h2 class="fs-title reveal">Everything you need in a CRM</h2>
+    <div class="fs-grid">
+      <nav class="fs-menu reveal" aria-label="Feature navigation"></nav>
+      <div class="fs-cards"></div>
+    </div>
+  </div>
+  <script>
+    // Scrollspy + first-view reveal (imported as-is, scoped): sticky menu tracks the
+    // card crossing the 40%-viewport line; cards rise in once at 88% viewport.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-feature-scrollspy');
+      if (!sec) return;
+
+      var FEATURES = [
+        {
+          menu: 'Lead Management', type: 'quote',
+          title: 'A flexible pipeline, built to scale',
+          quote: '"We moved our whole sales flow into FluentCRM in a weekend. The pipeline just makes sense, and the team stopped losing leads between tools."',
+          person: { name: 'Austin Berry', role: 'Head of Growth' },
+          client: 'Gulf Breeze Studio',
+          desc: 'A configurable lead pipeline with drag-and-drop stages and built-in detection for returning contacts, so nothing gets missed.',
+          tags: ['Lead Pipeline', 'Drag & Drop Stages', 'Returning Contact Detection', 'Configurable Stages']
+        },
+        {
+          menu: 'Email Automation', type: 'split',
+          title: 'One workflow, one contact record',
+          desc: 'A single automation flow for capture, segmentation, and follow-up that keeps every contact record current without manual work.',
+          tags: ['Visual Automation Builder', 'Smart Segmentation', 'Conditional Sequences', 'End-to-End Journey Visibility'],
+          img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+          menu: 'Activity & Analytics', type: 'split',
+          title: 'Every touchpoint, fully tracked',
+          desc: 'Automatically capture activity across emails, forms, and purchases to give your team clear visibility into every campaign.',
+          tags: ['Auto-Logged Emails', 'Task & Reminder System', 'Campaign Dashboards', 'Revenue Attribution'],
+          img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80'
+        },
+        {
+          menu: 'Integrations', type: 'split',
+          title: 'Connected to everything you run',
+          desc: 'Native connections to forms, carts, memberships, and support, all living inside WordPress with clear status tracking.',
+          tags: ['Forms & Cart Triggers', 'Membership Sync', 'Support Ticket Context', 'Webhook & API Access'],
+          img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80'
+        }
+      ];
+
+      var menuEl = sec.querySelector('.fs-menu');
+      var cardsEl = sec.querySelector('.fs-cards');
+      var tagsHtml = function (t) {
+        return t.map(function (x) { return '<div class="tag"><span class="dot"></span>' + x + '</div>'; }).join('');
+      };
+
+      FEATURES.forEach(function (f, i) {
+        var m = document.createElement('div');
+        m.className = 'menu-item' + (i === 0 ? ' active' : '');
+        m.innerHTML = '<span class="toc-dot"></span>' + f.menu;
+        m.addEventListener('click', function () {
+          sec.querySelectorAll('.card-wrap')[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        menuEl.appendChild(m);
+
+        var w = document.createElement('div');
+        w.className = 'card-wrap reveal';
+        if (f.type === 'quote') {
+          w.innerHTML =
+            '<article class="card card--quote">' +
+              '<div class="card-title">' + f.title + '</div>' +
+              '<div class="quote-box">' +
+                '<h4>' + f.quote + '</h4>' +
+                '<div class="quote-info">' +
+                  '<div class="quote-person"><div class="name">' + f.person.name + '</div><div class="role">' + f.person.role + '</div></div>' +
+                  '<div class="quote-client">' + f.client + '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="quote-bottom"><p class="card-desc">' + f.desc + '</p><div class="tags">' + tagsHtml(f.tags) + '</div></div>' +
+            '</article>';
+        } else {
+          w.innerHTML =
+            '<article class="card">' +
+              '<div class="card-split">' +
+                '<div class="left">' +
+                  '<div><div class="card-title">' + f.title + '</div><p class="card-desc">' + f.desc + '</p></div>' +
+                  '<div class="tags">' + tagsHtml(f.tags) + '</div>' +
+                '</div>' +
+                '<img src="' + f.img + '" alt="' + f.title + '" loading="lazy">' +
+              '</div>' +
+            '</article>';
+        }
+        cardsEl.appendChild(w);
+      });
+
+      var menuItems = Array.prototype.slice.call(menuEl.children);
+      var cardWraps = Array.prototype.slice.call(cardsEl.children);
+      var reveals = Array.prototype.slice.call(sec.querySelectorAll('.reveal'));
+
+      function update() {
+        reveals.forEach(function (el) {
+          if (!el.classList.contains('is-revealed') &&
+              el.getBoundingClientRect().top < innerHeight * 0.88) {
+            el.classList.add('is-revealed');
+          }
+        });
+        var line = innerHeight * 0.4;
+        var active = 0;
+        cardWraps.forEach(function (c, i) {
+          if (c.getBoundingClientRect().top <= line) active = i;
+        });
+        menuItems.forEach(function (m, i) { m.classList.toggle('active', i === active); });
+      }
+
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+      (function tick() { update(); requestAnimationFrame(tick); })();
+      update();
+    })();
+  </script>
+</section>

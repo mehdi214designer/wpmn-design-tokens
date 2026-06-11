@@ -1,0 +1,43 @@
+{
+  "id": "folder-quote-cards",
+  "name": "Folder Quote Cards",
+  "type": "html",
+  "status": "stable",
+  "description": "Three case-study quote cards drawn as folder tabs (stretched SVG outline with a top notch). Scanline-dithered canvas art in the brand color, notched arrow pills with slide-in fills, and a damped scroll-linked stagger entrance.",
+  "files": {
+    "html": "sections/folder-quote-cards/section.html"
+  },
+  "prompt": "sections/folder-quote-cards/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-folder-quote-cards",
+  "interactions": [
+    "entrance: scroll-linked per-card stagger (0.18 offset), damped lerp (x += (t-x)*0.14), scale 0.88->1, translateY 200->0, opacity 0->1",
+    "arrow pill hover: dark fill layer slides in from -56px at 5% opacity, 260ms cubic-bezier(.22,1,.36,1); link scales 1.05 hover / 0.96 active",
+    "canvas art: 2D scanline dither of a glyph silhouette, fill color read from --btn-bg-enable at runtime",
+    "art re-renders on data-brand / data-theme changes via MutationObserver",
+    "below 920px: cards stack vertically",
+    "prefers-reduced-motion: entrance pinned to final state"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--btn-bg-enable",
+    "--radius-xsm",
+    "--font-family-base",
+    "--font-size-h2",
+    "--font-size-h5",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-weight-semibold",
+    "--font-weight-medium",
+    "--font-weight-regular"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Trust & Social Proof",
+  "role": "Testimonial",
+  "span": 2,
+  "tags": ["testimonial", "quote cards", "case study", "folder tab", "canvas art", "scanline", "social proof"]
+}
