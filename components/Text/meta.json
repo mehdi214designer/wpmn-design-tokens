@@ -93,5 +93,12 @@
   "preview": {
     "jsx": "<div style={{maxWidth:560}}><Text variant='h4'>Design once, ship 16 brands</Text><Text variant='body-base' color='secondary'>Every heading and paragraph maps to the WPMN type scale tokens.</Text></div>"
   },
-  "demo": "components/Text/demo.jsx"
+  "demo": "components/Text/demo.jsx",
+  "tags": [
+    "typography",
+    "heading",
+    "paragraph",
+    "type scale",
+    "font"
+  ]
 }

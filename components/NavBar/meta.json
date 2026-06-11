@@ -78,5 +78,13 @@
     "zoom": 0.55,
     "width": 1240
   },
-  "demo": "components/NavBar/demo.jsx"
+  "demo": "components/NavBar/demo.jsx",
+  "tags": [
+    "navbar",
+    "header",
+    "navigation",
+    "menu",
+    "topbar",
+    "sticky"
+  ]
 }

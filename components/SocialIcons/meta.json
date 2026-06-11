@@ -45,5 +45,14 @@
   "preview": {
     "jsx": "<div style={{width:300}}><SocialIcons/></div>"
   },
-  "demo": "components/SocialIcons/demo.jsx"
+  "demo": "components/SocialIcons/demo.jsx",
+  "tags": [
+    "social",
+    "facebook",
+    "x",
+    "twitter",
+    "linkedin",
+    "youtube",
+    "instagram"
+  ]
 }

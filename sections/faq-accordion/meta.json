@@ -41,5 +41,13 @@
     "dark"
   ],
   "category": "Sections",
-  "subcategory": "Interactive"
+  "subcategory": "Interactive",
+  "tags": [
+    "faq",
+    "accordion",
+    "questions",
+    "answers",
+    "collapse",
+    "disclosure"
+  ]
 }

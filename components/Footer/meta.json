@@ -71,5 +71,11 @@
     "zoom": 0.38,
     "width": 1440
   },
-  "demo": "components/Footer/demo.jsx"
+  "demo": "components/Footer/demo.jsx",
+  "tags": [
+    "footer",
+    "site footer",
+    "links",
+    "bottom"
+  ]
 }

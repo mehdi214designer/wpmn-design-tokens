@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-11T06:26:11.138Z",
+  "generatedAt": "2026-06-11T06:35:46.176Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -101,7 +101,14 @@
         "zoom": 0.8,
         "width": 760
       },
-      "demo": "components/Badge/demo.jsx"
+      "demo": "components/Badge/demo.jsx",
+      "tags": [
+        "badge",
+        "status",
+        "label",
+        "tag",
+        "pill"
+      ]
     },
     {
       "id": "breadcrumbs",
@@ -163,7 +170,13 @@
         "zoom": 0.85,
         "width": 640
       },
-      "demo": "components/Breadcrumbs/demo.jsx"
+      "demo": "components/Breadcrumbs/demo.jsx",
+      "tags": [
+        "breadcrumb",
+        "navigation",
+        "path",
+        "trail"
+      ]
     },
     {
       "id": "button",
@@ -276,7 +289,15 @@
       "preview": {
         "jsx": "<div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Button type='primary'>Get Started</Button><Button type='secondary'>Learn More</Button><Button type='tertiary'>Docs</Button></div>"
       },
-      "demo": "components/Button/demo.jsx"
+      "demo": "components/Button/demo.jsx",
+      "tags": [
+        "button",
+        "cta",
+        "action",
+        "primary",
+        "secondary",
+        "tertiary"
+      ]
     },
     {
       "id": "footer",
@@ -351,7 +372,13 @@
         "zoom": 0.38,
         "width": 1440
       },
-      "demo": "components/Footer/demo.jsx"
+      "demo": "components/Footer/demo.jsx",
+      "tags": [
+        "footer",
+        "site footer",
+        "links",
+        "bottom"
+      ]
     },
     {
       "id": "icons",
@@ -394,7 +421,13 @@
       "preview": {
         "jsx": "<div style={{display:'flex',gap:18,flexWrap:'wrap',color:'var(--color-text-primary)'}}>{Object.values(DS.Icons||{}).map(function(I,i){return <I key={i} size={26}/>;})}</div>"
       },
-      "demo": "components/Icons/demo.jsx"
+      "demo": "components/Icons/demo.jsx",
+      "tags": [
+        "icon",
+        "svg",
+        "hugeicons",
+        "glyph"
+      ]
     },
     {
       "id": "input",
@@ -502,7 +535,15 @@
       "preview": {
         "jsx": "<div style={{display:'grid',gap:16,width:'100%',maxWidth:340}}><Input label='Email' placeholder='you@company.com'/><Input variant='fill' label='Password' type='password' placeholder='********' hint='Min 8 characters'/></div>"
       },
-      "demo": "components/Input/demo.jsx"
+      "demo": "components/Input/demo.jsx",
+      "tags": [
+        "input",
+        "form",
+        "field",
+        "text field",
+        "email",
+        "validation"
+      ]
     },
     {
       "id": "logo",
@@ -595,7 +636,13 @@
       "preview": {
         "jsx": "<div style={{display:'flex',gap:36,alignItems:'center',flexWrap:'wrap'}}><Logo brand='fluentforms' height={34}/><Logo brand='fluentcrm' height={34}/><Logo brand='fluentsupport' height={34}/></div>"
       },
-      "demo": "components/Logo/demo.jsx"
+      "demo": "components/Logo/demo.jsx",
+      "tags": [
+        "logo",
+        "brand mark",
+        "wordmark",
+        "identity"
+      ]
     },
     {
       "id": "navbar",
@@ -677,7 +724,15 @@
         "zoom": 0.55,
         "width": 1240
       },
-      "demo": "components/NavBar/demo.jsx"
+      "demo": "components/NavBar/demo.jsx",
+      "tags": [
+        "navbar",
+        "header",
+        "navigation",
+        "menu",
+        "topbar",
+        "sticky"
+      ]
     },
     {
       "id": "socialicons",
@@ -726,7 +781,16 @@
       "preview": {
         "jsx": "<div style={{width:300}}><SocialIcons/></div>"
       },
-      "demo": "components/SocialIcons/demo.jsx"
+      "demo": "components/SocialIcons/demo.jsx",
+      "tags": [
+        "social",
+        "facebook",
+        "x",
+        "twitter",
+        "linkedin",
+        "youtube",
+        "instagram"
+      ]
     },
     {
       "id": "text",
@@ -823,7 +887,14 @@
       "preview": {
         "jsx": "<div style={{maxWidth:560}}><Text variant='h4'>Design once, ship 16 brands</Text><Text variant='body-base' color='secondary'>Every heading and paragraph maps to the WPMN type scale tokens.</Text></div>"
       },
-      "demo": "components/Text/demo.jsx"
+      "demo": "components/Text/demo.jsx",
+      "tags": [
+        "typography",
+        "heading",
+        "paragraph",
+        "type scale",
+        "font"
+      ]
     },
     {
       "id": "cta-banner",
@@ -868,7 +939,15 @@
         "dark"
       ],
       "category": "Sections",
-      "subcategory": "Banners & Impact"
+      "subcategory": "Banners & Impact",
+      "tags": [
+        "cta",
+        "banner",
+        "call to action",
+        "dark section",
+        "conversion",
+        "impact"
+      ]
     },
     {
       "id": "faq-accordion",
@@ -913,7 +992,15 @@
         "dark"
       ],
       "category": "Sections",
-      "subcategory": "Interactive"
+      "subcategory": "Interactive",
+      "tags": [
+        "faq",
+        "accordion",
+        "questions",
+        "answers",
+        "collapse",
+        "disclosure"
+      ]
     },
     {
       "id": "hero-standard",
@@ -959,7 +1046,16 @@
         "dark"
       ],
       "category": "Sections",
-      "subcategory": "Banners & Impact"
+      "subcategory": "Banners & Impact",
+      "tags": [
+        "hero",
+        "header",
+        "above the fold",
+        "landing",
+        "mockup",
+        "banner",
+        "headline"
+      ]
     },
     {
       "id": "hero-typographic",
@@ -1004,7 +1100,15 @@
         "dark"
       ],
       "category": "Sections",
-      "subcategory": "Banners & Impact"
+      "subcategory": "Banners & Impact",
+      "tags": [
+        "hero",
+        "typography",
+        "minimal",
+        "headline",
+        "big type",
+        "editorial"
+      ]
     },
     {
       "id": "logo-cloud",
@@ -1047,7 +1151,15 @@
         "dark"
       ],
       "category": "Sections",
-      "subcategory": "Banners & Impact"
+      "subcategory": "Banners & Impact",
+      "tags": [
+        "logos",
+        "trust",
+        "clients",
+        "social proof",
+        "press",
+        "wall of love"
+      ]
     },
     {
       "id": "stats-counter",
@@ -1091,7 +1203,16 @@
         "dark"
       ],
       "category": "Sections",
-      "subcategory": "Banners & Impact"
+      "subcategory": "Banners & Impact",
+      "tags": [
+        "stats",
+        "numbers",
+        "metrics",
+        "counter",
+        "milestones",
+        "social proof",
+        "count up"
+      ]
     }
   ]
 }

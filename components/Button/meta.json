@@ -109,5 +109,13 @@
   "preview": {
     "jsx": "<div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}><Button type='primary'>Get Started</Button><Button type='secondary'>Learn More</Button><Button type='tertiary'>Docs</Button></div>"
   },
-  "demo": "components/Button/demo.jsx"
+  "demo": "components/Button/demo.jsx",
+  "tags": [
+    "button",
+    "cta",
+    "action",
+    "primary",
+    "secondary",
+    "tertiary"
+  ]
 }

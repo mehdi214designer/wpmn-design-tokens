@@ -58,5 +58,11 @@
     "zoom": 0.85,
     "width": 640
   },
-  "demo": "components/Breadcrumbs/demo.jsx"
+  "demo": "components/Breadcrumbs/demo.jsx",
+  "tags": [
+    "breadcrumb",
+    "navigation",
+    "path",
+    "trail"
+  ]
 }

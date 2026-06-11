@@ -104,5 +104,13 @@
   "preview": {
     "jsx": "<div style={{display:'grid',gap:16,width:'100%',maxWidth:340}}><Input label='Email' placeholder='you@company.com'/><Input variant='fill' label='Password' type='password' placeholder='********' hint='Min 8 characters'/></div>"
   },
-  "demo": "components/Input/demo.jsx"
+  "demo": "components/Input/demo.jsx",
+  "tags": [
+    "input",
+    "form",
+    "field",
+    "text field",
+    "email",
+    "validation"
+  ]
 }
