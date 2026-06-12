@@ -59,6 +59,15 @@ Look at what was uploaded:
    mobile layouts (single breakpoint that stacks everything is acceptable when fluid).
 7. **Reduced motion.** Every animation and JS interval gets a `prefers-reduced-motion` guard:
    transitions off, content rendered in its final state.
+8. **One primary button per section.** Only one element gets the primary treatment
+   (`--btn-bg-enable`); every other action is the light/ghost/secondary style. Two primaries
+   on one screen is a hierarchy bug.
+9. **Icons on dark surfaces use `--color-text-primary-invert`, never the brand color** —
+   brand-colored icons on dark backgrounds break the light/dark theme toggle. Brand color is
+   for actions and accents on light surfaces.
+10. **Hover layers never sit on text.** Tint/blur overlays go on a `::before` (z-index 0)
+   with the text lifted above (`position:relative; z-index:1`) — never blend or tint the
+   element that contains the copy.
 
 ## HTML import mode
 
