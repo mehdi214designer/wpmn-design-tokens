@@ -1,17 +1,17 @@
 <!-- WPMN Section: Infinite Marquee — continuous auto-scrolling band, pauses on hover -->
 <section class="wpmn-sec-infinite-marquee">
   <style>
-    .wpmn-sec-infinite-marquee{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base);overflow:hidden}
-    .wpmn-sec-infinite-marquee .im-label{max-width:1200px;margin:0 auto var(--primitive-space-32);text-align:center;font-size:var(--font-size-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-infinite-marquee{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base);overflow:hidden}
+    .wpmn-sec-infinite-marquee .im-label{max-width:1200px;margin:0 auto 32px;text-align:center;font-size:var(--font-size-body-base);color:var(--color-text-secondary)}
     .wpmn-sec-infinite-marquee .im-band{display:flex;gap:0;width:max-content;animation:wpmn-im-scroll 28s linear infinite}
     .wpmn-sec-infinite-marquee .im-band:hover{animation-play-state:paused}
-    .wpmn-sec-infinite-marquee .im-group{display:flex;align-items:center;gap:var(--primitive-space-64);padding-right:var(--primitive-space-64)}
+    .wpmn-sec-infinite-marquee .im-group{display:flex;align-items:center;gap:64px;padding-right:64px}
     .wpmn-sec-infinite-marquee .im-item{display:inline-flex;align-items:center;gap:10px;font-size:var(--font-size-h5);font-weight:var(--font-weight-bold);color:var(--color-text-secondary);opacity:.65;white-space:nowrap}
     .wpmn-sec-infinite-marquee .im-item svg{flex-shrink:0}
     .wpmn-sec-infinite-marquee .im-sep{width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable);flex-shrink:0}
     @keyframes wpmn-im-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
     @media(prefers-reduced-motion:reduce){.wpmn-sec-infinite-marquee .im-band{animation:none}}
-    @media(max-width:768px){.wpmn-sec-infinite-marquee{padding:var(--primitive-space-64) 0}}
+    @media(max-width:768px){.wpmn-sec-infinite-marquee{padding:64px 0}}
   </style>
   <p class="im-label">Trusted across the WordPress ecosystem</p>
   <div class="im-band">

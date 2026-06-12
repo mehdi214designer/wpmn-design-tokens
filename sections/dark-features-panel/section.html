@@ -5,24 +5,24 @@
     .wpmn-sec-dark-features-panel .dfp-panel{position:relative;border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(var(--dfp-top),var(--color-surface-secondary));padding:var(--spacing-section-padding-tb-desktop) 0}
 
     /* ---- chip row: gradient hairlines flanking the chip ---- */
-    .wpmn-sec-dark-features-panel .dfp-chiprow{position:relative;display:flex;align-items:center;justify-content:center;gap:var(--primitive-space-16)}
+    .wpmn-sec-dark-features-panel .dfp-chiprow{position:relative;display:flex;align-items:center;justify-content:center;gap:16px}
     .wpmn-sec-dark-features-panel .dfp-chiprow::before,
     .wpmn-sec-dark-features-panel .dfp-chiprow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent 0%,var(--dfp-line) 32%,var(--dfp-line) 68%,transparent 100%)}
     .wpmn-sec-dark-features-panel .dfp-chip{display:flex;align-items:center;gap:6px;height:28px;padding:0 10px 0 6px;border-radius:var(--radius-xsm);background:var(--dfp-chip-bg);box-shadow:0 0 0 1px var(--dfp-chip-ring),inset 0 1px 2px 0 var(--dfp-chip-inset);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-secondary-invert);white-space:nowrap}
     .wpmn-sec-dark-features-panel .dfp-chip svg{width:20px;height:20px;color:var(--dfp-icon-dim);flex-shrink:0}
 
     /* ---- header ---- */
-    .wpmn-sec-dark-features-panel .dfp-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--spacing-h-xxl-to-large);margin:var(--primitive-space-32) auto 0;max-width:1200px;padding:0 var(--primitive-space-24)}
+    .wpmn-sec-dark-features-panel .dfp-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--spacing-h-xxl-to-large);margin:32px auto 0;max-width:1200px;padding:0 24px}
     .wpmn-sec-dark-features-panel .dfp-head h2{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);letter-spacing:-0.025em;color:var(--color-text-primary-invert);margin:0}
     .wpmn-sec-dark-features-panel .dfp-head p{max-width:564px;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);margin:0}
     .wpmn-sec-dark-features-panel .dfp-head strong{font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert)}
 
     /* ---- grid ---- */
-    .wpmn-sec-dark-features-panel .dfp-grid{position:relative;max-width:1200px;margin:var(--primitive-space-48) auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--primitive-space-56) var(--primitive-space-24)}
-    .wpmn-sec-dark-features-panel .dfp-feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:var(--primitive-space-16)}
+    .wpmn-sec-dark-features-panel .dfp-grid{position:relative;max-width:1200px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:56px 24px}
+    .wpmn-sec-dark-features-panel .dfp-feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:16px}
     .wpmn-sec-dark-features-panel .dfp-feature>svg{width:24px;height:24px;color:var(--color-text-primary-invert);flex-shrink:0}
-    .wpmn-sec-dark-features-panel .dfp-feature h3{margin:var(--primitive-space-20) 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert)}
-    .wpmn-sec-dark-features-panel .dfp-feature p{margin:var(--primitive-space-4) 0 0;max-width:272px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
+    .wpmn-sec-dark-features-panel .dfp-feature h3{margin:20px 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert)}
+    .wpmn-sec-dark-features-panel .dfp-feature p{margin:4px 0 0;max-width:272px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
 
     /* divider lines: gradient-faded 1px at thirds (reference geometry, verbatim) */
     .wpmn-sec-dark-features-panel .dfp-grid i{position:absolute;pointer-events:none}
@@ -64,17 +64,17 @@
 
     /* ---- responsive (mirrors the reference md/sm behavior; type tokens swap at 768px on their own) ---- */
     @media (max-width:1279px){
-      .wpmn-sec-dark-features-panel .dfp-grid{grid-template-columns:repeat(2,1fr);gap:var(--primitive-space-24);max-width:768px}
+      .wpmn-sec-dark-features-panel .dfp-grid{grid-template-columns:repeat(2,1fr);gap:24px;max-width:768px}
       .wpmn-sec-dark-features-panel .dfp-grid i{display:none}
     }
     @media (max-width:767px){
-      .wpmn-sec-dark-features-panel .dfp-panel{padding:var(--spacing-section-padding-tb-mobile) 0 var(--primitive-space-24)}
-      .wpmn-sec-dark-features-panel .dfp-grid{grid-template-columns:1fr;gap:0;margin-top:var(--primitive-space-16);padding:0 var(--primitive-space-24);border-top:1px solid var(--dfp-hairline)}
-      .wpmn-sec-dark-features-panel .dfp-feature{flex-direction:row;align-items:flex-start;text-align:left;gap:var(--primitive-space-12);padding:var(--primitive-space-16) 0;border-bottom:1px solid var(--dfp-hairline)}
+      .wpmn-sec-dark-features-panel .dfp-panel{padding:var(--spacing-section-padding-tb-mobile) 0 24px}
+      .wpmn-sec-dark-features-panel .dfp-grid{grid-template-columns:1fr;gap:0;margin-top:16px;padding:0 24px;border-top:1px solid var(--dfp-hairline)}
+      .wpmn-sec-dark-features-panel .dfp-feature{flex-direction:row;align-items:flex-start;text-align:left;gap:12px;padding:16px 0;border-bottom:1px solid var(--dfp-hairline)}
       .wpmn-sec-dark-features-panel .dfp-feature>svg{width:20px;height:20px;margin-top:1px}
       .wpmn-sec-dark-features-panel .dfp-feature h3{margin-top:0}
       .wpmn-sec-dark-features-panel .dfp-feature p{max-width:none}
-      .wpmn-sec-dark-features-panel .dfp-head{align-items:flex-start;text-align:left;gap:var(--primitive-space-12)}
+      .wpmn-sec-dark-features-panel .dfp-head{align-items:flex-start;text-align:left;gap:12px}
     }
     @media (prefers-reduced-motion:reduce){
       .wpmn-sec-dark-features-panel .dfp-spark{animation:none;opacity:0}

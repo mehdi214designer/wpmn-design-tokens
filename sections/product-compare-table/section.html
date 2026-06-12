@@ -1,26 +1,26 @@
 <!-- WPMN Section: Product Compare Table — 4-product feature matrix with a rounded highlight ring around the first product column -->
 <section class="wpmn-sec-product-compare-table">
   <style>
-    .wpmn-sec-product-compare-table{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base);display:flex;flex-direction:column;gap:var(--primitive-space-48);overflow:hidden}
-    .wpmn-sec-product-compare-table .pct-head{width:100%;max-width:768px;margin:0 auto;padding:0 var(--primitive-space-20);display:flex;flex-direction:column;align-items:center;text-align:center}
-    .wpmn-sec-product-compare-table .pct-chip{display:inline-flex;align-items:center;height:24px;padding:0 var(--primitive-space-8);border:1px solid color-mix(in srgb,var(--color-text-primary) 6%,transparent);border-radius:var(--radius-xsm);background:color-mix(in srgb,var(--color-text-primary) 4%,transparent);color:color-mix(in srgb,var(--color-text-primary) 45%,transparent);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);margin-bottom:var(--primitive-space-12)}
-    .wpmn-sec-product-compare-table .pct-title{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);text-wrap:balance;margin:0 0 var(--primitive-space-16)}
+    .wpmn-sec-product-compare-table{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base);display:flex;flex-direction:column;gap:48px;overflow:hidden}
+    .wpmn-sec-product-compare-table .pct-head{width:100%;max-width:768px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .wpmn-sec-product-compare-table .pct-chip{display:inline-flex;align-items:center;height:24px;padding:0 8px;border:1px solid color-mix(in srgb,var(--color-text-primary) 6%,transparent);border-radius:var(--radius-xsm);background:color-mix(in srgb,var(--color-text-primary) 4%,transparent);color:color-mix(in srgb,var(--color-text-primary) 45%,transparent);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);margin-bottom:12px}
+    .wpmn-sec-product-compare-table .pct-title{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);text-wrap:balance;margin:0 0 16px}
     .wpmn-sec-product-compare-table .pct-sub{max-width:448px;font-size:var(--font-size-body-large);line-height:var(--font-lh-body-large);font-weight:var(--font-weight-regular);color:var(--color-text-secondary);margin:0}
-    .wpmn-sec-product-compare-table .pct-tablewrap{width:100%;max-width:1024px;margin:0 auto;padding:0 var(--primitive-space-20)}
+    .wpmn-sec-product-compare-table .pct-tablewrap{width:100%;max-width:1024px;margin:0 auto;padding:0 20px}
     .wpmn-sec-product-compare-table table.pct-table{width:100%;table-layout:fixed;border-collapse:collapse;text-align:left}
     .wpmn-sec-product-compare-table .pct-table col.pct-c-label{width:50%}
     .wpmn-sec-product-compare-table .pct-table col.pct-c-prod{width:12.5%}
     /* header product cells: 94px tall, logo + name stacked */
     .wpmn-sec-product-compare-table .pct-table thead th{height:94px;vertical-align:top;font-weight:var(--font-weight-medium)}
-    .wpmn-sec-product-compare-table .pct-prod-head{height:100%;padding:var(--primitive-space-16);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary)}
+    .wpmn-sec-product-compare-table .pct-prod-head{height:100%;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary)}
     .wpmn-sec-product-compare-table .pct-prod-head svg{width:32px;height:32px;color:color-mix(in srgb,var(--color-text-secondary) 80%,transparent)}
     .wpmn-sec-product-compare-table .pct-prod-head svg.pct-logo-us{color:var(--btn-bg-enable)}
     .wpmn-sec-product-compare-table .pct-table tbody tr{border-top:1px solid var(--color-border-primary)}
     .wpmn-sec-product-compare-table .pct-table tbody tr:last-child{border-bottom:1px solid var(--color-border-primary)}
-    .wpmn-sec-product-compare-table .pct-table tbody th{padding:var(--primitive-space-16) var(--primitive-space-16) var(--primitive-space-16) 0;font-weight:var(--font-weight-medium);font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-primary)}
+    .wpmn-sec-product-compare-table .pct-table tbody th{padding:16px 16px 16px 0;font-weight:var(--font-weight-medium);font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-primary)}
     .wpmn-sec-product-compare-table .pct-feat{display:flex;align-items:center;gap:10px}
     .wpmn-sec-product-compare-table .pct-feat svg{width:16px;height:16px;color:var(--color-text-secondary);flex-shrink:0}
-    .wpmn-sec-product-compare-table .pct-table td{padding:18px var(--primitive-space-16);text-align:center;vertical-align:middle}
+    .wpmn-sec-product-compare-table .pct-table td{padding:18px 16px;text-align:center;vertical-align:middle}
     .wpmn-sec-product-compare-table .pct-table td svg{width:20px;height:20px;vertical-align:middle}
     .wpmn-sec-product-compare-table .pct-s-yes{color:var(--btn-bg-enable)}
     .wpmn-sec-product-compare-table .pct-s-partial{color:var(--color-warning-primary)}
@@ -34,18 +34,18 @@
     .wpmn-sec-product-compare-table tbody tr:last-child .pct-hl::after{inset:0;border:2px solid var(--btn-bg-enable);border-top:0;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
     /* ---- mobile: stacked feature cards (original md:hidden layout) ---- */
     .wpmn-sec-product-compare-table .pct-mobile{display:none}
-    @media(max-width:1199px){.wpmn-sec-product-compare-table .pct-tablewrap{padding:0 var(--primitive-space-40)}}
+    @media(max-width:1199px){.wpmn-sec-product-compare-table .pct-tablewrap{padding:0 40px}}
     @media(max-width:767px){
-      .wpmn-sec-product-compare-table{padding:var(--primitive-space-64) 0}
-      .wpmn-sec-product-compare-table .pct-tablewrap{padding:0 var(--primitive-space-20)}
+      .wpmn-sec-product-compare-table{padding:64px 0}
+      .wpmn-sec-product-compare-table .pct-tablewrap{padding:0 20px}
       .wpmn-sec-product-compare-table .pct-tablewrap table{display:none}
-      .wpmn-sec-product-compare-table .pct-mobile{display:flex;flex-direction:column;gap:var(--primitive-space-24)}
-      .wpmn-sec-product-compare-table .pct-m-feat{display:flex;flex-direction:column;gap:var(--primitive-space-8)}
-      .wpmn-sec-product-compare-table .pct-m-feat-label{display:flex;align-items:center;gap:10px;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);font-weight:var(--font-weight-medium);color:var(--color-text-primary);margin-bottom:var(--primitive-space-4)}
+      .wpmn-sec-product-compare-table .pct-mobile{display:flex;flex-direction:column;gap:24px}
+      .wpmn-sec-product-compare-table .pct-m-feat{display:flex;flex-direction:column;gap:8px}
+      .wpmn-sec-product-compare-table .pct-m-feat-label{display:flex;align-items:center;gap:10px;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);font-weight:var(--font-weight-medium);color:var(--color-text-primary);margin-bottom:4px}
       .wpmn-sec-product-compare-table .pct-m-feat-label svg{width:16px;height:16px;color:var(--color-text-secondary)}
-      .wpmn-sec-product-compare-table .pct-m-row{display:flex;align-items:center;justify-content:space-between;padding:10px var(--primitive-space-16);border:1px solid var(--color-border-primary);border-radius:var(--radius-sm);background:var(--color-surface-primary);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
+      .wpmn-sec-product-compare-table .pct-m-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border:1px solid var(--color-border-primary);border-radius:var(--radius-sm);background:var(--color-surface-primary);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
       .wpmn-sec-product-compare-table .pct-m-row.pct-is-hl{border:2px solid var(--btn-bg-enable)}
-      .wpmn-sec-product-compare-table .pct-m-prod{display:flex;align-items:center;gap:var(--primitive-space-8)}
+      .wpmn-sec-product-compare-table .pct-m-prod{display:flex;align-items:center;gap:8px}
       .wpmn-sec-product-compare-table .pct-m-prod svg{width:20px;height:20px;color:color-mix(in srgb,var(--color-text-secondary) 80%,transparent)}
       .wpmn-sec-product-compare-table .pct-m-prod svg.pct-logo-us{color:var(--btn-bg-enable)}
       .wpmn-sec-product-compare-table .pct-m-row svg.pct-status{width:20px;height:20px}

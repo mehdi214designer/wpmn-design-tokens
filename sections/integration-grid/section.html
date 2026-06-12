@@ -1,24 +1,24 @@
 <!-- WPMN Section: Integration Grid — app tiles with connect hint -->
 <section class="wpmn-sec-integration-grid">
   <style>
-    .wpmn-sec-integration-grid{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-integration-grid{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
     .wpmn-sec-integration-grid .ig-c{max-width:1200px;margin:0 auto}
-    .wpmn-sec-integration-grid .ig-head{text-align:center;margin-bottom:var(--primitive-space-48)}
-    .wpmn-sec-integration-grid .ig-badge{display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:var(--primitive-space-12)}
+    .wpmn-sec-integration-grid .ig-head{text-align:center;margin-bottom:48px}
+    .wpmn-sec-integration-grid .ig-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
     .wpmn-sec-integration-grid .ig-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
     .wpmn-sec-integration-grid .ig-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-integration-grid .ig-sub{max-width:800px;margin:var(--primitive-space-16) auto 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
-    .wpmn-sec-integration-grid .ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--primitive-space-24)}
-    .wpmn-sec-integration-grid .ig-tile{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:var(--primitive-space-24);display:flex;align-items:center;gap:var(--primitive-space-16);transition:box-shadow 120ms ease,border-color 120ms ease;cursor:pointer}
+    .wpmn-sec-integration-grid .ig-sub{max-width:800px;margin:16px auto 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-integration-grid .ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+    .wpmn-sec-integration-grid .ig-tile{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:24px;display:flex;align-items:center;gap:16px;transition:box-shadow 120ms ease,border-color 120ms ease;cursor:pointer}
     .wpmn-sec-integration-grid .ig-tile:hover{box-shadow:var(--shadow-soft-200);border-color:var(--btn-bg-enable)}
     .wpmn-sec-integration-grid .ig-logo{width:44px;height:44px;border-radius:var(--radius-xsm);background:var(--btn-bg-focused);color:var(--btn-bg-enable);display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .wpmn-sec-integration-grid h3{margin:0;font-size:var(--font-size-body-medium);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-integration-grid p{margin:var(--primitive-space-2) 0 0;font-size:var(--font-size-body-label);color:var(--color-text-secondary)}
-    .wpmn-sec-integration-grid .ig-more{text-align:center;margin-top:var(--primitive-space-32);font-size:var(--font-size-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-integration-grid p{margin:2px 0 0;font-size:var(--font-size-body-label);color:var(--color-text-secondary)}
+    .wpmn-sec-integration-grid .ig-more{text-align:center;margin-top:32px;font-size:var(--font-size-body-base);color:var(--color-text-secondary)}
     .wpmn-sec-integration-grid .ig-more a{color:var(--btn-bg-enable);font-weight:var(--font-weight-medium);text-decoration:none}
-    @media(max-width:1199px){.wpmn-sec-integration-grid .ig-c{padding:0 var(--primitive-space-40)}}
+    @media(max-width:1199px){.wpmn-sec-integration-grid .ig-c{padding:0 40px}}
     @media(max-width:900px){.wpmn-sec-integration-grid .ig-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:768px){.wpmn-sec-integration-grid{padding:var(--primitive-space-64) 0}.wpmn-sec-integration-grid .ig-c{padding:0 var(--primitive-space-20)}}
+    @media(max-width:768px){.wpmn-sec-integration-grid{padding:64px 0}.wpmn-sec-integration-grid .ig-c{padding:0 20px}}
     @media(max-width:480px){.wpmn-sec-integration-grid .ig-grid{grid-template-columns:1fr}}
   </style>
   <div class="ig-c">
