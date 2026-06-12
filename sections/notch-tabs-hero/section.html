@@ -1,0 +1,186 @@
+<!-- WPMN Section: Notch Tabs Hero — centered hero with notched tab bar (inverse-corner shoulders) over a brand gradient showcase; tab switch blurs the shot out and springs it back in (imported, tokenized) -->
+<section class="wpmn-sec-notch-tabs-hero">
+  <style>
+    .wpmn-sec-notch-tabs-hero{
+      --nth-tint-badge:color-mix(in srgb,var(--btn-bg-enable) 8%,var(--color-surface-primary));
+      --nth-tint-badge-hover:color-mix(in srgb,var(--btn-bg-enable) 14%,var(--color-surface-primary));
+      --nth-tint-icon:color-mix(in srgb,var(--btn-bg-enable) 8%,var(--color-surface-primary));
+      --nth-grad-b:color-mix(in srgb,var(--btn-bg-enable) 55%,var(--color-surface-primary));
+      --nth-art-a:color-mix(in srgb,var(--btn-bg-enable) 30%,var(--color-surface-primary));
+      --nth-art-b:color-mix(in srgb,var(--btn-bg-enable) 12%,var(--color-surface-primary));
+      --nth-art-c:color-mix(in srgb,var(--btn-bg-enable) 20%,var(--color-surface-primary));
+      background:var(--color-surface-primary);
+      color:var(--color-text-secondary);
+      font-family:var(--font-family-base);
+      letter-spacing:-0.01em;
+      display:flex;flex-direction:column;gap:64px;
+      padding:96px 0 64px;
+      position:relative;overflow:hidden;
+    }
+    .wpmn-sec-notch-tabs-hero a{text-decoration:none;color:inherit}
+    .wpmn-sec-notch-tabs-hero button{border:0;background:none;cursor:pointer}
+
+    /* ===== Intro ===== */
+    .wpmn-sec-notch-tabs-hero .intro{width:100%;max-width:768px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+    .wpmn-sec-notch-tabs-hero .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px 6px 6px;background:var(--nth-tint-badge);border-radius:999px;color:var(--btn-bg-enable);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);transition:background-color .15s cubic-bezier(.4,0,.2,1)}
+    .wpmn-sec-notch-tabs-hero .badge:hover{background:var(--nth-tint-badge-hover)}
+    .wpmn-sec-notch-tabs-hero .badge svg{width:16px;height:16px;display:block}
+    .wpmn-sec-notch-tabs-hero .chip{display:flex;align-items:center;justify-content:center;height:20px;padding:0 6px;border-radius:999px;background:linear-gradient(to right,var(--btn-bg-enable),var(--nth-grad-b));color:var(--color-text-primary-invert);font-size:var(--font-size-body-label);line-height:1;font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:.04em}
+    .wpmn-sec-notch-tabs-hero h1{font-size:var(--font-size-h1);font-weight:var(--font-weight-semibold);line-height:var(--font-lh-h1);letter-spacing:-0.03em;color:var(--color-text-primary);max-width:600px;text-wrap:balance;margin:0}
+    .wpmn-sec-notch-tabs-hero .sub{max-width:480px;font-size:var(--font-size-body-medium);font-weight:var(--font-weight-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin:0}
+    .wpmn-sec-notch-tabs-hero .ctas{display:flex;align-items:center;gap:var(--spacing-btn-gap-lg);margin-top:8px}
+    .wpmn-sec-notch-tabs-hero .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);white-space:nowrap;transition:background-color .15s cubic-bezier(.4,0,.2,1),box-shadow .15s cubic-bezier(.4,0,.2,1)}
+    .wpmn-sec-notch-tabs-hero .btn-primary{background:var(--btn-bg-enable);color:var(--color-text-primary-invert);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-notch-tabs-hero .btn-primary:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-notch-tabs-hero .btn-primary:active{background:var(--btn-bg-pressed)}
+    .wpmn-sec-notch-tabs-hero .btn-ghost{background:var(--color-surface-primary);color:var(--color-text-primary);box-shadow:var(--shadow-soft-300),0 0 0 1px color-mix(in srgb,var(--color-text-primary) 8%,transparent)}
+    .wpmn-sec-notch-tabs-hero .btn-ghost:hover{box-shadow:var(--shadow-soft-500),0 0 0 1px color-mix(in srgb,var(--color-text-primary) 12%,transparent)}
+
+    /* ===== Brand text marks ===== */
+    .wpmn-sec-notch-tabs-hero .brands{max-width:768px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;row-gap:24px}
+    .wpmn-sec-notch-tabs-hero .brand{flex-shrink:0;padding:0 16px;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;color:var(--color-text-primary);opacity:.4;transition:opacity .15s}
+    .wpmn-sec-notch-tabs-hero .brand:hover{opacity:1}
+
+    /* ===== Showcase with notched tab bar ===== */
+    .wpmn-sec-notch-tabs-hero .showcase{position:relative;width:100%;padding:112px 0 80px;background:radial-gradient(80% 100% at 18% 82%,var(--nth-art-a) 0%,transparent 62%),radial-gradient(70% 90% at 82% 12%,var(--nth-art-c) 0%,transparent 58%),linear-gradient(120deg,var(--nth-art-b) 0%,var(--nth-art-c) 100%)}
+    .wpmn-sec-notch-tabs-hero .notch{position:absolute;top:0;left:50%;translate:-50%;height:52px;padding:0 20px;display:flex;align-items:flex-start;background:var(--color-surface-primary);border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+    /* inverse corner shoulders — verbatim radial-gradient trick */
+    .wpmn-sec-notch-tabs-hero .notch::before,.wpmn-sec-notch-tabs-hero .notch::after{content:'';position:absolute;top:0;width:32px;height:32px}
+    .wpmn-sec-notch-tabs-hero .notch::before{left:-31px;background:radial-gradient(circle at 0% 100%,transparent 32px,var(--color-surface-primary) 32.5px)}
+    .wpmn-sec-notch-tabs-hero .notch::after{right:-31px;background:radial-gradient(circle at 100% 100%,transparent 32px,var(--color-surface-primary) 32.5px)}
+    .wpmn-sec-notch-tabs-hero .tab{position:relative;height:36px;padding:0 12px;font-family:var(--font-family-base);font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);line-height:var(--font-lh-body-small);color:color-mix(in srgb,var(--color-text-secondary) 65%,transparent);transition:color .15s cubic-bezier(.4,0,.2,1)}
+    .wpmn-sec-notch-tabs-hero .tab:hover{color:var(--color-text-secondary)}
+    .wpmn-sec-notch-tabs-hero .tab.active{color:var(--color-text-primary)}
+    .wpmn-sec-notch-tabs-hero .pill{position:absolute;inset:0;border-radius:999px;background:color-mix(in srgb,var(--color-text-primary) 5%,transparent);opacity:0;transition:opacity .15s}
+    .wpmn-sec-notch-tabs-hero .tab.active .pill{opacity:1}
+    .wpmn-sec-notch-tabs-hero .lbl{position:relative}
+
+    .wpmn-sec-notch-tabs-hero .shot-wrap{max-width:1024px;margin:0 auto;padding:0 20px;position:relative}
+    .wpmn-sec-notch-tabs-hero .shot{width:100%;height:auto;display:block;border-radius:var(--radius-xsm);box-shadow:0 1px 3px color-mix(in srgb,var(--color-text-primary) 8%,transparent),0 0 0 1px color-mix(in srgb,var(--color-text-primary) 4%,transparent);will-change:transform,opacity,filter}
+    /* tab-switch animation — values verbatim from the motion samples */
+    .wpmn-sec-notch-tabs-hero .shot.out{transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .25s cubic-bezier(.4,0,.2,1),filter .25s cubic-bezier(.4,0,.2,1);transform:scale(.949) translateY(15px);opacity:0;filter:blur(4px)}
+    .wpmn-sec-notch-tabs-hero .shot.in{transition:transform .35s cubic-bezier(.34,1.3,.64,1),opacity .3s ease-out,filter .3s ease-out;transform:scale(1) translateY(0);opacity:1;filter:blur(0)}
+
+    /* ===== Feature trio ===== */
+    .wpmn-sec-notch-tabs-hero .feats{width:100%;max-width:1024px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:48px 32px}
+    .wpmn-sec-notch-tabs-hero .feat{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .wpmn-sec-notch-tabs-hero .feat-icon{width:40px;height:36px;border-radius:999px;background:var(--nth-tint-icon);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-notch-tabs-hero .feat-icon svg{width:20px;height:20px;color:var(--btn-bg-enable)}
+    .wpmn-sec-notch-tabs-hero .feat h3{font-size:var(--font-size-body-medium);font-weight:var(--font-weight-medium);line-height:var(--font-lh-body-medium);text-align:center;color:var(--color-text-primary);margin:0}
+    .wpmn-sec-notch-tabs-hero .feat h3 span{color:var(--color-text-secondary)}
+
+    @media (max-width: 900px){
+      .wpmn-sec-notch-tabs-hero{padding:64px 0 48px;gap:48px}
+      .wpmn-sec-notch-tabs-hero .notch{display:none}
+      .wpmn-sec-notch-tabs-hero .showcase{padding:56px 0 48px}
+      .wpmn-sec-notch-tabs-hero .feats{grid-template-columns:1fr;max-width:360px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .wpmn-sec-notch-tabs-hero .badge,
+      .wpmn-sec-notch-tabs-hero .btn,
+      .wpmn-sec-notch-tabs-hero .brand,
+      .wpmn-sec-notch-tabs-hero .tab,
+      .wpmn-sec-notch-tabs-hero .pill,
+      .wpmn-sec-notch-tabs-hero .shot,
+      .wpmn-sec-notch-tabs-hero .shot.out,
+      .wpmn-sec-notch-tabs-hero .shot.in{transition:none}
+    }
+  </style>
+
+  <div class="intro">
+    <a class="badge" href="#" onclick="return false">
+      <span class="chip">new</span>
+      <span>FluentCRM 3.0 is here</span>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+    </a>
+    <h1>Revenue-first email automation</h1>
+    <p class="sub">See every contact in realtime and watch the exact moment they become a customer.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="#" onclick="return false">Start 14 day free trial</a>
+      <a class="btn btn-ghost" href="#" onclick="return false">See demo</a>
+    </div>
+  </div>
+
+  <div class="brands" aria-label="Works with the Fluent suite">
+    <a class="brand" href="#" onclick="return false">FluentForms</a>
+    <a class="brand" href="#" onclick="return false">FluentSupport</a>
+    <a class="brand" href="#" onclick="return false">FluentBooking</a>
+    <a class="brand" href="#" onclick="return false">FluentBoards</a>
+    <a class="brand" href="#" onclick="return false">FluentSMTP</a>
+    <a class="brand" href="#" onclick="return false">NinjaTables</a>
+  </div>
+
+  <div class="showcase">
+    <div class="notch" role="tablist" aria-label="Product views">
+      <button class="tab" role="tab" aria-selected="false" data-shot="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" data-alt="FluentCRM dashboard overview"><span class="pill"></span><span class="lbl">Dashboard</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-shot="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" data-alt="FluentCRM contact profiles"><span class="pill"></span><span class="lbl">Contacts</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-shot="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" data-alt="FluentCRM funnel reports"><span class="pill"></span><span class="lbl">Funnels</span></button>
+      <button class="tab" role="tab" aria-selected="false" data-shot="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" data-alt="FluentCRM campaign builder"><span class="pill"></span><span class="lbl">Campaigns</span></button>
+      <button class="tab active" role="tab" aria-selected="true" data-shot="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" data-alt="FluentCRM realtime activity"><span class="pill"></span><span class="lbl">Realtime</span></button>
+    </div>
+    <div class="shot-wrap">
+      <img class="shot" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="FluentCRM realtime activity" loading="eager">
+    </div>
+  </div>
+
+  <div class="feats">
+    <div class="feat">
+      <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="18" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M12 15V10" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M22 13C22 7.47715 17.5228 3 12 3C6.47715 3 2 7.47715 2 13" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div>
+      <h3>Lightweight by design. <span>Runs inside your WordPress without slowing a single page load.</span></h3>
+    </div>
+    <div class="feat">
+      <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8V12L14 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></div>
+      <h3>5-minute setup. <span>One plugin install. No tag configuration, no build steps.</span></h3>
+    </div>
+    <div class="feat">
+      <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg></div>
+      <h3>Self-hosted. <span>Your data stays on your site. We ship what users ask for.</span></h3>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching, imported as-is and scoped: shot animates out over ~250ms
+    // (scale .949 / translateY 15px / blur 4px / opacity 0), the image swaps at
+    // 260ms, then springs back in; busy lock releases 380ms after the swap.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-notch-tabs-hero');
+      if (!sec) return;
+
+      var shot = sec.querySelector('.shot');
+      var tabs = Array.prototype.slice.call(sec.querySelectorAll('.tab'));
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var busy = false;
+
+      // Preload every tab's screenshot so the swap never flashes empty.
+      tabs.forEach(function (t) {
+        var src = t.getAttribute('data-shot');
+        if (src && src !== shot.getAttribute('src')) { var im = new Image(); im.src = src; }
+      });
+
+      function applyShot(tab) {
+        shot.src = tab.getAttribute('data-shot');
+        shot.alt = tab.getAttribute('data-alt') || '';
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          if (busy || tab.classList.contains('active')) return;
+          tabs.forEach(function (t) {
+            t.classList.toggle('active', t === tab);
+            t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+          });
+          if (reduced) { applyShot(tab); return; }
+          busy = true;
+          shot.classList.remove('in');
+          shot.classList.add('out');
+          setTimeout(function () {
+            applyShot(tab);
+            shot.classList.remove('out');
+            shot.classList.add('in');
+            setTimeout(function () { shot.classList.remove('in'); busy = false; }, 380);
+          }, 260);
+        });
+      });
+    })();
+  </script>
+</section>

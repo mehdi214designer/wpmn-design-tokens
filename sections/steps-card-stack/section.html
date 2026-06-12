@@ -1,0 +1,376 @@
+<!-- WPMN Section: Steps Card Stack — full-viewport gradient step cards pin with position:sticky and squash away (scale + rotateX + per-card rotateZ over a 942px pin) as the next slides over. Ported from the Fourmula.ai reference; motion math verbatim, skin fully tokenized. -->
+<section class="wpmn-sec-steps-card-stack">
+  <style>
+    .wpmn-sec-steps-card-stack{
+      /* pin distance per card (scraped from reference: 942px) */
+      --scs-pin:942px;
+      /* derived tints — hoisted per audit guidance */
+      --scs-rule:color-mix(in srgb, var(--color-text-primary-invert) 20%, transparent);
+      --scs-dim:color-mix(in srgb, var(--color-text-primary-invert) 55%, transparent);
+      --scs-stroke:color-mix(in srgb, var(--color-text-primary) 12%, transparent);
+      --scs-c1-top:color-mix(in srgb, var(--btn-bg-hovered) 80%, var(--btn-bg-enable));
+      --scs-c2-top:color-mix(in srgb, var(--btn-bg-enable) 55%, var(--color-brand-surface));
+      --scs-c3-top:var(--btn-bg-pressed);
+      --scs-c3-mid:color-mix(in srgb, var(--btn-bg-hovered) 55%, var(--btn-bg-enable));
+      --scs-c4-top:color-mix(in srgb, var(--color-surface-secondary) 55%, var(--btn-bg-enable));
+      padding-top:96px;
+      background:var(--color-surface-primary);
+      font-family:var(--font-family-base);
+    }
+
+    /* ---- section title ---- */
+    .wpmn-sec-steps-card-stack .scs-head{
+      max-width:1200px;margin:0 auto;
+      display:flex;justify-content:space-between;align-items:flex-end;
+      border-top:1px solid var(--color-border-primary);
+      padding:32px 40px 96px;
+    }
+    .wpmn-sec-steps-card-stack .scs-head h2{
+      margin:0;
+      font-size:var(--font-size-h1);line-height:var(--font-lh-h1);
+      font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;
+      color:var(--color-text-primary);
+    }
+    .wpmn-sec-steps-card-stack .scs-head-copy{
+      font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);
+      text-align:right;color:var(--color-text-secondary);
+    }
+
+    /* ---- card stack: sticky pin + spacer (rebuilt from GSAP pin-spacers) ---- */
+    .wpmn-sec-steps-card-stack .scs-main{position:relative}
+    .wpmn-sec-steps-card-stack .scs-slide{height:calc(100vh + var(--scs-pin))}
+    .wpmn-sec-steps-card-stack .scs-slide:last-child{height:100vh}
+
+    .wpmn-sec-steps-card-stack .scs-card{
+      position:sticky;top:0;height:100vh;overflow:hidden;
+      display:flex;flex-direction:column;
+      will-change:transform,opacity;
+    }
+    /* every card melts into the same brand color at the bottom (reference behavior) */
+    .wpmn-sec-steps-card-stack .scs-card--1{background:linear-gradient(var(--scs-c1-top), var(--btn-bg-enable))}
+    .wpmn-sec-steps-card-stack .scs-card--2{background:linear-gradient(var(--scs-c2-top), var(--btn-bg-enable))}
+    .wpmn-sec-steps-card-stack .scs-card--3{background:linear-gradient(var(--scs-c3-top), var(--scs-c3-mid) 23%, var(--btn-bg-enable))}
+    .wpmn-sec-steps-card-stack .scs-card--4{background:linear-gradient(var(--scs-c4-top), var(--btn-bg-enable))}
+
+    .wpmn-sec-steps-card-stack .scs-top{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:120px 40px 0;height:54.5vh;flex-shrink:0;
+    }
+    .wpmn-sec-steps-card-stack .scs-code{
+      position:absolute;top:40px;left:50%;transform:translateX(-50%);
+      font-size:var(--font-size-h6);line-height:var(--font-lh-h6);
+      font-weight:var(--font-weight-medium);
+      color:var(--color-text-primary-invert);opacity:0.4;
+    }
+    .wpmn-sec-steps-card-stack .scs-titlerow{
+      position:relative;display:flex;width:100%;max-width:1200px;padding-bottom:24px;
+    }
+    .wpmn-sec-steps-card-stack .scs-card h3{
+      margin:0;width:50%;
+      font-size:var(--font-size-h2);line-height:var(--font-lh-h2);
+      font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;
+      color:var(--color-text-primary-invert);
+    }
+    .wpmn-sec-steps-card-stack .scs-num{
+      width:50%;
+      font-size:calc(var(--font-size-h1) * 1.8);line-height:1;
+      font-weight:var(--font-weight-regular);letter-spacing:-0.03em;
+      text-align:right;color:var(--color-text-primary-invert);
+    }
+    .wpmn-sec-steps-card-stack .scs-info{display:flex;width:100%;max-width:1200px;height:224px}
+    .wpmn-sec-steps-card-stack .scs-info-col{
+      width:50%;display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .wpmn-sec-steps-card-stack .scs-tagrow{
+      border-top:1px solid var(--scs-rule);
+      padding:24px;display:flex;align-items:center;gap:12px;
+    }
+    .wpmn-sec-steps-card-stack .scs-tagrow i{
+      width:7px;height:7px;border-radius:calc(var(--radius-xsm) / 4);
+      background:var(--color-text-primary-invert);flex-shrink:0;
+    }
+    .wpmn-sec-steps-card-stack .scs-tagrow span{
+      font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);
+      font-weight:var(--font-weight-medium);letter-spacing:-0.015em;
+      color:var(--color-text-primary-invert);
+    }
+    .wpmn-sec-steps-card-stack .scs-copy{
+      margin:0;
+      font-size:var(--font-size-h5);line-height:1.2;
+      font-weight:var(--font-weight-medium);letter-spacing:-0.01em;
+      color:var(--color-text-primary-invert);
+    }
+    .wpmn-sec-steps-card-stack .scs-ind{padding-left:28px}
+    .wpmn-sec-steps-card-stack .scs-dim{color:var(--scs-dim)}
+
+    /* ---- Get started: per-letter roll-up on hover (DS light button skin) ---- */
+    .wpmn-sec-steps-card-stack .scs-btn{
+      display:inline-flex;align-items:center;justify-content:center;align-self:center;
+      margin-top:28px;padding:11px 24px;
+      background:var(--color-surface-primary);
+      border-radius:var(--radius-xsm);
+      box-shadow:var(--shadow-soft-300), 0 0 0 1px var(--scs-stroke);
+      color:var(--color-text-primary);
+      font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);
+      font-weight:var(--font-weight-medium);letter-spacing:-0.01em;
+      text-decoration:none;flex-shrink:0;
+      transition:box-shadow .2s cubic-bezier(.6,.6,0,1);
+    }
+    .wpmn-sec-steps-card-stack .scs-btn:hover{box-shadow:var(--shadow-soft-500), 0 0 0 1px var(--scs-stroke)}
+    .wpmn-sec-steps-card-stack .scs-btn:active{box-shadow:0 0 0 1px var(--scs-stroke)}
+    .wpmn-sec-steps-card-stack .scs-roll{
+      position:relative;height:var(--font-lh-btn-md);line-height:var(--font-lh-btn-md);overflow:hidden;
+    }
+    .wpmn-sec-steps-card-stack .scs-roll span{display:block}
+    .wpmn-sec-steps-card-stack .scs-roll span:last-child{
+      position:absolute;inset:var(--font-lh-btn-md) 0 calc(-1 * var(--font-lh-btn-md));
+    }
+    .wpmn-sec-steps-card-stack .scs-char{
+      display:inline-block;white-space:pre;
+      transition:transform 0.45s cubic-bezier(0.6, 0, 0.2, 1);
+    }
+    .wpmn-sec-steps-card-stack .scs-btn:hover .scs-char{transform:translateY(calc(-1 * var(--font-lh-btn-md)))}
+
+    /* ---- art ---- */
+    .wpmn-sec-steps-card-stack .scs-bottom{position:relative;flex:1}
+    .wpmn-sec-steps-card-stack .scs-art{
+      position:absolute;top:48px;left:50%;transform:translateX(-50%);
+      width:1080px;max-width:90vw;
+      border-radius:var(--radius-md);
+      box-shadow:var(--shadow-soft-500);
+    }
+    .wpmn-sec-steps-card-stack .scs-card--2 .scs-art{width:1400px;max-width:96vw}
+    .wpmn-sec-steps-card-stack .scs-card--4 .scs-art{top:96px;width:1240px}
+    .wpmn-sec-steps-card-stack .scs-grad{
+      position:absolute;inset:auto 0 0;height:160px;
+      background:linear-gradient(transparent, var(--btn-bg-enable));
+      z-index:2;pointer-events:none;
+    }
+
+    /* word flash-in: stagger via per-word transition-delay set inline by JS —
+       text stays visible if JS never runs */
+    .wpmn-sec-steps-card-stack .scs-fw{display:inline-block;transition:opacity 0.12s linear}
+
+    /* ---- responsive ---- */
+    @media (max-width: 991px){
+      .wpmn-sec-steps-card-stack .scs-info{height:auto}
+    }
+    @media (max-width: 767px){
+      .wpmn-sec-steps-card-stack{padding-top:64px}
+      .wpmn-sec-steps-card-stack .scs-head{flex-direction:column;align-items:flex-start;gap:24px;padding:24px 20px 48px}
+      .wpmn-sec-steps-card-stack .scs-head-copy{text-align:left}
+      .wpmn-sec-steps-card-stack .scs-top{padding:80px 20px 0;height:auto}
+      .wpmn-sec-steps-card-stack .scs-titlerow{flex-direction:column;gap:8px}
+      .wpmn-sec-steps-card-stack .scs-card h3{width:100%;text-align:left}
+      .wpmn-sec-steps-card-stack .scs-num{width:100%;text-align:left}
+      .wpmn-sec-steps-card-stack .scs-info{flex-direction:column}
+      .wpmn-sec-steps-card-stack .scs-info-col{width:100%;gap:16px}
+      .wpmn-sec-steps-card-stack .scs-tagrow{padding:16px 0}
+      .wpmn-sec-steps-card-stack .scs-copy{padding-bottom:8px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .wpmn-sec-steps-card-stack .scs-fw{transition:none}
+      .wpmn-sec-steps-card-stack .scs-char{transition:none}
+      .wpmn-sec-steps-card-stack .scs-btn{transition:none}
+    }
+  </style>
+
+  <div class="scs-head">
+    <h2><span class="scs-fw">From</span> <span class="scs-fw">first</span> <span class="scs-fw">click</span><br><span class="scs-fw">to</span> <span class="scs-fw">loyal</span> <span class="scs-fw">customer.</span></h2>
+    <div class="scs-head-copy">Run the whole funnel on the Fluent suite.<br>Four steps, one WordPress dashboard.</div>
+  </div>
+
+  <div class="scs-main">
+
+    <div class="scs-slide">
+      <div class="scs-card scs-card--1" data-tilt="-3.5">
+        <div class="scs-top">
+          <div class="scs-code">(FF)</div>
+          <div class="scs-titlerow">
+            <h3><span class="scs-fw">Capture</span> <span class="scs-fw">leads</span><br><span class="scs-fw">with</span> <span class="scs-fw">forms.</span></h3>
+            <div class="scs-num"><span class="scs-fw">01</span></div>
+          </div>
+          <div class="scs-info">
+            <div class="scs-info-col">
+              <div class="scs-tagrow"><i></i><span>1,000+ form templates</span></div>
+              <p class="scs-copy"><span class="scs-ind">FluentForms turns</span><br><span class="scs-dim">visitors into contacts<br>you can act on.</span></p>
+            </div>
+            <div class="scs-info-col">
+              <div class="scs-tagrow"><i></i><span>Conversational forms</span></div>
+            </div>
+          </div>
+          <a class="scs-btn" href="#">Get started</a>
+        </div>
+        <div class="scs-bottom">
+          <img class="scs-art" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80" alt="Capture leads with forms." loading="eager">
+          <div class="scs-grad"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scs-slide">
+      <div class="scs-card scs-card--2" data-tilt="0">
+        <div class="scs-top">
+          <div class="scs-code">(CRM)</div>
+          <div class="scs-titlerow">
+            <h3><span class="scs-fw">Automate</span> <span class="scs-fw">the</span><br><span class="scs-fw">follow-up.</span></h3>
+            <div class="scs-num"><span class="scs-fw">02</span></div>
+          </div>
+          <div class="scs-info">
+            <div class="scs-info-col">
+              <div class="scs-tagrow"><i></i><span>Visual automation funnels</span></div>
+              <p class="scs-copy"><span class="scs-ind">FluentCRM nurtures</span><br><span class="scs-dim">every contact with<br>email on autopilot.</span></p>
+            </div>
+            <div class="scs-info-col">
+              <div class="scs-tagrow"><i></i><span>Smart segmentation</span></div>
+            </div>
+          </div>
+          <a class="scs-btn" href="#">Get started</a>
+        </div>
+        <div class="scs-bottom">
+          <img class="scs-art" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80" alt="Automate the follow-up." loading="lazy">
+          <div class="scs-grad"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scs-slide">
+      <div class="scs-card scs-card--3" data-tilt="4.3">
+        <div class="scs-top">
+          <div class="scs-code">(FB)</div>
+          <div class="scs-titlerow">
+            <h3><span class="scs-fw">Book</span> <span class="scs-fw">calls</span><br><span class="scs-fw">that</span> <span class="scs-fw">close.</span></h3>
+            <div class="scs-num"><span class="scs-fw">03</span></div>
+          </div>
+          <div class="scs-info">
+            <div class="scs-info-col">
+              <div class="scs-tagrow"><i></i><span>Calendar sync built in</span></div>
+              <p class="scs-copy"><span class="scs-ind">FluentBooking puts</span><br><span class="scs-dim">hot leads straight<br>on your calendar.</span></p>
+            </div>
+            <div class="scs-info-col">
+              <div class="scs-tagrow"><i></i><span>No-show reminders</span></div>
+            </div>
+          </div>
+          <a class="scs-btn" href="#">Get started</a>
+        </div>
+        <div class="scs-bottom">
+          <img class="scs-art" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80" alt="Book calls that close." loading="lazy">
+          <div class="scs-grad"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scs-slide">
+      <div class="scs-card scs-card--4" data-tilt="0">
+        <div class="scs-top">
+          <div class="scs-code">(FC)</div>
+          <div class="scs-titlerow">
+            <h3><span class="scs-fw">Sell</span> <span class="scs-fw">and</span> <span class="scs-fw">get</span><br><span class="scs-fw">paid</span> <span class="scs-fw">fast.</span></h3>
+            <div class="scs-num"><span class="scs-fw">04</span></div>
+          </div>
+          <div class="scs-info">
+            <div class="scs-info-col">
+              <div class="scs-tagrow"><i></i><span>One-page checkout</span></div>
+              <p class="scs-copy"><span class="scs-ind">FluentCart turns</span><br><span class="scs-dim">the pipeline into<br>orders and revenue.</span></p>
+            </div>
+            <div class="scs-info-col">
+              <div class="scs-tagrow"><i></i><span>Revenue reports</span></div>
+            </div>
+          </div>
+          <a class="scs-btn" href="#">Get started</a>
+        </div>
+        <div class="scs-bottom">
+          <img class="scs-art" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1400&q=80" alt="Sell and get paid fast." loading="lazy">
+          <div class="scs-grad"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+  (function () {
+    var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-steps-card-stack');
+    if (!sec) return;
+
+    var PIN = 942; /* scraped pin distance — keep in sync with --scs-pin */
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var slides = [].slice.call(sec.querySelectorAll('.scs-slide'));
+    var cards = slides.map(function (s) { return s.querySelector('.scs-card'); });
+    var tilts = cards.map(function (c) { return parseFloat(c.getAttribute('data-tilt')) || 0; });
+    function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+
+    /* Get started: per-letter roll-up, 18ms stagger (reference verbatim) */
+    if (!reduced) {
+      [].slice.call(sec.querySelectorAll('.scs-btn')).forEach(function (b) {
+        var t = b.textContent.replace(/\s+/g, ' ').trim();
+        var chars = t.split('').map(function (c, i) {
+          return '<div class="scs-char" style="transition-delay:' + (i * 18) + 'ms">' + (c === ' ' ? '&nbsp;' : c) + '</div>';
+        }).join('');
+        b.setAttribute('aria-label', t);
+        b.innerHTML = '<div class="scs-roll"><span>' + chars + '</span><span>' + chars + '</span></div>';
+      });
+    }
+
+    /* word flash-in: hide words only once JS is running, reveal with
+       CSS transition-delay stagger (70ms/word) when the block enters the
+       viewport. Checked from the same update loop as the cards
+       (IntersectionObserver is unreliable in hidden/embedded documents). */
+    var flashBlocks = reduced ? [] : [].slice.call(sec.querySelectorAll('.scs-head h2, .scs-top'));
+    flashBlocks.forEach(function (block) {
+      [].slice.call(block.querySelectorAll('.scs-fw')).forEach(function (w, i) {
+        w.style.opacity = '0';
+        w.style.transitionDelay = (i * 70) + 'ms';
+      });
+    });
+
+    function checkFlash() {
+      for (var i = flashBlocks.length - 1; i >= 0; i--) {
+        var r = flashBlocks[i].getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.75 && r.bottom > 0) {
+          [].slice.call(flashBlocks[i].querySelectorAll('.scs-fw')).forEach(function (w) { w.style.opacity = '1'; });
+          flashBlocks.splice(i, 1);
+        }
+      }
+    }
+
+    /* squash-stack motion recipe (scraped from reference, verbatim):
+         progress p = scrolled-past / 942 (clamped 0..1.35)
+         scale   = 1 - 0.3 * p^2          (1 -> 0.70)
+         rotateX = 27deg * p^1.6          (no perspective — pure squash)
+         rotateZ = per-card tilt * p^2    (-3.5 / 0 / +4.3 / 0 deg)
+         opacity = 1 until p~0.85, fades to 0 by p~1.3 (continues past pin end) */
+    function update() {
+      checkFlash();
+      if (reduced) return;
+      var y = window.scrollY;
+      slides.forEach(function (slide, i) {
+        if (i === slides.length - 1) return; /* last card never shrinks */
+        var top = slide.getBoundingClientRect().top + y;
+        var p = clamp((y - top) / PIN, 0, 1.35);
+        var card = cards[i];
+        if (p <= 0) {
+          card.style.transform = '';
+          card.style.opacity = '';
+          return;
+        }
+        var pc = Math.min(p, 1);
+        var scale = 1 - 0.3 * pc * pc;
+        var rotX = 27 * Math.pow(pc, 1.6);
+        var rotZ = tilts[i] * pc * pc;
+        var op = p < 0.85 ? 1 : clamp(1 - (p - 0.85) / 0.45, 0, 1);
+        card.style.transform = 'scale(' + scale.toFixed(4) + ') rotateX(' + rotX.toFixed(2) + 'deg) rotateZ(' + rotZ.toFixed(2) + 'deg)';
+        card.style.opacity = op.toFixed(3);
+      });
+    }
+
+    /* dual drive: scroll events + rAF (rAF dies in hidden docs, scroll covers embeds) */
+    window.addEventListener('scroll', update, { passive: true });
+    if (!reduced) {
+      (function loop() { update(); window.requestAnimationFrame(loop); })();
+    } else {
+      update();
+    }
+  })();
+  </script>
+</section>

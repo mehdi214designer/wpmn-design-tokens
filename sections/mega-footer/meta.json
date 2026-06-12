@@ -1,0 +1,70 @@
+{
+  "id": "mega-footer",
+  "name": "Mega Footer",
+  "type": "html",
+  "status": "stable",
+  "description": "Full mega footer: white card over a soft stage with a 3-column grid (heading + CTAs + community icons, link groups, newsletter form + social row), a giant outline gradient wordmark, and a copyright row.",
+  "files": {
+    "html": "sections/mega-footer/section.html"
+  },
+  "prompt": "sections/mega-footer/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-mega-footer",
+  "interactions": [
+    "Link hovers: color 0.15s ease, --color-text-secondary to --color-text-primary (link lists, mini icons, social icons, legal links)",
+    "Ghost CTA hover inverts: surface-primary/text-primary flips to surface-secondary/text-primary-invert, background 0.2s + color 0.2s + border-color 0.2s",
+    "Solid CTA + Subscribe: --btn-bg-enable, hover --btn-bg-hovered, active --btn-bg-pressed, background 0.2s, inset --btn-bg-glow highlight",
+    "Newsletter input: bottom hairline --input-stroke-default, hover --input-stroke-hover, focus --input-stroke-active, border-color 0.2s",
+    "Scoped script prevents default on the form submit and all # placeholder links",
+    "prefers-reduced-motion: all transitions disabled"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--color-border-primary",
+    "--btn-bg-enable",
+    "--btn-bg-hovered",
+    "--btn-bg-pressed",
+    "--input-stroke-default",
+    "--input-stroke-hover",
+    "--input-stroke-active",
+    "--input-text-active",
+    "--radius-md",
+    "--radius-xsm",
+    "--font-family-base",
+    "--font-size-h4",
+    "--font-size-body-base",
+    "--font-size-body-label",
+    "--font-size-btn-sm",
+    "--font-weight-medium",
+    "--font-weight-bold"
+  ],
+  "layout": {
+    "container": "1200px centered card",
+    "sectionPadding": "96px top desktop / 64px mobile, stage runs to the bottom edge"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Footers",
+  "role": "Footer",
+  "span": 2,
+  "tags": [
+    "footer",
+    "mega footer",
+    "sitemap",
+    "newsletter",
+    "social links",
+    "wordmark",
+    "legal",
+    "copyright"
+  ]
+}

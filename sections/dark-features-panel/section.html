@@ -1,0 +1,164 @@
+<!-- WPMN Section: Dark Features Panel — full-bleed dark rounded panel, 3x3 feature grid with gradient dividers, intersection dots, side rulers and a red spark streak (imported, tokenized) -->
+<section class="wpmn-sec-dark-features-panel">
+  <style>
+    .wpmn-sec-dark-features-panel{background:var(--color-surface-primary);font-family:var(--font-family-base);padding:10px;--dfp-top:color-mix(in srgb,var(--color-text-primary-invert) 3%,var(--color-surface-secondary));--dfp-line:color-mix(in srgb,var(--color-text-primary-invert) 8%,var(--color-surface-secondary));--dfp-ring:color-mix(in srgb,var(--color-text-primary-invert) 2%,var(--color-surface-secondary));--dfp-hairline:color-mix(in srgb,var(--color-text-primary-invert) 10%,transparent);--dfp-chip-bg:color-mix(in srgb,var(--color-text-primary-invert) 3%,transparent);--dfp-chip-ring:color-mix(in srgb,var(--color-surface-secondary) 30%,transparent);--dfp-chip-inset:color-mix(in srgb,var(--color-text-primary-invert) 12%,transparent);--dfp-icon-dim:color-mix(in srgb,var(--color-text-primary-invert) 45%,transparent);--dfp-ruler-num:color-mix(in srgb,var(--color-text-primary-invert) 24%,transparent)}
+    .wpmn-sec-dark-features-panel .dfp-panel{position:relative;border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(var(--dfp-top),var(--color-surface-secondary));padding:var(--spacing-section-padding-tb-desktop) 0}
+
+    /* ---- chip row: gradient hairlines flanking the chip ---- */
+    .wpmn-sec-dark-features-panel .dfp-chiprow{position:relative;display:flex;align-items:center;justify-content:center;gap:16px}
+    .wpmn-sec-dark-features-panel .dfp-chiprow::before,
+    .wpmn-sec-dark-features-panel .dfp-chiprow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent 0%,var(--dfp-line) 32%,var(--dfp-line) 68%,transparent 100%)}
+    .wpmn-sec-dark-features-panel .dfp-chip{display:flex;align-items:center;gap:6px;height:28px;padding:0 10px 0 6px;border-radius:var(--radius-xsm);background:var(--dfp-chip-bg);box-shadow:0 0 0 1px var(--dfp-chip-ring),inset 0 1px 2px 0 var(--dfp-chip-inset);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-secondary-invert);white-space:nowrap}
+    .wpmn-sec-dark-features-panel .dfp-chip svg{width:20px;height:20px;color:var(--dfp-icon-dim);flex-shrink:0}
+
+    /* ---- header ---- */
+    .wpmn-sec-dark-features-panel .dfp-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--spacing-h-xxl-to-large);margin:32px auto 0;max-width:1200px;padding:0 24px}
+    .wpmn-sec-dark-features-panel .dfp-head h2{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);letter-spacing:-0.025em;color:var(--color-text-primary-invert);margin:0}
+    .wpmn-sec-dark-features-panel .dfp-head p{max-width:564px;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);margin:0}
+    .wpmn-sec-dark-features-panel .dfp-head strong{font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert)}
+
+    /* ---- grid ---- */
+    .wpmn-sec-dark-features-panel .dfp-grid{position:relative;max-width:1200px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:56px 24px}
+    .wpmn-sec-dark-features-panel .dfp-feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:16px}
+    .wpmn-sec-dark-features-panel .dfp-feature>svg{width:24px;height:24px;color:var(--btn-bg-enable);flex-shrink:0}
+    .wpmn-sec-dark-features-panel .dfp-feature h3{margin:20px 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert)}
+    .wpmn-sec-dark-features-panel .dfp-feature p{margin:4px 0 0;max-width:272px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
+
+    /* divider lines: gradient-faded 1px at thirds (reference geometry, verbatim) */
+    .wpmn-sec-dark-features-panel .dfp-grid i{position:absolute;pointer-events:none}
+    .wpmn-sec-dark-features-panel .dfp-gl-v{top:0;height:100%;width:1px;background:linear-gradient(transparent 0%,var(--dfp-line) 32%,var(--dfp-line) 68%,transparent 100%)}
+    .wpmn-sec-dark-features-panel .dfp-gl-v.at-1{left:33.333%}
+    .wpmn-sec-dark-features-panel .dfp-gl-v.at-2{left:66.666%}
+    .wpmn-sec-dark-features-panel .dfp-gl-h{left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent 0%,var(--dfp-line) 32%,var(--dfp-line) 68%,transparent 100%)}
+    .wpmn-sec-dark-features-panel .dfp-gl-h.at-1{top:33.333%}
+    .wpmn-sec-dark-features-panel .dfp-gl-h.at-2{top:66.666%}
+    /* intersection dots: thick panel-colored ring masks the crossing (original trick) */
+    .wpmn-sec-dark-features-panel .dfp-gl-dot{width:7px;height:7px;transform:translate(-50%,-50%);box-shadow:0 0 0 6px var(--dfp-ring);background:transparent}
+    .wpmn-sec-dark-features-panel .dfp-gl-dot.x1{left:33.333%}
+    .wpmn-sec-dark-features-panel .dfp-gl-dot.x2{left:66.666%}
+    .wpmn-sec-dark-features-panel .dfp-gl-dot.y1{top:33.333%}
+    .wpmn-sec-dark-features-panel .dfp-gl-dot.y2{top:66.666%}
+
+    /* ---- side rulers + edge lines + spark (shown >=1440px like the original) ---- */
+    .wpmn-sec-dark-features-panel .dfp-deco{display:none}
+    @media (min-width:1440px){
+      .wpmn-sec-dark-features-panel .dfp-deco{display:block;position:absolute;inset:0;pointer-events:none}
+      .wpmn-sec-dark-features-panel .dfp-edge{position:absolute;top:0;height:100%;width:1px;background:linear-gradient(transparent 0%,var(--dfp-line) 32%,var(--dfp-line) 68%,transparent 100%)}
+      .wpmn-sec-dark-features-panel .dfp-edge.left{left:calc(50% - 632px)}
+      .wpmn-sec-dark-features-panel .dfp-edge.right{right:calc(50% - 632px)}
+      /* spark: brand gradient streak sliding down the edge lines — 6s ease infinite, left starts 1s late (original timing) */
+      .wpmn-sec-dark-features-panel .dfp-spark{position:absolute;top:0;width:1px;height:300px;background:linear-gradient(transparent,var(--btn-bg-enable));animation:wpmn-dfp-spark 6s ease infinite both}
+      .wpmn-sec-dark-features-panel .dfp-spark.left{left:calc(50% - 632px);animation-delay:1s}
+      .wpmn-sec-dark-features-panel .dfp-spark.right{right:calc(50% - 632px)}
+      .wpmn-sec-dark-features-panel .dfp-ruler{position:absolute;top:104px;width:48px;display:flex;flex-direction:column}
+      .wpmn-sec-dark-features-panel .dfp-ruler.left{left:calc(50% - 704px)}
+      .wpmn-sec-dark-features-panel .dfp-ruler.right{right:calc(50% - 704px)}
+      .wpmn-sec-dark-features-panel .dfp-ruler p{position:relative;min-height:16px;min-width:48px;height:56px;transform:rotate(-90deg);text-align:center;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);line-height:1;color:var(--dfp-ruler-num);margin:0}
+      .wpmn-sec-dark-features-panel .dfp-ruler.right p{transform:rotate(90deg)}
+      .wpmn-sec-dark-features-panel .dfp-ruler p::before{content:"";position:absolute;bottom:0;left:50%;width:1px;height:4px;transform:translate(-50%,50%);background:var(--dfp-line)}
+    }
+    @keyframes wpmn-dfp-spark{0%{transform:translateY(-100%)}100%{transform:translateY(1250px)}}
+
+    /* bottom fade (gradient layer, as reference) */
+    .wpmn-sec-dark-features-panel .dfp-fade{position:absolute;inset:auto 0 0;height:400px;background:linear-gradient(transparent,var(--dfp-top));opacity:0.6;pointer-events:none}
+
+    /* ---- responsive (mirrors the reference md/sm behavior; type tokens swap at 768px on their own) ---- */
+    @media (max-width:1279px){
+      .wpmn-sec-dark-features-panel .dfp-grid{grid-template-columns:repeat(2,1fr);gap:24px;max-width:768px}
+      .wpmn-sec-dark-features-panel .dfp-grid i{display:none}
+    }
+    @media (max-width:767px){
+      .wpmn-sec-dark-features-panel .dfp-panel{padding:var(--spacing-section-padding-tb-mobile) 0 24px}
+      .wpmn-sec-dark-features-panel .dfp-grid{grid-template-columns:1fr;gap:0;margin-top:16px;padding:0 24px;border-top:1px solid var(--dfp-hairline)}
+      .wpmn-sec-dark-features-panel .dfp-feature{flex-direction:row;align-items:flex-start;text-align:left;gap:12px;padding:16px 0;border-bottom:1px solid var(--dfp-hairline)}
+      .wpmn-sec-dark-features-panel .dfp-feature>svg{width:20px;height:20px;margin-top:1px}
+      .wpmn-sec-dark-features-panel .dfp-feature h3{margin-top:0}
+      .wpmn-sec-dark-features-panel .dfp-feature p{max-width:none}
+      .wpmn-sec-dark-features-panel .dfp-head{align-items:flex-start;text-align:left;gap:12px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-dark-features-panel .dfp-spark{animation:none;opacity:0}
+    }
+  </style>
+
+  <div class="dfp-panel">
+
+    <div class="dfp-deco" aria-hidden="true">
+      <i class="dfp-edge left"></i>
+      <i class="dfp-edge right"></i>
+      <i class="dfp-spark left"></i>
+      <i class="dfp-spark right"></i>
+      <div class="dfp-ruler left">
+        <p>0</p><p>50</p><p>100</p><p>150</p><p>200</p><p>250</p><p>300</p><p>350</p><p>400</p><p>450</p><p>500</p><p>550</p><p>600</p><p>650</p><p>700</p>
+      </div>
+      <div class="dfp-ruler right">
+        <p>0</p><p>50</p><p>100</p><p>150</p><p>200</p><p>250</p><p>300</p><p>350</p><p>400</p><p>450</p><p>500</p><p>550</p><p>600</p><p>650</p><p>700</p>
+      </div>
+    </div>
+
+    <div class="dfp-chiprow">
+      <span class="dfp-chip"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11.8013 6.48949L13.2869 5.00392C14.9596 3.3312 17.1495 2.63737 19.4671 2.52399C20.3686 2.47989 20.8193 2.45784 21.1807 2.81928C21.5422 3.18071 21.5201 3.63143 21.476 4.53289C21.3626 6.8505 20.6688 9.04042 18.9961 10.7131L17.5105 12.1987C16.2871 13.4221 15.9393 13.77 16.1961 15.097C16.4496 16.1107 16.6949 17.0923 15.9578 17.8294C15.0637 18.7235 14.2481 18.7235 13.354 17.8294L6.17058 10.646C5.27649 9.75188 5.27646 8.9363 6.17058 8.04219C6.90767 7.30509 7.88929 7.55044 8.90297 7.80389C10.23 8.06073 10.5779 7.71289 11.8013 6.48949Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M16.9959 7H17.0049" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M2.5 21.5L7.5 16.5" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M8.5 21.5L10.5 19.5" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M2.5 15.5L4.5 13.5" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>Core Features</span>
+    </div>
+
+    <div class="dfp-head">
+      <h2>What's inside the Fluent&nbsp;Suite?</h2>
+      <p>14+ <strong>integrated</strong> plugins with a <strong>developer-friendly</strong>, self-hosted stack for growing WordPress sites.</p>
+    </div>
+
+    <div class="dfp-grid">
+      <i class="dfp-gl-v at-1"></i><i class="dfp-gl-v at-2"></i>
+      <i class="dfp-gl-h at-1"></i><i class="dfp-gl-h at-2"></i>
+      <i class="dfp-gl-dot x1 y1"></i><i class="dfp-gl-dot x2 y1"></i>
+      <i class="dfp-gl-dot x1 y2"></i><i class="dfp-gl-dot x2 y2"></i>
+
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12.828 6.00096C12.9388 5.68791 12.999 5.35099 12.999 5C12.999 3.34315 11.6559 2 9.99904 2C8.34219 2 6.99904 3.34315 6.99904 5C6.99904 5.35099 7.05932 5.68791 7.17008 6.00096C4.88532 6.0093 3.66601 6.09039 2.87772 6.87868C2.08951 7.66689 2.00836 8.88603 2 11.1704C2.31251 11.06 2.64876 11 2.99904 11C4.6559 11 5.99904 12.3431 5.99904 14C5.99904 15.6569 4.6559 17 2.99904 17C2.64876 17 2.31251 16.94 2 16.8296C2.00836 19.114 2.08951 20.3331 2.87772 21.1213C3.66593 21.9095 4.88508 21.9907 7.16941 21.999C7.05908 21.6865 6.99904 21.3503 6.99904 21C6.99904 19.3431 8.34219 18 9.99904 18C11.6559 18 12.999 19.3431 12.999 21C12.999 21.3503 12.939 21.6865 12.8287 21.999C15.113 21.9907 16.3322 21.9095 17.1204 21.1213C17.9086 20.333 17.9897 19.1137 17.9981 16.829C18.3111 16.9397 18.648 17 18.999 17C20.6559 17 21.999 15.6569 21.999 14C21.999 12.3431 20.6559 11 18.999 11C18.648 11 18.3111 11.0603 17.9981 11.171C17.9897 8.88627 17.9086 7.66697 17.1204 6.87868C16.3321 6.09039 15.1128 6.0093 12.828 6.00096Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        <h3>14+ Plugins</h3>
+        <p>Forms, CRM, support and more in one suite.</p>
+      </div>
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.9905 19H19M18.9905 19C18.3678 19.6175 17.2393 19.4637 16.4479 19.4637C15.4765 19.4637 15.0087 19.6537 14.3154 20.347C13.7251 20.9374 12.9337 22 12 22C11.0663 22 10.2749 20.9374 9.68457 20.347C8.99128 19.6537 8.52349 19.4637 7.55206 19.4637C6.76068 19.4637 5.63218 19.6175 5.00949 19C4.38181 18.3776 4.53628 17.2444 4.53628 16.4479C4.53628 15.4414 4.31616 14.9786 3.59938 14.2618C2.53314 13.1956 2.00002 12.6624 2 12C2.00001 11.3375 2.53312 10.8044 3.59935 9.73817C4.2392 9.09832 4.53628 8.46428 4.53628 7.55206C4.53628 6.76065 4.38249 5.63214 5 5.00944C5.62243 4.38178 6.7556 4.53626 7.55208 4.53626C8.46427 4.53626 9.09832 4.2392 9.73815 3.59937C10.8044 2.53312 11.3375 2 12 2C12.6625 2 13.1956 2.53312 14.2618 3.59937C14.9015 4.23907 15.5355 4.53626 16.4479 4.53626C17.2393 4.53626 18.3679 4.38247 18.9906 5C19.6182 5.62243 19.4637 6.75559 19.4637 7.55206C19.4637 8.55858 19.6839 9.02137 20.4006 9.73817C21.4669 10.8044 22 11.3375 22 12C22 12.6624 21.4669 13.1956 20.4006 14.2618C19.6838 14.9786 19.4637 15.4414 19.4637 16.4479C19.4637 17.2444 19.6182 18.3776 18.9905 19Z" stroke="currentColor" stroke-width="1.5"/><path d="M9 12.8929C9 12.8929 10.2 13.5447 10.8 14.5C10.8 14.5 12.6 10.75 15 9.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        <h3>Production Ready</h3>
+        <p>Battle-tested code running on 600k+ live sites.</p>
+      </div>
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.9258 12.7775L11.7775 10.6292C11.4847 10.3364 11.3383 10.19 11.1803 10.1117C10.8798 9.96277 10.527 9.96277 10.2264 10.1117C10.0685 10.19 9.92207 10.3364 9.62923 10.6292C9.33638 10.9221 9.18996 11.0685 9.11169 11.2264C8.96277 11.527 8.96277 11.8798 9.11169 12.1803C9.18996 12.3383 9.33638 12.4847 9.62923 12.7775L11.7775 14.9258M13.9258 12.7775L20.3708 19.2225C20.6636 19.5153 20.81 19.6617 20.8883 19.8197C21.0372 20.1202 21.0372 20.473 20.8883 20.7736C20.81 20.9315 20.6636 21.0779 20.3708 21.3708C20.0779 21.6636 19.9315 21.81 19.7736 21.8883C19.473 22.0372 19.1202 22.0372 18.8197 21.8883C18.6617 21.81 18.5153 21.6636 18.2225 21.3708L11.7775 14.9258M13.9258 12.7775L11.7775 14.9258" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M17 2L17.2948 2.7966C17.6813 3.84117 17.8746 4.36345 18.2556 4.74445C18.6366 5.12545 19.1588 5.31871 20.2034 5.70523L21 6L20.2034 6.29477C19.1588 6.68129 18.6366 6.87456 18.2556 7.25555C17.8746 7.63655 17.6813 8.15883 17.2948 9.2034L17 10L16.7052 9.2034C16.3187 8.15884 16.1254 7.63655 15.7444 7.25555C15.3634 6.87455 14.8412 6.68129 13.7966 6.29477L13 6L13.7966 5.70523C14.8412 5.31871 15.3634 5.12545 15.7444 4.74445C16.1254 4.36345 16.3187 3.84117 16.7052 2.7966L17 2Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M6 4L6.22108 4.59745C6.51097 5.38087 6.65592 5.77259 6.94167 6.05834C7.22741 6.34408 7.61913 6.48903 8.40255 6.77892L9 7L8.40255 7.22108C7.61913 7.51097 7.22741 7.65592 6.94166 7.94167C6.65592 8.22741 6.51097 8.61913 6.22108 9.40255L6 10L5.77892 9.40255C5.48903 8.61913 5.34408 8.22741 5.05833 7.94167C4.77259 7.65592 4.38087 7.51097 3.59745 7.22108L3 7L3.59745 6.77892C4.38087 6.48903 4.77259 6.34408 5.05833 6.05833C5.34408 5.77259 5.48903 5.38087 5.77892 4.59745L6 4Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        <h3>Visual Builder</h3>
+        <p>Drag and drop layouts without touching code.</p>
+      </div>
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.00024L10 5" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M13 5L20 5" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M16 9L16 15" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M10 2L10 8" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M12 16L12 22" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M16 12L20 12.0002" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M4 12.0002L13 12" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M12 19L20 19" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M4 19.0002L9 19" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
+        <h3>Customizable</h3>
+        <p>Hooks and filters for every brand and workflow.</p>
+      </div>
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 17.1862C18.843 18 17.2107 18 13.9462 18H9.96412C6.6996 18 5.06734 18 3.9103 17.1862C3.48223 16.8851 3.1099 16.5111 2.81017 16.0811C2 14.9188 2 13.2792 2 10C2 6.72077 2 5.08116 2.81017 3.91891C3.1099 3.48891 3.48223 3.1149 3.9103 2.81382C5.06734 2 6.6996 2 9.96412 2" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M12 18V22" stroke="currentColor" stroke-width="1.5"/><path d="M8 22H16" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M18 2C19.8856 2 20.8284 2 21.4142 2.58579C22 3.17157 22 4.11438 22 6V10C22 11.8856 22 12.8284 21.4142 13.4142C20.8284 14 19.8856 14 18 14H17C15.1144 14 14.1716 14 13.5858 13.4142C13 12.8284 13 11.8856 13 10L13 6C13 4.11438 13 3.17157 13.5858 2.58579C14.1716 2 15.1144 2 17 2L18 2Z" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M17.5 11.5H17.509" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+        <h3>Responsive</h3>
+        <p>Adaptive layouts for multi-device compatibility.</p>
+      </div>
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 8L18.8398 9.85008C19.6133 10.6279 20 11.0168 20 11.5C20 11.9832 19.6133 12.3721 18.8398 13.1499L17 15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M7 8L5.16019 9.85008C4.38673 10.6279 4 11.0168 4 11.5C4 11.9832 4.38673 12.3721 5.16019 13.1499L7 15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M14.5 4L9.5 20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        <h3>Easy for Devs</h3>
+        <p>Clean APIs for fast and friendly extensions.</p>
+      </div>
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 10.8418C7.60158 11.0226 8.27434 11.1716 9 11.2817" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M20 12C20 13.6569 16.4183 15 12 15C7.58172 15 4 13.6569 4 12" stroke="currentColor" stroke-width="1.5"/><path d="M7 17.8418C7.60158 18.0226 8.27434 18.1716 9 18.2817" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M20 5V19C20 20.6569 16.4183 22 12 22C7.58172 22 4 20.6569 4 19V5" stroke="currentColor" stroke-width="1.5"/></svg>
+        <h3>Self Hosted</h3>
+        <p>Your data stays on your server, always.</p>
+      </div>
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5.22576 11.3294L12.224 2.34651C12.7713 1.64397 13.7972 2.08124 13.7972 3.01707V9.96994C13.7972 10.5305 14.1995 10.985 14.6958 10.985H18.0996C18.8729 10.985 19.2851 12.0149 18.7742 12.6706L11.776 21.6535C11.2287 22.356 10.2028 21.9188 10.2028 20.9829V14.0301C10.2028 13.4695 9.80048 13.015 9.3042 13.015H5.90035C5.12711 13.015 4.71494 11.9851 5.22576 11.3294Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+        <h3>Built for Speed</h3>
+        <p>Lean queries keep every page feeling instant.</p>
+      </div>
+      <div class="dfp-feature">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16C12 18.7614 9.76142 21 7 21C4.23858 21 2 18.7614 2 16C2 13.2386 4.23858 11 7 11C9.76142 11 12 13.2386 12 16Z" stroke="currentColor" stroke-width="1.5"/><path d="M18 19.5C18 20.3284 17.3284 21 16.5 21C15.6716 21 15 20.3284 15 19.5C15 18.6716 15.6716 18 16.5 18C17.3284 18 18 18.6716 18 19.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M7.00801 16L6.99902 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M6 11L5.3721 5.97683C5.2273 4.81842 5.1549 4.23921 4.85048 3.82169C4.67889 3.58637 4.45799 3.39136 4.2032 3.25029C3.75115 3 3.16743 3 2 3" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M6 7H11.5C13.857 7 15.0355 7 15.7678 7.73223C16.5 8.46447 16.5 9.64298 16.5 12V18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M12 14H16.0241C16.909 14 17.3515 14 17.7374 14.1887C17.8297 14.2339 17.9188 14.2867 18.0039 14.3468C18.3597 14.5978 18.6052 15.0057 19.096 15.8214C19.489 16.4745 19.6855 16.8011 19.9799 16.9279C20.0491 16.9578 20.1212 16.9789 20.1947 16.9911C20.5071 17.0428 20.8239 16.8673 21.4576 16.5163L22 16.2158" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
+        <h3>Accessible</h3>
+        <p>WCAG-friendly markup for inclusive user access.</p>
+      </div>
+    </div>
+
+    <div class="dfp-fade" aria-hidden="true"></div>
+
+  </div>
+</section>

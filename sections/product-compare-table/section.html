@@ -1,0 +1,204 @@
+<!-- WPMN Section: Product Compare Table — 4-product feature matrix with a rounded highlight ring around the first product column -->
+<section class="wpmn-sec-product-compare-table">
+  <style>
+    .wpmn-sec-product-compare-table{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base);display:flex;flex-direction:column;gap:48px;overflow:hidden}
+    .wpmn-sec-product-compare-table .pct-head{width:100%;max-width:768px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .wpmn-sec-product-compare-table .pct-chip{display:inline-flex;align-items:center;height:24px;padding:0 8px;border:1px solid color-mix(in srgb,var(--color-text-primary) 6%,transparent);border-radius:var(--radius-xsm);background:color-mix(in srgb,var(--color-text-primary) 4%,transparent);color:color-mix(in srgb,var(--color-text-primary) 45%,transparent);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);margin-bottom:12px}
+    .wpmn-sec-product-compare-table .pct-title{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);text-wrap:balance;margin:0 0 16px}
+    .wpmn-sec-product-compare-table .pct-sub{max-width:448px;font-size:var(--font-size-body-large);line-height:var(--font-lh-body-large);font-weight:var(--font-weight-regular);color:var(--color-text-secondary);margin:0}
+    .wpmn-sec-product-compare-table .pct-tablewrap{width:100%;max-width:1024px;margin:0 auto;padding:0 20px}
+    .wpmn-sec-product-compare-table table.pct-table{width:100%;table-layout:fixed;border-collapse:collapse;text-align:left}
+    .wpmn-sec-product-compare-table .pct-table col.pct-c-label{width:50%}
+    .wpmn-sec-product-compare-table .pct-table col.pct-c-prod{width:12.5%}
+    /* header product cells: 94px tall, logo + name stacked */
+    .wpmn-sec-product-compare-table .pct-table thead th{height:94px;vertical-align:top;font-weight:var(--font-weight-medium)}
+    .wpmn-sec-product-compare-table .pct-prod-head{height:100%;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary)}
+    .wpmn-sec-product-compare-table .pct-prod-head svg{width:32px;height:32px;color:color-mix(in srgb,var(--color-text-secondary) 80%,transparent)}
+    .wpmn-sec-product-compare-table .pct-prod-head svg.pct-logo-us{color:var(--btn-bg-enable)}
+    .wpmn-sec-product-compare-table .pct-table tbody tr{border-top:1px solid var(--color-border-primary)}
+    .wpmn-sec-product-compare-table .pct-table tbody tr:last-child{border-bottom:1px solid var(--color-border-primary)}
+    .wpmn-sec-product-compare-table .pct-table tbody th{padding:16px 16px 16px 0;font-weight:var(--font-weight-medium);font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-primary)}
+    .wpmn-sec-product-compare-table .pct-feat{display:flex;align-items:center;gap:10px}
+    .wpmn-sec-product-compare-table .pct-feat svg{width:16px;height:16px;color:var(--color-text-secondary);flex-shrink:0}
+    .wpmn-sec-product-compare-table .pct-table td{padding:18px 16px;text-align:center;vertical-align:middle}
+    .wpmn-sec-product-compare-table .pct-table td svg{width:20px;height:20px;vertical-align:middle}
+    .wpmn-sec-product-compare-table .pct-s-yes{color:var(--btn-bg-enable)}
+    .wpmn-sec-product-compare-table .pct-s-partial{color:var(--color-warning-primary)}
+    .wpmn-sec-product-compare-table .pct-s-no{color:color-mix(in srgb,var(--color-text-primary) 25%,transparent)}
+    /* ---- highlight ring around the first product column (matches original build:
+       side borders per cell, capped at header and last row) ---- */
+    .wpmn-sec-product-compare-table .pct-hl{position:relative;background:var(--color-surface-primary)}
+    .wpmn-sec-product-compare-table .pct-hl::after{content:"";position:absolute;inset:0 0 -1px;border-left:2px solid var(--btn-bg-enable);border-right:2px solid var(--btn-bg-enable);pointer-events:none;z-index:10}
+    .wpmn-sec-product-compare-table thead .pct-hl{border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+    .wpmn-sec-product-compare-table thead .pct-hl::after{inset:0;border:2px solid var(--btn-bg-enable);border-bottom:0;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+    .wpmn-sec-product-compare-table tbody tr:last-child .pct-hl::after{inset:0;border:2px solid var(--btn-bg-enable);border-top:0;border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+    /* ---- mobile: stacked feature cards (original md:hidden layout) ---- */
+    .wpmn-sec-product-compare-table .pct-mobile{display:none}
+    @media(max-width:1199px){.wpmn-sec-product-compare-table .pct-tablewrap{padding:0 40px}}
+    @media(max-width:767px){
+      .wpmn-sec-product-compare-table{padding:64px 0}
+      .wpmn-sec-product-compare-table .pct-tablewrap{padding:0 20px}
+      .wpmn-sec-product-compare-table .pct-tablewrap table{display:none}
+      .wpmn-sec-product-compare-table .pct-mobile{display:flex;flex-direction:column;gap:24px}
+      .wpmn-sec-product-compare-table .pct-m-feat{display:flex;flex-direction:column;gap:8px}
+      .wpmn-sec-product-compare-table .pct-m-feat-label{display:flex;align-items:center;gap:10px;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);font-weight:var(--font-weight-medium);color:var(--color-text-primary);margin-bottom:4px}
+      .wpmn-sec-product-compare-table .pct-m-feat-label svg{width:16px;height:16px;color:var(--color-text-secondary)}
+      .wpmn-sec-product-compare-table .pct-m-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border:1px solid var(--color-border-primary);border-radius:var(--radius-sm);background:var(--color-surface-primary);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
+      .wpmn-sec-product-compare-table .pct-m-row.pct-is-hl{border:2px solid var(--btn-bg-enable)}
+      .wpmn-sec-product-compare-table .pct-m-prod{display:flex;align-items:center;gap:8px}
+      .wpmn-sec-product-compare-table .pct-m-prod svg{width:20px;height:20px;color:color-mix(in srgb,var(--color-text-secondary) 80%,transparent)}
+      .wpmn-sec-product-compare-table .pct-m-prod svg.pct-logo-us{color:var(--btn-bg-enable)}
+      .wpmn-sec-product-compare-table .pct-m-row svg.pct-status{width:20px;height:20px}
+    }
+  </style>
+
+  <!-- SVG sprite: product marks, status icons, feature icons (Hugeicons Pro, stroke.rounded) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- product marks -->
+      <symbol id="wpmn-pct-logo-fluent" viewBox="0 0 24 24" fill="none"><path d="M7 7.5L9.94202 9.23943C11.6572 10.2535 12.3428 10.2535 14.058 9.23943L17 7.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M10.5 19.5C10.0337 19.4939 9.56682 19.485 9.09883 19.4732C5.95033 19.3941 4.37608 19.3545 3.24496 18.2184C2.11383 17.0823 2.08114 15.5487 2.01577 12.4814C1.99475 11.4951 1.99474 10.5147 2.01576 9.52843C2.08114 6.46113 2.11382 4.92748 3.24495 3.79139C4.37608 2.6553 5.95033 2.61573 9.09882 2.53658C11.0393 2.4878 12.9607 2.48781 14.9012 2.53659C18.0497 2.61574 19.6239 2.65532 20.755 3.79141C21.8862 4.92749 21.9189 6.46114 21.9842 9.52844C21.9939 9.98251 21.9991 10.1965 21.9999 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M19 17C19 17.8284 18.3284 18.5 17.5 18.5C16.6716 18.5 16 17.8284 16 17C16 16.1716 16.6716 15.5 17.5 15.5C18.3284 15.5 19 16.1716 19 17ZM19 17V17.5C19 18.3284 19.6716 19 20.5 19C21.3284 19 22 18.3284 22 17.5V17C22 14.5147 19.9853 12.5 17.5 12.5C15.0147 12.5 13 14.5147 13 17C13 19.4853 15.0147 21.5 17.5 21.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-logo-a" viewBox="0 0 24 24" fill="none"><path d="M7.84308 3.80211C9.8718 2.6007 10.8862 2 12 2C13.1138 2 14.1282 2.6007 16.1569 3.80211L16.8431 4.20846C18.8718 5.40987 19.8862 6.01057 20.4431 7C21 7.98943 21 9.19084 21 11.5937V12.4063C21 14.8092 21 16.0106 20.4431 17C19.8862 17.9894 18.8718 18.5901 16.8431 19.7915L16.1569 20.1979C14.1282 21.3993 13.1138 22 12 22C10.8862 22 9.8718 21.3993 7.84308 20.1979L7.15692 19.7915C5.1282 18.5901 4.11384 17.9894 3.55692 17C3 16.0106 3 14.8092 3 12.4063V11.5937C3 9.19084 3 7.98943 3.55692 7C4.11384 6.01057 5.1282 5.40987 7.15692 4.20846L7.84308 3.80211Z" stroke="currentColor" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-logo-b" viewBox="0 0 24 24" fill="none"><path d="M5.59347 9.22474C7.83881 5.62322 8.96148 3.82246 10.4326 3.28C11.445 2.90667 12.555 2.90667 13.5674 3.28C15.0385 3.82246 16.1612 5.62322 18.4065 9.22474C20.9338 13.2785 22.1975 15.3054 21.9749 16.9779C21.8222 18.125 21.2521 19.173 20.3762 19.9163C19.0993 21 16.7328 21 12 21C7.26716 21 4.90074 21 3.62378 19.9163C2.74792 19.173 2.17775 18.125 2.02509 16.9779C1.80252 15.3054 3.06617 13.2785 5.59347 9.22474Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-logo-c" viewBox="0 0 24 24" fill="none"><path d="M6.91412 5.99584C9.31163 3.33195 10.5104 2 12 2C13.4896 2 14.6884 3.33195 17.0859 5.99584L17.4037 6.34903C19.8012 9.01292 21 10.3449 21 12C21 13.6551 19.8012 14.9871 17.4037 17.651L17.0859 18.0042C14.6884 20.6681 13.4896 22 12 22C10.5104 22 9.31163 20.6681 6.91412 18.0042L6.59626 17.651C4.19875 14.9871 3 13.6551 3 12C3 10.3449 4.19875 9.01292 6.59626 6.34903L6.91412 5.99584Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></symbol>
+      <!-- status icons -->
+      <symbol id="wpmn-pct-check" viewBox="0 0 24 24" fill="none"><path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 12.5L10.5 15L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-minus" viewBox="0 0 24 24" fill="none"><path d="M16 12H8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-x" viewBox="0 0 24 24" fill="none"><path d="M15.7494 15L9.75 9M9.75064 15L15.75 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M22.75 12C22.75 6.47715 18.2728 2 12.75 2C7.22715 2 2.75 6.47715 2.75 12C2.75 17.5228 7.22715 22 12.75 22C18.2728 22 22.75 17.5228 22.75 12Z" stroke="currentColor" stroke-width="1.5"/></symbol>
+      <!-- feature icons -->
+      <symbol id="wpmn-pct-shield" viewBox="0 0 24 24" fill="none"><path d="M11.9982 2C8.99043 2 7.04018 4.01899 4.73371 4.7549C3.79589 5.05413 3.32697 5.20374 3.1372 5.41465C2.94743 5.62556 2.89186 5.93375 2.78072 6.55013C1.59143 13.146 4.1909 19.244 10.3903 21.6175C11.0564 21.8725 11.3894 22 12.0015 22C12.6135 22 12.9466 21.8725 13.6126 21.6175C19.8116 19.2439 22.4086 13.146 21.219 6.55013C21.1078 5.93364 21.0522 5.6254 20.8624 5.41449C20.6726 5.20358 20.2037 5.05405 19.2659 4.75499C16.9585 4.01915 15.0061 2 11.9982 2Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M9 13C9 13 10 13 11 15C11 15 14.1765 10 17 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-db" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5" rx="8" ry="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 10.8418C7.60158 11.0226 8.27434 11.1716 9 11.2817" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M20 12C20 13.6569 16.4183 15 12 15C7.58172 15 4 13.6569 4 12" stroke="currentColor" stroke-width="1.5"/><path d="M7 17.8418C7.60158 18.0226 8.27434 18.1716 9 18.2817" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M20 5V19C20 20.6569 16.4183 22 12 22C7.58172 22 4 20.6569 4 19V5" stroke="currentColor" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-dollar" viewBox="0 0 24 24" fill="none"><path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="1.5"/><path d="M14.7102 10.0611C14.6111 9.29844 13.7354 8.06622 12.1608 8.06619C10.3312 8.06616 9.56136 9.07946 9.40515 9.58611C9.16145 10.2638 9.21019 11.6571 11.3547 11.809C14.0354 11.999 15.1093 12.3154 14.9727 13.956C14.836 15.5965 13.3417 15.951 12.1608 15.9129C10.9798 15.875 9.04764 15.3325 8.97266 13.8733M11.9734 6.99805V8.06982M11.9734 15.9031V16.998" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-chart" viewBox="0 0 24 24" fill="none"><path d="M7 17L7 13" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M12 17L12 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M17 17L17 11" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-route" viewBox="0 0 24 24" fill="none"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><circle cx="6" cy="19" r="3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M12 5H8.5C6.567 5 5 6.567 5 8.5C5 10.433 6.567 12 8.5 12H15.5C17.433 12 19 13.567 19 15.5C19 17.433 17.433 19 15.5 19H12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-id" viewBox="0 0 24 24" fill="none"><path d="M9.13432 2.5C6.46805 2.56075 4.9107 2.81456 3.84664 3.87493C2.91537 4.80297 2.60406 6.10756 2.5 8.2M14.8657 2.5C17.532 2.56075 19.0893 2.81456 20.1534 3.87493C21.0846 4.80297 21.3959 6.10756 21.5 8.2M14.8657 21.5C17.532 21.4392 19.0893 21.1854 20.1534 20.1251C21.0846 19.197 21.3959 17.8924 21.5 15.8M9.13432 21.5C6.46805 21.4392 4.9107 21.1854 3.84664 20.1251C2.91537 19.197 2.60406 17.8924 2.5 15.8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M7.5 17C9.8317 14.5578 14.1432 14.4428 16.5 17M14.4951 9.5C14.4951 10.8807 13.3742 12 11.9915 12C10.6089 12 9.48797 10.8807 9.48797 9.5C9.48797 8.11929 10.6089 7 11.9915 7C13.3742 7 14.4951 8.11929 14.4951 9.5Z" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-gauge" viewBox="0 0 24 24" fill="none"><path d="M13.5 13L17 9M14 15C14 16.1046 13.1046 17 12 17C10.8954 17 10 16.1046 10 15C10 13.8954 10.8954 13 12 13C13.1046 13 14 13.8954 14 15Z" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M6 12C6 8.68629 8.68629 6 12 6C13.0929 6 14.1175 6.29218 15 6.80269" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-award" viewBox="0 0 24 24" fill="none"><path d="M12 12V18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M12 18C10.3264 18 8.86971 19.012 8.11766 20.505C7.75846 21.218 8.27389 22 8.95877 22H15.0412C15.7261 22 16.2415 21.218 15.8823 20.505C15.1303 19.012 13.6736 18 12 18Z" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M5 5H3.98471C2.99819 5 2.50493 5 2.20017 5.37053C1.89541 5.74106 1.98478 6.15597 2.16352 6.9858C2.50494 8.57086 3.24548 9.9634 4.2489 11" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M19 5H20.0153C21.0018 5 21.4951 5 21.7998 5.37053C22.1046 5.74106 22.0152 6.15597 21.8365 6.9858C21.4951 8.57086 20.7545 9.9634 19.7511 11" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M12 12C15.866 12 19 8.8831 19 5.03821C19 4.93739 18.9978 4.83707 18.9936 4.73729C18.9509 3.73806 18.9295 3.23845 18.2523 2.61922C17.5751 2 16.8247 2 15.324 2H8.67596C7.17526 2 6.42492 2 5.74772 2.61922C5.07051 3.23844 5.04915 3.73806 5.00642 4.73729C5.00215 4.83707 5 4.93739 5 5.03821C5 8.8831 8.13401 12 12 12Z" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></symbol>
+      <symbol id="wpmn-pct-funnel" viewBox="0 0 24 24" fill="none"><path d="M8.85746 12.5061C6.36901 10.6456 4.59564 8.59915 3.62734 7.44867C3.3276 7.09253 3.22938 6.8319 3.17033 6.3728C2.96811 4.8008 2.86701 4.0148 3.32795 3.5074C3.7889 3 4.60404 3 6.23433 3H17.7657C19.396 3 20.2111 3 20.672 3.5074C21.133 4.0148 21.0319 4.8008 20.8297 6.37281C20.7706 6.83191 20.6724 7.09254 20.3726 7.44867C19.403 8.60062 17.6261 10.6507 15.1326 12.5135C14.907 12.6821 14.7583 12.9567 14.7307 13.2614C14.4837 15.992 14.2559 17.4876 14.1141 18.2442C13.8853 19.4657 12.1532 20.2006 11.226 20.8563C10.6741 21.2466 10.0043 20.782 9.93278 20.1778C9.79643 19.0261 9.53961 16.6864 9.25927 13.2614C9.23409 12.9539 9.08486 12.6761 8.85746 12.5061Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="pct-head">
+    <span class="pct-chip">Comparison</span>
+    <h2 class="pct-title">How FluentCRM compares</h2>
+    <p class="pct-sub">See how FluentCRM stacks up against the most popular marketing automation tools out there.</p>
+  </div>
+
+  <div class="pct-tablewrap">
+    <table class="pct-table">
+      <colgroup>
+        <col class="pct-c-label"><col class="pct-c-prod"><col class="pct-c-prod"><col class="pct-c-prod"><col class="pct-c-prod">
+      </colgroup>
+      <thead>
+        <tr>
+          <th></th>
+          <th class="pct-hl"><div class="pct-prod-head"><svg class="pct-logo-us"><use href="#wpmn-pct-logo-fluent"/></svg>FluentCRM</div></th>
+          <th><div class="pct-prod-head"><svg><use href="#wpmn-pct-logo-a"/></svg>Competitor A</div></th>
+          <th><div class="pct-prod-head"><svg><use href="#wpmn-pct-logo-b"/></svg>Competitor B</div></th>
+          <th><div class="pct-prod-head"><svg><use href="#wpmn-pct-logo-c"/></svg>Competitor C</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-shield"/></svg>GDPR compliant</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-partial"><use href="#wpmn-pct-minus"/></svg></td>
+          <td><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+        </tr>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-db"/></svg>Self-hosted data</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+          <td><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+        </tr>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-dollar"/></svg>Revenue attribution</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-partial"><use href="#wpmn-pct-minus"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+          <td><svg class="pct-s-partial"><use href="#wpmn-pct-minus"/></svg></td>
+        </tr>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-chart"/></svg>Real-time reports</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-partial"><use href="#wpmn-pct-minus"/></svg></td>
+          <td><svg class="pct-s-partial"><use href="#wpmn-pct-minus"/></svg></td>
+          <td><svg class="pct-s-partial"><use href="#wpmn-pct-minus"/></svg></td>
+        </tr>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-route"/></svg>Contact journeys</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-partial"><use href="#wpmn-pct-minus"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+        </tr>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-id"/></svg>Contact identification</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+        </tr>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-gauge"/></svg>Performance insights</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-partial"><use href="#wpmn-pct-minus"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+        </tr>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-award"/></svg>Lead scoring</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+        </tr>
+        <tr>
+          <th><span class="pct-feat"><svg><use href="#wpmn-pct-funnel"/></svg>Funnel analysis</span></th>
+          <td class="pct-hl"><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-yes"><use href="#wpmn-pct-check"/></svg></td>
+          <td><svg class="pct-s-no"><use href="#wpmn-pct-x"/></svg></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- mobile stacked layout, generated from the same data -->
+    <div class="pct-mobile"></div>
+  </div>
+
+  <script>
+  // builds the mobile cards from the same matrix as the table
+  (function () {
+    var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-product-compare-table');
+    if (!sec) return;
+    var FEATURES = [
+      ['wpmn-pct-shield', 'GDPR compliant',        ['yes', 'partial', 'yes', 'yes']],
+      ['wpmn-pct-db',     'Self-hosted data',      ['yes', 'no', 'yes', 'yes']],
+      ['wpmn-pct-dollar', 'Revenue attribution',   ['yes', 'partial', 'no', 'partial']],
+      ['wpmn-pct-chart',  'Real-time reports',     ['yes', 'partial', 'partial', 'partial']],
+      ['wpmn-pct-route',  'Contact journeys',      ['yes', 'partial', 'no', 'no']],
+      ['wpmn-pct-id',     'Contact identification',['yes', 'no', 'no', 'no']],
+      ['wpmn-pct-gauge',  'Performance insights',  ['yes', 'partial', 'no', 'no']],
+      ['wpmn-pct-award',  'Lead scoring',          ['yes', 'no', 'no', 'no']],
+      ['wpmn-pct-funnel', 'Funnel analysis',       ['yes', 'yes', 'yes', 'no']]
+    ];
+    var PRODUCTS = [['wpmn-pct-logo-fluent', 'FluentCRM'], ['wpmn-pct-logo-a', 'Competitor A'], ['wpmn-pct-logo-b', 'Competitor B'], ['wpmn-pct-logo-c', 'Competitor C']];
+    var ICON = { yes: ['wpmn-pct-check', 'pct-s-yes'], partial: ['wpmn-pct-minus', 'pct-s-partial'], no: ['wpmn-pct-x', 'pct-s-no'] };
+
+    sec.querySelector('.pct-mobile').innerHTML = FEATURES.map(function (f) {
+      var fi = f[0], label = f[1], states = f[2];
+      return '<div class="pct-m-feat">' +
+        '<div class="pct-m-feat-label"><svg><use href="#' + fi + '"/></svg>' + label + '</div>' +
+        states.map(function (s, i) {
+          return '<div class="pct-m-row' + (i === 0 ? ' pct-is-hl' : '') + '">' +
+            '<span class="pct-m-prod"><svg' + (i === 0 ? ' class="pct-logo-us"' : '') + '><use href="#' + PRODUCTS[i][0] + '"/></svg>' + PRODUCTS[i][1] + '</span>' +
+            '<svg class="pct-status ' + ICON[s][1] + '"><use href="#' + ICON[s][0] + '"/></svg>' +
+            '</div>';
+        }).join('') +
+        '</div>';
+    }).join('');
+  })();
+  </script>
+</section>

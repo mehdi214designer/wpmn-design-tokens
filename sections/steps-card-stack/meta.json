@@ -1,0 +1,74 @@
+{
+  "id": "steps-card-stack",
+  "name": "Steps Card Stack",
+  "type": "html",
+  "status": "stable",
+  "description": "Four full-viewport gradient step cards pin with position:sticky and squash away (scale to 0.70, rotateX to 27deg, per-card rotateZ tilt, late opacity fade) over a 942px pin while the next card slides over.",
+  "files": {
+    "html": "sections/steps-card-stack/section.html"
+  },
+  "prompt": "sections/steps-card-stack/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-steps-card-stack",
+  "interactions": [
+    "sticky-pin squash stack: each .scs-slide is 100vh + 942px tall (last 100vh), card is position:sticky top:0; per-card progress p = (scrollY - slideTop) / 942 clamped 0..1.35",
+    "card transform (verbatim from reference): scale = 1 - 0.3*p^2 (1 -> 0.70), rotateX = 27deg * p^1.6 (no perspective), rotateZ = per-card tilt * p^2 with tilts -3.5 / 0 / +4.3 / 0 deg (data-tilt)",
+    "card opacity: 1 until p ~0.85, fades linearly to 0 by p ~1.3 (continues past pin end); last card never shrinks",
+    "word flash-in: words hidden only once JS runs, revealed via opacity transition 0.12s linear with 70ms/word inline transition-delay when the block top crosses 75% of viewport height (checked from the update loop, no IntersectionObserver)",
+    "Get started button: per-letter roll-up on hover, two stacked char rows shift by one line-height (--font-lh-btn-md), transform 0.45s cubic-bezier(0.6,0,0.2,1) with 18ms/char transition-delay",
+    "dual drive: passive scroll listener + requestAnimationFrame loop (rAF dies in hidden docs, scroll covers embeds)",
+    "prefers-reduced-motion: transforms, flash hide, char roll and rAF loop all skipped; content rendered in final state"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--color-border-primary",
+    "--color-brand-surface",
+    "--btn-bg-enable",
+    "--btn-bg-hovered",
+    "--btn-bg-pressed",
+    "--font-family-base",
+    "--font-size-h1",
+    "--font-size-h2",
+    "--font-size-h5",
+    "--font-size-h6",
+    "--font-size-body-medium",
+    "--font-size-body-small",
+    "--font-size-btn-md",
+    "--font-lh-*",
+    "--font-weight-*",
+    "--radius-xsm",
+    "--radius-md",
+    "--shadow-soft-300",
+    "--shadow-soft-500"
+  ],
+  "layout": {
+    "container": "1200px centered title + card content, cards full-bleed 100vh",
+    "sectionPadding": "96px desktop / 64px mobile (top), cards full-viewport"
+  },
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "role": "How It Works",
+  "span": 2,
+  "tags": [
+    "steps",
+    "sticky",
+    "pin",
+    "stack",
+    "squash",
+    "scroll",
+    "gradient cards",
+    "how it works",
+    "fullscreen"
+  ]
+}

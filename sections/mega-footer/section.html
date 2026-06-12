@@ -1,0 +1,442 @@
+<!-- WPMN Section: Mega Footer — soft stage, white card with 3-col link grid, newsletter form, giant outline gradient wordmark, copyright row (HTML import, tokenized) -->
+<section class="wpmn-sec-mega-footer">
+  <style>
+    .wpmn-sec-mega-footer{
+      --mf-stage: color-mix(in srgb, var(--color-text-primary) 4%, var(--color-surface-primary));
+      --mf-hairline: color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+      --mf-g1: color-mix(in srgb, var(--btn-bg-enable) 55%, var(--color-surface-primary));
+      --mf-g2: var(--btn-bg-enable);
+      --mf-g3: color-mix(in srgb, var(--btn-bg-enable) 65%, var(--color-text-primary));
+      background: var(--mf-stage);
+      color: var(--color-text-primary);
+      font-family: var(--font-family-base);
+      padding: 96px 20px 0;
+    }
+    .wpmn-sec-mega-footer .mf-card{
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--color-surface-primary);
+      border-radius: var(--radius-md);
+      padding-top: 60px;
+      overflow: hidden;
+    }
+    .wpmn-sec-mega-footer .mf-grid{
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      gap: 48px 64px;
+      padding: 0 40px;
+    }
+
+    /* ---- left column ---- */
+    .wpmn-sec-mega-footer .mf-heading{
+      max-width: 352px;
+      font-size: var(--font-size-h4);
+      line-height: var(--font-lh-h4);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: -0.02em;
+      color: var(--color-text-primary);
+      margin: 0 0 32px;
+    }
+    .wpmn-sec-mega-footer .mf-ctas{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .wpmn-sec-mega-footer .mf-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 42px;
+      padding: 12px 32px;
+      border-radius: var(--radius-xsm);
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-btn-sm);
+      line-height: var(--font-lh-btn-sm);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .wpmn-sec-mega-footer .mf-btn-ghost{
+      background: var(--color-surface-primary);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-primary);
+    }
+    .wpmn-sec-mega-footer .mf-btn-ghost:hover{
+      background: var(--color-surface-secondary);
+      color: var(--color-text-primary-invert);
+      border-color: var(--color-surface-secondary);
+    }
+    .wpmn-sec-mega-footer .mf-btn-solid{
+      background: var(--btn-bg-enable);
+      color: var(--color-text-primary-invert);
+      border: none;
+      box-shadow: inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));
+    }
+    .wpmn-sec-mega-footer .mf-btn-solid:hover{ background: var(--btn-bg-hovered); }
+    .wpmn-sec-mega-footer .mf-btn-solid:active{ background: var(--btn-bg-pressed); }
+
+    .wpmn-sec-mega-footer .mf-community{ margin-top: 40px; }
+    .wpmn-sec-mega-footer .mf-community > p{
+      font-size: var(--font-size-body-base);
+      line-height: var(--font-lh-body-base);
+      color: var(--color-text-primary);
+      margin: 0 0 12px;
+    }
+    .wpmn-sec-mega-footer .mf-mini-links{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .wpmn-sec-mega-footer .mf-mini-links svg{ width: 20px; height: 20px; display: block; }
+    .wpmn-sec-mega-footer .mf-mini-links a{ color: var(--color-text-secondary); display: block; transition: color 0.15s; }
+    .wpmn-sec-mega-footer .mf-mini-links a:hover{ color: var(--color-text-primary); }
+
+    /* ---- link groups ---- */
+    .wpmn-sec-mega-footer .mf-links{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px 16px;
+      align-content: start;
+    }
+    .wpmn-sec-mega-footer .mf-links-products{ grid-column: span 3; }
+    .wpmn-sec-mega-footer .mf-label{
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 8px;
+      font-size: var(--font-size-body-label);
+      line-height: var(--font-lh-body-label);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+    }
+    .wpmn-sec-mega-footer .mf-label::before{
+      content: "";
+      width: 4px;
+      height: 4px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .wpmn-sec-mega-footer .mf-linklist{ list-style: none; margin: 0; padding: 0; }
+    .wpmn-sec-mega-footer .mf-links-products .mf-linklist{ columns: 3; column-gap: 16px; }
+    .wpmn-sec-mega-footer .mf-linklist li{
+      font-size: var(--font-size-body-base);
+      line-height: 1.69;
+      break-inside: avoid;
+    }
+    .wpmn-sec-mega-footer .mf-linklist a{
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .wpmn-sec-mega-footer .mf-linklist a:hover{ color: var(--color-text-primary); }
+    .wpmn-sec-mega-footer .mf-linklist ul{ list-style: none; margin: 0; padding: 0 0 0 12px; }
+
+    /* ---- newsletter ---- */
+    .wpmn-sec-mega-footer .mf-form-intro{
+      font-size: var(--font-size-body-base);
+      line-height: var(--font-lh-body-base);
+      color: var(--color-text-secondary);
+      margin: 0 0 24px;
+    }
+    .wpmn-sec-mega-footer .mf-input{
+      width: 100%;
+      height: 45px;
+      padding: 12px;
+      font-size: var(--font-size-body-base);
+      font-family: var(--font-family-base);
+      color: var(--input-text-active);
+      border: none;
+      border-bottom: 1px solid var(--input-stroke-default);
+      background: transparent;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.2s;
+    }
+    .wpmn-sec-mega-footer .mf-input::placeholder{ color: var(--color-text-secondary); }
+    .wpmn-sec-mega-footer .mf-input:hover{ border-bottom-color: var(--input-stroke-hover); }
+    .wpmn-sec-mega-footer .mf-input:focus{ border-bottom-color: var(--input-stroke-active); }
+    .wpmn-sec-mega-footer .mf-submit-row{
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 16px;
+    }
+
+    .wpmn-sec-mega-footer .mf-social{ margin-top: 48px; display: flex; justify-content: flex-end; }
+    .wpmn-sec-mega-footer .mf-social ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 16px;
+    }
+    .wpmn-sec-mega-footer .mf-social svg{ width: 20px; height: 20px; display: block; }
+    .wpmn-sec-mega-footer .mf-social a{ color: var(--color-text-secondary); display: block; transition: color 0.15s; }
+    .wpmn-sec-mega-footer .mf-social a:hover{ color: var(--color-text-primary); }
+
+    .wpmn-sec-mega-footer .mf-badges{
+      margin-top: 24px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .wpmn-sec-mega-footer .mf-badges span{
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 12px;
+      border: 1px solid var(--mf-hairline);
+      border-radius: 999px;
+      font-size: var(--font-size-body-label);
+      line-height: var(--font-lh-body-label);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+    }
+
+    /* ---- wordmark ---- */
+    .wpmn-sec-mega-footer .mf-wordmark-wrap{ padding: 40px; }
+    .wpmn-sec-mega-footer .mf-wordmark{ width: 100%; height: auto; display: block; }
+    .wpmn-sec-mega-footer .mf-wm-text{
+      fill: none;
+      stroke: url(#wpmn-mf-grad);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      font-family: var(--font-family-base);
+      font-weight: var(--font-weight-bold);
+    }
+    .wpmn-sec-mega-footer .mf-wm-stop1{ stop-color: var(--mf-g1); }
+    .wpmn-sec-mega-footer .mf-wm-stop2{ stop-color: var(--mf-g2); }
+    .wpmn-sec-mega-footer .mf-wm-stop3{ stop-color: var(--mf-g3); }
+
+    /* ---- copyright ---- */
+    .wpmn-sec-mega-footer .mf-copyright{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--font-size-body-base);
+      line-height: var(--font-lh-body-base);
+      color: var(--color-text-secondary);
+    }
+    .wpmn-sec-mega-footer .mf-copyright p{ margin: 0; }
+    .wpmn-sec-mega-footer .mf-legal ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .wpmn-sec-mega-footer .mf-legal li{ display: flex; align-items: center; gap: 14px; }
+    .wpmn-sec-mega-footer .mf-legal li + li::before{
+      content: "";
+      width: 4px;
+      height: 4px;
+      background: currentColor;
+    }
+    .wpmn-sec-mega-footer .mf-legal a{ color: var(--color-text-secondary); text-decoration: none; transition: color 0.15s; }
+    .wpmn-sec-mega-footer .mf-legal a:hover{ color: var(--color-text-primary); }
+
+    /* ---- responsive ---- */
+    @media (max-width: 1199px){
+      .wpmn-sec-mega-footer .mf-grid{ grid-template-columns: 1fr 1fr; }
+      .wpmn-sec-mega-footer .mf-links{ grid-column: span 2; order: 3; }
+    }
+    @media (max-width: 767px){
+      .wpmn-sec-mega-footer{ padding: 64px 16px 0; }
+      .wpmn-sec-mega-footer .mf-grid{ grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .wpmn-sec-mega-footer .mf-links{ grid-column: span 1; grid-template-columns: 1fr; }
+      .wpmn-sec-mega-footer .mf-links-products{ grid-column: span 1; }
+      .wpmn-sec-mega-footer .mf-links-products .mf-linklist{ columns: 2; }
+      .wpmn-sec-mega-footer .mf-copyright{ flex-direction: column; gap: 16px; }
+      .wpmn-sec-mega-footer .mf-wordmark-wrap{ padding: 24px 16px; }
+      .wpmn-sec-mega-footer .mf-social,
+      .wpmn-sec-mega-footer .mf-badges{ justify-content: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .wpmn-sec-mega-footer *{ transition: none !important; }
+    }
+  </style>
+
+  <div class="mf-card">
+    <div class="mf-grid">
+
+      <div>
+        <h2 class="mf-heading">The WordPress tools your business actually runs on</h2>
+        <ul class="mf-ctas">
+          <li><a class="mf-btn mf-btn-ghost" href="#">Contact Sales</a></li>
+          <li><a class="mf-btn mf-btn-solid" href="#">Get Started</a></li>
+        </ul>
+        <div class="mf-community">
+          <p>Join the community</p>
+          <ul class="mf-mini-links">
+            <li>
+              <a href="#" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M6.51734 17.1132C6.91177 17.6905 8.10883 18.9228 9.74168 19.2333M9.86428 22C8.83582 21.8306 2 19.6057 2 12.0926C2 5.06329 8.0019 2 12.0008 2C15.9996 2 22 5.06329 22 12.0926C22 19.6057 15.1642 21.8306 14.1357 22C14.1357 22 13.9267 18.5826 14.0487 17.9969C14.1706 17.4113 13.7552 16.4688 13.7552 16.4688C14.7262 16.1055 16.2043 15.5847 16.7001 14.1874C17.0848 13.1032 17.3268 11.5288 16.2508 10.0489C16.2508 10.0489 16.5318 7.65809 15.9996 7.56548C15.4675 7.47287 13.8998 8.51192 13.8998 8.51192C13.4432 8.38248 12.4243 8.13476 12.0018 8.17939C11.5792 8.13476 10.5568 8.38248 10.1002 8.51192C10.1002 8.51192 8.53249 7.47287 8.00036 7.56548C7.46823 7.65809 7.74917 10.0489 7.74917 10.0489C6.67316 11.5288 6.91516 13.1032 7.2999 14.1874C7.79575 15.5847 9.27384 16.1055 10.2448 16.4688C10.2448 16.4688 9.82944 17.4113 9.95135 17.9969C10.0733 18.5826 9.86428 22 9.86428 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Discord">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M7 7C10.8889 5.66667 13.1111 5.66667 17 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M7 17C10.5 18.3333 13.5 18.3333 17 17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M8.85703 17.625C8.85703 18.75 6.73605 21 6.19206 21C4.55894 21 3.10868 19.1246 2.38298 17.625C1.65728 15.7496 1.83899 11.0629 4.01495 4.6875C5.60121 3.54562 7.19433 3.18 8.85716 3L10 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M15.143 17.625C15.143 18.75 17.2639 21 17.8079 21C19.4411 21 20.8913 19.1246 21.617 17.625C22.3427 15.7496 22.161 11.0629 19.985 4.6875C18.3988 3.54562 16.8057 3.18 15.1428 3L14 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M7.51009 12H7.5M16.5 12H16.4899" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="WordPress.org">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M2 6H3M3 6L7.457 17.4921C8.10731 19.1689 8.43246 20.0073 8.9816 20C9.53074 19.9926 9.83482 19.1459 10.443 17.4524L10.5 17.2935M3 6H6.5M6.5 6H7.457M6.5 6L10.5 17.2935M10.5 17.2935L12.816 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M10 6H11M11 6L15.457 17.4921C16.1073 19.1689 16.4325 20.0073 16.9816 20C17.5307 19.9926 17.8348 19.1459 18.443 17.4524L18.5 17.2935M11 6H14.5M14.5 6H15.457M14.5 6L18.5 17.2935M18.5 17.2935L20.5288 11.644M20.5288 11.644L21.5377 9.23491C21.9415 8.12432 22.0835 6.93739 21.9529 5.76443C21.7963 4.35795 21.1576 3 19.5012 3C17.9632 3 17.2101 4.72272 18.1898 5.89363C19.7701 7.78249 21.1719 9.87537 20.5288 11.644Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <nav class="mf-links" aria-label="Footer navigation">
+        <div class="mf-links-products">
+          <h3 class="mf-label">Products</h3>
+          <ul class="mf-linklist">
+            <li><a href="#">FluentForms</a></li>
+            <li><a href="#">FluentCRM</a></li>
+            <li><a href="#">FluentCart</a></li>
+            <li><a href="#">FluentSupport</a></li>
+            <li><a href="#">FluentBooking</a></li>
+            <li><a href="#">FluentCommunity</a></li>
+            <li><a href="#">FluentBoards</a></li>
+            <li><a href="#">FluentSMTP</a></li>
+            <li><a href="#">NinjaTables</a></li>
+            <li><a href="#">Paymattic</a></li>
+            <li><a href="#">WPSocialNinja</a></li>
+            <li><a href="#">AzonPress</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mf-label">Docs</h3>
+          <ul class="mf-linklist">
+            <li><a href="#">Developer Hub</a>
+              <ul>
+                <li><a href="#">REST API</a></li>
+                <li><a href="#">Hooks &amp; Filters</a></li>
+                <li><a href="#">Snippets</a></li>
+              </ul>
+            </li>
+            <li><a href="#">User Guides</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mf-label">Resources</h3>
+          <ul class="mf-linklist">
+            <li><a href="#">Customer Stories</a></li>
+            <li><a href="#">Tutorials</a></li>
+            <li><a href="#">Comparisons</a></li>
+            <li><a href="#">Insights</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mf-label">Company</h3>
+          <ul class="mf-linklist">
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Affiliates</a></li>
+            <li><a href="#">Trust Center</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div>
+        <h3 class="mf-label">Weekly newsletter</h3>
+        <p class="mf-form-intro">Get a weekly roundup of WordPress news and insights, plus first word on the newest features shipping across the Fluent suite of plugins.</p>
+        <form class="mf-form">
+          <input class="mf-input" type="email" placeholder='For example, "jane@company.com"' aria-label="Email">
+          <div class="mf-submit-row"><button type="submit" class="mf-btn mf-btn-solid">Subscribe</button></div>
+        </form>
+        <div class="mf-social">
+          <nav aria-label="Social media navigation">
+            <ul>
+              <li>
+                <a href="#" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/><path d="M16.9265 8.02637H13.9816C12.9378 8.02637 12.0894 8.86847 12.0817 9.91229L11.9964 21.4268M10.082 14.0017H14.8847" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-label="X (Twitter)">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M3 21L10.5484 13.4516M21 3L13.4516 10.5484M13.4516 10.5484L8 3H3L10.5484 13.4516M13.4516 10.5484L21 21H16L10.5484 13.4516" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-label="LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M7 10V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M11 13V17M11 13C11 11.3431 12.3431 10 14 10C15.6569 10 17 11.3431 17 13V17M11 13V10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M7.00801 7L6.99902 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 20.5C13.8097 20.5 15.5451 20.3212 17.1534 19.9934C19.1623 19.5839 20.1668 19.3791 21.0834 18.2006C22 17.0221 22 15.6693 22 12.9635V11.0365C22 8.33073 22 6.97787 21.0834 5.79937C20.1668 4.62088 19.1623 4.41613 17.1534 4.00662C15.5451 3.67877 13.8097 3.5 12 3.5C10.1903 3.5 8.45489 3.67877 6.84656 4.00662C4.83766 4.41613 3.83321 4.62088 2.9166 5.79937C2 6.97787 2 8.33073 2 11.0365V12.9635C2 15.6693 2 17.0221 2.9166 18.2006C3.83321 19.3791 4.83766 19.5839 6.84656 19.9934C8.45489 20.3212 10.1903 20.5 12 20.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M15.9621 12.3129C15.8137 12.9187 15.0241 13.3538 13.4449 14.2241C11.7272 15.1705 10.8684 15.6438 10.1728 15.4615C9.9372 15.3997 9.7202 15.2911 9.53799 15.1438C9 14.7089 9 13.8059 9 12C9 10.1941 9 9.29112 9.53799 8.85618C9.7202 8.70886 9.9372 8.60029 10.1728 8.53854C10.8684 8.35621 11.7272 8.82945 13.4449 9.77593C15.0241 10.6462 15.8137 11.0813 15.9621 11.6871C16.0126 11.8933 16.0126 12.1067 15.9621 12.3129Z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="mf-badges" aria-label="Trust badges">
+          <span>GDPR Ready</span>
+          <span>Secure Checkout</span>
+          <span>300k+ Users</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mf-wordmark-wrap" aria-hidden="true">
+      <svg class="mf-wordmark" viewBox="0 0 1376 210" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
+        <defs>
+          <linearGradient id="wpmn-mf-grad" x1="0" y1="0" x2="1376" y2="260" gradientUnits="userSpaceOnUse">
+            <stop class="mf-wm-stop1" offset="0"></stop>
+            <stop class="mf-wm-stop2" offset="0.45"></stop>
+            <stop class="mf-wm-stop3" offset="1"></stop>
+          </linearGradient>
+        </defs>
+        <text class="mf-wm-text" x="688" y="155" text-anchor="middle" font-size="150" textLength="1336" lengthAdjust="spacingAndGlyphs">WPManageNinja</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="mf-copyright">
+    <p>&copy; 2026 WPManageNinja</p>
+    <nav class="mf-legal" aria-label="Legal navigation">
+      <ul>
+        <li><a href="#">Privacy Notice</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Refund Policy</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <script>
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-mega-footer');
+      if (!sec) return;
+      var form = sec.querySelector('.mf-form');
+      if (form) form.addEventListener('submit', function (e) { e.preventDefault(); });
+      sec.querySelectorAll('a[href="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) { e.preventDefault(); });
+      });
+    })();
+  </script>
+</section>
