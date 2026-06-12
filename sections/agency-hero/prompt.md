@@ -16,11 +16,11 @@ The reference implementation is the source of truth. Fetch it and reproduce stru
 
 - Section 96px/32px padding (40px sides <1200px, 64px/20px <768px); container max-width 1200px.
 - Badge: 1px border at `color-mix(text-primary 12%, transparent)`, radius 999px, body-label medium, `--color-text-secondary`.
-- Top row: grid `1.25fr 1fr`, gap 48px; h1 tokens bold with -0.02em tracking; aside max-width 420px, body-medium secondary text, then a 999px-radius primary button (`--btn-bg-enable`, invert text, `--btn-bg-glow` inset).
-- Media row: grid `1.75fr 1fr`, gap 24px. Photo: radius `--radius-md`, min-height 480px, object-fit cover. Spin badge: 128px circle, `--color-surface-primary` bg, `--shadow-soft-500`, text fill `var(--color-text-primary)`.
+- Top row: grid `1.25fr 1fr`, gap 48px; h1 tokens bold with -0.02em tracking; aside max-width 420px, body-medium secondary text, then a primary button (radius `--radius-xsm`) (`--btn-bg-enable`, invert text, `--btn-bg-glow` inset).
+- Media row: grid `1.75fr 1fr`, gap 24px. Photo: radius `--radius-md`, min-height 480px, object-fit cover. Spin badge: 128px circle fully inside the photo (left/bottom 24px so the rounded clip never cuts it), `--color-surface-primary` bg, `--shadow-soft-500`, text fill `var(--color-text-primary)`.
 - Growth card: bg `color-mix(text-primary 3%, surface-primary)`, radius `--radius-md`, padding 32px; h4 heading; year body-base secondary; pill `--color-surface-secondary` bg + invert text; 14 pill-shaped bars in `--btn-bg-enable`, heights via per-bar `--h` custom property.
 - Dark card: bg `--color-surface-secondary`; label body-small `--color-text-secondary-invert` with a 28px dash; heading h5 `--color-text-primary-invert` (element-owned rules: `.dark-card p`, `.dark-card h3`); three bottom-anchored bars tinted by color-mix steps of `--btn-bg-enable` over the dark surface.
-- Stacks single-column at 900px; spin badge moves inside the photo on mobile.
+- Stacks single-column at 900px.
 - Class scoping: every rule prefixed `.wpmn-sec-agency-hero`; JS scoped via `document.currentScript.parentElement`.
 
 ## Surface and text pairing (hard rule)
