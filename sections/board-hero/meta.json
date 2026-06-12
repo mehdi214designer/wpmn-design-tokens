@@ -1,0 +1,27 @@
+{
+  "id": "board-hero",
+  "name": "Board Hero",
+  "type": "html",
+  "status": "stable",
+  "description": "Dark product hero: pulsing brand badge, display headline with a highlighted word, intro and CTA pair over a perspective-tilted browser window holding a live-looking kanban board (three columns, tags, progress bars, avatars) with floating stat tiles, a dot grid and ambient brand glows.",
+  "files": { "html": "sections/board-hero/section.html" },
+  "prompt": "sections/board-hero/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-board-hero",
+  "interactions": [
+    "staged entrance reproducing the reference GSAP timeline with CSS transitions: badge .6s@0, headline .7s@.3s, sub .6s@.6s, CTAs .55s@.85s, board .9s@1.15s, cubic-bezier(.215,.61,.355,1), triggered once at 15% viewport",
+    "badge dot pulses (wpmn-bh-pulse 2.4s) with a brand-tinted expanding ring",
+    "three stat tiles float forever on offset phases (4.4-5.2s ease-in-out)",
+    "task cards lift 1px with border brighten on hover; primary CTA arrow nudges 3px",
+    "buttons follow design-system states (primary enable/hovered/pressed + glow; ghost-invert secondary fills on hover)",
+    "prefers-reduced-motion: entrance, pulse and floats disabled, content rendered in place"
+  ],
+  "tokensUsed": ["--color-surface-secondary","--color-text-primary","--color-text-primary-invert","--color-text-secondary-invert","--btn-bg-enable","--btn-bg-hovered","--btn-bg-pressed","--color-success-primary","--color-warning-primary","--color-error-primary","--color-brand-surface-secondary","--radius-sm","--radius-xsm","--font-family-base","--font-size-h1","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-size-btn-md","--font-weight-bold","--font-weight-semibold","--font-weight-medium"],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Banners & Impact",
+  "role": "Hero",
+  "span": 2,
+  "tags": ["hero", "dark hero", "kanban", "board", "app mockup", "browser window", "floating tiles", "saas", "fluentboards"]
+}
