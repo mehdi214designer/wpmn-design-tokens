@@ -1,6 +1,6 @@
 {
   "id": "content-accordion",
-  "name": "Content Accordion",
+  "name": "Features 3",
   "type": "html",
   "status": "stable",
   "description": "Two-column disclosure: pinned heading left, numbered single-open accordion right. Max-height transition 250ms, chevron rotates 180deg.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Disclosure",
   "tags": [
+    "content accordion",
     "accordion",
     "disclosure",
     "collapse",

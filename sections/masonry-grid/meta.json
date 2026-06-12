@@ -1,6 +1,6 @@
 {
   "id": "masonry-grid",
-  "name": "Masonry Grid",
+  "name": "Showcase 4",
   "type": "html",
   "status": "stable",
   "description": "Pinterest-style packing via CSS columns (3/2/1 responsive). Cards with variable-height media placeholders.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Grids",
   "tags": [
+    "masonry grid",
     "masonry",
     "pinterest",
     "columns",

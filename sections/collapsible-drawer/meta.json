@@ -1,6 +1,6 @@
 {
   "id": "collapsible-drawer",
-  "name": "Collapsible Drawer",
+  "name": "Content 1",
   "type": "html",
   "status": "stable",
   "description": "Slide-out side panel over a stage area. 300ms transform, close button, aria-hidden wiring. For secondary info on demand.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Disclosure",
   "tags": [
+    "collapsible drawer",
     "drawer",
     "panel",
     "slide out",

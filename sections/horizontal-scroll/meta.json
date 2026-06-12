@@ -1,6 +1,6 @@
 {
   "id": "horizontal-scroll",
-  "name": "Horizontal Scroll",
+  "name": "How It Works 1",
   "type": "html",
   "status": "stable",
   "description": "300vh tall wrapper pins a viewport; vertical scroll progress translates a horizontal panel track. Falls back to native overflow for reduced motion.",

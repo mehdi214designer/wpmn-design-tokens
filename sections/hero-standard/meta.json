@@ -1,6 +1,6 @@
 {
   "id": "hero-standard",
-  "name": "Standard Hero",
+  "name": "Hero 4",
   "type": "html",
   "status": "stable",
   "description": "Page-opening hero: dot badge, H1 with brand accent, subtext, paired CTAs, 16:9 mockup inside a brand-surface container (radius 32, mockup radius 16 + soft shadow).",
@@ -44,6 +44,7 @@
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "tags": [
+    "standard hero",
     "hero",
     "header",
     "above the fold",

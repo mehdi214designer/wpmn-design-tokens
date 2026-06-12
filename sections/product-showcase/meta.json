@@ -1,6 +1,6 @@
 {
   "id": "product-showcase",
-  "name": "Product Showcase",
+  "name": "Showcase 6",
   "type": "html",
   "status": "stable",
   "description": "E-commerce best picks grid: large featured product card spanning two rows + 2x2 grid of smaller cards. Soft grey card fills, image zoom + lift on hover, staggered fade-up reveal on scroll, View All pill.",
@@ -49,6 +49,7 @@
   "subcategory": "Grids",
   "role": "Showcase",
   "tags": [
+    "product showcase",
     "ecommerce",
     "products",
     "best picks",

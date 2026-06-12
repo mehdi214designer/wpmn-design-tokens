@@ -1,6 +1,6 @@
 {
   "id": "carousel-slider",
-  "name": "Carousel Slider",
+  "name": "Showcase 3",
   "type": "html",
   "status": "stable",
   "description": "Scroll-snap horizontal belt, 3-up responsive, arrow buttons, auto-generated page dots that track scroll position.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Scroll & Motion",
   "tags": [
+    "carousel slider",
     "carousel",
     "slider",
     "swipe",

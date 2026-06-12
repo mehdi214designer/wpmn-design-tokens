@@ -1,6 +1,6 @@
 {
   "id": "folder-quote-cards",
-  "name": "Folder Quote Cards",
+  "name": "Testimonial 1",
   "type": "html",
   "status": "stable",
   "description": "Three case-study quote cards drawn as folder tabs (stretched SVG outline with a top notch). Scanline-dithered canvas art in the brand color, notched arrow pills with slide-in fills, and a damped scroll-linked stagger entrance.",
@@ -8,7 +8,9 @@
     "html": "sections/folder-quote-cards/section.html"
   },
   "prompt": "sections/folder-quote-cards/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-folder-quote-cards",
   "interactions": [
     "entrance: scroll-linked per-card stagger (0.18 offset), damped lerp (x += (t-x)*0.14), scale 0.88->1, translateY 200->0, opacity 0->1",
@@ -34,10 +36,22 @@
     "--font-weight-regular"
   ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Trust & Social Proof",
   "role": "Testimonial",
   "span": 2,
-  "tags": ["testimonial", "quote cards", "case study", "folder tab", "canvas art", "scanline", "social proof"]
+  "tags": [
+    "folder quote cards",
+    "testimonial",
+    "quote cards",
+    "case study",
+    "folder tab",
+    "canvas art",
+    "scanline",
+    "social proof"
+  ]
 }

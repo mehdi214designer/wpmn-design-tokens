@@ -1,6 +1,6 @@
 {
   "id": "logo-cloud",
-  "name": "Logo Cloud",
+  "name": "Clients 2",
   "type": "html",
   "status": "stable",
   "description": "Trust strip: one-line label + centered flex row of grayscale logos at 65% opacity, full opacity on hover. Ships with placeholder wordmarks to swap for real client SVGs.",
@@ -41,6 +41,7 @@
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "tags": [
+    "logo cloud",
     "logos",
     "trust",
     "clients",

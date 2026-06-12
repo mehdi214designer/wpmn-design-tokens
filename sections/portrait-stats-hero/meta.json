@@ -1,12 +1,16 @@
 {
   "id": "portrait-stats-hero",
-  "name": "Portrait Stats Hero",
+  "name": "Hero 7",
   "type": "html",
   "status": "stable",
   "description": "Split hero: outline badge, display heading, intro, paired CTAs and a trusted-by logo row on the left; a portrait photo card with a radial brand glow and two floating stat tiles (count-up number + delta, rating with star) on the right.",
-  "files": { "html": "sections/portrait-stats-hero/section.html" },
+  "files": {
+    "html": "sections/portrait-stats-hero/section.html"
+  },
   "prompt": "sections/portrait-stats-hero/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-portrait-stats-hero",
   "interactions": [
     "stat tiles rise in (translateY 16px -> 0, 600ms cubic-bezier(.22,1,.36,1), 120ms stagger) at 30% viewport via IntersectionObserver",
@@ -14,12 +18,48 @@
     "primary CTA hover/active follow design-system button states at 120ms; light CTA gains soft-300 shadow on hover",
     "prefers-reduced-motion: tiles render in place, numbers set instantly"
   ],
-  "tokensUsed": ["--color-surface-primary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--btn-bg-enable","--btn-bg-hovered","--btn-bg-pressed","--color-success-primary","--color-warning-primary","--radius-md","--radius-xsm","--shadow-soft-300","--font-family-base","--font-size-h1","--font-size-h2","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-label","--font-size-btn-md","--font-weight-bold","--font-weight-semibold","--font-weight-medium"],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--btn-bg-enable",
+    "--btn-bg-hovered",
+    "--btn-bg-pressed",
+    "--color-success-primary",
+    "--color-warning-primary",
+    "--radius-md",
+    "--radius-xsm",
+    "--shadow-soft-300",
+    "--font-family-base",
+    "--font-size-h1",
+    "--font-size-h2",
+    "--font-size-h6",
+    "--font-size-body-medium",
+    "--font-size-body-base",
+    "--font-size-body-label",
+    "--font-size-btn-md",
+    "--font-weight-bold",
+    "--font-weight-semibold",
+    "--font-weight-medium"
+  ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "role": "Hero",
   "span": 2,
-  "tags": ["hero", "stats", "count up", "portrait", "logo row", "trusted by", "agency"]
+  "tags": [
+    "portrait stats hero",
+    "hero",
+    "stats",
+    "count up",
+    "portrait",
+    "logo row",
+    "trusted by",
+    "agency"
+  ]
 }

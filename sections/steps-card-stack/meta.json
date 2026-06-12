@@ -1,6 +1,6 @@
 {
   "id": "steps-card-stack",
-  "name": "Steps Card Stack",
+  "name": "How It Works 3",
   "type": "html",
   "status": "stable",
   "description": "Four full-viewport gradient step cards pin with position:sticky and squash away (scale to 0.70, rotateX to 27deg, per-card rotateZ tilt, late opacity fade) over a 942px pin while the next card slides over.",
@@ -61,6 +61,7 @@
   "role": "How It Works",
   "span": 2,
   "tags": [
+    "steps card stack",
     "steps",
     "sticky",
     "pin",

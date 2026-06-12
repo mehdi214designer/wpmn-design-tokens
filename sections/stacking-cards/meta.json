@@ -1,6 +1,6 @@
 {
   "id": "stacking-cards",
-  "name": "Stacking Cards",
+  "name": "How It Works 2",
   "type": "html",
   "status": "stable",
   "description": "Cards pin with position:sticky at stepped offsets and stack as the page scrolls. Pure CSS, no scroll hijack.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Scroll & Motion",
   "tags": [
+    "stacking cards",
     "stacking",
     "sticky",
     "pin",

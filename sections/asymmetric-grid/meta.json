@@ -1,6 +1,6 @@
 {
   "id": "asymmetric-grid",
-  "name": "Asymmetric Grid",
+  "name": "Showcase 1",
   "type": "html",
   "status": "stable",
   "description": "12-column broken grid with intentional vertical offsets for an editorial feel. Offsets collapse to a clean stack on mobile.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Grids",
   "tags": [
+    "asymmetric grid",
     "asymmetric",
     "broken grid",
     "editorial",

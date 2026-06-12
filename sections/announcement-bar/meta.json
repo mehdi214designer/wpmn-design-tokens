@@ -1,6 +1,6 @@
 {
   "id": "announcement-bar",
-  "name": "Announcement Bar",
+  "name": "Announcement 1",
   "type": "html",
   "status": "stable",
   "description": "Slim dark dismissible bar for promos: bold lead-in, arrow link, close button. Sits above the navbar.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Trust & Social Proof",
   "tags": [
+    "announcement bar",
     "announcement",
     "promo bar",
     "top bar",

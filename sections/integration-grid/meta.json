@@ -1,6 +1,6 @@
 {
   "id": "integration-grid",
-  "name": "Integration Grid",
+  "name": "Integrations 1",
   "type": "html",
   "status": "stable",
   "description": "4-column app tiles: logo tile, name, one-line purpose. Hover highlights border in brand color. Browse-all link below.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Trust & Social Proof",
   "tags": [
+    "integration grid",
     "integrations",
     "apps",
     "connect",

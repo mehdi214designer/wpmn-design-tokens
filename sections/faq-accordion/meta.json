@@ -1,6 +1,6 @@
 {
   "id": "faq-accordion",
-  "name": "FAQ Accordion",
+  "name": "FAQ 1",
   "type": "html",
   "status": "stable",
   "description": "Centered section header + 800px accordion list. One item open at a time, plus icon rotates 45deg to an X, border highlights in brand color, max-height transition 250ms.",
@@ -43,6 +43,7 @@
   "category": "Sections",
   "subcategory": "Interactive",
   "tags": [
+    "faq accordion",
     "faq",
     "accordion",
     "questions",

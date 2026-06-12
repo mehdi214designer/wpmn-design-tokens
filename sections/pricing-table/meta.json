@@ -1,6 +1,6 @@
 {
   "id": "pricing-table",
-  "name": "Pricing Table",
+  "name": "Pricing 1",
   "type": "html",
   "status": "stable",
   "description": "3 tiers with a Most Popular highlight (2px brand border + shadow), monthly/yearly toggle swapping prices via data attributes, check-listed features.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Interactive",
   "tags": [
+    "pricing table",
     "pricing",
     "plans",
     "tiers",

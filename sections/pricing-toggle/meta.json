@@ -1,6 +1,6 @@
 {
   "id": "pricing-toggle",
-  "name": "Pricing Toggle",
+  "name": "Pricing 2",
   "type": "html",
   "status": "stable",
   "description": "Three-plan pricing with a sliding monthly/yearly toggle, a dark featured plan, dashed dividers, icon feature lists, and a full-width enterprise row. Prices swap from data attributes.",
@@ -8,7 +8,9 @@
     "html": "sections/pricing-toggle/section.html"
   },
   "prompt": "sections/pricing-toggle/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-pricing-toggle",
   "interactions": [
     "toggle pill slides 0 <-> 160px, 300ms cubic-bezier(.4,0,.2,1)",
@@ -44,10 +46,22 @@
     "--font-weight-regular"
   ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Interactive",
   "role": "Pricing",
   "span": 2,
-  "tags": ["pricing", "plans", "toggle", "monthly yearly", "billing switch", "enterprise", "feature list"]
+  "tags": [
+    "pricing toggle",
+    "pricing",
+    "plans",
+    "toggle",
+    "monthly yearly",
+    "billing switch",
+    "enterprise",
+    "feature list"
+  ]
 }

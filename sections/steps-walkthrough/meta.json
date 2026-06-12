@@ -1,6 +1,6 @@
 {
   "id": "steps-walkthrough",
-  "name": "Steps Walkthrough",
+  "name": "How It Works 4",
   "type": "html",
   "status": "stable",
   "description": "4 numbered cards with connecting arrows. Brand-filled number circles with the button inner-glow treatment.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Interactive",
   "tags": [
+    "steps walkthrough",
     "steps",
     "process",
     "how it works",

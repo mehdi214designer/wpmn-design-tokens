@@ -1,6 +1,6 @@
 {
   "id": "multi-column-cards",
-  "name": "Multi-Column Cards",
+  "name": "Features 10",
   "type": "html",
   "status": "stable",
   "description": "Classic 3-column feature cards (guideline grid #3, 32px gutter): icon tile, heading, body. Hover lift.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Grids",
   "tags": [
+    "multi-column cards",
     "cards",
     "3 column",
     "features",

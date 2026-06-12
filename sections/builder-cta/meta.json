@@ -1,6 +1,6 @@
 {
   "id": "builder-cta",
-  "name": "Builder CTA Card",
+  "name": "CTA 1",
   "type": "html",
   "status": "stable",
   "description": "Large CTA card with a brand-tinted gradient, kicker pill, logo-in-heading, two-column icon feature list, paired CTAs, and a product screenshot that fades into the card on the right.",
@@ -8,7 +8,9 @@
     "html": "sections/builder-cta/section.html"
   },
   "prompt": "sections/builder-cta/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-builder-cta",
   "interactions": [
     "primary button hover: invert-color overlay fades to 12%, 200ms cubic-bezier(.6,.6,0,1); active swaps to btn-bg-pressed, 50ms",
@@ -38,10 +40,21 @@
     "--font-weight-medium"
   ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "role": "CTA",
   "span": 2,
-  "tags": ["cta", "call to action", "gradient card", "feature list", "screenshot", "conversion"]
+  "tags": [
+    "builder cta card",
+    "cta",
+    "call to action",
+    "gradient card",
+    "feature list",
+    "screenshot",
+    "conversion"
+  ]
 }

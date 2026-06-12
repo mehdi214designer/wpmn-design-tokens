@@ -1,6 +1,6 @@
 {
   "id": "stats-counter",
-  "name": "Stat Counter Grid",
+  "name": "Stats 1",
   "type": "html",
   "status": "stable",
   "description": "4-column metric grid with large brand-colored numbers that count up when scrolled into view. data-count/data-suffix/data-decimals attributes drive the animation.",
@@ -42,6 +42,7 @@
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "tags": [
+    "stat counter grid",
     "stats",
     "numbers",
     "metrics",

@@ -1,12 +1,16 @@
 {
   "id": "ecommerce-hero",
-  "name": "Ecommerce Hero",
+  "name": "Hero 3",
   "type": "html",
   "status": "stable",
   "description": "Commerce hero: brand-dash eyebrow, display heading with a hand-drawn underline, intro and primary CTA beside a floating dashboard collage (product card with sizes and Add to Cart, sales/orders stat cards with count-ups, brand gauge card, in-stock tag) over a tilted soft stage, plus a muted logo band.",
-  "files": { "html": "sections/ecommerce-hero/section.html" },
+  "files": {
+    "html": "sections/ecommerce-hero/section.html"
+  },
   "prompt": "sections/ecommerce-hero/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-ecommerce-hero",
   "interactions": [
     "collage cards rise in (translateY 20px -> 0, 600ms cubic-bezier(.22,1,.36,1), 110ms stagger) at 25% viewport via IntersectionObserver",
@@ -15,12 +19,53 @@
     "CTA follows design-system primary states at 120ms",
     "prefers-reduced-motion: floats and reveals off, numbers set instantly"
   ],
-  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--btn-bg-enable","--btn-bg-hovered","--btn-bg-pressed","--color-warning-primary","--color-error-primary","--radius-lg","--radius-md","--radius-xsm","--shadow-soft-500","--font-family-base","--font-size-h1","--font-size-h4","--font-size-h5","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-size-btn-md","--font-weight-bold","--font-weight-semibold","--font-weight-medium"],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--btn-bg-enable",
+    "--btn-bg-hovered",
+    "--btn-bg-pressed",
+    "--color-warning-primary",
+    "--color-error-primary",
+    "--radius-lg",
+    "--radius-md",
+    "--radius-xsm",
+    "--shadow-soft-500",
+    "--font-family-base",
+    "--font-size-h1",
+    "--font-size-h4",
+    "--font-size-h5",
+    "--font-size-h6",
+    "--font-size-body-medium",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-size-body-label",
+    "--font-size-btn-md",
+    "--font-weight-bold",
+    "--font-weight-semibold",
+    "--font-weight-medium"
+  ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "role": "Hero",
   "span": 2,
-  "tags": ["hero", "ecommerce", "store", "dashboard collage", "count up", "gauge", "product card", "logo band"]
+  "tags": [
+    "ecommerce hero",
+    "hero",
+    "ecommerce",
+    "store",
+    "dashboard collage",
+    "count up",
+    "gauge",
+    "product card",
+    "logo band"
+  ]
 }

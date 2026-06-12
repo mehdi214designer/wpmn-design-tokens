@@ -1,20 +1,58 @@
 {
   "id": "dark-features-panel",
-  "name": "Dark Features Panel",
+  "name": "Features 5",
   "type": "html",
   "status": "stable",
   "description": "Full-bleed dark rounded panel with a chip header, centered title, and a 3x3 feature grid cut by gradient-fading dividers with masked intersection dots; side rulers frame the panel and a brand spark streak slides down the edge lines on loop.",
-  "files": { "html": "sections/dark-features-panel/section.html" },
+  "files": {
+    "html": "sections/dark-features-panel/section.html"
+  },
   "prompt": "sections/dark-features-panel/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-dark-features-panel",
-  "interactions": ["spark streak: 1px x 300px brand gradient, keyframes wpmn-dfp-spark translateY(-100% to 1250px), 6s ease infinite both, right edge immediate, left edge 1s delay; reduced-motion hides the sparks"],
-  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary-invert","--color-text-secondary-invert","--btn-bg-enable","--radius-lg","--radius-xsm","--font-family-base","--font-size-h2","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-weight-semibold","--font-weight-medium","--spacing-section-padding-tb-desktop","--spacing-section-padding-tb-mobile","--spacing-h-xxl-to-large"],
+  "interactions": [
+    "spark streak: 1px x 300px brand gradient, keyframes wpmn-dfp-spark translateY(-100% to 1250px), 6s ease infinite both, right edge immediate, left edge 1s delay; reduced-motion hides the sparks"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--btn-bg-enable",
+    "--radius-lg",
+    "--radius-xsm",
+    "--font-family-base",
+    "--font-size-h2",
+    "--font-size-body-medium",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-size-body-label",
+    "--font-weight-semibold",
+    "--font-weight-medium",
+    "--spacing-section-padding-tb-desktop",
+    "--spacing-section-padding-tb-mobile",
+    "--spacing-h-xxl-to-large"
+  ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Grids",
   "role": "Features",
   "span": 2,
-  "tags": ["features", "grid", "dark panel", "dividers", "spark", "rulers", "3x3", "icons"]
+  "tags": [
+    "dark features panel",
+    "features",
+    "grid",
+    "dark panel",
+    "dividers",
+    "spark",
+    "rulers",
+    "3x3",
+    "icons"
+  ]
 }

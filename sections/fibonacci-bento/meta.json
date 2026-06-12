@@ -1,6 +1,6 @@
 {
   "id": "fibonacci-bento",
-  "name": "Fibonacci Bento",
+  "name": "Features 9",
   "type": "html",
   "status": "stable",
   "description": "Framed media bento on a Fibonacci-style 5-card grid. Dark frame, hover overlays tint cards with the brand color, titles thicken, and the heading letters rise in one by one.",
@@ -8,7 +8,9 @@
     "html": "sections/fibonacci-bento/section.html"
   },
   "prompt": "sections/fibonacci-bento/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-fibonacci-bento",
   "interactions": [
     "heading splits into letters, staggered translateY(110%) rise on first view (18ms/letter)",
@@ -39,10 +41,22 @@
     "--font-weight-semibold"
   ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Grids",
   "role": "Features",
   "span": 2,
-  "tags": ["bento", "grid", "media cards", "hover overlay", "letter animation", "fibonacci", "showcase"]
+  "tags": [
+    "fibonacci bento",
+    "bento",
+    "grid",
+    "media cards",
+    "hover overlay",
+    "letter animation",
+    "fibonacci",
+    "showcase"
+  ]
 }

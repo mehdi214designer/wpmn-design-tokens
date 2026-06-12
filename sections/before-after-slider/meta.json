@@ -1,6 +1,6 @@
 {
   "id": "before-after-slider",
-  "name": "Before/After Slider",
+  "name": "Showcase 2",
   "type": "html",
   "status": "stable",
   "description": "Draggable divider over two stacked panels using clip-path inset, pointer events, 16:9 frame with knob handle.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Interactive",
   "tags": [
+    "before/after slider",
     "before after",
     "comparison slider",
     "drag",

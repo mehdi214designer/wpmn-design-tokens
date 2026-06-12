@@ -1,6 +1,6 @@
 {
   "id": "stacked-list",
-  "name": "Stacked List",
+  "name": "Blog 2",
   "type": "html",
   "status": "stable",
   "description": "Uniform feed rows: date column, title + excerpt, tag pill. Row hover tint. For blogs, changelogs, results.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Lists & Feeds",
   "tags": [
+    "stacked list",
     "list",
     "feed",
     "blog list",

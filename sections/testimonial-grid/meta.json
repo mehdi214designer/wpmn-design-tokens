@@ -1,6 +1,6 @@
 {
   "id": "testimonial-grid",
-  "name": "Testimonial Grid",
+  "name": "Testimonial 3",
   "type": "html",
   "status": "stable",
   "description": "Wall-of-love masonry (CSS columns) of quote cards with star rows, avatar initials, names and roles.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Trust & Social Proof",
   "tags": [
+    "testimonial grid",
     "testimonials",
     "wall of love",
     "reviews",

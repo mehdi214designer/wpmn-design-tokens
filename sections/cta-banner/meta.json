@@ -1,6 +1,6 @@
 {
   "id": "cta-banner",
-  "name": "CTA Impact Banner",
+  "name": "CTA 2",
   "type": "html",
   "status": "stable",
   "description": "High-contrast dark panel (surface-secondary, radius 32) with H2, subtext, primary + ghost CTA pair, and a guarantee note. The one dark section per page.",
@@ -43,6 +43,7 @@
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "tags": [
+    "cta impact banner",
     "cta",
     "banner",
     "call to action",

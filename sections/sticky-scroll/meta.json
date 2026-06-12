@@ -1,6 +1,6 @@
 {
   "id": "sticky-scroll",
-  "name": "Sticky Side-by-Side",
+  "name": "Features 12",
   "type": "html",
   "status": "stable",
   "description": "5/7 split where the left heading pins (sticky top 96px) while feature cards scroll on the right.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Scroll & Motion",
   "tags": [
+    "sticky side-by-side",
     "sticky",
     "pinned",
     "side by side",

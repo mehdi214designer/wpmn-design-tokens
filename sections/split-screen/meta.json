@@ -1,6 +1,6 @@
 {
   "id": "split-screen",
-  "name": "Split Screen 50/50",
+  "name": "Newsletter 2",
   "type": "html",
   "status": "stable",
   "description": "Even two-column split: brand-surface visual left, badge + heading + inline email capture right. Stacks on mobile.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Grids",
   "tags": [
+    "split screen 50/50",
     "split screen",
     "50 50",
     "two column",

@@ -1,6 +1,6 @@
 {
   "id": "infinite-marquee",
-  "name": "Infinite Marquee",
+  "name": "Clients 1",
   "type": "html",
   "status": "stable",
   "description": "Continuous auto-scrolling logo band via duplicated track + translateX keyframes (28s loop). Pauses on hover, honors reduced motion.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Scroll & Motion",
   "tags": [
+    "infinite marquee",
     "marquee",
     "ticker",
     "auto scroll",

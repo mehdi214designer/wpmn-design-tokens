@@ -1,6 +1,6 @@
 {
   "id": "sticky-feature-switcher",
-  "name": "Sticky Feature Switcher",
+  "name": "Features 11",
   "type": "html",
   "status": "stable",
   "description": "Pinned two-panel scroll story. Left panel crossfades 7 feature slides with per-word stagger and a lerped tab strip; right panel wipes media layers up as you scroll an 810vh track.",
@@ -8,7 +8,9 @@
     "html": "sections/sticky-feature-switcher/section.html"
   },
   "prompt": "sections/sticky-feature-switcher/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-sticky-feature-switcher",
   "interactions": [
     "section pins for 810vh; scroll progress drives everything via rAF + scroll listener",
@@ -37,10 +39,22 @@
     "--font-weight-medium"
   ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Scroll & Motion",
   "role": "Features",
   "span": 2,
-  "tags": ["sticky", "pinned", "scroll story", "feature switcher", "tabs", "media wipe", "scrollytelling"]
+  "tags": [
+    "sticky feature switcher",
+    "sticky",
+    "pinned",
+    "scroll story",
+    "feature switcher",
+    "tabs",
+    "media wipe",
+    "scrollytelling"
+  ]
 }

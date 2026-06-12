@@ -1,6 +1,6 @@
 {
   "id": "blog-cards",
-  "name": "Blog Cards",
+  "name": "Blog 1",
   "type": "html",
   "status": "stable",
   "description": "3-column article cards: 16:9 cover, category + read time meta, title, excerpt. Whole card is the link with hover lift.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Lists & Feeds",
   "tags": [
+    "blog cards",
     "blog",
     "articles",
     "resources",

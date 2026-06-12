@@ -1,6 +1,6 @@
 {
   "id": "bento-grid",
-  "name": "Bento Grid",
+  "name": "Features 2",
   "type": "html",
   "status": "stable",
   "description": "4-column bento with span-2 and tall boxes, icon tiles, one inverted dark box with a big stat. Hover lifts shadow.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Grids",
   "tags": [
+    "bento grid",
     "bento",
     "grid",
     "boxes",

@@ -1,6 +1,6 @@
 {
   "id": "mockup-showcase",
-  "name": "Mockup Showcase",
+  "name": "Showcase 5",
   "type": "html",
   "status": "stable",
   "description": "Browser-framed screenshot (chrome dots + URL bar) on a dark surface stage, following the guideline mockup rules: 16px frame radius, soft-500 shadow, 32px stage radius.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "tags": [
+    "mockup showcase",
     "mockup",
     "screenshot",
     "browser frame",

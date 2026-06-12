@@ -1,6 +1,6 @@
 {
   "id": "zigzag-features",
-  "name": "Zig-Zag Features",
+  "name": "Features 13",
   "type": "html",
   "status": "stable",
   "description": "Alternating image/text rows (even rows flip order). Kicker, heading, body, arrow link per row. Stacks image-first on mobile.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Lists & Feeds",
   "tags": [
+    "zig-zag features",
     "zigzag",
     "alternating",
     "image text",

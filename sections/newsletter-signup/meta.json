@@ -1,6 +1,6 @@
 {
   "id": "newsletter-signup",
-  "name": "Newsletter Signup",
+  "name": "Newsletter 1",
   "type": "html",
   "status": "stable",
   "description": "Bordered 32px-radius panel, icon tile, heading, single email input + subscribe button, privacy note. Stacks on mobile.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Trust & Social Proof",
   "tags": [
+    "newsletter signup",
     "newsletter",
     "subscribe",
     "email capture",

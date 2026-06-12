@@ -1,6 +1,6 @@
 {
   "id": "comparison-table",
-  "name": "Competitor Comparison",
+  "name": "Comparison 1",
   "type": "html",
   "status": "stable",
   "description": "Us-vs-them matrix: highlighted Us column, success checks and error crosses, mixed text cells, CTA below.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Interactive",
   "tags": [
+    "competitor comparison",
     "comparison",
     "versus",
     "competitor",

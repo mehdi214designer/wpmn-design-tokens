@@ -1,6 +1,6 @@
 {
   "id": "content-tabs",
-  "name": "Feature Tabs",
+  "name": "Features 4",
   "type": "html",
   "status": "stable",
   "description": "Centered header + pill tab bar switching content panels. Each panel pairs text with a 16:10 mockup inside a brand-surface stage.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Disclosure",
   "tags": [
+    "feature tabs",
     "tabs",
     "toggle",
     "switch",

@@ -1,20 +1,53 @@
 {
   "id": "quote-stats-bento",
-  "name": "Quote Stats Bento",
+  "name": "Testimonial 2",
   "type": "html",
   "status": "stable",
   "description": "Social proof bento: four stat cards (grey shell, white inset panel) interleaved with two brand-tinted quote cards carrying a fading dot pattern, company name, quote, and author line.",
-  "files": { "html": "sections/quote-stats-bento/section.html" },
+  "files": {
+    "html": "sections/quote-stats-bento/section.html"
+  },
   "prompt": "sections/quote-stats-bento/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-quote-stats-bento",
-  "interactions": ["static section; no scripted motion"],
-  "tokensUsed": ["--color-surface-primary","--color-text-primary","--color-text-secondary","--btn-bg-enable","--radius-md","--radius-sm","--font-family-base","--font-size-h3","--font-size-h4","--font-size-h6","--font-size-body-base","--font-size-body-medium","--font-weight-semibold","--font-weight-medium","--font-weight-bold"],
+  "interactions": [
+    "static section; no scripted motion"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--btn-bg-enable",
+    "--radius-md",
+    "--radius-sm",
+    "--font-family-base",
+    "--font-size-h3",
+    "--font-size-h4",
+    "--font-size-h6",
+    "--font-size-body-base",
+    "--font-size-body-medium",
+    "--font-weight-semibold",
+    "--font-weight-medium",
+    "--font-weight-bold"
+  ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Trust & Social Proof",
   "role": "Testimonial",
   "span": 2,
-  "tags": ["testimonial", "stats", "bento", "social proof", "quotes", "metrics"]
+  "tags": [
+    "quote stats bento",
+    "testimonial",
+    "stats",
+    "bento",
+    "social proof",
+    "quotes",
+    "metrics"
+  ]
 }

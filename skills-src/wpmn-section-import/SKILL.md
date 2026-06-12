@@ -76,15 +76,19 @@ Look at what was uploaded:
 
 1. Read the uploaded file fully. Identify: the interaction engine (keep), the visual skin
    (replace), and external assets (replace).
-2. Create `sections/<id>/section.html`: one self-contained
+2. Naming: the folder/id stays descriptive kebab-case (stable URLs), but the display
+   `name` in meta.json is "<Role> <next number>" — count existing sections with the same
+   role in registry.json and take the next integer (e.g. the 8th Hero is "Hero 8"). Put
+   a short descriptive alias in tags so search still works.
+3. Create `sections/<id>/section.html`: one self-contained
    `<section class="wpmn-sec-<id>">` containing a scoped `<style>` (every rule prefixed with
    the section class), markup, and a scoped IIFE `<script>` that resolves its root via
    `document.currentScript.parentElement`. Prefix all `@keyframes` names `wpmn-<abbr>-` to
    avoid global collisions. Replace ids with classes (sections must coexist on one page).
-3. Port the JS logic unchanged — same math, same timings — only re-scoped (`sec.querySelector`)
+4. Port the JS logic unchanged — same math, same timings — only re-scoped (`sec.querySelector`)
    and with token colors resolved at runtime via `getComputedStyle(sec)` where canvas/JS needs
    a color. If artwork is canvas/WebGL, re-render on `data-brand`/`data-theme` mutations.
-4. Rewrite copy to WPMN flavor (Fluent suite products) while keeping structure and line counts
+5. Rewrite copy to WPMN flavor (Fluent suite products) while keeping structure and line counts
    similar so the layout still holds.
 
 ## Image mode

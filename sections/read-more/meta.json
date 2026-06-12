@@ -1,6 +1,6 @@
 {
   "id": "read-more",
-  "name": "Read More",
+  "name": "Content 2",
   "type": "html",
   "status": "stable",
   "description": "Long text truncated at 170px with a bottom fade. Trigger expands to full height (350ms) and flips to Read less.",

@@ -1,6 +1,6 @@
 {
   "id": "hero-typographic",
-  "name": "Typographic Hero",
+  "name": "Hero 5",
   "type": "html",
   "status": "stable",
   "description": "Minimalist hero built on massive type: clamp(48px, 8vw, 96px) bold headline with brand accent span, subtext, paired CTAs. No imagery.",
@@ -43,6 +43,7 @@
   "category": "Sections",
   "subcategory": "Banners & Impact",
   "tags": [
+    "typographic hero",
     "hero",
     "typography",
     "minimal",

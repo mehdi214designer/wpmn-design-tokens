@@ -1,6 +1,6 @@
 {
   "id": "team-grid",
-  "name": "Team Grid",
+  "name": "Team 1",
   "type": "html",
   "status": "stable",
   "description": "4-column people cards: circular avatar, name, role, social icon links. Hover lifts shadow.",
@@ -36,6 +36,7 @@
   "category": "Sections",
   "subcategory": "Trust & Social Proof",
   "tags": [
+    "team grid",
     "team",
     "people",
     "about us",

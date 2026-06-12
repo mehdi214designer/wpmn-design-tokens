@@ -1,12 +1,16 @@
 {
   "id": "animated-feature-grid",
-  "name": "Animated Feature Grid",
+  "name": "Features 1",
   "type": "html",
   "status": "stable",
   "description": "2x2 illustrated feature cards with living micro-scenes: a signing pen over a binary canvas, a cycling analytics chart, a macbook lid that opens and app icons that fly in, and a live speedometer.",
-  "files": { "html": "sections/animated-feature-grid/section.html" },
+  "files": {
+    "html": "sections/animated-feature-grid/section.html"
+  },
   "prompt": "sections/animated-feature-grid/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-animated-feature-grid",
   "interactions": [
     "8 verbatim keyframes (prefixed wpmn-afg-): macbook lid opens 1.5s @1s delay, app icons fly in springy cubic-bezier(.87,-.41,.19,1.44) at 2/2.2/2.1s, icons wobble forever (20s), badge arrow bounces, bars bounce via --bar-index",
@@ -15,12 +19,43 @@
     "binary canvas rendered at runtime in --color-text-primary with seeded jitter",
     "prefers-reduced-motion: all animations and intervals disabled"
   ],
-  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-secondary","--btn-bg-enable","--color-warning-primary","--radius-lg","--radius-sm","--shadow-soft-300","--shadow-soft-500","--shadow-hard-100","--font-family-base","--font-size-h6","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-weight-semibold","--font-weight-medium"],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--btn-bg-enable",
+    "--color-warning-primary",
+    "--radius-lg",
+    "--radius-sm",
+    "--shadow-soft-300",
+    "--shadow-soft-500",
+    "--shadow-hard-100",
+    "--font-family-base",
+    "--font-size-h6",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-size-body-label",
+    "--font-weight-semibold",
+    "--font-weight-medium"
+  ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Grids",
   "role": "Features",
   "span": 2,
-  "tags": ["feature grid", "animated", "illustration", "keyframes", "micro interactions", "chart", "speedometer"]
+  "tags": [
+    "animated feature grid",
+    "feature grid",
+    "animated",
+    "illustration",
+    "keyframes",
+    "micro interactions",
+    "chart",
+    "speedometer"
+  ]
 }

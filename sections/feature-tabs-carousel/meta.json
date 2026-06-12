@@ -1,12 +1,16 @@
 {
   "id": "feature-tabs-carousel",
-  "name": "Feature Tabs Carousel",
+  "name": "Features 8",
   "type": "html",
   "status": "stable",
   "description": "Auto-advancing tabbed feature panel on a drifting brand gradient. Numbered pills expand their labels when active, screenshots crossfade and rise, and a white notch with inverse corners hosts the tab strip.",
-  "files": { "html": "sections/feature-tabs-carousel/section.html" },
+  "files": {
+    "html": "sections/feature-tabs-carousel/section.html"
+  },
   "prompt": "sections/feature-tabs-carousel/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-feature-tabs-carousel",
   "interactions": [
     "auto-advance every 6s; pause on panel hover; manual click restarts the timer",
@@ -17,12 +21,39 @@
     "background: 4-layer token gradient drifting 16s ease-in-out alternate",
     "prefers-reduced-motion: drift, transitions and auto-advance disabled"
   ],
-  "tokensUsed": ["--color-surface-primary","--color-text-primary","--color-text-secondary","--btn-bg-enable","--radius-md","--radius-sm","--radius-xsm","--shadow-soft-500","--font-family-base","--font-size-h3","--font-size-body-base","--font-size-btn-md","--font-weight-semibold","--font-weight-medium"],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--btn-bg-enable",
+    "--radius-md",
+    "--radius-sm",
+    "--radius-xsm",
+    "--shadow-soft-500",
+    "--font-family-base",
+    "--font-size-h3",
+    "--font-size-body-base",
+    "--font-size-btn-md",
+    "--font-weight-semibold",
+    "--font-weight-medium"
+  ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Interactive",
   "role": "Features",
   "span": 2,
-  "tags": ["tabs", "carousel", "auto advance", "feature panel", "gradient", "notch", "pills"]
+  "tags": [
+    "feature tabs carousel",
+    "tabs",
+    "carousel",
+    "auto advance",
+    "feature panel",
+    "gradient",
+    "notch",
+    "pills"
+  ]
 }

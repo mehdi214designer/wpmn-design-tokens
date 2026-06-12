@@ -1,6 +1,6 @@
 {
   "id": "feature-scrollspy",
-  "name": "Feature Scrollspy",
+  "name": "Features 7",
   "type": "html",
   "status": "stable",
   "description": "Sticky scrollspy menu beside a column of feature cards. Active menu item gets a brand dot as cards cross the viewport; cards rise in on first view; one dark quote card breaks the rhythm.",
@@ -8,7 +8,9 @@
     "html": "sections/feature-scrollspy/section.html"
   },
   "prompt": "sections/feature-scrollspy/prompt.md",
-  "dependsOn": ["index.css"],
+  "dependsOn": [
+    "index.css"
+  ],
   "baseClass": "wpmn-sec-feature-scrollspy",
   "interactions": [
     "scrollspy: active card = last card whose top crossed the 40%-viewport line; menu color/weight/dot transition 250ms",
@@ -41,10 +43,22 @@
     "--font-weight-regular"
   ],
   "brands": "all",
-  "themes": ["light", "dark"],
+  "themes": [
+    "light",
+    "dark"
+  ],
   "category": "Sections",
   "subcategory": "Scroll & Motion",
   "role": "Features",
   "span": 2,
-  "tags": ["scrollspy", "sticky menu", "feature cards", "reveal", "table of contents", "anchor nav", "quote card"]
+  "tags": [
+    "feature scrollspy",
+    "scrollspy",
+    "sticky menu",
+    "feature cards",
+    "reveal",
+    "table of contents",
+    "anchor nav",
+    "quote card"
+  ]
 }

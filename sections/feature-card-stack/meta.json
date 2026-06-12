@@ -1,6 +1,6 @@
 {
   "id": "feature-card-stack",
-  "name": "Feature Card Stack",
+  "name": "Features 6",
   "type": "html",
   "status": "stable",
   "description": "Sticky section heading with dark feature cards that stack over it on scroll; each pinned card scales down to 0.94 as the next slides over (rAF-driven, linear with scroll). Cards alternate text/image and carry an arrow-swap button with a brand gradient glow chip.",
@@ -39,6 +39,7 @@
   "subcategory": "Scroll & Motion",
   "role": "Features",
   "tags": [
+    "feature card stack",
     "stacking",
     "scale",
     "sticky",
