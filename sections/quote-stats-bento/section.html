@@ -1,0 +1,78 @@
+<!-- WPMN Section: Quote Stats Bento — stat cards + tinted quote cards on a 4-col grid (imported, tokenized) -->
+<section class="wpmn-sec-quote-stats-bento">
+  <style>
+    .wpmn-sec-quote-stats-bento{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:96px 20px;--qsb-shell:color-mix(in srgb,var(--color-text-primary) 3%,var(--color-surface-primary));--qsb-border:color-mix(in srgb,var(--color-text-primary) 6%,transparent);--qsb-dot:color-mix(in srgb,var(--color-text-primary) 18%,transparent);--qsb-tint-16:color-mix(in srgb,var(--btn-bg-enable) 16%,var(--color-surface-primary));--qsb-tint-14:color-mix(in srgb,var(--btn-bg-enable) 14%,var(--color-surface-primary));--qsb-tint-5:color-mix(in srgb,var(--btn-bg-enable) 5%,var(--color-surface-primary));--qsb-tint-4:color-mix(in srgb,var(--btn-bg-enable) 4%,var(--color-surface-primary))}
+    .wpmn-sec-quote-stats-bento .wrap{width:min(1120px,100%);margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:40px}
+    .wpmn-sec-quote-stats-bento .heading{max-width:480px;font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);letter-spacing:-0.01em;text-align:center;color:var(--color-text-primary);margin:0}
+    .wpmn-sec-quote-stats-bento .grid{display:grid;width:100%;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px}
+    .wpmn-sec-quote-stats-bento .stat-card{display:flex;flex-direction:column;justify-content:space-between;padding:8px 8px 16px;background:var(--qsb-shell);border:1px solid var(--qsb-border);border-radius:var(--radius-md)}
+    .wpmn-sec-quote-stats-bento .stat-card .panel{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:14px 12px;background:var(--color-surface-primary);border:1px solid var(--qsb-border);border-radius:var(--radius-sm)}
+    .wpmn-sec-quote-stats-bento .stat-card h3{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);margin:0}
+    .wpmn-sec-quote-stats-bento .stat-card p{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);margin:0}
+    .wpmn-sec-quote-stats-bento .stat-card .foot{height:18px}
+    .wpmn-sec-quote-stats-bento .quote-card{grid-column:span 2;position:relative;display:flex;align-items:center;padding:24px;border-radius:var(--radius-md);overflow:hidden;margin:0}
+    .wpmn-sec-quote-stats-bento .quote-card::after{content:"";position:absolute;inset:0;border-radius:var(--radius-md);border:1px solid var(--qsb-border);pointer-events:none;z-index:2}
+    .wpmn-sec-quote-stats-bento .quote-card--a{background:linear-gradient(115deg,var(--qsb-tint-16) 0%,var(--qsb-tint-5) 60%,var(--qsb-shell) 100%)}
+    .wpmn-sec-quote-stats-bento .quote-card--b{background:linear-gradient(245deg,var(--qsb-tint-14) 0%,var(--qsb-tint-4) 55%,var(--qsb-shell) 100%)}
+    .wpmn-sec-quote-stats-bento .deco{position:absolute;right:-12px;top:-12px;bottom:-12px;width:55%;z-index:0;pointer-events:none;background-image:radial-gradient(color-mix(in srgb,var(--btn-bg-enable) 22%,transparent) 6px,transparent 7px);background-size:34px 34px;mask-image:linear-gradient(to left,rgb(0,0,0),rgba(0,0,0,0))}
+    .wpmn-sec-quote-stats-bento .content{position:relative;z-index:1;display:flex;flex-direction:column;gap:24px;max-width:500px}
+    .wpmn-sec-quote-stats-bento .brand{font-size:var(--font-size-h6);line-height:1;font-weight:var(--font-weight-bold);letter-spacing:-0.01em;color:color-mix(in srgb,var(--color-text-primary) 48%,transparent);align-self:flex-start}
+    .wpmn-sec-quote-stats-bento .body{display:flex;flex-direction:column;gap:16px}
+    .wpmn-sec-quote-stats-bento blockquote{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-primary);margin:0}
+    .wpmn-sec-quote-stats-bento figcaption{display:flex;align-items:center;gap:6px}
+    .wpmn-sec-quote-stats-bento .name{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-primary);white-space:pre}
+    .wpmn-sec-quote-stats-bento .sep{width:5px;height:5px;border-radius:50%;background:var(--qsb-dot);flex-shrink:0}
+    .wpmn-sec-quote-stats-bento .role{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);white-space:pre}
+    @media(max-width:1099px){
+      .wpmn-sec-quote-stats-bento .grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto}
+      .wpmn-sec-quote-stats-bento .stat-card{min-height:180px}
+      .wpmn-sec-quote-stats-bento .quote-card{min-height:200px}
+    }
+    @media(max-width:639px){
+      .wpmn-sec-quote-stats-bento{padding:64px 20px}
+      .wpmn-sec-quote-stats-bento .grid{grid-template-columns:1fr}
+      .wpmn-sec-quote-stats-bento .quote-card{grid-column:span 1}
+    }
+  </style>
+  <div class="wrap">
+    <h2 class="heading">What teams say about the&nbsp;Fluent&nbsp;Suite</h2>
+    <div class="grid">
+      <div class="stat-card">
+        <div class="panel"><h3>3x</h3><p>Higher conversion rates</p></div>
+        <div class="foot"></div>
+      </div>
+      <div class="stat-card">
+        <div class="panel"><h3>8x</h3><p>Faster campaign setup</p></div>
+        <div class="foot"></div>
+      </div>
+      <figure class="quote-card quote-card--a">
+        <div class="deco" aria-hidden="true"></div>
+        <div class="content">
+          <div class="brand">KOS Studio</div>
+          <div class="body">
+            <blockquote>"The Fluent Suite was a lifesaver for us, it helped us launch campaigns across multiple sites without the need for a big marketing budget. Highly recommend it to any team looking to scale fast."</blockquote>
+            <figcaption><span class="name">Kai Werner</span><span class="sep"></span><span class="role">Marketing Lead</span></figcaption>
+          </div>
+        </div>
+      </figure>
+      <figure class="quote-card quote-card--b">
+        <div class="deco" aria-hidden="true"></div>
+        <div class="content">
+          <div class="brand">Peregrine</div>
+          <div class="body">
+            <blockquote>"It delivers higher quality leads than any of the premium SaaS tools and feels a step ahead of the other WordPress platforms on the market. Very excited to keep building with it."</blockquote>
+            <figcaption><span class="name">Mike Lee</span><span class="sep"></span><span class="role">Founder</span></figcaption>
+          </div>
+        </div>
+      </figure>
+      <div class="stat-card">
+        <div class="panel"><h3>95%</h3><p>Email deliverability</p></div>
+        <div class="foot"></div>
+      </div>
+      <div class="stat-card">
+        <div class="panel"><h3>$2.4k</h3><p>Saved per year on tools</p></div>
+        <div class="foot"></div>
+      </div>
+    </div>
+  </div>
+</section>
