@@ -1,0 +1,120 @@
+<!-- WPMN Section: Agency Hero — badge, split heading/intro, photo + growth chart + dark stat card (from screenshot, tokenized) -->
+<section class="wpmn-sec-agency-hero">
+  <style>
+@keyframes wpmn-agh-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .wpmn-sec-agency-hero{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:96px 32px;--agh-soft:color-mix(in srgb,var(--color-text-primary) 3%,var(--color-surface-primary));--agh-border:color-mix(in srgb,var(--color-text-primary) 12%,transparent)}
+    .wpmn-sec-agency-hero .wrap{max-width:1200px;margin:0 auto}
+    .wpmn-sec-agency-hero .badge{display:inline-flex;align-items:center;padding:8px 16px;border:1px solid var(--agh-border);border-radius:999px;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);margin-bottom:24px}
+    .wpmn-sec-agency-hero .top{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:start;margin-bottom:56px}
+    .wpmn-sec-agency-hero .top h1{font-size:var(--font-size-h1);line-height:var(--font-lh-h1);font-weight:var(--font-weight-bold);letter-spacing:-0.02em;color:var(--color-text-primary);margin:0}
+    .wpmn-sec-agency-hero .aside{padding-top:12px;max-width:420px;justify-self:end}
+    .wpmn-sec-agency-hero .aside p{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin:0 0 32px}
+    .wpmn-sec-agency-hero .cta{display:inline-flex;align-items:center;justify-content:center;padding:13px 28px;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:999px;font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
+    .wpmn-sec-agency-hero .cta:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-agency-hero .cta:active{background:var(--btn-bg-pressed)}
+    .wpmn-sec-agency-hero .media{display:grid;grid-template-columns:1.75fr 1fr;gap:24px;align-items:stretch}
+    .wpmn-sec-agency-hero .photo{position:relative;border-radius:var(--radius-md);overflow:hidden;min-height:480px}
+    .wpmn-sec-agency-hero .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .wpmn-sec-agency-hero .spin-badge{position:absolute;left:-34px;bottom:64px;width:128px;height:128px;border-radius:999px;background:var(--color-surface-primary);box-shadow:var(--shadow-soft-500);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-agency-hero .spin-badge .ring{position:absolute;inset:0;animation:wpmn-agh-spin 18s linear infinite}
+    .wpmn-sec-agency-hero .spin-badge svg text{font-family:var(--font-family-base);font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.22em;text-transform:uppercase}
+    .wpmn-sec-agency-hero .spin-badge .arrow{position:relative;width:28px;height:28px;color:var(--color-text-primary)}
+    .wpmn-sec-agency-hero .col{display:flex;flex-direction:column;gap:24px}
+    .wpmn-sec-agency-hero .growth{flex:1.25;background:var(--agh-soft);border-radius:var(--radius-md);padding:32px;display:flex;flex-direction:column}
+    .wpmn-sec-agency-hero .growth h2{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);margin:0 0 16px}
+    .wpmn-sec-agency-hero .g-meta{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+    .wpmn-sec-agency-hero .g-years{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-agency-hero .g-pill{background:var(--color-surface-secondary);color:var(--color-text-primary-invert);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);padding:5px 12px;border-radius:999px}
+    .wpmn-sec-agency-hero .g-bars{flex:1;min-height:150px;display:flex;align-items:flex-end;gap:8px}
+    .wpmn-sec-agency-hero .g-bars i{flex:1;height:calc(var(--h) * 1%);background:var(--btn-bg-enable);border-radius:999px;transform:scaleY(0);transform-origin:bottom;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+    .wpmn-sec-agency-hero.in-view .g-bars i{transform:scaleY(1)}
+    .wpmn-sec-agency-hero .dark-card{flex:1;position:relative;background:var(--color-surface-secondary);border-radius:var(--radius-md);padding:32px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:12px}
+    .wpmn-sec-agency-hero .dark-card p{display:flex;align-items:center;gap:10px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert);margin:0}
+    .wpmn-sec-agency-hero .dark-card p::before{content:"";width:28px;height:1px;background:color-mix(in srgb,var(--color-text-primary-invert) 40%,transparent)}
+    .wpmn-sec-agency-hero .dark-card h3{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert);margin:0;max-width:60%}
+    .wpmn-sec-agency-hero .dk-bars{position:absolute;right:28px;bottom:0;display:flex;align-items:flex-end;gap:10px;height:70%}
+    .wpmn-sec-agency-hero .dk-bars i{width:34px;height:calc(var(--h) * 1%);border-radius:6px 6px 0 0;transform:scaleY(0);transform-origin:bottom;transition:transform .7s cubic-bezier(.22,1,.36,1) .2s}
+    .wpmn-sec-agency-hero.in-view .dk-bars i{transform:scaleY(1)}
+    .wpmn-sec-agency-hero .dk-bars i:nth-child(1){background:color-mix(in srgb,var(--btn-bg-enable) 45%,var(--color-surface-secondary))}
+    .wpmn-sec-agency-hero .dk-bars i:nth-child(2){background:color-mix(in srgb,var(--btn-bg-enable) 70%,var(--color-surface-secondary))}
+    .wpmn-sec-agency-hero .dk-bars i:nth-child(3){background:var(--btn-bg-enable)}
+    @media(max-width:1199px){
+      .wpmn-sec-agency-hero{padding:96px 40px}
+    }
+    @media(max-width:900px){
+      .wpmn-sec-agency-hero .top{grid-template-columns:1fr;gap:24px;margin-bottom:40px}
+      .wpmn-sec-agency-hero .aside{justify-self:start;padding-top:0}
+      .wpmn-sec-agency-hero .media{grid-template-columns:1fr}
+      .wpmn-sec-agency-hero .photo{min-height:340px}
+      .wpmn-sec-agency-hero .spin-badge{left:20px;bottom:20px;width:104px;height:104px}
+    }
+    @media(max-width:768px){
+      .wpmn-sec-agency-hero{padding:64px 20px}
+      .wpmn-sec-agency-hero .growth,.wpmn-sec-agency-hero .dark-card{padding:24px}
+      .wpmn-sec-agency-hero .dark-card h3{max-width:55%}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-agency-hero .spin-badge .ring{animation:none}
+      .wpmn-sec-agency-hero .g-bars i,.wpmn-sec-agency-hero .dk-bars i{transform:scaleY(1);transition:none}
+      .wpmn-sec-agency-hero .cta{transition:none}
+    }
+  </style>
+  <div class="wrap">
+    <span class="badge">About Us</span>
+    <div class="top">
+      <h1>Marketing That Builds Meaningful Brands</h1>
+      <div class="aside">
+        <p>At WPManageNinja, we combine data, design, and storytelling to craft brand experiences that truly resonate.</p>
+        <a class="cta" href="#" onclick="return false">Get in Touch</a>
+      </div>
+    </div>
+    <div class="media">
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80" alt="Team working together in a studio">
+        <div class="spin-badge">
+          <div class="ring">
+            <svg viewBox="0 0 128 128" width="128" height="128">
+              <defs><path id="wpmn-agh-circ" d="M 64,64 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0"/></defs>
+              <text fill="var(--color-text-primary)"><textPath href="#wpmn-agh-circ">CONTACT US&#160;&#160;&#183;&#160;&#160;CONTACT US&#160;&#160;&#183;&#160;&#160;</textPath></text>
+            </svg>
+          </div>
+          <svg class="arrow" viewBox="0 0 28 28" fill="none"><path d="M8 20 20 8M11 8h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="col">
+        <div class="growth">
+          <h2>Our Growth</h2>
+          <div class="g-meta"><span class="g-years">2023-2024</span><span class="g-pill">34%</span></div>
+          <div class="g-bars" aria-hidden="true">
+            <i style="--h:38"></i><i style="--h:52"></i><i style="--h:44"></i><i style="--h:60"></i><i style="--h:72"></i><i style="--h:100"></i><i style="--h:88"></i><i style="--h:64"></i><i style="--h:50"></i><i style="--h:42"></i><i style="--h:48"></i><i style="--h:58"></i><i style="--h:70"></i><i style="--h:92"></i>
+          </div>
+        </div>
+        <div class="dark-card">
+          <p>Drive More Traffic</p>
+          <h3>Drive more traffic and product sales</h3>
+          <div class="dk-bars" aria-hidden="true"><i style="--h:38"></i><i style="--h:62"></i><i style="--h:90"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Motion (my call): bars grow in staggered on first view; contact badge spins forever.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-agency-hero');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* per-bar stagger */
+      sec.querySelectorAll('.g-bars i').forEach(function (b, i) { b.style.transitionDelay = (i * 45) + 'ms'; });
+      sec.querySelectorAll('.dk-bars i').forEach(function (b, i) { b.style.transitionDelay = (200 + i * 90) + 'ms'; });
+
+      if (reduced || !('IntersectionObserver' in window)) { sec.classList.add('in-view'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { sec.classList.add('in-view'); io.disconnect(); }
+        });
+      }, { threshold: 0.25 });
+      io.observe(sec);
+    })();
+  </script>
+</section>

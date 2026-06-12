@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.0.0",
-  "generatedAt": "2026-06-12T04:50:22.071Z",
+  "generatedAt": "2026-06-12T06:36:41.981Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -895,6 +895,71 @@
         "paragraph",
         "type scale",
         "font"
+      ]
+    },
+    {
+      "id": "agency-hero",
+      "name": "Agency Hero",
+      "type": "html",
+      "status": "stable",
+      "description": "Agency-style hero: outline badge, oversized two-line heading beside an intro + pill CTA, then a media row pairing a large team photo (with a spinning circular contact badge) with a growth chart card and a dark stat card.",
+      "files": {
+        "html": "sections/agency-hero/section.html"
+      },
+      "prompt": "sections/agency-hero/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-agency-hero",
+      "interactions": [
+        "growth bars scale up from the baseline on first view, 700ms cubic-bezier(.22,1,.36,1), 45ms per-bar stagger",
+        "dark card bars follow with 90ms stagger and 200ms head start",
+        "circular CONTACT US badge spins 18s linear infinite (SVG textPath)",
+        "CTA hover/active follow design-system button states, 120ms",
+        "prefers-reduced-motion: spin off, bars render in place"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-surface-secondary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--color-text-secondary-invert",
+        "--btn-bg-enable",
+        "--btn-bg-hovered",
+        "--btn-bg-pressed",
+        "--radius-md",
+        "--shadow-soft-500",
+        "--font-family-base",
+        "--font-size-h1",
+        "--font-size-h4",
+        "--font-size-h5",
+        "--font-size-body-medium",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-size-btn-md",
+        "--font-weight-bold",
+        "--font-weight-semibold",
+        "--font-weight-medium"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact",
+      "role": "Hero",
+      "span": 2,
+      "tags": [
+        "hero",
+        "agency",
+        "about",
+        "growth chart",
+        "stat card",
+        "circular badge",
+        "split heading"
       ]
     },
     {
