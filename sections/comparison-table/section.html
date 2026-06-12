@@ -18,11 +18,14 @@
     .wpmn-sec-comparison-table .ct-yes{color:var(--color-success-primary)}
     .wpmn-sec-comparison-table .ct-no{color:var(--color-error-primary);opacity:.7}
     .wpmn-sec-comparison-table .ct-cta{text-align:center;margin-top:32px}
-    .wpmn-sec-comparison-table .ct-btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border-radius:var(--radius-xsm);background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
+    .wpmn-sec-comparison-table .ct-btn{border:1.5px solid transparent;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border-radius:var(--radius-xsm);background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
     .wpmn-sec-comparison-table .ct-btn:hover{background:var(--btn-bg-hovered)}
     @media(max-width:1199px){.wpmn-sec-comparison-table .ct-c{padding:0 40px}}
     @media(max-width:768px){.wpmn-sec-comparison-table{padding:64px 0}.wpmn-sec-comparison-table .ct-c{padding:0 20px}.wpmn-sec-comparison-table .ct-row>div{padding:12px 10px;font-size:var(--font-size-body-small)}}
-  </style>
+  .wpmn-sec-comparison-table .ct-btn:active{background:var(--btn-bg-pressed)}
+    .wpmn-sec-comparison-table .ct-btn:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
+    </style>
   <div class="ct-c">
     <div class="ct-head"><h2 class="ct-heading">How we stack up</h2></div>
     <div class="ct-table">

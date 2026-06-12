@@ -106,7 +106,7 @@
     /* ---- Get started: per-letter roll-up on hover (DS light button skin) ---- */
     .wpmn-sec-steps-card-stack .scs-btn{
       display:inline-flex;align-items:center;justify-content:center;align-self:center;
-      margin-top:28px;padding:11px 24px;
+      margin-top:28px;height:48px;padding:0 24px;
       background:transparent;
       border:1.5px solid var(--color-text-primary-invert);
       border-radius:var(--radius-xsm);
@@ -168,6 +168,8 @@
       .wpmn-sec-steps-card-stack .scs-tagrow{padding:16px 0}
       .wpmn-sec-steps-card-stack .scs-copy{padding-bottom:8px}
     }
+    .wpmn-sec-steps-card-stack .scs-btn:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
     @media (prefers-reduced-motion: reduce){
       .wpmn-sec-steps-card-stack .scs-fw{transition:none}
       .wpmn-sec-steps-card-stack .scs-char{transition:none}

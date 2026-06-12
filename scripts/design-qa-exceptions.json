@@ -4,5 +4,7 @@
   "animated-feature-grid/raw-radius/*": "Mock-device and chart artwork geometry (macbook screen/keyboard, chart bars and indicator) \u2014 illustration, not UI surfaces",
   "board-hero/btn-multiple-primary/tbtn--add": "The board's + Add Task chip is mock-UI inside the kanban artwork, not a section CTA \u2014 the single real primary is .btn--primary",
   "board-hero/btn-secondary-anatomy/tbtn": "Toolbar chips are mock-UI inside the kanban artwork, not actionable buttons",
-  "board-hero/btn-primary-anatomy/tbtn--add": "Mock-UI chip in the kanban artwork (no glow by design)"
+  "board-hero/btn-primary-anatomy/tbtn--add": "Mock-UI chip in the kanban artwork (no glow by design)",
+  "folder-quote-cards/btn-hover-transform/arrow-btn": "Notched arrow pill is imported interaction artwork (scale 1.05/0.96 verbatim from the reference) \u2014 a custom icon-button, not a DS button",
+  "work-portfolio/btn-icon-decor/btn-arrow": "Icon decoration inside the DS button (slide animation), not a button itself"
 }

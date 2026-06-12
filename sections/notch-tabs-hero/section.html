@@ -29,8 +29,8 @@
     .wpmn-sec-notch-tabs-hero h1{font-size:var(--font-size-h1);font-weight:var(--font-weight-semibold);line-height:var(--font-lh-h1);letter-spacing:-0.03em;color:var(--color-text-primary);max-width:600px;text-wrap:balance;margin:0}
     .wpmn-sec-notch-tabs-hero .sub{max-width:480px;font-size:var(--font-size-body-medium);font-weight:var(--font-weight-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin:0}
     .wpmn-sec-notch-tabs-hero .ctas{display:flex;align-items:center;gap:var(--spacing-btn-gap-lg);margin-top:8px}
-    .wpmn-sec-notch-tabs-hero .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);white-space:nowrap;transition:background-color .15s cubic-bezier(.4,0,.2,1),box-shadow .15s cubic-bezier(.4,0,.2,1)}
-    .wpmn-sec-notch-tabs-hero .btn-primary{background:var(--btn-bg-enable);color:var(--color-text-primary-invert);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-notch-tabs-hero .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);white-space:nowrap;transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease}
+    .wpmn-sec-notch-tabs-hero .btn-primary{border:1.5px solid transparent;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
     .wpmn-sec-notch-tabs-hero .btn-primary:hover{background:var(--btn-bg-hovered)}
     .wpmn-sec-notch-tabs-hero .btn-primary:active{background:var(--btn-bg-pressed)}
     .wpmn-sec-notch-tabs-hero .btn-ghost{background:transparent;color:var(--btn-bg-enable);border:1.5px solid var(--btn-bg-enable);box-shadow:none}
@@ -76,6 +76,8 @@
       .wpmn-sec-notch-tabs-hero .showcase{padding:56px 0 48px}
       .wpmn-sec-notch-tabs-hero .feats{grid-template-columns:1fr;max-width:360px}
     }
+    .wpmn-sec-notch-tabs-hero .btn:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
     @media (prefers-reduced-motion: reduce){
       .wpmn-sec-notch-tabs-hero .badge,
       .wpmn-sec-notch-tabs-hero .btn,

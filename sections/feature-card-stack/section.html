@@ -14,7 +14,7 @@
     .wpmn-sec-feature-card-stack .btn-wrap{margin-top:auto}
     .wpmn-sec-feature-card-stack .fcs-img{padding:40px}
     .wpmn-sec-feature-card-stack .fcs-img img{display:block;width:100%;height:392px;object-fit:cover;border-radius:var(--radius-xsm)}
-    .wpmn-sec-feature-card-stack .btn{display:flex;justify-content:space-between;align-items:center;gap:32px;min-width:200px;height:52px;padding:8px 8px 8px 16px;background:transparent;border:1.5px solid var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);letter-spacing:-0.01em;color:var(--color-text-primary-invert);text-decoration:none;cursor:pointer;transition:background-color 120ms ease,color 120ms ease}
+    .wpmn-sec-feature-card-stack .btn{display:flex;justify-content:space-between;align-items:center;gap:32px;min-width:200px;height:48px;padding:0 8px 0 16px;background:transparent;border:1.5px solid var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);letter-spacing:-0.01em;color:var(--color-text-primary-invert);text-decoration:none;cursor:pointer;transition:background-color 120ms ease,color 120ms ease}
     .wpmn-sec-feature-card-stack .btn:hover{background:var(--color-text-primary-invert);color:var(--color-text-primary)}
     .wpmn-sec-feature-card-stack .btn .label{white-space:nowrap}
     .wpmn-sec-feature-card-stack .btn_right{position:relative;display:flex;justify-content:center;align-items:center;width:34px;height:34px;background:transparent;border-radius:var(--radius-xsm);overflow:clip}
@@ -40,6 +40,8 @@
     @media(max-width:600px){
       .wpmn-sec-feature-card-stack .fcs-content,.wpmn-sec-feature-card-stack .fcs-img{padding:24px}
     }
+    .wpmn-sec-feature-card-stack .btn:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
     @media(prefers-reduced-motion:reduce){
       .wpmn-sec-feature-card-stack .btn_icon{transition:none}
     }

@@ -10,7 +10,7 @@
     .wpmn-sec-ecommerce-hero h1 .u{position:relative;white-space:nowrap}
     .wpmn-sec-ecommerce-hero h1 .u svg{position:absolute;left:0;bottom:-12px;width:100%;height:14px;color:var(--btn-bg-enable)}
     .wpmn-sec-ecommerce-hero .sub{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);max-width:440px;margin:0 0 40px}
-    .wpmn-sec-ecommerce-hero .cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
+    .wpmn-sec-ecommerce-hero .cta{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border:1.5px solid transparent;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
     .wpmn-sec-ecommerce-hero .cta:hover{background:var(--btn-bg-hovered)}
     .wpmn-sec-ecommerce-hero .cta:active{background:var(--btn-bg-pressed)}
     .wpmn-sec-ecommerce-hero .cta svg{width:20px;height:20px}
@@ -81,6 +81,8 @@
       .wpmn-sec-ecommerce-hero .logo-band{margin-top:48px;padding:28px 20px}
       .wpmn-sec-ecommerce-hero .logo-band .row{justify-content:center}
     }
+    .wpmn-sec-ecommerce-hero .cta:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
     @media(prefers-reduced-motion:reduce){
       .wpmn-sec-ecommerce-hero .card,.wpmn-sec-ecommerce-hero .gauge-card{opacity:1;transform:none;transition:none;animation:none}
       .wpmn-sec-ecommerce-hero .stat--sale,.wpmn-sec-ecommerce-hero .stat--orders{animation:none}

@@ -9,7 +9,7 @@
     .wpmn-sec-agency-hero .top h1{font-size:var(--font-size-h1);line-height:var(--font-lh-h1);font-weight:var(--font-weight-bold);letter-spacing:-0.02em;color:var(--color-text-primary);margin:0}
     .wpmn-sec-agency-hero .aside{padding-top:12px;max-width:420px;justify-self:end}
     .wpmn-sec-agency-hero .aside p{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin:0 0 32px}
-    .wpmn-sec-agency-hero .cta{display:inline-flex;align-items:center;justify-content:center;padding:13px 28px;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
+    .wpmn-sec-agency-hero .cta{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border:1.5px solid transparent;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
     .wpmn-sec-agency-hero .cta:hover{background:var(--btn-bg-hovered)}
     .wpmn-sec-agency-hero .cta:active{background:var(--btn-bg-pressed)}
     .wpmn-sec-agency-hero .media{display:grid;grid-template-columns:1.75fr 1fr;gap:24px;align-items:stretch}
@@ -53,6 +53,8 @@
       .wpmn-sec-agency-hero .growth,.wpmn-sec-agency-hero .dark-card{padding:24px}
       .wpmn-sec-agency-hero .dark-card h3{max-width:55%}
     }
+    .wpmn-sec-agency-hero .cta:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
     @media(prefers-reduced-motion:reduce){
       .wpmn-sec-agency-hero .spin-badge .ring{animation:none}
       .wpmn-sec-agency-hero .g-bars i,.wpmn-sec-agency-hero .dk-bars i{transform:scaleY(1);transition:none}

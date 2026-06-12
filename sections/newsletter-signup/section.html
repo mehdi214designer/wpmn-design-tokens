@@ -11,12 +11,15 @@
     .wpmn-sec-newsletter-signup .ns-input{flex:1;height:48px;padding:0 16px;font-family:inherit;font-size:var(--font-size-body-small);color:var(--input-text-active);border:1px solid var(--input-stroke-default);border-radius:var(--radius-xsm);background:var(--color-surface-primary);outline:none;transition:border-color 120ms ease}
     .wpmn-sec-newsletter-signup .ns-input:focus{border-color:var(--input-stroke-active)}
     .wpmn-sec-newsletter-signup .ns-input::placeholder{color:var(--input-text-default)}
-    .wpmn-sec-newsletter-signup .ns-btn{height:48px;padding:0 24px;border-radius:var(--radius-xsm);border:none;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-family:inherit;font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);cursor:pointer;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease;white-space:nowrap}
+    .wpmn-sec-newsletter-signup .ns-btn{height:48px;padding:0 24px;border-radius:var(--radius-xsm);border:1.5px solid transparent;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-family:inherit;font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);cursor:pointer;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease;white-space:nowrap}
     .wpmn-sec-newsletter-signup .ns-btn:hover{background:var(--btn-bg-hovered)}
     .wpmn-sec-newsletter-signup .ns-note{margin:14px 0 0;font-size:var(--font-size-body-small);color:var(--color-text-secondary)}
     @media(max-width:1199px){.wpmn-sec-newsletter-signup .ns-c{padding:0 40px}}
     @media(max-width:768px){.wpmn-sec-newsletter-signup{padding:64px 0}.wpmn-sec-newsletter-signup .ns-c{padding:0 20px}.wpmn-sec-newsletter-signup .ns-panel{padding:48px 24px}.wpmn-sec-newsletter-signup .ns-form{flex-direction:column}}
-  </style>
+  .wpmn-sec-newsletter-signup .ns-btn:active{background:var(--btn-bg-pressed)}
+    .wpmn-sec-newsletter-signup .ns-btn:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
+    </style>
   <div class="ns-c"><div class="ns-panel">
     <span class="ns-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="M3 8l9 6 9-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     <h2>One useful email a week</h2>

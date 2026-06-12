@@ -12,14 +12,17 @@
     .wpmn-sec-split-screen .ss-input{flex:1;height:48px;padding:0 16px;font-family:inherit;font-size:var(--font-size-body-small);color:var(--input-text-active);border:1px solid var(--input-stroke-default);border-radius:var(--radius-xsm);background:transparent;outline:none;transition:border-color 120ms ease}
     .wpmn-sec-split-screen .ss-input:focus{border-color:var(--input-stroke-active)}
     .wpmn-sec-split-screen .ss-input::placeholder{color:var(--input-text-default)}
-    .wpmn-sec-split-screen .ss-btn{height:48px;padding:0 24px;border-radius:var(--radius-xsm);border:none;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-family:inherit;font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);cursor:pointer;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease;white-space:nowrap}
+    .wpmn-sec-split-screen .ss-btn{height:48px;padding:0 24px;border-radius:var(--radius-xsm);border:1.5px solid transparent;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-family:inherit;font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);cursor:pointer;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease;white-space:nowrap}
     .wpmn-sec-split-screen .ss-btn:hover{background:var(--btn-bg-hovered)}
     .wpmn-sec-split-screen .ss-note{margin:12px 0 0;font-size:var(--font-size-body-small);color:var(--color-text-secondary)}
     @media(max-width:1199px){.wpmn-sec-split-screen .ss-c{padding:0 40px}}
     @media(max-width:900px){.wpmn-sec-split-screen .ss-c{grid-template-columns:1fr;gap:32px}.wpmn-sec-split-screen .ss-visual{min-height:280px}}
     @media(max-width:768px){.wpmn-sec-split-screen{padding:64px 0}.wpmn-sec-split-screen .ss-c{padding:0 20px}.wpmn-sec-split-screen .ss-form{flex-direction:column}}
       .wpmn-sec-split-screen .ss-visual{overflow:hidden;padding:0}.wpmn-sec-split-screen .ss-visual img{display:block;width:100%;height:100%;object-fit:cover}
-  </style>
+  .wpmn-sec-split-screen .ss-btn:active{background:var(--btn-bg-pressed)}
+    .wpmn-sec-split-screen .ss-btn:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
+    </style>
   <div class="ss-c">
     <div class="ss-visual"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="Product photo" loading="lazy"></div>
     <div>

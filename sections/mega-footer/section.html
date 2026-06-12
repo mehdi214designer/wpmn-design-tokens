@@ -50,7 +50,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 42px;
+      height:40px;
       padding: 12px 32px;
       border-radius: var(--radius-xsm);
       font-family: var(--font-family-base);
@@ -61,7 +61,7 @@
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+      transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease;
     }
     .wpmn-sec-mega-footer .mf-btn-ghost{background:transparent;color:var(--btn-bg-enable);border:1.5px solid var(--btn-bg-enable)}
     .wpmn-sec-mega-footer .mf-btn-ghost:hover{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
@@ -263,6 +263,8 @@
       .wpmn-sec-mega-footer .mf-social,
       .wpmn-sec-mega-footer .mf-badges{ justify-content: flex-start; }
     }
+    .wpmn-sec-mega-footer .mf-btn:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
+    
     @media (prefers-reduced-motion: reduce){
       .wpmn-sec-mega-footer *{ transition: none !important; }
     }
