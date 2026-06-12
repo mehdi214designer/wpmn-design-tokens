@@ -9,7 +9,7 @@
 
 | Property | Rule |
 |---|---|
-| Variant | `solid.rounded` — always, no exceptions |
+| Variant | **One unified variant per site.** Library standard: `stroke.rounded` (what components/Icons, Footer and NavBar use). Never mix variants — if a project deliberately chooses another variant (e.g. `solid.rounded`), switch ALL icons across the entire site, not some. |
 | Usage | Always inline as SVG path data — no runtime imports, no bundler |
 | Default size | 24×24px |
 | Small (buttons, inputs) | 20×20px |
