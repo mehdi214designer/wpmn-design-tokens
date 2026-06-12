@@ -2,7 +2,7 @@
 
 **Source:** `primitives.css`
 
-All spacing values are available as CSS custom properties via `--primitive-space-*`. Always use these tokens — never hardcode pixel values. Negative offsets: `calc(-1 * var(--primitive-space-N))`. Values that fall off the scale are allowed only as documented exceptions (`scripts/design-qa-exceptions.json`, check `spacing-offscale`) for import-faithful micro-geometry. Semantic `--spacing-*` tokens (tokens.css) cover section padding, heading-to-content gaps, and button gaps — prefer them where they fit.
+All spacing values are available as CSS custom properties via `--primitive-space-*`. Always use these tokens — never hardcode pixel values.
 
 ---
 

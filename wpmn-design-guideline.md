@@ -214,8 +214,6 @@ Seven approved layout grids. Do not use arbitrary column ratios outside these.
 
 ## Spacing Within Sections
 
-All spacing values below are expressed with tokens in code: `var(--primitive-space-N)` for scale values (see docs/spacing.md), semantic `--spacing-*` tokens where they fit (section padding, heading gaps, button gaps). Negative offsets use `calc(-1 * var(--primitive-space-N))`. Off-scale pixel values are allowed only as documented exceptions (import-faithful micro-geometry) in `scripts/design-qa-exceptions.json`.
-
 | Property | Value |
 |---|---|
 | Badge → Heading | 12px |
