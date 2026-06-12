@@ -49,8 +49,9 @@ btn-bg-glow fallback; no raw `font-size: Npx` / `font-weight: N`; every `var(--x
 the four token files or as a section-local derived property; `{`/`}` counts match;
 `<div>`-open count equals `</div>` count; `node --check` on the extracted script.
 
-If a browser-level check is wanted, smoke-test with jsdom: execute the script with
-IntersectionObserver/matchMedia/canvas stubs, fire scroll + resize, assert no exceptions.
+Smoke-test with jsdom (mandatory for any section with a script): execute the script with
+IntersectionObserver/matchMedia/canvas stubs, fire scroll + resize, assert no exceptions —
+the eval run that skipped this is the one that shipped a bug class the other gates can't see.
 
 ## 4. Publish (keeps the local↔GitHub bridge)
 
