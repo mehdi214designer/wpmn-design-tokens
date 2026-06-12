@@ -32,7 +32,7 @@ const findings = []; // {section, check, detail, special}
 function report(section, check, detail) {
   const key = Object.keys(exceptions).find(k => {
     const [s, c, sub] = k.split('/');
-    return s === section && c === check && (sub === '*' || detail.includes(sub));
+    return (s === '*' || s === section) && c === check && (sub === '*' || detail.includes(sub));
   });
   findings.push({ section, check, detail, special: key ? exceptions[key] : null });
 }
@@ -68,6 +68,18 @@ for (const d of dirs) {
     const parts = v.split(/\s+/);
     const bad = parts.filter(p => !/^(var\(|CALC|999px|99px|50%|0(px)?|inherit)/.test(p));
     if (bad.length) report(d, 'raw-radius', v);
+  }
+
+  /* 4b ─ spacing: padding/margin/gap must ride the spacing tokens */
+  const SPACE_SCALE = new Set([2,4,8,12,16,20,24,32,40,48,56,64,80,96,120,128,160]);
+  for (const m of noMask.matchAll(/(?:padding|margin|gap|row-gap|column-gap|padding-(?:top|right|bottom|left)|margin-(?:top|right|bottom|left))\s*:\s*([^;}]+)/g)) {
+    if (/var\(|calc\(/.test(m[1]) && !/\b\d{2,}px/.test(m[1].replace(/var\([^)]*\)|calc\([^)]*\)/g, ''))) continue;
+    for (const pm of m[1].replace(/var\([^)]*\)|calc\([^)]*\)/g, '').matchAll(/(?<![\d.-])(\d+)px/g)) {
+      const n = parseInt(pm[1], 10);
+      if (n === 0) continue;
+      if (SPACE_SCALE.has(n)) report(d, 'raw-spacing', `${n}px should be var(--primitive-space-${n})`);
+      else report(d, 'spacing-offscale', `${n}px is not on the spacing scale`);
+    }
   }
 
   /* 5 ─ buttons */

@@ -1,31 +1,31 @@
 <!-- WPMN Section: Work Portfolio Shade — pinned window-shade project list (imported, tokenized) -->
 <section class="wpmn-sec-work-portfolio">
   <style>
-    .wpmn-sec-work-portfolio{padding:96px 0;background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);line-height:1.5}
+    .wpmn-sec-work-portfolio{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);line-height:1.5}
     .wpmn-sec-work-portfolio .wp-container{max-width:1200px;margin:0 auto}
     .wpmn-sec-work-portfolio .wp-wrapper{position:relative}
     .wpmn-sec-work-portfolio .projects-grid{position:sticky;top:60px}
     .wpmn-sec-work-portfolio .item__project{position:relative;height:32.2917vw;overflow:hidden}
     .wpmn-sec-work-portfolio .item__project .divider{position:absolute;bottom:0;left:0;width:100%;border-bottom:1px solid var(--color-text-primary);z-index:0}
     .wpmn-sec-work-portfolio .item__project .cover-link{position:absolute;inset:0;z-index:1}
-    .wpmn-sec-work-portfolio .item-inner{display:flex;height:32.2917vw;padding:24px 0}
-    .wpmn-sec-work-portfolio .col-text{width:32.8472vw;padding-right:40px}
+    .wpmn-sec-work-portfolio .item-inner{display:flex;height:32.2917vw;padding:var(--primitive-space-24) 0}
+    .wpmn-sec-work-portfolio .col-text{width:32.8472vw;padding-right:var(--primitive-space-40)}
     .wpmn-sec-work-portfolio .col-img{width:calc(100% - 32.8472vw)}
     .wpmn-sec-work-portfolio .item-title{font-size:var(--font-size-h1);line-height:1;font-weight:var(--font-weight-medium);letter-spacing:-0.02em;margin:0}
     .wpmn-sec-work-portfolio .item-tag{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary);margin-top:6px}
-    .wpmn-sec-work-portfolio .description{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin-top:32px}
+    .wpmn-sec-work-portfolio .description{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin-top:var(--primitive-space-32)}
     .wpmn-sec-work-portfolio .wrap-img{position:relative;height:100%;overflow:hidden;border-radius:var(--radius-xsm)}
     .wpmn-sec-work-portfolio .wrap-img img{position:relative;display:block;width:100%;height:100%;object-fit:cover;top:50%;transform:translateY(-50%);transition:scale .9s cubic-bezier(.19,1,.22,1)}
     .wpmn-sec-work-portfolio .cover-link:hover ~ .item-inner .wrap-img img,
     .wpmn-sec-work-portfolio .wrap-img:hover img{scale:1.04}
-    .wpmn-sec-work-portfolio .work-footer{display:flex;padding-top:40px}
-    .wpmn-sec-work-portfolio .counter-pill{display:inline-flex;align-items:center;justify-content:space-between;min-width:260px;min-height:58px;padding:0 8px 0 12px;border:1px solid var(--color-text-primary);border-radius:var(--radius-xsm)}
+    .wpmn-sec-work-portfolio .work-footer{display:flex;padding-top:var(--primitive-space-40)}
+    .wpmn-sec-work-portfolio .counter-pill{display:inline-flex;align-items:center;justify-content:space-between;min-width:260px;min-height:58px;padding:0 var(--primitive-space-8) 0 var(--primitive-space-12);border:1px solid var(--color-text-primary);border-radius:var(--radius-xsm)}
     .wpmn-sec-work-portfolio .pill-left{display:flex;align-items:center}
     .wpmn-sec-work-portfolio .pill-icon{width:38px;height:38px;margin-right:10px;color:var(--color-text-primary);flex-shrink:0}
     .wpmn-sec-work-portfolio .pill-label{font-size:var(--font-size-body-label);line-height:1.15;letter-spacing:-0.02em;text-transform:uppercase}
-    .wpmn-sec-work-portfolio .pill-number{font-size:var(--font-size-h2);line-height:1;font-weight:var(--font-weight-bold);margin-left:32px}
+    .wpmn-sec-work-portfolio .pill-number{font-size:var(--font-size-h2);line-height:1;font-weight:var(--font-weight-bold);margin-left:var(--primitive-space-32)}
     .wpmn-sec-work-portfolio .vault-text{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
-    .wpmn-sec-work-portfolio .btn{display:inline-flex;position:relative;align-items:center;justify-content:center;min-width:220px;height:56px;padding:0 48px;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-sm);font-weight:var(--font-weight-medium);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;margin-top:40px;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
+    .wpmn-sec-work-portfolio .btn{display:inline-flex;position:relative;align-items:center;justify-content:center;min-width:220px;height:56px;padding:0 var(--primitive-space-48);background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-sm);font-weight:var(--font-weight-medium);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;margin-top:var(--primitive-space-40);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color 120ms ease}
     .wpmn-sec-work-portfolio .btn:hover{background:var(--btn-bg-hovered)}
     .wpmn-sec-work-portfolio .label_wrap{position:relative;display:flex;flex-direction:column;overflow:hidden}
     .wpmn-sec-work-portfolio .label_wrap span{display:flex;align-items:center;transition:transform .7s cubic-bezier(.19,1,.22,1),opacity .7s cubic-bezier(.19,1,.22,1)}
@@ -40,24 +40,24 @@
     .wpmn-sec-work-portfolio .btn-arrow-right i{transform:translateX(2.4px) rotate(135deg)}
     .wpmn-sec-work-portfolio .btn:hover .btn-arrow-left{transform:translate(-3px,3px)}
     .wpmn-sec-work-portfolio .btn:hover .btn-arrow-right{transform:translate(3px,3px)}
-    @media(max-width:1199px){.wpmn-sec-work-portfolio .wp-container{padding:0 40px}}
+    @media(max-width:1199px){.wpmn-sec-work-portfolio .wp-container{padding:0 var(--primitive-space-40)}}
     @media(max-width:1023px){
-      .wpmn-sec-work-portfolio{padding:64px 0}
+      .wpmn-sec-work-portfolio{padding:var(--primitive-space-64) 0}
       .wpmn-sec-work-portfolio .projects-grid{position:static}
       .wpmn-sec-work-portfolio .item__project{height:auto !important}
-      .wpmn-sec-work-portfolio .item-inner{flex-direction:column-reverse;height:auto;padding:20px 0}
+      .wpmn-sec-work-portfolio .item-inner{flex-direction:column-reverse;height:auto;padding:var(--primitive-space-20) 0}
       .wpmn-sec-work-portfolio .col-text{width:100%;padding-right:0;margin-top:18px}
       .wpmn-sec-work-portfolio .col-img{width:100%}
       .wpmn-sec-work-portfolio .wrap-img{height:42vw}
-      .wpmn-sec-work-portfolio .work-footer{display:block;padding-top:64px;text-align:center}
+      .wpmn-sec-work-portfolio .work-footer{display:block;padding-top:var(--primitive-space-64);text-align:center}
       .wpmn-sec-work-portfolio .pill-col{display:flex;justify-content:center}
       .wpmn-sec-work-portfolio .vault-col{margin-top:37px}
       .wpmn-sec-work-portfolio .vault-text{max-width:290px;margin:0 auto}
       .wpmn-sec-work-portfolio .btn{min-width:190px;margin-top:35px}
     }
-    @media(max-width:768px){.wpmn-sec-work-portfolio .wp-container{padding:0 20px}}
+    @media(max-width:768px){.wpmn-sec-work-portfolio .wp-container{padding:0 var(--primitive-space-20)}}
     @media(min-width:1024px){
-      .wpmn-sec-work-portfolio .work-footer .pill-col{width:32.8472vw;padding-right:40px}
+      .wpmn-sec-work-portfolio .work-footer .pill-col{width:32.8472vw;padding-right:var(--primitive-space-40)}
       .wpmn-sec-work-portfolio .work-footer .vault-col{width:calc(100% - 32.8472vw)}
     }
     @media(prefers-reduced-motion:reduce){

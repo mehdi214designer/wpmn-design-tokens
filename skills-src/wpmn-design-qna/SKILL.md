@@ -51,6 +51,11 @@ findings to 0; run it the same way every time.
 - **Tokens only**: no raw hex/rgb(a) outside masks and the `--btn-bg-glow` fallback, no raw
   font sizes/weights/families, radii via tokens or `calc()` over tokens (999px chips OK),
   tints via `color-mix()` over tokens, every `var()` defined.
+- **Spacing rides the spacing tokens**: padding/margin/gap values on the scale
+  (2-160, see docs/spacing.md) use `var(--primitive-space-N)` (semantic `--spacing-*` for
+  section padding/heading gaps where they fit); negatives via `calc(-1 * var(...))`;
+  off-scale px is import-faithful micro-geometry and lives under the documented
+  `spacing-offscale` exception until Mhasan rules on snapping.
 - **Surface pairing**: dark text on light, invert text on dark — never crossed. Hover
   tint/blur layers live on `::before` under the text, never on the text's own element.
 - **Motion**: real motion (keyframes, rAF, intervals, transform transitions) always behind

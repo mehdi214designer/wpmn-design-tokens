@@ -29,7 +29,9 @@ Look at what was uploaded:
 1. **Never modify core design-system files** (`tokens.css`, `primitives.css`,
    `brand-primitives.css`, `typography.css`, `index.css`, anything in `components/`)
    without asking first. New section folders, `registry.json`, and `demo.html` are fair game.
-2. **Tokens only.** No raw hex, rgb(a), raw font sizes/weights/families, or raw radii.
+2. **Tokens only.** No raw hex, rgb(a), raw font sizes/weights/families, raw radii, or raw
+   spacing — padding/margin/gap values on the spacing scale use `var(--primitive-space-N)`
+   (see docs/spacing.md).
    Derived values use `color-mix()` over tokens. The one allowed literal is the core Button
    glow: `var(--btn-bg-glow, rgba(255,255,255,0.3))`. Masks (`mask-image`) are alpha-only and
    exempt. Read `references/token-map.md` for the full translation table before writing CSS.

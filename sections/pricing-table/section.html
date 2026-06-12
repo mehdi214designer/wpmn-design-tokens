@@ -1,35 +1,35 @@
 <!-- WPMN Section: Pricing Table — 3 tiers, popular highlight, monthly/yearly toggle -->
 <section class="wpmn-sec-pricing-table">
   <style>
-    .wpmn-sec-pricing-table{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-pricing-table{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
     .wpmn-sec-pricing-table .pt-c{max-width:1200px;margin:0 auto;text-align:center}
-    .wpmn-sec-pricing-table .pt-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
+    .wpmn-sec-pricing-table .pt-badge{display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:var(--primitive-space-12)}
     .wpmn-sec-pricing-table .pt-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
     .wpmn-sec-pricing-table .pt-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-pricing-table .pt-toggle{display:inline-flex;gap:4px;margin-top:32px;padding:6px;border:1.5px solid var(--color-border-primary);border-radius:99px}
-    .wpmn-sec-pricing-table .pt-mode{padding:10px 24px;border-radius:99px;border:none;background:transparent;cursor:pointer;font-family:inherit;font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);transition:background-color 120ms ease,color 120ms ease}
+    .wpmn-sec-pricing-table .pt-toggle{display:inline-flex;gap:var(--primitive-space-4);margin-top:var(--primitive-space-32);padding:6px;border:1.5px solid var(--color-border-primary);border-radius:99px}
+    .wpmn-sec-pricing-table .pt-mode{padding:10px var(--primitive-space-24);border-radius:99px;border:none;background:transparent;cursor:pointer;font-family:inherit;font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);transition:background-color 120ms ease,color 120ms ease}
     .wpmn-sec-pricing-table .pt-mode[data-active]{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
-    .wpmn-sec-pricing-table .pt-save{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-semibold);background:var(--color-success-primary);color:var(--color-text-primary-invert);border-radius:99px;padding:2px 8px;margin-left:6px}
-    .wpmn-sec-pricing-table .pt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;text-align:left;align-items:stretch}
-    .wpmn-sec-pricing-table .pt-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:40px 32px;display:flex;flex-direction:column;position:relative}
+    .wpmn-sec-pricing-table .pt-save{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-semibold);background:var(--color-success-primary);color:var(--color-text-primary-invert);border-radius:99px;padding:var(--primitive-space-2) var(--primitive-space-8);margin-left:6px}
+    .wpmn-sec-pricing-table .pt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--primitive-space-32);margin-top:var(--primitive-space-48);text-align:left;align-items:stretch}
+    .wpmn-sec-pricing-table .pt-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:var(--primitive-space-40) var(--primitive-space-32);display:flex;flex-direction:column;position:relative}
     .wpmn-sec-pricing-table .pt-card--pop{border:2px solid var(--btn-bg-enable);box-shadow:var(--shadow-soft-400)}
-    .wpmn-sec-pricing-table .pt-pop{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-semibold);letter-spacing:.06em;text-transform:uppercase;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:99px;padding:4px 14px;white-space:nowrap}
+    .wpmn-sec-pricing-table .pt-pop{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-semibold);letter-spacing:.06em;text-transform:uppercase;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border-radius:99px;padding:var(--primitive-space-4) 14px;white-space:nowrap}
     .wpmn-sec-pricing-table .pt-name{font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-pricing-table .pt-for{margin:4px 0 0;font-size:var(--font-size-body-small);color:var(--color-text-secondary)}
-    .wpmn-sec-pricing-table .pt-price{margin:24px 0 0;display:flex;align-items:baseline;gap:6px}
+    .wpmn-sec-pricing-table .pt-for{margin:var(--primitive-space-4) 0 0;font-size:var(--font-size-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-pricing-table .pt-price{margin:var(--primitive-space-24) 0 0;display:flex;align-items:baseline;gap:6px}
     .wpmn-sec-pricing-table .pt-amount{font-size:var(--font-size-h2);line-height:1;font-weight:var(--font-weight-bold);color:var(--color-text-primary)}
     .wpmn-sec-pricing-table .pt-per{font-size:var(--font-size-body-small);color:var(--color-text-secondary)}
-    .wpmn-sec-pricing-table .pt-list{list-style:none;margin:24px 0 32px;padding:0;display:flex;flex-direction:column;gap:12px;flex:1}
+    .wpmn-sec-pricing-table .pt-list{list-style:none;margin:var(--primitive-space-24) 0 var(--primitive-space-32);padding:0;display:flex;flex-direction:column;gap:var(--primitive-space-12);flex:1}
     .wpmn-sec-pricing-table .pt-list li{display:flex;align-items:flex-start;gap:10px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
-    .wpmn-sec-pricing-table .pt-list svg{flex-shrink:0;margin-top:4px;color:var(--color-success-primary)}
+    .wpmn-sec-pricing-table .pt-list svg{flex-shrink:0;margin-top:var(--primitive-space-4);color:var(--color-success-primary)}
     .wpmn-sec-pricing-table .pt-cta{height:48px;border-radius:var(--radius-xsm);font-family:inherit;font-size:var(--font-size-btn-md);font-weight:var(--font-weight-medium);cursor:pointer;transition:background-color 120ms ease,color 120ms ease;display:flex;align-items:center;justify-content:center;text-decoration:none}
     .wpmn-sec-pricing-table .pt-cta--primary{background:var(--btn-bg-enable);color:var(--color-text-primary-invert);border:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
     .wpmn-sec-pricing-table .pt-cta--primary:hover{background:var(--btn-bg-hovered)}
     .wpmn-sec-pricing-table .pt-cta--secondary{background:transparent;color:var(--btn-bg-enable);border:1.5px solid var(--btn-bg-enable)}
     .wpmn-sec-pricing-table .pt-cta--secondary:hover{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
-    @media(max-width:1199px){.wpmn-sec-pricing-table .pt-c{padding:0 40px}}
+    @media(max-width:1199px){.wpmn-sec-pricing-table .pt-c{padding:0 var(--primitive-space-40)}}
     @media(max-width:900px){.wpmn-sec-pricing-table .pt-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
-    @media(max-width:768px){.wpmn-sec-pricing-table{padding:64px 0}.wpmn-sec-pricing-table .pt-c{padding:0 20px}}
+    @media(max-width:768px){.wpmn-sec-pricing-table{padding:var(--primitive-space-64) 0}.wpmn-sec-pricing-table .pt-c{padding:0 var(--primitive-space-20)}}
   </style>
   <div class="pt-c">
     <span class="pt-badge">Pricing</span>

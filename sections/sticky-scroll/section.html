@@ -1,20 +1,20 @@
 <!-- WPMN Section: Sticky Scroll — pinned text left, scrolling features right -->
 <section class="wpmn-sec-sticky-scroll">
   <style>
-    .wpmn-sec-sticky-scroll{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
-    .wpmn-sec-sticky-scroll .st-c{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:start}
+    .wpmn-sec-sticky-scroll{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-sticky-scroll .st-c{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:5fr 7fr;gap:var(--primitive-space-48);align-items:start}
     .wpmn-sec-sticky-scroll .st-pin{position:sticky;top:96px}
-    .wpmn-sec-sticky-scroll .st-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
+    .wpmn-sec-sticky-scroll .st-badge{display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:var(--primitive-space-12)}
     .wpmn-sec-sticky-scroll .st-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
     .wpmn-sec-sticky-scroll h2{margin:0;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-sticky-scroll .st-sub{margin:16px 0 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
-    .wpmn-sec-sticky-scroll .st-item{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:32px;margin-bottom:24px}
-    .wpmn-sec-sticky-scroll .st-img{border-radius:var(--radius-xsm);background:var(--btn-bg-focused);height:180px;display:flex;align-items:center;justify-content:center;color:var(--btn-bg-hovered);font-size:var(--font-size-body-small);margin-bottom:20px}
+    .wpmn-sec-sticky-scroll .st-sub{margin:var(--primitive-space-16) 0 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-sticky-scroll .st-item{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:var(--primitive-space-32);margin-bottom:var(--primitive-space-24)}
+    .wpmn-sec-sticky-scroll .st-img{border-radius:var(--radius-xsm);background:var(--btn-bg-focused);height:180px;display:flex;align-items:center;justify-content:center;color:var(--btn-bg-hovered);font-size:var(--font-size-body-small);margin-bottom:var(--primitive-space-20)}
     .wpmn-sec-sticky-scroll .st-item h3{margin:0;font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-sticky-scroll .st-item p{margin:8px 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
-    @media(max-width:1199px){.wpmn-sec-sticky-scroll .st-c{padding:0 40px}}
+    .wpmn-sec-sticky-scroll .st-item p{margin:var(--primitive-space-8) 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    @media(max-width:1199px){.wpmn-sec-sticky-scroll .st-c{padding:0 var(--primitive-space-40)}}
     @media(max-width:900px){.wpmn-sec-sticky-scroll .st-c{grid-template-columns:1fr}.wpmn-sec-sticky-scroll .st-pin{position:static}}
-    @media(max-width:768px){.wpmn-sec-sticky-scroll{padding:64px 0}.wpmn-sec-sticky-scroll .st-c{padding:0 20px}}
+    @media(max-width:768px){.wpmn-sec-sticky-scroll{padding:var(--primitive-space-64) 0}.wpmn-sec-sticky-scroll .st-c{padding:0 var(--primitive-space-20)}}
       .wpmn-sec-sticky-scroll .st-img{overflow:hidden}.wpmn-sec-sticky-scroll .st-img img{display:block;width:100%;height:100%;object-fit:cover}
   </style>
   <div class="st-c">

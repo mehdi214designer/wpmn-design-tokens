@@ -1,5 +1,6 @@
 {
-  "ecommerce-hero/btn-multiple-primary/mini-btn": "Add-to-Cart is a mock-UI element inside the dashboard collage artwork, not an actionable section CTA — the section's single real primary is .cta",
+  "ecommerce-hero/btn-multiple-primary/mini-btn": "Add-to-Cart is a mock-UI element inside the dashboard collage artwork, not an actionable section CTA \u2014 the section's single real primary is .cta",
   "ecommerce-hero/icon-not-hugeicons/mark": "Abstract logo-cloud marks (fake client logos), brand-mark artwork rather than UI icons",
-  "animated-feature-grid/raw-radius/*": "Mock-device and chart artwork geometry (macbook screen/keyboard, chart bars and indicator) — illustration, not UI surfaces"
+  "animated-feature-grid/raw-radius/*": "Mock-device and chart artwork geometry (macbook screen/keyboard, chart bars and indicator) \u2014 illustration, not UI surfaces",
+  "*/spacing-offscale/*": "Off-scale micro-geometry (chip paddings, artwork dimensions, fluid layout values) faithful to imported designs \u2014 pending Mhasan's decision on snapping to the spacing scale"
 }

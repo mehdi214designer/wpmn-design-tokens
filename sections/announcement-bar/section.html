@@ -1,15 +1,15 @@
 <!-- WPMN Section: Announcement Bar — slim dismissible top-of-page banner -->
 <section class="wpmn-sec-announcement-bar">
   <style>
-    .wpmn-sec-announcement-bar .ab-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 48px;background:var(--color-surface-secondary);font-family:var(--font-family-base);position:relative;transition:opacity 200ms ease}
+    .wpmn-sec-announcement-bar .ab-bar{display:flex;align-items:center;justify-content:center;gap:var(--primitive-space-16);padding:var(--primitive-space-12) var(--primitive-space-48);background:var(--color-surface-secondary);font-family:var(--font-family-base);position:relative;transition:opacity 200ms ease}
     .wpmn-sec-announcement-bar .ab-bar[data-hidden]{display:none}
     .wpmn-sec-announcement-bar .ab-text{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary-invert);text-align:center}
     .wpmn-sec-announcement-bar .ab-text b{font-weight:var(--font-weight-semibold)}
-    .wpmn-sec-announcement-bar .ab-link{display:inline-flex;align-items:center;gap:4px;font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable-invert);text-decoration:none;white-space:nowrap}
+    .wpmn-sec-announcement-bar .ab-link{display:inline-flex;align-items:center;gap:var(--primitive-space-4);font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable-invert);text-decoration:none;white-space:nowrap}
     .wpmn-sec-announcement-bar .ab-link:hover{text-decoration:underline}
     .wpmn-sec-announcement-bar .ab-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:none;background:transparent;color:var(--color-text-secondary-invert);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:calc(var(--radius-xsm) - 2px);transition:color 120ms ease}
     .wpmn-sec-announcement-bar .ab-close:hover{color:var(--color-text-primary-invert)}
-    @media(max-width:768px){.wpmn-sec-announcement-bar .ab-bar{padding:10px 44px 10px 16px;flex-wrap:wrap;gap:6px}}
+    @media(max-width:768px){.wpmn-sec-announcement-bar .ab-bar{padding:10px 44px 10px var(--primitive-space-16);flex-wrap:wrap;gap:6px}}
   </style>
   <div class="ab-bar" role="region" aria-label="Announcement">
     <span class="ab-text"><b>Summer sale:</b> 30% off all annual plans until June 30.</span>
