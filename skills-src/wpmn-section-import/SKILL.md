@@ -42,12 +42,17 @@ Look at what was uploaded:
    rebuild artwork as token-based CSS/SVG/canvas.
 5. **No pill buttons.** Buttons use `--radius-xsm` and the btn tokens, exactly like the core
    Button component. Pill shape (999px) is fine for tags, chips, and badges — never buttons.
-   **Icons come from the design system's Hugeicons Pro library.** The FULL package (7,800+
+   **Icons come from the design system's Hugeicons Pro library** — the FULL package (7,800+
    icons, every variant) is installed at `node_modules/@hugeicons/react-pro`. Never freehand
    an icon — extract the real path with
-   `node scripts/extract-hugeicon.mjs <icon-file-name> solid.rounded`
-   (`--find <term>` lists matches). Per `docs/icons.md`: variant solid.rounded, 24 viewBox,
-   currentColor, 20px in buttons, 24px default, 32-40px feature icons.
+   `node scripts/extract-hugeicon.mjs <icon-file-name> stroke.rounded`
+   (`--find <term>` lists matches).
+   **One unified variant rule:** a site uses exactly ONE Hugeicons variant everywhere. The
+   library's established variant is `stroke.rounded` (it's what components/Icons, Footer and
+   NavBar already use) — every section icon uses it too. Never mix stroke and solid icons in
+   the same build; if a project explicitly chooses a different variant, switch ALL icons, not
+   some. Sizes per `docs/icons.md`: 24 viewBox, currentColor, 20px in buttons, 24px default,
+   32-40px feature icons.
 6. **Responsive without fighting the tokens.** `typography.css` already swaps every font token
    at 768px — never write raw mobile `font-size` overrides. Section padding: 96px desktop,
    64px mobile, 1200px container per the guideline. Every section needs working tablet and
