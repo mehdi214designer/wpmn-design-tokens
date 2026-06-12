@@ -1,56 +1,136 @@
 # WPMN Design System
 
-> AI-friendly component library and CSS design token system for WPManageNinja products (FluentForms, FluentCRM, NinjaTables, and 13 more WordPress plugin brands). Plain CSS custom properties + React, no build step. 16 brands switch via a single `data-brand` attribute.
+> AI-friendly component and section library + CSS design token system for WPManageNinja products (FluentForms, FluentCRM, NinjaTables, and 13 more WordPress plugin brands). Plain CSS custom properties + React + self-contained HTML sections, no build step. 16 brands switch via a single `data-brand` attribute; light/dark via `data-theme`.
 
 This file tells AI agents how to fetch and use this design system.
 
 ## How to use this repo as an AI agent
 
-1. Fetch `registry.json` first. It lists every component, its files, variants, and interactions.
-2. For each component you need, choose ONE of two paths:
-   - **Prompt path**: fetch the component's `prompt.md` and follow it as a build spec to recreate the component in any stack (HTML/CSS, React, Vue, etc.). Specs are exact: px values, token names, states, transition timings.
-   - **Code path**: fetch the component's source files (`.jsx` + `.css`) and use them as-is. They depend only on the token CSS files.
-3. Always load the token files before using any component code:
-   - `primitives.css` (raw values) -> `brand-primitives.css` (brand overrides) -> `tokens.css` (semantic tokens) -> `typography.css` (type scale). Or just `index.css` which imports all four in order.
-4. Components must only use semantic tokens (`--color-*`, `--btn-*`, `--input-*`, `--radius-*`, `--font-*`, `--shadow-*`). Never hardcode colors and never use `--primitive-*` directly in new component code.
+1. Fetch `registry.json` first — it lists every component and section, with files, interactions, tokens used, category/role, and tags.
+2. For each item, choose ONE of two paths:
+   - **Prompt path**: fetch its `prompt.md` and follow it as an exact build spec (px values, token names, easings, states) to recreate it in any stack.
+   - **Code path**: fetch its source (`.jsx` + `.css` for components; a single self-contained `section.html` for sections) and use it as-is.
+3. Always load the token CSS first: `index.css` (imports primitives -> brand-primitives -> tokens -> typography in order).
+4. Sections are drop-in: one `<section class="wpmn-sec-<id>">` containing scoped styles, markup, and a scoped script. They coexist on one page and re-skin with `data-brand` / `data-theme` on any ancestor.
 
-All files are fetchable via raw URLs:
-`https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/<path>`
+All files are fetchable via raw URLs: `https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/<path>`
 
-## Core rules
+## Core rules (non-negotiable)
 
-- Brand switching: set `data-brand="<key>"` on the root or any section. Keys: wpmanagenia, fluentforms, fluentcrm, ninjatables, wpsocialninja, fluentsupport, fluentaffiliate, fluentboards, fluentcart, fluentplayer, fluentmembers, fluentbooking, fluentcommunity, paymattic, fluentsmtp, azonpress.
-- Dark mode: add `data-theme="dark"` to `<html>`. Light is default.
-- Mobile: handled automatically via `@media (max-width: 768px)`.
-- Font: Work Sans (400/500/600/700), loaded by `typography.css`.
-- Buttons: always pair primary + secondary side by side on marketing pages.
-- JSX convention: use `var`, not `const`, inside function bodies. Icons are inline SVG path data, no runtime imports.
+- **Tokens only**: semantic tokens (`--color-*`, `--btn-*`, `--input-*`, `--radius-*`, `--font-*`, `--shadow-*`). No raw hex/rgb, no raw font sizes/weights, radii via tokens or calc() over tokens. Tints via `color-mix()` over tokens.
+- **Surface pairing**: dark text on light surfaces, `--color-text-*-invert` on dark/brand surfaces. Never dark-on-dark or light-on-light.
+- **Buttons** follow `components/Button/Button.css` exactly: primary (brand bg + invert text + `--btn-bg-glow` inset + hovered/pressed/focus-visible states), secondary (transparent + 1.5px brand border, fills on hover; ghost-invert variant on dark surfaces), tertiary (text-only). Size steps 32-64px, radius `--radius-xsm`, 120ms ease states, one primary per section, no pill buttons, no underlines.
+- **Icons**: Hugeicons Pro only (`node scripts/extract-hugeicon.mjs <name> stroke.rounded`), ONE unified variant per site (library standard stroke.rounded), 24 viewBox, currentColor, invert color on dark surfaces.
+- **Motion**: keyframes prefixed `wpmn-`, everything behind `prefers-reduced-motion`.
+- Full rules: `wpmn-design-guideline.md`, `docs/`. QA tooling: `scripts/design-qa.mjs`, `scripts/audit-surface-pairing.mjs`.
 
-## Key files
+## Components (9)
 
-- [registry.json](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/registry.json): machine-readable component index. START HERE.
-- [index.css](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/index.css): single import for the full token system.
-- [tokens.css](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/tokens.css): semantic tokens (light/dark/mobile).
-- [brand-primitives.css](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/brand-primitives.css): all 16 brand color scales.
-- [typography.css](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/typography.css): type scale + utility classes.
-- [wpmn-design-guideline.md](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/wpmn-design-guideline.md): layout, spacing, section, and logo rules for full pages.
+- **Badge** (`badge`) — Status badge. Prompt: `components/Badge/prompt.md` · Code: `components/Badge/Badge.jsx` + `components/Badge/Badge.css`
+- **Breadcrumbs** (`breadcrumbs`) — Breadcrumb navigation. Prompt: `components/Breadcrumbs/prompt.md` · Code: `components/Breadcrumbs/Breadcrumbs.jsx` + `components/Breadcrumbs/Breadcrumbs.css`
+- **Button** (`button`) — Primary action button. Prompt: `components/Button/prompt.md` · Code: `components/Button/Button.jsx` + `components/Button/Button.css`
+- **Icons** (`icons`) — Inline SVG icon components extracted from @hugeicons/react-pro v0.3.2. Prompt: `components/Icons/prompt.md` · Code: `components/Icons/HugeIcons.jsx`
+- **Input** (`input`) — Text input with label, hint, error/success messaging, left/right icons. Prompt: `components/Input/prompt.md` · Code: `components/Input/Input.jsx` + `components/Input/Input.css`
+- **Logo** (`logo`) — Inline SVG brand logo renderer. Prompt: `components/Logo/prompt.md` · Code: `components/Logo/Logo.jsx` + `components/Logo/Logo.css`
+- **NavBar** (`navbar`) — Responsive site header. Prompt: `components/NavBar/prompt.md` · Code: `components/NavBar/NavBar.jsx` + `components/NavBar/NavBar.css`
+- **SocialIcons** (`socialicons`) — Standalone social icon button group. Prompt: `components/SocialIcons/prompt.md` · Code: `components/SocialIcons/SocialIcons.jsx` + `components/SocialIcons/SocialIcons.css`
+- **Text** (`text`) — Polymorphic typography component. Prompt: `components/Text/prompt.md` · Code: `components/Text/Text.jsx` + `typography.css`
 
-## Components
+## Sections (57)
 
-Each component folder contains: source files, `meta.json` (machine spec), `prompt.md` (AI build spec).
+Each: `sections/<id>/section.html` (code) + `sections/<id>/prompt.md` (build spec) + `sections/<id>/meta.json`.
 
-- [Button](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Button/prompt.md): 3 types x 5 sizes x 5 states, loading spinner
-- [Input](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Input/prompt.md): stroke/fill variants, 3 sizes, error/success states
-- [Badge](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Badge/prompt.md): pill/soft variants, 5 semantic types
-- [Text](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Text/prompt.md): polymorphic typography component, 12 variants
-- [NavBar](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/NavBar/prompt.md): responsive nav with mobile drawer
-- [Logo](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Logo/prompt.md): 16 brands x logo/icon x 5 color types, inline SVG
-- [Footer](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Footer/prompt.md): full site footer with nav columns and social icons
-- [Breadcrumbs](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/Breadcrumbs/prompt.md): 4 style variants, light + dark
-- [SocialIcons](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/components/SocialIcons/prompt.md): 7 platform icons, sizable button group
+### Announcement
+- **Announcement Bar** (`announcement-bar`) — Slim dark dismissible bar for promos: bold lead-in, arrow link, close button.
 
-## Optional
+### Blog
+- **Blog Cards** (`blog-cards`) — 3-column article cards: 16:9 cover, category + read time meta, title, excerpt.
+- **Stacked List** (`stacked-list`) — Uniform feed rows: date column, title + excerpt, tag pill.
 
-- [demo.html](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/demo.html): browser demo of all components (Babel standalone, no build).
-- [library.html](https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/library.html): human-facing library browser with Copy Prompt / Copy Code buttons.
-- [docs/](https://github.com/mehdi214designer/wpmn-design-tokens/tree/master/docs): per-topic markdown docs (brands, colors, components, icons, layout, logo, spacing, tokens, typography).
+### CTA
+- **Builder CTA Card** (`builder-cta`) — Large CTA card with a brand-tinted gradient, kicker pill, logo-in-heading, two-column icon feature list, paired CTAs, and a product screenshot that fades into the card on the right..
+- **CTA Impact Banner** (`cta-banner`) — High-contrast dark panel (surface-secondary, radius 32) with H2, subtext, primary + ghost CTA pair, and a guarantee note.
+
+### Clients
+- **Infinite Marquee** (`infinite-marquee`) — Continuous auto-scrolling logo band via duplicated track + translateX keyframes (28s loop).
+- **Logo Cloud** (`logo-cloud`) — Trust strip: one-line label + centered flex row of grayscale logos at 65% opacity, full opacity on hover.
+
+### Comparison
+- **Competitor Comparison** (`comparison-table`) — Us-vs-them matrix: highlighted Us column, success checks and error crosses, mixed text cells, CTA below..
+- **Expandable Table** (`expandable-table`) — Comparison table whose rows expand inline (max-height transition) to reveal a 3-fact detail grid.
+- **Product Compare Table** (`product-compare-table`) — 4-product feature matrix with a rounded highlight ring around the hero column, tri-state check/minus/cross marks, and JS-generated stacked cards on mobile..
+
+### Content
+- **Collapsible Drawer** (`collapsible-drawer`) — Slide-out side panel over a stage area.
+- **Read More** (`read-more`) — Long text truncated at 170px with a bottom fade.
+
+### FAQ
+- **FAQ Accordion** (`faq-accordion`) — Centered section header + 800px accordion list.
+
+### Features
+- **Animated Feature Grid** (`animated-feature-grid`) — 2x2 illustrated feature cards with living micro-scenes: a signing pen over a binary canvas, a cycling analytics chart, a macbook lid that opens and app icons that fly in, and a live speedometer..
+- **Bento Grid** (`bento-grid`) — 4-column bento with span-2 and tall boxes, icon tiles, one inverted dark box with a big stat.
+- **Content Accordion** (`content-accordion`) — Two-column disclosure: pinned heading left, numbered single-open accordion right.
+- **Feature Tabs** (`content-tabs`) — Centered header + pill tab bar switching content panels.
+- **Dark Features Panel** (`dark-features-panel`) — Full-bleed dark rounded panel with a chip header, centered title, and a 3x3 feature grid cut by gradient-fading dividers with masked intersection dots; side rulers frame the panel and a brand spark streak slides down the edge lines on loop..
+- **Feature Card Stack** (`feature-card-stack`) — Sticky section heading with dark feature cards that stack over it on scroll; each pinned card scales down to 0.94 as the next slides over (rAF-driven, linear with scroll).
+- **Feature Scrollspy** (`feature-scrollspy`) — Sticky scrollspy menu beside a column of feature cards.
+- **Feature Tabs Carousel** (`feature-tabs-carousel`) — Auto-advancing tabbed feature panel on a drifting brand gradient.
+- **Fibonacci Bento** (`fibonacci-bento`) — Framed media bento on a Fibonacci-style 5-card grid.
+- **Multi-Column Cards** (`multi-column-cards`) — Classic 3-column feature cards (guideline grid #3, 32px gutter): icon tile, heading, body.
+- **Sticky Feature Switcher** (`sticky-feature-switcher`) — Pinned two-panel scroll story.
+- **Sticky Side-by-Side** (`sticky-scroll`) — 5/7 split where the left heading pins (sticky top 96px) while feature cards scroll on the right..
+- **Zig-Zag Features** (`zigzag-features`) — Alternating image/text rows (even rows flip order).
+
+### Footer
+- **Footer** (`footer`) — Full site footer.
+- **Mega Footer** (`mega-footer`) — Full mega footer: white card over a soft stage with a 3-column grid (heading + CTAs + community icons, link groups, newsletter form + social row), a giant outline gradient wordmark, and a copyright row..
+
+### Hero
+- **Agency Hero** (`agency-hero`) — Agency-style hero: outline badge, oversized two-line heading beside an intro + pill CTA, then a media row pairing a large team photo (with a spinning circular contact badge) with a growth chart card and a dark stat card..
+- **Board Hero** (`board-hero`) — Dark product hero: pulsing brand badge, display headline with a highlighted word, intro and CTA pair over a perspective-tilted browser window holding a live-looking kanban board (three columns, tags, progress bars, avatars) with floating stat tiles, a dot grid and ambient brand glows..
+- **Ecommerce Hero** (`ecommerce-hero`) — Commerce hero: brand-dash eyebrow, display heading with a hand-drawn underline, intro and primary CTA beside a floating dashboard collage (product card with sizes and Add to Cart, sales/orders stat cards with count-ups, brand gauge card, in-stock tag) over a tilted soft stage, plus a muted logo band..
+- **Standard Hero** (`hero-standard`) — Page-opening hero: dot badge, H1 with brand accent, subtext, paired CTAs, 16:9 mockup inside a brand-surface container (radius 32, mockup radius 16 + soft shadow)..
+- **Typographic Hero** (`hero-typographic`) — Minimalist hero built on massive type: clamp(48px, 8vw, 96px) bold headline with brand accent span, subtext, paired CTAs.
+- **Notch Tabs Hero** (`notch-tabs-hero`) — Centered hero with a white notched tab bar (inverse-corner radial-gradient shoulders) overlapping a brand gradient showcase; switching tabs blurs the screenshot out (scale .949, 15px drop, 4px blur over 250ms) and springs the next one back in..
+- **Portrait Stats Hero** (`portrait-stats-hero`) — Split hero: outline badge, display heading, intro, paired CTAs and a trusted-by logo row on the left; a portrait photo card with a radial brand glow and two floating stat tiles (count-up number + delta, rating with star) on the right..
+
+### How It Works
+- **Horizontal Scroll** (`horizontal-scroll`) — 300vh tall wrapper pins a viewport; vertical scroll progress translates a horizontal panel track.
+- **Stacking Cards** (`stacking-cards`) — Cards pin with position:sticky at stepped offsets and stack as the page scrolls.
+- **Steps Card Stack** (`steps-card-stack`) — Four full-viewport gradient step cards pin with position:sticky and squash away (scale to 0.70, rotateX to 27deg, per-card rotateZ tilt, late opacity fade) over a 942px pin while the next card slides over..
+- **Steps Walkthrough** (`steps-walkthrough`) — 4 numbered cards with connecting arrows.
+
+### Integrations
+- **Integration Grid** (`integration-grid`) — 4-column app tiles: logo tile, name, one-line purpose.
+
+### Newsletter
+- **Newsletter Signup** (`newsletter-signup`) — Bordered 32px-radius panel, icon tile, heading, single email input + subscribe button, privacy note.
+- **Split Screen 50/50** (`split-screen`) — Even two-column split: brand-surface visual left, badge + heading + inline email capture right.
+
+### Pricing
+- **Pricing Table** (`pricing-table`) — 3 tiers with a Most Popular highlight (2px brand border + shadow), monthly/yearly toggle swapping prices via data attributes, check-listed features..
+- **Pricing Toggle** (`pricing-toggle`) — Three-plan pricing with a sliding monthly/yearly toggle, a dark featured plan, dashed dividers, icon feature lists, and a full-width enterprise row.
+
+### Roadmap
+- **Timeline Roadmap** (`timeline-roadmap`) — Vertical axis with status dots: done (success check), in progress (brand pulse dot), planned (empty).
+
+### Showcase
+- **Asymmetric Grid** (`asymmetric-grid`) — 12-column broken grid with intentional vertical offsets for an editorial feel.
+- **Before/After Slider** (`before-after-slider`) — Draggable divider over two stacked panels using clip-path inset, pointer events, 16:9 frame with knob handle..
+- **Carousel Slider** (`carousel-slider`) — Scroll-snap horizontal belt, 3-up responsive, arrow buttons, auto-generated page dots that track scroll position..
+- **Masonry Grid** (`masonry-grid`) — Pinterest-style packing via CSS columns (3/2/1 responsive).
+- **Mockup Showcase** (`mockup-showcase`) — Browser-framed screenshot (chrome dots + URL bar) on a dark surface stage, following the guideline mockup rules: 16px frame radius, soft-500 shadow, 32px stage radius..
+- **Product Showcase** (`product-showcase`) — E-commerce best picks grid: large featured product card spanning two rows + 2x2 grid of smaller cards.
+- **Work Portfolio Shade** (`work-portfolio`) — Pinned window-shade portfolio: project rows collapse from full height to a thin strip sequentially as the page scrolls (1000px of scroll per item), with image hover zoom, an ink counter pill, and a See More button with text-slide + corner-arrow hover.
+
+### Stats
+- **Stat Counter Grid** (`stats-counter`) — 4-column metric grid with large brand-colored numbers that count up when scrolled into view.
+
+### Team
+- **Team Grid** (`team-grid`) — 4-column people cards: circular avatar, name, role, social icon links.
+
+### Testimonial
+- **Folder Quote Cards** (`folder-quote-cards`) — Three case-study quote cards drawn as folder tabs (stretched SVG outline with a top notch).
+- **Quote Stats Bento** (`quote-stats-bento`) — Social proof bento: four stat cards (grey shell, white inset panel) interleaved with two brand-tinted quote cards carrying a fading dot pattern, company name, quote, and author line..
+- **Testimonial Grid** (`testimonial-grid`) — Wall-of-love masonry (CSS columns) of quote cards with star rows, avatar initials, names and roles..
