@@ -73,7 +73,7 @@ fluentbooking, fluentcommunity, paymattic, fluentsmtp, azonpress
 ## Icons
 
 - Library: `@hugeicons/react-pro` v0.3.2 in `node_modules/`
-- Variant: solid.rounded
+- Variant: one unified variant per site — library standard stroke.rounded (never mix)
 - Usage: always inline as SVG path data directly in JSX — no runtime import, no bundler
 - Pattern: `const _IconName = ({ s, c }) => <svg width={s} height={s} viewBox="0 0 24 24" fill="none"><path d="..." fill={c} /></svg>`
 - Reference file (to be created): `components/Icons/HugeIcons.jsx`

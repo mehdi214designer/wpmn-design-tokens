@@ -60,7 +60,7 @@ import { Button, Badge, Input, Text, NavBar, Logo, Footer, Breadcrumbs, SocialIc
 
 ## Icons
 
-Icons are inlined SVGs from `@hugeicons/react-pro` (v0.3.2), solid-rounded variant.
+Icons are inlined SVGs from `@hugeicons/react-pro` (v0.3.2), one unified variant per site — library standard stroke.rounded. Extract paths with `node scripts/extract-hugeicon.mjs <name> stroke.rounded`.
 
 Icon components use `({ s, c })` props — size and color. Named with `_` prefix (e.g. `_Facebook`, `_Home01`).
 

@@ -70,6 +70,9 @@ Look at what was uploaded:
 10. **Hover layers never sit on text.** Tint/blur overlays go on a `::before` (z-index 0)
    with the text lifted above (`position:relative; z-index:1`) — never blend or tint the
    element that contains the copy.
+11. **Docs stay in sync.** If an import decision establishes or changes a rule, update
+   `wpmn-design-guideline.md` / the matching `docs/*.md` in the same commit — code and
+   guideline must never contradict each other.
 
 ## HTML import mode
 

@@ -32,7 +32,10 @@ findings to 0; run it the same way every time.
    New issues found → fix → repeat. Stop only at `0 issue(s)`.
 5. **Verify nothing visual broke** where the fix touched markup (the smoke test catches
    runtime errors, not taste — flag anything that changed an interaction for Mhasan).
-6. **Ship:** commit as Mhasan (`user.name="Mhasan" user.email="authlabasif@gmail.com"`),
+6. **Sync the docs.** Any fix that changes or adds a rule updates the matching doc in the
+   same commit (`wpmn-design-guideline.md`, `docs/icons.md`, `docs/spacing.md`, `About.md`,
+   `README.md`) — a guideline that contradicts the code confuses every AI that reads it.
+7. **Ship:** commit as Mhasan (`user.name="Mhasan" user.email="authlabasif@gmail.com"`),
    push `origin master`. The repo is what AI consumers fetch; unpushed fixes don't exist.
 
 ## What "on-system" means (the rules the scanner enforces)

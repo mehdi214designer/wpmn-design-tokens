@@ -131,6 +131,15 @@ Every product page must have `data-brand="x"` on the root element. This activate
 
 Always use `--btn-bg-enable` (brand primary token) for primary buttons. Never use hardcoded colors.
 
+Button rules (match `components/Button/Button.css` exactly):
+
+- **One primary button per section.** Every other action is secondary/tertiary.
+- **Primary**: `--btn-bg-enable` bg, `--color-text-primary-invert` text, inner glow `inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))`, hover `--btn-bg-hovered`, active `--btn-bg-pressed`.
+- **Secondary**: transparent bg, `1.5px solid var(--btn-bg-enable)` border, brand text; hover fills brand with invert text. On dark/brand surfaces use the ghost-invert variant: same anatomy with `--color-text-primary-invert` border/text.
+- **Radius**: `--radius-xsm` / `--primitive-radius-xs`. No pill buttons (999px is for tags/chips/badges only).
+- **No underlines**: anchor-wrapped buttons need `a{text-decoration:none}` in scope.
+- **Hover overlays never sit on text**: tints/blurs go on a `::before` layer (z-index 0) with the copy lifted above (`position:relative; z-index:1`).
+
 ```
 DO:    Uses --btn-bg-enable (changes per brand)
 DON'T: background: #4b5563 (hardcoded gray — breaks theming)
@@ -205,6 +214,8 @@ Seven approved layout grids. Do not use arbitrary column ratios outside these.
 
 ## Spacing Within Sections
 
+All spacing values below are expressed with tokens in code: `var(--primitive-space-N)` for scale values (see docs/spacing.md), semantic `--spacing-*` tokens where they fit (section padding, heading gaps, button gaps). Negative offsets use `calc(-1 * var(--primitive-space-N))`. Off-scale pixel values are allowed only as documented exceptions (import-faithful micro-geometry) in `scripts/design-qa-exceptions.json`.
+
 | Property | Value |
 |---|---|
 | Badge → Heading | 12px |
@@ -223,12 +234,14 @@ Seven approved layout grids. Do not use arbitrary column ratios outside these.
 | Property | Rule |
 |---|---|
 | Library | `@hugeicons/react-pro` v0.3.2 |
-| Variant | `solid.rounded` — always, no exceptions |
+| Variant | **One unified variant per site** — library standard `stroke.rounded` (what components/Icons, Footer, NavBar and all sections use). Never mix variants; switching means switching every icon on the site. |
 | Usage | Always inline as SVG path data — no runtime imports |
 | Default size | 24×24px |
 | Small (buttons, inputs) | 20×20px |
 | Large (feature icons) | 32×32px or 40×40px |
 | Color | `currentColor` — inherits from parent text token |
+| On dark surfaces | `--color-text-primary-invert`, never the brand color — brand-colored icons on dark break the light/dark toggle |
+| Sourcing | Extract real paths from the installed Pro package: `node scripts/extract-hugeicon.mjs <icon-file-name> stroke.rounded` (`--find <term>` searches 7,800+ icons). Never freehand an icon. |
 
 Icon pattern:
 ```jsx
@@ -238,6 +251,12 @@ const _IconName = ({ s, c }) => (
   </svg>
 )
 ```
+
+---
+
+## Motion
+
+Real motion (keyframes, rAF loops, intervals, transform transitions) always sits behind a `prefers-reduced-motion: reduce` guard — transitions off, content rendered in its final state. Keyframe names are prefixed `wpmn-` so sections coexist on one page.
 
 ---
 
