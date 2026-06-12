@@ -20,6 +20,9 @@
     @media(max-width:768px){.wpmn-sec-blog-cards{padding:64px 0}.wpmn-sec-blog-cards .bc-c{padding:0 20px}}
     @media(max-width:560px){.wpmn-sec-blog-cards .bc-grid{grid-template-columns:1fr}}
       .wpmn-sec-blog-cards .bc-img{overflow:hidden}.wpmn-sec-blog-cards .bc-img img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 300ms ease}.wpmn-sec-blog-cards .bc-card:hover .bc-img img{transform:scale(1.04)}
+      @media (prefers-reduced-motion: reduce) {
+      .wpmn-sec-blog-cards *, .wpmn-sec-blog-cards *::before, .wpmn-sec-blog-cards *::after { transition: none !important; animation: none !important; }
+    }
   </style>
   <div class="bc-c">
     <div class="bc-head"><h2>Resources & guides</h2><a class="bc-all" href="#">Browse all →</a></div>

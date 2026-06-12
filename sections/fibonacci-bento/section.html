@@ -8,8 +8,8 @@
     .wpmn-sec-fibonacci-bento .fb-title{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-bold);letter-spacing:-0.01em;text-transform:uppercase;color:var(--color-text-primary);overflow:hidden}
     .wpmn-sec-fibonacci-bento .ltr{display:inline-block;transform:translateY(110%);transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform;cursor:default}
     .wpmn-sec-fibonacci-bento .fb-title.in .ltr{transform:translateY(0)}
-    .wpmn-sec-fibonacci-bento .ltr.pop{animation:wpmnFbLetterPop .35s ease}
-    @keyframes wpmnFbLetterPop{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-12%) scale(1.12)}100%{transform:translateY(0) scale(1)}}
+    .wpmn-sec-fibonacci-bento .ltr.pop{animation:wpmn-fb-letter-pop .35s ease}
+    @keyframes wpmn-fb-letter-pop{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-12%) scale(1.12)}100%{transform:translateY(0) scale(1)}}
     .wpmn-sec-fibonacci-bento .fibo{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:84fr 84fr 84fr 198fr 198fr;gap:8px;aspect-ratio:1280/704;padding:12px;background:var(--color-surface-secondary);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft-500);transition:box-shadow .4s ease}
     .wpmn-sec-fibonacci-bento .fibo:hover{box-shadow:var(--shadow-hard-300)}
     .wpmn-sec-fibonacci-bento .card{position:relative;overflow:hidden;border-radius:var(--radius-sm);background:var(--color-surface-secondary)}

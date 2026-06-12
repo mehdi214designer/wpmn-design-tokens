@@ -20,6 +20,9 @@
     .wpmn-sec-expandable-table .et-fact span{font-size:var(--font-size-body-base);color:var(--color-text-primary)}
     @media(max-width:1199px){.wpmn-sec-expandable-table .et-c{padding:0 40px}}
     @media(max-width:768px){.wpmn-sec-expandable-table{padding:64px 0}.wpmn-sec-expandable-table .et-c{padding:0 20px}.wpmn-sec-expandable-table .et-thead{display:none}.wpmn-sec-expandable-table .et-rowbtn{grid-template-columns:1fr 48px}.wpmn-sec-expandable-table .et-cell{display:none}.wpmn-sec-expandable-table .et-detail-in{grid-template-columns:1fr}}
+      @media (prefers-reduced-motion: reduce) {
+      .wpmn-sec-expandable-table *, .wpmn-sec-expandable-table *::before, .wpmn-sec-expandable-table *::after { transition: none !important; animation: none !important; }
+    }
   </style>
   <div class="et-c">
     <div class="et-head"><h2 class="et-heading">Compare every plan detail</h2></div>

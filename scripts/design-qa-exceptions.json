@@ -1,0 +1,5 @@
+{
+  "ecommerce-hero/btn-multiple-primary/mini-btn": "Add-to-Cart is a mock-UI element inside the dashboard collage artwork, not an actionable section CTA — the section's single real primary is .cta",
+  "ecommerce-hero/icon-not-hugeicons/mark": "Abstract logo-cloud marks (fake client logos), brand-mark artwork rather than UI icons",
+  "animated-feature-grid/raw-radius/*": "Mock-device and chart artwork geometry (macbook screen/keyboard, chart bars and indicator) — illustration, not UI surfaces"
+}

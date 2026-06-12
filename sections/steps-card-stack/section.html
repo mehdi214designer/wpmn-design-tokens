@@ -107,17 +107,17 @@
     .wpmn-sec-steps-card-stack .scs-btn{
       display:inline-flex;align-items:center;justify-content:center;align-self:center;
       margin-top:28px;padding:11px 24px;
-      background:var(--color-surface-primary);
+      background:transparent;
+      border:1.5px solid var(--color-text-primary-invert);
       border-radius:var(--radius-xsm);
-      box-shadow:var(--shadow-soft-300), 0 0 0 1px var(--scs-stroke);
-      color:var(--color-text-primary);
+      color:var(--color-text-primary-invert);
       font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);
       font-weight:var(--font-weight-medium);letter-spacing:-0.01em;
       text-decoration:none;flex-shrink:0;
-      transition:box-shadow .2s cubic-bezier(.6,.6,0,1);
+      transition:background-color 120ms ease,color 120ms ease;
     }
-    .wpmn-sec-steps-card-stack .scs-btn:hover{box-shadow:var(--shadow-soft-500), 0 0 0 1px var(--scs-stroke)}
-    .wpmn-sec-steps-card-stack .scs-btn:active{box-shadow:0 0 0 1px var(--scs-stroke)}
+    .wpmn-sec-steps-card-stack .scs-btn:hover{background:var(--color-text-primary-invert);color:var(--color-text-primary)}
+    .wpmn-sec-steps-card-stack .scs-btn:active{background:color-mix(in srgb,var(--color-text-primary-invert) 88%,transparent);color:var(--color-text-primary)}
     .wpmn-sec-steps-card-stack .scs-roll{
       position:relative;height:var(--font-lh-btn-md);line-height:var(--font-lh-btn-md);overflow:hidden;
     }

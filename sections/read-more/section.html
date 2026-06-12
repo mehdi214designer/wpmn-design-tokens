@@ -15,6 +15,9 @@
     .wpmn-sec-read-more .rm-wrap[data-open] .rm-toggle svg{transform:rotate(180deg)}
     @media(max-width:1199px){.wpmn-sec-read-more .rm-c{padding:0 40px}}
     @media(max-width:768px){.wpmn-sec-read-more{padding:64px 0}.wpmn-sec-read-more .rm-c{padding:0 20px}}
+      @media (prefers-reduced-motion: reduce) {
+      .wpmn-sec-read-more *, .wpmn-sec-read-more *::before, .wpmn-sec-read-more *::after { transition: none !important; animation: none !important; }
+    }
   </style>
   <div class="rm-c"><div class="rm-inner">
     <h2 class="rm-heading">The story behind the product</h2>

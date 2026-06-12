@@ -17,6 +17,9 @@
     @media(max-width:1199px){.wpmn-sec-content-accordion .ca-c{padding:0 40px}}
     @media(max-width:900px){.wpmn-sec-content-accordion .ca-c{grid-template-columns:1fr;gap:32px}}
     @media(max-width:768px){.wpmn-sec-content-accordion{padding:64px 0}.wpmn-sec-content-accordion .ca-c{padding:0 20px}}
+      @media (prefers-reduced-motion: reduce) {
+      .wpmn-sec-content-accordion *, .wpmn-sec-content-accordion *::before, .wpmn-sec-content-accordion *::after { transition: none !important; animation: none !important; }
+    }
   </style>
   <div class="ca-c">
     <div>

@@ -14,19 +14,17 @@
     .wpmn-sec-feature-card-stack .btn-wrap{margin-top:auto}
     .wpmn-sec-feature-card-stack .fcs-img{padding:40px}
     .wpmn-sec-feature-card-stack .fcs-img img{display:block;width:100%;height:392px;object-fit:cover;border-radius:var(--radius-xsm)}
-    .wpmn-sec-feature-card-stack .btn{display:flex;justify-content:space-between;align-items:center;gap:32px;min-width:200px;height:52px;padding:8px 8px 8px 16px;background:var(--color-surface-primary);border:1px solid transparent;border-radius:var(--radius-xsm);box-shadow:var(--shadow-soft-300);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);letter-spacing:-0.01em;color:var(--color-text-primary);text-decoration:none;cursor:pointer;transition:box-shadow .2s cubic-bezier(.6,.6,0,1)}
-    .wpmn-sec-feature-card-stack .btn:hover{box-shadow:var(--shadow-soft-500)}
+    .wpmn-sec-feature-card-stack .btn{display:flex;justify-content:space-between;align-items:center;gap:32px;min-width:200px;height:52px;padding:8px 8px 8px 16px;background:transparent;border:1.5px solid var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);letter-spacing:-0.01em;color:var(--color-text-primary-invert);text-decoration:none;cursor:pointer;transition:background-color 120ms ease,color 120ms ease}
+    .wpmn-sec-feature-card-stack .btn:hover{background:var(--color-text-primary-invert);color:var(--color-text-primary)}
     .wpmn-sec-feature-card-stack .btn .label{white-space:nowrap}
-    .wpmn-sec-feature-card-stack .btn_right{position:relative;display:flex;justify-content:center;align-items:center;width:34px;height:34px;background:var(--btn-bg-enable);border-radius:var(--radius-xsm);overflow:clip}
-    .wpmn-sec-feature-card-stack .btn_icon{position:absolute;inset:11px;z-index:2;width:12px;height:12px;color:var(--color-text-primary-invert);transition:transform .8s cubic-bezier(.19,1,.22,1)}
+    .wpmn-sec-feature-card-stack .btn_right{position:relative;display:flex;justify-content:center;align-items:center;width:34px;height:34px;background:transparent;border-radius:var(--radius-xsm);overflow:clip}
+    .wpmn-sec-feature-card-stack .btn_icon{position:absolute;inset:11px;z-index:2;width:12px;height:12px;color:currentColor;transition:transform .8s cubic-bezier(.19,1,.22,1)}
     .wpmn-sec-feature-card-stack .btn_icon.cc-2{transform:translateX(-1.6rem)}
     .wpmn-sec-feature-card-stack .btn_icon.cc-1{transform:translateX(0)}
     .wpmn-sec-feature-card-stack .btn_icon svg{display:block;width:100%;height:100%}
-    .wpmn-sec-feature-card-stack .btn_gradient{position:absolute;inset:-8.5px;z-index:1;background-image:linear-gradient(90deg,var(--btn-bg-enable) 71%,var(--color-brand-surface-secondary));filter:blur(8px);opacity:1;transform:scale(1);transition:opacity 1.2s cubic-bezier(.19,1,.22,1),transform 1.2s cubic-bezier(.19,1,.22,1),filter 1.2s cubic-bezier(.19,1,.22,1)}
     @media(hover:hover){
       .wpmn-sec-feature-card-stack .btn:hover .btn_icon.cc-1{transform:translateX(1.6rem)}
       .wpmn-sec-feature-card-stack .btn:hover .btn_icon.cc-2{transform:translateX(0)}
-      .wpmn-sec-feature-card-stack .btn:hover .btn_gradient{transform:scale(1);filter:blur(0);opacity:1;border-radius:var(--radius-md)}
     }
     .wpmn-sec-feature-card-stack .runway{height:60vh}
     @media(max-width:1199px){.wpmn-sec-feature-card-stack .fcs-container{padding:0 40px}}
@@ -43,7 +41,7 @@
       .wpmn-sec-feature-card-stack .fcs-content,.wpmn-sec-feature-card-stack .fcs-img{padding:24px}
     }
     @media(prefers-reduced-motion:reduce){
-      .wpmn-sec-feature-card-stack .btn_icon,.wpmn-sec-feature-card-stack .btn_gradient{transition:none}
+      .wpmn-sec-feature-card-stack .btn_icon{transition:none}
     }
   </style>
   <div class="fcs-container">
@@ -57,9 +55,9 @@
             <a href="#" class="btn">
               <span class="label">Explore Routes</span>
               <span class="btn_right">
-                <span class="btn_icon cc-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
-                <span class="btn_icon cc-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
-                <span class="btn_gradient"></span>
+                <span class="btn_icon cc-2"><svg viewBox="0 0 24 24" fill="none"><path d="M17 7L6 18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M11 6.13151C11 6.13151 16.6335 5.65662 17.4885 6.51153C18.3434 7.36645 17.8684 13 17.8684 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></span>
+                <span class="btn_icon cc-1"><svg viewBox="0 0 24 24" fill="none"><path d="M17 7L6 18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M11 6.13151C11 6.13151 16.6335 5.65662 17.4885 6.51153C18.3434 7.36645 17.8684 13 17.8684 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></span>
+                
               </span>
             </a>
           </div>
@@ -75,9 +73,9 @@
             <a href="#" class="btn">
               <span class="label">Learn more</span>
               <span class="btn_right">
-                <span class="btn_icon cc-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
-                <span class="btn_icon cc-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
-                <span class="btn_gradient"></span>
+                <span class="btn_icon cc-2"><svg viewBox="0 0 24 24" fill="none"><path d="M17 7L6 18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M11 6.13151C11 6.13151 16.6335 5.65662 17.4885 6.51153C18.3434 7.36645 17.8684 13 17.8684 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></span>
+                <span class="btn_icon cc-1"><svg viewBox="0 0 24 24" fill="none"><path d="M17 7L6 18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M11 6.13151C11 6.13151 16.6335 5.65662 17.4885 6.51153C18.3434 7.36645 17.8684 13 17.8684 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></span>
+                
               </span>
             </a>
           </div>
@@ -91,9 +89,9 @@
             <a href="#" class="btn">
               <span class="label">Learn more</span>
               <span class="btn_right">
-                <span class="btn_icon cc-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
-                <span class="btn_icon cc-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M9.13548 13.6304L8.42288 12.9773L13.0102 8.45044H1.29688V7.54957H13.0102L8.42288 3.0227L9.13548 2.36957L14.7027 8L9.13548 13.6304Z" fill="currentColor"/></svg></span>
-                <span class="btn_gradient"></span>
+                <span class="btn_icon cc-2"><svg viewBox="0 0 24 24" fill="none"><path d="M17 7L6 18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M11 6.13151C11 6.13151 16.6335 5.65662 17.4885 6.51153C18.3434 7.36645 17.8684 13 17.8684 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></span>
+                <span class="btn_icon cc-1"><svg viewBox="0 0 24 24" fill="none"><path d="M17 7L6 18" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/><path d="M11 6.13151C11 6.13151 16.6335 5.65662 17.4885 6.51153C18.3434 7.36645 17.8684 13 17.8684 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></span>
+                
               </span>
             </a>
           </div>

@@ -14,6 +14,9 @@
     @media (max-width: 900px) { .wpmn-sec-stats-counter .sc-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) { .wpmn-sec-stats-counter { padding: 64px 0; } .wpmn-sec-stats-counter .sc-container { padding: 0 20px; } }
     @media (max-width: 560px) { .wpmn-sec-stats-counter .sc-grid { grid-template-columns: 1fr; } }
+      @media (prefers-reduced-motion: reduce) {
+      .wpmn-sec-stats-counter *, .wpmn-sec-stats-counter *::before, .wpmn-sec-stats-counter *::after { transition: none !important; animation: none !important; }
+    }
   </style>
   <div class="sc-container">
     <span class="sc-badge">By the Numbers</span>

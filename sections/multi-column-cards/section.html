@@ -18,6 +18,9 @@
     @media(max-width:900px){.wpmn-sec-multi-column-cards .mc-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
     @media(max-width:768px){.wpmn-sec-multi-column-cards{padding:64px 0}.wpmn-sec-multi-column-cards .mc-c{padding:0 20px}}
     @media(max-width:560px){.wpmn-sec-multi-column-cards .mc-grid{grid-template-columns:1fr}}
+      @media (prefers-reduced-motion: reduce) {
+      .wpmn-sec-multi-column-cards *, .wpmn-sec-multi-column-cards *::before, .wpmn-sec-multi-column-cards *::after { transition: none !important; animation: none !important; }
+    }
   </style>
   <div class="mc-c">
     <div class="mc-head">

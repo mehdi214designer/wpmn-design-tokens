@@ -18,6 +18,9 @@
     .wpmn-sec-faq-accordion .fa-a-inner { padding: 0 24px 24px; font-size: var(--font-size-body-base); line-height: var(--font-lh-body-base); color: var(--color-text-secondary); }
     @media (max-width: 1199px) { .wpmn-sec-faq-accordion .fa-container { padding: 0 40px; } }
     @media (max-width: 768px) { .wpmn-sec-faq-accordion { padding: 64px 0; } .wpmn-sec-faq-accordion .fa-container { padding: 0 20px; } }
+      @media (prefers-reduced-motion: reduce) {
+      .wpmn-sec-faq-accordion *, .wpmn-sec-faq-accordion *::before, .wpmn-sec-faq-accordion *::after { transition: none !important; animation: none !important; }
+    }
   </style>
   <div class="fa-container">
     <div class="fa-header">
