@@ -1372,11 +1372,16 @@
       </div>
     );
 
-    /* ── Library fetch base — registry-driven, works without serve.py ── */
+    /* ── Library fetch base — LOCAL-FIRST, GitHub RAW as the published fallback.
+       Local folder and GitHub stay bridged: every change is pushed to master, and
+       RAW remains the source for registry.json / llms.txt consumers. RAW fetches
+       are cache-busted so previews never show a stale CDN copy. ── */
     const RAW_LIB_BASE = 'https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/';
     let LIB_BASE = '';
+    const __libFresh = Date.now(); /* one stamp per page load */
     async function fetchTextLib(path) {
-      const res = await fetch(LIB_BASE + path);
+      const bust = LIB_BASE === RAW_LIB_BASE ? (path.includes('?') ? '&' : '?') + 'v=' + __libFresh : '';
+      const res = await fetch(LIB_BASE + path + bust);
       if (!res.ok) throw new Error(`HTTP ${res.status} loading ${path}`);
       return res.text();
     }
