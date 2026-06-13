@@ -50,7 +50,9 @@ const header = `/* =============================================================
    ────────────────────────────────────────────────────────────────────────
      text color    var(--color-text-primary)          (…-invert on dark surfaces)
      surfaces      var(--color-surface-primary | -secondary | -alt)
-     type          class .text-h1 … .text-h6, .text-body-large | -base | -small
+     type          USE the .text-* classes in markup (.text-h1 … .text-h6, .text-body-large |
+                   -base | -small) — they auto-swap at 768px. The --font-size-* vars are the
+                   same values, only for custom CSS where a class can't be used.
      spacing       var(--primitive-space-8 … -120)     (8/12/16/20/24/32/40/48/64/80/96/120)
      radius        var(--radius-xsm | -sm | -md | -lg)  = 8/12/16/32px (these 4 semantic
                    tokens only; do NOT use --primitive-radius-*; there is no --radius-xxs)

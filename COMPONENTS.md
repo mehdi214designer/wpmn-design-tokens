@@ -104,6 +104,11 @@ Button: `.wpmn-social-icon-btn`
 Headings: `.text-h1 … .text-h6` · Body: `.text-body-large .text-body-medium .text-body-base .text-body-small .text-body-label .text-body-mono` · Button text: `.text-btn-xl … .text-btn-xs`
 Sizes swap automatically at 768px — never write raw mobile font-size overrides.
 
+**Which to use (pick one, this is the canonical answer):** use the **`.text-*` classes** in your
+markup. They already pair font-size + line-height + weight and handle the 768px mobile swap. The
+`--font-size-*` / `--font-lh-*` CSS vars hold the same values and exist only for custom CSS where
+you can't add a class (e.g. inside a scoped section style). Don't mix both for the same element.
+
 ```html
 <h1 class="text-h1">From first click to loyal customer</h1>
 <p class="text-body-large">Run the whole funnel inside WordPress.</p>

@@ -49,7 +49,8 @@ All files are fetchable via raw URLs: `https://raw.githubusercontent.com/mehdi21
 - **Motion**: keyframes prefixed `wpmn-`, everything behind `prefers-reduced-motion`.
 - **Spacing**: named tokens only, picked by intent (desktop values; spacing tokens are desktop-only). Decision order: section padding (96/64) & container (1200) → `--spacing-content-gap-*` (xxl48/xl48/l40/m24/s20/sm16, between blocks) → `--spacing-h-*-to-*` (heading-to-body, paired to heading scale) → `--spacing-btn-in-section-*` (CTA group) → `--spacing-icon-size-*` (sm20/md24/lg32). If no named token fits, snap to nearest `--primitive-space-*` step (4·8·12·16·20·24·32·40·48·56·64·80·96·120) — never an off-scale number.
 - **Heading scale**: hero header = `text-h1` (xxl) + `body-large`, the one H1 per page; section headers = `text-h2`/`text-h3` + `body-large`/`body-medium`.
-- **Radius**: use the 4 semantic tokens only — `--radius-xsm` (8px) / `--radius-sm` (12) / `--radius-md` (16) / `--radius-lg` (32). Never reference `--primitive-radius-*` directly, and there is no `--radius-xxs`.
+- **Radius**: use the 4 semantic tokens only — `--radius-xsm` (8px) / `--radius-sm` (12) / `--radius-md` (16) / `--radius-lg` (32). Never reference `--primitive-radius-*` directly (those are the raw layer, present in the bundle but not for component use), and there is no `--radius-xxs`.
+- **Typography**: use the `.text-*` classes in markup (`.text-h1`…`.text-h6`, `.text-body-*`) — they auto-swap at 768px. The `--font-size-*`/`--font-lh-*` vars are the same values, only for custom CSS where a class can't be used. Don't mix both on one element.
 - Full rules: `wpmn-design-guideline.md`, `docs/`. QA tooling: `scripts/design-qa.mjs`, `scripts/audit-surface-pairing.mjs`.
 
 ## Components (10)

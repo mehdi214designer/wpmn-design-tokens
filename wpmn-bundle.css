@@ -28,7 +28,9 @@
    ────────────────────────────────────────────────────────────────────────
      text color    var(--color-text-primary)          (…-invert on dark surfaces)
      surfaces      var(--color-surface-primary | -secondary | -alt)
-     type          class .text-h1 … .text-h6, .text-body-large | -base | -small
+     type          USE the .text-* classes in markup (.text-h1 … .text-h6, .text-body-large |
+                   -base | -small) — they auto-swap at 768px. The --font-size-* vars are the
+                   same values, only for custom CSS where a class can't be used.
      spacing       var(--primitive-space-8 … -120)     (8/12/16/20/24/32/40/48/64/80/96/120)
      radius        var(--radius-xsm | -sm | -md | -lg)  = 8/12/16/32px (these 4 semantic
                    tokens only; do NOT use --primitive-radius-*; there is no --radius-xxs)
@@ -186,7 +188,9 @@
    --primitive-space-256: 256px;
 
    /* ============================================================
-     BORDER RADIUS
+     BORDER RADIUS  (RAW primitives — do NOT use these in components)
+     Use the 4 semantic radius tokens instead: --radius-xsm (8) / --radius-sm (12)
+     / --radius-md (16) / --radius-lg (32). There is no semantic --radius-xxs.
      ============================================================ */
    --primitive-radius-none: 0px;
    --primitive-radius-xxs: 4px;

@@ -30,6 +30,18 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.2.2] — 2026-06-13
+
+Verification feedback from a consuming agent: the raw primitives were still grep-able and
+typography had two equally-promoted approaches.
+
+### Fixed
+- `primitives.css`: guard comment on the `--primitive-radius-*` block ("RAW — do not use in
+  components; use semantic `--radius-*`"), so an agent grepping the bundle is warned at the
+  definition, not just in the rules. Rebuilt `wpmn-bundle.css`.
+- Typography: picked a canonical approach — use the `.text-*` classes in markup; `--font-size-*`
+  vars are for custom CSS only. Documented in `COMPONENTS.md`, `llms.txt`, and the bundle header.
+
 ## [1.2.1] — 2026-06-13
 
 ### Changed
