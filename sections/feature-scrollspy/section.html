@@ -1,46 +1,46 @@
 <!-- WPMN Section: Feature Scrollspy — sticky menu + reveal feature cards (imported, tokenized) -->
 <section class="wpmn-sec-feature-scrollspy">
   <style>
-    .wpmn-sec-feature-scrollspy{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:96px 32px}
+    .wpmn-sec-feature-scrollspy{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:var(--primitive-space-96) var(--primitive-space-32)}
     .wpmn-sec-feature-scrollspy .fs-container{max-width:1200px;margin:0 auto}
-    .wpmn-sec-feature-scrollspy .fs-title{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;color:var(--color-text-primary);margin-bottom:64px}
-    .wpmn-sec-feature-scrollspy .fs-grid{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:start}
-    .wpmn-sec-feature-scrollspy .fs-menu{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px;white-space:nowrap}
-    .wpmn-sec-feature-scrollspy .menu-item{position:relative;padding-left:18px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:color-mix(in srgb,var(--color-text-primary) 32%,transparent);transition:color .25s;cursor:pointer}
+    .wpmn-sec-feature-scrollspy .fs-title{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;color:var(--color-text-primary);margin-bottom:var(--primitive-space-64)}
+    .wpmn-sec-feature-scrollspy .fs-grid{display:grid;grid-template-columns:280px 1fr;gap:var(--primitive-space-40);align-items:start}
+    .wpmn-sec-feature-scrollspy .fs-menu{position:sticky;top:84px;display:flex;flex-direction:column;gap:var(--primitive-space-12);white-space:nowrap}
+    .wpmn-sec-feature-scrollspy .menu-item{position:relative;padding-left:var(--primitive-space-20);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:color-mix(in srgb,var(--color-text-primary) 32%,transparent);transition:color .25s;cursor:pointer}
     .wpmn-sec-feature-scrollspy .menu-item .toc-dot{position:absolute;left:0;top:50%;width:6px;height:6px;transform:translateY(-50%);border-radius:999px;background:var(--btn-bg-enable);opacity:0;transition:opacity .25s}
     .wpmn-sec-feature-scrollspy .menu-item.active{color:var(--color-text-primary);font-weight:var(--font-weight-medium)}
     .wpmn-sec-feature-scrollspy .menu-item.active .toc-dot{opacity:1}
-    .wpmn-sec-feature-scrollspy .fs-cards{display:flex;flex-direction:column;gap:24px}
+    .wpmn-sec-feature-scrollspy .fs-cards{display:flex;flex-direction:column;gap:var(--primitive-space-24)}
     .wpmn-sec-feature-scrollspy .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s cubic-bezier(0,0,0,1)}
     .wpmn-sec-feature-scrollspy .reveal.is-revealed{opacity:1;transform:none}
-    .wpmn-sec-feature-scrollspy .card{background:color-mix(in srgb,var(--color-text-primary) 4%,var(--color-surface-primary));border-radius:var(--radius-md);padding:48px;overflow:hidden}
+    .wpmn-sec-feature-scrollspy .card{background:color-mix(in srgb,var(--color-text-primary) 4%,var(--color-surface-primary));border-radius:var(--radius-md);padding:var(--primitive-space-48);overflow:hidden}
     .wpmn-sec-feature-scrollspy .card-title{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
     .wpmn-sec-feature-scrollspy .card-desc{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
-    .wpmn-sec-feature-scrollspy .tags{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
-    .wpmn-sec-feature-scrollspy .tag{display:flex;align-items:center;gap:8px;background:var(--color-surface-primary);border-radius:999px;padding:9px 14px;font-size:var(--font-size-body-small);line-height:1;color:var(--color-text-primary);white-space:nowrap}
+    .wpmn-sec-feature-scrollspy .tags{display:flex;flex-direction:column;align-items:flex-start;gap:var(--primitive-space-12)}
+    .wpmn-sec-feature-scrollspy .tag{display:flex;align-items:center;gap:var(--primitive-space-8);background:var(--color-surface-primary);border-radius:999px;padding:var(--primitive-space-8) var(--primitive-space-12);font-size:var(--font-size-body-small);line-height:1;color:var(--color-text-primary);white-space:nowrap}
     .wpmn-sec-feature-scrollspy .tag .dot{width:6px;height:6px;border-radius:999px;background:var(--btn-bg-enable)}
     .wpmn-sec-feature-scrollspy .card--quote{background:var(--color-surface-secondary)}
-    .wpmn-sec-feature-scrollspy .card--quote .card-title{color:var(--color-text-primary-invert);margin-bottom:32px}
-    .wpmn-sec-feature-scrollspy .quote-box{background:var(--color-surface-primary);border-radius:var(--radius-xsm);padding:32px;display:flex;flex-direction:column;gap:32px;margin-bottom:32px}
+    .wpmn-sec-feature-scrollspy .card--quote .card-title{color:var(--color-text-primary-invert);margin-bottom:var(--primitive-space-32)}
+    .wpmn-sec-feature-scrollspy .quote-box{background:var(--color-surface-primary);border-radius:var(--radius-xsm);padding:var(--primitive-space-32);display:flex;flex-direction:column;gap:var(--primitive-space-32);margin-bottom:var(--primitive-space-32)}
     .wpmn-sec-feature-scrollspy .quote-box h4{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-regular);letter-spacing:-0.01em;color:var(--color-text-primary)}
-    .wpmn-sec-feature-scrollspy .quote-info{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+    .wpmn-sec-feature-scrollspy .quote-info{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--primitive-space-16)}
     .wpmn-sec-feature-scrollspy .quote-person .name{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
     .wpmn-sec-feature-scrollspy .quote-person .role{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
     .wpmn-sec-feature-scrollspy .quote-client{font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
     .wpmn-sec-feature-scrollspy .card--quote .card-desc{color:var(--color-text-secondary-invert)}
-    .wpmn-sec-feature-scrollspy .quote-bottom{display:grid;grid-template-columns:1.5fr 1fr;gap:48px}
-    .wpmn-sec-feature-scrollspy .card-split{display:grid;grid-template-columns:1fr 1.15fr;gap:40px}
-    .wpmn-sec-feature-scrollspy .card-split .left{display:flex;flex-direction:column;justify-content:space-between;gap:24px;max-width:420px}
-    .wpmn-sec-feature-scrollspy .card-split .card-title{margin-bottom:16px}
+    .wpmn-sec-feature-scrollspy .quote-bottom{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--primitive-space-48)}
+    .wpmn-sec-feature-scrollspy .card-split{display:grid;grid-template-columns:1fr 1.15fr;gap:var(--primitive-space-40)}
+    .wpmn-sec-feature-scrollspy .card-split .left{display:flex;flex-direction:column;justify-content:space-between;gap:var(--primitive-space-24);max-width:420px}
+    .wpmn-sec-feature-scrollspy .card-split .card-title{margin-bottom:var(--primitive-space-16)}
     .wpmn-sec-feature-scrollspy .card-split img{width:100%;height:auto;display:block;object-fit:cover;border-radius:var(--radius-xsm);box-shadow:var(--shadow-soft-300)}
     @media(max-width:900px){
-      .wpmn-sec-feature-scrollspy{padding:64px 20px}
+      .wpmn-sec-feature-scrollspy{padding:var(--primitive-space-64) var(--primitive-space-20)}
       .wpmn-sec-feature-scrollspy .fs-grid{grid-template-columns:1fr}
-      .wpmn-sec-feature-scrollspy .fs-menu{position:static;flex-direction:row;flex-wrap:wrap;gap:12px 24px}
-      .wpmn-sec-feature-scrollspy .card{padding:28px}
+      .wpmn-sec-feature-scrollspy .fs-menu{position:static;flex-direction:row;flex-wrap:wrap;gap:var(--primitive-space-12) var(--primitive-space-24)}
+      .wpmn-sec-feature-scrollspy .card{padding:var(--primitive-space-24)}
       .wpmn-sec-feature-scrollspy .card-split{grid-template-columns:1fr}
-      .wpmn-sec-feature-scrollspy .quote-bottom{grid-template-columns:1fr;gap:24px}
-      .wpmn-sec-feature-scrollspy .fs-title{margin-bottom:40px}
+      .wpmn-sec-feature-scrollspy .quote-bottom{grid-template-columns:1fr;gap:var(--primitive-space-24)}
+      .wpmn-sec-feature-scrollspy .fs-title{margin-bottom:var(--primitive-space-40)}
     }
     @media(prefers-reduced-motion:reduce){
       .wpmn-sec-feature-scrollspy .reveal{opacity:1;transform:none;transition:none}

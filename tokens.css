@@ -136,6 +136,11 @@
   --spacing-btn-in-section-lg: 32px;  /* large-button-gap       */
   --spacing-btn-in-section-xl: 32px;  /* extra large-button-gap */
 
+  /* --- Section & Card Icon Size (Figma: Spacing-new/Section & Card/Icon Size) --- */
+  --spacing-icon-size-sm: 20px;
+  --spacing-icon-size-md: 24px;
+  --spacing-icon-size-lg: 32px;
+
   /* --- Input — Stroke borders --- */
   --input-stroke-default: #c9ced6;
   /* color/input/stroke/default  — Light/200 */

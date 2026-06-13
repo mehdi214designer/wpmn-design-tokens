@@ -4,8 +4,10 @@
  * Audits every sections/<id>/section.html against the design system:
  *   buttons (canonical Button.css anatomy, one primary per section, no pills,
  *   no underlines), icons (Hugeicons 24-box, no freehand, invert-on-dark),
- *   token purity, radii, reduced-motion, responsiveness, script pattern,
- *   keyframe prefixes, ids, external assets.
+ *   token purity, radii, spacing (padding/margin/gap must be --primitive-space-*
+ *   / --spacing-* tokens; 0/auto/negatives/calc allowed; 320/360/480px are
+ *   documented structural exceptions), reduced-motion, responsiveness,
+ *   script pattern, keyframe prefixes, ids, external assets.
  *
  * Documented exceptions live in scripts/design-qa-exceptions.json:
  *   { "<section>/<check>/<detail-substring>": "reason" }
@@ -160,6 +162,18 @@ for (const d of dirs) {
   /* 12 ─ external assets */
   for (const m of s.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g))
     if (!m[1].startsWith('https://images.unsplash.com/')) report(d, 'external-asset', m[1].slice(0, 80));
+
+  /* 13 ─ raw spacing (padding/margin/gap values must be --primitive-space-* / --spacing-* tokens;
+         allow 0, auto, negatives, calc/clamp/min/max, and documented structural exceptions) */
+  const SPACING_EXC = new Set(['320px', '360px', '480px']);
+  for (const m of noMask.matchAll(/(?:^|[;{])\s*((?:padding|margin|gap|row-gap|column-gap|grid-gap)(?:-(?:top|right|bottom|left|inline|block|inline-start|inline-end|block-start|block-end))?)\s*:\s*([^;}]+)/g)) {
+    let v = m[2].trim();
+    while (/(?:calc|clamp|min|max)\((?:[^()]|\([^()]*\))*\)/.test(v)) v = v.replace(/(?:calc|clamp|min|max)\((?:[^()]|\([^()]*\))*\)/, 'FN');
+    for (const p of v.split(/\s+/)) {
+      if (/^(?:var\(|FN$|0(?:px)?$|auto$|-)/.test(p)) continue;
+      if (/^\d+(?:\.\d+)?px$/.test(p) && !SPACING_EXC.has(p)) report(d, 'raw-spacing', m[1] + ': ' + p);
+    }
+  }
 }
 
 const issues = findings.filter(f => !f.special);

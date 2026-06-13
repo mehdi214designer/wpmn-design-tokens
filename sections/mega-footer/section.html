@@ -10,21 +10,21 @@
       background: var(--mf-stage);
       color: var(--color-text-primary);
       font-family: var(--font-family-base);
-      padding: 96px 20px 0;
+      padding: var(--primitive-space-96) var(--primitive-space-20) 0;
     }
     .wpmn-sec-mega-footer .mf-card{
       max-width: 1200px;
       margin: 0 auto;
       background: var(--color-surface-primary);
       border-radius: var(--radius-md);
-      padding-top: 60px;
+      padding-top: var(--primitive-space-56);
       overflow: hidden;
     }
     .wpmn-sec-mega-footer .mf-grid{
       display: grid;
       grid-template-columns: 1fr 1.5fr 1fr;
-      gap: 48px 64px;
-      padding: 0 40px;
+      gap: var(--primitive-space-48) var(--primitive-space-64);
+      padding: 0 var(--primitive-space-40);
     }
 
     /* ---- left column ---- */
@@ -35,7 +35,7 @@
       font-weight: var(--font-weight-medium);
       letter-spacing: -0.02em;
       color: var(--color-text-primary);
-      margin: 0 0 32px;
+      margin: 0 0 var(--primitive-space-32);
     }
     .wpmn-sec-mega-footer .mf-ctas{
       list-style: none;
@@ -44,14 +44,14 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 12px;
+      gap: var(--primitive-space-12);
     }
     .wpmn-sec-mega-footer .mf-btn{
       display: inline-flex;
       align-items: center;
       justify-content: center;
       height:40px;
-      padding: 12px 32px;
+      padding: var(--primitive-space-12) var(--primitive-space-32);
       border-radius: var(--radius-xsm);
       font-family: var(--font-family-base);
       font-size: var(--font-size-btn-sm);
@@ -74,12 +74,12 @@
     .wpmn-sec-mega-footer .mf-btn-solid:hover{ background: var(--btn-bg-hovered); }
     .wpmn-sec-mega-footer .mf-btn-solid:active{ background: var(--btn-bg-pressed); }
 
-    .wpmn-sec-mega-footer .mf-community{ margin-top: 40px; }
+    .wpmn-sec-mega-footer .mf-community{ margin-top: var(--primitive-space-40); }
     .wpmn-sec-mega-footer .mf-community > p{
       font-size: var(--font-size-body-base);
       line-height: var(--font-lh-body-base);
       color: var(--color-text-primary);
-      margin: 0 0 12px;
+      margin: 0 0 var(--primitive-space-12);
     }
     .wpmn-sec-mega-footer .mf-mini-links{
       list-style: none;
@@ -87,7 +87,7 @@
       padding: 0;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: var(--primitive-space-16);
     }
     .wpmn-sec-mega-footer .mf-mini-links svg{ width: 20px; height: 20px; display: block; }
     .wpmn-sec-mega-footer .mf-mini-links a{ color: var(--color-text-secondary); display: block; transition: color 0.15s; }
@@ -97,15 +97,15 @@
     .wpmn-sec-mega-footer .mf-links{
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px 16px;
+      gap: var(--primitive-space-32) var(--primitive-space-16);
       align-content: start;
     }
     .wpmn-sec-mega-footer .mf-links-products{ grid-column: span 3; }
     .wpmn-sec-mega-footer .mf-label{
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin: 0 0 8px;
+      gap: var(--primitive-space-12);
+      margin: 0 0 var(--primitive-space-8);
       font-size: var(--font-size-body-label);
       line-height: var(--font-lh-body-label);
       font-weight: var(--font-weight-medium);
@@ -121,7 +121,7 @@
       flex-shrink: 0;
     }
     .wpmn-sec-mega-footer .mf-linklist{ list-style: none; margin: 0; padding: 0; }
-    .wpmn-sec-mega-footer .mf-links-products .mf-linklist{ columns: 3; column-gap: 16px; }
+    .wpmn-sec-mega-footer .mf-links-products .mf-linklist{ columns: 3; column-gap: var(--primitive-space-16); }
     .wpmn-sec-mega-footer .mf-linklist li{
       font-size: var(--font-size-body-base);
       line-height: 1.69;
@@ -133,19 +133,19 @@
       transition: color 0.15s;
     }
     .wpmn-sec-mega-footer .mf-linklist a:hover{ color: var(--color-text-primary); }
-    .wpmn-sec-mega-footer .mf-linklist ul{ list-style: none; margin: 0; padding: 0 0 0 12px; }
+    .wpmn-sec-mega-footer .mf-linklist ul{ list-style: none; margin: 0; padding: 0 0 0 var(--primitive-space-12); }
 
     /* ---- newsletter ---- */
     .wpmn-sec-mega-footer .mf-form-intro{
       font-size: var(--font-size-body-base);
       line-height: var(--font-lh-body-base);
       color: var(--color-text-secondary);
-      margin: 0 0 24px;
+      margin: 0 0 var(--primitive-space-24);
     }
     .wpmn-sec-mega-footer .mf-input{
       width: 100%;
       height: 45px;
-      padding: 12px;
+      padding: var(--primitive-space-12);
       font-size: var(--font-size-body-base);
       font-family: var(--font-family-base);
       color: var(--input-text-active);
@@ -162,32 +162,32 @@
     .wpmn-sec-mega-footer .mf-submit-row{
       display: flex;
       justify-content: flex-end;
-      margin-top: 16px;
+      margin-top: var(--primitive-space-16);
     }
 
-    .wpmn-sec-mega-footer .mf-social{ margin-top: 48px; display: flex; justify-content: flex-end; }
+    .wpmn-sec-mega-footer .mf-social{ margin-top: var(--primitive-space-48); display: flex; justify-content: flex-end; }
     .wpmn-sec-mega-footer .mf-social ul{
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 16px;
+      gap: var(--primitive-space-16);
     }
     .wpmn-sec-mega-footer .mf-social svg{ width: 20px; height: 20px; display: block; }
     .wpmn-sec-mega-footer .mf-social a{ color: var(--color-text-secondary); display: block; transition: color 0.15s; }
     .wpmn-sec-mega-footer .mf-social a:hover{ color: var(--color-text-primary); }
 
     .wpmn-sec-mega-footer .mf-badges{
-      margin-top: 24px;
+      margin-top: var(--primitive-space-24);
       display: flex;
       justify-content: flex-end;
-      gap: 8px;
+      gap: var(--primitive-space-8);
       flex-wrap: wrap;
     }
     .wpmn-sec-mega-footer .mf-badges span{
       display: inline-flex;
       align-items: center;
-      padding: 5px 12px;
+      padding: var(--primitive-space-4) var(--primitive-space-12);
       border: 1px solid var(--mf-hairline);
       border-radius: 999px;
       font-size: var(--font-size-body-label);
@@ -200,7 +200,7 @@
     }
 
     /* ---- wordmark ---- */
-    .wpmn-sec-mega-footer .mf-wordmark-wrap{ padding: 40px; }
+    .wpmn-sec-mega-footer .mf-wordmark-wrap{ padding: var(--primitive-space-40); }
     .wpmn-sec-mega-footer .mf-wordmark{ width: 100%; height: auto; display: block; }
     .wpmn-sec-mega-footer .mf-wm-text{
       fill: none;
@@ -219,7 +219,7 @@
     .wpmn-sec-mega-footer .mf-copyright{
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 0;
+      padding: var(--primitive-space-40) 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -234,10 +234,10 @@
       padding: 0;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: var(--primitive-space-12);
       flex-wrap: wrap;
     }
-    .wpmn-sec-mega-footer .mf-legal li{ display: flex; align-items: center; gap: 14px; }
+    .wpmn-sec-mega-footer .mf-legal li{ display: flex; align-items: center; gap: var(--primitive-space-12); }
     .wpmn-sec-mega-footer .mf-legal li + li::before{
       content: "";
       width: 4px;
@@ -253,13 +253,13 @@
       .wpmn-sec-mega-footer .mf-links{ grid-column: span 2; order: 3; }
     }
     @media (max-width: 767px){
-      .wpmn-sec-mega-footer{ padding: 64px 16px 0; }
-      .wpmn-sec-mega-footer .mf-grid{ grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .wpmn-sec-mega-footer{ padding: var(--primitive-space-64) var(--primitive-space-16) 0; }
+      .wpmn-sec-mega-footer .mf-grid{ grid-template-columns: 1fr; gap: var(--primitive-space-40); padding: 0 var(--primitive-space-24); }
       .wpmn-sec-mega-footer .mf-links{ grid-column: span 1; grid-template-columns: 1fr; }
       .wpmn-sec-mega-footer .mf-links-products{ grid-column: span 1; }
       .wpmn-sec-mega-footer .mf-links-products .mf-linklist{ columns: 2; }
-      .wpmn-sec-mega-footer .mf-copyright{ flex-direction: column; gap: 16px; }
-      .wpmn-sec-mega-footer .mf-wordmark-wrap{ padding: 24px 16px; }
+      .wpmn-sec-mega-footer .mf-copyright{ flex-direction: column; gap: var(--primitive-space-16); }
+      .wpmn-sec-mega-footer .mf-wordmark-wrap{ padding: var(--primitive-space-24) var(--primitive-space-16); }
       .wpmn-sec-mega-footer .mf-social,
       .wpmn-sec-mega-footer .mf-badges{ justify-content: flex-start; }
     }

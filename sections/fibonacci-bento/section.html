@@ -1,16 +1,16 @@
 <!-- WPMN Section: Fibonacci Bento — framed media bento with hover overlays + letter-split heading (imported, tokenized) -->
 <section class="wpmn-sec-fibonacci-bento">
   <style>
-    .wpmn-sec-fibonacci-bento{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:96px 32px}
+    .wpmn-sec-fibonacci-bento{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:var(--primitive-space-96) var(--primitive-space-32)}
     .wpmn-sec-fibonacci-bento .fb-wrap{max-width:1200px;margin:0 auto}
-    .wpmn-sec-fibonacci-bento .fb-head{margin-bottom:48px}
-    .wpmn-sec-fibonacci-bento .fb-tag{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-semibold);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:12px}
+    .wpmn-sec-fibonacci-bento .fb-head{margin-bottom:var(--primitive-space-48)}
+    .wpmn-sec-fibonacci-bento .fb-tag{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-semibold);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--primitive-space-12)}
     .wpmn-sec-fibonacci-bento .fb-title{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-bold);letter-spacing:-0.01em;text-transform:uppercase;color:var(--color-text-primary);overflow:hidden}
     .wpmn-sec-fibonacci-bento .ltr{display:inline-block;transform:translateY(110%);transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform;cursor:default}
     .wpmn-sec-fibonacci-bento .fb-title.in .ltr{transform:translateY(0)}
     .wpmn-sec-fibonacci-bento .ltr.pop{animation:wpmn-fb-letter-pop .35s ease}
     @keyframes wpmn-fb-letter-pop{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-12%) scale(1.12)}100%{transform:translateY(0) scale(1)}}
-    .wpmn-sec-fibonacci-bento .fibo{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:84fr 84fr 84fr 198fr 198fr;gap:8px;aspect-ratio:1280/704;padding:12px;background:var(--color-surface-secondary);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft-500);transition:box-shadow .4s ease}
+    .wpmn-sec-fibonacci-bento .fibo{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:84fr 84fr 84fr 198fr 198fr;gap:var(--primitive-space-8);aspect-ratio:1280/704;padding:var(--primitive-space-12);background:var(--color-surface-secondary);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft-500);transition:box-shadow .4s ease}
     .wpmn-sec-fibonacci-bento .fibo:hover{box-shadow:var(--shadow-hard-300)}
     .wpmn-sec-fibonacci-bento .card{position:relative;overflow:hidden;border-radius:var(--radius-sm);background:var(--color-surface-secondary)}
     .wpmn-sec-fibonacci-bento .card--forms{grid-column:1/4;grid-row:1/6}
@@ -21,15 +21,15 @@
     .wpmn-sec-fibonacci-bento .card .media{position:absolute;inset:0}
     .wpmn-sec-fibonacci-bento .card .media img{width:100%;height:100%;object-fit:cover;display:block}
     .wpmn-sec-fibonacci-bento .graphic{position:absolute;inset:0;background:radial-gradient(circle at 30% 35%, color-mix(in srgb,var(--color-text-primary-invert) 45%,transparent) 0 18%, transparent 19%),radial-gradient(circle at 68% 62%, color-mix(in srgb,var(--color-text-primary-invert) 28%,transparent) 0 26%, transparent 27%),radial-gradient(circle at 82% 22%, color-mix(in srgb,var(--color-text-primary-invert) 18%,transparent) 0 12%, transparent 13%),var(--color-surface-secondary)}
-    .wpmn-sec-fibonacci-bento .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background:linear-gradient(to top, color-mix(in srgb,var(--color-surface-secondary) 92%,transparent), color-mix(in srgb,var(--color-surface-secondary) 0%,transparent) 55%);outline:1.5px solid var(--color-surface-secondary);outline-offset:-1px;border-radius:var(--radius-sm)}
+    .wpmn-sec-fibonacci-bento .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--primitive-space-20);background:linear-gradient(to top, color-mix(in srgb,var(--color-surface-secondary) 92%,transparent), color-mix(in srgb,var(--color-surface-secondary) 0%,transparent) 55%);outline:1.5px solid var(--color-surface-secondary);outline-offset:-1px;border-radius:var(--radius-sm)}
     .wpmn-sec-fibonacci-bento .overlay::before{content:"";position:absolute;inset:0;border-radius:inherit;background:color-mix(in srgb,var(--btn-bg-enable) 78%,transparent);mix-blend-mode:multiply;opacity:0;transition:opacity .45s ease;z-index:0;pointer-events:none}
     .wpmn-sec-fibonacci-bento .card:hover .overlay::before{opacity:1}
         .wpmn-sec-fibonacci-bento .overlay h3{position:relative;z-index:1;margin:0;font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-bold);text-transform:uppercase;letter-spacing:.01em;color:var(--color-text-primary-invert);font-variation-settings:'wght' 700;transition:font-variation-settings .4s ease}
     .wpmn-sec-fibonacci-bento .card:hover .overlay h3{font-variation-settings:'wght' 900}
-    .wpmn-sec-fibonacci-bento .overlay p{position:relative;z-index:1;margin:6px 0 0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert);max-width:46ch;opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease}
+    .wpmn-sec-fibonacci-bento .overlay p{position:relative;z-index:1;margin:var(--primitive-space-8) 0 0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert);max-width:46ch;opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease}
     .wpmn-sec-fibonacci-bento .card:hover .overlay p{opacity:1;transform:translateY(0)}
     @media(max-width:991px){
-      .wpmn-sec-fibonacci-bento{padding:64px 24px}
+      .wpmn-sec-fibonacci-bento{padding:var(--primitive-space-64) var(--primitive-space-24)}
       .wpmn-sec-fibonacci-bento .fibo{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,minmax(180px,1fr));aspect-ratio:auto}
       .wpmn-sec-fibonacci-bento .card--forms{grid-column:1/3;grid-row:1/2}
       .wpmn-sec-fibonacci-bento .card--crm{grid-column:1/2;grid-row:2/3}
@@ -38,7 +38,7 @@
       .wpmn-sec-fibonacci-bento .card--analytics{grid-column:2/3;grid-row:3/4}
     }
     @media(max-width:767px){
-      .wpmn-sec-fibonacci-bento{padding:64px 20px}
+      .wpmn-sec-fibonacci-bento{padding:var(--primitive-space-64) var(--primitive-space-20)}
             .wpmn-sec-fibonacci-bento .fibo{grid-template-columns:1fr;grid-template-rows:repeat(5,220px)}
       .wpmn-sec-fibonacci-bento .card--forms,.wpmn-sec-fibonacci-bento .card--crm,.wpmn-sec-fibonacci-bento .card--automation,.wpmn-sec-fibonacci-bento .card--design,.wpmn-sec-fibonacci-bento .card--analytics{grid-column:auto;grid-row:auto}
     }

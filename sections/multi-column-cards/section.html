@@ -1,22 +1,22 @@
 <!-- WPMN Section: Multi-Column Cards — clean 3-col feature grid (guideline grid #3) -->
 <section class="wpmn-sec-multi-column-cards">
   <style>
-    .wpmn-sec-multi-column-cards{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-multi-column-cards{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
     .wpmn-sec-multi-column-cards .mc-c{max-width:1200px;margin:0 auto}
-    .wpmn-sec-multi-column-cards .mc-head{text-align:center;margin-bottom:48px}
-    .wpmn-sec-multi-column-cards .mc-badge{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:12px}
+    .wpmn-sec-multi-column-cards .mc-head{text-align:center;margin-bottom:var(--primitive-space-48)}
+    .wpmn-sec-multi-column-cards .mc-badge{display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-label);font-weight:var(--font-weight-medium);letter-spacing:.08em;text-transform:uppercase;color:var(--btn-bg-enable);margin-bottom:var(--primitive-space-12)}
     .wpmn-sec-multi-column-cards .mc-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--btn-bg-enable)}
     .wpmn-sec-multi-column-cards .mc-heading{max-width:800px;margin:0 auto;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-multi-column-cards .mc-sub{max-width:800px;margin:16px auto 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
-    .wpmn-sec-multi-column-cards .mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-    .wpmn-sec-multi-column-cards .mc-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:32px 24px;transition:box-shadow 120ms ease,transform 120ms ease}
+    .wpmn-sec-multi-column-cards .mc-sub{max-width:800px;margin:var(--primitive-space-16) auto 0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-multi-column-cards .mc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--primitive-space-32)}
+    .wpmn-sec-multi-column-cards .mc-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:var(--primitive-space-32) var(--primitive-space-24);transition:box-shadow 120ms ease,transform 120ms ease}
     .wpmn-sec-multi-column-cards .mc-card:hover{box-shadow:var(--shadow-soft-300);transform:translateY(-2px)}
     .wpmn-sec-multi-column-cards .mc-icon{width:40px;height:40px;border-radius:var(--radius-xsm);background:var(--btn-bg-focused);color:var(--btn-bg-enable);display:flex;align-items:center;justify-content:center}
-    .wpmn-sec-multi-column-cards .mc-card h3{margin:12px 0 0;font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-multi-column-cards .mc-card p{margin:8px 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
-    @media(max-width:1199px){.wpmn-sec-multi-column-cards .mc-c{padding:0 40px}}
-    @media(max-width:900px){.wpmn-sec-multi-column-cards .mc-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
-    @media(max-width:768px){.wpmn-sec-multi-column-cards{padding:64px 0}.wpmn-sec-multi-column-cards .mc-c{padding:0 20px}}
+    .wpmn-sec-multi-column-cards .mc-card h3{margin:var(--primitive-space-12) 0 0;font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-multi-column-cards .mc-card p{margin:var(--primitive-space-8) 0 0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    @media(max-width:1199px){.wpmn-sec-multi-column-cards .mc-c{padding:0 var(--primitive-space-40)}}
+    @media(max-width:900px){.wpmn-sec-multi-column-cards .mc-grid{grid-template-columns:repeat(2,1fr);gap:var(--primitive-space-24)}}
+    @media(max-width:768px){.wpmn-sec-multi-column-cards{padding:var(--primitive-space-64) 0}.wpmn-sec-multi-column-cards .mc-c{padding:0 var(--primitive-space-20)}}
     @media(max-width:560px){.wpmn-sec-multi-column-cards .mc-grid{grid-template-columns:1fr}}
       @media (prefers-reduced-motion: reduce) {
       .wpmn-sec-multi-column-cards *, .wpmn-sec-multi-column-cards *::before, .wpmn-sec-multi-column-cards *::after { transition: none !important; animation: none !important; }

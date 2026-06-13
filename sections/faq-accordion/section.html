@@ -1,23 +1,23 @@
 <!-- WPMN Section: FAQ Accordion — question/answer list with expand/collapse -->
 <section class="wpmn-sec-faq-accordion">
   <style>
-    .wpmn-sec-faq-accordion { padding: 96px 0; background: var(--color-surface-primary); font-family: var(--font-family-base); }
+    .wpmn-sec-faq-accordion { padding: var(--primitive-space-96) 0; background: var(--color-surface-primary); font-family: var(--font-family-base); }
     .wpmn-sec-faq-accordion .fa-container { max-width: 1200px; margin: 0 auto; }
-    .wpmn-sec-faq-accordion .fa-header { text-align: center; margin-bottom: 48px; }
-    .wpmn-sec-faq-accordion .fa-badge { display: inline-flex; align-items: center; gap: 8px; font-size: var(--font-size-body-label); line-height: var(--font-lh-body-label); font-weight: var(--font-weight-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--btn-bg-enable); margin-bottom: 12px; }
+    .wpmn-sec-faq-accordion .fa-header { text-align: center; margin-bottom: var(--primitive-space-48); }
+    .wpmn-sec-faq-accordion .fa-badge { display: inline-flex; align-items: center; gap: var(--primitive-space-8); font-size: var(--font-size-body-label); line-height: var(--font-lh-body-label); font-weight: var(--font-weight-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--btn-bg-enable); margin-bottom: var(--primitive-space-12); }
     .wpmn-sec-faq-accordion .fa-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--btn-bg-enable); }
     .wpmn-sec-faq-accordion .fa-heading { max-width: 800px; margin: 0 auto; font-size: var(--font-size-h2); line-height: var(--font-lh-h2); font-weight: var(--font-weight-semibold); color: var(--color-text-primary); }
-    .wpmn-sec-faq-accordion .fa-subtext { max-width: 800px; margin: 16px auto 0; font-size: var(--font-size-body-medium); line-height: var(--font-lh-body-medium); color: var(--color-text-secondary); }
-    .wpmn-sec-faq-accordion .fa-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .wpmn-sec-faq-accordion .fa-subtext { max-width: 800px; margin: var(--primitive-space-16) auto 0; font-size: var(--font-size-body-medium); line-height: var(--font-lh-body-medium); color: var(--color-text-secondary); }
+    .wpmn-sec-faq-accordion .fa-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--primitive-space-16); }
     .wpmn-sec-faq-accordion .fa-item { border: 1.5px solid var(--color-border-primary); border-radius: var(--radius-md); overflow: hidden; transition: border-color 120ms ease; }
     .wpmn-sec-faq-accordion .fa-item[data-open] { border-color: var(--btn-bg-enable); }
-    .wpmn-sec-faq-accordion .fa-q { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; padding: 24px; background: transparent; border: none; cursor: pointer; text-align: left; font-family: inherit; font-size: var(--font-size-h6); line-height: var(--font-lh-h6); font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
+    .wpmn-sec-faq-accordion .fa-q { display: flex; align-items: center; justify-content: space-between; gap: var(--primitive-space-16); width: 100%; padding: var(--primitive-space-24); background: transparent; border: none; cursor: pointer; text-align: left; font-family: inherit; font-size: var(--font-size-h6); line-height: var(--font-lh-h6); font-weight: var(--font-weight-medium); color: var(--color-text-primary); }
     .wpmn-sec-faq-accordion .fa-icon { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: var(--btn-bg-enable); transition: transform 200ms ease; }
     .wpmn-sec-faq-accordion .fa-item[data-open] .fa-icon { transform: rotate(45deg); }
     .wpmn-sec-faq-accordion .fa-a { max-height: 0; overflow: hidden; transition: max-height 250ms ease; }
-    .wpmn-sec-faq-accordion .fa-a-inner { padding: 0 24px 24px; font-size: var(--font-size-body-base); line-height: var(--font-lh-body-base); color: var(--color-text-secondary); }
-    @media (max-width: 1199px) { .wpmn-sec-faq-accordion .fa-container { padding: 0 40px; } }
-    @media (max-width: 768px) { .wpmn-sec-faq-accordion { padding: 64px 0; } .wpmn-sec-faq-accordion .fa-container { padding: 0 20px; } }
+    .wpmn-sec-faq-accordion .fa-a-inner { padding: 0 var(--primitive-space-24) var(--primitive-space-24); font-size: var(--font-size-body-base); line-height: var(--font-lh-body-base); color: var(--color-text-secondary); }
+    @media (max-width: 1199px) { .wpmn-sec-faq-accordion .fa-container { padding: 0 var(--primitive-space-40); } }
+    @media (max-width: 768px) { .wpmn-sec-faq-accordion { padding: var(--primitive-space-64) 0; } .wpmn-sec-faq-accordion .fa-container { padding: 0 var(--primitive-space-20); } }
       @media (prefers-reduced-motion: reduce) {
       .wpmn-sec-faq-accordion *, .wpmn-sec-faq-accordion *::before, .wpmn-sec-faq-accordion *::after { transition: none !important; animation: none !important; }
     }

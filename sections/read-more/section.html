@@ -1,20 +1,20 @@
 <!-- WPMN Section: Read More — truncated text with fade and expand trigger -->
 <section class="wpmn-sec-read-more">
   <style>
-    .wpmn-sec-read-more{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-read-more{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
     .wpmn-sec-read-more .rm-c{max-width:1200px;margin:0 auto}
     .wpmn-sec-read-more .rm-inner{max-width:800px;margin:0 auto}
-    .wpmn-sec-read-more .rm-heading{margin:0 0 16px;font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-read-more .rm-heading{margin:0 0 var(--primitive-space-16);font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
     .wpmn-sec-read-more .rm-body{position:relative;max-height:170px;overflow:hidden;transition:max-height 350ms ease}
-    .wpmn-sec-read-more .rm-body p{margin:0 0 16px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-read-more .rm-body p{margin:0 0 var(--primitive-space-16);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
     .wpmn-sec-read-more .rm-fade{position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(180deg,transparent,var(--color-surface-primary));pointer-events:none;transition:opacity 250ms ease}
     .wpmn-sec-read-more .rm-wrap[data-open] .rm-fade{opacity:0}
-    .wpmn-sec-read-more .rm-toggle{margin-top:12px;border:none;background:transparent;padding:0;cursor:pointer;font-family:inherit;font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable);display:inline-flex;align-items:center;gap:6px}
+    .wpmn-sec-read-more .rm-toggle{margin-top:var(--primitive-space-12);border:none;background:transparent;padding:0;cursor:pointer;font-family:inherit;font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable);display:inline-flex;align-items:center;gap:var(--primitive-space-8)}
     .wpmn-sec-read-more .rm-toggle:hover{color:var(--btn-bg-hovered)}
     .wpmn-sec-read-more .rm-toggle svg{transition:transform 200ms ease}
     .wpmn-sec-read-more .rm-wrap[data-open] .rm-toggle svg{transform:rotate(180deg)}
-    @media(max-width:1199px){.wpmn-sec-read-more .rm-c{padding:0 40px}}
-    @media(max-width:768px){.wpmn-sec-read-more{padding:64px 0}.wpmn-sec-read-more .rm-c{padding:0 20px}}
+    @media(max-width:1199px){.wpmn-sec-read-more .rm-c{padding:0 var(--primitive-space-40)}}
+    @media(max-width:768px){.wpmn-sec-read-more{padding:var(--primitive-space-64) 0}.wpmn-sec-read-more .rm-c{padding:0 var(--primitive-space-20)}}
       @media (prefers-reduced-motion: reduce) {
       .wpmn-sec-read-more *, .wpmn-sec-read-more *::before, .wpmn-sec-read-more *::after { transition: none !important; animation: none !important; }
     }

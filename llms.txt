@@ -22,6 +22,8 @@ All files are fetchable via raw URLs: `https://raw.githubusercontent.com/mehdi21
 - **Buttons** follow `components/Button/Button.css` exactly: primary (brand bg + invert text + `--btn-bg-glow` inset + hovered/pressed/focus-visible states), secondary (transparent + 1.5px brand border, fills on hover; ghost-invert variant on dark surfaces), tertiary (text-only). Size steps 32-64px, radius `--radius-xsm`, 120ms ease states, one primary per section, no pill buttons, no underlines.
 - **Icons**: Hugeicons Pro only (`node scripts/extract-hugeicon.mjs <name> stroke.rounded`), ONE unified variant per site (library standard stroke.rounded), 24 viewBox, currentColor, invert color on dark surfaces.
 - **Motion**: keyframes prefixed `wpmn-`, everything behind `prefers-reduced-motion`.
+- **Spacing**: named tokens only, picked by intent (desktop values; spacing tokens are desktop-only). Decision order: section padding (96/64) & container (1200) → `--spacing-content-gap-*` (xxl48/xl48/l40/m24/s20/sm16, between blocks) → `--spacing-h-*-to-*` (heading-to-body, paired to heading scale) → `--spacing-btn-in-section-*` (CTA group) → `--spacing-icon-size-*` (sm20/md24/lg32). If no named token fits, snap to nearest `--primitive-space-*` step (4·8·12·16·20·24·32·40·48·56·64·80·96·120) — never an off-scale number.
+- **Heading scale**: hero header = `text-h1` (xxl) + `body-large`, the one H1 per page; section headers = `text-h2`/`text-h3` + `body-large`/`body-medium`.
 - Full rules: `wpmn-design-guideline.md`, `docs/`. QA tooling: `scripts/design-qa.mjs`, `scripts/audit-surface-pairing.mjs`.
 
 ## Components (10)

@@ -1,20 +1,20 @@
 <!-- WPMN Section: Feature Card Stack — sticky heading + scaling dark card stack (imported, tokenized) -->
 <section class="wpmn-sec-feature-card-stack">
   <style>
-    .wpmn-sec-feature-card-stack{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base);color:var(--color-text-primary)}
+    .wpmn-sec-feature-card-stack{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base);color:var(--color-text-primary)}
     .wpmn-sec-feature-card-stack .fcs-container{position:relative;max-width:1200px;margin:0 auto}
     .wpmn-sec-feature-card-stack .content-heading{position:sticky;top:100px;margin-bottom:480px}
     .wpmn-sec-feature-card-stack .heading{font-size:var(--font-size-h1);line-height:var(--font-lh-h1);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;color:var(--color-text-primary);margin:0}
     .wpmn-sec-feature-card-stack .content-wrap{display:flex;flex-direction:column;gap:360px}
     .wpmn-sec-feature-card-stack .content-box{display:grid;grid-template-columns:1fr 1fr;position:sticky;top:210px;min-height:420px;background:var(--color-surface-secondary);border-radius:var(--radius-md);will-change:transform;transform-origin:50% 50%}
     .wpmn-sec-feature-card-stack .content-box.mt-minus-400{margin-top:-400px}
-    .wpmn-sec-feature-card-stack .fcs-content{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:40px}
+    .wpmn-sec-feature-card-stack .fcs-content{display:flex;flex-direction:column;align-items:flex-start;gap:var(--primitive-space-12);padding:var(--primitive-space-40)}
     .wpmn-sec-feature-card-stack .card-h3{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-regular);letter-spacing:-0.02em;color:var(--color-text-primary-invert);margin:0}
     .wpmn-sec-feature-card-stack .card-p{max-width:640px;font-size:var(--font-size-body-large);line-height:var(--font-lh-body-large);letter-spacing:-0.02em;color:var(--color-text-secondary-invert)}
     .wpmn-sec-feature-card-stack .btn-wrap{margin-top:auto}
-    .wpmn-sec-feature-card-stack .fcs-img{padding:40px}
+    .wpmn-sec-feature-card-stack .fcs-img{padding:var(--primitive-space-40)}
     .wpmn-sec-feature-card-stack .fcs-img img{display:block;width:100%;height:392px;object-fit:cover;border-radius:var(--radius-xsm)}
-    .wpmn-sec-feature-card-stack .btn{display:flex;justify-content:space-between;align-items:center;gap:32px;min-width:200px;height:48px;padding:0 8px 0 16px;background:transparent;border:1.5px solid var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);letter-spacing:-0.01em;color:var(--color-text-primary-invert);text-decoration:none;cursor:pointer;transition:background-color 120ms ease,color 120ms ease}
+    .wpmn-sec-feature-card-stack .btn{display:flex;justify-content:space-between;align-items:center;gap:var(--primitive-space-32);min-width:200px;height:48px;padding:0 var(--primitive-space-8) 0 var(--primitive-space-16);background:transparent;border:1.5px solid var(--color-text-primary-invert);border-radius:var(--radius-xsm);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);letter-spacing:-0.01em;color:var(--color-text-primary-invert);text-decoration:none;cursor:pointer;transition:background-color 120ms ease,color 120ms ease}
     .wpmn-sec-feature-card-stack .btn:hover{background:var(--color-text-primary-invert);color:var(--color-text-primary)}
     .wpmn-sec-feature-card-stack .btn .label{white-space:nowrap}
     .wpmn-sec-feature-card-stack .btn_right{position:relative;display:flex;justify-content:center;align-items:center;width:34px;height:34px;background:transparent;border-radius:var(--radius-xsm);overflow:clip}
@@ -27,18 +27,18 @@
       .wpmn-sec-feature-card-stack .btn:hover .btn_icon.cc-2{transform:translateX(0)}
     }
     .wpmn-sec-feature-card-stack .runway{height:60vh}
-    @media(max-width:1199px){.wpmn-sec-feature-card-stack .fcs-container{padding:0 40px}}
+    @media(max-width:1199px){.wpmn-sec-feature-card-stack .fcs-container{padding:0 var(--primitive-space-40)}}
     @media(max-width:991px){
       .wpmn-sec-feature-card-stack .content-box{grid-template-columns:1fr}
       .wpmn-sec-feature-card-stack .content-box .fcs-img{order:-1}
       .wpmn-sec-feature-card-stack .fcs-img img{height:auto;aspect-ratio:640/392}
       .wpmn-sec-feature-card-stack .content-heading{margin-bottom:320px}
       .wpmn-sec-feature-card-stack .content-box.mt-minus-400{margin-top:-260px}
-      .wpmn-sec-feature-card-stack .content-wrap{gap:240px}
+      .wpmn-sec-feature-card-stack .content-wrap{gap:var(--primitive-space-224)}
     }
-    @media(max-width:768px){.wpmn-sec-feature-card-stack{padding:64px 0}.wpmn-sec-feature-card-stack .fcs-container{padding:0 20px}}
+    @media(max-width:768px){.wpmn-sec-feature-card-stack{padding:var(--primitive-space-64) 0}.wpmn-sec-feature-card-stack .fcs-container{padding:0 var(--primitive-space-20)}}
     @media(max-width:600px){
-      .wpmn-sec-feature-card-stack .fcs-content,.wpmn-sec-feature-card-stack .fcs-img{padding:24px}
+      .wpmn-sec-feature-card-stack .fcs-content,.wpmn-sec-feature-card-stack .fcs-img{padding:var(--primitive-space-24)}
     }
     .wpmn-sec-feature-card-stack .btn:focus-visible{outline:none;border:3px solid var(--btn-bg-focused)}
     

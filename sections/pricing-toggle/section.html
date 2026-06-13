@@ -1,45 +1,45 @@
 <!-- WPMN Section: Pricing Toggle — monthly/yearly slider, 3 plans + dark feature card + enterprise row (imported, tokenized) -->
 <section class="wpmn-sec-pricing-toggle">
   <style>
-    .wpmn-sec-pricing-toggle{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:96px 32px;--pt-ghost:color-mix(in srgb,var(--color-text-primary) 4%,transparent);--pt-stroke:color-mix(in srgb,var(--color-text-primary) 12%,transparent);--pt-badge-bg:color-mix(in srgb,var(--btn-bg-enable) 12%,var(--color-surface-primary))}
+    .wpmn-sec-pricing-toggle{background:var(--color-surface-primary);color:var(--color-text-primary);font-family:var(--font-family-base);padding:var(--primitive-space-96) var(--primitive-space-32);--pt-ghost:color-mix(in srgb,var(--color-text-primary) 4%,transparent);--pt-stroke:color-mix(in srgb,var(--color-text-primary) 12%,transparent);--pt-badge-bg:color-mix(in srgb,var(--btn-bg-enable) 12%,var(--color-surface-primary))}
     .wpmn-sec-pricing-toggle a{text-decoration:none}
-    .wpmn-sec-pricing-toggle .pt-kicker{width:fit-content;margin:0 auto 12px;padding:5px 14px;background:var(--pt-ghost);border-radius:999px;color:var(--color-text-secondary);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.05em;text-transform:uppercase}
-    .wpmn-sec-pricing-toggle .pt-title{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;text-align:center;color:var(--color-text-primary);margin:0 0 16px}
-    .wpmn-sec-pricing-toggle .pt-sub{max-width:628px;margin:0 auto 56px;padding:0 14px;text-align:center;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-pricing-toggle .pt-kicker{width:fit-content;margin:0 auto var(--primitive-space-12);padding:var(--primitive-space-4) var(--primitive-space-12);background:var(--pt-ghost);border-radius:999px;color:var(--color-text-secondary);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.05em;text-transform:uppercase}
+    .wpmn-sec-pricing-toggle .pt-title{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);letter-spacing:-0.02em;text-align:center;color:var(--color-text-primary);margin:0 0 var(--primitive-space-16)}
+    .wpmn-sec-pricing-toggle .pt-sub{max-width:628px;margin:0 auto var(--primitive-space-56);padding:0 var(--primitive-space-12);text-align:center;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
     .wpmn-sec-pricing-toggle .pt-sub b{color:var(--color-text-primary);font-weight:var(--font-weight-semibold)}
-    .wpmn-sec-pricing-toggle .toggle-wrap{display:flex;justify-content:center;margin-bottom:56px}
-    .wpmn-sec-pricing-toggle .toggle{position:relative;display:flex;background:var(--pt-ghost);border-radius:var(--radius-xsm);padding:3px}
+    .wpmn-sec-pricing-toggle .toggle-wrap{display:flex;justify-content:center;margin-bottom:var(--primitive-space-56)}
+    .wpmn-sec-pricing-toggle .toggle{position:relative;display:flex;background:var(--pt-ghost);border-radius:var(--radius-xsm);padding:var(--primitive-space-4)}
     .wpmn-sec-pricing-toggle .toggle .pill{position:absolute;top:3px;left:3px;width:calc(50% - 3px);height:calc(100% - 6px);background:var(--color-surface-primary);border-radius:calc(var(--radius-xsm) - 2px);box-shadow:var(--shadow-soft-300);transform:translateX(160px);transition:transform .3s cubic-bezier(.4,0,.2,1)}
     .wpmn-sec-pricing-toggle .toggle.monthly .pill{transform:translateX(0)}
-    .wpmn-sec-pricing-toggle .toggle button{position:relative;z-index:10;min-width:160px;padding:10px 12px;border:0;background:none;cursor:pointer;font-family:var(--font-family-base);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-regular);color:var(--color-text-secondary);transition:color .3s cubic-bezier(.6,.6,0,1),font-weight .3s}
+    .wpmn-sec-pricing-toggle .toggle button{position:relative;z-index:10;min-width:160px;padding:var(--primitive-space-12) var(--primitive-space-12);border:0;background:none;cursor:pointer;font-family:var(--font-family-base);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-regular);color:var(--color-text-secondary);transition:color .3s cubic-bezier(.6,.6,0,1),font-weight .3s}
     .wpmn-sec-pricing-toggle .toggle button.active{color:var(--color-text-primary);font-weight:var(--font-weight-medium)}
-    .wpmn-sec-pricing-toggle .toggle .badge{margin-left:4px;padding:4px 8px;border-radius:999px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);background:color-mix(in srgb,var(--color-text-primary) 8%,transparent);color:var(--color-text-secondary);transition:background-color .3s,color .3s}
+    .wpmn-sec-pricing-toggle .toggle .badge{margin-left:var(--primitive-space-4);padding:var(--primitive-space-4) var(--primitive-space-8);border-radius:999px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);background:color-mix(in srgb,var(--color-text-primary) 8%,transparent);color:var(--color-text-secondary);transition:background-color .3s,color .3s}
     .wpmn-sec-pricing-toggle .toggle button.active .badge{background:var(--pt-badge-bg);color:var(--btn-bg-enable)}
-    .wpmn-sec-pricing-toggle .cards{display:grid;grid-template-columns:repeat(3,360px);gap:24px;justify-content:center;margin:0 auto;max-width:1200px}
-    .wpmn-sec-pricing-toggle .card{background:var(--pt-ghost);border-radius:var(--radius-lg);padding:4px}
-    .wpmn-sec-pricing-toggle .card-name,.wpmn-sec-pricing-toggle .name-dark{border-radius:calc(var(--radius-lg) - 4px);padding:32px 36px 36px;margin-bottom:32px}
+    .wpmn-sec-pricing-toggle .cards{display:grid;grid-template-columns:repeat(3,360px);gap:var(--primitive-space-24);justify-content:center;margin:0 auto;max-width:1200px}
+    .wpmn-sec-pricing-toggle .card{background:var(--pt-ghost);border-radius:var(--radius-lg);padding:var(--primitive-space-4)}
+    .wpmn-sec-pricing-toggle .card-name,.wpmn-sec-pricing-toggle .name-dark{border-radius:calc(var(--radius-lg) - 4px);padding:var(--primitive-space-32) var(--primitive-space-32) var(--primitive-space-32);margin-bottom:var(--primitive-space-32)}
     .wpmn-sec-pricing-toggle .card-name{background:var(--color-surface-primary);box-shadow:var(--shadow-soft-300)}
-    .wpmn-sec-pricing-toggle .card-title{margin:0 0 12px;font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-pricing-toggle .card-title{margin:0 0 var(--primitive-space-12);font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
     .wpmn-sec-pricing-toggle .card-desc{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
-    .wpmn-sec-pricing-toggle .card-body{padding:0 36px 36px}
-    .wpmn-sec-pricing-toggle .price-row{display:flex;align-items:flex-end;gap:9px;margin-bottom:24px}
+    .wpmn-sec-pricing-toggle .card-body{padding:0 var(--primitive-space-32) var(--primitive-space-32)}
+    .wpmn-sec-pricing-toggle .price-row{display:flex;align-items:flex-end;gap:var(--primitive-space-8);margin-bottom:var(--primitive-space-24)}
     .wpmn-sec-pricing-toggle .price{margin:0;font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-pricing-toggle .per{margin:0 0 4px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
-    .wpmn-sec-pricing-toggle .btn{display:flex;align-items:center;justify-content:center;width:100%;height:48px;padding:0 24px;border:1.5px solid transparent;border-radius:var(--radius-xsm);cursor:pointer;font-family:var(--font-family-base);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease}
-    .wpmn-sec-pricing-toggle .btn span{display:flex;align-items:center;justify-content:center;gap:4px}
+    .wpmn-sec-pricing-toggle .per{margin:0 0 var(--primitive-space-4);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+    .wpmn-sec-pricing-toggle .btn{display:flex;align-items:center;justify-content:center;width:100%;height:48px;padding:0 var(--primitive-space-24);border:1.5px solid transparent;border-radius:var(--radius-xsm);cursor:pointer;font-family:var(--font-family-base);font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);transition:background-color 120ms ease,border-color 120ms ease,color 120ms ease}
+    .wpmn-sec-pricing-toggle .btn span{display:flex;align-items:center;justify-content:center;gap:var(--primitive-space-4)}
     .wpmn-sec-pricing-toggle .btn-light{background:transparent;color:var(--btn-bg-enable);border:1.5px solid var(--btn-bg-enable)}
     .wpmn-sec-pricing-toggle .btn-light:hover{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
     .wpmn-sec-pricing-toggle .btn-light:active{background:var(--btn-bg-hovered);border-color:var(--btn-bg-hovered);color:var(--color-text-primary-invert)}
     .wpmn-sec-pricing-toggle .btn-primary{background:var(--btn-bg-enable);color:var(--color-text-primary-invert);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
     .wpmn-sec-pricing-toggle .btn-primary:hover{background:var(--btn-bg-hovered)}
     .wpmn-sec-pricing-toggle .btn-primary:active{background:var(--btn-bg-pressed)}
-    .wpmn-sec-pricing-toggle .btn-dark{background:transparent;color:var(--btn-bg-enable);border:1.5px solid var(--btn-bg-enable);margin-top:24px}
+    .wpmn-sec-pricing-toggle .btn-dark{background:transparent;color:var(--btn-bg-enable);border:1.5px solid var(--btn-bg-enable);margin-top:var(--primitive-space-24)}
     .wpmn-sec-pricing-toggle .btn-dark:hover{background:var(--btn-bg-enable);color:var(--color-text-primary-invert)}
     .wpmn-sec-pricing-toggle .btn-dark:active{background:var(--btn-bg-hovered);border-color:var(--btn-bg-hovered);color:var(--color-text-primary-invert)}
-    .wpmn-sec-pricing-toggle .dash{display:block;width:100%;height:2px;margin:31px 0;color:var(--pt-stroke)}
-    .wpmn-sec-pricing-toggle .mono-label{margin:0 0 24px;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.05em;text-transform:uppercase;color:var(--color-text-secondary)}
-    .wpmn-sec-pricing-toggle .feats{display:flex;flex-direction:column;gap:16px}
-    .wpmn-sec-pricing-toggle .feat{display:flex;gap:12px;color:color-mix(in srgb,var(--color-text-primary) 36%,transparent)}
+    .wpmn-sec-pricing-toggle .dash{display:block;width:100%;height:2px;margin:var(--primitive-space-32) 0;color:var(--pt-stroke)}
+    .wpmn-sec-pricing-toggle .mono-label{margin:0 0 var(--primitive-space-24);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.05em;text-transform:uppercase;color:var(--color-text-secondary)}
+    .wpmn-sec-pricing-toggle .feats{display:flex;flex-direction:column;gap:var(--primitive-space-16)}
+    .wpmn-sec-pricing-toggle .feat{display:flex;gap:var(--primitive-space-12);color:color-mix(in srgb,var(--color-text-primary) 36%,transparent)}
     .wpmn-sec-pricing-toggle .feat svg{flex-shrink:0;display:block;width:22px;height:22px}
     .wpmn-sec-pricing-toggle .feat-text{margin:0;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
     .wpmn-sec-pricing-toggle .feat-text b{font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
@@ -52,14 +52,14 @@
     .wpmn-sec-pricing-toggle .body-dark b{color:var(--color-text-primary-invert)}
     .wpmn-sec-pricing-toggle .card--dark .feat{color:color-mix(in srgb,var(--color-text-primary-invert) 45%,transparent)}
     .wpmn-sec-pricing-toggle .card--dark .dash{color:color-mix(in srgb,var(--color-text-primary-invert) 12%,transparent)}
-    .wpmn-sec-pricing-toggle .ent-wrap{max-width:1128px;margin:24px auto 0}
+    .wpmn-sec-pricing-toggle .ent-wrap{max-width:1128px;margin:var(--primitive-space-24) auto 0}
     .wpmn-sec-pricing-toggle .ent{background:var(--pt-ghost);border-radius:var(--radius-lg)}
-    .wpmn-sec-pricing-toggle .ent-inner{display:flex;gap:24px;padding:4px}
+    .wpmn-sec-pricing-toggle .ent-inner{display:flex;gap:var(--primitive-space-24);padding:var(--primitive-space-4)}
     .wpmn-sec-pricing-toggle .ent .card-name{width:calc(100%/3);margin-bottom:0;border-radius:calc(var(--radius-lg) - 4px)}
-    .wpmn-sec-pricing-toggle .ent-feats{width:calc(200%/3);padding:36px}
-    .wpmn-sec-pricing-toggle .ent-feats .feats{display:grid;grid-template-columns:1fr 1fr;gap:16px 4px}
+    .wpmn-sec-pricing-toggle .ent-feats{width:calc(200%/3);padding:var(--primitive-space-32)}
+    .wpmn-sec-pricing-toggle .ent-feats .feats{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-16) var(--primitive-space-4)}
     @media(max-width:1200px){
-      .wpmn-sec-pricing-toggle{padding:64px 20px}
+      .wpmn-sec-pricing-toggle{padding:var(--primitive-space-64) var(--primitive-space-20)}
       .wpmn-sec-pricing-toggle .cards{grid-template-columns:min(360px,100%)}
       .wpmn-sec-pricing-toggle .ent-inner{flex-direction:column}
       .wpmn-sec-pricing-toggle .ent .card-name,.wpmn-sec-pricing-toggle .ent-feats{width:100%}

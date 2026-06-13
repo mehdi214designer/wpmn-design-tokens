@@ -29,6 +29,10 @@ Heading       — always required. Max 800px wide, center-aligned.
 [ Primary CTA ]  [ Secondary CTA ]
 ```
 
+**Heading scale by context**
+- Hero header — `text-h1` (xxl) + `body-large`, gap `--spacing-h-xxl-to-large`. The single H1 on the page.
+- Section header — `text-h2` / `text-h3` + `body-large` / `body-medium`. Steps down from the hero.
+
 ---
 
 ## Section Backgrounds
@@ -98,6 +102,10 @@ primary → secondary → secondary ← back to back dark
 |---|---|
 | Centered text max width | 800px |
 | Section alignment | Center — headings, subtext, toggles, CTAs |
+| Hero heading | `text-h1` (xxl) + `body-large` — the one H1 per page |
+| Section heading | `text-h2` / `text-h3` + `body-large` / `body-medium` |
+
+Heading → body gap is paired to the heading scale — see the heading-to-body token table in **Spacing Within Sections**.
 
 **Highlighted / accented text** — use the brand color token, never gray or hardcoded values.
 
@@ -214,16 +222,58 @@ Seven approved layout grids. Do not use arbitrary column ratios outside these.
 
 ## Spacing Within Sections
 
-| Property | Value |
+Every gap is a named token, picked by intent. Values are desktop. Spacing tokens are desktop-only by design — mobile rhythm comes from the type scale swap at 768px, not from spacing overrides.
+
+**Decision order:** section padding & container frame the page → content-gap separates blocks inside a section → heading-to-body sits under a heading → button-in-section spaces the CTA group → icon-size sets the icon box.
+
+### Frame
+| Token | Value |
 |---|---|
-| Badge → Heading | 12px |
-| Heading → Subtext | 16px |
-| Subtext → Content | 48px |
-| Section header → CTA | 32px |
-| Between feature cards (3-col) | 32px |
-| Between feature cards (4-col) | 24px |
-| Icon → Heading (within card) | 12px |
-| Heading → Body (within card) | 8px |
+| `--spacing-section-padding-tb-desktop` | 96px (64 mobile) |
+| `--spacing-section-gap-desktop` | 80px |
+| Container max-width | 1200px |
+| Side padding | 32px desktop / 20px mobile (`--primitive-space-32` / `-20`) |
+
+### Content gap — between major blocks in a section
+| Token | Value |
+|---|---|
+| `--spacing-content-gap-xxl` | 48px |
+| `--spacing-content-gap-xl` | 48px |
+| `--spacing-content-gap-l` | 40px |
+| `--spacing-content-gap-m` | 24px |
+| `--spacing-content-gap-s` | 20px |
+| `--spacing-content-gap-sm` | 16px |
+
+### Heading-to-body gap — under a heading, by heading scale
+| Token | Value | Pairs with |
+|---|---|---|
+| `--spacing-h-xxl-to-large` | 16px | text-h1 + body-large (hero) |
+| `--spacing-h-xl-to-medium` | 12px | text-h2 + body-medium |
+| `--spacing-h-l-to-medium` | 12px | text-h3 + body-medium |
+| `--spacing-h-m-to-base` | 8px | text-h4 + body-base |
+| `--spacing-h-s-to-base` | 8px | text-h5 + body-base |
+| `--spacing-h-xs-to-small` | 8px | text-h6 + body-small |
+
+### Button-in-section gap — around the CTA group / between buttons
+| Token | Value |
+|---|---|
+| `--spacing-btn-in-section-xl` | 32px |
+| `--spacing-btn-in-section-lg` | 32px |
+| `--spacing-btn-in-section-md` | 24px |
+| `--spacing-btn-in-section-sm` | 20px |
+| `--spacing-btn-in-section-xs` | 16px |
+
+### Section & card icon size
+| Token | Value |
+|---|---|
+| `--spacing-icon-size-sm` | 20px |
+| `--spacing-icon-size-md` | 24px |
+| `--spacing-icon-size-lg` | 32px |
+
+### When no named token fits
+Snap to the nearest step on the primitive scale — never an off-scale number.
+Scale: 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64 · 80 · 96 · 120 (`--primitive-space-*`).
+Off-scale values (17px, 38px, etc.) are what make spacing drift across sections.
 
 ---
 

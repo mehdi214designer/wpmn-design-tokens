@@ -1,29 +1,29 @@
 <!-- WPMN Section: Asymmetric / Broken Grid — offset editorial layout with a deliberate diagonal rhythm -->
 <section class="wpmn-sec-asymmetric-grid">
   <style>
-    .wpmn-sec-asymmetric-grid{padding:96px 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
+    .wpmn-sec-asymmetric-grid{padding:var(--primitive-space-96) 0;background:var(--color-surface-primary);font-family:var(--font-family-base)}
     .wpmn-sec-asymmetric-grid .ag-c{max-width:1200px;margin:0 auto}
-    .wpmn-sec-asymmetric-grid .ag-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
+    .wpmn-sec-asymmetric-grid .ag-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--primitive-space-24);align-items:start}
     .wpmn-sec-asymmetric-grid .ag-title{grid-column:1/7;grid-row:1;margin:0;font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
     .wpmn-sec-asymmetric-grid .ag-title em{font-style:normal;color:var(--btn-bg-enable)}
     .wpmn-sec-asymmetric-grid .ag-kicker{grid-column:1/6;grid-row:2;margin:0;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary)}
-    .wpmn-sec-asymmetric-grid .ag-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:28px;background:var(--color-surface-primary);transition:box-shadow 120ms ease,transform 120ms ease}
+    .wpmn-sec-asymmetric-grid .ag-card{border:1.5px solid var(--color-border-primary);border-radius:var(--radius-md);padding:var(--primitive-space-24);background:var(--color-surface-primary);transition:box-shadow 120ms ease,transform 120ms ease}
     .wpmn-sec-asymmetric-grid .ag-card:hover{box-shadow:var(--shadow-soft-300);transform:translateY(-2px)}
     .wpmn-sec-asymmetric-grid .ag-card h3{margin:0;font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
-    .wpmn-sec-asymmetric-grid .ag-card p{margin:8px 0 0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-asymmetric-grid .ag-card p{margin:var(--primitive-space-8) 0 0;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
     .wpmn-sec-asymmetric-grid .ag-img{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--color-border-primary);box-shadow:var(--shadow-soft-300)}
     .wpmn-sec-asymmetric-grid .ag-img img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 300ms ease}
     .wpmn-sec-asymmetric-grid .ag-img:hover img{transform:scale(1.03)}
-    .wpmn-sec-asymmetric-grid .ag-a{grid-column:8/13;grid-row:1/3;margin-top:32px;aspect-ratio:4/3}
-    .wpmn-sec-asymmetric-grid .ag-b{grid-column:1/6;grid-row:3;margin-top:16px}
-    .wpmn-sec-asymmetric-grid .ag-e{grid-column:2/8;grid-row:4;margin-top:8px;aspect-ratio:21/9}
+    .wpmn-sec-asymmetric-grid .ag-a{grid-column:8/13;grid-row:1/3;margin-top:var(--primitive-space-32);aspect-ratio:4/3}
+    .wpmn-sec-asymmetric-grid .ag-b{grid-column:1/6;grid-row:3;margin-top:var(--primitive-space-16)}
+    .wpmn-sec-asymmetric-grid .ag-e{grid-column:2/8;grid-row:4;margin-top:var(--primitive-space-8);aspect-ratio:21/9}
     .wpmn-sec-asymmetric-grid .ag-d{grid-column:8/13;grid-row:4;margin-top:-40px}
-    @media(max-width:1199px){.wpmn-sec-asymmetric-grid .ag-c{padding:0 40px}}
+    @media(max-width:1199px){.wpmn-sec-asymmetric-grid .ag-c{padding:0 var(--primitive-space-40)}}
     @media(max-width:900px){
       .wpmn-sec-asymmetric-grid .ag-grid{grid-template-columns:1fr}
       .wpmn-sec-asymmetric-grid .ag-title,.wpmn-sec-asymmetric-grid .ag-kicker,.wpmn-sec-asymmetric-grid .ag-a,.wpmn-sec-asymmetric-grid .ag-b,.wpmn-sec-asymmetric-grid .ag-d,.wpmn-sec-asymmetric-grid .ag-e{grid-column:1/-1;grid-row:auto;margin-top:0}
     }
-    @media(max-width:768px){.wpmn-sec-asymmetric-grid{padding:64px 0}.wpmn-sec-asymmetric-grid .ag-c{padding:0 20px}}
+    @media(max-width:768px){.wpmn-sec-asymmetric-grid{padding:var(--primitive-space-64) 0}.wpmn-sec-asymmetric-grid .ag-c{padding:0 var(--primitive-space-20)}}
       @media (prefers-reduced-motion: reduce) {
       .wpmn-sec-asymmetric-grid *, .wpmn-sec-asymmetric-grid *::before, .wpmn-sec-asymmetric-grid *::after { transition: none !important; animation: none !important; }
     }
