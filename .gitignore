@@ -16,3 +16,7 @@ build/
 # Logs
 *.log
 npm-debug.log*
+
+# Heavy reference dumps — local only, keep them out of the published tree
+/reference/*
+!/reference/README.md
