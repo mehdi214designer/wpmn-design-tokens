@@ -4,6 +4,10 @@ React component library and CSS design token system for WPManageNinja products.
 
 Built with plain CSS custom properties and React — no build step required for development.
 
+> **🤖 AI agents / tools:** start with **`AGENTS.md`** (or `llms.txt`). Read only
+> `wpmn-bundle.css`, `registry.json`, `COMPONENTS.md`, and `llms.txt` — and set
+> `data-brand="<product>"` on `<html>` or everything renders the default blue.
+
 ---
 
 ## Products

@@ -6,12 +6,37 @@ This file tells AI agents how to fetch and use this design system.
 
 ## How to use this repo as an AI agent
 
-1. Fetch `registry.json` first — it lists every component and section, with files, interactions, tokens used, category/role, and tags.
-2. For each item, choose ONE of two paths:
-   - **Prompt path**: fetch its `prompt.md` and follow it as an exact build spec (px values, token names, easings, states) to recreate it in any stack.
-   - **Code path**: fetch its source (`.jsx` + `.css` for components; a single self-contained `section.html` for sections) and use it as-is.
-3. Always load the token CSS first: `index.css` (imports primitives -> brand-primitives -> tokens -> typography in order).
-4. Sections are drop-in: one `<section class="wpmn-sec-<id>">` containing scoped styles, markup, and a scoped script. They coexist on one page and re-skin with `data-brand` / `data-theme` on any ancestor.
+**Read ONLY these four files — ignore everything else** (the big `*.md` files like
+`WPMN-Design-System.md` and `wpmn-design-tokens-master-demo.md` are reference noise, do not
+load them, they will dilute your context):
+
+1. `wpmn-bundle.css` — the WHOLE token system in one file (primitives + brand colors +
+   semantic tokens + type scale). Link/inline this one file. Don't hunt for `tokens.css` or
+   `typography.css` separately — they're all inside the bundle. Real token names live here;
+   grep this file, never guess a name.
+2. `registry.json` — every component (10) and section (56) with files, role, tags.
+3. `COMPONENTS.md` — component class names + one example each.
+4. this file (`llms.txt`) — the rules below.
+
+### Build steps
+
+0. **Set `data-brand` on `<html>` — REQUIRED.** The brand color system is off until you do.
+   Without it every product renders the default WPManageNinja blue.
+   `<html data-brand="fluentforms">`. Keys: wpmanagenia, fluentforms, fluentcrm, ninjatables,
+   fluentcommunity, fluentbooking, paymattic, fluentboards, fluentsmtp, fluentsupport,
+   fluentaffiliate, azonpress, wpsocialninja, fluentcart, fluentplayer, fluentmembers.
+   Dark mode: add `data-theme="dark"`.
+1. Link/inline `wpmn-bundle.css` (or `index.css` if you prefer the 4 split files).
+2. **Compose from the section library first.** Map each page block to a section by role from
+   `registry.json`, fetch its `sections/<id>/section.html`, and drop it in as-is — it's
+   self-contained (scoped styles + markup + scoped script) and re-skins via `data-brand`.
+   Only hand-build a block when no section fits.
+3. **Logo: inline the real SVG**, never draw or fake one. Fetch
+   `logos/<brand>/logo-<type>.svg` and paste it inline. Pick `<type>` by surface: light →
+   `primary`/`black`, dark → `white`/`dark`, brand-color → `inverted`/`white`. Map in
+   `logos/manifest.json`.
+4. For a single component (not a whole section), use the classes in `COMPONENTS.md`, or fetch
+   the component `prompt.md`/`.jsx`+`.css` from `registry.json`.
 
 All files are fetchable via raw URLs: `https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/<path>`
 

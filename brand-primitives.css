@@ -3,6 +3,9 @@
  * Source: Figma variable JSON exports per product
  * Last updated: 2026-04-27
  *
+ * ⚠ REQUIRED: set data-brand="<key>" on <html> or your output gets the default
+ *   WPManageNinja blue. e.g. <html data-brand="fluentforms">. Keys listed below.
+ *
  * HOW IT WORKS
  * ─────────────────────────────────────────────────────────────
  * Apply data-brand="<key>" to <html>, <body>, or any container.
