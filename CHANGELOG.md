@@ -30,6 +30,24 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.2.3] — 2026-06-13
+
+Typography/gap conformance — pass 1 + a recurring, resumable process.
+
+### Added
+- `npm run audit:typo` (`scripts/typo-gap-audit.mjs`) — re-runnable audit of heading→body
+  pairings and gap tokens; skips documented exceptions (stat/label/name patterns).
+- `docs/TYPOGRAPHY-CONFORMANCE.md` — living tracker: canon, process loop, triage rule,
+  decisions/exceptions, and Fixed/Pending status (update every session).
+- `jsdom` devDependency (the audit parses section DOM).
+
+### Changed (13 sections to canon)
+- `cta-banner`, the 8 h2-subtext sections (before-after-slider, collapsible-drawer,
+  content-accordion, faq-accordion, integration-grid, masonry-grid, multi-column-cards,
+  stacking-cards), `pricing-toggle`, `product-showcase`, `product-compare-table`,
+  `feature-tabs-carousel` — brought to canonical heading→body pairing / gap tokens. Details in
+  the tracker. Conformance is ongoing (see Pending).
+
 ## [1.2.2] — 2026-06-13
 
 Verification feedback from a consuming agent: the raw primitives were still grep-able and

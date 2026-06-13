@@ -1,6 +1,6 @@
 {
   "name": "wpmn-design-tokens",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "WPMN Design System — tokens, components, and brand variables for WPManageNinja products",
   "main": "index.js",
   "module": "index.js",
@@ -17,6 +17,7 @@
   "scripts": {
     "build:bundle": "node scripts/build-bundle.mjs",
     "qa": "node scripts/design-qa.mjs",
+    "audit:typo": "node scripts/typo-gap-audit.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -30,6 +31,9 @@
   "license": "ISC",
   "dependencies": {
     "@hugeicons/react-pro": "^0.3.2"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
   },
   "peerDependencies": {
     "react": ">=17.0.0",
