@@ -30,6 +30,16 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.2.1] — 2026-06-13
+
+### Changed
+- `docs/brands.md`: sync the FluentMembers entry to its current CSS values — Primary "Vivid
+  Fandango" `#824EEB`, Accent "Vivid Lavender" `#611CEB` (the doc still listed the old pink /
+  golden-yellow; `brand-primitives.css` was already purple).
+- `docs/mockup.md`: mockup treatment rule is now "float directly on the section background"
+  (removed the "always wrap in a surface container / never float on white" rule), matching the
+  current sections and the page-builder skill.
+
 ## [1.2.0] — 2026-06-13
 
 Spacing tokenized + enforced across the whole library, and the design system made

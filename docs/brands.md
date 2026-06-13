@@ -26,7 +26,7 @@ All semantic tokens in `tokens.css` cascade automatically once `data-brand` is s
 | FluentCart | `fluentcart` | #0000D9 | #00009F |
 | FluentPlayer | `fluentplayer` | #0163DD | #DD1E13 |
 | WPSocialNinja | `wpsocialninja` | #5B2DD4 | #FF0C79 |
-| FluentMembers | `fluentmembers` | #D5014A | #FFBB10 |
+| FluentMembers | `fluentmembers` | #824EEB | #611CEB |
 | FluentBooking | `fluentbooking` | #2653C5 | — |
 | FluentCommunity | `fluentcommunity` | #485CE0 | — |
 | FluentSMTP | `fluentsmtp` | #C516C0 | — |
@@ -37,37 +37,37 @@ All semantic tokens in `tokens.css` cascade automatically once `data-brand` is s
 
 ## FluentMembers — Full Scale
 
-### Primary (Pink)
+### Primary (Vivid Fandango)
 
 | Step | Value |
 |---|---|
-| 50 | #FBE5EC |
-| 100 | #F6CCDA |
-| 200 | #EE99B6 |
-| 300 | #E66693 |
-| 400 | #DE326E |
-| 500 | #D5014A |
-| 600 | #AA013B |
-| 700 | #7F002C |
-| 800 | #55001D |
-| 900 | #2A000E |
-| 950 | #150007 |
+| 50 | #F3EDFD |
+| 100 | #E6DCFB |
+| 200 | #CDB8F7 |
+| 300 | #B495F3 |
+| 400 | #9B71EF |
+| 500 | #824EEB |
+| 600 | #683EBC |
+| 700 | #4E2F8D |
+| 800 | #341F5E |
+| 900 | #1A102F |
+| 950 | #0D0817 |
 
-### Accent (Golden Yellow)
+### Accent (Vivid Lavender)
 
 | Step | Value |
 |---|---|
-| 50 | #FFF8E7 |
-| 100 | #FFF2CF |
-| 200 | #FFE3A0 |
-| 300 | #FFD66F |
-| 400 | #FFC83F |
-| 500 | #FFBB10 |
-| 600 | #CC950D |
-| 700 | #997008 |
-| 800 | #664A05 |
-| 900 | #332503 |
-| 950 | #191201 |
+| 50 | #EFE8FD |
+| 100 | #DFD2FB |
+| 200 | #C0A4F7 |
+| 300 | #A077F3 |
+| 400 | #8149EF |
+| 500 | #611CEB |
+| 600 | #4E16BC |
+| 700 | #3A118D |
+| 800 | #270B5E |
+| 900 | #13062F |
+| 950 | #0A0317 |
 
 ---
 
