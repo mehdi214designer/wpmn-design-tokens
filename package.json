@@ -1,6 +1,6 @@
 {
   "name": "wpmn-design-tokens",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "WPMN Design System — tokens, components, and brand variables for WPManageNinja products",
   "main": "index.js",
   "module": "index.js",
@@ -11,9 +11,12 @@
     "./primitives": "./primitives.css",
     "./brand-primitives": "./brand-primitives.css",
     "./typography": "./typography.css",
-    "./index.css": "./index.css"
+    "./index.css": "./index.css",
+    "./bundle": "./wpmn-bundle.css"
   },
   "scripts": {
+    "build:bundle": "node scripts/build-bundle.mjs",
+    "qa": "node scripts/design-qa.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
