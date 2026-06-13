@@ -9,8 +9,8 @@ WordPress products (FluentForms, FluentCRM, etc.).
 3. **`COMPONENTS.md`** — component class names + examples.
 4. **`llms.txt`** — the build rules (full version).
 
-Do **not** load `WPMN-Design-System.md`, `wpmn-design-tokens-master-demo.md`, `About.md`, or
-other large docs — they're reference noise that will bury the signal.
+Do **not** load anything in the **`/reference/`** folder (the big design-system dumps live
+there) or other large docs — that's reference noise that will bury the signal.
 
 ## The 4 rules people always miss
 1. **Set `data-brand` on `<html>`** — REQUIRED, or you get the default WPManageNinja blue.

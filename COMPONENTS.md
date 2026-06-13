@@ -115,5 +115,5 @@ Sizes swap automatically at 768px — never write raw mobile font-size overrides
 - Text: `var(--color-text-primary)` / `--color-text-secondary` (add `-invert` on dark surfaces)
 - Surface: `var(--color-surface-primary | -secondary | -alt)`
 - Spacing: `var(--primitive-space-8 … -120)` (8/12/16/20/24/32/40/48/64/80/96/120)
-- Radius: `var(--radius-xsm | -sm | -md | -lg)`
+- Radius: `var(--radius-xsm | -sm | -md | -lg)` = 8 / 12 / 16 / 32px. **These four semantic tokens only.** Don't reference `--primitive-radius-*` directly, and there is **no `--radius-xxs`** (the 4px radius only exists as a primitive).
 - Button color: `var(--btn-bg-enable)` + invert text + glow

@@ -30,7 +30,8 @@
      surfaces      var(--color-surface-primary | -secondary | -alt)
      type          class .text-h1 … .text-h6, .text-body-large | -base | -small
      spacing       var(--primitive-space-8 … -120)     (8/12/16/20/24/32/40/48/64/80/96/120)
-     radius        var(--radius-xsm | -sm | -md | -lg)
+     radius        var(--radius-xsm | -sm | -md | -lg)  = 8/12/16/32px (these 4 semantic
+                   tokens only; do NOT use --primitive-radius-*; there is no --radius-xxs)
      buttons       var(--btn-bg-enable) + invert text  (or use .wpmn-btn--primary)
 
    Components + class names: see COMPONENTS.md.  Sections: see registry.json + llms.txt.

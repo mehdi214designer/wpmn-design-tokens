@@ -6,9 +6,9 @@ This file tells AI agents how to fetch and use this design system.
 
 ## How to use this repo as an AI agent
 
-**Read ONLY these four files — ignore everything else** (the big `*.md` files like
-`WPMN-Design-System.md` and `wpmn-design-tokens-master-demo.md` are reference noise, do not
-load them, they will dilute your context):
+**Read ONLY these four files — ignore everything else.** In particular do not load anything in
+the `/reference/` folder (the big design-system dumps live there) — it's reference noise that
+will dilute your context:
 
 1. `wpmn-bundle.css` — the WHOLE token system in one file (primitives + brand colors +
    semantic tokens + type scale). Link/inline this one file. Don't hunt for `tokens.css` or
@@ -49,6 +49,7 @@ All files are fetchable via raw URLs: `https://raw.githubusercontent.com/mehdi21
 - **Motion**: keyframes prefixed `wpmn-`, everything behind `prefers-reduced-motion`.
 - **Spacing**: named tokens only, picked by intent (desktop values; spacing tokens are desktop-only). Decision order: section padding (96/64) & container (1200) → `--spacing-content-gap-*` (xxl48/xl48/l40/m24/s20/sm16, between blocks) → `--spacing-h-*-to-*` (heading-to-body, paired to heading scale) → `--spacing-btn-in-section-*` (CTA group) → `--spacing-icon-size-*` (sm20/md24/lg32). If no named token fits, snap to nearest `--primitive-space-*` step (4·8·12·16·20·24·32·40·48·56·64·80·96·120) — never an off-scale number.
 - **Heading scale**: hero header = `text-h1` (xxl) + `body-large`, the one H1 per page; section headers = `text-h2`/`text-h3` + `body-large`/`body-medium`.
+- **Radius**: use the 4 semantic tokens only — `--radius-xsm` (8px) / `--radius-sm` (12) / `--radius-md` (16) / `--radius-lg` (32). Never reference `--primitive-radius-*` directly, and there is no `--radius-xxs`.
 - Full rules: `wpmn-design-guideline.md`, `docs/`. QA tooling: `scripts/design-qa.mjs`, `scripts/audit-surface-pairing.mjs`.
 
 ## Components (10)
