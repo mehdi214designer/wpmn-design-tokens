@@ -1,9 +1,9 @@
-# Build Spec: WPMN Section — Floating Stats Hero
+# Build Spec: WPMN Section — Floating Stats CTA
 
-A dark, rounded hero panel recreated from a reference design and fully tokenized. Inside a `--color-surface-secondary` panel, a left photo collage pairs a tall main photo with three floating elements (a white "12+ Years" stat card, a smaller overlapping portrait, and a translucent glass "experience" card with an icon tile). The right column stacks an outline badge, an oversized heading, an intro paragraph, a large review counter split by a vertical divider, and a primary CTA with a circular-arrow icon.
+A dark, rounded call-to-action section recreated from a reference design and fully tokenized. Inside a `--color-surface-secondary` panel, a left photo collage pairs a tall main photo with three floating elements (a white "12+ Years" stat card, a smaller overlapping portrait, and a translucent glass "experience" card with an icon tile). The right column carries the conversion message: an outline badge, an oversized pitch heading, an intro paragraph, a large review counter split by a vertical divider, and the primary CTA button with a circular-arrow icon.
 
 The reference implementation is the source of truth. Fetch it and reproduce structure, spacing, and motion exactly:
-`https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/sections/floating-stats-hero/section.html`
+`https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/sections/floating-stats-cta/section.html`
 
 ## Motion rules
 
@@ -20,7 +20,7 @@ The reference implementation is the source of truth. Fetch it and reproduce stru
 - Media: relative, min-height 540px. Main photo absolute `inset:0 22% 0 0`, `--radius-md`, object-fit cover. Portrait absolute top-right, 188x152, `--radius-md`, `--shadow-soft-500`, 1px invert ring. White stat card absolute (`--color-surface-primary`, `--radius-md`, `--shadow-soft-500`); its number is h4 bold `--color-text-primary`. Glass card absolute: background `color-mix(--color-text-primary-invert 14%, transparent)` with a matching 22% border and 10px backdrop blur, `--radius-lg`; icon tile is a `--color-surface-primary` square (`--radius-md`) holding a 28px `--btn-bg-enable` stroke icon; label h5 semibold `--color-text-primary-invert`.
 - Content: badge with 1px invert border, radius 999px, body-label medium, text in `--btn-bg-enable`. Heading h1 bold, -0.02em tracking, `--color-text-primary-invert`. Lead body-medium `--color-text-secondary-invert`, max 46ch. Stats row: h2 bold counter `--color-text-primary-invert`, a 1px vertical divider at `color-mix(--color-text-primary-invert 26%, transparent)`, caption body-base semibold `--color-text-secondary-invert`. CTA: primary button, radius `--radius-xsm` (never a pill), `--btn-bg-enable` bg, invert text, `--btn-bg-glow` inset, 22px circular-arrow SVG.
 - At 900px the panel goes single-column and the media becomes a stacked flex column (cards reset to static); 768px tightens padding.
-- Class scoping: every rule prefixed `.wpmn-sec-floating-stats-hero`; keyframes prefixed `wpmn-fsh-`; JS scoped via `document.currentScript.parentElement`.
+- Class scoping: every rule prefixed `.wpmn-sec-floating-stats-cta`; keyframes prefixed `wpmn-fsc-`; JS scoped via `document.currentScript.parentElement`.
 
 ## Surface and text pairing (hard rule)
 
@@ -33,4 +33,4 @@ Load `https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/mast
 
 ## Output format
 
-A single self-contained `<section class="wpmn-sec-floating-stats-hero">` with scoped `<style>`, markup, and a scoped IIFE `<script>`. No external dependencies; the only assets are two images.
+A single self-contained `<section class="wpmn-sec-floating-stats-cta">` with scoped `<style>`, markup, and a scoped IIFE `<script>`. No external dependencies; the only assets are two images.

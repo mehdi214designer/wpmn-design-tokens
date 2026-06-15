@@ -1,17 +1,17 @@
 {
-  "id": "floating-stats-hero",
-  "name": "Floating Stats Hero",
+  "id": "floating-stats-cta",
+  "name": "Floating Stats CTA",
   "type": "html",
   "status": "stable",
-  "description": "Dark rounded hero panel: a left photo collage with a floating white stat card, an overlapping portrait, and a glass 'experience' card, beside a right column with an outline badge, oversized heading, intro, a big review counter with divider, and a primary CTA.",
+  "description": "Dark rounded CTA section: a left photo collage with a floating white stat card, an overlapping portrait, and a glass 'experience' card, beside a right column with an outline badge, oversized pitch heading, intro, a big review counter with divider, and a primary call-to-action button.",
   "files": {
-    "html": "sections/floating-stats-hero/section.html"
+    "html": "sections/floating-stats-cta/section.html"
   },
-  "prompt": "sections/floating-stats-hero/prompt.md",
+  "prompt": "sections/floating-stats-cta/prompt.md",
   "dependsOn": [
     "index.css"
   ],
-  "baseClass": "wpmn-sec-floating-stats-hero",
+  "baseClass": "wpmn-sec-floating-stats-cta",
   "interactions": [
     "right-column items fade up once the section reaches 20% viewport (IntersectionObserver), 600ms cubic-bezier(.22,1,.36,1), 90ms per-item stagger",
     "collage cards pop in (opacity + translateY + scale) with per-element delays 0/160/240/320ms via a --d custom property",
@@ -62,17 +62,18 @@
   ],
   "category": "Sections",
   "subcategory": "Banners & Impact",
-  "role": "Hero",
+  "role": "CTA",
   "span": 2,
   "tags": [
-    "hero",
-    "dark hero",
-    "stats hero",
+    "cta",
+    "cta section",
+    "dark cta",
+    "stats cta",
     "floating cards",
     "glass card",
     "photo collage",
     "review counter",
-    "marketing hero",
-    "split hero"
+    "conversion",
+    "call to action"
   ]
 }
