@@ -1,0 +1,78 @@
+{
+  "id": "floating-stats-hero",
+  "name": "Floating Stats Hero",
+  "type": "html",
+  "status": "stable",
+  "description": "Dark rounded hero panel: a left photo collage with a floating white stat card, an overlapping portrait, and a glass 'experience' card, beside a right column with an outline badge, oversized heading, intro, a big review counter with divider, and a primary CTA.",
+  "files": {
+    "html": "sections/floating-stats-hero/section.html"
+  },
+  "prompt": "sections/floating-stats-hero/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-floating-stats-hero",
+  "interactions": [
+    "right-column items fade up once the section reaches 20% viewport (IntersectionObserver), 600ms cubic-bezier(.22,1,.36,1), 90ms per-item stagger",
+    "collage cards pop in (opacity + translateY + scale) with per-element delays 0/160/240/320ms via a --d custom property",
+    "card-stat, card-exp and portrait lift -4px on hover, 200ms",
+    "CTA hover/active follow design-system button states, 120ms",
+    "prefers-reduced-motion: reveals and pops render in final state, hovers off"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--btn-bg-enable",
+    "--btn-bg-hovered",
+    "--btn-bg-pressed",
+    "--btn-bg-focused",
+    "--btn-bg-glow",
+    "--radius-lg",
+    "--radius-md",
+    "--radius-xsm",
+    "--shadow-soft-500",
+    "--font-family-base",
+    "--font-size-h1",
+    "--font-size-h2",
+    "--font-size-h4",
+    "--font-size-h5",
+    "--font-size-body-medium",
+    "--font-size-body-base",
+    "--font-size-body-label",
+    "--font-size-btn-md",
+    "--font-lh-h1",
+    "--font-lh-h2",
+    "--font-lh-h4",
+    "--font-lh-h5",
+    "--font-lh-body-medium",
+    "--font-lh-body-base",
+    "--font-lh-body-label",
+    "--font-lh-btn-md",
+    "--font-weight-bold",
+    "--font-weight-semibold",
+    "--font-weight-medium"
+  ],
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Banners & Impact",
+  "role": "Hero",
+  "span": 2,
+  "tags": [
+    "hero",
+    "dark hero",
+    "stats hero",
+    "floating cards",
+    "glass card",
+    "photo collage",
+    "review counter",
+    "marketing hero",
+    "split hero"
+  ]
+}
