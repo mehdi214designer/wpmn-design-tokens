@@ -19,6 +19,12 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+/* Optional jsdom — used by the typography-pairing + heading-gap checks (14).
+   Gracefully absent: those checks are skipped with a console note. */
+let JSDOM = null;
+try { ({ JSDOM } = createRequire(import.meta.url)('jsdom')); } catch { /* no jsdom */ }
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SECTIONS = join(ROOT, 'sections');
@@ -162,6 +168,73 @@ for (const d of dirs) {
   /* 12 ─ external assets */
   for (const m of s.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g))
     if (!m[1].startsWith('https://images.unsplash.com/')) report(d, 'external-asset', m[1].slice(0, 80));
+
+  /* 14 ─ typography pairing + heading-gap (jsdom required; skips known non-heading patterns)
+        Sections confirmed non-violations (stat/name/editorial) are skipped in code here —
+        see TYPOGRAPHY-CONFORMANCE.md for the decision log.
+        Null-gap false positives (flex-parent gaps) go in design-qa-exceptions.json. */
+  const TYPO_SKIP = new Set([
+    'asymmetric-grid',     // editorial 12-col grid
+    'stats-counter',       // stat number + label
+    'team-grid',           // name + role
+    'work-portfolio',      // h1 + eyebrow
+    'ecommerce-hero',      // label pair
+    'portrait-stats-hero', // stat number + label
+    'product-showcase',    // price/spec text
+    'pricing-table',       // left per design call
+    'pricing-toggle',      // .price ($ amount), not heading→body
+    'floating-stats-cta',  // .stat-num + .stat-cap exception
+  ]);
+  if (JSDOM && !TYPO_SKIP.has(d)) {
+    const TYPO_CANON = {
+      'h1': { body: 'body-large',  gapTok: 'spacing-h-xxl-to-large', gap: 16 },
+      'h2': { body: 'body-medium', gapTok: 'spacing-h-xl-to-medium',  gap: 12 },
+      'h3': { body: 'body-medium', gapTok: 'spacing-h-l-to-medium',   gap: 12 },
+      'h4': { body: 'body-base',   gapTok: 'spacing-h-m-to-base',     gap: 8  },
+      'h5': { body: 'body-base',   gapTok: 'spacing-h-s-to-base',     gap: 8  },
+      'h6': { body: 'body-small',  gapTok: 'spacing-h-xs-to-small',   gap: 8  },
+    };
+    const SEMV = { 'spacing-h-xxl-to-large': 16, 'spacing-h-xl-to-medium': 12, 'spacing-h-l-to-medium': 12, 'spacing-h-m-to-base': 8, 'spacing-h-s-to-base': 8, 'spacing-h-xs-to-small': 8 };
+    const PRIMV = { 0: 0, 2: 2, 4: 4, 8: 8, 12: 12, 16: 16, 20: 20, 24: 24, 32: 32, 40: 40, 48: 48, 56: 56, 64: 64, 80: 80, 96: 96, 120: 120 };
+    const valOf = t => !t ? null : t.startsWith('primitive-space-') ? (PRIMV[t.slice(16)] ?? null) : (SEMV[t] ?? null);
+    const cssNM = styles.replace(/@media[^{]*\{(?:[^{}]|\{[^{}]*\})*\}/g, '');
+    const cp = {};
+    for (const m of cssNM.matchAll(/([.#][^{}]+)\{([^}]*)\}/g)) {
+      const b = m[2];
+      const fs = (b.match(/font-size:\s*var\(--font-size-([a-z0-9-]+)\)/) || [])[1];
+      const mt = (b.match(/margin-top:\s*var\(--([a-z0-9-]+)\)/) || [])[1]
+             || (b.match(/margin:\s*var\(--([a-z0-9-]+)\)/) || [])[1];
+      for (const sel of m[1].split(',')) {
+        const last = (sel.trim().split(/[\s>+~]+/).pop().match(/\.([\w-]+)/) || [])[1];
+        if (!last) continue;
+        cp[last] = cp[last] || {};
+        if (fs) cp[last].fs = fs;
+        if (mt) cp[last].mt = mt;
+      }
+    }
+    const sizeOf = el => { for (const c of el.classList) { if (cp[c] && cp[c].fs) return { fs: cp[c].fs, mt: cp[c].mt }; } return null; };
+    const doc = new JSDOM(`<body>${s.replace(/<style>[\s\S]*?<\/style>/g, '').replace(/<script>[\s\S]*?<\/script>/g, '')}</body>`).window.document;
+    const seen = new Set();
+    for (const el of doc.querySelectorAll('*')) {
+      const sz = sizeOf(el);
+      if (!sz || !/^body-/.test(sz.fs)) continue;
+      let prev = el.previousElementSibling, h = null;
+      while (prev) {
+        const ps = sizeOf(prev);
+        if (ps && /^h[1-6]$/.test(ps.fs)) { h = ps; break; }
+        if (ps && /^body-/.test(ps.fs)) break;
+        prev = prev.previousElementSibling;
+      }
+      if (!h) continue;
+      const c = TYPO_CANON[h.fs];
+      if (!c) continue;
+      const key = `${h.fs}|${sz.fs}|${sz.mt}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      if (sz.fs !== c.body) report(d, 'typo-pairing', `${h.fs} + ${sz.fs} (should be ${h.fs} + ${c.body})`);
+      else if (valOf(sz.mt) !== c.gap) report(d, 'typo-gap', `${h.fs}→${sz.fs} gap ${valOf(sz.mt) ?? 'null'}px (should be ${c.gap}px via --${c.gapTok})`);
+    }
+  }
 
   /* 13 ─ raw spacing (padding/margin/gap values must be --primitive-space-* / --spacing-* tokens;
          allow 0, auto, negatives, calc/clamp/min/max, and documented structural exceptions) */

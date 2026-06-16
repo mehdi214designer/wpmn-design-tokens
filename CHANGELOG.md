@@ -30,6 +30,22 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.2.5] — 2026-06-16
+
+Bucket C semantic gap tokens + NavBar component swap + scanner enforcement.
+
+### Added
+- **`wpmn-components.css`** — new component CSS bundle (all `components/<Name>/<Name>.css` concatenated). Load after `wpmn-bundle.css` for full-page HTML.
+- **`scripts/build-bundle.mjs`** — now also generates `wpmn-components.css`.
+- **`scripts/design-qa.mjs` check #14** — typography pairing + heading-gap enforcement using jsdom. Verifies heading→body size canon and `--spacing-h-*-to-*` gap tokens for all 57 sections. Two flex-container null-gap false positives documented in `design-qa-exceptions.json`.
+
+### Changed
+- **23 sections** — `--spacing-content-gap-xl` (h2) and `--spacing-content-gap-xxl` (h1) applied: bento-grid, blog-cards, collapsible-drawer, comparison-table, content-tabs, dark-features-panel, expandable-table, faq-accordion, fibonacci-bento, hero-standard, integration-grid, masonry-grid, mockup-showcase, multi-column-cards, pricing-table, product-showcase, stacking-cards, stats-counter, steps-walkthrough, team-grid, testimonial-grid, timeline-roadmap, zigzag-features.
+- **1 section** — `feature-tabs-carousel`: `--spacing-content-gap-l` (h3).
+- **6 sections** — `--spacing-btn-in-section-lg` applied: hero-standard, hero-typographic, cta-banner, comparison-table, feature-tabs-carousel, split-screen.
+- **`FluentForms-FullPage.html`** — navbar swapped from custom `.navbar` classes to canonical `wpmn-navbar__*` component classes with mobile hamburger drawer.
+- **`scripts/design-qa-exceptions.json`** — two `typo-gap` null-gap false positives added (feature-card-stack, product-compare-table).
+
 ## [1.2.4] — 2026-06-16
 
 Typography conformance passes 2-3 + screenshot issue fixes.

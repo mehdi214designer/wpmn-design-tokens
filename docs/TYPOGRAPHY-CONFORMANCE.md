@@ -88,10 +88,12 @@ When unsure, look at the markup before changing.
 
 ### Pending
 - **Heading→body PAIRING: ✅ complete** (audit shows 0 wrong pairings across 57 sections; 2 "null gap" rows are detection artifacts, verified correct).
-- **Bucket C (big):** convert content-gap + button-gap to semantic tokens (0/57 today). Needs per-section layout judgment.
-- **Navbar:** use NavBar component + bundle component CSS.
-- **Enforcement:** add typography + heading-gap checks to `scripts/design-qa.mjs`.
+- **Bucket C (partial):** content-gap coverage 23/57, btn-in-section 6/57. Remaining 34 sections need per-section layout judgment (values don't always match token values, or sections have no visual content block). See session log.
 - **Docs/demo:** ensure guideline + demo fully show the 3-gap within-section sequence.
+
+### Done (formerly Pending)
+- **Navbar: ✅** `FluentForms-FullPage.html` navbar swapped to canonical `wpmn-navbar__*` classes with mobile drawer. `wpmn-components.css` bundle added via `build-bundle.mjs`.
+- **Enforcement: ✅** `scripts/design-qa.mjs` check #14 — heading→body pairing + heading-gap token enforcement via jsdom. Runs as part of `npm run qa`. Two null-gap false positives documented in exceptions.json.
 
 ## Session log
 - **2026-06-13 (1)** — Confirmed canon + 3-gap model. Fixed cta-banner, the 8 h2-subtext sections,
@@ -103,3 +105,4 @@ When unsure, look at the markup before changing.
   titles h6 → h5 (body-base now canon), gaps → `--spacing-h-s-to-base`. **Heading→body pairing
   is 100% conformant** (0 violations across 56 sections at the time). Next: screenshot issues.
 - **2026-06-16 (4)** — Fixed remaining screenshot issues: cta-banner ghost-invert button (visible border + fill-hover), mega-footer (removed card-wrapper surface, resized button to xs). Fixed floating-stats-cta: h1+lead → body-large, gap → `--spacing-h-xxl-to-large`; stat pattern added to exceptions. Fixed audit script URL-encoding bug (`fileURLToPath`). QA: 0 issues, 13 documented cases, 57 sections.
+- **2026-06-16 (5)** — Bucket C (partial): 23 sections → `--spacing-content-gap-xl/xxl/l`; 6 sections → `--spacing-btn-in-section-lg`. NavBar swap: `FluentForms-FullPage.html` → `wpmn-navbar__*` classes + mobile drawer; `wpmn-components.css` bundle. Scanner enforcement: design-qa.mjs check #14 (typo-pairing + typo-gap via jsdom). QA: 0 issues, 15 special cases, 57 sections.

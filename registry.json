@@ -2,8 +2,8 @@
   "$schema": "wpmn-registry-v1",
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
-  "version": "1.2.3",
-  "generatedAt": "2026-06-15T10:51:10.338Z",
+  "version": "1.2.5",
+  "generatedAt": "2026-06-16T05:33:21.856Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {

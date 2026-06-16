@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="fluentforms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FluentForms — WordPress Form Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── FluentForms Brand Tokens ── */
+    :root {
+      --primitive-primary-50:  #EFF0FE;
+      --primitive-primary-100: #D3E1FF;
+      --primitive-primary-200: #AAC4FF;
+      --primitive-primary-300: #80A6FF;
+      --primitive-primary-400: #5789FF;
+      --primitive-primary-500: #2B6CFF;
+      --primitive-primary-600: #2356CC;
+      --primitive-primary-700: #1A4098;
+      --primitive-primary-800: #122B66;
+      --primitive-primary-900: #081533;
+      --primitive-primary-950: #040A19;
+      --primitive-accent-50:  #E6F5FF;
+      --primitive-accent-100: #CDEBFF;
+      --primitive-accent-200: #9DD7FF;
+      --primitive-accent-300: #6AC4FF;
+      --primitive-accent-400: #3AB0FE;
+      --primitive-accent-500: #089DFF;
+      --primitive-accent-600: #077DCC;
+      --primitive-accent-700: #055E98;
+      --primitive-accent-800: #023E66;
+      --primitive-accent-900: #011F33;
+      --primitive-accent-950: #000F19;
+
+      --color-text-primary:         #07090c;
+      --color-text-secondary:       #4e5d78;
+      --color-text-primary-invert:  #ffffff;
+      --color-text-secondary-invert:#dbdee4;
+      --color-surface-primary:      #ffffff;
+      --color-surface-secondary:    #07090c;
+      --color-surface-alt:          #f6f7f8;
+      --color-border-primary:       #dbdee4;
+      --btn-bg-enable:   var(--primitive-primary-500);
+      --btn-bg-hovered:  var(--primitive-primary-700);
+      --btn-bg-pressed:  var(--primitive-primary-800);
+      --shadow-soft-400: 0px 24px 48px -20px rgba(0,0,16,0.10);
+      --shadow-soft-600: 0px 72px 72px -40px rgba(0,0,16,0.10);
+      --shadow-soft-800: 0px 72px 96px -18px rgba(0,0,16,0.10);
+    }
+
+    body { font-family: 'Work Sans', sans-serif; color: var(--color-text-primary); background: var(--color-surface-primary); -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Typography */
+    .text-h1 { font-size: 61px; line-height: 73px; font-weight: 700; }
+    .text-h2 { font-size: 49px; line-height: 59px; font-weight: 700; }
+    .text-h5 { font-size: 25px; line-height: 30px; font-weight: 500; }
+    .text-body-large { font-size: 20px; line-height: 30px; font-weight: 400; }
+    .text-body-base { font-size: 16px; line-height: 24px; font-weight: 400; }
+
+    /* Badge */
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--primitive-primary-50); color: var(--primitive-primary-600); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 12px; }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--btn-bg-enable); flex-shrink: 0; }
+    .badge-dark { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+    .badge-dark .badge-dot { background: var(--primitive-accent-400); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 8px; font-family: 'Work Sans', sans-serif; font-weight: 600; cursor: pointer; text-decoration: none; border: none; transition: background 0.15s ease, box-shadow 0.15s ease, color 0.15s ease; white-space: nowrap; }
+    .btn-lg { height: 56px; padding: 0 32px; font-size: 20px; }
+    .btn-md { height: 48px; padding: 0 24px; font-size: 18px; }
+    .btn-sm { height: 40px; padding: 0 20px; font-size: 16px; font-weight: 500; }
+    .btn-primary { background: var(--btn-bg-enable); color: #fff; box-shadow: inset 3px 4px 4px 0px rgba(255,255,255,0.3); }
+    .btn-primary:hover { background: var(--btn-bg-hovered); box-shadow: inset 3px 4px 4px 0px rgba(255,255,255,0.3); }
+    .btn-secondary { background: transparent; color: var(--btn-bg-enable); border: 1.5px solid var(--btn-bg-enable); }
+    .btn-secondary:hover { background: var(--btn-bg-enable); color: #fff; box-shadow: inset 3px 4px 4px 0px rgba(255,255,255,0.3); }
+    .btn-ghost-invert { background: transparent; color: var(--color-text-primary-invert); border: 1.5px solid rgba(255,255,255,0.4); }
+    .btn-ghost-invert:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+
+    /* CTA group */
+    .cta-group { display: flex; align-items: center; gap: 12px; }
+    .cta-center { justify-content: center; }
+    .cta-left { justify-content: flex-start; }
+
+    /* Sections */
+    .section { padding: 96px 0; }
+    .section-white { background: var(--color-surface-primary); }
+    .section-alt   { background: var(--color-surface-alt); }
+    .section-dark  { background: var(--color-surface-secondary); }
+
+    /* Section header */
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .sh-heading { max-width: 800px; margin: 0 auto 16px; }
+    .sh-sub { max-width: 560px; margin: 0 auto; color: var(--color-text-secondary); }
+    .sh-sub-invert { max-width: 560px; margin: 0 auto 32px; color: var(--color-text-secondary-invert); }
+    .sh-heading-invert { max-width: 800px; margin: 0 auto 16px; color: var(--color-text-primary-invert); }
+
+    /* ── 1. NAVBAR — wpmn-navbar component ── */
+    .wpmn-navbar { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 64px; background-color: var(--color-surface-primary); border-bottom: 1px solid var(--color-border-primary); width: 100%; box-sizing: border-box; position: sticky; top: 0; z-index: 100; }
+    .wpmn-navbar__logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; }
+    .wpmn-navbar__logo svg { display: block; border-radius: 6px; }
+    .wpmn-navbar__nav { display: flex; align-items: center; gap: 20px; }
+    .wpmn-navbar__links { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+    .wpmn-navbar__link { display: inline-flex; align-items: center; padding: 6px 12px; font-family: var(--font-family-base, 'Work Sans', sans-serif); font-size: 15px; font-weight: 500; color: var(--color-text-secondary); text-decoration: none; white-space: nowrap; border-radius: 6px; transition: color 120ms ease, background-color 120ms ease; }
+    .wpmn-navbar__link:hover { color: var(--color-text-primary); background-color: var(--color-surface-alt); }
+    .wpmn-navbar__link--active { color: var(--btn-bg-enable); font-weight: 500; }
+    .wpmn-navbar__cta { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 20px; font-family: var(--font-family-base, 'Work Sans', sans-serif); font-size: 15px; font-weight: 500; text-decoration: none; white-space: nowrap; border-radius: 8px; box-sizing: border-box; cursor: pointer; transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; flex-shrink: 0; }
+    .wpmn-navbar__cta--primary { background-color: var(--btn-bg-enable); color: var(--color-text-primary-invert); border: 1.5px solid transparent; box-shadow: inset 3px 4px 4px 0px rgba(255,255,255,0.3); }
+    .wpmn-navbar__cta--primary:hover { background-color: var(--btn-bg-hovered); }
+    .wpmn-navbar__cta--primary:active { background-color: var(--btn-bg-pressed); }
+    .wpmn-navbar__cta--primary:focus-visible { outline: 3px solid var(--btn-bg-focused, var(--btn-bg-enable)); outline-offset: 2px; }
+    .wpmn-navbar__cta--secondary { display: none; background-color: transparent; color: var(--btn-bg-enable); border: 1.5px solid var(--btn-bg-enable); }
+    .wpmn-navbar__cta--secondary:hover { background-color: var(--color-surface-alt); }
+    .wpmn-navbar__hamburger { display: none; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: none; padding: 0; cursor: pointer; color: var(--color-text-primary); line-height: 0; flex-shrink: 0; }
+    .wpmn-navbar__mobile-controls { display: none; align-items: center; gap: 12px; }
+    .wpmn-navbar__mobile-menu { display: none; }
+    .wpmn-navbar[data-mobile-open] .wpmn-navbar__mobile-menu { display: block; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--color-surface-primary); border-top: 1px solid var(--color-border-primary); padding: 8px 16px 20px; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .wpmn-navbar__mobile-menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+    .wpmn-navbar__mobile-menu .wpmn-navbar__link { justify-content: flex-start; width: 100%; padding: 12px; }
+
+    /* ── 2. HERO ── */
+    .hero { background: var(--color-surface-primary); padding: 96px 0 0; text-align: center; overflow: hidden; }
+    .hero-heading { max-width: 800px; margin: 0 auto 16px; }
+    .hero-heading .accent { color: var(--btn-bg-enable); }
+    .hero-sub { max-width: 560px; margin: 0 auto 32px; color: var(--color-text-secondary); }
+    .hero .cta-group { margin-bottom: 64px; }
+    .mockup-frame { width: 100%; max-width: 960px; margin: 0 auto; background: #fff; border-radius: 16px 16px 0 0; box-shadow: var(--shadow-soft-800); overflow: hidden; }
+    .browser-bar { background: var(--color-surface-alt); border-bottom: 1px solid var(--color-border-primary); padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+    .browser-dots { display: flex; gap: 6px; }
+    .browser-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .browser-url { flex: 1; background: #fff; border: 1px solid var(--color-border-primary); border-radius: 6px; padding: 5px 12px; font-size: 12px; color: var(--color-text-secondary); }
+    .mockup-body { background: var(--color-surface-alt); padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; min-height: 300px; }
+    .mc { background: #fff; border-radius: 10px; padding: 18px; }
+    .mc-title { font-size: 13px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 14px; }
+    .mf { height: 34px; background: var(--color-surface-alt); border-radius: 7px; margin-bottom: 9px; }
+    .mf-btn { height: 38px; background: var(--btn-bg-enable); border-radius: 7px; box-shadow: inset 3px 4px 4px rgba(255,255,255,0.3); }
+    .mf-half { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 9px; }
+    .mf-half div { height: 34px; background: var(--color-surface-alt); border-radius: 7px; }
+    .ms { display: flex; flex-direction: column; gap: 10px; }
+    .ms-card { background: #fff; border-radius: 10px; padding: 13px 16px; }
+    .ms-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-secondary); margin-bottom: 3px; }
+    .ms-val { font-size: 22px; font-weight: 700; color: var(--color-text-primary); }
+    .ms-bar { height: 3px; background: var(--primitive-primary-50); border-radius: 2px; margin-top: 7px; }
+    .ms-fill { height: 100%; background: var(--btn-bg-enable); border-radius: 2px; }
+
+    /* ── 3. LOGO STRIP ── */
+    .logo-strip { background: var(--color-surface-alt); border-top: 1px solid var(--color-border-primary); padding: 40px 0; text-align: center; }
+    .logo-strip-label { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 24px; }
+    .logo-strip-row { display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .logo-item { font-size: 16px; font-weight: 700; color: var(--primitive-primary-300); opacity: 0.6; }
+
+    /* ── 4. FEATURES 3-COL ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .f-card { background: var(--color-surface-primary); border-radius: 16px; padding: 32px; }
+    .f-icon { width: 48px; height: 48px; background: var(--primitive-primary-50); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--btn-bg-enable); }
+    .f-card h3 { font-size: 25px; line-height: 30px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
+    .f-card p { font-size: 16px; line-height: 24px; color: var(--color-text-secondary); }
+
+    /* ── 5/6. 2-COL ── */
+    .two-col { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: center; }
+    .two-col-rev { display: grid; grid-template-columns: 7fr 5fr; gap: 48px; align-items: center; }
+    .tc h2 { margin-bottom: 16px; }
+    .tc p { color: var(--color-text-secondary); margin-bottom: 32px; }
+    .mockup-inline { border-radius: 16px; box-shadow: var(--shadow-soft-600); overflow: hidden; background: var(--color-surface-alt); padding: 24px; }
+
+    /* ── 7. STATS ── */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 49px; line-height: 59px; font-weight: 700; color: var(--btn-bg-enable); margin-bottom: 8px; }
+    .stat-lbl { font-size: 16px; color: var(--color-text-secondary); }
+
+    /* ── 8. TESTIMONIALS ── */
+    .t-card { background: var(--color-surface-primary); border-radius: 16px; padding: 32px; }
+    .t-stars { display: flex; gap: 3px; margin-bottom: 16px; font-size: 17px; color: #F1EB62; }
+    .t-quote { font-size: 16px; line-height: 26px; color: var(--color-text-primary); margin-bottom: 20px; }
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .t-av { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; flex-shrink: 0; }
+    .t-name { font-size: 14px; font-weight: 600; color: var(--color-text-primary); }
+    .t-role { font-size: 13px; color: var(--color-text-secondary); }
+
+    /* ── 9. PRICING ── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+    .p-card { background: var(--color-surface-primary); border-radius: 16px; padding: 32px; position: relative; }
+    .p-card-featured { border: 2px solid var(--btn-bg-enable); }
+    .p-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--btn-bg-enable); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 16px; border-radius: 0 0 8px 8px; white-space: nowrap; }
+    .p-tier { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-secondary); margin-bottom: 8px; }
+    .p-price { font-size: 49px; line-height: 59px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
+    .p-price sup { font-size: 20px; font-weight: 500; vertical-align: top; margin-top: 14px; display: inline-block; }
+    .p-period { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px; }
+    .p-divider { height: 1px; background: var(--color-border-primary); margin: 24px 0; }
+    .p-features { list-style: none; margin-bottom: 32px; }
+    .p-features li { display: flex; align-items: center; gap: 8px; font-size: 15px; color: var(--color-text-primary); margin-bottom: 12px; }
+    .p-check { width: 18px; height: 18px; border-radius: 50%; background: var(--primitive-primary-50); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .p-card .btn { width: 100%; justify-content: center; }
+
+    /* ── 10. FAQ ── */
+    .faq-wrap { max-width: 760px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--color-border-primary); padding: 24px 0; }
+    .faq-item:first-child { border-top: 1px solid var(--color-border-primary); }
+    .faq-q { font-size: 18px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 10px; display: flex; justify-content: space-between; gap: 16px; }
+    .faq-q::after { content: '+'; font-size: 22px; font-weight: 400; color: var(--color-text-secondary); flex-shrink: 0; }
+    .faq-a { font-size: 16px; line-height: 26px; color: var(--color-text-secondary); }
+
+    /* ── 12. FOOTER ── */
+    .footer { background: var(--color-surface-secondary); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo svg { display: block; border-radius: 6px; }
+    .footer-logo-name { font-size: 16px; font-weight: 600; color: var(--color-text-primary-invert); }
+    .footer-desc { font-size: 14px; line-height: 22px; color: var(--color-text-secondary-invert); margin-bottom: 20px; max-width: 260px; }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-soc-btn { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary-invert); text-decoration: none; font-size: 12px; font-weight: 700; transition: background 0.15s; }
+    .footer-soc-btn:hover { background: rgba(255,255,255,0.15); color: var(--color-text-primary-invert); }
+    .footer-col-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-primary-invert); margin-bottom: 16px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a { font-size: 14px; color: var(--color-text-secondary-invert); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--color-text-primary-invert); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 13px; color: var(--color-text-secondary-invert); }
+    .footer-btm-links { display: flex; gap: 24px; list-style: none; }
+    .footer-btm-links a { font-size: 13px; color: var(--color-text-secondary-invert); text-decoration: none; }
+    .footer-btm-links a:hover { color: var(--color-text-primary-invert); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .text-h1 { font-size: 32px; line-height: 40px; }
+      .text-h2 { font-size: 28px; line-height: 36px; }
+      .text-body-large { font-size: 18px; line-height: 27px; }
+      .section { padding: 64px 0; }
+      .hero { padding: 64px 0 0; }
+      .wpmn-navbar__nav { display: none; }
+      .wpmn-navbar__mobile-controls { display: flex; }
+      .wpmn-navbar__cta--secondary { display: inline-flex; }
+      .wpmn-navbar__hamburger { display: flex; }
+      .two-col, .two-col-rev, .grid-3, .pricing-grid, .stats-row { grid-template-columns: 1fr; gap: 20px; }
+      .two-col-rev .mockup-col { order: -1; }
+      .cta-group { flex-direction: column; }
+      .btn-lg, .btn-md { width: 100%; justify-content: center; }
+      .mockup-body { grid-template-columns: 1fr; }
+      .ms { display: none; }
+      .logo-strip-row { gap: 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-btm-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══ 1. NAVBAR — wpmn-navbar component ═══ -->
+<header class="wpmn-navbar" id="wpmn-site-nav">
+  <a href="#" class="wpmn-navbar__logo" aria-label="FluentForms home">
+    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="6.4" fill="#089DFF"/><path d="M8.67993 22.8323C8.67993 17.7964 12.7623 13.7141 17.7981 13.7141L53.9173 13.7141C53.9173 18.7499 49.8349 22.8323 44.7991 22.8323H8.67993Z" fill="white"/><path d="M8.68018 37.0165C8.68018 31.9806 12.7625 27.8983 17.7983 27.8983H53.9175C53.9175 32.9341 49.8352 37.0165 44.7993 37.0165H8.68018Z" fill="white"/><path d="M15.7175 51.1993C15.7175 46.1635 19.7999 42.0812 24.8357 42.0812H45.8757C45.8757 47.117 41.7934 51.1993 36.7576 51.1993H15.7175Z" fill="white"/></svg>
+    <span style="font-size:15px;font-weight:600;color:var(--color-text-primary)">FluentForms</span>
+  </a>
+  <!-- Desktop: nav links + primary CTA -->
+  <nav class="wpmn-navbar__nav" aria-label="Main navigation">
+    <ul class="wpmn-navbar__links" role="list">
+      <li><a href="#" class="wpmn-navbar__link">Features</a></li>
+      <li><a href="#" class="wpmn-navbar__link">Pricing</a></li>
+      <li><a href="#" class="wpmn-navbar__link">Docs</a></li>
+      <li><a href="#" class="wpmn-navbar__link">Blog</a></li>
+    </ul>
+    <a href="#" class="btn btn-secondary btn-sm" style="margin-right:4px">Log In</a>
+    <a href="#" class="wpmn-navbar__cta wpmn-navbar__cta--primary">Get Started Free
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </nav>
+  <!-- Mobile: secondary CTA + hamburger -->
+  <div class="wpmn-navbar__mobile-controls">
+    <a href="#" class="wpmn-navbar__cta wpmn-navbar__cta--secondary">Get Started</a>
+    <button class="wpmn-navbar__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="wpmn-mobile-menu" onclick="var n=this.closest('.wpmn-navbar'),o=n.hasAttribute('data-mobile-open');n.toggleAttribute('data-mobile-open');this.setAttribute('aria-expanded',String(!o));this.setAttribute('aria-label',o?'Open menu':'Close menu')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <!-- Mobile drawer -->
+  <nav id="wpmn-mobile-menu" class="wpmn-navbar__mobile-menu" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="#" class="wpmn-navbar__link">Features</a></li>
+      <li><a href="#" class="wpmn-navbar__link">Pricing</a></li>
+      <li><a href="#" class="wpmn-navbar__link">Docs</a></li>
+      <li><a href="#" class="wpmn-navbar__link">Blog</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ═══ 2. HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <div class="badge"><span class="badge-dot"></span>WordPress Form Builder</div>
+    <h1 class="text-h1 hero-heading">Build Forms That<br><span class="accent">Actually Convert</span></h1>
+    <p class="text-body-large hero-sub">Create beautiful, high-converting forms for WordPress in minutes. No code, no complexity — just results.</p>
+    <div class="cta-group cta-center">
+      <a href="#" class="btn btn-primary btn-lg">Get FluentForms Free <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#" class="btn btn-secondary btn-lg">View Live Demo</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <div class="browser-dot" style="background:#ff5f57"></div>
+          <div class="browser-dot" style="background:#febc2e"></div>
+          <div class="browser-dot" style="background:#28c840"></div>
+        </div>
+        <div class="browser-url">yoursite.com/contact</div>
+      </div>
+      <div class="mockup-body">
+        <div class="mc">
+          <div class="mc-title">Contact Us</div>
+          <div class="mf"></div>
+          <div class="mf"></div>
+          <div class="mf-half"><div></div><div></div></div>
+          <div class="mf" style="height:68px"></div>
+          <div class="mf-btn"></div>
+        </div>
+        <div class="ms">
+          <div class="ms-card"><div class="ms-label">Total Submissions</div><div class="ms-val">12,840</div><div class="ms-bar"><div class="ms-fill" style="width:78%"></div></div></div>
+          <div class="ms-card"><div class="ms-label">Conversion Rate</div><div class="ms-val">68.4%</div><div class="ms-bar"><div class="ms-fill" style="width:68%"></div></div></div>
+          <div class="ms-card"><div class="ms-label">Active Forms</div><div class="ms-val">24</div><div class="ms-bar"><div class="ms-fill" style="width:45%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3. LOGO STRIP ═══ -->
+<section class="logo-strip">
+  <div class="container">
+    <p class="logo-strip-label">Trusted by 400,000+ WordPress sites</p>
+    <div class="logo-strip-row">
+      <span class="logo-item">Hostinger</span>
+      <span class="logo-item">Elementor</span>
+      <span class="logo-item">WP Engine</span>
+      <span class="logo-item">Kinsta</span>
+      <span class="logo-item">SiteGround</span>
+      <span class="logo-item">Cloudways</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4. FEATURES 3-COL — white ═══ -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge"><span class="badge-dot"></span>Features</div>
+      <h2 class="text-h2 sh-heading">Everything you need to build better forms</h2>
+      <p class="text-body-large sh-sub">From simple contact forms to complex multi-step workflows — FluentForms handles it all.</p>
+    </div>
+    <div class="grid-3">
+      <div class="f-card"><div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Drag & Drop Builder</h3><p>Build any form visually in minutes. No coding required — drag fields and go.</p></div>
+      <div class="f-card"><div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Powerful Analytics</h3><p>Track submissions and conversion rates. Know exactly where your forms perform.</p></div>
+      <div class="f-card"><div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Spam Protection</h3><p>Built-in hCaptcha, reCAPTCHA, and honeypot fields keep bots out for good.</p></div>
+      <div class="f-card"><div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="2"/></svg></div><h3>Conditional Logic</h3><p>Show or hide fields based on user input. Build smart forms that feel personal.</p></div>
+      <div class="f-card"><div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2"/></svg></div><h3>Email Notifications</h3><p>Instant alerts for every submission with customizable email templates.</p></div>
+      <div class="f-card"><div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3>100+ Integrations</h3><p>Connect with Mailchimp, Slack, HubSpot, Zapier and more without code.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5. FEATURE HIGHLIGHT — Text left, mockup right — alt ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="two-col">
+      <div class="tc">
+        <div class="badge"><span class="badge-dot"></span>Form Builder</div>
+        <h2 class="text-h2">Build any form in minutes, not days</h2>
+        <p class="text-body-large">Drop fields, configure logic, and publish — all without a developer. Full control without the complexity.</p>
+        <div class="cta-group cta-left">
+          <a href="#" class="btn btn-primary btn-md">Start Building Free</a>
+          <a href="#" class="btn btn-secondary btn-md">See Templates</a>
+        </div>
+      </div>
+      <div class="mockup-col">
+        <div class="mockup-inline">
+          <div style="background:#fff;border-radius:8px;padding:16px;margin-bottom:12px">
+            <div style="font-size:13px;font-weight:600;color:var(--color-text-primary);margin-bottom:10px">Form Fields</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="background:var(--primitive-primary-50);border-radius:6px;padding:8px 12px;font-size:13px;color:var(--primitive-primary-600);font-weight:500">📝 Text Input — Active</div>
+              <div style="background:var(--color-surface-alt);border-radius:6px;padding:8px 12px;font-size:13px;color:var(--color-text-secondary)">📧 Email</div>
+              <div style="background:var(--color-surface-alt);border-radius:6px;padding:8px 12px;font-size:13px;color:var(--color-text-secondary)">📋 Textarea</div>
+              <div style="background:var(--color-surface-alt);border-radius:6px;padding:8px 12px;font-size:13px;color:var(--color-text-secondary)">⬇️ Dropdown</div>
+            </div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:16px">
+            <div style="font-size:13px;font-weight:600;color:var(--color-text-primary);margin-bottom:10px">Live Preview</div>
+            <div style="height:8px;background:var(--color-surface-alt);border-radius:4px;margin-bottom:8px;width:60%"></div>
+            <div style="height:34px;background:var(--color-surface-alt);border-radius:6px;margin-bottom:8px"></div>
+            <div style="height:34px;background:var(--color-surface-alt);border-radius:6px;margin-bottom:8px"></div>
+            <div style="height:38px;background:var(--btn-bg-enable);border-radius:6px;box-shadow:inset 3px 4px 4px rgba(255,255,255,0.3)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 6. FEATURE HIGHLIGHT — Mockup left, text right — white ═══ -->
+<section class="section section-white">
+  <div class="container">
+    <div class="two-col-rev">
+      <div class="mockup-col">
+        <div class="mockup-inline">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="background:#fff;border-radius:8px;padding:14px">
+              <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.05em">Today's Submissions</div>
+              <div style="font-size:26px;font-weight:700;color:var(--color-text-primary)">247</div>
+              <div style="height:3px;background:var(--primitive-primary-50);border-radius:2px;margin-top:8px"><div style="height:100%;width:72%;background:var(--btn-bg-enable);border-radius:2px"></div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div style="background:#fff;border-radius:8px;padding:12px"><div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;font-weight:500">Conversion</div><div style="font-size:20px;font-weight:700;color:var(--color-text-primary)">71%</div></div>
+              <div style="background:#fff;border-radius:8px;padding:12px"><div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;font-weight:500">Avg. Time</div><div style="font-size:20px;font-weight:700;color:var(--color-text-primary)">1:24</div></div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:14px">
+              <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em">Traffic Sources</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;color:var(--color-text-secondary);width:60px">Organic</span><div style="flex:1;height:4px;background:var(--primitive-primary-50);border-radius:2px"><div style="height:100%;width:60%;background:var(--btn-bg-enable);border-radius:2px"></div></div><span style="font-size:13px;font-weight:600;color:var(--color-text-primary)">60%</span></div>
+                <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;color:var(--color-text-secondary);width:60px">Direct</span><div style="flex:1;height:4px;background:var(--primitive-primary-50);border-radius:2px"><div style="height:100%;width:28%;background:var(--primitive-accent-400);border-radius:2px"></div></div><span style="font-size:13px;font-weight:600;color:var(--color-text-primary)">28%</span></div>
+                <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;color:var(--color-text-secondary);width:60px">Social</span><div style="flex:1;height:4px;background:var(--primitive-primary-50);border-radius:2px"><div style="height:100%;width:12%;background:var(--primitive-primary-300);border-radius:2px"></div></div><span style="font-size:13px;font-weight:600;color:var(--color-text-primary)">12%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tc">
+        <div class="badge"><span class="badge-dot"></span>Analytics</div>
+        <h2 class="text-h2">See exactly what's working</h2>
+        <p class="text-body-large">Real-time submission tracking, conversion analytics, and drop-off reports. Improve with data, not guesswork.</p>
+        <div class="cta-group cta-left">
+          <a href="#" class="btn btn-primary btn-md">Explore Analytics</a>
+          <a href="#" class="btn btn-secondary btn-md">View Docs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 7. STATS — alt ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge"><span class="badge-dot"></span>By the Numbers</div>
+      <h2 class="text-h2 sh-heading">Trusted by WordPress sites everywhere</h2>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="stat-num">400K+</div><div class="stat-lbl">Active Installations</div></div>
+      <div class="stat-item"><div class="stat-num">50M+</div><div class="stat-lbl">Forms Submitted</div></div>
+      <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-lbl">Average Rating</div></div>
+      <div class="stat-item"><div class="stat-num">100+</div><div class="stat-lbl">Integrations</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 8. TESTIMONIALS — white ═══ -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge"><span class="badge-dot"></span>Testimonials</div>
+      <h2 class="text-h2 sh-heading">What our users are saying</h2>
+      <p class="text-body-large sh-sub">Join hundreds of thousands of WordPress creators who build with FluentForms.</p>
+    </div>
+    <div class="grid-3">
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-quote">"FluentForms replaced three plugins for us. The drag-and-drop builder is intuitive, and the conditional logic is the best I've seen in any form plugin."</p><div class="t-author"><div class="t-av" style="background:var(--primitive-primary-500)">SR</div><div><div class="t-name">Sarah Richardson</div><div class="t-role">Marketing Director, TechStart</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-quote">"We switched from Gravity Forms and haven't looked back. FluentForms is faster, more affordable, and the support team is incredibly responsive."</p><div class="t-author"><div class="t-av" style="background:var(--primitive-accent-500)">JL</div><div><div class="t-name">James Liu</div><div class="t-role">Founder, WP Agency Studio</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-quote">"The analytics alone are worth it. I can see exactly where users drop off. Our conversion rate went up 34% after optimizing with FluentForms data."</p><div class="t-author"><div class="t-av" style="background:#00B36D">AP</div><div><div class="t-name">Anika Patel</div><div class="t-role">Growth Lead, SaaS Collective</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 9. PRICING — alt ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge"><span class="badge-dot"></span>Pricing</div>
+      <h2 class="text-h2 sh-heading">Simple, transparent pricing</h2>
+      <p class="text-body-large sh-sub">Start free, upgrade when you need more. No hidden fees, cancel anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="p-card">
+        <div class="p-tier">Free</div>
+        <div class="p-price"><sup>$</sup>0</div>
+        <div class="p-period">Free forever</div>
+        <div class="p-divider"></div>
+        <ul class="p-features">
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited forms</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>5 form fields</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email notifications</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1,000 submissions/mo</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Community support</li>
+        </ul>
+        <a href="#" class="btn btn-secondary btn-md">Get Started Free</a>
+      </div>
+      <div class="p-card p-card-featured">
+        <div class="p-badge">Most Popular</div>
+        <div class="p-tier">Pro</div>
+        <div class="p-price"><sup>$</sup>79</div>
+        <div class="p-period">per year · single site</div>
+        <div class="p-divider"></div>
+        <ul class="p-features">
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Everything in Free</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>All form fields</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Conditional logic</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited submissions</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>20+ integrations</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority email support</li>
+        </ul>
+        <a href="#" class="btn btn-primary btn-md">Get Pro</a>
+      </div>
+      <div class="p-card">
+        <div class="p-tier">Agency</div>
+        <div class="p-price"><sup>$</sup>299</div>
+        <div class="p-period">per year · unlimited sites</div>
+        <div class="p-divider"></div>
+        <ul class="p-features">
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Everything in Pro</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited sites</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>100+ integrations</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>White-label options</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Advanced analytics</li>
+          <li><span class="p-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="var(--btn-bg-enable)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dedicated support</li>
+        </ul>
+        <a href="#" class="btn btn-secondary btn-md">Get Agency</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10. FAQ — white ═══ -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge"><span class="badge-dot"></span>FAQ</div>
+      <h2 class="text-h2 sh-heading">Frequently asked questions</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item"><div class="faq-q">Is FluentForms really free?</div><p class="faq-a">Yes. The free version is genuinely free — no trial period, no credit card required. It includes unlimited forms, core fields, and email notifications. Upgrade to Pro when you need advanced features.</p></div>
+      <div class="faq-item"><div class="faq-q">How is FluentForms different from Gravity Forms or WPForms?</div><p class="faq-a">FluentForms is significantly faster, more affordable, and includes features like conditional logic and analytics that competitors charge extra for. We don't charge per-site licenses on the free tier.</p></div>
+      <div class="faq-item"><div class="faq-q">Can I use FluentForms with any WordPress theme?</div><p class="faq-a">Yes. FluentForms works with any well-coded WordPress theme. It integrates with Elementor, Gutenberg, Divi, Beaver Builder, and all major page builders.</p></div>
+      <div class="faq-item"><div class="faq-q">Is my form data secure?</div><p class="faq-a">All submissions are stored in your WordPress database. We don't access your data. FluentForms includes built-in spam protection, hCaptcha, reCAPTCHA, and GDPR compliance tools.</p></div>
+      <div class="faq-item"><div class="faq-q">Can I migrate from another form plugin?</div><p class="faq-a">Yes. We offer migration tools for Gravity Forms, WPForms, and Contact Form 7. Import your forms and keep your existing submission data.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 11. DARK CTA — dark ═══ -->
+<section class="section section-dark" style="text-align:center">
+  <div class="container">
+    <div class="badge badge-dark"><span class="badge-dot"></span>Get Started Today</div>
+    <h2 class="text-h2 sh-heading-invert">Start building better forms today</h2>
+    <p class="text-body-large sh-sub-invert">Join 400,000+ WordPress sites that trust FluentForms. Free to start, easy to grow.</p>
+    <div class="cta-group cta-center">
+      <a href="#" class="btn btn-primary btn-lg">Get FluentForms Free</a>
+      <a href="#" class="btn btn-ghost-invert btn-lg">Talk to Sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 12. FOOTER — dark ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="6.4" fill="white"/><path d="M9 22.8323C9 17.7964 13.0823 13.7141 18.1181 13.7141L54.2373 13.7141C54.2373 18.7499 50.155 22.8323 45.1192 22.8323H9Z" fill="#089DFF"/><path d="M9.00024 37.0166C9.00024 31.9808 13.0826 27.8984 18.1184 27.8984H54.2376C54.2376 32.9343 50.1552 37.0166 45.1194 37.0166H9.00024Z" fill="#089DFF"/><path d="M16.0376 51.1992C16.0376 46.1634 20.1199 42.0811 25.1557 42.0811H46.1958C46.1958 47.1169 42.1135 51.1992 37.0777 51.1992H16.0376Z" fill="#089DFF"/></svg>
+          <span class="footer-logo-name">FluentForms</span>
+        </div>
+        <p class="footer-desc">The most powerful, lightweight WordPress form builder. Build forms that convert.</p>
+        <div class="footer-social">
+          <a href="#" class="footer-soc-btn">𝕏</a>
+          <a href="#" class="footer-soc-btn">in</a>
+          <a href="#" class="footer-soc-btn">fb</a>
+          <a href="#" class="footer-soc-btn">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links"><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">Changelog</a></li><li><a href="#">Roadmap</a></li><li><a href="#">Integrations</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links"><li><a href="#">Documentation</a></li><li><a href="#">Blog</a></li><li><a href="#">Tutorials</a></li><li><a href="#">Community</a></li><li><a href="#">Support</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links"><li><a href="#">About</a></li><li><a href="#">WPManageNinja</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li><li><a href="#">Partners</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 WPManageNinja. All rights reserved.</p>
+      <ul class="footer-btm-links"><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookie Policy</a></li></ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
