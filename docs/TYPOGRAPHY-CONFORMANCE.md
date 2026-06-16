@@ -59,6 +59,16 @@ When unsure, look at the markup before changing.
 | `portrait-stats-hero` | leave | stat number + label |
 | `product-showcase` (pairing flag) | leave | price/spec text (its gap fix WAS applied) |
 | `pricing-table` | leave | per Mhasan's call |
+| `pricing-toggle` (h3 flag) | leave | the flag is `.price` ($ amount) + per-text, not heading→body |
+| `floating-stats-cta` | exception | `.stat-num` (h2) + `.stat-cap` (body-base) is a stat number + caption, not heading→body. Main h1+lead pairing FIXED (body-large). |
+
+### Audit limitations (known)
+- **Tag-selector cards not auto-detected:** sections styling card text via `.card h3` / `.card p`
+  (tag selectors) instead of classes aren't caught — e.g. `multi-column-cards` cards. Check these
+  manually.
+- **"null gap" rows:** when the heading→body gap lives on a flex parent or a heading's
+  `margin-bottom` (not the body's `margin-top`), the audit reports the gap as `null`. Verify by
+  hand before assuming it's wrong (e.g. `feature-card-stack`, `product-compare-table` are correct).
 
 ## Status
 
@@ -71,16 +81,25 @@ When unsure, look at the markup before changing.
 | `product-showcase` | ps-info gap 4 → `--spacing-h-xs-to-small` (8) |
 | `product-compare-table` | subtext body-large → body-medium |
 | `feature-tabs-carousel` | copy body-base → body-medium; gap → `--spacing-h-l-to-medium` (12) |
+| `feature-card-stack` | card-p body-large → body-medium; flex gap → `--spacing-h-l-to-medium` (12) |
+| `animated-feature-grid` | card title h6 → h5 (Option B); desc body-base kept; gap → `--spacing-h-s-to-base` (8) |
+| `multi-column-cards` (cards) | card title h6 → h5 (Option B); desc body-base kept; gap → `--spacing-h-s-to-base` (8) |
+| `floating-stats-cta` | h1+lead → body-large, gap → `--spacing-h-xxl-to-large`; stat-num+stat-cap exception added |
 
 ### Pending
-- **Middle group (awaiting Mhasan's yes/no):** `feature-card-stack` (h3+large→medium), `animated-feature-grid` (h6+base→small), `pricing-toggle` plan-tiers (h3+base→medium).
-- **Issue 3:** `multi-column-cards` CARD titles (h6 + body-base → body-small).
-- **Bucket C (big):** convert content-gap + button-gap to semantic tokens (0/56 today). Needs per-section layout judgment.
-- **Original screenshot issues:** CTA secondary-on-dark faint border; `mega-footer` layout + button sizes; navbar → use NavBar component + bundle component CSS.
+- **Heading→body PAIRING: ✅ complete** (audit shows 0 wrong pairings across 57 sections; 2 "null gap" rows are detection artifacts, verified correct).
+- **Bucket C (big):** convert content-gap + button-gap to semantic tokens (0/57 today). Needs per-section layout judgment.
+- **Navbar:** use NavBar component + bundle component CSS.
 - **Enforcement:** add typography + heading-gap checks to `scripts/design-qa.mjs`.
 - **Docs/demo:** ensure guideline + demo fully show the 3-gap within-section sequence.
 
 ## Session log
-- **2026-06-13** — Confirmed canon + 3-gap model. Fixed cta-banner, the 8 h2-subtext sections,
+- **2026-06-13 (1)** — Confirmed canon + 3-gap model. Fixed cta-banner, the 8 h2-subtext sections,
   pricing-toggle (×2), product-showcase, product-compare-table, feature-tabs-carousel. Logged 8
-  exceptions. Built `npm run audit:typo` + this tracker. Heading-gap coverage 2 → 15+/56.
+  exceptions. Built `npm run audit:typo` + this tracker.
+- **2026-06-13 (2)** — Fixed feature-card-stack (card-p → medium, flex gap → semantic). Added
+  pricing-toggle to exceptions (price+descriptor). Documented audit limitations.
+- **2026-06-13 (3)** — h6 cards via Option B: animated-feature-grid + multi-column-cards card
+  titles h6 → h5 (body-base now canon), gaps → `--spacing-h-s-to-base`. **Heading→body pairing
+  is 100% conformant** (0 violations across 56 sections at the time). Next: screenshot issues.
+- **2026-06-16 (4)** — Fixed remaining screenshot issues: cta-banner ghost-invert button (visible border + fill-hover), mega-footer (removed card-wrapper surface, resized button to xs). Fixed floating-stats-cta: h1+lead → body-large, gap → `--spacing-h-xxl-to-large`; stat pattern added to exceptions. Fixed audit script URL-encoding bug (`fileURLToPath`). QA: 0 issues, 13 documented cases, 57 sections.

@@ -30,6 +30,23 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.2.4] — 2026-06-16
+
+Typography conformance passes 2-3 + screenshot issue fixes.
+
+### Fixed
+- `floating-stats-cta` — headline→lead pairing h1+medium → h1+large; gap → `--spacing-h-xxl-to-large`; icon exception documented.
+- `animated-feature-grid`, `multi-column-cards` — card title h6 → h5 (fits body-base canon); desc gap → `--spacing-h-s-to-base`.
+- `feature-card-stack` — card-p body-large → body-medium; flex gap → `--spacing-h-l-to-medium`. Heading→body pairing now 100% conformant across all 57 sections.
+- `cta-banner` — ghost-invert button: border `color-border-primary-invert` → `color-text-primary-invert` (visible on brand surface); hover now fills with invert text.
+- `mega-footer` — remove card-wrapper surface (background/border-radius/padding-top); button resized to xs (height 32px, font btn-xs); input height 45 → 40px.
+
+### Changed
+- `scripts/typo-gap-audit.mjs` — fixed URL-encoding bug (`fileURLToPath` instead of `.pathname`); added `floating-stats-cta` stat-number exception.
+- `docs/TYPOGRAPHY-CONFORMANCE.md` — session log updated; floating-stats-cta decisions added.
+- `scripts/design-qa-exceptions.json` — documented `floating-stats-cta` icon-brand-on-dark false positive.
+- `serve.py` — port 8001 → 8910.
+
 ## [1.2.3] — 2026-06-13
 
 Typography/gap conformance — pass 1 + a recurring, resumable process.

@@ -1,6 +1,6 @@
 """
 WPMN Design System — Dev Server
-  http://localhost:8001/demo.html
+  http://localhost:8910/demo.html
 
 Features:
   • Static file serving (CSS, JSX, SVG, HTML, …)
@@ -21,7 +21,7 @@ class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
     daemon_threads     = True   # threads die when main process exits
     allow_reuse_address = True
 
-PORT     = 8001
+PORT     = 8910
 BASE_DIR = Path(__file__).parent
 WATCH_EXTS = {'.css', '.jsx', '.js', '.html', '.json', '.svg'}
 

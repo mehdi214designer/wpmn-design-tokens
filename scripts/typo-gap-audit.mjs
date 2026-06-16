@@ -16,13 +16,14 @@
  */
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 let JSDOM;
 try { ({ JSDOM } = require('jsdom')); }
 catch { console.error('Missing dependency: run `npm i -D jsdom` first.'); process.exit(2); }
 
-const ROOT = new URL('..', import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SECTIONS = join(ROOT, 'sections');
 
 const CANON = {
@@ -48,6 +49,8 @@ const EXCEPTIONS = new Set([
   'portrait-stats-hero', // stat number + label
   'product-showcase',    // price/spec text
   'pricing-table',       // left per design decision
+  'pricing-toggle',     // h3 flag is the .price ($) + per-text, not heading→body
+  'floating-stats-cta', // .stat-num (h2) + .stat-cap (body-base) is a stat number + caption, not heading→body
 ]);
 
 const ids = readdirSync(SECTIONS).filter(d => existsSync(join(SECTIONS,d,'section.html')));

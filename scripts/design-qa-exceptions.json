@@ -6,5 +6,6 @@
   "board-hero/btn-secondary-anatomy/tbtn": "Toolbar chips are mock-UI inside the kanban artwork, not actionable buttons",
   "board-hero/btn-primary-anatomy/tbtn--add": "Mock-UI chip in the kanban artwork (no glow by design)",
   "folder-quote-cards/btn-hover-transform/arrow-btn": "Notched arrow pill is imported interaction artwork (scale 1.05/0.96 verbatim from the reference) \u2014 a custom icon-button, not a DS button",
-  "work-portfolio/btn-icon-decor/btn-arrow": "Icon decoration inside the DS button (slide animation), not a button itself"
+  "work-portfolio/btn-icon-decor/btn-arrow": "Icon decoration inside the DS button (slide animation), not a button itself",
+  "floating-stats-cta/icon-brand-on-dark/cg-icon": "Icon sits inside .cg-icon which has background:var(--color-surface-primary) — a light container within the dark panel; brand-colored icon on a light surface is correct here"
 }
