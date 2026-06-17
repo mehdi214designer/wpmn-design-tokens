@@ -30,6 +30,16 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.2.6] — 2026-06-17
+
+### Added
+- `./components` package export for `wpmn-components.css`.
+
+### Changed
+- `AGENTS.md` / `COMPONENTS.md` / `llms.txt`: instruct agents to load `wpmn-components.css` and use
+  the real NavBar / Footer / Button components instead of hand-building them.
+- `hero-standard`: heading→body gap → semantic `--spacing-h-xxl-to-large` (pixel-identical).
+
 ## [1.2.5] — 2026-06-16
 
 Bucket C semantic gap tokens + NavBar component swap + scanner enforcement.
