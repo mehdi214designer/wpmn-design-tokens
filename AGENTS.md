@@ -4,7 +4,7 @@ You are using the **WPMN Design System** to build marketing pages/sections for W
 WordPress products (FluentForms, FluentCRM, etc.).
 
 ## Read these four files only (ignore the rest)
-1. **`wpmn-bundle.css`** — all tokens in one file (colors, spacing, radius, type). Link/inline this.
+1. **`wpmn-bundle.css`** — all tokens in one file (colors, spacing, radius, type). Link/inline this. For component classes (`.wpmn-navbar`, `.wpmn-btn--primary`, `.wpmn-footer`, etc.) also load **`wpmn-components.css`**, and use those components instead of hand-building a navbar/footer/button.
 2. **`registry.json`** — the 10 components + 56 ready-made sections, by role and tag.
 3. **`COMPONENTS.md`** — component class names + examples.
 4. **`llms.txt`** — the build rules (full version).

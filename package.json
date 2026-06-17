@@ -12,7 +12,8 @@
     "./brand-primitives": "./brand-primitives.css",
     "./typography": "./typography.css",
     "./index.css": "./index.css",
-    "./bundle": "./wpmn-bundle.css"
+    "./bundle": "./wpmn-bundle.css",
+    "./components": "./wpmn-components.css"
   },
   "scripts": {
     "build:bundle": "node scripts/build-bundle.mjs",

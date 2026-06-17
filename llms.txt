@@ -26,7 +26,9 @@ will dilute your context:
    fluentcommunity, fluentbooking, paymattic, fluentboards, fluentsmtp, fluentsupport,
    fluentaffiliate, azonpress, wpsocialninja, fluentcart, fluentplayer, fluentmembers.
    Dark mode: add `data-theme="dark"`.
-1. Link/inline `wpmn-bundle.css` (or `index.css` if you prefer the 4 split files).
+1. Link/inline `wpmn-bundle.css` (or `index.css` if you prefer the 4 split files). For component
+   classes (`.wpmn-navbar`, `.wpmn-btn`, `.wpmn-footer`, etc.) also load `wpmn-components.css`, and
+   use the real NavBar/Footer/Button components rather than hand-building them.
 2. **Compose from the section library first.** Map each page block to a section by role from
    `registry.json`, fetch its `sections/<id>/section.html`, and drop it in as-is — it's
    self-contained (scoped styles + markup + scoped script) and re-skins via `data-brand`.

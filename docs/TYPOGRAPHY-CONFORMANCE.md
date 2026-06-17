@@ -95,6 +95,14 @@ When unsure, look at the markup before changing.
 - **Navbar: ✅** `FluentForms-FullPage.html` navbar swapped to canonical `wpmn-navbar__*` classes with mobile drawer. `wpmn-components.css` bundle added via `build-bundle.mjs`.
 - **Enforcement: ✅** `scripts/design-qa.mjs` check #14 — heading→body pairing + heading-gap token enforcement via jsdom. Runs as part of `npm run qa`. Two null-gap false positives documented in exceptions.json.
 
+## Component / layout fixes (from the screenshot review)
+- **CTA secondary button** (`cta-banner`): faint border → clear 1.5px invert border, fills on hover. ✓
+- **Footer** (`mega-footer`): removed the inner white card frame (now full-width, content at 1200);
+  CTAs sm→xs (32px); newsletter input 45→40. ✓
+- **Navbar / components**: `wpmn-components.css` now bundles all component CSS so `.wpmn-navbar` /
+  `.wpmn-btn--primary` / `.wpmn-footer` etc. render; docs tell agents to load it and use the real
+  components instead of hand-building. ✓
+
 ## Session log
 - **2026-06-13 (1)** — Confirmed canon + 3-gap model. Fixed cta-banner, the 8 h2-subtext sections,
   pricing-toggle (×2), product-showcase, product-compare-table, feature-tabs-carousel. Logged 8

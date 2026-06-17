@@ -1,8 +1,9 @@
 # WPMN Components — Cheatsheet
 
-Real class names for the 10 components, one example each. Load `wpmn-bundle.css` and set
-`data-brand` on `<html>` first (see the bundle header). Class names here are exact — copy
-them, don't guess.
+Real class names for the 10 components, one example each. Load **`wpmn-bundle.css`** (tokens)
+**and `wpmn-components.css`** (these component styles), then set `data-brand` on `<html>` (see the
+bundle header). Without `wpmn-components.css` these classes render unstyled. Class names here are
+exact, copy them, don't guess.
 
 > For full marketing sections (hero, pricing, FAQ, footer, etc.) you usually drop in a
 > ready-made **section** instead of assembling atoms — see `registry.json` + `llms.txt`.
