@@ -13,6 +13,10 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    // Force the CLASSIC JSX runtime (uses global React.createElement, no ESM import)
+    Babel.registerPreset("react-classic", { presets: [[Babel.availablePresets["react"], { runtime: "classic" }]] });
+  </script>
 
   <style>
     /* ============================================================
@@ -924,7 +928,7 @@
 <body>
   <div id="root"></div>
 
-  <script type="text/babel">
+  <script type="text/babel" data-presets="react-classic">
     const { useState, useEffect, useId } = React;
 
     /* ── Error boundary — prevents one bad component from crashing the page ── */
@@ -1177,7 +1181,7 @@
             <div style={{ borderRadius:16, overflow:'hidden', border:'1px solid var(--color-border-primary)' }}>
               <nav className="wpmn-navbar">
                 <div className="wpmn-navbar__logo">
-                  <Logo brand={b.key} variant="logo" type={logoType} height={28} />
+                  <Logo brand={b.key} variant="logo" type={theme === 'dark' ? 'inverted' : 'dark'} height={28} />
                 </div>
                 <div className="wpmn-navbar__nav">
                   <ul className="wpmn-navbar__links">
@@ -1475,7 +1479,7 @@
         window.DS = window.DS || {};
         window.DS['${name}'] = typeof ${name} !== 'undefined' ? ${name} : (typeof ${exportedName} !== 'undefined' ? ${exportedName} : undefined);
       })();`;
-      const transpiled = Babel.transform(wrapped, { presets: ['react'] }).code;
+      const transpiled = Babel.transform(wrapped, { presets: [['react', { runtime: 'classic' }]] }).code;
       // eslint-disable-next-line no-eval
       eval(transpiled);
     }
@@ -1490,7 +1494,7 @@
         window.DS.__demos = window.DS.__demos || {};
         window.DS.__demos['${name}'] = typeof Demo !== 'undefined' ? Demo : undefined;
       })();`;
-      eval(Babel.transform(wrapped, { presets: ['react'] }).code);
+      eval(Babel.transform(wrapped, { presets: [['react', { runtime: 'classic' }]] }).code);
     }
 
     /* ── Copy button (prompt / code) ─────────────────────────── */
@@ -1694,7 +1698,7 @@
       ),
       NavBar: () => (
         <window.DS.NavBar
-          logo={<img src="logos/wpmanagenia/logo-primary.svg" height={24} alt="WPMN" />}
+          logo={<img src="logos/wpmanagenia/logo-dark.svg" height={24} alt="WPMN" />}
           links={[{label:'Products',href:'#',active:true},{label:'Pricing',href:'#'},{label:'Docs',href:'#'}]}
           ctaLabel="Get Started"
         />
