@@ -20,3 +20,15 @@ npm-debug.log*
 # Heavy reference dumps — local only, keep them out of the published tree
 /reference/*
 !/reference/README.md
+
+# Local-only working files — keep the design-system repo clean
+/Products/
+/automation/
+/evals/
+*.command
+*.skill
+*.bak
+_conv_hgap.mjs
+_wt_test
+/SKILL.md
+/FluentForms-Hero.html
