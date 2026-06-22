@@ -1,0 +1,76 @@
+{
+  "id": "security-scan-hero",
+  "name": "Security Scan Hero",
+  "type": "html",
+  "status": "stable",
+  "description": "Centered dark product hero: a spinning shield brand mark, a mono delivery badge, an oversized heading with an inline brand tile, dual CTAs, three auto-advancing feature tabs with filling progress tracks, and an animated app window where a brand scan line sweeps a mock app over a node grid, flagging a security warning.",
+  "files": {
+    "html": "sections/security-scan-hero/section.html"
+  },
+  "prompt": "sections/security-scan-hero/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-security-scan-hero",
+  "interactions": [
+    "app scan line sweeps the window: translateY(-213px) -> 400px at 0% / 70-100%, 5s ease-out infinite (verbatim keyframe wpmn-ssh-scan)",
+    "brand mark ring orbits 14s linear infinite (two dots on a rotating ring)",
+    "feature tabs auto-advance every 4000ms once the section reaches 20% viewport; active tab brightens and its progress track fills 0->100% over 4s (inset transition); clicking a tab jumps to it and restarts the timer",
+    "stage fades up on first view, 700ms cubic-bezier(.22,1,.36,1)",
+    "primary CTA enable/hovered/pressed at 120ms; dark CTA hover lifts fill 8%->12%",
+    "prefers-reduced-motion: spin and scan off (scan parked mid-window), no auto-advance, stage shown in place"
+  ],
+  "tokensUsed": [
+    "--color-surface-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--color-error-primary",
+    "--btn-bg-enable",
+    "--btn-bg-hovered",
+    "--btn-bg-pressed",
+    "--btn-bg-focused",
+    "--btn-bg-glow",
+    "--radius-lg",
+    "--radius-md",
+    "--radius-sm",
+    "--radius-xsm",
+    "--shadow-soft-500",
+    "--font-family-base",
+    "--font-size-h1",
+    "--font-size-body-medium",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-size-body-label",
+    "--font-size-btn-md",
+    "--font-lh-h1",
+    "--font-lh-body-medium",
+    "--font-lh-body-base",
+    "--font-lh-body-small",
+    "--font-lh-body-label",
+    "--font-lh-btn-md",
+    "--font-weight-bold",
+    "--font-weight-semibold",
+    "--font-weight-medium"
+  ],
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "role": "Hero",
+  "span": 2,
+  "tags": [
+    "hero",
+    "dark hero",
+    "product hero",
+    "scan animation",
+    "app mockup",
+    "feature tabs",
+    "progress tabs",
+    "security",
+    "developer tool",
+    "centered hero"
+  ]
+}
