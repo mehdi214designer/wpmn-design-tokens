@@ -1,0 +1,233 @@
+<!-- WPMN Section: App Scan Hero — atom spinner, mono badge, big heading with inline tile, dual CTAs, three feature tabs with a sweeping progress line, and a Mac-window mockup where a scan bar sweeps a circuit-node board and flags a security warning (from an HTML embed reference, interactions kept verbatim, fully tokenized) -->
+<section class="wpmn-sec-app-scan-hero" data-ash>
+  <style>
+@keyframes wpmn-ash-spin{to{transform:rotate(360deg)}}
+@keyframes wpmn-ash-sweep{0%{transform:translateX(-30%)}50%{transform:translateX(70%)}100%{transform:translateX(-30%)}}
+@keyframes wpmn-ash-scan{0%{transform:translate(-50%,-213px)}70%,100%{transform:translate(-50%,400px)}}
+    .wpmn-sec-app-scan-hero{
+      position:relative;overflow:hidden;isolation:isolate;
+      font-family:var(--font-family-base);color:var(--color-text-primary-invert);
+      padding:var(--primitive-space-56) var(--primitive-space-16) var(--primitive-space-120);
+      background:
+        radial-gradient(120% 80% at 50% 118%, var(--ash-glow), transparent 70%),
+        var(--color-surface-secondary);
+      --ash-glow:color-mix(in srgb, var(--btn-bg-enable) 40%, transparent);
+      --ash-hair:color-mix(in srgb, var(--color-text-primary-invert) 8%, transparent);
+      --ash-hair2:color-mix(in srgb, var(--color-text-primary-invert) 14%, transparent);
+      --ash-fill4:color-mix(in srgb, var(--color-text-primary-invert) 4%, transparent);
+      --ash-fill6:color-mix(in srgb, var(--color-text-primary-invert) 6%, transparent);
+      --ash-fill10:color-mix(in srgb, var(--color-text-primary-invert) 10%, transparent);
+      --ash-wire:color-mix(in srgb, var(--btn-bg-enable) 42%, transparent);
+      --ash-node:color-mix(in srgb, var(--btn-bg-enable) 72%, var(--color-text-primary-invert));
+      --ash-scan:color-mix(in srgb, var(--btn-bg-enable) 16%, transparent);
+      --ash-scan-edge:color-mix(in srgb, var(--btn-bg-enable) 60%, var(--color-text-primary-invert));
+      --ash-tile:linear-gradient(150deg, color-mix(in srgb, var(--btn-bg-enable) 88%, var(--color-text-primary-invert)), var(--btn-bg-enable));
+    }
+    .wpmn-sec-app-scan-hero .wrap{max-width:968px;margin:0 auto}
+
+    /* atom spinner */
+    .wpmn-sec-app-scan-hero .atom{width:64px;height:64px;margin:0 auto var(--primitive-space-24);color:var(--color-text-primary-invert)}
+    .wpmn-sec-app-scan-hero .atom svg{width:100%;height:100%;animation:wpmn-ash-spin 8s linear infinite;transform-origin:50% 50%}
+
+    /* badge */
+    .wpmn-sec-app-scan-hero .badge{display:flex;align-items:center;gap:var(--primitive-space-8);width:max-content;margin:0 auto var(--primitive-space-24);padding:var(--primitive-space-4) var(--primitive-space-12);border-radius:999px;background:var(--ash-fill6);border:1px solid var(--ash-hair)}
+    .wpmn-sec-app-scan-hero .badge svg{width:13px;height:13px;color:var(--btn-bg-enable)}
+    .wpmn-sec-app-scan-hero .badge span{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.14em;text-transform:uppercase;color:var(--color-text-secondary-invert)}
+
+    /* headline + sub */
+    .wpmn-sec-app-scan-hero .h1{text-align:center;margin:0 auto var(--primitive-space-24);font-size:var(--font-size-h1);line-height:var(--font-lh-h1);font-weight:var(--font-weight-bold);letter-spacing:-0.02em;color:var(--color-text-primary-invert)}
+    .wpmn-sec-app-scan-hero .h1 .row2{display:flex;gap:var(--primitive-space-8);align-items:center;justify-content:center;flex-wrap:wrap}
+    .wpmn-sec-app-scan-hero .h1 .applogo{width:.92em;height:.92em;border-radius:var(--radius-sm);display:inline-flex;align-items:center;justify-content:center;background:var(--ash-tile);box-shadow:inset 1px 2px 3px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-app-scan-hero .h1 .applogo svg{width:64%;height:64%;color:var(--color-text-primary-invert)}
+    .wpmn-sec-app-scan-hero .sub{max-width:600px;margin:0 auto var(--primitive-space-32);text-align:center;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert)}
+
+    /* CTAs */
+    .wpmn-sec-app-scan-hero .ctas{display:flex;gap:var(--primitive-space-12);justify-content:center;align-items:center;margin-bottom:var(--primitive-space-64)}
+    .wpmn-sec-app-scan-hero .btn{display:inline-flex;align-items:center;gap:var(--primitive-space-8);height:46px;padding:0 var(--primitive-space-20);border-radius:var(--radius-xsm);border:1.5px solid transparent;font-size:var(--font-size-btn-md);line-height:var(--font-lh-btn-md);font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert);text-decoration:none;cursor:pointer;transition:background-color .2s ease, box-shadow .2s ease, transform .05s ease}
+    .wpmn-sec-app-scan-hero .btn svg{width:18px;height:18px}
+    .wpmn-sec-app-scan-hero .btn:active{transform:translateY(1px)}
+    .wpmn-sec-app-scan-hero .btn-primary{background:var(--btn-bg-enable);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-app-scan-hero .btn-primary:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-app-scan-hero .btn-primary:active{background:var(--btn-bg-pressed)}
+    .wpmn-sec-app-scan-hero .btn-dark{background:var(--ash-fill4);border-color:var(--ash-hair)}
+    .wpmn-sec-app-scan-hero .btn-dark:hover{background:var(--ash-fill10)}
+    .wpmn-sec-app-scan-hero .btn:focus-visible{outline:none;border-color:var(--btn-bg-focused)}
+
+    /* feature tabs */
+    .wpmn-sec-app-scan-hero .tabs{display:flex;align-items:flex-start;max-width:968px;margin:0 auto;padding:0 var(--primitive-space-4)}
+    .wpmn-sec-app-scan-hero .tab{flex:1;text-align:center;padding:0 var(--primitive-space-20);background:none;border:0;cursor:pointer;color:inherit;font-family:inherit}
+    .wpmn-sec-app-scan-hero .tab .ico{width:max-content;margin:0 auto var(--primitive-space-16);padding:var(--primitive-space-8) var(--primitive-space-16);border-radius:999px;border:1px solid var(--ash-hair);color:var(--color-text-primary-invert)}
+    .wpmn-sec-app-scan-hero .tab .ico svg{width:22px;height:22px;display:block;margin:0 auto;opacity:.64;transition:opacity .3s ease}
+    .wpmn-sec-app-scan-hero .tab:hover .ico svg{opacity:.9}
+    .wpmn-sec-app-scan-hero .tab .ttl{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);font-weight:var(--font-weight-medium);opacity:.6;transition:opacity .45s cubic-bezier(.6,.6,0,1);margin-bottom:var(--primitive-space-4)}
+    .wpmn-sec-app-scan-hero .tab .desc{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary-invert)}
+    .wpmn-sec-app-scan-hero .tab:hover .ttl{opacity:.85}
+    .wpmn-sec-app-scan-hero .tab.is-active .ico{background:var(--ash-fill6);border-color:var(--ash-hair2)}
+    .wpmn-sec-app-scan-hero .tab.is-active .ico svg{opacity:1}
+    .wpmn-sec-app-scan-hero .tab.is-active .ttl{opacity:1}
+    .wpmn-sec-app-scan-hero .tabline{max-width:592px;height:2px;margin:var(--primitive-space-24) auto 0;position:relative;background:var(--ash-hair);border-radius:999px;overflow:hidden}
+    .wpmn-sec-app-scan-hero .tabline::after{content:"";position:absolute;inset:0;width:62%;background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-text-primary-invert) 85%, transparent) 40%, var(--color-text-primary-invert) 70%, transparent);border-radius:999px;animation:wpmn-ash-sweep 4s ease-in-out infinite}
+
+    /* Mac window mockup */
+    .wpmn-sec-app-scan-hero .window{position:relative;max-width:968px;margin:var(--primitive-space-48) auto 0;border-radius:var(--radius-md);overflow:hidden;background:linear-gradient(180deg, var(--color-surface-secondary), color-mix(in srgb, var(--btn-bg-enable) 12%, var(--color-surface-secondary)));box-shadow:var(--shadow-soft-700), inset 0 0 0 1px var(--ash-fill6)}
+    .wpmn-sec-app-scan-hero .menubar{display:flex;align-items:center;gap:var(--primitive-space-16);padding:var(--primitive-space-8) var(--primitive-space-16);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert);border-bottom:1px solid var(--ash-hair);background:var(--ash-fill4)}
+    .wpmn-sec-app-scan-hero .menubar .apple{width:13px;height:15px;color:var(--color-text-primary-invert);opacity:.85}
+    .wpmn-sec-app-scan-hero .menubar .app{font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-app-scan-hero .menubar .clock{margin-left:auto;font-variant-numeric:tabular-nums}
+    .wpmn-sec-app-scan-hero .winbody{position:relative;height:520px;overflow:hidden}
+    .wpmn-sec-app-scan-hero .circuit{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
+    .wpmn-sec-app-scan-hero .circuit .wire{color:var(--ash-wire)}
+    .wpmn-sec-app-scan-hero .circuit .nodes{color:var(--ash-node)}
+    .wpmn-sec-app-scan-hero .scan{position:absolute;left:50%;top:0;transform:translateX(-50%);width:560px;max-width:90%;height:213px;z-index:2;background:linear-gradient(to bottom, transparent 0%, var(--ash-scan) 100%);border-bottom:1px solid var(--ash-scan-edge);animation:wpmn-ash-scan 5s ease-out infinite}
+    .wpmn-sec-app-scan-hero .app-icon{position:absolute;left:50%;top:148px;transform:translateX(-50%);width:100px;height:100px;z-index:3;border-radius:24px;background:var(--ash-tile);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px -8px var(--ash-glow), inset 1px 2px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-app-scan-hero .app-icon svg{width:46px;height:46px;color:var(--color-text-primary-invert)}
+    .wpmn-sec-app-scan-hero .csp{position:absolute;left:50%;top:268px;transform:translateX(-50%);z-index:4;display:flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-8) var(--primitive-space-16);border-radius:var(--radius-sm);background:color-mix(in srgb, var(--color-text-primary-invert) 8%, var(--color-surface-secondary));white-space:nowrap;box-shadow:var(--shadow-soft-500), inset 0 0 0 1px var(--ash-hair2)}
+    .wpmn-sec-app-scan-hero .csp svg{width:16px;height:16px;flex:none;color:var(--color-error-primary)}
+    .wpmn-sec-app-scan-hero .csp svg circle{fill:color-mix(in srgb, var(--color-error-primary) 16%, transparent)}
+    .wpmn-sec-app-scan-hero .csp span{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-primary-invert)}
+    .wpmn-sec-app-scan-hero .innerwin{position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);width:760px;max-width:86%;height:170px;z-index:1;border-radius:var(--radius-sm) var(--radius-sm) 0 0;background:color-mix(in srgb, var(--color-text-primary-invert) 5%, var(--color-surface-secondary));box-shadow:inset 0 0 0 1px var(--ash-fill6)}
+    .wpmn-sec-app-scan-hero .innerwin .bar{display:flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-12) var(--primitive-space-16);border-bottom:1px solid var(--ash-hair)}
+    .wpmn-sec-app-scan-hero .innerwin .dot{width:11px;height:11px;border-radius:50%}
+    .wpmn-sec-app-scan-hero .innerwin .dot.r{background:var(--color-error-primary)}
+    .wpmn-sec-app-scan-hero .innerwin .dot.y{background:var(--color-warning-primary)}
+    .wpmn-sec-app-scan-hero .innerwin .dot.g{background:var(--color-success-primary)}
+    .wpmn-sec-app-scan-hero .innerwin .pane{width:16px;height:13px;border-radius:3px;border:1px solid var(--ash-hair2);margin-left:var(--primitive-space-8)}
+    .wpmn-sec-app-scan-hero .innerwin .name{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert);margin-left:var(--primitive-space-4)}
+    .wpmn-sec-app-scan-hero .innerwin .name b{color:var(--color-text-primary-invert);font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-app-scan-hero .innerwin .badge5{margin-left:var(--primitive-space-8);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);background:var(--ash-fill10);padding:var(--primitive-space-2) var(--primitive-space-8);border-radius:999px;color:var(--color-text-secondary-invert)}
+    .wpmn-sec-app-scan-hero .innerwin .input{margin:var(--primitive-space-16);height:40px;border-radius:var(--radius-sm);background:var(--ash-fill4);border:1px solid var(--ash-hair);display:flex;align-items:center;padding:0 var(--primitive-space-16);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary-invert)}
+
+    /* responsive (viewport + container-keyed via JS classes) */
+    @media(max-width:820px){
+      .wpmn-sec-app-scan-hero .tab .desc{display:none}
+      .wpmn-sec-app-scan-hero .window{margin-top:var(--primitive-space-32)}
+      .wpmn-sec-app-scan-hero .winbody{height:420px}
+      .wpmn-sec-app-scan-hero .app-icon{top:96px;width:80px;height:80px}
+    }
+    @media(max-width:560px){
+      .wpmn-sec-app-scan-hero{padding:var(--primitive-space-40) var(--primitive-space-16) var(--primitive-space-80)}
+      .wpmn-sec-app-scan-hero .ctas{flex-direction:column;align-items:stretch;max-width:300px;margin-left:auto;margin-right:auto}
+      .wpmn-sec-app-scan-hero .btn{justify-content:center}
+      .wpmn-sec-app-scan-hero .menubar .mi,.wpmn-sec-app-scan-hero .menubar .clock{display:none}
+      .wpmn-sec-app-scan-hero .csp{white-space:normal;max-width:80%}
+    }
+    .wpmn-sec-app-scan-hero.is-narrow .tab .desc{display:none}
+    .wpmn-sec-app-scan-hero.is-xs .menubar .mi,.wpmn-sec-app-scan-hero.is-xs .menubar .clock{display:none}
+    .wpmn-sec-app-scan-hero.is-xs .csp{white-space:normal;max-width:80%}
+
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-app-scan-hero .atom svg{animation:none}
+      .wpmn-sec-app-scan-hero .tabline::after{animation:none}
+      .wpmn-sec-app-scan-hero .scan{animation:none;top:120px;opacity:.7}
+      .wpmn-sec-app-scan-hero .btn{transition:none}
+    }
+  </style>
+  <div class="wrap">
+    <div class="atom" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none">
+        <g stroke="currentColor" stroke-width="3">
+          <ellipse cx="50" cy="50" rx="46" ry="18"/>
+          <ellipse cx="50" cy="50" rx="46" ry="18" transform="rotate(60 50 50)"/>
+          <ellipse cx="50" cy="50" rx="46" ry="18" transform="rotate(120 50 50)"/>
+        </g>
+        <circle cx="50" cy="50" r="5" fill="currentColor"/>
+      </svg>
+    </div>
+
+    <span class="badge">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M7.6 1 2.5 7.7h3.3L6.2 13l5.3-7H8L7.6 1Z" fill="currentColor"/></svg>
+      <span>End-to-end delivery</span>
+    </span>
+
+    <h1 class="h1">Ship, Secure and
+      <span class="row2">Scale your WordPress
+        <span class="applogo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8-4 8 4v10l-8 4-8-4V7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 7l8 4 8-4M12 11v10" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        Plugin
+      </span>
+    </h1>
+    <p class="sub">Effortless deployment, automated security checks and seamless auto-updates.</p>
+
+    <div class="ctas">
+      <a class="btn btn-primary" href="#" onclick="return false">Start free trial
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-dark" href="#" onclick="return false">Read docs</a>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab" type="button">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="11" rx="2"/><path d="M14 17l4 4M18 17l3 3-3 3"/></svg></span>
+        <div class="ttl">Upload your build</div>
+        <div class="desc">Prepare to supercharge your plugin release.</div>
+      </button>
+      <button class="tab is-active" type="button">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <div class="ttl">Harden your plugin</div>
+        <div class="desc">Vulnerabilities flagged, best practices suggested.</div>
+      </button>
+      <button class="tab" type="button">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l14 7-6 2-2 6L5 4Z"/></svg></span>
+        <div class="ttl">Ship smooth updates</div>
+        <div class="desc">Keep every customer current with reliable rollouts.</div>
+      </button>
+    </div>
+    <div class="tabline" aria-hidden="true"></div>
+
+    <div class="window">
+      <div class="menubar">
+        <svg class="apple" viewBox="0 0 14 16" fill="currentColor"><path d="M9.6 8.5c0-1.7 1.4-2.5 1.4-2.5-.8-1.1-2-1.3-2.4-1.3-1-.1-2 .6-2.5.6s-1.3-.6-2.1-.6C2.4 5.2 1 6.1 1 8.2c0 1 .4 2.1.9 2.8.4.6.9 1.3 1.6 1.3.6 0 .9-.4 1.7-.4s1 .4 1.7.4 1.1-.6 1.6-1.3c.3-.5.5-1 .6-1.1-1.1-.4-1.5-1.5-1.5-1.5Zm-1.7-4.4c.4-.5.6-1.1.6-1.7-.6 0-1.2.4-1.6.8-.3.4-.6 1-.6 1.6.6.1 1.2-.3 1.6-.7Z"/></svg>
+        <span class="app">FluentDeploy</span>
+        <span class="mi">File</span><span class="mi">Edit</span><span class="mi">View</span><span class="mi">Window</span><span class="mi">Help</span>
+        <span class="clock">Thu 9 May 15:09</span>
+      </div>
+      <div class="winbody">
+        <svg class="circuit" viewBox="0 0 968 520" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+          <g class="wire" stroke="currentColor" stroke-width="1">
+            <path d="M180 110 H400 V60 M400 110 V190 H300"/>
+            <path d="M788 110 H560 V60 M560 110 V190 H660"/>
+            <path d="M180 300 H360 V360 M620 300 H780 V360"/>
+            <path d="M300 430 H470 V470 M660 430 H500 V470"/>
+            <path d="M484 200 V300 M484 320 V420"/>
+          </g>
+          <g class="nodes" fill="currentColor">
+            <circle cx="180" cy="110" r="3.5"/><circle cx="400" cy="60" r="3.5"/><circle cx="300" cy="190" r="3.5"/>
+            <circle cx="788" cy="110" r="3.5"/><circle cx="560" cy="60" r="3.5"/><circle cx="660" cy="190" r="3.5"/>
+            <circle cx="180" cy="300" r="3.5"/><circle cx="360" cy="360" r="3.5"/><circle cx="620" cy="300" r="3.5"/>
+            <circle cx="780" cy="360" r="3.5"/><circle cx="300" cy="430" r="3.5"/><circle cx="660" cy="430" r="3.5"/>
+          </g>
+        </svg>
+        <div class="scan" aria-hidden="true"></div>
+        <div class="app-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="csp">
+          <svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8"/><path d="M6 6l6 6M12 6l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span>No security policy configured</span>
+        </div>
+        <div class="innerwin" aria-hidden="true">
+          <div class="bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="pane"></span>
+            <span class="name"><b>FluentDeploy</b></span><span class="badge5">5</span>
+          </div>
+          <div class="input">Message FluentDeploy...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Interactions kept verbatim: atom spins 8s, the tab progress line sweeps 4s, the window scan
+    // sweeps 5s (CSS keyframes). JS only handles container-keyed responsive class toggles.
+    (function () {
+      var root = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-app-scan-hero');
+      if (!root || root.hasAttribute('data-ash-init')) return;
+      root.setAttribute('data-ash-init', '');
+      function fit() {
+        var w = root.clientWidth;
+        root.classList.toggle('is-narrow', w < 820);
+        root.classList.toggle('is-xs', w < 560);
+      }
+      fit();
+      if (window.ResizeObserver) new ResizeObserver(fit).observe(root);
+      else addEventListener('resize', fit);
+    })();
+  </script>
+</section>
