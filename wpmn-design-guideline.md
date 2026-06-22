@@ -57,6 +57,28 @@ Four surface types. Always use semantic tokens for backgrounds.
 
 **Rule: never place dark text on a dark surface. Never place white text on a light surface.**
 
+### Building a dark section (the #1 thing that breaks)
+
+A dark section is not just a dark background. The moment a section (or panel) sits on `--color-surface-secondary`, every piece of text and every icon inside it must switch to the invert tokens. Paint a dark background but leave the heading on `--color-text-primary` and you get near-black text on a near-black surface: the heading disappears. This is the single most common build failure on dark sections.
+
+Dark section recipe, copy this:
+
+```css
+.dark-section {
+  background: var(--color-surface-secondary);
+  color: var(--color-text-primary-invert);   /* base text defaults to white */
+}
+.dark-section .heading { color: var(--color-text-primary-invert); }    /* headings */
+.dark-section .subtext { color: var(--color-text-secondary-invert); }  /* body / lead */
+.dark-section svg      { color: var(--color-text-primary-invert); }    /* icons via currentColor */
+```
+
+Setting the invert color on the section root is the safe move: any child that forgets to set its own color inherits white instead of black.
+
+The only exception is a light card placed on the dark section (a white card). That card paints its own `--color-surface-primary` background, so text inside it correctly stays on `--color-text-primary` / `--color-text-secondary`.
+
+`design-qa.mjs` enforces this (`surface-text-pairing`): a dark surface that uses non-invert text fails QA.
+
 ### Text tokens
 
 | Token | Primitive | Used for |

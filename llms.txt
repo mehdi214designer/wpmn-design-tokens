@@ -45,7 +45,7 @@ All files are fetchable via raw URLs: `https://raw.githubusercontent.com/mehdi21
 ## Core rules (non-negotiable)
 
 - **Tokens only**: semantic tokens (`--color-*`, `--btn-*`, `--input-*`, `--radius-*`, `--font-*`, `--shadow-*`). No raw hex/rgb, no raw font sizes/weights, radii via tokens or calc() over tokens. Tints via `color-mix()` over tokens.
-- **Surface pairing**: dark text on light surfaces, `--color-text-*-invert` on dark/brand surfaces. Never dark-on-dark or light-on-light.
+- **Surface pairing**: dark text on light surfaces, `--color-text-*-invert` on dark/brand surfaces. Never dark-on-dark or light-on-light. A dark section is not just a dark background: the moment a section/panel uses `--color-surface-secondary`, EVERY heading, paragraph, and icon inside must use the `-invert` token (set `color: var(--color-text-primary-invert)` on the dark root so children inherit white). Leaving text on `--color-text-primary` makes the heading vanish on the dark surface. Enforced by `design-qa.mjs` (`surface-text-pairing`).
 - **Buttons** follow `components/Button/Button.css` exactly: primary (brand bg + invert text + `--btn-bg-glow` inset + hovered/pressed/focus-visible states), secondary (transparent + 1.5px brand border, fills on hover; ghost-invert variant on dark surfaces), tertiary (text-only). Size steps 32-64px, radius `--radius-xsm`, 120ms ease states, one primary per section, no pill buttons, no underlines.
 - **Icons**: Hugeicons Pro only (`node scripts/extract-hugeicon.mjs <name> stroke.rounded`), ONE unified variant per site (library standard stroke.rounded), 24 viewBox, currentColor, invert color on dark surfaces.
 - **Motion**: keyframes prefixed `wpmn-`, everything behind `prefers-reduced-motion`.

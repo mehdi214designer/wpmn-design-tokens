@@ -247,6 +247,21 @@ for (const d of dirs) {
       if (/^\d+(?:\.\d+)?px$/.test(p) && !SPACING_EXC.has(p)) report(d, 'raw-spacing', m[1] + ': ' + p);
     }
   }
+
+  /* 15 ─ surface/text pairing (the "invisible heading" bug): a dark surface must
+         carry invert text. Two unambiguous, zero-false-positive shapes:
+         (A) the section root is dark and sets a non-invert base text color;
+         (B) a single rule paints a dark background and sets non-invert text on itself.
+         Dark sections must use --color-text-*-invert. Recipe in wpmn-design-guideline.md. */
+  const rootRulePair = (styles.match(new RegExp(`\\.wpmn-sec-${d}\\s*\\{[^}]*\\}`)) || [''])[0];
+  if (/background[^;}]*surface-secondary/.test(rootRulePair) && /color:\s*var\(--color-text-(?:primary|secondary)\)/.test(rootRulePair))
+    report(d, 'surface-text-pairing', 'dark section root uses non-invert text color (use --color-text-*-invert)');
+  for (const m of styles.matchAll(/([^{}]+)\{([^}]*)\}/g)) {
+    const sel = m[1].trim(), body = m[2];
+    if (/keyframes|@media/i.test(sel)) continue;
+    if (/background[^;}]*surface-secondary/.test(body) && /color:\s*var\(--color-text-(?:primary|secondary)\)/.test(body))
+      report(d, 'surface-text-pairing', `${sel.split(',')[0]} paints a dark surface but uses non-invert text`);
+  }
 }
 
 const issues = findings.filter(f => !f.special);
