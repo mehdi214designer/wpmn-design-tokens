@@ -1,0 +1,150 @@
+<!-- WPMN Section: Scrollspy Accordion — sticky numbered nav whose grid-accordion items sync to a column of scrolling image cards via scroll-spy (from an HTML reference, interactions kept verbatim, fully tokenized) -->
+<section class="wpmn-sec-scrollspy-accordion">
+  <style>
+    .wpmn-sec-scrollspy-accordion{
+      background:var(--ssa-bg);
+      color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --ssa-ease:cubic-bezier(0.4, 0, 0.2, 1);
+      --ssa-bg:color-mix(in srgb, var(--color-text-primary) 3%, var(--color-surface-primary));
+      --ssa-hover:color-mix(in srgb, var(--color-text-primary) 3%, transparent);
+      --ssa-num-idle:color-mix(in srgb, var(--color-text-primary) 26%, transparent);
+      --ssa-num-active:color-mix(in srgb, var(--color-text-primary) 52%, transparent);
+      --ssa-title-idle:color-mix(in srgb, var(--color-text-primary) 42%, transparent);
+    }
+    .wpmn-sec-scrollspy-accordion .wrap{max-width:1200px;margin:0 auto}
+    .wpmn-sec-scrollspy-accordion .head{text-align:center;margin-bottom:var(--primitive-space-56)}
+    .wpmn-sec-scrollspy-accordion .head h2{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-bold);letter-spacing:-0.04em;max-width:20ch;margin:0 auto;text-wrap:balance}
+
+    .wpmn-sec-scrollspy-accordion .grid{display:grid;grid-template-columns:4fr 8fr;gap:0 var(--primitive-space-48)}
+
+    /* sticky numbered nav */
+    .wpmn-sec-scrollspy-accordion .nav-sticky{position:sticky;top:20vh}
+    .wpmn-sec-scrollspy-accordion .nav{display:flex;flex-direction:column}
+    .wpmn-sec-scrollspy-accordion .item{position:relative;text-align:left;padding:var(--primitive-space-20) var(--primitive-space-24);border:0;background:none;font:inherit;color:inherit;cursor:pointer;border-radius:var(--radius-md);transition:background-color .3s var(--ssa-ease)}
+    .wpmn-sec-scrollspy-accordion .item:hover{background:var(--ssa-hover)}
+    .wpmn-sec-scrollspy-accordion .item .bar{position:absolute;left:0;top:16%;bottom:16%;width:3px;border-radius:999px;background:transparent;transition:background-color .3s var(--ssa-ease)}
+    .wpmn-sec-scrollspy-accordion .item.active .bar{background:var(--color-text-primary)}
+    .wpmn-sec-scrollspy-accordion .item .num{display:block;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.12em;margin-bottom:var(--primitive-space-8);color:var(--ssa-num-idle);transition:color .3s var(--ssa-ease)}
+    .wpmn-sec-scrollspy-accordion .item.active .num{color:var(--ssa-num-active)}
+    .wpmn-sec-scrollspy-accordion .item .title{display:block;font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);letter-spacing:-0.03em;color:var(--ssa-title-idle);transition:color .3s var(--ssa-ease)}
+    .wpmn-sec-scrollspy-accordion .item.active .title{color:var(--color-text-primary)}
+    /* CSS grid accordion: 0fr -> 1fr */
+    .wpmn-sec-scrollspy-accordion .item .reveal{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows .3s var(--ssa-ease)}
+    .wpmn-sec-scrollspy-accordion .item.active .reveal{grid-template-rows:1fr}
+    .wpmn-sec-scrollspy-accordion .item .reveal-inner{min-height:0}
+    .wpmn-sec-scrollspy-accordion .item .desc{padding-top:var(--primitive-space-12);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);max-width:34ch;opacity:0;transition:opacity .3s var(--ssa-ease)}
+    .wpmn-sec-scrollspy-accordion .item.active .desc{opacity:1}
+
+    /* image column */
+    .wpmn-sec-scrollspy-accordion .img-col{display:flex;flex-direction:column;gap:var(--primitive-space-20)}
+    .wpmn-sec-scrollspy-accordion .img-slot{min-height:60vh;display:flex;align-items:flex-start;padding-bottom:var(--primitive-space-40)}
+    .wpmn-sec-scrollspy-accordion .card{width:100%;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft-100);transition:box-shadow .4s var(--ssa-ease)}
+    .wpmn-sec-scrollspy-accordion .card.active{box-shadow:var(--shadow-soft-600)}
+    .wpmn-sec-scrollspy-accordion .card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+
+    @media (max-width:800px){
+      .wpmn-sec-scrollspy-accordion{padding:var(--primitive-space-64) var(--primitive-space-20)}
+      .wpmn-sec-scrollspy-accordion .grid{grid-template-columns:1fr;gap:var(--primitive-space-32)}
+      .wpmn-sec-scrollspy-accordion .nav-sticky{position:static}
+      .wpmn-sec-scrollspy-accordion .item .reveal{grid-template-rows:1fr}
+      .wpmn-sec-scrollspy-accordion .item .desc{opacity:1}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-scrollspy-accordion .item,
+      .wpmn-sec-scrollspy-accordion .item .bar,
+      .wpmn-sec-scrollspy-accordion .item .num,
+      .wpmn-sec-scrollspy-accordion .item .title,
+      .wpmn-sec-scrollspy-accordion .item .reveal,
+      .wpmn-sec-scrollspy-accordion .item .desc,
+      .wpmn-sec-scrollspy-accordion .card{transition:none}
+    }
+  </style>
+  <div class="wrap">
+    <div class="head">
+      <h2>FluentCRM keeps every campaign in focus</h2>
+    </div>
+
+    <div class="grid">
+      <div class="nav-col">
+        <div class="nav-sticky">
+          <nav class="nav">
+            <button class="item active" data-i="0" type="button">
+              <span class="bar"></span>
+              <span class="num">01</span>
+              <span class="title">Start your day two steps ahead</span>
+              <div class="reveal"><div class="reveal-inner"><div class="desc">Before the day kicks in, your dashboard lays it all out: campaigns, opens, and revenue, so you know exactly where things stand.</div></div></div>
+            </button>
+            <button class="item" data-i="1" type="button">
+              <span class="bar"></span>
+              <span class="num">02</span>
+              <span class="title">You write, FluentCRM suggests</span>
+              <div class="reveal"><div class="reveal-inner"><div class="desc">FluentCRM follows every automation and surfaces the next best step, so you spend less time guessing and more time growing the list.</div></div></div>
+            </button>
+            <button class="item" data-i="2" type="button">
+              <span class="bar"></span>
+              <span class="num">03</span>
+              <span class="title">Find the answer without hunting it down</span>
+              <div class="reveal"><div class="reveal-inner"><div class="desc">Ask once. FluentCRM digs across contacts, tags, and sequences, and answers like someone who's read every email.</div></div></div>
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <div class="img-col">
+        <div class="img-slot" data-i="0">
+          <div class="card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80" alt="Campaign dashboard overview"></div>
+        </div>
+        <div class="img-slot" data-i="1">
+          <div class="card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80" alt="Automation performance charts"></div>
+        </div>
+        <div class="img-slot" data-i="2">
+          <div class="card"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="Contact and sequence search"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Interactions kept verbatim from the reference: scroll-spy picks the image slot whose
+    // center is nearest viewport center; the matching nav item gets the grid accordion + active
+    // states; clicking a nav item scrolls its image into view. Re-scoped to this section.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-scrollspy-accordion');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var items = [].slice.call(sec.querySelectorAll('.item'));
+      var slots = [].slice.call(sec.querySelectorAll('.img-slot'));
+      var cards = slots.map(function (s) { return s.querySelector('.card'); });
+
+      function setActive(i) {
+        items.forEach(function (it, k) { it.classList.toggle('active', k === i); });
+        cards.forEach(function (c, k) { c.classList.toggle('active', k === i); });
+      }
+
+      function update() {
+        var mid = innerHeight / 2;
+        var best = 0, bestDist = Infinity;
+        slots.forEach(function (s, k) {
+          var r = s.getBoundingClientRect();
+          var c = r.top + r.height / 2;
+          var d = Math.abs(c - mid);
+          if (d < bestDist) { bestDist = d; best = k; }
+        });
+        setActive(best);
+      }
+
+      items.forEach(function (it, i) {
+        it.addEventListener('click', function () {
+          slots[i].scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        });
+      });
+
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+      function tick() { update(); requestAnimationFrame(tick); }
+      requestAnimationFrame(tick);
+      update();
+    })();
+  </script>
+</section>

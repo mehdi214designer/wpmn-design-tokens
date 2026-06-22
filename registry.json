@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.2.6",
-  "generatedAt": "2026-06-22T10:16:11.245Z",
+  "generatedAt": "2026-06-22T10:26:10.124Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -3329,6 +3329,70 @@
         "long text"
       ],
       "role": "Content"
+    },
+    {
+      "id": "scrollspy-accordion",
+      "name": "Scrollspy Accordion",
+      "type": "html",
+      "status": "stable",
+      "description": "Split scroll-driven showcase: a sticky left nav of three numbered accordion items synced via scroll-spy to a right column of tall image cards. The slot nearest viewport center activates its nav item (number, title, accent bar, and grid-row accordion) and lifts its card shadow.",
+      "files": {
+        "html": "sections/scrollspy-accordion/section.html"
+      },
+      "prompt": "sections/scrollspy-accordion/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-scrollspy-accordion",
+      "interactions": [
+        "scroll-spy: on scroll/resize and every rAF frame, the active item is the image slot whose vertical center is closest to viewport center",
+        "active nav item: number color idle->active, title color idle->primary, left accent bar transparent->primary, and a CSS grid-row accordion expands 0fr->1fr with the description fading 0->1, all .3s cubic-bezier(.4,0,.2,1) verbatim",
+        "active image card transitions box-shadow soft-100 -> soft-600 over .4s",
+        "clicking a nav item scrolls its image slot into view (smooth; auto under reduced motion)",
+        "sticky nav pinned at top:20vh; stacks to one column under 800px (all reveals open)",
+        "prefers-reduced-motion: transitions disabled, smooth-scroll downgraded to auto"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--radius-md",
+        "--radius-lg",
+        "--shadow-soft-100",
+        "--shadow-soft-600",
+        "--font-family-base",
+        "--font-size-h2",
+        "--font-size-h4",
+        "--font-size-body-base",
+        "--font-size-body-label",
+        "--font-lh-h2",
+        "--font-lh-h4",
+        "--font-lh-body-base",
+        "--font-lh-body-label",
+        "--font-weight-bold",
+        "--font-weight-semibold",
+        "--font-weight-medium"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Scroll & Motion",
+      "role": "Features",
+      "span": 2,
+      "tags": [
+        "scrollspy",
+        "scroll spy",
+        "accordion",
+        "sticky nav",
+        "feature showcase",
+        "numbered steps",
+        "image gallery",
+        "scroll driven",
+        "split layout"
+      ]
     },
     {
       "id": "split-screen",
