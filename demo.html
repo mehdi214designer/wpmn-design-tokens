@@ -637,6 +637,16 @@
     @keyframes wpmn-spin { to { transform: rotate(360deg); } }
     .wpmn-btn--full { width: 100%; }
 
+    /* Library card: hover-reveal "Open fullscreen" button over the preview thumbnail */
+    .lib-frame { position: relative; }
+    .lib-frame__full { position: absolute; top: 12px; right: 12px; z-index: 5; display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(20,22,26,0.82); backdrop-filter: blur(6px); color: #f1f2f4; cursor: pointer;
+      font-family: var(--font-family-base); font-size: 12px; font-weight: 600; line-height: 1;
+      opacity: 0; transform: translateY(-3px); transition: opacity .15s ease, transform .15s ease; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+    .lib-frame:hover .lib-frame__full, .lib-frame__full:focus-visible { opacity: 1; transform: translateY(0); }
+    .lib-frame__full:hover { background: rgba(20,22,26,0.95); }
+
     /* Badge — WPMN Design System (Figma: node 40:12056) */
     .wpmn-badge { display: inline-flex; align-items: center; width: fit-content; white-space: nowrap; font-family: "SF Pro", "SF Pro Display", ui-sans-serif, system-ui, sans-serif; font-weight: 650; font-variation-settings: 'wdth' 132; text-transform: uppercase; background-color: var(--badge-bg); color: var(--badge-color); }
     /* variants */
@@ -1542,6 +1552,24 @@
       Array.from(document.querySelectorAll('style'))
         .map(s => '<style>' + s.textContent + '</style>').join('');
 
+    /* Open one section fullscreen in a new tab — reuses the same inlined token CSS as the
+       card previews and the page's current brand/theme, so it renders 1:1 at full viewport. */
+    const openFullscreen = (html, name) => {
+      const root = document.documentElement;
+      const brandAttr = root.getAttribute('data-brand') ? ' data-brand="' + root.getAttribute('data-brand') + '"' : '';
+      const themeAttr = root.getAttribute('data-theme') ? ' data-theme="' + root.getAttribute('data-theme') + '"' : '';
+      const doc = '<!DOCTYPE html><html' + brandAttr + themeAttr + '><head><meta charset="utf-8">' +
+        '<title>' + (name || 'Section') + ' — WPMN</title>' +
+        '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap">' +
+        tokenStylesHtml() +
+        '<style>html,body{margin:0}body{background:var(--color-surface-primary)}</style>' +
+        '</head><body>' + html + '</body></html>';
+      const url = URL.createObjectURL(new Blob([doc], { type: 'text/html' }));
+      window.open(url, '_blank');
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    };
+
     const ScaledSection = ({ html, children, avail = 452 }) => {
       const wrapRef  = React.useRef(null);
       const frameRef = React.useRef(null);
@@ -2052,13 +2080,17 @@
               border:'1.5px solid var(--color-border-primary)', borderRadius:'var(--radius-md)', overflow:'hidden',
               display:'flex', flexDirection:'column', background:'var(--color-surface-primary)'}}>
             {/* preview frame — same size for all cards, soft grey, thumbnail centered */}
-            <div style={framed
+            <div className="lib-frame" style={framed
               ? {height: frameH, padding: 24, display:'flex', alignItems:'center', overflow:'hidden',
                  borderBottom:'1.5px solid var(--color-border-primary)',
                  background:'color-mix(in srgb, var(--color-text-primary) 5%, var(--color-surface-primary))'}
               : {padding: 32, overflowX:'auto',
                  borderBottom:'1.5px solid var(--color-border-primary)',
                  background:'color-mix(in srgb, var(--color-text-primary) 5%, var(--color-surface-primary))'}}>
+              {state === 'ok' && isHtml && htmlMap[comp.name] && (
+                <button className="lib-frame__full" title="Open this section fullscreen in a new tab"
+                  onClick={() => openFullscreen(htmlMap[comp.name], comp.name)}>⤢ Fullscreen</button>
+              )}
               {state === 'ok' && isHtml && htmlMap[comp.name] && (
                 <div style={{width:'100%'}}>
                   <LazyMount placeholder={120}>
