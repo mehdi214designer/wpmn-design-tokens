@@ -30,6 +30,17 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+### Changed
+- `scripts/design-qa.mjs`: now audits any target, not just the repo library. Pass an HTML
+  file, a glob, a folder, or a live URL (`node scripts/design-qa.mjs page.html` /
+  `"build/*.html"` / `dist/` / `https://…`). Full multi-section pages get per-section scoping
+  for "one primary per section" and surface pairing; repo-only conventions (Unsplash assets,
+  `wpmn-` keyframe prefix, namespaced ids, `currentScript` fallback) are skipped on external
+  targets. Default no-arg library run is unchanged (byte-identical findings).
+- `wpmn-design-qna` skill: documents the three audit modes (library / HTML file / live URL)
+  plus the rendered Chrome audit for compiled pages; rules list now spells out the typography
+  canon (`typo-pairing`, `typo-gap`), spacing scale (`raw-spacing`), and the full check names.
+
 ## [1.2.6] — 2026-06-17
 
 ### Added

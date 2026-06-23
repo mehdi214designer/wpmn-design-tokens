@@ -9,5 +9,9 @@
   "work-portfolio/btn-icon-decor/btn-arrow": "Icon decoration inside the DS button (slide animation), not a button itself",
   "floating-stats-cta/icon-brand-on-dark/cg-icon": "Icon sits inside .cg-icon which has background:var(--color-surface-primary) — a light container within the dark panel; brand-colored icon on a light surface is correct here",
   "feature-card-stack/typo-gap/null": "Null gap is a flex-container false positive: heading+body gap is on the flex-column parent (.card-body), not on the body element's margin-top — verified correct at 12px",
-  "product-compare-table/typo-gap/null": "Null gap is a flex-container false positive: gap lives on the flex parent row, not the body element's margin-top — verified correct at 12px"
+  "product-compare-table/typo-gap/null": "Null gap is a flex-container false positive: gap lives on the flex parent row, not the body element's margin-top — verified correct at 12px",
+  "app-scan-hero/raw-radius/24px": "Mock macOS app-icon squircle inside the scan-window illustration (.app-icon, 100px) — illustration geometry, not a UI surface",
+  "app-scan-hero/raw-radius/3px": "Tiny mock pane glyph inside the inner-window artwork (.innerwin .pane, 16x13px) — illustration geometry, not a UI surface",
+  "animated-bento-showcase/raw-font/*": "Self-scaling bento illustration: every label is sized in em off the card's --abs-root clamp() so the whole mock artwork scales as one unit — mock card/phone labels, not page typography",
+  "animated-bento-showcase/raw-radius/1.875em": "Self-scaling bento illustration: the connect-slide pill radius is in em off --abs-root so it scales with the mock artwork — illustration geometry, not a UI surface"
 }
