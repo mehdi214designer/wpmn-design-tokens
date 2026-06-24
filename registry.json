@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.2.6",
-  "generatedAt": "2026-06-24T05:45:05.128Z",
+  "generatedAt": "2026-06-24T05:54:43.639Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -3334,7 +3334,6 @@
         "--color-surface-secondary",
         "--color-text-primary-invert",
         "--color-text-secondary-invert",
-        "--color-warning-primary",
         "--btn-bg-enable",
         "--btn-bg-hovered",
         "--btn-bg-focused",

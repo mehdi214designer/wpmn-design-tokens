@@ -23,7 +23,6 @@
     "--color-surface-secondary",
     "--color-text-primary-invert",
     "--color-text-secondary-invert",
-    "--color-warning-primary",
     "--btn-bg-enable",
     "--btn-bg-hovered",
     "--btn-bg-focused",
