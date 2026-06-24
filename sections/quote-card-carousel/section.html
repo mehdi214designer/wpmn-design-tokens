@@ -1,4 +1,4 @@
-<!-- WPMN Section: Quote Card Carousel — dark testimonial slider of folder-notch cards (quote glyph in a raised top-left tab, quote, avatar + name + accent role), ghost prev + brand next (from a screenshot, tokenized, motion added) -->
+<!-- WPMN Section: Quote Card Carousel — dark testimonial slider of folder-notch cards (quote glyph in a raised top-left tab, quote, avatar + name + accent role), ghost prev + brand next (from a screenshot, tokenized, motion added). All sub-classes are qcc-prefixed so host/demo rules (e.g. a bare .card border) can't leak in. -->
 <section class="wpmn-sec-quote-card-carousel">
   <style>
 @keyframes wpmn-qcc-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -15,73 +15,73 @@
       --qcc-ctl:color-mix(in srgb, var(--color-text-primary-invert) 22%, transparent);
       --qcc-ctl-hover:color-mix(in srgb, var(--color-text-primary-invert) 6%, transparent);
     }
-    .wpmn-sec-quote-card-carousel .wrap{max-width:1200px;margin:0 auto}
+    .wpmn-sec-quote-card-carousel .qcc-wrap{max-width:1200px;margin:0 auto}
 
     /* header */
-    .wpmn-sec-quote-card-carousel .head{text-align:center;max-width:760px;margin:0 auto var(--primitive-space-56)}
-    .wpmn-sec-quote-card-carousel .badge{display:inline-flex;align-items:center;padding:var(--primitive-space-8) var(--primitive-space-16);border-radius:999px;border:1px solid var(--qcc-badge-bd);color:var(--btn-bg-enable);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.04em;margin-bottom:var(--primitive-space-20)}
-    .wpmn-sec-quote-card-carousel .head h2{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-bold);letter-spacing:-0.02em;color:var(--color-text-primary-invert);margin:0 0 var(--primitive-space-16)}
-    .wpmn-sec-quote-card-carousel .head p{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);margin:0}
+    .wpmn-sec-quote-card-carousel .qcc-head{text-align:center;max-width:760px;margin:0 auto var(--primitive-space-56)}
+    .wpmn-sec-quote-card-carousel .qcc-badge{display:inline-flex;align-items:center;padding:var(--primitive-space-8) var(--primitive-space-16);border-radius:999px;border:1px solid var(--qcc-badge-bd);color:var(--btn-bg-enable);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);letter-spacing:.04em;margin-bottom:var(--primitive-space-20)}
+    .wpmn-sec-quote-card-carousel .qcc-head h2{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-bold);letter-spacing:-0.02em;color:var(--color-text-primary-invert);margin:0 0 var(--primitive-space-16)}
+    .wpmn-sec-quote-card-carousel .qcc-head p{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);margin:0}
 
     /* carousel */
-    .wpmn-sec-quote-card-carousel .viewport{overflow:hidden}
-    .wpmn-sec-quote-card-carousel .track{display:flex;gap:var(--primitive-space-24);align-items:stretch;will-change:transform;transition:transform .55s cubic-bezier(.22,1,.36,1)}
-    .wpmn-sec-quote-card-carousel .card{flex:0 0 460px;max-width:86vw;position:relative;isolation:isolate;min-height:360px;display:flex;flex-direction:column;padding:var(--primitive-space-32) var(--primitive-space-32) var(--primitive-space-32);opacity:.4;transition:opacity .45s ease;background:var(--color-surface-secondary);border-radius:var(--radius-lg)}
-    .wpmn-sec-quote-card-carousel .card.is-active{opacity:1}
-    .wpmn-sec-quote-card-carousel .shape{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
-    .wpmn-sec-quote-card-carousel .shape .fill{fill:var(--qcc-fill);transition:fill .45s ease}
-    .wpmn-sec-quote-card-carousel .card.is-active .shape .fill{fill:var(--qcc-fill-active)}
-    .wpmn-sec-quote-card-carousel .qmark{width:44px;height:36px;color:var(--qcc-qmark);margin-bottom:var(--primitive-space-24)}
-    .wpmn-sec-quote-card-carousel .quote{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);margin:0}
-    .wpmn-sec-quote-card-carousel .card.is-active .quote{color:var(--color-text-primary-invert)}
-    .wpmn-sec-quote-card-carousel .foot{margin-top:auto;padding-top:var(--primitive-space-32);display:flex;align-items:center;gap:var(--primitive-space-16)}
-    .wpmn-sec-quote-card-carousel .avatar{flex:none;width:52px;height:52px;border-radius:999px;background:var(--qcc-avatar);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
-    .wpmn-sec-quote-card-carousel .who .name{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-bold);color:var(--color-text-primary-invert)}
-    .wpmn-sec-quote-card-carousel .who .role{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable)}
+    .wpmn-sec-quote-card-carousel .qcc-viewport{overflow:hidden}
+    .wpmn-sec-quote-card-carousel .qcc-track{display:flex;gap:var(--primitive-space-24);align-items:stretch;will-change:transform;transition:transform .55s cubic-bezier(.22,1,.36,1)}
+    .wpmn-sec-quote-card-carousel .qcc-card{flex:0 0 460px;max-width:86vw;position:relative;isolation:isolate;min-height:360px;display:flex;flex-direction:column;padding:var(--primitive-space-32);opacity:.4;transition:opacity .45s ease;background:var(--color-surface-secondary);border-radius:var(--radius-lg)}
+    .wpmn-sec-quote-card-carousel .qcc-card.qcc-active{opacity:1}
+    .wpmn-sec-quote-card-carousel .qcc-shape{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
+    .wpmn-sec-quote-card-carousel .qcc-shape .qcc-fill{fill:var(--qcc-fill);transition:fill .45s ease}
+    .wpmn-sec-quote-card-carousel .qcc-card.qcc-active .qcc-shape .qcc-fill{fill:var(--qcc-fill-active)}
+    .wpmn-sec-quote-card-carousel .qcc-qmark{width:44px;height:36px;color:var(--qcc-qmark);margin-bottom:var(--primitive-space-24)}
+    .wpmn-sec-quote-card-carousel .qcc-quote{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);margin:0}
+    .wpmn-sec-quote-card-carousel .qcc-card.qcc-active .qcc-quote{color:var(--color-text-primary-invert)}
+    .wpmn-sec-quote-card-carousel .qcc-foot{margin-top:auto;padding-top:var(--primitive-space-32);display:flex;align-items:center;gap:var(--primitive-space-16)}
+    .wpmn-sec-quote-card-carousel .qcc-avatar{flex:none;width:52px;height:52px;border-radius:999px;background:var(--qcc-avatar);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-quote-card-carousel .qcc-name{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-bold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-quote-card-carousel .qcc-role{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable)}
 
     /* controls */
-    .wpmn-sec-quote-card-carousel .controls{display:flex;justify-content:center;gap:var(--primitive-space-16);margin-top:var(--primitive-space-48)}
-    .wpmn-sec-quote-card-carousel .ctl{width:56px;height:56px;border-radius:999px;border:1px solid var(--qcc-ctl);background:none;color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 120ms ease, opacity 120ms ease}
-    .wpmn-sec-quote-card-carousel .ctl:hover{background:var(--qcc-ctl-hover)}
-    .wpmn-sec-quote-card-carousel .ctl.next{background:var(--btn-bg-enable);border-color:transparent;box-shadow:inset 2px 3px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
-    .wpmn-sec-quote-card-carousel .ctl.next:hover{background:var(--btn-bg-hovered)}
-    .wpmn-sec-quote-card-carousel .ctl:disabled{opacity:.35;cursor:default}
-    .wpmn-sec-quote-card-carousel .ctl svg{width:22px;height:22px}
-    .wpmn-sec-quote-card-carousel .ctl:focus-visible{outline:none;border-color:var(--btn-bg-focused)}
+    .wpmn-sec-quote-card-carousel .qcc-controls{display:flex;justify-content:center;gap:var(--primitive-space-16);margin-top:var(--primitive-space-48)}
+    .wpmn-sec-quote-card-carousel .qcc-ctl{width:56px;height:56px;border-radius:999px;border:1px solid var(--qcc-ctl);background:none;color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 120ms ease, opacity 120ms ease}
+    .wpmn-sec-quote-card-carousel .qcc-ctl:hover{background:var(--qcc-ctl-hover)}
+    .wpmn-sec-quote-card-carousel .qcc-ctl.qcc-next{background:var(--btn-bg-enable);border-color:transparent;box-shadow:inset 2px 3px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-quote-card-carousel .qcc-ctl.qcc-next:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-quote-card-carousel .qcc-ctl:disabled{opacity:.35;cursor:default}
+    .wpmn-sec-quote-card-carousel .qcc-ctl svg{width:22px;height:22px}
+    .wpmn-sec-quote-card-carousel .qcc-ctl:focus-visible{outline:none;border-color:var(--btn-bg-focused)}
 
     /* reveal */
-    .wpmn-sec-quote-card-carousel .reveal{opacity:0}
-    .wpmn-sec-quote-card-carousel.in-view .reveal{animation:wpmn-qcc-up .6s cubic-bezier(.22,1,.36,1) both}
-    .wpmn-sec-quote-card-carousel.in-view .head h2{animation-delay:70ms}
-    .wpmn-sec-quote-card-carousel.in-view .head p{animation-delay:140ms}
-    .wpmn-sec-quote-card-carousel.in-view .viewport{animation-delay:210ms}
+    .wpmn-sec-quote-card-carousel .qcc-reveal{opacity:0}
+    .wpmn-sec-quote-card-carousel.qcc-inview .qcc-reveal{animation:wpmn-qcc-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-quote-card-carousel.qcc-inview .qcc-head h2{animation-delay:70ms}
+    .wpmn-sec-quote-card-carousel.qcc-inview .qcc-head p{animation-delay:140ms}
+    .wpmn-sec-quote-card-carousel.qcc-inview .qcc-viewport{animation-delay:210ms}
 
     @media(max-width:1199px){.wpmn-sec-quote-card-carousel{padding:var(--primitive-space-96) var(--primitive-space-40)}}
     @media(max-width:768px){
       .wpmn-sec-quote-card-carousel{padding:var(--primitive-space-64) var(--primitive-space-20)}
-      .wpmn-sec-quote-card-carousel .card{flex-basis:84%}
+      .wpmn-sec-quote-card-carousel .qcc-card{flex-basis:84%}
     }
     @media(prefers-reduced-motion:reduce){
-      .wpmn-sec-quote-card-carousel .track,.wpmn-sec-quote-card-carousel .card,.wpmn-sec-quote-card-carousel .ctl{transition:none}
-      .wpmn-sec-quote-card-carousel .reveal{opacity:1;animation:none}
+      .wpmn-sec-quote-card-carousel .qcc-track,.wpmn-sec-quote-card-carousel .qcc-card,.wpmn-sec-quote-card-carousel .qcc-ctl{transition:none}
+      .wpmn-sec-quote-card-carousel .qcc-reveal{opacity:1;animation:none}
     }
   </style>
-  <div class="wrap">
-    <div class="head">
-      <span class="badge reveal">Testimonial</span>
-      <h2 class="reveal">Proven Results Backed by Clients</h2>
-      <p class="reveal">We value every voice. Customer feedback helps us improve, grow smarter, and ship real results that drive impact and build lasting partnerships across every touchpoint.</p>
+  <div class="qcc-wrap">
+    <div class="qcc-head">
+      <span class="qcc-badge qcc-reveal">Testimonial</span>
+      <h2 class="qcc-reveal">Proven Results Backed by Clients</h2>
+      <p class="qcc-reveal">We value every voice. Customer feedback helps us improve, grow smarter, and ship real results that drive impact and build lasting partnerships across every touchpoint.</p>
     </div>
 
-    <div class="viewport reveal">
-      <div class="track"></div>
+    <div class="qcc-viewport qcc-reveal">
+      <div class="qcc-track"></div>
     </div>
 
-    <div class="controls">
-      <button class="ctl prev" type="button" aria-label="Previous testimonial">
+    <div class="qcc-controls">
+      <button class="qcc-ctl qcc-prev" type="button" aria-label="Previous testimonial">
         <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <button class="ctl next" type="button" aria-label="Next testimonial">
+      <button class="qcc-ctl qcc-next" type="button" aria-label="Next testimonial">
         <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -89,6 +89,7 @@
   <script>
     // Motion (my call): a peek carousel of folder-notch quote cards — fully-visible cards brighten,
     // peeking neighbours dim; prev/next slide one card; header + track reveal on first view.
+    // Classes are qcc-prefixed so host/demo styles (e.g. a bare .card border) never leak in.
     (function () {
       var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-quote-card-carousel');
       if (!sec) return;
@@ -96,10 +97,10 @@
 
       // folder-notch silhouette: raised top-left tab (quote sits here), concave step down to the main top edge
       var SHAPE =
-        '<svg class="shape" viewBox="0 0 400 360" fill="none" preserveAspectRatio="none" aria-hidden="true">' +
-          '<path class="fill" d="M0 352 V8 A8 8 0 0 1 8 0 H122 A8 8 0 0 1 128 2 L152 16 A8 8 0 0 0 158 18 H392 A8 8 0 0 1 400 26 V352 A8 8 0 0 1 392 360 H8 A8 8 0 0 1 0 352 Z"/>' +
+        '<svg class="qcc-shape" viewBox="0 0 400 360" fill="none" preserveAspectRatio="none" aria-hidden="true">' +
+          '<path class="qcc-fill" d="M0 352 V8 A8 8 0 0 1 8 0 H122 A8 8 0 0 1 128 2 L152 16 A8 8 0 0 0 158 18 H392 A8 8 0 0 1 400 26 V352 A8 8 0 0 1 392 360 H8 A8 8 0 0 1 0 352 Z"/>' +
         '</svg>';
-      var QMARK = '<svg class="qmark" viewBox="0 0 44 36" fill="currentColor" aria-hidden="true"><path d="M0 36V20C0 9 7 2 18 0l2 6C13 8 10 11 10 16h8v20H0zM24 36V20C24 9 31 2 42 0l2 6c-7 2-10 5-10 10h8v20H24z"/></svg>';
+      var QMARK = '<svg class="qcc-qmark" viewBox="0 0 44 36" fill="currentColor" aria-hidden="true"><path d="M0 36V20C0 9 7 2 18 0l2 6C13 8 10 11 10 16h8v20H0zM24 36V20C24 9 31 2 42 0l2 6c-7 2-10 5-10 10h8v20H24z"/></svg>';
 
       var CARDS = [
         { q: "We needed to scale our brand reach in new markets. We saw real traction — higher-quality leads, and a pipeline that finally felt right.", n: "Cole Pattinson", r: "Growth Lead, Dwell & Co.", i: "CP" },
@@ -109,20 +110,20 @@
         { q: "One data layer across email, CRM, and forms meant no more stitching tools together. Our small team now ships like a much bigger one.", n: "Mara Idris", r: "Founder, Northbeam", i: "MI" }
       ];
 
-      var track = sec.querySelector('.track');
-      var viewport = sec.querySelector('.viewport');
+      var track = sec.querySelector('.qcc-track');
+      var viewport = sec.querySelector('.qcc-viewport');
       CARDS.forEach(function (c) {
         var el = document.createElement('article');
-        el.className = 'card';
+        el.className = 'qcc-card';
         el.innerHTML = SHAPE + QMARK +
-          '<p class="quote">' + c.q + '</p>' +
-          '<div class="foot"><span class="avatar">' + c.i + '</span>' +
-          '<div class="who"><div class="name">' + c.n + '</div><div class="role">' + c.r + '</div></div></div>';
+          '<p class="qcc-quote">' + c.q + '</p>' +
+          '<div class="qcc-foot"><span class="qcc-avatar">' + c.i + '</span>' +
+          '<div><div class="qcc-name">' + c.n + '</div><div class="qcc-role">' + c.r + '</div></div></div>';
         track.appendChild(el);
       });
-      var cards = [].slice.call(track.querySelectorAll('.card'));
-      var prev = sec.querySelector('.prev');
-      var next = sec.querySelector('.next');
+      var cards = [].slice.call(track.querySelectorAll('.qcc-card'));
+      var prev = sec.querySelector('.qcc-prev');
+      var next = sec.querySelector('.qcc-next');
       var idx = 0;
 
       function step() {
@@ -139,7 +140,7 @@
         cards.forEach(function (c) {
           var r = c.getBoundingClientRect();
           var vis = Math.max(0, Math.min(r.right, vp.right) - Math.max(r.left, vp.left));
-          c.classList.toggle('is-active', vis / r.width > 0.82);
+          c.classList.toggle('qcc-active', vis / r.width > 0.82);
         });
       }
       function render() {
@@ -155,7 +156,7 @@
       next.addEventListener('click', function () { idx++; render(); });
       addEventListener('resize', render);
 
-      function start() { sec.classList.add('in-view'); render(); }
+      function start() { sec.classList.add('qcc-inview'); render(); }
       if (reduced || !('IntersectionObserver' in window)) { start(); return; }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) { start(); io.disconnect(); } });
