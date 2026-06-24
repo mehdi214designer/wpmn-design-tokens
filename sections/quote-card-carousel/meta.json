@@ -13,8 +13,8 @@
   ],
   "baseClass": "wpmn-sec-quote-card-carousel",
   "interactions": [
-    "peek carousel: prev/next slide the track by one card (clamped; controls disable at the ends), with a 56px left peek so a sliver of the previous card shows",
-    "visibility paint: each card brightens (opacity .4 -> 1, fill 6% -> 10%, quote muted -> primary) when more than 82% of its width is inside the viewport, else dims",
+    "centered carousel: the active card slides to the middle of the viewport (translateX from its offset) while neighbours peek on both sides; prev/next move the active index, clamped to the ends (controls disable there); re-centers on resize",
+    "only the centered (active) card is highlighted: opacity .4 -> 1, fill 6% -> 10%, quote from muted -> primary; all others stay dimmed",
     "header items + track fade up on first view (IntersectionObserver, 600ms wpmn-qcc-up, 70ms stagger)",
     "next control uses the brand button fill + glow with hover state; ghost prev hover fill; focus-visible ring",
     "prefers-reduced-motion: track/card transitions off, reveals render in place"

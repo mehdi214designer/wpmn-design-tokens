@@ -13,8 +13,8 @@ This spec is the source of truth. Fetch the reference implementation and reprodu
 
 ## Motion rules
 
-- Peek carousel: `step = cardWidth + columnGap`; `prev/next` change `idx` clamped to `[0, maxIndex]` (maxIndex from how many cards fit), translating the track with a 56px left peek when not at the start; controls disable at the ends; re-render on resize.
-- Visibility paint (rAF after each render): a card gets `.is-active` when `visibleWidth/cardWidth > 0.82` — active raises opacity .4 -> 1, fill 6% -> 10%, and the quote from `--color-text-secondary-invert` to `--color-text-primary-invert`.
+- Centered carousel: the active card is translated to the middle of the viewport via `translateX = viewport.clientWidth/2 - (card.offsetLeft + card.offsetWidth/2)`, so neighbours peek on both sides. `prev/next` change the active `idx` clamped to `[0, n-1]`; controls disable at the ends; re-center on resize. Start on the middle of the row.
+- Only the centered (active) card gets `.qcc-active` — opacity .4 -> 1, fill 6% -> 10%, quote `--color-text-secondary-invert` -> `--color-text-primary-invert`. Every other card stays dimmed.
 - Header items + track carry `.reveal`, fading up on first view (IntersectionObserver, 600ms, 70ms stagger).
 - prefers-reduced-motion: track/card transitions off, reveals shown in place.
 

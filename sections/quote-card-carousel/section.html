@@ -124,33 +124,18 @@
       var cards = [].slice.call(track.querySelectorAll('.qcc-card'));
       var prev = sec.querySelector('.qcc-prev');
       var next = sec.querySelector('.qcc-next');
-      var idx = 0;
+      // active = the centered, highlighted card; start on the middle of the row
+      var idx = Math.min(1, cards.length - 1);
 
-      function step() {
-        var cw = cards[0].offsetWidth;
-        var gap = parseFloat(getComputedStyle(track).columnGap) || 24;
-        return cw + gap;
-      }
-      function maxIndex() {
-        var per = Math.max(1, Math.round(viewport.clientWidth / step()));
-        return Math.max(0, cards.length - per);
-      }
-      function paint() {
-        var vp = viewport.getBoundingClientRect();
-        cards.forEach(function (c) {
-          var r = c.getBoundingClientRect();
-          var vis = Math.max(0, Math.min(r.right, vp.right) - Math.max(r.left, vp.left));
-          c.classList.toggle('qcc-active', vis / r.width > 0.82);
-        });
-      }
       function render() {
-        idx = Math.max(0, Math.min(maxIndex(), idx));
-        // left peek so a sliver of the previous card shows, like the reference
-        var peek = idx > 0 ? 56 : 0;
-        track.style.transform = 'translateX(' + (-(idx * step()) + peek) + 'px)';
+        idx = Math.max(0, Math.min(cards.length - 1, idx));
+        var card = cards[idx];
+        // slide the track so the active card sits in the middle of the viewport (neighbours peek)
+        var x = viewport.clientWidth / 2 - (card.offsetLeft + card.offsetWidth / 2);
+        track.style.transform = 'translateX(' + x + 'px)';
+        cards.forEach(function (c, k) { c.classList.toggle('qcc-active', k === idx); });
         prev.disabled = idx === 0;
-        next.disabled = idx >= maxIndex();
-        requestAnimationFrame(paint);
+        next.disabled = idx === cards.length - 1;
       }
       prev.addEventListener('click', function () { idx--; render(); });
       next.addEventListener('click', function () { idx++; render(); });
