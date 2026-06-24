@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.2.6",
-  "generatedAt": "2026-06-23T09:02:25.553Z",
+  "generatedAt": "2026-06-24T05:30:50.896Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -964,139 +964,6 @@
       ]
     },
     {
-      "id": "agent-scan-hero",
-      "name": "Agent Scan Hero",
-      "type": "html",
-      "status": "stable",
-      "description": "Contained hero with a spinning sync badge, title, sub, and one primary CTA over a faint grid that a brand-colored scanline sweeps; a field of floating integration tiles surrounds the copy and four tiles ring + pop a tooltip in a looping 12s sequence.",
-      "files": {
-        "html": "sections/agent-scan-hero/section.html"
-      },
-      "prompt": "sections/agent-scan-hero/prompt.md",
-      "dependsOn": [
-        "index.css"
-      ],
-      "baseClass": "wpmn-sec-agent-scan-hero",
-      "interactions": [
-        "scan sweep (verbatim 3s loop): a brand-colored grid mask + 2px scanline travel top->bottom (translateY -180px..600px), fading out 50-60% of the cycle",
-        "badge icon spins 360deg every 1.4s linear",
-        "four integration tiles each show a brand ring + a dark tooltip in sequence on a shared 12s timeline (ring1/tip1 ... ring4/tip4, verbatim keyframe percentages)",
-        "CTA hover: background enable->hovered, chevron slides 6px",
-        "ResizeObserver hides the floating tile field below 680px stage width so it never overlaps the copy",
-        "prefers-reduced-motion: all scan/spin/ring/tooltip/CTA animation and transitions disabled; copy renders static"
-      ],
-      "tokensUsed": [
-        "--color-surface-primary",
-        "--color-surface-secondary",
-        "--color-text-primary",
-        "--color-text-secondary",
-        "--color-text-primary-invert",
-        "--btn-bg-enable",
-        "--btn-bg-hovered",
-        "--btn-bg-glow",
-        "--radius-xsm",
-        "--radius-md",
-        "--radius-lg",
-        "--shadow-soft-300",
-        "--shadow-soft-400",
-        "--font-family-base",
-        "--font-size-h2",
-        "--font-lh-h2",
-        "--font-size-body-medium",
-        "--font-lh-body-medium",
-        "--font-size-body-small",
-        "--font-lh-body-small",
-        "--font-size-btn-sm",
-        "--font-lh-btn-sm",
-        "--font-weight-bold",
-        "--font-weight-semibold",
-        "--font-weight-medium"
-      ],
-      "brands": "all",
-      "themes": [
-        "light",
-        "dark"
-      ],
-      "category": "Sections",
-      "subcategory": "Banners & Impact",
-      "role": "Hero",
-      "span": 2,
-      "tags": [
-        "hero",
-        "agent",
-        "integrations",
-        "scan",
-        "scanline",
-        "radar",
-        "tooltips",
-        "floating logos",
-        "sync",
-        "automation",
-        "connected apps"
-      ]
-    },
-    {
-      "id": "animated-bento-showcase",
-      "name": "Animated Bento Showcase",
-      "type": "html",
-      "status": "stable",
-      "description": "Fluid em-scaled 3-column bento of feature cards with living micro-scenes: a looping payment-pill carousel on a dark card, a floating coin cluster, a tilted product-image stack on a dark card, and a typing secure-checkout field, flanking a tall center phone with a skeleton and a poly headline.",
-      "files": {
-        "html": "sections/animated-bento-showcase/section.html"
-      },
-      "prompt": "sections/animated-bento-showcase/prompt.md",
-      "dependsOn": [
-        "index.css"
-      ],
-      "baseClass": "wpmn-sec-animated-bento-showcase",
-      "interactions": [
-        "the whole bento scales in em off a fluid root font-size clamp(13px,1.652vw,28.55px) so it grows/shrinks as one unit",
-        "connect card: payment pills carousel every 2600ms with verbatim wpmn-abs-pill-in (0.5s cubic-bezier(0.2,0.7,0.3,1)) / pill-out (0.4s ease) and a synced active dot",
-        "account card: four coins bob (wpmn-abs-bob) on staggered 4-5s loops",
-        "collect card: product-image stack sways (wpmn-abs-sway 6s) at fixed -11.6/+11.8/-25.1deg rotations",
-        "privacy card: checkout field types password dots every 420ms with a blinking caret (wpmn-abs-blink 1.1s steps(1))",
-        "carousel + typing run off a shared rAF tick plus a 1s setInterval so backgrounded tabs still advance",
-        "below 900px the phone hides and the grid goes 2-col; below 540px 1-col; prefers-reduced-motion freezes all micro-scenes in a settled state"
-      ],
-      "tokensUsed": [
-        "--color-surface-primary",
-        "--color-surface-secondary",
-        "--color-text-primary",
-        "--color-text-primary-invert",
-        "--color-text-secondary",
-        "--btn-bg-enable",
-        "--radius-xsm",
-        "--shadow-hard-400",
-        "--shadow-soft-200",
-        "--shadow-soft-300",
-        "--shadow-soft-500",
-        "--font-family-base",
-        "--font-weight-medium",
-        "--font-weight-bold"
-      ],
-      "brands": "all",
-      "themes": [
-        "light",
-        "dark"
-      ],
-      "category": "Sections",
-      "subcategory": "Grids",
-      "role": "Features",
-      "span": 2,
-      "tags": [
-        "bento",
-        "animated",
-        "feature grid",
-        "carousel",
-        "floating",
-        "micro-scenes",
-        "phone mockup",
-        "payments",
-        "fluid scaling",
-        "ecommerce"
-      ]
-    },
-    {
       "id": "animated-feature-grid",
       "name": "Features 1",
       "type": "html",
@@ -1892,63 +1759,6 @@
       "role": "CTA"
     },
     {
-      "id": "dark-feature-list",
-      "name": "Dark Feature List",
-      "type": "html",
-      "status": "stable",
-      "description": "Dark two-column section recreated from a Figma frame: a large left heading over a faint grid and a brand corner glow, beside a right column of four feature items, each a brand dot + title + description divided by hairline brand rules. Items reveal on scroll and lift on hover.",
-      "files": {
-        "html": "sections/dark-feature-list/section.html"
-      },
-      "prompt": "sections/dark-feature-list/prompt.md",
-      "dependsOn": [
-        "index.css"
-      ],
-      "baseClass": "wpmn-sec-dark-feature-list",
-      "interactions": [
-        "entrance reveal: heading + items fade/translate up once on scroll into view (IntersectionObserver threshold .2), staggered 60/140/220/300ms, .7s cubic-bezier(0,0,0,1) (motion added; the Figma frame is static)",
-        "item hover: divider brightens transparent-brand -> full brand, item nudges translateX(4px), dot scales 1.18, all .25s",
-        "prefers-reduced-motion: reveal + hover transitions off, everything rendered in its final state",
-        "responsive: two columns on desktop, single stacked column below 768px"
-      ],
-      "tokensUsed": [
-        "--color-surface-secondary",
-        "--color-text-primary-invert",
-        "--color-text-secondary-invert",
-        "--btn-bg-enable",
-        "--font-family-base",
-        "--font-size-h2",
-        "--font-lh-h2",
-        "--font-size-h5",
-        "--font-lh-h5",
-        "--font-size-body-base",
-        "--font-lh-body-base",
-        "--font-weight-semibold",
-        "--font-weight-regular"
-      ],
-      "brands": "all",
-      "themes": [
-        "light",
-        "dark"
-      ],
-      "category": "Sections",
-      "subcategory": "Lists & Feeds",
-      "role": "Features",
-      "span": 2,
-      "tags": [
-        "dark",
-        "feature list",
-        "two column",
-        "heading",
-        "checklist",
-        "brand dots",
-        "dividers",
-        "grid glow",
-        "figma",
-        "stacked list"
-      ]
-    },
-    {
       "id": "dark-features-panel",
       "name": "Features 5",
       "type": "html",
@@ -2231,116 +2041,6 @@
         "gradient"
       ],
       "source": "imported from Claude Code build, interactions preserved, colors/typography/spacing tokenized"
-    },
-    {
-      "id": "feature-color-autocycle",
-      "name": "Feature Color Autocycle",
-      "type": "html",
-      "status": "stable",
-      "description": "Four feature cards beside one sticky tall panel that auto-advances through brand-tinted states, crossfading mockups, with a per-card progress bar that fills over each interval. Clicking a card jumps to it and restarts; hovering the grid pauses; it only cycles while in view.",
-      "files": {
-        "html": "sections/feature-color-autocycle/section.html"
-      },
-      "prompt": "sections/feature-color-autocycle/prompt.md",
-      "dependsOn": [
-        "index.css"
-      ],
-      "baseClass": "wpmn-sec-feature-color-autocycle",
-      "interactions": [
-        "auto-advance every 4500ms (verbatim): active card crossfades its panel layer (.5s), panel fill tweens between brand tints (.6s), card bg tints (.5s)",
-        "active card progress bar fills left->right over the interval (wpmn-fcac-fill var(--fcac-dur) linear), restarted on each switch",
-        "click a card -> jump + restart the timer; grid mouseenter pauses, mouseleave resumes",
-        "IntersectionObserver (threshold .25) only runs the cycle while the section is in view",
-        "below 768px the grid stacks to one column, the panel moves above the cards, progress bars hide",
-        "prefers-reduced-motion: no auto-advance, transitions off, progress bar shown full; clicking still switches"
-      ],
-      "tokensUsed": [
-        "--color-surface-primary",
-        "--color-text-primary",
-        "--btn-bg-enable",
-        "--radius-xsm",
-        "--radius-sm",
-        "--spacing-icon-size-lg",
-        "--shadow-soft-400",
-        "--font-family-base",
-        "--font-size-body-base",
-        "--font-lh-body-base",
-        "--font-weight-bold"
-      ],
-      "brands": "all",
-      "themes": [
-        "light",
-        "dark"
-      ],
-      "category": "Sections",
-      "subcategory": "Interactive",
-      "role": "Features",
-      "span": 2,
-      "tags": [
-        "feature showcase",
-        "auto cycle",
-        "tabs",
-        "progress bar",
-        "color shift",
-        "crossfade",
-        "sticky panel",
-        "feature cards",
-        "interactive"
-      ]
-    },
-    {
-      "id": "feature-color-switcher",
-      "name": "Feature Color Switcher",
-      "type": "html",
-      "status": "stable",
-      "description": "Four feature cards beside one tall panel that color-shifts through brand-tinted states and crossfades mockups. Drive is scroll-spy on desktop (active card = nearest viewport center) plus hover and click; the active card tints and the panel fill tweens to a matching brand shade.",
-      "files": {
-        "html": "sections/feature-color-switcher/section.html"
-      },
-      "prompt": "sections/feature-color-switcher/prompt.md",
-      "dependsOn": [
-        "index.css"
-      ],
-      "baseClass": "wpmn-sec-feature-color-switcher",
-      "interactions": [
-        "desktop scroll-spy (verbatim): on scroll/resize, active card = the one whose vertical center is nearest innerHeight/2 (gated to innerWidth >= 901)",
-        "hover (mouseenter, desktop) and click also set the active card",
-        "active card background tints to its brand shade (.4s); panel fill tweens between four brand tints via data-active (.5s); matching panel layer crossfades opacity (.5s)",
-        "below 900px the grid stacks to one column and the panel moves above the cards (order -1)",
-        "prefers-reduced-motion: card/panel/layer transitions disabled"
-      ],
-      "tokensUsed": [
-        "--color-surface-primary",
-        "--color-text-primary",
-        "--btn-bg-enable",
-        "--radius-xsm",
-        "--radius-sm",
-        "--spacing-icon-size-lg",
-        "--font-family-base",
-        "--font-size-body-base",
-        "--font-lh-body-base",
-        "--font-weight-bold"
-      ],
-      "brands": "all",
-      "themes": [
-        "light",
-        "dark"
-      ],
-      "category": "Sections",
-      "subcategory": "Scroll & Motion",
-      "role": "Features",
-      "span": 2,
-      "tags": [
-        "feature switcher",
-        "scrollspy",
-        "color shift",
-        "crossfade",
-        "sticky panel",
-        "tabs",
-        "feature cards",
-        "scroll driven",
-        "split layout"
-      ]
     },
     {
       "id": "feature-scrollspy",
@@ -4243,6 +3943,74 @@
         "avatars"
       ],
       "role": "Team"
+    },
+    {
+      "id": "testimonial-carousel",
+      "name": "Testimonial Carousel",
+      "type": "html",
+      "status": "stable",
+      "description": "Centered testimonial section: a pill badge, heading and sub, then a peek carousel of pastel-tinted quote cards (overlapping monogram avatar, quote, divider, name + role, and a star rating). The active card centers while neighbours peek and dim; prev/next controls move through.",
+      "files": {
+        "html": "sections/testimonial-carousel/section.html"
+      },
+      "prompt": "sections/testimonial-carousel/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-testimonial-carousel",
+      "interactions": [
+        "peek carousel: the active card centers in the viewport (translateX computed from its offset) while neighbours peek and sit at opacity .55 / scale .96; .5s cubic-bezier(.22,1,.36,1)",
+        "prev/next buttons move the active index, clamped to the ends (buttons disable at first/last); re-centers on resize",
+        "header items and the track fade up on first view (IntersectionObserver, 600ms, 70ms stagger)",
+        "control hover fill at 120ms; focus-visible ring via --btn-bg-focused",
+        "prefers-reduced-motion: track/card transitions off, reveals render in place"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-warning-primary",
+        "--color-success-primary",
+        "--color-error-primary",
+        "--btn-bg-enable",
+        "--btn-bg-focused",
+        "--radius-lg",
+        "--font-family-base",
+        "--font-size-h2",
+        "--font-size-h5",
+        "--font-size-body-medium",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h2",
+        "--font-lh-h5",
+        "--font-lh-body-medium",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-lh-body-label",
+        "--font-weight-bold",
+        "--font-weight-semibold"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "role": "Testimonial",
+      "span": 2,
+      "tags": [
+        "testimonial",
+        "carousel",
+        "reviews",
+        "social proof",
+        "quote cards",
+        "star rating",
+        "avatar",
+        "peek slider",
+        "customer stories"
+      ]
     },
     {
       "id": "testimonial-grid",

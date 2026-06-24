@@ -1,0 +1,68 @@
+{
+  "id": "testimonial-carousel",
+  "name": "Testimonial Carousel",
+  "type": "html",
+  "status": "stable",
+  "description": "Centered testimonial section: a pill badge, heading and sub, then a peek carousel of pastel-tinted quote cards (overlapping monogram avatar, quote, divider, name + role, and a star rating). The active card centers while neighbours peek and dim; prev/next controls move through.",
+  "files": {
+    "html": "sections/testimonial-carousel/section.html"
+  },
+  "prompt": "sections/testimonial-carousel/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-testimonial-carousel",
+  "interactions": [
+    "peek carousel: the active card centers in the viewport (translateX computed from its offset) while neighbours peek and sit at opacity .55 / scale .96; .5s cubic-bezier(.22,1,.36,1)",
+    "prev/next buttons move the active index, clamped to the ends (buttons disable at first/last); re-centers on resize",
+    "header items and the track fade up on first view (IntersectionObserver, 600ms, 70ms stagger)",
+    "control hover fill at 120ms; focus-visible ring via --btn-bg-focused",
+    "prefers-reduced-motion: track/card transitions off, reveals render in place"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-warning-primary",
+    "--color-success-primary",
+    "--color-error-primary",
+    "--btn-bg-enable",
+    "--btn-bg-focused",
+    "--radius-lg",
+    "--font-family-base",
+    "--font-size-h2",
+    "--font-size-h5",
+    "--font-size-body-medium",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-size-body-label",
+    "--font-lh-h2",
+    "--font-lh-h5",
+    "--font-lh-body-medium",
+    "--font-lh-body-base",
+    "--font-lh-body-small",
+    "--font-lh-body-label",
+    "--font-weight-bold",
+    "--font-weight-semibold"
+  ],
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Trust & Social Proof",
+  "role": "Testimonial",
+  "span": 2,
+  "tags": [
+    "testimonial",
+    "carousel",
+    "reviews",
+    "social proof",
+    "quote cards",
+    "star rating",
+    "avatar",
+    "peek slider",
+    "customer stories"
+  ]
+}
