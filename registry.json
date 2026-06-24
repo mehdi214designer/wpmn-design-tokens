@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.2.6",
-  "generatedAt": "2026-06-24T05:30:50.896Z",
+  "generatedAt": "2026-06-24T05:45:05.128Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -3307,6 +3307,74 @@
         "cards",
         "pricing",
         "store"
+      ]
+    },
+    {
+      "id": "quote-card-carousel",
+      "name": "Quote Card Carousel",
+      "type": "html",
+      "status": "stable",
+      "description": "Dark testimonial slider: an outline badge, bold heading and sub above a peek carousel of folder-notch quote cards. Each card is an SVG silhouette with a raised top-left tab holding the quote glyph, then the quote, an avatar monogram, name, and an accent role. Fully-visible cards brighten while peeking neighbours dim; a ghost prev and a brand next control move through.",
+      "files": {
+        "html": "sections/quote-card-carousel/section.html"
+      },
+      "prompt": "sections/quote-card-carousel/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-quote-card-carousel",
+      "interactions": [
+        "peek carousel: prev/next slide the track by one card (clamped; controls disable at the ends), with a 56px left peek so a sliver of the previous card shows",
+        "visibility paint: each card brightens (opacity .4 -> 1, fill 6% -> 10%, quote muted -> primary) when more than 82% of its width is inside the viewport, else dims",
+        "header items + track fade up on first view (IntersectionObserver, 600ms wpmn-qcc-up, 70ms stagger)",
+        "next control uses the brand button fill + glow with hover state; ghost prev hover fill; focus-visible ring",
+        "prefers-reduced-motion: track/card transitions off, reveals render in place"
+      ],
+      "tokensUsed": [
+        "--color-surface-secondary",
+        "--color-text-primary-invert",
+        "--color-text-secondary-invert",
+        "--color-warning-primary",
+        "--btn-bg-enable",
+        "--btn-bg-hovered",
+        "--btn-bg-focused",
+        "--btn-bg-glow",
+        "--font-family-base",
+        "--font-size-h2",
+        "--font-size-h5",
+        "--font-size-body-medium",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h2",
+        "--font-lh-h5",
+        "--font-lh-body-medium",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-lh-body-label",
+        "--font-weight-bold",
+        "--font-weight-semibold",
+        "--font-weight-medium"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "role": "Testimonial",
+      "span": 2,
+      "tags": [
+        "testimonial",
+        "carousel",
+        "dark",
+        "quote cards",
+        "folder notch",
+        "social proof",
+        "reviews",
+        "peek slider",
+        "avatar"
       ]
     },
     {
