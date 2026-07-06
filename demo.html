@@ -870,6 +870,87 @@
     .type-meta { min-width: 120px; flex-shrink: 0; }
     .type-meta .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-secondary); }
     .type-meta .value { font-size: 11px; color: var(--color-text-secondary); font-family: monospace; }
+
+    /* ── Icon browser ─────────────────────────────────────────── */
+    .hi-toolbar { position: sticky; top: 0; z-index: 5; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+      padding: 16px 0 20px; margin-bottom: 24px; background: var(--color-surface-primary); border-bottom: 1px solid var(--color-border-primary); }
+    .hi-search { position: relative; flex: 1; min-width: 220px; }
+    .hi-search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--color-text-secondary); pointer-events: none; }
+    .hi-search input { width: 100%; box-sizing: border-box; height: 44px; padding: 0 16px 0 42px; font-size: 15px;
+      font-family: var(--font-family-base); color: var(--color-text-primary); background: var(--color-surface-primary);
+      border: 1.5px solid var(--color-border-primary); border-radius: var(--radius-xsm); outline: none; transition: border-color 120ms ease; }
+    .hi-search input:focus { border-color: var(--btn-bg-enable); }
+    .hi-field { display: flex; flex-direction: column; gap: 4px; }
+    .hi-field label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-secondary); }
+    .hi-select { height: 44px; padding: 0 32px 0 14px; font-size: 14px; font-family: var(--font-family-base); font-weight: 500;
+      color: var(--color-text-primary); background: var(--color-surface-primary); border: 1.5px solid var(--color-border-primary);
+      border-radius: var(--radius-xsm); cursor: pointer; outline: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237a8699' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center; }
+    .hi-select:focus { border-color: var(--btn-bg-enable); }
+    .hi-count { font-size: 13px; color: var(--color-text-secondary); white-space: nowrap; margin-left: auto; }
+    .hi-count b { color: var(--color-text-primary); }
+    .hi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 12px; }
+    .hi-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 10px 12px;
+      border: 1px solid var(--color-border-primary); border-radius: var(--radius-sm); background: var(--color-surface-primary);
+      cursor: pointer; transition: border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease; text-align: center; }
+    .hi-card:hover { border-color: var(--btn-bg-enable); transform: translateY(-2px); box-shadow: var(--shadow-sm, 0 4px 12px rgba(0,0,0,0.06)); }
+    .hi-card__preview { width: 32px; height: 32px; color: inherit; display: flex; align-items: center; justify-content: center; }
+    .hi-card__preview svg { width: 32px; height: 32px; display: block; }
+    .hi-card__preview.is-empty { opacity: 0.15; }
+    .hi-card__name { font-size: 10.5px; line-height: 1.3; color: var(--color-text-secondary); font-family: monospace;
+      word-break: break-word; max-width: 100%; }
+    .hi-sentinel { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 28px;
+      padding: 20px; font-size: 13px; color: var(--color-text-secondary); }
+    .hi-sentinel b { color: var(--color-text-primary); }
+    .hi-spinner { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--color-border-primary);
+      border-top-color: var(--btn-bg-enable); animation: hi-spin 0.7s linear infinite; }
+    @keyframes hi-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .hi-spinner { animation: none; } }
+    .hi-note { padding: 24px; border: 1px dashed var(--color-border-primary); border-radius: var(--radius-sm);
+      color: var(--color-text-secondary); font-size: 14px; line-height: 1.6; background: var(--color-surface-secondary-subtle, var(--color-surface-primary)); }
+    .hi-note code { font-family: monospace; font-size: 13px; color: var(--color-text-primary); background: var(--color-border-primary); padding: 2px 6px; border-radius: 5px; }
+    /* Toast */
+    .hi-toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 60;
+      background: var(--color-surface-secondary); color: var(--color-text-primary-invert); font-size: 13px; font-weight: 600;
+      padding: 10px 18px; border-radius: var(--radius-xsm); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    /* Detail modal */
+    .hi-modal-backdrop { position: fixed; inset: 0; z-index: 50; background: rgba(7,9,12,0.5);
+      display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .hi-modal { width: 100%; max-width: 640px; max-height: 82vh; overflow: auto; background: var(--color-surface-primary);
+      border-radius: var(--radius-md); padding: 28px; box-shadow: 0 24px 64px rgba(0,0,0,0.28); }
+    .hi-modal__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+    .hi-modal__title { font-size: 18px; font-weight: 700; color: var(--color-text-primary); font-family: monospace; }
+    .hi-modal__sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; }
+    .hi-modal__close { flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--color-border-primary); border-radius: var(--radius-xsm); background: none; cursor: pointer; color: var(--color-text-secondary); }
+    .hi-modal__close:hover { color: var(--color-text-primary); border-color: var(--color-text-secondary); }
+    .hi-variants { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+    .hi-variant { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px 12px;
+      border: 1px solid var(--color-border-primary); border-radius: var(--radius-sm); cursor: pointer; transition: border-color 120ms ease; }
+    .hi-variant:hover { border-color: var(--btn-bg-enable); }
+    .hi-variant__preview { width: 34px; height: 34px; color: inherit; }
+
+    /* Icon color picker */
+    .hi-picker-wrap { position: relative; display: flex; flex-direction: column; gap: 4px; }
+    .hi-colorbtn { height: 44px; display: flex; align-items: center; gap: 8px; padding: 0 14px; cursor: pointer;
+      border: 1.5px solid var(--color-border-primary); border-radius: var(--radius-xsm); background: var(--color-surface-primary);
+      font-size: 14px; font-weight: 500; font-family: var(--font-family-base); color: var(--color-text-primary); transition: border-color 120ms ease; }
+    .hi-colorbtn:hover { border-color: var(--btn-bg-enable); }
+    .hi-swatch { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(0,0,0,0.12) inset; }
+    .hi-colorpop { position: absolute; top: 100%; left: 0; z-index: 40; margin-top: 8px; width: 264px; padding: 16px;
+      background: var(--color-surface-primary); border: 1px solid var(--color-border-primary); border-radius: var(--radius-sm);
+      box-shadow: 0 16px 44px rgba(0,0,0,0.18); }
+    .hi-colorpop__label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-secondary); margin: 0 0 8px; }
+    .hi-colorpop__row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .hi-colorpop__row:last-child { margin-bottom: 0; }
+    .hi-dot { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;
+      box-shadow: 0 0 0 1px var(--color-border-primary) inset; transition: transform 120ms ease; }
+    .hi-dot:hover { transform: scale(1.12); }
+    .hi-dot.sel { border-color: var(--color-text-primary); }
+    .hi-pop-backdrop { position: fixed; inset: 0; z-index: 39; }
+    .hi-variant__preview svg { width: 34px; height: 34px; display: block; }
+    .hi-variant__label { font-size: 10px; color: var(--color-text-secondary); font-family: monospace; text-align: center; word-break: break-word; }
   </style>
 
 <style data-wpmn="spacing-tokens-snapshot-fix">
@@ -3059,6 +3140,256 @@
     };
 
     /* ── App shell ──────────────────────────────────────────── */
+    /* ── Icon browser (Hugeicons Pro, live from local node_modules) ──
+       Icon path data is fetched from the locally installed package and parsed
+       in the browser. Nothing is committed — a clone without the licensed
+       package just shows a "not installed" note. */
+    var HI_RAW = {};   // name -> Promise<raw .js text | null>
+    function hiRawText(meta, name) {
+      if (!HI_RAW[name]) {
+        HI_RAW[name] = fetch('/' + meta.dir + '/' + name + meta.suffix)
+          .then(function (r) { return r.ok ? r.text() : null; })
+          .catch(function () { return null; });
+      }
+      return HI_RAW[name];
+    }
+    function hiParseVariant(src, variant) {
+      var key = '"' + variant + '":';
+      var start = src.indexOf(key);
+      if (start < 0) return null;
+      var i = start + key.length, depth = 0, end = i;
+      for (; i < src.length; i++) {
+        if (src[i] === '[') depth++;
+        else if (src[i] === ']') { depth--; if (depth === 0) { end = i + 1; break; } }
+      }
+      var els;
+      try { els = Function('return ' + src.slice(start + key.length, end))(); }
+      catch (e) { return null; }
+      var inner = els.map(function (pair) {
+        var tag = pair[0], attrs = pair[1] || {};
+        var a = Object.keys(attrs).filter(function (k) { return k !== 'key'; })
+          .map(function (k) {
+            var kebab = k.replace(/[A-Z]/g, function (c) { return '-' + c.toLowerCase(); });
+            return kebab + '="' + attrs[k] + '"';
+          }).join(' ');
+        return '<' + tag + ' ' + a + '/>';
+      }).join('');
+      return '<svg viewBox="0 0 24 24" fill="none">' + inner + '</svg>';
+    }
+    /* Resolve a CSS color (hex or var(--token)) to a concrete rgb() string. */
+    function hiResolveColor(c) {
+      var el = document.createElement('span');
+      el.style.color = ''; el.style.color = c; el.style.display = 'none';
+      document.body.appendChild(el);
+      var rgb = getComputedStyle(el).color;
+      document.body.removeChild(el);
+      return rgb || c;
+    }
+
+    const HiCell = ({ meta, name, variant }) => {
+      var [svg, setSvg] = useState(undefined);
+      useEffect(function () {
+        var alive = true;
+        hiRawText(meta, name).then(function (txt) {
+          if (!alive) return;
+          setSvg(txt ? hiParseVariant(txt, variant) : null);
+        });
+        return function () { alive = false; };
+      }, [name, variant]);
+      if (svg) return <span dangerouslySetInnerHTML={{ __html: svg }} />;
+      return null;
+    };
+
+    const HiModal = ({ meta, name, iconColor, onClose, onCopy }) => {
+      return (
+        <div className="hi-modal-backdrop" onClick={onClose}>
+          <div className="hi-modal" onClick={function (e) { e.stopPropagation(); }}>
+            <div className="hi-modal__head">
+              <div>
+                <div className="hi-modal__title">{name}</div>
+                <div className="hi-modal__sub">Click any variant to copy its inline SVG</div>
+              </div>
+              <button className="hi-modal__close" onClick={onClose} aria-label="Close">✕</button>
+            </div>
+            <div className="hi-variants" style={{ color: iconColor }}>
+              {meta.variants.map(function (v) {
+                return (
+                  <div key={v} className="hi-variant" onClick={function () { onCopy(name, v); }} title={'Copy ' + v}>
+                    <div className="hi-variant__preview"><HiCell meta={meta} name={name} variant={v} /></div>
+                    <div className="hi-variant__label">{v}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const HI_STYLE_ORDER = ['stroke', 'solid', 'duotone', 'bulk', 'twotone'];
+    const HI_CORNER_ORDER = ['rounded', 'sharp'];
+    const HI_NEUTRALS = [
+      { label: 'Ink',  value: 'var(--color-text-primary)' },
+      { label: 'Gray', value: 'var(--color-text-secondary)' },
+    ];
+
+    const IconsPage = () => {
+      var [meta, setMeta] = useState(null);
+      var [err, setErr] = useState(false);
+      var [query, setQuery] = useState('');
+      var [style, setStyle] = useState('stroke');
+      var [corner, setCorner] = useState('rounded');
+      var [limit, setLimit] = useState(120);
+      var [detail, setDetail] = useState(null);
+      var [toast, setToast] = useState('');
+      var [iconColor, setIconColor] = useState('var(--color-text-primary)');
+      var [pickerOpen, setPickerOpen] = useState(false);
+      var sentinelRef = React.useRef(null);
+
+      useEffect(function () {
+        fetch('/api/hugeicons').then(function (r) { return r.json(); }).then(setMeta).catch(function () { setErr(true); });
+      }, []);
+      useEffect(function () {
+        if (!toast) return;
+        var t = setTimeout(function () { setToast(''); }, 1600);
+        return function () { clearTimeout(t); };
+      }, [toast]);
+      /* Infinite scroll: grow the limit as the sentinel nears the viewport. */
+      useEffect(function () {
+        if (!meta || !meta.installed || !meta.names || !meta.names.length) return;
+        var qq = query.trim().toLowerCase();
+        var filteredLen = qq ? meta.names.filter(function (n) { return n.indexOf(qq) >= 0; }).length : meta.names.length;
+        if (limit >= filteredLen) return;
+        var el = sentinelRef.current;
+        if (!el) return;
+        var io = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) setLimit(function (l) { return l + 120; });
+        }, { rootMargin: '800px' });
+        io.observe(el);
+        return function () { io.disconnect(); };
+      }, [meta, query, limit]);
+
+      function doCopy(name, variant) {
+        hiRawText(meta, name).then(function (txt) {
+          var svg = txt ? hiParseVariant(txt, variant) : null;
+          if (!svg) { setToast('No ' + variant + ' for ' + name); return; }
+          var col = hiResolveColor(iconColor);
+          var out = svg.split('currentColor').join(col);
+          try { navigator.clipboard.writeText(out); } catch (e) {}
+          setToast('Copied ' + name + ' · ' + variant);
+        });
+      }
+
+      if (err) return <div className="hi-note">Couldn't reach <code>/api/hugeicons</code>. Start the dev server, then reload.</div>;
+      if (!meta) return <div className="hi-note">Loading icon library…</div>;
+      if (!meta.installed || !meta.names.length) return (
+        <div>
+          <div className="page-header">
+            <h1 style={{ fontSize: 32, fontWeight: 800, margin: 0, color: 'var(--color-text-primary)' }}>Icons</h1>
+          </div>
+          <div className="hi-note">
+            The Hugeicons Pro package isn't installed in this checkout, so there's nothing to preview.
+            Run <code>npm install</code> (with the Hugeicons license token set) to populate
+            <code>node_modules/@hugeicons/react-pro</code>. Icons load live from your local package and are never committed.
+          </div>
+        </div>
+      );
+
+      var vset = {};
+      meta.variants.forEach(function (v) { vset[v] = true; });
+      var styles = HI_STYLE_ORDER.filter(function (s) { return meta.variants.some(function (v) { return v.split('.')[0] === s; }); });
+      var corners = HI_CORNER_ORDER.filter(function (c) { return vset[style + '.' + c]; });
+      var activeCorner = corners.indexOf(corner) >= 0 ? corner : corners[0];
+      var variant = style + '.' + activeCorner;
+
+      var q = query.trim().toLowerCase();
+      var filtered = q ? meta.names.filter(function (n) { return n.indexOf(q) >= 0; }) : meta.names;
+      var shown = filtered.slice(0, limit);
+      var cap = function (s) { return s.charAt(0).toUpperCase() + s.slice(1); };
+
+      return (
+        <div>
+          <div className="page-header">
+            <h1 style={{ fontSize: 32, fontWeight: 800, margin: 0, color: 'var(--color-text-primary)' }}>Icons</h1>
+            <p style={{ margin: '8px 0 0', color: 'var(--color-text-secondary)', fontSize: 15 }}>
+              Hugeicons Pro · {meta.names.length.toLocaleString()} icons · loaded live from your local package
+            </p>
+          </div>
+
+          <div className="hi-toolbar">
+            <div className="hi-search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.75" /><path d="M20 20l-3-3" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" /></svg>
+              <input value={query} onChange={function (e) { setQuery(e.target.value); setLimit(120); }} placeholder="Search by name…" />
+            </div>
+            <div className="hi-picker-wrap">
+              <label className="hi-field" style={{ gap: 4 }}><span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-text-secondary)' }}>Color</span></label>
+              <button className="hi-colorbtn" onClick={function () { setPickerOpen(function (o) { return !o; }); }} title="Icon color">
+                <span className="hi-swatch" style={{ background: iconColor }} />
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </button>
+              {pickerOpen && (
+                <React.Fragment>
+                  <div className="hi-pop-backdrop" onClick={function () { setPickerOpen(false); }} />
+                  <div className="hi-colorpop">
+                    <p className="hi-colorpop__label">Neutral</p>
+                    <div className="hi-colorpop__row">
+                      {HI_NEUTRALS.map(function (n) {
+                        return <div key={n.label} className={'hi-dot' + (iconColor === n.value ? ' sel' : '')} style={{ background: n.value }}
+                          title={n.label} onClick={function () { setIconColor(n.value); setPickerOpen(false); }} />;
+                      })}
+                    </div>
+                    <p className="hi-colorpop__label">Brand</p>
+                    <div className="hi-colorpop__row">
+                      {BRANDS.map(function (b) {
+                        return <div key={b.key} className={'hi-dot' + (iconColor === b.color ? ' sel' : '')} style={{ background: b.color }}
+                          title={b.name} onClick={function () { setIconColor(b.color); setPickerOpen(false); }} />;
+                      })}
+                    </div>
+                  </div>
+                </React.Fragment>
+              )}
+            </div>
+            <div className="hi-field">
+              <label>Style</label>
+              <select className="hi-select" value={style} onChange={function (e) { setStyle(e.target.value); setLimit(120); }}>
+                {styles.map(function (s) { return <option key={s} value={s}>{cap(s)}</option>; })}
+              </select>
+            </div>
+            <div className="hi-field">
+              <label>Type</label>
+              <select className="hi-select" value={activeCorner} onChange={function (e) { setCorner(e.target.value); }}>
+                {corners.map(function (c) { return <option key={c} value={c}>{cap(c)}</option>; })}
+              </select>
+            </div>
+            <div className="hi-count"><b>{filtered.length.toLocaleString()}</b> results · <code>{variant}</code></div>
+          </div>
+
+          <div className="hi-grid" style={{ color: iconColor }}>
+            {shown.map(function (n) {
+              return (
+                <div key={n} className="hi-card" onClick={function () { setDetail(n); }} title={n + ' — click for all variants'}>
+                  <div className="hi-card__preview"><HiCell meta={meta} name={n} variant={variant} /></div>
+                  <div className="hi-card__name">{n}</div>
+                </div>
+              );
+            })}
+          </div>
+
+          {!shown.length && <div className="hi-note">No icons match “{query}”.</div>}
+
+          {shown.length < filtered.length && (
+            <div ref={sentinelRef} className="hi-sentinel">
+              <span className="hi-spinner" aria-hidden="true" />
+              Loading more… <b>{(filtered.length - shown.length).toLocaleString()}</b> left
+            </div>
+          )}
+
+          {detail && <HiModal meta={meta} name={detail} iconColor={iconColor} onClose={function () { setDetail(null); }} onCopy={doCopy} />}
+          {toast && <div className="hi-toast">{toast}</div>}
+        </div>
+      );
+    };
+
     const App = () => {
       const [theme, setTheme] = useState('light');
       const [sidebarOpen, setSidebarOpen] = useState(() => {
@@ -3083,6 +3414,7 @@
       const navItems = [
         { id: 'components',  label: '⚡ Components' },
         { id: 'sections',    label: '🧱 Sections' },
+        { id: 'icons',       label: '✦ Icons' },
         { id: 'brand',       label: 'Brand Preview' },
         { id: 'allbrands',   label: 'All Brands' },
         { id: 'tokens',      label: 'Tokens' },
@@ -3139,6 +3471,7 @@
             <CompErrorBoundary key={page}>
               {page === 'components' && <ComponentsPage theme={theme} brand={brand} mode="components" />}
               {page === 'sections'   && <ComponentsPage theme={theme} brand={brand} mode="sections" />}
+              {page === 'icons'      && <IconsPage />}
               {page === 'brand'      && <BrandPage brand={brand} theme={theme} />}
               {page === 'allbrands'  && <AllBrandsPage theme={theme} />}
               {page === 'tokens'     && <TokensPage />}

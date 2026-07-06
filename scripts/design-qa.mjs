@@ -79,8 +79,8 @@ function detectIds(html) {
  *           (external-asset, dom-id, script-root, keyframe-prefix) and the typo skip list
  */
 function runChecks(scope, s, ids, library) {
-  const styles = [...s.matchAll(/<style>([\s\S]*?)<\/style>/g)].map(m => m[1]).join('\n');
-  const scripts = [...s.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).join('\n');
+  const styles = [...s.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map(m => m[1]).join('\n');
+  const scripts = [...s.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(m => m[1]).join('\n');
   const noMask = styles.replace(/(?:-webkit-)?mask-image:[^;]+;?/g, '')
     .replace(/var\(--btn-bg-glow,\s*rgba\(255,\s*255,\s*255,\s*0?\.3\)\)/g, '');
 
@@ -240,7 +240,7 @@ function runChecks(scope, s, ids, library) {
       }
     }
     const sizeOf = el => { for (const c of el.classList) { if (cp[c] && cp[c].fs) return { fs: cp[c].fs, mt: cp[c].mt }; } return null; };
-    const doc = new JSDOM(`<body>${s.replace(/<style>[\s\S]*?<\/style>/g, '').replace(/<script>[\s\S]*?<\/script>/g, '')}</body>`).window.document;
+    const doc = new JSDOM(`<body>${s.replace(/<style[^>]*>[\s\S]*?<\/style>/g, '').replace(/<script[^>]*>[\s\S]*?<\/script>/g, '')}</body>`).window.document;
     const seen = new Set();
     for (const el of doc.querySelectorAll('*')) {
       const sz = sizeOf(el);

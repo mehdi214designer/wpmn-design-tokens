@@ -11,6 +11,7 @@ Features:
 import http.server
 import socketserver
 import os
+import re
 import time
 import threading
 import json
@@ -79,6 +80,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self._sse_livereload()
         elif path == '/api/components':
             self._api_components()
+        elif path == '/api/hugeicons':
+            self._api_hugeicons()
         else:
             super().do_GET()
 
@@ -125,6 +128,40 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                     })
 
         body = json.dumps(result).encode()
+        self.send_response(200)
+        self.send_header('Content-Type',   'application/json')
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    # ── Hugeicons index ──────────────────────────────────────────
+    # Lists icon base names + available variants from the LOCALLY installed
+    # @hugeicons/react-pro package. Reads node_modules live — no icon data is
+    # ever stored or committed. On a clone without the licensed package this
+    # returns empty lists and the browser shows a "not installed" note.
+    def _api_hugeicons(self):
+        icons_dir = (BASE_DIR / 'node_modules' / '@hugeicons' /
+                     'react-pro' / 'dist' / 'esm' / 'icons')
+        names, variants, installed = [], [], icons_dir.exists()
+        if installed:
+            for f in sorted(icons_dir.iterdir()):
+                if f.suffix == '.js' and f.name.endswith('-icon.js'):
+                    names.append(f.name[:-len('-icon.js')])
+            # Derive the real variant list from one file so it stays accurate.
+            if names:
+                sample = (icons_dir / f'{names[0]}-icon.js').read_text(encoding='utf-8')
+                seen = []
+                for m in re.finditer(r'"([a-z]+\.[a-z]+)":\[\[', sample):
+                    if m.group(1) not in seen:
+                        seen.append(m.group(1))
+                variants = seen
+        body = json.dumps({
+            'installed': installed,
+            'dir': 'node_modules/@hugeicons/react-pro/dist/esm/icons',
+            'suffix': '-icon.js',
+            'variants': variants,
+            'names': names,
+        }).encode()
         self.send_response(200)
         self.send_header('Content-Type',   'application/json')
         self.send_header('Content-Length', str(len(body)))
