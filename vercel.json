@@ -1,7 +1,6 @@
 {
-  "buildCommand": "",
-  "outputDirectory": ".",
   "rewrites": [
-    { "source": "/", "destination": "/demo.html" }
+    { "source": "/", "destination": "/demo.html" },
+    { "source": "/node_modules/@hugeicons/react-pro/dist/esm/icons/:file", "destination": "/api/icon-raw?file=:file" }
   ]
 }

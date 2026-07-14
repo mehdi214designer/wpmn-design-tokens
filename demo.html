@@ -3280,7 +3280,7 @@
         });
       }
 
-      if (err) return <div className="hi-note">Couldn't reach <code>/api/hugeicons</code>. Start the dev server, then reload.</div>;
+      if (err) return <div className="hi-note">Icon browser needs the local dev server (reads the licensed Hugeicons Pro package, not published here). Run it at <code>localhost:8910</code> to preview icons.</div>;
       if (!meta) return <div className="hi-note">Loading icon library…</div>;
       if (!meta.installed || !meta.names.length) return (
         <div>
