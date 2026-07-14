@@ -30,6 +30,28 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.3.0] — 2026-07-06
+
+Icon browser in the demo + four new sections + surface-pairing enforcement.
+
+### Added
+- **Icon browser** (`demo.html` + `serve.py`) — new **Icons** view in the demo. Browses the full
+  Hugeicons Pro set live from the locally installed `@hugeicons/react-pro` package: name search,
+  **Style** (stroke / solid / duotone / bulk / twotone) and **Type** (rounded / sharp) dropdowns
+  showing only variants that exist, infinite scroll, a per-icon variant strip, click-to-copy inline
+  SVG, and a brand/neutral color picker that bakes the chosen color into the copied SVG. New
+  `GET /api/hugeicons` endpoint lists icon names + variants from local `node_modules`. **No icon
+  data is committed** — a clone without the licensed package shows a "not installed" note
+  (public-repo / Pro-license safe).
+- **4 sections** (all tokenized): `app-scan-hero` (ToDesktop Electron hero — atom spinner, feature
+  tabs, app-scan window), `scrollspy-accordion` (sticky numbered nav synced to scrolling image
+  cards), `testimonial-carousel` (peek carousel of tinted quote cards), `quote-card-carousel`
+  (dark folder-notch testimonial slider).
+- **`WPMN-Design-System.md`** — full single-file reference: every token value, brand hex, the
+  canon, and all sections indexed.
+- **`scripts/design-qa.mjs` — `surface-text-pairing` check** — flags dark sections
+  (`--color-surface-secondary`) that use non-invert text (the "invisible heading" bug).
+
 ### Changed
 - `scripts/design-qa.mjs`: now audits any target, not just the repo library. Pass an HTML
   file, a glob, a folder, or a live URL (`node scripts/design-qa.mjs page.html` /
@@ -37,9 +59,12 @@ follow [Semantic Versioning].
   for "one primary per section" and surface pairing; repo-only conventions (Unsplash assets,
   `wpmn-` keyframe prefix, namespaced ids, `currentScript` fallback) are skipped on external
   targets. Default no-arg library run is unchanged (byte-identical findings).
+- `wpmn-design-guideline.md` / `llms.txt` / `CLAUDE.md`: documented the dark-section recipe
+  (invert text + icons) and expanded the surface-pairing rule.
 - `wpmn-design-qna` skill: documents the three audit modes (library / HTML file / live URL)
   plus the rendered Chrome audit for compiled pages; rules list now spells out the typography
   canon (`typo-pairing`, `typo-gap`), spacing scale (`raw-spacing`), and the full check names.
+- `demo.html`: navbar uses the dark logo variant on the light bar (matches the logo rule).
 
 ## [1.2.6] — 2026-06-17
 
