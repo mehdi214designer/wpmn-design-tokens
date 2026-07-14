@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FluentPlayer Home — WPMN Design QA Report</title>
+<style>
+  :root{
+    --ink:#121212; --muted:#5a5a5a; --line:#e6e6e6; --bg:#fafafa; --card:#fff;
+    --red:#dd1f13; --green:#1f9d57; --amber:#e0901a; --grey:#8a8a8a;
+    --p0:#c8261c; --p1:#e0901a; --p2:#3478c6; --ok:#1f9d57; --info:#7a7a7a;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:15px}
+  .wrap{max-width:920px;margin:0 auto;padding:48px 24px 80px}
+  header.rep{border-bottom:2px solid var(--ink);padding-bottom:24px;margin-bottom:8px}
+  .ey{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h1{font-size:30px;margin:8px 0 6px;letter-spacing:-.01em}
+  h2{font-size:21px;margin:44px 0 12px;padding-top:20px;border-top:1px solid var(--line);letter-spacing:-.01em}
+  h3{font-size:16px;margin:24px 0 8px}
+  p{margin:10px 0}
+  .sub{color:var(--muted);font-size:14px}
+  .meta{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:14px}
+  .meta b{color:var(--ink);font-weight:600}
+  code{font-family:var(--mono);font-size:.86em;background:#f0f0f0;padding:1px 5px;border-radius:4px}
+  .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:999px;color:#fff;vertical-align:middle}
+  .b-p0{background:var(--p0)} .b-p1{background:var(--p1)} .b-p2{background:var(--p2)} .b-ok{background:var(--ok)} .b-info{background:var(--info)}
+  .scorecard{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:22px 0}
+  .sc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .sc .t{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .sc .v{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+  .d-ok{background:var(--ok)} .d-warn{background:var(--amber)} .d-bad{background:var(--p0)} .d-na{background:var(--grey)}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+  tr td:first-child{white-space:nowrap}
+  .finding{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}
+  .finding.p0{border-left-color:var(--p0)} .finding.p1{border-left-color:var(--p1)} .finding.p2{border-left-color:var(--p2)} .finding.ok{border-left-color:var(--ok)} .finding.info{border-left-color:var(--info)}
+  .finding .h{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+  .finding .h .id{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto}
+  .finding ul{margin:8px 0 0;padding-left:18px}
+  .finding li{margin:3px 0}
+  .kv{display:grid;grid-template-columns:130px 1fr;gap:4px 14px;margin:10px 0;font-size:13.5px}
+  .kv .k{color:var(--muted)}
+  .swatch{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid #0002;vertical-align:middle;margin-right:5px}
+  .callout{background:#fff8ec;border:1px solid #f0dcb4;border-radius:10px;padding:14px 16px;margin:16px 0;font-size:14px}
+  .callout.blue{background:#eef5fd;border-color:#cfe0f5}
+  .callout.grey{background:#f4f4f4;border-color:#e2e2e2}
+  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:12.5px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:10px 0 0}
+  .bar{height:8px;border-radius:999px;background:#eee;overflow:hidden;display:flex;margin-top:4px}
+  .bar i{display:block;height:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="rep">
+  <div class="ey">WPMN Design System · Conformance Audit</div>
+  <h1>FluentPlayer Home Page — Design QA</h1>
+  <p class="sub">Rendered audit of the live production homepage against the WPMN design canon. This is a conformance report, not a token-purity scan (see scope note below).</p>
+  <div class="meta">
+    <span><b>Target:</b> fluentplayer.com (home)</span>
+    <span><b>Source:</b> uploaded index.html + live render</span>
+    <span><b>Date:</b> 23 Jun 2026</span>
+    <span><b>Sections scanned:</b> 15</span>
+  </div>
+</header>
+
+<div class="callout grey">
+  <b>Scope, read this first.</b> The page is a compiled Vue build that does not use any WPMN tokens. It ships its own variables (<code>--brand-red</code>, <code>--fg-1</code>, <code>--fg-3</code>, <code>--font-body</code>, <code>--border</code>) and raw hex throughout. So token-purity checks do not apply, they would just produce noise. This report audits the <b>rendered result</b> against the canon: surface pairing, button anatomy, icons, type scale, radius scale, spacing, and motion. Nothing here is auto-fixable, it is not a repo file.
+</div>
+
+<h2>Scorecard</h2>
+<div class="scorecard">
+  <div class="sc"><div class="t">Token system</div><div class="v"><span class="dot d-na"></span>Off-system (own vars)</div></div>
+  <div class="sc"><div class="t">Surface pairing</div><div class="v"><span class="dot d-ok"></span>Pass</div></div>
+  <div class="sc"><div class="t">Buttons</div><div class="v"><span class="dot d-bad"></span>Off-anatomy</div></div>
+  <div class="sc"><div class="t">Radius scale</div><div class="v"><span class="dot d-bad"></span>Heavy drift</div></div>
+  <div class="sc"><div class="t">Typography</div><div class="v"><span class="dot d-bad"></span>Heavy drift</div></div>
+  <div class="sc"><div class="t">Icons</div><div class="v"><span class="dot d-warn"></span>Mixed variants</div></div>
+  <div class="sc"><div class="t">Motion</div><div class="v"><span class="dot d-ok"></span>Guarded</div></div>
+  <div class="sc"><div class="t">Responsive</div><div class="v"><span class="dot d-ok"></span>Pass</div></div>
+  <div class="sc"><div class="t">One H1 per page</div><div class="v"><span class="dot d-ok"></span>Pass</div></div>
+</div>
+
+<div class="callout">
+  <b>Bottom line.</b> Visually the page is clean and pairing is correct, so nothing is broken for users. But it is built as a separate system from WPMN, not a token-skinned version of it. The two systemic gaps are the <b>radius scale</b> (a 20px-centric system vs our 8/12/16/32) and the <b>type scale</b> (~25 distinct sizes vs the fixed <code>.text-*</code> ramp). Button anatomy also differs from the DS Button. If the goal is to bring this onto the system, those three are the real work.
+</div>
+
+<div class="legend">
+  <span><span class="pill b-p0">P0</span> blocker</span>
+  <span><span class="pill b-p1">P1</span> systemic</span>
+  <span><span class="pill b-p2">P2</span> targeted</span>
+  <span><span class="pill b-ok">PASS</span> on-system</span>
+  <span><span class="pill b-info">INFO</span> context</span>
+</div>
+
+<h2>1. Radius scale <span class="pill b-p1">P1</span></h2>
+<p>Canon radius is four tokens only: <code>--radius-xsm</code> 8, <code>--radius-sm</code> 12, <code>--radius-md</code> 16, <code>--radius-lg</code> 32. Chips at 99/999px and circles at 50% are allowed. The page uses a parallel system centred on <b>20px</b>, with seven more off-scale values. <code>16px</code> and <code>32px</code> never appear.</p>
+<table>
+  <tr><th>Radius</th><th>Uses</th><th>Verdict</th><th>Note</th></tr>
+  <tr><td><code>20px</code></td><td>63</td><td><span class="pill b-p1">OFF</span></td><td>Dominant card/panel radius. Canon equivalent is 16.</td></tr>
+  <tr><td><code>14px</code></td><td>15</td><td><span class="pill b-p1">OFF</span></td><td>Should be 12 or 16.</td></tr>
+  <tr><td><code>10px</code></td><td>15</td><td><span class="pill b-p1">OFF</span></td><td>Inputs, submit, CTA bg. Should be 8 or 12.</td></tr>
+  <tr><td><code>6px</code></td><td>9</td><td><span class="pill b-p2">OFF</span></td><td>Should be 8.</td></tr>
+  <tr><td><code>2px / 3px / 4px</code></td><td>8 / 3 / 6</td><td><span class="pill b-p2">OFF</span></td><td>Small chrome, some inside mock player UI (exception).</td></tr>
+  <tr><td><code>22px / 24px / 28px</code></td><td>6 / 4 / 6</td><td><span class="pill b-p2">OFF</span></td><td>Large cards. Should be 16 or 32.</td></tr>
+  <tr><td><code>12px</code></td><td>7</td><td><span class="pill b-ok">IN</span></td><td>Matches <code>--radius-sm</code>.</td></tr>
+  <tr><td><code>8px</code></td><td>7</td><td><span class="pill b-ok">IN</span></td><td>Matches <code>--radius-xsm</code>.</td></tr>
+  <tr><td><code>99px / 999px</code></td><td>22 / 28</td><td><span class="pill b-ok">OK</span></td><td>Chips and pills, allowed.</td></tr>
+  <tr><td><code>50%</code></td><td>12</td><td><span class="pill b-ok">OK</span></td><td>Avatars, spinners, allowed.</td></tr>
+</table>
+<p class="sub"><b>Fix direction:</b> remap 20→16, 14→12, 10→8, 6→8, 22/24→16, 28→32. Roughly 90% of the off-scale uses collapse onto the four tokens with no visual change.</p>
+
+<h2>2. Typography <span class="pill b-p1">P1</span></h2>
+<p>Canon is a fixed ramp delivered through <code>.text-*</code> classes, with each heading paired to one body size and one gap. The page renders <b>~25 distinct size/weight combinations</b> with no token classes. One H1, which is correct.</p>
+<table>
+  <tr><th>Used sizes (px)</th><td>10, 11, 12, 12.5, 13, 14, 15, 16, 17, 18, 19, 22, 24, 26, 28, 30, 32, 34, 36, 52, 64</td></tr>
+  <tr><th>Weights</th><td>mostly 400, some 500 / 600, one 100 (the 64px hero stat)</td></tr>
+  <tr><th>H1 count</th><td>1 (hero) <span class="pill b-ok">PASS</span></td></tr>
+  <tr><th>Body color</th><td><span class="swatch" style="background:#545454"></span><code>rgb(84,84,84)</code> consistent</td></tr>
+</table>
+<p class="sub"><b>Why it matters:</b> 21 sizes and a 12.5px half-step mean the vertical rhythm will not line up with library sections placed next to it. Collapsing to the WPMN scale (and using the heading→body pairing) is the fix.</p>
+
+<h2>3. Buttons <span class="pill b-p1">P1</span></h2>
+<p>The DS Button has a specific anatomy. The two real CTAs on the page both diverge from it.</p>
+
+<div class="finding p1">
+  <div class="h">Primary CTA is translucent with a border <span class="id">btn-primary-anatomy</span></div>
+  <div class="kv">
+    <div class="k">Element</div><div>"Join Waitlist" (navbar + hero + final CTA)</div>
+    <div class="k">Rendered</div><div><span class="swatch" style="background:#dd1f13"></span><code>rgba(221,31,19,0.82)</code> bg · <code>1px rgba(255,255,255,0.22)</code> border · radius <code>12px</code></div>
+    <div class="k">Canon</div><div>solid <code>--btn-bg-enable</code> · invert text · <code>--btn-bg-glow</code> inset · no border · radius <code>--radius-xsm</code> (8)</div>
+  </div>
+  <p class="sub">Primary should read as a solid brand fill. The 0.82 alpha plus a faint white outline is a custom treatment, not the DS primary.</p>
+</div>
+
+<div class="finding p1">
+  <div class="h">Secondary CTA is white-filled with a grey border <span class="id">btn-secondary-anatomy</span></div>
+  <div class="kv">
+    <div class="k">Element</div><div>"Explore demo" (hero)</div>
+    <div class="k">Rendered</div><div><span class="swatch" style="background:#fff"></span><code>rgb(255,255,255)</code> bg · <code>1px rgb(209,209,209)</code> grey border · dark text · radius <code>12px</code></div>
+    <div class="k">Canon</div><div>transparent bg · <code>1.5px</code> solid brand border · brand text · hover fills brand with invert text</div>
+  </div>
+  <p class="sub">DS secondary is an outline in brand color, not a white pill with a neutral grey border.</p>
+</div>
+
+<div class="finding p2">
+  <div class="h">Button radius is 12px, DS buttons use 8 <span class="id">btn-radius</span></div>
+  <p class="sub">Both CTAs render at <code>12px</code>. Button radius in the system is <code>--radius-xsm</code> (8).</p>
+</div>
+
+<div class="finding ok">
+  <div class="h">No underlined buttons · one primary per section <span class="id">btn-underline · btn-multiple-primary</span></div>
+  <p class="sub">No anchor-as-button underlines. Each section carries a single primary. Both pass.</p>
+</div>
+
+<div class="callout blue">
+  <b>Note on the tab "pills".</b> The Features and preset switchers render as <code>999px</code> black pills ("Video Playlists", "Default", "Academy"). Canon says no pill <i>buttons</i>, but these are segmented tab controls, not CTAs, so they sit in a grey area rather than a hard fail. Worth a deliberate call rather than an accident.
+</div>
+
+<h2>4. Icons <span class="pill b-p2">P2</span></h2>
+<p>89 inline SVGs. The geometry is consistent, but there is a stroke/fill mix to resolve.</p>
+<table>
+  <tr><th>Signal</th><th>Value</th><th>Verdict</th></tr>
+  <tr><td>viewBox <code>0 0 24 24</code></td><td>82 of 89</td><td><span class="pill b-ok">GOOD</span> 24-box standard</td></tr>
+  <tr><td>SVGs with stroke</td><td>16</td><td><span class="pill b-p2">MIX</span> rest are fill-based</td></tr>
+  <tr><td>Non-24 viewBoxes</td><td>720×230, 460×240, 220×220, 1642×1086…</td><td><span class="pill b-info">ART</span> illustrations, exceptions</td></tr>
+  <tr><td>Image-based icons</td><td>61 <code>&lt;img&gt;</code></td><td><span class="pill b-info">LOGOS</span> integration brand marks, exceptions</td></tr>
+</table>
+<p class="sub"><b>Watch item:</b> canon is one variant per site (library standard is Hugeicons <code>stroke.rounded</code>). 16 stroke icons alongside ~66 fill icons at 24-box suggests two functional icon styles are in play. Confirm the fill set are logo/brand marks (exception) and not UI icons that should be stroke.</p>
+
+<h2>5. Surface pairing <span class="pill b-ok">PASS</span></h2>
+<p>No dark-on-dark or light-on-light. Light sections pair dark text correctly, the dark CTA inverts correctly.</p>
+<table>
+  <tr><th>Surface</th><th>Background</th><th>Heading</th><th>Body</th><th>Verdict</th></tr>
+  <tr><td>Content sections</td><td><span class="swatch" style="background:#f5f5f5"></span>transparent / #f0f0f0 / #f5f5f5</td><td><span class="swatch" style="background:#121212"></span>#121212</td><td><span class="swatch" style="background:#545454"></span>#545454</td><td><span class="pill b-ok">OK</span> dark on light</td></tr>
+  <tr><td>Final CTA</td><td><span class="swatch" style="background:#2a0d9e"></span>#2a0d9e + aurora</td><td><span class="swatch" style="background:#fff"></span>#fff</td><td><span class="swatch" style="background:#fff"></span>#fff (alpha)</td><td><span class="pill b-ok">OK</span> invert on dark</td></tr>
+</table>
+<div class="callout">
+  <b>Brand note (not a pairing fail).</b> The final CTA surface is a purple-to-warm aurora gradient (<code>#2a0d9e → #854a93 → #cc578a → #fa7875 → #ffab61 → #ffe367</code>). FluentPlayer's brand is red. The pairing is correct, but the palette is off-brand for the product. Flagging as a brand call, not a contrast issue.
+</div>
+
+<h2>6. Motion <span class="pill b-ok">PASS</span></h2>
+<p>The full page ships a <code>prefers-reduced-motion</code> media rule, so animation is guarded. (My first pass looked only at the inline critical-CSS slice, which lacked the guard. The complete stylesheets have it.)</p>
+<table>
+  <tr><th>Signal</th><th>Value</th></tr>
+  <tr><td>reduced-motion guard</td><td>Present <span class="pill b-ok">PASS</span></td></tr>
+  <tr><td>Keyframe animations</td><td><code>fp-rise</code>, <code>cf-ch-panel-in</code>, <code>fp-vcol</code></td></tr>
+  <tr><td>Elements with transitions</td><td>181</td></tr>
+  <tr><td>Responsive media queries</td><td>Present <span class="pill b-ok">PASS</span></td></tr>
+</table>
+<p class="sub"><b>Minor:</b> the inline critical CSS defines a spinner keyframe (<code>cta-spin</code>) outside the guard. Low impact since the full sheet guards motion, but the critical block should mirror it.</p>
+
+<h2>Triage of the raw scanner output</h2>
+<p>The static scanner reported <b>77 issues</b> on the uploaded file. Triaged against the compiled, non-token reality:</p>
+<table>
+  <tr><th>Check</th><th>Count</th><th>Bucket</th><th>Why</th></tr>
+  <tr><td><code>raw-color</code></td><td>~34</td><td><span class="pill b-info">NOISE</span></td><td>Token-purity only applies to token pages. This page is off-system by design.</td></tr>
+  <tr><td><code>raw-spacing</code></td><td>~16</td><td><span class="pill b-info">NOISE</span></td><td>Same. Raw px spacing, not token scale.</td></tr>
+  <tr><td><code>raw-font</code></td><td>~10</td><td><span class="pill b-p1">REAL*</span></td><td>Noise as token check, but confirms the type-scale drift above.</td></tr>
+  <tr><td><code>undefined-token</code></td><td>5</td><td><span class="pill b-info">NOISE</span></td><td>Page's own vars (<code>--fg-1</code>, <code>--brand-red</code>…), not WPMN tokens.</td></tr>
+  <tr><td><code>raw-radius</code></td><td>3</td><td><span class="pill b-p1">REAL*</span></td><td>The 10px hits, part of the radius drift above.</td></tr>
+  <tr><td><code>btn-secondary-anatomy</code></td><td>6</td><td><span class="pill b-p2">FALSE+</span></td><td>Matched <code>.cta-*</code> by name: background, aurora, vignette layers, the email input, the submit. Decorative + form, not DS secondaries.</td></tr>
+  <tr><td><code>btn-outline-border</code></td><td>1</td><td><span class="pill b-p2">FALSE+</span></td><td><code>.cta-spinner</code> is a 50% loading spinner, not an outline button.</td></tr>
+  <tr><td><code>reduced-motion</code></td><td>1</td><td><span class="pill b-info">SLICE</span></td><td>True for the inline slice only. Full page is guarded.</td></tr>
+</table>
+<p class="sub">* The token-purity hits are noise as written, but <code>raw-font</code> and <code>raw-radius</code> independently confirm the two real systemic findings.</p>
+
+<h2>Priority summary</h2>
+<table>
+  <tr><th>#</th><th>Finding</th><th>Severity</th><th>Effort</th></tr>
+  <tr><td>1</td><td>Radius scale (20px-centric → 8/12/16/32)</td><td><span class="pill b-p1">P1</span></td><td>Medium, bucketed remap</td></tr>
+  <tr><td>2</td><td>Type scale (~25 sizes → fixed ramp)</td><td><span class="pill b-p1">P1</span></td><td>Medium</td></tr>
+  <tr><td>3</td><td>Primary CTA anatomy (translucent + border)</td><td><span class="pill b-p1">P1</span></td><td>Low</td></tr>
+  <tr><td>4</td><td>Secondary CTA anatomy (white + grey border)</td><td><span class="pill b-p1">P1</span></td><td>Low</td></tr>
+  <tr><td>5</td><td>Button radius 12 → 8</td><td><span class="pill b-p2">P2</span></td><td>Low</td></tr>
+  <tr><td>6</td><td>Icon stroke/fill mix to resolve</td><td><span class="pill b-p2">P2</span></td><td>Low, confirm exceptions</td></tr>
+  <tr><td>7</td><td>Off-brand aurora palette on final CTA</td><td><span class="pill b-p2">P2</span></td><td>Design call</td></tr>
+  <tr><td>8</td><td>Critical-CSS spinner outside motion guard</td><td><span class="pill b-info">INFO</span></td><td>Trivial</td></tr>
+</table>
+
+<div class="callout grey">
+  <b>What this is not.</b> No P0. No dark-on-dark, no contrast failures, no broken motion accessibility, no missing responsive handling. The page is well-built on its own terms. The gap is system alignment, not quality.
+</div>
+
+<footer>
+  Generated for Mhasan · WPMN Design QnA · 23 Jun 2026. Rendered audit of fluentplayer.com home against the WPMN canon (wpmn-design-guideline.md). Production page is a separate compiled build, findings are reported, not auto-fixed.
+</footer>
+
+</div>
+</body>
+</html>

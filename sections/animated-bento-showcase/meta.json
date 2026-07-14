@@ -1,0 +1,43 @@
+{
+  "id": "animated-bento-showcase",
+  "name": "Animated Bento Showcase",
+  "type": "html",
+  "status": "stable",
+  "description": "Fluid em-scaled 3-column bento of feature cards with living micro-scenes: a looping payment-pill carousel on a dark card, a floating coin cluster, a tilted product-image stack on a dark card, and a typing secure-checkout field, flanking a tall center phone with a skeleton and a poly headline.",
+  "files": { "html": "sections/animated-bento-showcase/section.html" },
+  "prompt": "sections/animated-bento-showcase/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-animated-bento-showcase",
+  "interactions": [
+    "the whole bento scales in em off a fluid root font-size clamp(13px,1.652vw,28.55px) so it grows/shrinks as one unit",
+    "connect card: payment pills carousel every 2600ms with verbatim wpmn-abs-pill-in (0.5s cubic-bezier(0.2,0.7,0.3,1)) / pill-out (0.4s ease) and a synced active dot",
+    "account card: four coins bob (wpmn-abs-bob) on staggered 4-5s loops",
+    "collect card: product-image stack sways (wpmn-abs-sway 6s) at fixed -11.6/+11.8/-25.1deg rotations",
+    "privacy card: checkout field types password dots every 420ms with a blinking caret (wpmn-abs-blink 1.1s steps(1))",
+    "carousel + typing run off a shared rAF tick plus a 1s setInterval so backgrounded tabs still advance",
+    "below 900px the phone hides and the grid goes 2-col; below 540px 1-col; prefers-reduced-motion freezes all micro-scenes in a settled state"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-primary-invert",
+    "--color-text-secondary",
+    "--btn-bg-enable",
+    "--radius-xsm",
+    "--shadow-hard-400",
+    "--shadow-soft-200",
+    "--shadow-soft-300",
+    "--shadow-soft-500",
+    "--font-family-base",
+    "--font-weight-medium",
+    "--font-weight-bold"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "role": "Features",
+  "span": 2,
+  "tags": ["bento", "animated", "feature grid", "carousel", "floating", "micro-scenes", "phone mockup", "payments", "fluid scaling", "ecommerce"]
+}

@@ -1,0 +1,137 @@
+<!-- WPMN Section: Feature Color Switcher — 4 feature cards beside one tall panel that color-shifts and crossfades mockups, driven by scroll-spy plus hover and click (from an HTML reference, scroll/hover/click interactions kept verbatim, fully tokenized) -->
+<section class="wpmn-sec-feature-color-switcher">
+  <style>
+    .wpmn-sec-feature-color-switcher{
+      background:var(--color-surface-primary);
+      color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --fcs-card-idle:color-mix(in srgb, var(--color-text-primary) 4%, var(--color-surface-primary));
+      --fcs-card-hover:color-mix(in srgb, var(--color-text-primary) 8%, var(--color-surface-primary));
+      --fcs-tint-0:color-mix(in srgb, var(--btn-bg-enable) 14%, var(--color-surface-primary));
+      --fcs-tint-1:color-mix(in srgb, var(--btn-bg-enable) 22%, var(--color-surface-primary));
+      --fcs-tint-2:color-mix(in srgb, var(--btn-bg-enable) 30%, var(--color-surface-primary));
+      --fcs-tint-3:color-mix(in srgb, var(--btn-bg-enable) 38%, var(--color-surface-primary));
+      --fcs-panel-0:color-mix(in srgb, var(--btn-bg-enable) 32%, var(--color-surface-primary));
+      --fcs-panel-1:color-mix(in srgb, var(--btn-bg-enable) 48%, var(--color-surface-primary));
+      --fcs-panel-2:color-mix(in srgb, var(--btn-bg-enable) 64%, var(--color-surface-primary));
+      --fcs-panel-3:color-mix(in srgb, var(--btn-bg-enable) 80%, var(--color-surface-primary));
+    }
+    .wpmn-sec-feature-color-switcher .wrap{max-width:1200px;margin:0 auto}
+    .wpmn-sec-feature-color-switcher .grid{display:grid;grid-template-columns:1fr 2fr;grid-auto-rows:1fr;gap:var(--primitive-space-16)}
+
+    /* feature cards (left) */
+    .wpmn-sec-feature-color-switcher .card{grid-column:1;display:flex;flex-direction:column;gap:var(--primitive-space-8);padding:var(--primitive-space-16);border-radius:var(--radius-sm);background:var(--fcs-card-idle);font:inherit;color:inherit;text-align:left;border:0;cursor:pointer;transition:background-color .4s ease;min-height:150px}
+    .wpmn-sec-feature-color-switcher .card:not(.active):hover{background:var(--fcs-card-hover)}
+    .wpmn-sec-feature-color-switcher .card.active[data-i="0"]{background:var(--fcs-tint-0)}
+    .wpmn-sec-feature-color-switcher .card.active[data-i="1"]{background:var(--fcs-tint-1)}
+    .wpmn-sec-feature-color-switcher .card.active[data-i="2"]{background:var(--fcs-tint-2)}
+    .wpmn-sec-feature-color-switcher .card.active[data-i="3"]{background:var(--fcs-tint-3)}
+    .wpmn-sec-feature-color-switcher .card .ico{width:var(--spacing-icon-size-lg);height:var(--spacing-icon-size-lg);display:block;color:var(--color-text-primary)}
+    .wpmn-sec-feature-color-switcher .card .ico svg{width:100%;height:100%;display:block}
+    .wpmn-sec-feature-color-switcher .card p{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);max-width:34ch}
+    .wpmn-sec-feature-color-switcher .card p b{font-weight:var(--font-weight-bold)}
+
+    /* color-shifting panel (right, spans all rows) */
+    .wpmn-sec-feature-color-switcher .panel{grid-column:2;grid-row:1 / 5;position:relative;border-radius:var(--radius-sm);overflow:hidden;background:var(--fcs-panel-0);transition:background-color .5s ease;min-height:480px}
+    .wpmn-sec-feature-color-switcher .panel[data-active="0"]{background:var(--fcs-panel-0)}
+    .wpmn-sec-feature-color-switcher .panel[data-active="1"]{background:var(--fcs-panel-1)}
+    .wpmn-sec-feature-color-switcher .panel[data-active="2"]{background:var(--fcs-panel-2)}
+    .wpmn-sec-feature-color-switcher .panel[data-active="3"]{background:var(--fcs-panel-3)}
+    .wpmn-sec-feature-color-switcher .layer{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+    .wpmn-sec-feature-color-switcher .layer.active{opacity:1}
+    .wpmn-sec-feature-color-switcher .layer img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+    @media (max-width:900px){
+      .wpmn-sec-feature-color-switcher{padding:var(--primitive-space-64) var(--primitive-space-20)}
+      .wpmn-sec-feature-color-switcher .grid{grid-template-columns:1fr;grid-auto-rows:auto}
+      .wpmn-sec-feature-color-switcher .card{grid-column:1;min-height:0}
+      .wpmn-sec-feature-color-switcher .panel{grid-column:1;grid-row:auto;order:-1;min-height:320px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-feature-color-switcher .card,
+      .wpmn-sec-feature-color-switcher .panel,
+      .wpmn-sec-feature-color-switcher .layer{transition:none}
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="grid">
+
+      <button class="card active" data-i="0" type="button">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19c0-2.8-2.7-5-6-5s-6 2.2-6 5"/><circle cx="10" cy="7.5" r="3.5"/><path d="M17 13.6c2.3.5 4 2.3 4 4.4"/><path d="M16.4 5.3a3.3 3.3 0 0 1 0 6"/></svg></span>
+        <p><b>Grow your list</b> with forms, landing pages, and opt-ins that turn visitors into subscribers.</p>
+      </button>
+
+      <button class="card" data-i="1" type="button">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></span>
+        <p><b>Send emails that get opened</b> with a drag-and-drop builder and clean, reliable delivery.</p>
+      </button>
+
+      <button class="card" data-i="2" type="button">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9a4 4 0 0 1 0 8H7"/><path d="M7 4 4 7l3 3"/><path d="M17 20l3-3-3-3"/></svg></span>
+        <p><b>Automate every follow-up</b> with visual sequences that run the moment a contact qualifies.</p>
+      </button>
+
+      <button class="card" data-i="3" type="button">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/><path d="M5 11.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></svg></span>
+        <p><b>Turn contacts into revenue</b> with smart tags, segments, and campaigns that pay off.</p>
+      </button>
+
+      <div class="panel" data-active="0">
+        <div class="layer active" data-i="0"><img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=1400&q=80" alt="List growth workspace"></div>
+        <div class="layer" data-i="1"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80" alt="Email campaign collaboration"></div>
+        <div class="layer" data-i="2"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80" alt="Automation workflow"></div>
+        <div class="layer" data-i="3"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1400&q=80" alt="Revenue review"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Drive kept verbatim from the reference: on desktop a scroll-spy sets the active card to
+    // the one whose vertical center is nearest viewport center; hovering or clicking a card also
+    // activates it. The matching panel layer crossfades (opacity .5s) and the panel fill tweens
+    // (.5s) between brand-tinted states. Re-scoped to this section root; panel/card colors come
+    // from CSS tokens via data attributes, no raw colors in JS.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-feature-color-switcher');
+      if (!sec) return;
+      var cards = [].slice.call(sec.querySelectorAll('.card'));
+      var layers = [].slice.call(sec.querySelectorAll('.layer'));
+      var panel = sec.querySelector('.panel');
+      var cur = -1;
+
+      function setActive(i) {
+        if (i === cur) return;
+        cur = i;
+        cards.forEach(function (c, k) { c.classList.toggle('active', k === i); });
+        layers.forEach(function (l, k) { l.classList.toggle('active', k === i); });
+        panel.setAttribute('data-active', String(i));
+      }
+
+      function update() {
+        if (innerWidth < 901) return;
+        var mid = innerHeight / 2;
+        var best = 0, bestDist = Infinity;
+        cards.forEach(function (c, k) {
+          var r = c.getBoundingClientRect();
+          var center = r.top + r.height / 2;
+          var d = Math.abs(center - mid);
+          if (d < bestDist) { bestDist = d; best = k; }
+        });
+        setActive(best);
+      }
+
+      cards.forEach(function (c, i) {
+        c.addEventListener('mouseenter', function () { if (innerWidth >= 901) setActive(i); });
+        c.addEventListener('click', function () { setActive(i); });
+      });
+
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+      setActive(0);
+      update();
+    })();
+  </script>
+</section>

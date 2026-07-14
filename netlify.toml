@@ -1,0 +1,15 @@
+# Netlify config for the WPMN Design System demo.
+# No build step — the repo is plain static files served as-is.
+# demo.html loads registry.json + sections from relative paths,
+# with GitHub raw as a fallback, so nothing needs compiling.
+
+[build]
+  publish = "."
+  command = ""
+
+# Serve the full demo at the root URL (/) instead of the old index.html.
+# status 200 = rewrite, so the address bar stays clean at "/".
+[[redirects]]
+  from = "/"
+  to = "/demo.html"
+  status = 200

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="fluentplayer">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FluentPlayer — On-System Rebuild (Full Home)</title>
+
+<link rel="stylesheet" href="wpmn-bundle.css">
+<link rel="stylesheet" href="wpmn-components.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300..700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  /* ── scaffold ─────────────────────────────────────────────── */
+  body{margin:0;font-family:var(--font-family-base);color:var(--color-text-primary);background:var(--color-surface-primary)}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .fp-wrap{max-width:1200px;margin:0 auto;padding-inline:var(--primitive-space-24)}
+  .fp-head{max-width:760px;margin:0 auto;text-align:center}
+  .fp-head h2{margin:0;color:var(--color-text-primary)}
+  .fp-head .sub{margin:var(--spacing-h-xl-to-medium) 0 0;color:var(--color-text-secondary)}
+  .fp-sprite{position:absolute;width:0;height:0;overflow:hidden}
+  .fp-ico{width:24px;height:24px;display:block;color:var(--color-surface-icon-brand)}
+  section{padding-block:var(--spacing-section-padding-tb-desktop)}
+
+  /* ── navbar ───────────────────────────────────────────────── */
+  .wpmn-sec-fp-nav{border-bottom:1px solid var(--color-border-primary);position:sticky;top:0;z-index:20;background:var(--color-surface-primary);padding-block:0}
+  .wpmn-sec-fp-nav .fp-wrap{display:flex;align-items:center;gap:var(--primitive-space-32);height:72px}
+  .wpmn-sec-fp-nav .fp-logo{height:28px}
+  .wpmn-sec-fp-nav .fp-logo svg{height:28px;width:auto;display:block}
+  .wpmn-sec-fp-nav nav{display:flex;gap:var(--primitive-space-24);margin-inline-start:var(--primitive-space-16)}
+  .wpmn-sec-fp-nav nav a{text-decoration:none}
+  .wpmn-sec-fp-nav .fp-nav-cta{margin-inline-start:auto}
+
+  /* ── hero ─────────────────────────────────────────────────── */
+  .wpmn-sec-fp-hero{text-align:center}
+  .wpmn-sec-fp-hero .fp-inner{max-width:840px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+  .fp-badge{display:inline-flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-8) var(--primitive-space-16);border:1px solid var(--color-border-primary);border-radius:999px;margin-bottom:var(--primitive-space-24)}
+  .fp-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--color-surface-icon-brand)}
+  .wpmn-sec-fp-hero h1{margin:0}
+  .wpmn-sec-fp-hero h1 em{font-style:normal;color:var(--color-surface-icon-brand)}
+  .wpmn-sec-fp-hero .fp-sub{margin:var(--spacing-h-xxl-to-large) 0 0;max-width:640px;color:var(--color-text-secondary)}
+  .fp-actions{display:flex;gap:var(--primitive-space-16);margin-top:var(--primitive-space-32);flex-wrap:wrap;justify-content:center}
+  .fp-audience{display:flex;gap:var(--primitive-space-8);flex-wrap:wrap;justify-content:center;margin-top:var(--primitive-space-24)}
+  .fp-audience span{padding:var(--primitive-space-4) var(--primitive-space-12);background:var(--color-surface-alt);border-radius:var(--radius-sm);color:var(--color-text-secondary)}
+  .fp-media{margin-top:var(--primitive-space-64);width:100%;max-width:980px;border:1px solid var(--color-border-primary);border-radius:var(--radius-md);background:var(--color-surface-alt);box-shadow:var(--shadow-soft-500);overflow:hidden}
+  .fp-media img{width:100%;height:auto;display:block}
+
+  /* ── trust strip ──────────────────────────────────────────── */
+  .wpmn-sec-fp-trust{padding-block:var(--primitive-space-48);border-block:1px solid var(--color-border-primary);background:var(--color-surface-alt)}
+  .wpmn-sec-fp-trust .fp-wrap{display:flex;align-items:center;justify-content:center;gap:var(--primitive-space-40);flex-wrap:wrap}
+  .wpmn-sec-fp-trust .lbl{color:var(--color-text-secondary)}
+  .wpmn-sec-fp-trust .logos{display:flex;gap:var(--primitive-space-40);align-items:center;flex-wrap:wrap}
+  .wpmn-sec-fp-trust .logos img{height:26px;width:auto;opacity:.8}
+
+  /* ── card grids (shared) ──────────────────────────────────── */
+  .fp-grid{display:grid;gap:var(--primitive-space-24);margin-top:var(--primitive-space-64)}
+  .fp-grid-3{grid-template-columns:repeat(3,1fr)}
+  .fp-grid-4{grid-template-columns:repeat(4,1fr)}
+  .fp-card{border:1px solid var(--color-border-primary);border-radius:var(--radius-md);background:var(--color-surface-primary);overflow:hidden;display:flex;flex-direction:column}
+  .fp-card .body{padding:var(--primitive-space-24)}
+  .fp-card h3,.fp-card h4{margin:0}
+  .fp-card .desc{margin:var(--spacing-h-m-to-base) 0 0;color:var(--color-text-secondary)}
+  .fp-card .media{aspect-ratio:16/10;background:var(--color-surface-alt);overflow:hidden}
+  .fp-card .media img{width:100%;height:100%;object-fit:cover}
+  .fp-iconbox{width:48px;height:48px;border-radius:var(--radius-sm);background:var(--color-surface-alt);display:flex;align-items:center;justify-content:center;margin-bottom:var(--primitive-space-16)}
+
+  /* ── use cases ────────────────────────────────────────────── */
+  .wpmn-sec-fp-usecases .fp-grid{grid-template-columns:repeat(4,1fr)}
+  .wpmn-sec-fp-usecases .fp-card:first-child{grid-column:span 2}
+
+  /* ── features (alternating rows) ──────────────────────────── */
+  .fp-feature{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-64);align-items:center;margin-top:var(--primitive-space-64)}
+  .fp-feature:nth-child(even) .fp-feat-media{order:-1}
+  .fp-feature h3{margin:0}
+  .fp-feature .desc{margin:var(--spacing-h-l-to-medium) 0 0;color:var(--color-text-secondary)}
+  .fp-feature ul{list-style:none;margin:var(--primitive-space-24) 0 0;padding:0;display:flex;flex-direction:column;gap:var(--primitive-space-12)}
+  .fp-feature li{display:flex;align-items:center;gap:var(--primitive-space-8);color:var(--color-text-primary)}
+  .fp-feature li .fp-ico{width:20px;height:20px;flex:none}
+  .fp-feat-media{border:1px solid var(--color-border-primary);border-radius:var(--radius-md);overflow:hidden;background:var(--color-surface-alt);box-shadow:var(--shadow-soft-400)}
+  .fp-feat-media img{width:100%;height:auto;display:block}
+
+  /* ── interactive layers ───────────────────────────────────── */
+  .wpmn-sec-fp-layers .fp-grid{grid-template-columns:repeat(3,1fr)}
+  .wpmn-sec-fp-layers .eyebrow{display:block;margin-bottom:var(--primitive-space-4);color:var(--color-surface-icon-brand)}
+
+  /* ── analytics (dark panel) ───────────────────────────────── */
+  .wpmn-sec-fp-analytics{background:var(--color-surface-secondary);color:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-analytics .fp-head h2{color:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-analytics .fp-head .sub{color:var(--color-text-primary-invert);opacity:.82}
+  .wpmn-sec-fp-analytics .fp-grid{grid-template-columns:repeat(3,1fr)}
+  .wpmn-sec-fp-analytics .fp-card{background:var(--color-surface-secondary-alt);border-color:var(--color-border-primary-invert)}
+  .wpmn-sec-fp-analytics .fp-card h3{color:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-analytics .fp-card .desc{color:var(--color-text-primary-invert);opacity:.78}
+  .wpmn-sec-fp-analytics .fp-iconbox{background:var(--color-surface-secondary)}
+  .wpmn-sec-fp-analytics .fp-ico{color:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-analytics .metrics{display:flex;gap:var(--primitive-space-16);flex-wrap:wrap;margin-top:var(--primitive-space-16)}
+  .wpmn-sec-fp-analytics .metric{flex:1;min-width:120px}
+  .wpmn-sec-fp-analytics .metric .n{display:block;color:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-analytics .metric .k{color:var(--color-text-primary-invert);opacity:.7}
+
+  /* ── integrations logo cloud ──────────────────────────────── */
+  .wpmn-sec-fp-integrations .cloud{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--primitive-space-16);margin-top:var(--primitive-space-48)}
+  .wpmn-sec-fp-integrations .chip{aspect-ratio:1;border:1px solid var(--color-border-primary);border-radius:var(--radius-md);background:var(--color-surface-primary);display:flex;align-items:center;justify-content:center}
+  .wpmn-sec-fp-integrations .chip img{height:40px;width:40px;object-fit:contain}
+  .wpmn-sec-fp-integrations .fp-cta-wrap{text-align:center;margin-top:var(--primitive-space-32)}
+
+  /* ── minor features ───────────────────────────────────────── */
+  .wpmn-sec-fp-minor .fp-grid{grid-template-columns:repeat(3,1fr)}
+
+  /* ── social proof ─────────────────────────────────────────── */
+  .wpmn-sec-fp-social .fp-grid{grid-template-columns:repeat(3,1fr)}
+  .fp-quote{padding:var(--primitive-space-32)}
+  .fp-quote p{margin:0 0 var(--primitive-space-24);color:var(--color-text-primary)}
+  .fp-quote .who{display:flex;align-items:center;gap:var(--primitive-space-12)}
+  .fp-quote .who img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+  .fp-quote .who b{display:block}
+  .fp-quote .who span{color:var(--color-text-secondary)}
+
+  /* ── FAQ ──────────────────────────────────────────────────── */
+  .wpmn-sec-fp-faq .fp-faqlist{max-width:760px;margin:var(--primitive-space-48) auto 0;display:flex;flex-direction:column;gap:var(--primitive-space-12)}
+  .fp-faqlist details{border:1px solid var(--color-border-primary);border-radius:var(--radius-sm);background:var(--color-surface-primary);overflow:hidden}
+  .fp-faqlist summary{list-style:none;cursor:pointer;padding:var(--primitive-space-20) var(--primitive-space-24);display:flex;align-items:center;justify-content:space-between;gap:var(--primitive-space-16)}
+  .fp-faqlist summary::-webkit-details-marker{display:none}
+  .fp-faqlist summary .fp-ico{flex:none;transition:transform 160ms ease}
+  .fp-faqlist details[open] summary .fp-ico{transform:rotate(45deg)}
+  .fp-faqlist .ans{padding:0 var(--primitive-space-24) var(--primitive-space-20);color:var(--color-text-secondary)}
+
+  /* ── final CTA ────────────────────────────────────────────── */
+  .wpmn-sec-fp-cta{background:var(--color-surface-secondary);color:var(--color-text-primary-invert);text-align:center}
+  .wpmn-sec-fp-cta .fp-inner{max-width:680px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+  .wpmn-sec-fp-cta .fp-logo{height:32px;margin-bottom:var(--primitive-space-32)}
+  .wpmn-sec-fp-cta .fp-logo svg{height:32px;width:auto}
+  .wpmn-sec-fp-cta h2{margin:0;color:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-cta .fp-sub{margin:var(--spacing-h-xl-to-medium) 0 0;color:var(--color-text-primary-invert);opacity:.82}
+  .wpmn-sec-fp-cta form{display:flex;gap:var(--primitive-space-8);margin-top:var(--primitive-space-32);width:100%;max-width:520px}
+  .fp-email-field{flex:1;min-width:0;height:56px;padding-inline:var(--primitive-space-20);border:1.5px solid var(--color-border-primary-invert);border-radius:var(--radius-xsm);background:transparent;color:var(--color-text-primary-invert);font-family:var(--font-family-base);font-size:var(--font-size-body-base);outline:none;transition:border-color 120ms ease}
+  .fp-email-field::placeholder{color:var(--color-text-primary-invert);opacity:.55}
+  .fp-email-field:focus-visible{border-color:var(--color-surface-icon-brand)}
+
+  /* ── footer ───────────────────────────────────────────────── */
+  .wpmn-sec-fp-footer{background:var(--color-surface-secondary);color:var(--color-text-primary-invert);padding-block:var(--primitive-space-64) var(--primitive-space-40);border-top:1px solid var(--color-border-primary-invert)}
+  .wpmn-sec-fp-footer .top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--primitive-space-48)}
+  .wpmn-sec-fp-footer .fp-logo{height:30px;margin-bottom:var(--primitive-space-16)}
+  .wpmn-sec-fp-footer .fp-logo svg{height:30px;width:auto}
+  .wpmn-sec-fp-footer .blurb{color:var(--color-text-primary-invert);opacity:.7;max-width:300px}
+  .wpmn-sec-fp-footer h4{margin:0 0 var(--primitive-space-16);color:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--primitive-space-12)}
+  .wpmn-sec-fp-footer ul a{text-decoration:none;color:var(--color-text-primary-invert);opacity:.75}
+  .wpmn-sec-fp-footer .bottom{display:flex;justify-content:space-between;gap:var(--primitive-space-16);flex-wrap:wrap;margin-top:var(--primitive-space-48);padding-top:var(--primitive-space-24);border-top:1px solid var(--color-border-primary-invert);color:var(--color-text-primary-invert);opacity:.7}
+
+  /* ── feature graphics (token-driven mini mockups) ────────── */
+  .fp-gfx{margin-bottom:var(--primitive-space-20)}
+  .fp-graphic{width:100%;height:auto;display:block;border-radius:var(--radius-sm);background:var(--color-surface-alt);border:1px solid var(--color-border-primary)}
+  .fp-graphic .vid{fill:var(--color-surface-alt)}
+  .fp-graphic .card{fill:var(--color-surface-primary);stroke:var(--color-border-primary);stroke-width:1.5}
+  .fp-graphic .field{fill:var(--color-surface-alt)}
+  .fp-graphic .ink{fill:var(--color-text-primary)}
+  .fp-graphic .mut{fill:var(--color-text-secondary);opacity:.45}
+  .fp-graphic .ghost{fill:var(--color-text-primary);opacity:.16}
+  .fp-graphic .track{fill:var(--color-text-primary);opacity:.14}
+  .fp-graphic .brand{fill:var(--color-surface-icon-brand)}
+  .fp-graphic .brand-2{fill:var(--color-surface-icon-brand);opacity:.18}
+  .fp-graphic .bln{stroke:var(--color-surface-icon-brand);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .fp-graphic .iln{stroke:var(--color-text-primary);fill:none;stroke-width:2;stroke-linecap:round;opacity:.5}
+  .wpmn-sec-fp-analytics .fp-graphic{background:var(--color-surface-secondary);border-color:var(--color-border-primary-invert)}
+  .wpmn-sec-fp-analytics .fp-graphic .vid,.wpmn-sec-fp-analytics .fp-graphic .card{fill:var(--color-surface-secondary-alt);stroke:var(--color-border-primary-invert)}
+  .wpmn-sec-fp-analytics .fp-graphic .ink{fill:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-analytics .fp-graphic .iln{stroke:var(--color-text-primary-invert)}
+  .wpmn-sec-fp-analytics .fp-graphic .track,.wpmn-sec-fp-analytics .fp-graphic .ghost{fill:var(--color-text-primary-invert)}
+
+  /* ── motion ───────────────────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference){
+    .fp-rise{opacity:0;transform:translateY(12px);animation:wpmn-fp-rise .6s ease forwards}
+    @keyframes wpmn-fp-rise{to{opacity:1;transform:none}}
+  }
+
+  /* ── responsive ───────────────────────────────────────────── */
+  @media (max-width:768px){
+    section{padding-block:var(--spacing-section-padding-tb-mobile)}
+    .wpmn-sec-fp-nav nav{display:none}
+    .fp-grid-3,.fp-grid-4,.wpmn-sec-fp-usecases .fp-grid,.wpmn-sec-fp-layers .fp-grid,.wpmn-sec-fp-analytics .fp-grid,.wpmn-sec-fp-minor .fp-grid,.wpmn-sec-fp-social .fp-grid{grid-template-columns:1fr}
+    .wpmn-sec-fp-usecases .fp-card:first-child{grid-column:span 1}
+    .fp-feature{grid-template-columns:1fr;gap:var(--primitive-space-32)}
+    .fp-feature:nth-child(even) .fp-feat-media{order:0}
+    .wpmn-sec-fp-integrations .cloud{grid-template-columns:repeat(3,1fr)}
+    .wpmn-sec-fp-footer .top{grid-template-columns:1fr 1fr}
+    .wpmn-sec-fp-cta form{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<!-- ░░ LOGO + ICON SPRITE ░░ -->
+<svg class="fp-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <!-- stroke.rounded icon set, 24-box, currentColor -->
+    <g id="i-list" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></g>
+    <g id="i-bookmark" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4V4Z"/></g>
+    <g id="i-sliders" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h10M18 8h2M4 16h2M10 16h10"/><circle cx="16" cy="8" r="2.2"/><circle cx="8" cy="16" r="2.2"/></g>
+    <g id="i-check" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7"/></g>
+    <g id="i-form" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="17" rx="2.5"/><path d="M9 8h6M9 12h6M9 16h3"/></g>
+    <g id="i-mail" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></g>
+    <g id="i-flag" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></g>
+    <g id="i-target" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></g>
+    <g id="i-megaphone" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4l10 4V6L4 10ZM14 8a4 4 0 0 1 0 8M7 14v4"/></g>
+    <g id="i-code" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 8-5 4 5 4M15 8l5 4-5 4"/></g>
+    <g id="i-chart" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16M8 16v-3M12 16V9M16 16v-6"/></g>
+    <g id="i-eye" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.6"/></g>
+    <g id="i-trend" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15l5-5 4 4 7-7M16 4h4v4"/></g>
+    <g id="i-palette" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.4 0 2-1 1.5-2.2-.5-1.2.2-2.3 1.5-2.3H18a3 3 0 0 0 3-3c0-4.7-4-6.2-9-6.2Z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="16" cy="11" r="1"/></g>
+    <g id="i-refresh" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 0 1 12-5l2 2M19 12a7 7 0 0 1-12 5l-2-2M17 4v5h-5M7 20v-5h5"/></g>
+    <g id="i-stack" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 4-8 4-8-4 8-4ZM4 12l8 4 8-4M4 17l8 4 8-4"/></g>
+    <g id="i-gauge" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18a8 8 0 1 1 14 0M12 12l3-3"/></g>
+    <g id="i-globe" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.5 2.5 14 0 17M12 3.5c-2.5 2.5-2.5 14 0 17"/></g>
+    <g id="i-clock" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></g>
+    <g id="i-plus" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g>
+    <g id="i-arrow" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></g>
+
+    <!-- FluentPlayer logo, dark (for light surfaces) -->
+    <symbol id="fp-logo-dark" viewBox="0 0 305 64">
+      <rect width="64" height="64" rx="6.4" fill="#DD1F13"/>
+      <path d="M38.4579 22.6325L23.8413 14.1936C21.1263 12.6261 17.7325 14.5855 17.7325 17.7205V27.5445C17.7325 30.6796 21.1263 32.639 23.8413 31.0714L38.4579 22.6325ZM45.4058 37.3562C49.5289 34.9756 49.5289 29.0244 45.4057 26.6439C44.9761 26.3959 44.4468 26.3959 44.0172 26.6439L20.2253 40.3803C18.6828 41.2709 17.7325 42.9168 17.7325 44.698C17.7325 48.5359 21.8872 50.9346 25.211 49.0157L45.4058 37.3562Z" fill="white"/>
+      <path d="M84.5355 16.6195C85.1162 16.5614 85.559 16.6413 85.8638 16.8592C86.1687 17.0772 86.3211 17.4186 86.3211 17.8835C86.3211 18.7844 85.8275 19.2785 84.8404 19.3656L83.5774 19.4528C81.9223 19.569 80.6882 20.0703 79.8752 20.9566C79.0622 21.8428 78.5832 23.1724 78.4379 24.9449L78.3508 26.1654H83.0982C83.5628 26.1654 83.9185 26.2889 84.1653 26.5359C84.4121 26.7829 84.5355 27.1099 84.5355 27.5167C84.5355 27.9526 84.4048 28.3012 84.1434 28.5628C83.8822 28.8244 83.5047 28.955 83.0111 28.955H78.1331L76.7829 45.911C76.7538 46.4631 76.5651 46.8846 76.2168 47.1752C75.8683 47.4657 75.4472 47.6111 74.9537 47.6111C74.4601 47.6111 74.0463 47.4657 73.7124 47.1752C73.3785 46.8846 73.2261 46.4631 73.2551 45.911L74.6052 28.955H71.6872C71.2226 28.955 70.8669 28.8315 70.6201 28.5845C70.3733 28.3375 70.2499 28.0107 70.2499 27.6039C70.2499 27.168 70.3806 26.8193 70.6418 26.5577C70.9032 26.2962 71.2951 26.1654 71.8179 26.1654H74.823L74.8666 25.3808C75.0698 22.562 75.8974 20.448 77.3491 19.0386C78.801 17.6293 80.906 16.8375 83.6644 16.663L84.5355 16.6195Z" fill="#2C2C2C"/>
+      <path d="M88.8465 47.6107C88.353 47.6107 87.9465 47.4653 87.6272 47.1748C87.3077 46.8842 87.1625 46.4483 87.1916 45.867L89.4128 18.0576C89.4418 17.5054 89.6451 17.0914 90.0226 16.8154C90.4001 16.5392 90.8356 16.4012 91.3292 16.4012C91.8228 16.4012 92.222 16.5392 92.5268 16.8154C92.8318 17.0914 92.9697 17.5054 92.9406 18.0576L90.7194 45.867C90.6903 46.4483 90.4945 46.8842 90.1314 47.1748C89.7685 47.4653 89.3403 47.6107 88.8465 47.6107Z" fill="#2C2C2C"/>
+      <path d="M114.152 25.7301C114.674 25.7301 115.088 25.8826 115.393 26.1877C115.698 26.4928 115.821 26.9216 115.763 27.4736L114.283 45.9987C114.254 46.4927 114.057 46.8851 113.694 47.1757C113.332 47.4662 112.903 47.6116 112.41 47.6116C111.916 47.6116 111.524 47.4735 111.234 47.1975C110.943 46.9214 110.813 46.5364 110.842 46.0424L111.016 43.9501C110.29 45.1416 109.317 46.0641 108.098 46.718C106.878 47.3718 105.514 47.6988 104.004 47.6988C101.652 47.6988 99.8662 47.0813 98.6467 45.8462C97.4272 44.6112 96.8175 42.8023 96.8175 40.4194C96.8175 39.8964 96.8319 39.504 96.861 39.2426L97.7756 27.4736C97.8337 26.9216 98.0442 26.4928 98.4072 26.1877C98.7701 25.8826 99.1983 25.7301 99.6921 25.7301C100.215 25.7301 100.628 25.8826 100.933 26.1877C101.238 26.4928 101.362 26.9216 101.304 27.4736L100.389 39.0246C100.36 39.228 100.345 39.5331 100.345 39.9399C100.345 43.1365 101.87 44.7347 104.918 44.7347C106.806 44.7347 108.316 44.1535 109.448 42.9912C110.58 41.8288 111.219 40.2161 111.364 38.1529L112.235 27.4736C112.293 26.9216 112.504 26.4928 112.867 26.1877C113.23 25.8826 113.658 25.7301 114.152 25.7301Z" fill="#2C2C2C"/>
+      <path d="M123.428 37.3228V37.4972C123.428 39.8219 124.002 41.6235 125.149 42.9021C126.295 44.1807 127.958 44.82 130.135 44.82C132.429 44.82 134.447 44.1807 136.189 42.9021C136.48 42.6987 136.77 42.597 137.06 42.597C137.409 42.597 137.692 42.7278 137.91 42.9894C138.128 43.2508 138.236 43.5559 138.236 43.9046C138.236 44.4278 138.004 44.9072 137.54 45.3431C136.756 46.0405 135.66 46.6072 134.251 47.0431C132.843 47.479 131.413 47.6969 129.961 47.6969C126.883 47.6969 124.437 46.767 122.622 44.9072C120.808 43.0475 119.9 40.5484 119.9 37.4099C119.9 35.0853 120.329 33.0366 121.185 31.2639C122.042 29.4914 123.261 28.111 124.844 27.1231C126.426 26.1351 128.263 25.6411 130.353 25.6411C133.199 25.6411 135.376 26.491 136.886 28.191C138.396 29.8909 139.151 32.3538 139.151 35.5792C139.151 36.1313 139.006 36.56 138.716 36.8651C138.425 37.1702 138.033 37.3228 137.54 37.3228H123.428ZM130.484 28.3872C128.538 28.3872 126.985 28.961 125.824 30.1088C124.662 31.2568 123.922 32.9059 123.602 35.0562H135.972C136.059 32.8768 135.616 31.2204 134.643 30.0871C133.671 28.9537 132.284 28.3872 130.484 28.3872Z" fill="#2C2C2C"/>
+      <path d="M155.353 25.6411C157.734 25.6411 159.548 26.2659 160.797 27.5154C162.045 28.765 162.67 30.5811 162.67 32.964C162.67 33.487 162.655 33.8794 162.626 34.1408L161.711 45.8661C161.653 46.4474 161.45 46.8833 161.102 47.1739C160.753 47.4644 160.332 47.6098 159.839 47.6098C159.287 47.6098 158.859 47.4644 158.554 47.1739C158.249 46.8833 158.126 46.4474 158.184 45.8661L159.098 34.3587C159.127 34.1554 159.142 33.8503 159.142 33.4435C159.142 30.2179 157.588 28.6051 154.482 28.6051C152.507 28.6051 150.939 29.1936 149.778 30.3704C148.616 31.5473 147.949 33.1673 147.774 35.2305L146.903 45.8661C146.874 46.4474 146.685 46.8833 146.337 47.1739C145.989 47.4644 145.553 47.6098 145.03 47.6098C144.508 47.6098 144.094 47.4644 143.789 47.1739C143.484 46.8833 143.346 46.4474 143.375 45.8661L144.9 27.3846C144.929 26.8616 145.125 26.4548 145.488 26.1641C145.851 25.8735 146.279 25.7283 146.773 25.7283C147.266 25.7283 147.658 25.8735 147.949 26.1641C148.239 26.4548 148.37 26.847 148.341 27.341L148.166 29.4333C148.892 28.2418 149.879 27.3119 151.128 26.6437C152.377 25.9753 153.785 25.6411 155.353 25.6411Z" fill="#2C2C2C"/>
+      <path d="M173.34 39.721C173.311 39.9245 173.297 40.2152 173.297 40.5928C173.297 41.9877 173.616 43.0484 174.255 43.7748C174.894 44.5013 175.794 44.8646 176.955 44.8646C177.333 44.8646 177.695 44.8427 178.044 44.7992C178.392 44.7556 178.654 44.7338 178.828 44.7338C179.118 44.7338 179.358 44.85 179.547 45.0826C179.735 45.3149 179.83 45.6346 179.83 46.0415C179.83 46.6516 179.576 47.0804 179.067 47.3274C178.559 47.5743 177.666 47.6978 176.389 47.6978C174.298 47.6978 172.672 47.1021 171.511 45.9107C170.349 44.7192 169.769 43.0338 169.769 40.8544C169.769 40.4475 169.783 40.1279 169.812 39.8955L170.64 28.9546H167.765C167.301 28.9546 166.945 28.8312 166.698 28.5842C166.451 28.3372 166.328 28.0103 166.328 27.6035C166.328 27.1386 166.466 26.7825 166.742 26.5355C167.018 26.2886 167.402 26.1651 167.896 26.1651H170.858L171.25 21.1959C171.308 20.7019 171.504 20.3024 171.838 19.9973C172.172 19.6921 172.6 19.5396 173.122 19.5396C173.674 19.5396 174.102 19.6994 174.407 20.0191C174.712 20.3388 174.835 20.76 174.777 21.2831L174.386 26.1651H179.176C179.612 26.1651 179.96 26.2886 180.222 26.5355C180.483 26.7825 180.614 27.1095 180.614 27.5164C180.614 27.9813 180.483 28.3372 180.222 28.5842C179.96 28.8312 179.583 28.9546 179.089 28.9546H174.168L173.34 39.721Z" fill="#2C2C2C"/>
+      <path d="M298.21 29.7132C298.716 28.3652 299.544 27.3541 300.696 26.6801C301.875 26.0061 303.181 25.6691 304.614 25.6691V31.7353C302.957 31.5387 301.468 31.8758 300.148 32.7464C298.856 33.617 298.21 35.0634 298.21 37.0854V47.1537H292.776V26.0903H298.21V29.7132Z" fill="#2C2C2C"/>
+      <path d="M272.89 38.8547C273.62 41.4946 275.6 42.8146 278.83 42.8146C280.908 42.8146 282.481 42.1125 283.548 40.7083L287.929 43.2359C285.851 46.2409 282.789 47.7435 278.745 47.7435C275.263 47.7435 272.468 46.6903 270.362 44.5839C268.256 42.4776 267.203 39.8236 267.203 36.622C267.203 33.4484 268.242 30.8085 270.32 28.7021C272.398 26.5677 275.066 25.5005 278.324 25.5005C281.413 25.5005 283.955 26.5677 285.949 28.7021C287.971 30.8366 288.982 33.4765 288.982 36.622C288.982 37.3241 288.912 38.0683 288.771 38.8547H272.89ZM272.805 34.642H283.548C283.239 33.2097 282.593 32.1425 281.61 31.4404C280.655 30.7383 279.56 30.3872 278.324 30.3872C276.864 30.3872 275.656 30.7663 274.701 31.5246C273.746 32.2548 273.114 33.2939 272.805 34.642Z" fill="#2C2C2C"/>
+      <path d="M260.721 26.0905H266.535L258.868 47.1539C257.772 50.187 256.312 52.3776 254.486 53.7257C252.689 55.1018 250.442 55.7197 247.746 55.5792V50.524C249.206 50.5521 250.358 50.2432 251.2 49.5972C252.071 48.9513 252.759 47.9121 253.265 46.4798L244.629 26.0905H250.569L256.045 40.2451L260.721 26.0905Z" fill="#2C2C2C"/>
+      <path d="M236.626 26.0903H242.06V47.1537H236.626V44.6682C234.997 46.7184 232.708 47.7435 229.759 47.7435C226.95 47.7435 224.535 46.6762 222.513 44.5418C220.519 42.3793 219.522 39.7394 219.522 36.622C219.522 33.5046 220.519 30.8787 222.513 28.7443C224.535 26.5817 226.95 25.5005 229.759 25.5005C232.708 25.5005 234.997 26.5256 236.626 28.5757V26.0903ZM226.599 40.9189C227.695 42.0142 229.085 42.5618 230.77 42.5618C232.455 42.5618 233.845 42.0142 234.941 40.9189C236.064 39.7955 236.626 38.3632 236.626 36.622C236.626 34.8807 236.064 33.4625 234.941 32.3672C233.845 31.2438 232.455 30.6821 230.77 30.6821C229.085 30.6821 227.695 31.2438 226.599 32.3672C225.504 33.4625 224.956 34.8807 224.956 36.622C224.956 38.3632 225.504 39.7955 226.599 40.9189Z" fill="#2C2C2C"/>
+      <path d="M210.209 47.1538V16.4012H215.643V47.1538H210.209Z" fill="#2C2C2C"/>
+      <path d="M196.609 17.6652C199.445 17.6652 201.832 18.62 203.77 20.5298C205.708 22.4395 206.677 24.7846 206.677 27.565C206.677 30.3453 205.708 32.6904 203.77 34.6001C201.832 36.5099 199.445 37.4648 196.609 37.4648H191.427V47.1539H185.614V17.6652H196.609ZM196.609 32.0304C197.844 32.0304 198.87 31.6091 199.684 30.7666C200.498 29.896 200.906 28.8288 200.906 27.565C200.906 26.2731 200.498 25.2059 199.684 24.3633C198.87 23.5208 197.844 23.0995 196.609 23.0995H191.427V32.0304H196.609Z" fill="#2C2C2C"/>
+    </symbol>
+
+    <!-- FluentPlayer logo, inverted (for dark surfaces) -->
+    <symbol id="fp-logo-inv" viewBox="0 0 305 64">
+      <rect width="64" height="64" rx="6.4" fill="white"/>
+      <path d="M38.4579 22.6327L23.8413 14.1938C21.1263 12.6262 17.7325 14.5856 17.7325 17.7207V27.5446C17.7325 30.6797 21.1263 32.6391 23.8413 31.0716L38.4579 22.6327ZM45.4058 37.3563C49.5289 34.9758 49.5289 29.0245 45.4057 26.644C44.9761 26.396 44.4468 26.396 44.0172 26.6441L20.2253 40.3804C18.6828 41.271 17.7325 42.9169 17.7325 44.6981C17.7325 48.5361 21.8872 50.9348 25.211 49.0158L45.4058 37.3563Z" fill="#DD1F13"/>
+      <path d="M84.5355 16.6197C85.1162 16.5616 85.559 16.6414 85.8638 16.8594C86.1687 17.0773 86.3211 17.4187 86.3211 17.8837C86.3211 18.7845 85.8275 19.2786 84.8404 19.3658L83.5774 19.4529C81.9223 19.5691 80.6882 20.0704 79.8752 20.9567C79.0622 21.8429 78.5832 23.1725 78.4379 24.9451L78.3508 26.1656H83.0982C83.5628 26.1656 83.9185 26.2891 84.1653 26.536C84.4121 26.783 84.5355 27.11 84.5355 27.5169C84.5355 27.9527 84.4048 28.3013 84.1434 28.5629C83.8822 28.8245 83.5047 28.9551 83.0111 28.9551H78.1331L76.7829 45.9112C76.7538 46.4632 76.5651 46.8847 76.2168 47.1753C75.8683 47.4658 75.4472 47.6112 74.9537 47.6112C74.4601 47.6112 74.0463 47.4658 73.7124 47.1753C73.3785 46.8847 73.2261 46.4632 73.2551 45.9112L74.6052 28.9551H71.6872C71.2226 28.9551 70.8669 28.8316 70.6201 28.5847C70.3733 28.3377 70.2499 28.0108 70.2499 27.604C70.2499 27.1681 70.3806 26.8194 70.6418 26.5578C70.9032 26.2964 71.2951 26.1656 71.8179 26.1656H74.823L74.8666 25.3809C75.0698 22.5622 75.8974 20.4482 77.3491 19.0388C78.801 17.6294 80.906 16.8376 83.6644 16.6632L84.5355 16.6197Z" fill="white"/>
+      <path d="M88.8465 47.6108C88.353 47.6108 87.9465 47.4654 87.6272 47.175C87.3077 46.8843 87.1625 46.4484 87.1916 45.8672L89.4128 18.0577C89.4418 17.5055 89.6451 17.0915 90.0226 16.8155C90.4001 16.5393 90.8356 16.4014 91.3292 16.4014C91.8228 16.4014 92.222 16.5393 92.5268 16.8155C92.8318 17.0915 92.9697 17.5055 92.9406 18.0577L90.7194 45.8672C90.6903 46.4484 90.4945 46.8843 90.1314 47.175C89.7685 47.4654 89.3403 47.6108 88.8465 47.6108Z" fill="white"/>
+      <path d="M114.152 25.7302C114.674 25.7302 115.088 25.8828 115.393 26.1879C115.698 26.4929 115.821 26.9217 115.763 27.4738L114.283 45.9989C114.254 46.4928 114.057 46.8852 113.694 47.1758C113.332 47.4663 112.903 47.6117 112.41 47.6117C111.916 47.6117 111.524 47.4736 111.234 47.1976C110.943 46.9216 110.813 46.5365 110.842 46.0425L111.016 43.9502C110.29 45.1417 109.317 46.0643 108.098 46.7181C106.878 47.3719 105.514 47.6989 104.004 47.6989C101.652 47.6989 99.8662 47.0814 98.6467 45.8463C97.4272 44.6114 96.8175 42.8024 96.8175 40.4195C96.8175 39.8965 96.8319 39.5041 96.861 39.2427L97.7756 27.4738C97.8337 26.9217 98.0442 26.4929 98.4072 26.1879C98.7701 25.8828 99.1983 25.7302 99.6921 25.7302C100.215 25.7302 100.628 25.8828 100.933 26.1879C101.238 26.4929 101.362 26.9217 101.304 27.4738L100.389 39.0248C100.36 39.2281 100.345 39.5332 100.345 39.94C100.345 43.1366 101.87 44.7349 104.918 44.7349C106.806 44.7349 108.316 44.1536 109.448 42.9913C110.58 41.8289 111.219 40.2162 111.364 38.153L112.235 27.4738C112.293 26.9217 112.504 26.4929 112.867 26.1879C113.23 25.8828 113.658 25.7302 114.152 25.7302Z" fill="white"/>
+      <path d="M123.428 37.3228V37.4972C123.428 39.8219 124.002 41.6235 125.149 42.9021C126.295 44.1807 127.958 44.82 130.135 44.82C132.429 44.82 134.447 44.1807 136.189 42.9021C136.48 42.6987 136.77 42.597 137.06 42.597C137.409 42.597 137.692 42.7278 137.91 42.9894C138.128 43.2508 138.236 43.5559 138.236 43.9046C138.236 44.4278 138.004 44.9072 137.54 45.3431C136.756 46.0405 135.66 46.6072 134.251 47.0431C132.843 47.479 131.413 47.6969 129.961 47.6969C126.883 47.6969 124.437 46.767 122.622 44.9072C120.808 43.0475 119.9 40.5484 119.9 37.4099C119.9 35.0853 120.329 33.0366 121.185 31.2639C122.042 29.4914 123.261 28.111 124.844 27.1231C126.426 26.1351 128.263 25.6411 130.353 25.6411C133.199 25.6411 135.376 26.491 136.886 28.191C138.396 29.8909 139.151 32.3538 139.151 35.5792C139.151 36.1313 139.006 36.56 138.716 36.8651C138.425 37.1702 138.033 37.3228 137.54 37.3228H123.428ZM130.484 28.3872C128.538 28.3872 126.985 28.961 125.824 30.1088C124.662 31.2568 123.922 32.9059 123.602 35.0562H135.972C136.059 32.8768 135.616 31.2204 134.643 30.0871C133.671 28.9537 132.284 28.3872 130.484 28.3872Z" fill="white"/>
+      <path d="M155.353 25.6411C157.734 25.6411 159.548 26.2659 160.797 27.5154C162.045 28.765 162.67 30.5811 162.67 32.964C162.67 33.487 162.655 33.8794 162.626 34.1408L161.711 45.8661C161.653 46.4474 161.45 46.8833 161.102 47.1739C160.753 47.4644 160.332 47.6098 159.839 47.6098C159.287 47.6098 158.859 47.4644 158.554 47.1739C158.249 46.8833 158.126 46.4474 158.184 45.8661L159.098 34.3587C159.127 34.1554 159.142 33.8503 159.142 33.4435C159.142 30.2179 157.588 28.6051 154.482 28.6051C152.507 28.6051 150.939 29.1936 149.778 30.3704C148.616 31.5473 147.949 33.1673 147.774 35.2305L146.903 45.8661C146.874 46.4474 146.685 46.8833 146.337 47.1739C145.989 47.4644 145.553 47.6098 145.03 47.6098C144.508 47.6098 144.094 47.4644 143.789 47.1739C143.484 46.8833 143.346 46.4474 143.375 45.8661L144.9 27.3846C144.929 26.8616 145.125 26.4548 145.488 26.1641C145.851 25.8735 146.279 25.7283 146.773 25.7283C147.266 25.7283 147.658 25.8735 147.949 26.1641C148.239 26.4548 148.37 26.847 148.341 27.341L148.166 29.4333C148.892 28.2418 149.879 27.3119 151.128 26.6437C152.377 25.9753 153.785 25.6411 155.353 25.6411Z" fill="white"/>
+      <path d="M173.34 39.721C173.311 39.9245 173.297 40.2152 173.297 40.5928C173.297 41.9877 173.616 43.0484 174.255 43.7748C174.894 44.5013 175.794 44.8646 176.955 44.8646C177.333 44.8646 177.695 44.8427 178.044 44.7992C178.392 44.7556 178.654 44.7338 178.828 44.7338C179.118 44.7338 179.358 44.85 179.547 45.0826C179.735 45.3149 179.83 45.6346 179.83 46.0415C179.83 46.6516 179.576 47.0804 179.067 47.3274C178.559 47.5743 177.666 47.6978 176.389 47.6978C174.298 47.6978 172.672 47.1021 171.511 45.9107C170.349 44.7192 169.769 43.0338 169.769 40.8544C169.769 40.4475 169.783 40.1279 169.812 39.8955L170.64 28.9546H167.765C167.301 28.9546 166.945 28.8312 166.698 28.5842C166.451 28.3372 166.328 28.0103 166.328 27.6035C166.328 27.1386 166.466 26.7825 166.742 26.5355C167.018 26.2886 167.402 26.1651 167.896 26.1651H170.858L171.25 21.1959C171.308 20.7019 171.504 20.3024 171.838 19.9973C172.172 19.6921 172.6 19.5396 173.122 19.5396C173.674 19.5396 174.102 19.6994 174.407 20.0191C174.712 20.3388 174.835 20.76 174.777 21.2831L174.386 26.1651H179.176C179.612 26.1651 179.96 26.2886 180.222 26.5355C180.483 26.7825 180.614 27.1095 180.614 27.5164C180.614 27.9813 180.483 28.3372 180.222 28.5842C179.96 28.8312 179.583 28.9546 179.089 28.9546H174.168L173.34 39.721Z" fill="white"/>
+      <path d="M298.21 29.7134C298.716 28.3653 299.544 27.3543 300.696 26.6802C301.875 26.0062 303.181 25.6692 304.614 25.6692V31.7355C302.957 31.5389 301.468 31.8759 300.148 32.7465C298.856 33.6171 298.21 35.0635 298.21 37.0856V47.1539H292.776V26.0905H298.21V29.7134Z" fill="white"/>
+      <path d="M272.89 38.8547C273.62 41.4946 275.6 42.8146 278.83 42.8146C280.908 42.8146 282.481 42.1125 283.548 40.7083L287.929 43.2359C285.851 46.2409 282.789 47.7435 278.745 47.7435C275.263 47.7435 272.468 46.6903 270.362 44.5839C268.256 42.4776 267.203 39.8236 267.203 36.622C267.203 33.4484 268.242 30.8085 270.32 28.7021C272.398 26.5677 275.066 25.5005 278.324 25.5005C281.413 25.5005 283.955 26.5677 285.949 28.7021C287.971 30.8366 288.982 33.4765 288.982 36.622C288.982 37.3241 288.912 38.0683 288.771 38.8547H272.89ZM272.805 34.642H283.548C283.239 33.2097 282.593 32.1425 281.61 31.4404C280.655 30.7383 279.56 30.3872 278.324 30.3872C276.864 30.3872 275.656 30.7663 274.701 31.5246C273.746 32.2548 273.114 33.2939 272.805 34.642Z" fill="white"/>
+      <path d="M260.721 26.0906H266.535L258.868 47.154C257.772 50.1871 256.312 52.3777 254.486 53.7258C252.689 55.1019 250.442 55.7198 247.746 55.5793V50.5241C249.206 50.5522 250.358 50.2433 251.2 49.5973C252.071 48.9514 252.759 47.9123 253.265 46.48L244.629 26.0906H250.569L256.045 40.2452L260.721 26.0906Z" fill="white"/>
+      <path d="M236.626 26.0903H242.06V47.1537H236.626V44.6682C234.997 46.7184 232.708 47.7435 229.759 47.7435C226.95 47.7435 224.535 46.6762 222.513 44.5418C220.519 42.3793 219.522 39.7394 219.522 36.622C219.522 33.5046 220.519 30.8787 222.513 28.7443C224.535 26.5817 226.95 25.5005 229.759 25.5005C232.708 25.5005 234.997 26.5256 236.626 28.5757V26.0903ZM226.599 40.9189C227.695 42.0142 229.085 42.5618 230.77 42.5618C232.455 42.5618 233.845 42.0142 234.941 40.9189C236.064 39.7955 236.626 38.3632 236.626 36.622C236.626 34.8807 236.064 33.4625 234.941 32.3672C233.845 31.2438 232.455 30.6821 230.77 30.6821C229.085 30.6821 227.695 31.2438 226.599 32.3672C225.504 33.4625 224.956 34.8807 224.956 36.622C224.956 38.3632 225.504 39.7955 226.599 40.9189Z" fill="white"/>
+      <path d="M210.209 47.1539V16.4014H215.643V47.1539H210.209Z" fill="white"/>
+      <path d="M196.609 17.6653C199.445 17.6653 201.832 18.6202 203.77 20.5299C205.708 22.4397 206.677 24.7847 206.677 27.5651C206.677 30.3455 205.708 32.6905 203.77 34.6003C201.832 36.51 199.445 37.4649 196.609 37.4649H191.427V47.1541H185.614V17.6653H196.609ZM196.609 32.0305C197.844 32.0305 198.87 31.6093 199.684 30.7667C200.498 29.8961 200.906 28.8289 200.906 27.5651C200.906 26.2732 200.498 25.206 199.684 24.3634C198.87 23.5209 197.844 23.0996 196.609 23.0996H191.427V32.0305H196.609Z" fill="white"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ░░ NAVBAR ░░ -->
+<header class="wpmn-sec-fp-nav">
+  <div class="fp-wrap">
+    <a class="fp-logo" href="#" aria-label="FluentPlayer home"><svg viewBox="0 0 305 64" role="img" aria-label="FluentPlayer"><use href="#fp-logo-dark"/></svg></a>
+    <nav>
+      <a href="#">Features</a><a href="#">Integrations</a><a href="#">Demo</a><a href="#">Comparisons</a><a href="#">Blog</a>
+    </nav>
+    <a class="fp-nav-cta wpmn-btn wpmn-btn--primary wpmn-btn--sm" href="#waitlist">Join Waitlist</a>
+  </div>
+</header>
+
+<!-- ░░ HERO ░░ -->
+<section class="wpmn-sec-fp-hero">
+  <div class="fp-wrap">
+    <div class="fp-inner fp-rise">
+      <span class="fp-badge text-body-label"><span class="dot"></span>Early Access · Join the waitlist</span>
+      <h1 class="text-h1">The Next-Generation <em>Video Player</em> for WordPress.</h1>
+      <p class="fp-sub text-body-large">Embed videos from YouTube, Vimeo, BunnyCDN, Mux, or self-hosted sources, and deliver a fast, fully branded content-watching experience that keeps viewers engaged.</p>
+      <div class="fp-actions">
+        <a class="wpmn-btn wpmn-btn--primary wpmn-btn--lg" href="#waitlist">Join Waitlist</a>
+        <a class="wpmn-btn wpmn-btn--secondary wpmn-btn--lg" href="#demo">Explore demo</a>
+      </div>
+      <div class="fp-audience text-body-small"><span>For Educators</span><span>For Creators</span><span>For Marketers</span><span>For Agencies</span></div>
+      <div class="fp-media"><img src="https://web.fluentplayer.com/wp-content/uploads/2026/02/FluentPlayer-Featured-Image-Final.webp" alt="FluentPlayer preview" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ TRUST STRIP ░░ -->
+<section class="wpmn-sec-fp-trust">
+  <div class="fp-wrap">
+    <span class="lbl text-body-label">Embed videos from</span>
+    <div class="logos">
+      <img src="https://fluentplayer.com/images/integrations/youtube-logo.svg" alt="YouTube" loading="lazy">
+      <img src="https://fluentplayer.com/images/integrations/Vimeo-logo.svg" alt="Vimeo" loading="lazy">
+      <img src="https://fluentplayer.com/images/integrations/Bunny-logo.svg" alt="BunnyCDN" loading="lazy">
+      <img src="https://fluentplayer.com/images/integrations/Mux-Logo.svg" alt="Mux" loading="lazy">
+      <img src="https://fluentplayer.com/images/integrations/wordpress-logo.svg" alt="WordPress" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ░░ USE CASES ░░ -->
+<section class="wpmn-sec-fp-usecases">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Designed for real-world video use cases.</h2>
+      <p class="sub text-body-medium">FluentPlayer adapts to how different sites actually use audio and video.</p>
+    </div>
+    <div class="fp-grid">
+      <article class="fp-card"><div class="media"><img src="https://fluentplayer.com/images/use-cases/online-learning.webp" alt="" loading="lazy"></div><div class="body"><h3 class="text-h4">Online Learning</h3><p class="desc text-body-base">Structure long-form educational video content using playlists, chapters, and resume playback so learners can follow lessons at their own pace.</p></div></article>
+      <article class="fp-card"><div class="media"><img src="https://fluentplayer.com/images/use-cases/community.webp" alt="" loading="lazy"></div><div class="body"><h3 class="text-h4">Community</h3><p class="desc text-body-base">Deliver exclusive video content for your community members with organized playlists and smooth, distraction-free playback.</p></div></article>
+      <article class="fp-card"><div class="media"><img src="https://fluentplayer.com/images/use-cases/marketing.webp" alt="" loading="lazy"></div><div class="body"><h3 class="text-h4">Marketing</h3><p class="desc text-body-base">Guide viewers through videos with overlays, buttons, and email capture while keeping playback consistent across landing pages.</p></div></article>
+      <article class="fp-card"><div class="media"><img src="https://fluentplayer.com/images/use-cases/content-creation.webp" alt="" loading="lazy"></div><div class="body"><h3 class="text-h4">Content Creation</h3><p class="desc text-body-base">Organize growing video libraries, add chapters for navigation, and support multiple video sources without re-uploading.</p></div></article>
+      <article class="fp-card"><div class="media"><img src="https://fluentplayer.com/images/use-cases/agencies.webp" alt="" loading="lazy"></div><div class="body"><h3 class="text-h4">Agencies</h3><p class="desc text-body-base">Reuse customized player presets to keep video behavior consistent across client sites, saving time while staying professional.</p></div></article>
+      <article class="fp-card"><div class="media"><img src="https://fluentplayer.com/images/use-cases/entertainment.webp" alt="" loading="lazy"></div><div class="body"><h3 class="text-h4">Entertainment</h3><p class="desc text-body-base">Present video content with smooth playback, playlists, and viewer-friendly controls for shows, episodes, trailers, or series.</p></div></article>
+      <article class="fp-card"><div class="media"><img src="https://fluentplayer.com/images/use-cases/audio-for-podcasting.webp" alt="" loading="lazy"></div><div class="body"><h3 class="text-h4">Podcasting</h3><p class="desc text-body-base">Upload audio directly to your media library and use all the same FluentPlayer settings you use for video.</p></div></article>
+    </div>
+  </div>
+</section>
+<!-- ░░ FEATURES ░░ -->
+<section class="wpmn-sec-fp-features">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Features that transform the viewing experience.</h2>
+      <p class="sub text-body-medium">FluentPlayer focuses on the parts of video playback that affect how viewers watch, navigate, and engage with your video.</p>
+    </div>
+
+    <div class="fp-feature">
+      <div>
+        <h3 class="text-h3">Build playlists from existing videos.</h3>
+        <p class="desc text-body-medium">Control how they are displayed, and guide viewers through content in a clear, sequential way.</p>
+        <ul class="text-body-base">
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>Pull from any source</li>
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>Grid, sidebar, or theatre layouts</li>
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>Autoplay and resume controls</li>
+        </ul>
+      </div>
+      <div class="fp-feat-media"><img src="https://img.youtube.com/vi/_J8783hdWPI/maxresdefault.jpg" alt="Playlist demo" loading="lazy"></div>
+    </div>
+
+    <div class="fp-feature">
+      <div>
+        <h3 class="text-h3">Split long videos into chapters.</h3>
+        <p class="desc text-body-medium">So viewers can jump directly to the sections they care about. Chapters make long-form videos easier to follow and reduce the need to go back and forth.</p>
+        <ul class="text-body-base">
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>One-click chapter navigation</li>
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>Works with every video source</li>
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>Remembered playback position</li>
+        </ul>
+      </div>
+      <div class="fp-feat-media"><img src="https://img.youtube.com/vi/GkZhGCJsIj8/maxresdefault.jpg" alt="Chapters demo" loading="lazy"></div>
+    </div>
+
+    <div class="fp-feature">
+      <div>
+        <h3 class="text-h3">Save player settings as reusable presets.</h3>
+        <p class="desc text-body-medium">Control playback behavior, appearance, and layout once, then apply it consistently wherever the video appears.</p>
+        <ul class="text-body-base">
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>Logo and brand color</li>
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>Reusable across your site</li>
+          <li><svg class="fp-ico" aria-hidden="true"><use href="#i-check"/></svg>Per-course overrides</li>
+        </ul>
+      </div>
+      <div class="fp-feat-media"><img src="https://img.youtube.com/vi/l7Rgf1Qoinw/maxresdefault.jpg" alt="Presets demo" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ INTERACTIVE LAYERS ░░ -->
+<section class="wpmn-sec-fp-layers">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Turn videos into interactive experiences.</h2>
+      <p class="sub text-body-medium">Add actions, prompts, and capture points directly inside videos using time-based interactive layers.</p>
+    </div>
+    <div class="fp-grid">
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="track" x="20" y="146" width="150" height="4" rx="2"/><rect class="brand" x="20" y="146" width="52" height="4" rx="2"/><rect class="card" x="92" y="26" width="116" height="104" rx="8"/><rect class="mut" x="106" y="40" width="56" height="8" rx="4"/><rect class="field" x="106" y="56" width="88" height="16" rx="4"/><rect class="field" x="106" y="78" width="88" height="16" rx="4"/><rect class="brand" x="106" y="104" width="52" height="18" rx="5"/></svg></div><span class="eyebrow text-body-label">Forms</span><h3 class="text-h5">Collect responses</h3><p class="desc text-body-base">Embed Fluent Forms directly inside your videos to capture responses, registrations, and feedback without interrupting the viewing experience.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="track" x="20" y="146" width="150" height="4" rx="2"/><rect class="brand" x="20" y="146" width="64" height="4" rx="2"/><rect class="card" x="50" y="60" width="200" height="50" rx="8"/><circle class="brand-2" cx="78" cy="85" r="15"/><path class="bln" d="M70 81l8 6 8-6"/><rect class="field" x="102" y="75" width="88" height="20" rx="5"/><rect class="brand" x="196" y="75" width="44" height="20" rx="5"/></svg></div><span class="eyebrow text-body-label">Email Capture</span><h3 class="text-h5">Turn views into leads</h3><p class="desc text-body-base">Collect email addresses with timely in-video prompts and connect them to your email marketing tools while viewers are engaged.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><path class="ink" d="M28 26l13 7-13 7z" opacity=".35"/><rect class="card" x="24" y="84" width="252" height="46" rx="8"/><rect class="mut" x="42" y="96" width="120" height="9" rx="4"/><rect class="field" x="42" y="112" width="84" height="7" rx="3"/><rect class="brand" x="198" y="93" width="62" height="28" rx="6"/></svg></div><span class="eyebrow text-body-label">CTA Banner</span><h3 class="text-h5">Drive clicks with CTAs</h3><p class="desc text-body-base">Display call-to-action banners inside your videos to guide viewers toward the next step without interrupting playback.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><circle class="brand-2" cx="116" cy="96" r="32"/><circle class="bln" cx="116" cy="96" r="19"/><circle class="brand" cx="116" cy="96" r="9"/><rect class="card" x="150" y="44" width="96" height="38" rx="6"/><rect class="mut" x="162" y="55" width="54" height="7" rx="3"/><rect class="field" x="162" y="66" width="38" height="6" rx="3"/></svg></div><span class="eyebrow text-body-label">Hotspot</span><h3 class="text-h5">Guide viewers to take action</h3><p class="desc text-body-base">Place clickable hotspots inside your videos to highlight key areas and guide viewers to additional content.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="track" x="20" y="146" width="150" height="4" rx="2"/><rect class="brand" x="20" y="146" width="44" height="4" rx="2"/><rect class="brand" x="24" y="24" width="40" height="18" rx="4"/><rect class="card" x="30" y="29" width="12" height="8" rx="2" opacity="0"/><rect class="vid" x="32" y="31" width="22" height="4" rx="2" opacity=".6"/><rect class="card" x="148" y="86" width="126" height="48" rx="8"/><rect class="brand-2" x="158" y="96" width="28" height="28" rx="5"/><rect class="mut" x="196" y="99" width="62" height="7" rx="3"/><rect class="field" x="196" y="112" width="46" height="6" rx="3"/></svg></div><span class="eyebrow text-body-label">Ads</span><h3 class="text-h5">Monetize your videos</h3><p class="desc text-body-base">Display promotional or sponsor content at specific points during playback without interrupting the viewing experience.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="card" x="56" y="44" width="188" height="80" rx="8"/><path class="bln" d="M92 66l-13 18 13 18"/><path class="bln" d="M208 66l13 18-13 18"/><rect class="mut" x="112" y="70" width="72" height="8" rx="3"/><rect class="field" x="112" y="84" width="54" height="8" rx="3"/><rect class="brand" x="112" y="98" width="42" height="8" rx="3"/></svg></div><span class="eyebrow text-body-label">Shortcode</span><h3 class="text-h5">Add custom experiences</h3><p class="desc text-body-base">Insert any WordPress shortcode inside your videos to enable custom interactions and integrations.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FLUENT ECOSYSTEM ░░ -->
+<section class="wpmn-sec-fp-ecosystem">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Built to work with the Fluent ecosystem.</h2>
+      <p class="sub text-body-medium">Turn video engagement into real actions: capture leads, trigger workflows, and connect everything with Fluent tools.</p>
+    </div>
+    <div class="fp-grid fp-grid-4">
+      <article class="fp-card"><div class="body"><div class="fp-iconbox"><img src="https://fluentplayer.com/images/integrations/FluentCRM-icon.svg" alt="" width="24" height="24"></div><h3 class="text-h5">FluentCRM</h3><p class="desc text-body-base">Capture viewers' email addresses during a video and add them to your FluentCRM lists with proper tags.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-iconbox"><img src="https://fluentplayer.com/images/integrations/FluentForms-icon.svg" alt="" width="24" height="24"></div><h3 class="text-h5">Fluent Forms</h3><p class="desc text-body-base">Collect lead information and accept payment for premium content directly from a video.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-iconbox"><img src="https://fluentplayer.com/images/integrations/FluentBooking-icon.svg" alt="" width="24" height="24"></div><h3 class="text-h5">FluentBooking</h3><p class="desc text-body-base">Let viewers book a one-on-one or group session with you directly from a video using your calendar.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-iconbox"><img src="https://fluentplayer.com/images/integrations/FluentCommunit-Icon.svg" alt="" width="24" height="24"></div><h3 class="text-h5">FluentCommunity</h3><p class="desc text-body-base">Embed self-hosted videos or playlists in your FluentCommunity courses and track how members engage.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ ANALYTICS (dark) ░░ -->
+<section class="wpmn-sec-fp-analytics">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Understand how your videos perform.</h2>
+      <p class="sub text-body-medium">See how viewers interact with your videos through detailed metrics: engagement, behavior, and trends, all in one place.</p>
+    </div>
+    <div class="fp-grid">
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="card" x="12" y="12" width="276" height="126" rx="10"/><path class="iln" d="M44 118h208" opacity=".4"/><rect class="ghost" x="64" y="80" width="30" height="38" rx="3"/><rect class="ghost" x="112" y="60" width="30" height="58" rx="3"/><rect class="ghost" x="160" y="74" width="30" height="44" rx="3"/><rect class="brand" x="208" y="42" width="30" height="76" rx="3"/></svg></div><h3 class="text-h5">Engagement Metrics</h3><p class="desc text-body-base">Measure how effectively your content keeps viewers engaged, with the metrics that matter most.</p>
+        <div class="metrics"><span class="metric"><b class="n text-h4">12K</b><span class="k text-body-small">Total Views</span></span><span class="metric"><b class="n text-h4">74%</b><span class="k text-body-small">Completion</span></span></div></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="card" x="12" y="12" width="276" height="126" rx="10"/><path class="brand-2" d="M40 56 C80 60 120 92 160 102 C200 112 240 116 260 118 L260 120 L40 120 Z"/><path class="bln" d="M40 56 C80 60 120 92 160 102 C200 112 240 116 260 118"/><path class="iln" d="M40 120h220" opacity=".4"/><circle class="brand" cx="40" cy="56" r="4"/><circle class="brand" cx="160" cy="102" r="4"/></svg></div><h3 class="text-h5">Viewing Behavior</h3><p class="desc text-body-base">Identify how viewers actually consume your videos. See where they drop off and what they come back for.</p>
+        <div class="metrics"><span class="metric"><b class="n text-h4">194</b><span class="k text-body-small">New Viewers</span></span><span class="metric"><b class="n text-h4">4:41</b><span class="k text-body-small">Avg Watch</span></span></div></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="card" x="12" y="12" width="276" height="126" rx="10"/><path class="iln" d="M40 124h220" opacity=".4"/><path class="iln" d="M40 122 L92 112 L144 116 L196 98 L252 90" opacity=".35"/><path class="bln" d="M40 110 L92 86 L144 96 L196 56 L252 40"/><circle class="brand" cx="92" cy="86" r="4"/><circle class="brand" cx="196" cy="56" r="4"/><circle class="brand" cx="252" cy="40" r="4"/></svg></div><h3 class="text-h5">Performance Trends</h3><p class="desc text-body-base">Track how engagement changes over time. Spot patterns early and make better content decisions week over week.</p>
+        <div class="metrics"><span class="metric"><b class="n text-h4">1,175</b><span class="k text-body-small">Total Views</span></span><span class="metric"><b class="n text-h4">4</b><span class="k text-body-small">Sources</span></span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ INTEGRATIONS ░░ -->
+<section class="wpmn-sec-fp-integrations">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Works with the tools you already use.</h2>
+      <p class="sub text-body-medium">FluentPlayer fits into your existing WordPress setup instead of forcing you to change how you work.</p>
+    </div>
+    <div class="cloud">
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/FluentCommunit-Icon.svg" alt="FluentCommunity"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/FluentForms-icon.svg" alt="Fluent Forms"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/FluentCRM-icon.svg" alt="FluentCRM"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/FluentBooking-icon.svg" alt="FluentBooking"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/Bunny-icon.svg" alt="BunnyCDN"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/youtube-icon.svg" alt="YouTube"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/Mailchimp-icon.svg" alt="Mailchimp"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/Mux-Logo.svg" alt="Mux"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/Vimeo-icon.svg" alt="Vimeo"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/google_analytics-icon.svg" alt="Google Analytics"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/Webhooks-Icon.svg" alt="Webhooks"></span>
+      <span class="chip"><img src="https://fluentplayer.com/images/integrations/wordpress-logo.svg" alt="WordPress"></span>
+    </div>
+    <div class="fp-cta-wrap"><a class="wpmn-btn wpmn-btn--secondary wpmn-btn--md" href="#">Explore integrations</a></div>
+  </div>
+</section>
+<!-- ░░ MINOR FEATURES ░░ -->
+<section class="wpmn-sec-fp-minor">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Additional controls for embedding videos reliably.</h2>
+      <p class="sub text-body-medium">Finer playback control, flexibility, and viewer experience.</p>
+    </div>
+    <div class="fp-grid fp-grid-3">
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="brand" x="128" y="50" width="44" height="44" rx="9"/><path class="card" d="M144 62l18 10-18 10z"/><rect class="brand" x="110" y="112" width="22" height="22" rx="6"/><rect class="ghost" x="139" y="112" width="22" height="22" rx="6"/><rect class="mut" x="168" y="112" width="22" height="22" rx="6"/></svg></div><h3 class="text-h6">Custom Branding</h3><p class="desc text-body-small">Customize your video player with your logo and brand colors for a consistent, on-brand experience.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><circle class="ghost" cx="150" cy="74" r="24"/><path class="card" d="M143 63l18 11-18 11z"/><rect class="track" x="40" y="122" width="220" height="6" rx="3"/><rect class="brand" x="40" y="122" width="120" height="6" rx="3"/><circle class="brand" cx="160" cy="125" r="9"/><path class="bln" d="M150 104a12 12 0 1 1 5 9" stroke-dasharray="3 4"/></svg></div><h3 class="text-h6">Remember Playback</h3><p class="desc text-body-small">Videos remember where viewers stopped and allow them to continue from there.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="card" x="26" y="38" width="44" height="30" rx="6"/><circle class="brand" cx="48" cy="53" r="6"/><rect class="card" x="26" y="74" width="44" height="30" rx="6"/><circle class="ghost" cx="48" cy="89" r="6"/><rect class="card" x="26" y="110" width="44" height="30" rx="6"/><circle class="mut" cx="48" cy="125" r="6"/><path class="iln" d="M74 53h44M74 89h44M74 125h44"/><rect class="card" x="150" y="58" width="120" height="62" rx="8"/><path class="brand" d="M198 76l20 13-20 13z"/></svg></div><h3 class="text-h6">Multiple Media Sources</h3><p class="desc text-body-small">Use self-hosted videos or pull videos from YouTube, Vimeo, Mux, and more.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="card" x="92" y="28" width="116" height="112" rx="8"/><rect class="field" x="104" y="40" width="92" height="18" rx="4"/><rect class="mut" x="114" y="46" width="40" height="6" rx="3"/><rect class="brand-2" x="104" y="64" width="92" height="22" rx="5"/><rect class="brand" x="114" y="72" width="46" height="6" rx="3"/><circle class="brand" cx="184" cy="75" r="4"/><rect class="mut" x="114" y="98" width="40" height="6" rx="3"/><rect class="mut" x="114" y="118" width="40" height="6" rx="3"/></svg></div><h3 class="text-h6">Playback Speed Control</h3><p class="desc text-body-small">Let viewers adjust playback speed to watch content at their own pace.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="ghost" x="24" y="120" width="30" height="20" rx="4"/><rect class="card" x="92" y="28" width="120" height="112" rx="8"/><circle class="brand" cx="114" cy="50" r="7"/><rect class="brand" x="130" y="46" width="60" height="9" rx="4"/><circle class="ghost" cx="114" cy="76" r="7"/><rect class="mut" x="130" y="72" width="50" height="9" rx="4"/><circle class="mut" cx="114" cy="102" r="7"/><rect class="mut" x="130" y="98" width="42" height="9" rx="4"/></svg></div><h3 class="text-h6">Language Switching</h3><p class="desc text-body-small">Add multiple subtitle files and let viewers switch languages directly from the player.</p></div></article>
+      <article class="fp-card"><div class="body"><div class="fp-gfx"><svg class="fp-graphic" viewBox="0 0 300 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect class="vid" x="8" y="8" width="284" height="152" rx="12"/><rect class="card" x="150" y="34" width="116" height="58" rx="8"/><rect class="brand-2" x="160" y="44" width="38" height="38" rx="6"/><rect class="mut" x="206" y="48" width="48" height="7" rx="3"/><rect class="field" x="206" y="60" width="36" height="6" rx="3"/><path class="bln" d="M196 100v-8" stroke-dasharray="3 3"/><rect class="track" x="40" y="124" width="220" height="6" rx="3"/><rect class="brand" x="40" y="124" width="156" height="6" rx="3"/><circle class="brand" cx="196" cy="127" r="9"/></svg></div><h3 class="text-h6">Timed Content</h3><p class="desc text-body-small">Use any Gutenberg block inside your video and control exactly when it appears during playback.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ SOCIAL PROOF ░░ -->
+<section class="wpmn-sec-fp-social">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Stories from the people using FluentPlayer.</h2>
+      <p class="sub text-body-medium">Real users already seeing the difference: better playback, deeper engagement, and more control.</p>
+    </div>
+    <div class="fp-grid fp-grid-3">
+      <article class="fp-card fp-quote"><p class="text-body-medium">"There's plenty of different things you can do inside here, including short codes, hotspots, and so on. So from a marketing point of view, this is super useful."</p><div class="who"><img src="https://fluentplayer.com/images/testimonials/paul-charlton.webp" alt="" loading="lazy"><span><b>Paul Charlton</b><span class="text-body-small">Owner at WPTuts</span></span></div></article>
+      <article class="fp-card fp-quote"><p class="text-body-medium">"It will for sure be a game-changer for me and I can't wait for the official release so I can start setting it up on my live site!"</p><div class="who"><img src="https://fluentplayer.com/images/testimonials/jimmy-tavares.webp" alt="" loading="lazy"><span><b>Jimmy Tavares</b><span class="text-body-small">Owner at The Webonaut</span></span></div></article>
+      <article class="fp-card fp-quote"><p class="text-body-medium">"C'est un outil qui va booster l'interaction avec des messages incrustés et surtout c'est une plateforme de data pour analyser les actions de vos utilisateurs."</p><div class="who"><img src="https://fluentplayer.com/images/testimonials/dragan-stamenkovic.webp" alt="" loading="lazy"><span><b>Dragan Stamenkovic</b><span class="text-body-small">CEO at Sdravobiz SRL</span></span></div></article>
+      <article class="fp-card fp-quote"><p class="text-body-medium">"These interactive layer features are pretty cool. You can have a link in the middle of the video to take someone to a resource or something like that."</p><div class="who"><img src="https://fluentplayer.com/images/testimonials/david-mccan.webp" alt="" loading="lazy"><span><b>David McCan</b><span class="text-body-small">Owner at WebTNG</span></span></div></article>
+      <article class="fp-card fp-quote"><p class="text-body-medium">"It looks like it's going to be a really nice plugin and it has a cool set of features that I wanted to show you."</p><div class="who"><img src="https://fluentplayer.com/images/testimonials/augustine-mak.webp" alt="" loading="lazy"><span><b>Augustine Mak</b><span class="text-body-small">Director at MAKETA Media</span></span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FAQ ░░ -->
+<section class="wpmn-sec-fp-faq">
+  <div class="fp-wrap">
+    <div class="fp-head">
+      <h2 class="text-h2">Frequently asked questions.</h2>
+      <p class="sub text-body-medium">Answers to the questions we hear most about FluentPlayer.</p>
+    </div>
+    <div class="fp-faqlist">
+      <details open><summary class="text-h5">Does FluentPlayer work with self-hosted and external videos?<svg class="fp-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans text-body-base">Yes. FluentPlayer supports self-hosted videos, BunnyCDN streams & storage, Mux, YouTube, Vimeo, external URLs, and HLS streaming.</div></details>
+      <details><summary class="text-h5">Can I capture emails directly from videos?<svg class="fp-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans text-body-base">Yes. You can add in-video forms, CTAs, or email capture layers and connect them to FluentCRM, Mailchimp, or external tools via webhooks.</div></details>
+      <details><summary class="text-h5">Will this work with my existing WordPress theme?<svg class="fp-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans text-body-base">FluentPlayer is built to behave consistently across modern WordPress themes and layouts, including the block editor.</div></details>
+      <details><summary class="text-h5">Is FluentPlayer suitable for both simple and advanced use cases?<svg class="fp-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans text-body-base">Yes. You can use FluentPlayer for simple video embeds or enable advanced features like playlists, chapters, analytics, and in-video layers as needed.</div></details>
+      <details><summary class="text-h5">Does FluentPlayer track video performance?<svg class="fp-ico" aria-hidden="true"><use href="#i-plus"/></svg></summary><div class="ans text-body-base">Yes. FluentPlayer includes built-in analytics and can also send data to Google Analytics for deeper insights.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FINAL CTA (dark) ░░ -->
+<section class="wpmn-sec-fp-cta" id="waitlist">
+  <div class="fp-wrap">
+    <div class="fp-inner">
+      <span class="fp-logo"><svg viewBox="0 0 305 64" role="img" aria-label="FluentPlayer"><use href="#fp-logo-inv"/></svg></span>
+      <h2 class="text-h2">FluentPlayer: the next-generation video player.</h2>
+      <p class="fp-sub text-body-medium">Go beyond basic playback, add interactivity, capture leads, and understand your audience.</p>
+      <form action="#" onsubmit="return false">
+        <input class="fp-email-field" type="email" placeholder="you@domain.com" aria-label="Email address">
+        <button class="wpmn-btn wpmn-btn--primary wpmn-btn--lg" type="submit">Join Waitlist</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FOOTER (dark) ░░ -->
+<footer class="wpmn-sec-fp-footer">
+  <div class="fp-wrap">
+    <div class="top">
+      <div>
+        <span class="fp-logo"><svg viewBox="0 0 305 64" role="img" aria-label="FluentPlayer"><use href="#fp-logo-inv"/></svg></span>
+        <p class="blurb text-body-small">FluentPlayer is a WordPress video player plugin built by WPManageNinja, trusted by more than 1.4M+ businesses worldwide.</p>
+      </div>
+      <div>
+        <h4 class="text-h6">Resources</h4>
+        <ul class="text-body-base"><li><a href="#">Features</a></li><li><a href="#">Demo</a></li><li><a href="#">Free vs Pro</a></li><li><a href="#">Blog</a></li><li><a href="#">About Us</a></li></ul>
+      </div>
+      <div>
+        <h4 class="text-h6">Products</h4>
+        <ul class="text-body-base"><li><a href="#">FluentCRM</a></li><li><a href="#">Fluent Forms</a></li><li><a href="#">FluentBooking</a></li><li><a href="#">FluentCommunity</a></li><li><a href="#">FluentCart</a></li></ul>
+      </div>
+      <div>
+        <h4 class="text-h6">Company</h4>
+        <ul class="text-body-base"><li><a href="#">Affiliate</a></li><li><a href="#">Brand Guidelines</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul>
+      </div>
+    </div>
+    <div class="bottom text-body-small">
+      <span>© 2026 FluentPlayer, a brand of WPManageNinja.</span>
+      <span>Built on the WPMN design system.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

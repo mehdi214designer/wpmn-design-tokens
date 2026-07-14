@@ -1,0 +1,39 @@
+{
+  "id": "feature-color-autocycle",
+  "name": "Feature Color Autocycle",
+  "type": "html",
+  "status": "stable",
+  "description": "Four feature cards beside one sticky tall panel that auto-advances through brand-tinted states, crossfading mockups, with a per-card progress bar that fills over each interval. Clicking a card jumps to it and restarts; hovering the grid pauses; it only cycles while in view.",
+  "files": { "html": "sections/feature-color-autocycle/section.html" },
+  "prompt": "sections/feature-color-autocycle/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-feature-color-autocycle",
+  "interactions": [
+    "auto-advance every 4500ms (verbatim): active card crossfades its panel layer (.5s), panel fill tweens between brand tints (.6s), card bg tints (.5s)",
+    "active card progress bar fills left->right over the interval (wpmn-fcac-fill var(--fcac-dur) linear), restarted on each switch",
+    "click a card -> jump + restart the timer; grid mouseenter pauses, mouseleave resumes",
+    "IntersectionObserver (threshold .25) only runs the cycle while the section is in view",
+    "below 768px the grid stacks to one column, the panel moves above the cards, progress bars hide",
+    "prefers-reduced-motion: no auto-advance, transitions off, progress bar shown full; clicking still switches"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--btn-bg-enable",
+    "--radius-xsm",
+    "--radius-sm",
+    "--spacing-icon-size-lg",
+    "--shadow-soft-400",
+    "--font-family-base",
+    "--font-size-body-base",
+    "--font-lh-body-base",
+    "--font-weight-bold"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Interactive",
+  "role": "Features",
+  "span": 2,
+  "tags": ["feature showcase", "auto cycle", "tabs", "progress bar", "color shift", "crossfade", "sticky panel", "feature cards", "interactive"]
+}

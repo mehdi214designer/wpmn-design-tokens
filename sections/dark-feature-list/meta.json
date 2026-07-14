@@ -1,0 +1,39 @@
+{
+  "id": "dark-feature-list",
+  "name": "Dark Feature List",
+  "type": "html",
+  "status": "stable",
+  "description": "Dark two-column section recreated from a Figma frame: a large left heading over a faint grid and a brand corner glow, beside a right column of four feature items, each a brand dot + title + description divided by hairline brand rules. Items reveal on scroll and lift on hover.",
+  "files": { "html": "sections/dark-feature-list/section.html" },
+  "prompt": "sections/dark-feature-list/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-dark-feature-list",
+  "interactions": [
+    "entrance reveal: heading + items fade/translate up once on scroll into view (IntersectionObserver threshold .2), staggered 60/140/220/300ms, .7s cubic-bezier(0,0,0,1) (motion added; the Figma frame is static)",
+    "item hover: divider brightens transparent-brand -> full brand, item nudges translateX(4px), dot scales 1.18, all .25s",
+    "prefers-reduced-motion: reveal + hover transitions off, everything rendered in its final state",
+    "responsive: two columns on desktop, single stacked column below 768px"
+  ],
+  "tokensUsed": [
+    "--color-surface-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--btn-bg-enable",
+    "--font-family-base",
+    "--font-size-h2",
+    "--font-lh-h2",
+    "--font-size-h5",
+    "--font-lh-h5",
+    "--font-size-body-base",
+    "--font-lh-body-base",
+    "--font-weight-semibold",
+    "--font-weight-regular"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Lists & Feeds",
+  "role": "Features",
+  "span": 2,
+  "tags": ["dark", "feature list", "two column", "heading", "checklist", "brand dots", "dividers", "grid glow", "figma", "stacked list"]
+}

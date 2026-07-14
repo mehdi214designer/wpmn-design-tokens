@@ -1,0 +1,151 @@
+<!-- WPMN Section: Agent Scan Hero — a contained hero with a spinning sync badge, a faint grid that gets swept by a brand-colored scanline, a field of floating integration tiles, and four tiles that ring + pop a tooltip in sequence (from an HTML reference, scan/ring/tooltip timing kept verbatim, fully tokenized) -->
+<section class="wpmn-sec-agent-scan-hero">
+  <style>
+    .wpmn-sec-agent-scan-hero{
+      background:var(--color-surface-primary);
+      font-family:var(--font-family-base);
+      color:var(--color-text-primary);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --ash-tile:var(--color-surface-primary);
+      --ash-grid:color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+      --ash-ring:var(--btn-bg-enable);
+      --ash-scan:var(--btn-bg-enable);
+    }
+    .wpmn-sec-agent-scan-hero *{box-sizing:border-box}
+    .wpmn-sec-agent-scan-hero .stage{
+      position:relative;width:100%;max-width:1200px;margin:0 auto;min-height:600px;
+      display:flex;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;
+      border-radius:var(--radius-lg);
+      background:color-mix(in srgb, var(--color-text-primary) 3%, var(--color-surface-primary));
+    }
+
+    /* faint grid + scanning sweep */
+    .wpmn-sec-agent-scan-hero .grid,
+    .wpmn-sec-agent-scan-hero .scangrid{position:absolute;inset:0;pointer-events:none;
+      background-image:linear-gradient(to right,currentColor 1px,transparent 1px),linear-gradient(currentColor 1px,transparent 1px);
+      background-size:15px 15px,15px 15px}
+    .wpmn-sec-agent-scan-hero .grid{color:var(--ash-grid)}
+    .wpmn-sec-agent-scan-hero .scangrid{color:var(--ash-scan);opacity:0;
+      -webkit-mask-image:linear-gradient(#000 0%,transparent 100%);mask-image:linear-gradient(#000 0%,transparent 100%);
+      animation:wpmn-ash-scangrid 3s linear infinite}
+    .wpmn-sec-agent-scan-hero .scanline{position:absolute;left:0;right:0;top:0;height:2px;background:var(--ash-scan);
+      opacity:0;pointer-events:none;transform:translateY(-180px);animation:wpmn-ash-scanline 3s linear infinite}
+    @keyframes wpmn-ash-scangrid{0%{mask-position:0 600px;-webkit-mask-position:0 600px;opacity:.4}35%{opacity:.4}50%{opacity:0}60%,100%{mask-position:0 -180px;-webkit-mask-position:0 -180px;opacity:0}}
+    @keyframes wpmn-ash-scanline{0%{transform:translateY(600px);opacity:1}35%{opacity:1}50%{opacity:0}60%,100%{transform:translateY(-180px);opacity:0}}
+
+    /* floating integration tiles */
+    .wpmn-sec-agent-scan-hero .field{position:absolute;inset:0;pointer-events:none}
+    .wpmn-sec-agent-scan-hero .ic{position:absolute;transform:translate(-50%,-50%);width:70px;height:70px;
+      border-radius:var(--radius-md);background:var(--ash-tile);box-shadow:var(--shadow-soft-300);
+      display:flex;align-items:center;justify-content:center;color:var(--color-text-primary)}
+    .wpmn-sec-agent-scan-hero .ic svg{width:32px;height:32px;display:block}
+    .wpmn-sec-agent-scan-hero .ring{position:absolute;inset:0;border-radius:var(--radius-md);border:2px solid var(--ash-ring);opacity:0}
+    .wpmn-sec-agent-scan-hero .r1{animation:wpmn-ash-ring1 12s linear infinite}
+    .wpmn-sec-agent-scan-hero .r2{animation:wpmn-ash-ring2 12s linear infinite}
+    .wpmn-sec-agent-scan-hero .r3{animation:wpmn-ash-ring3 12s linear infinite}
+    .wpmn-sec-agent-scan-hero .r4{animation:wpmn-ash-ring4 12s linear infinite}
+    @keyframes wpmn-ash-ring1{0%,8.19%{opacity:0}9.44%,21%{opacity:1}23%,100%{opacity:0}}
+    @keyframes wpmn-ash-ring3{0%,33.65%{opacity:0}34.9%,46%{opacity:1}48%,100%{opacity:0}}
+    @keyframes wpmn-ash-ring2{0%,52.31%{opacity:0}53.56%,71%{opacity:1}73%,100%{opacity:0}}
+    @keyframes wpmn-ash-ring4{0%,77.77%{opacity:0}79.02%,96%{opacity:1}98%,100%{opacity:0}}
+
+    /* tooltips */
+    .wpmn-sec-agent-scan-hero .tip{position:absolute;top:35px;width:220px;z-index:3;pointer-events:none}
+    .wpmn-sec-agent-scan-hero .tip--right{left:80px}
+    .wpmn-sec-agent-scan-hero .tip--left{right:80px}
+    .wpmn-sec-agent-scan-hero .bub{position:relative;display:block;padding:var(--primitive-space-8) var(--primitive-space-12);border-radius:var(--radius-xsm);
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);text-align:left;
+      font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);
+      opacity:0;box-shadow:var(--shadow-soft-400)}
+    .wpmn-sec-agent-scan-hero .bub::after{content:"";position:absolute;top:50%;margin-top:-6px;border:6px solid transparent;width:0;height:0}
+    .wpmn-sec-agent-scan-hero .tip--right .bub::after{left:-12px;border-right-color:var(--color-surface-secondary)}
+    .wpmn-sec-agent-scan-hero .tip--left .bub::after{right:-12px;border-left-color:var(--color-surface-secondary)}
+    .wpmn-sec-agent-scan-hero .r1t{animation:wpmn-ash-tip1 12s linear infinite}
+    .wpmn-sec-agent-scan-hero .r3t{animation:wpmn-ash-tip3 12s linear infinite}
+    .wpmn-sec-agent-scan-hero .r2t{animation:wpmn-ash-tip2 12s linear infinite}
+    .wpmn-sec-agent-scan-hero .r4t{animation:wpmn-ash-tip4 12s linear infinite}
+    @keyframes wpmn-ash-tip1{0%,8.19%{opacity:0;transform:translateY(6px) scale(.96)}9.44%,21%{opacity:1;transform:none}23%,100%{opacity:0;transform:translateY(-4px) scale(.98)}}
+    @keyframes wpmn-ash-tip3{0%,33.65%{opacity:0;transform:translateY(6px) scale(.96)}34.9%,46%{opacity:1;transform:none}48%,100%{opacity:0;transform:translateY(-4px) scale(.98)}}
+    @keyframes wpmn-ash-tip2{0%,52.31%{opacity:0;transform:translateY(6px) scale(.96)}53.56%,71%{opacity:1;transform:none}73%,100%{opacity:0;transform:translateY(-4px) scale(.98)}}
+    @keyframes wpmn-ash-tip4{0%,77.77%{opacity:0;transform:translateY(6px) scale(.96)}79.02%,96%{opacity:1;transform:none}98%,100%{opacity:0;transform:translateY(-4px) scale(.98)}}
+
+    /* center content */
+    .wpmn-sec-agent-scan-hero .content{position:relative;z-index:1;width:560px;max-width:90%;display:flex;flex-direction:column;align-items:center;text-align:center;padding:var(--primitive-space-24)}
+    .wpmn-sec-agent-scan-hero .badge{width:80px;height:80px;border-radius:var(--radius-md);background:var(--color-surface-secondary);display:flex;align-items:center;justify-content:center;margin-bottom:var(--primitive-space-32)}
+    .wpmn-sec-agent-scan-hero .badge svg{width:48px;height:48px;color:var(--color-text-primary-invert);animation:wpmn-ash-spin 1.4s linear infinite}
+    @keyframes wpmn-ash-spin{to{transform:rotate(360deg)}}
+    .wpmn-sec-agent-scan-hero .title{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-bold);letter-spacing:-0.02em;color:var(--color-text-primary);max-width:14ch;margin:0}
+    .wpmn-sec-agent-scan-hero .sub{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);max-width:46ch;margin:var(--spacing-h-xl-to-medium) 0 var(--primitive-space-24)}
+    .wpmn-sec-agent-scan-hero .cta{display:inline-flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-12) var(--primitive-space-20);border-radius:var(--radius-xsm);border:0;
+      background:var(--btn-bg-enable);color:var(--color-text-primary-invert);
+      font-size:var(--font-size-btn-sm);line-height:var(--font-lh-btn-sm);font-weight:var(--font-weight-semibold);
+      box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));cursor:pointer;text-decoration:none;
+      transition:background-color .18s ease}
+    .wpmn-sec-agent-scan-hero .cta:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-agent-scan-hero .cta svg{width:14px;height:14px;display:block;transition:transform .18s ease}
+    .wpmn-sec-agent-scan-hero .cta:hover svg{transform:translateX(6px)}
+
+    @media (max-width:768px){
+      .wpmn-sec-agent-scan-hero{padding:var(--primitive-space-64) var(--primitive-space-20)}
+      .wpmn-sec-agent-scan-hero .stage{min-height:480px}
+      .wpmn-sec-agent-scan-hero .ic,
+      .wpmn-sec-agent-scan-hero .tip{display:none}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-agent-scan-hero .scangrid,
+      .wpmn-sec-agent-scan-hero .scanline,
+      .wpmn-sec-agent-scan-hero .badge svg,
+      .wpmn-sec-agent-scan-hero .ring,
+      .wpmn-sec-agent-scan-hero .bub,
+      .wpmn-sec-agent-scan-hero .cta,
+      .wpmn-sec-agent-scan-hero .cta svg{animation:none;transition:none}
+    }
+  </style>
+
+  <div class="stage">
+    <div class="grid"></div>
+    <div class="scangrid"></div>
+    <div class="scanline"></div>
+
+    <div class="field">
+      <div class="ic" style="left:13%;top:10%;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-4 3z"/><path d="M8 9h8M8 12h5"/></svg></div>
+      <div class="ic" style="left:7%;top:29%;z-index:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 8v8M13 8v5M18 8v3"/></svg><span class="ring r1"></span><span class="tip tip--right"><span class="bub r1t">New signup in your form — added to the welcome sequence.</span></span></div>
+      <div class="ic" style="left:19%;top:44%;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 20c0-3-2.7-5-5-5s-5 2-5 5"/><circle cx="12" cy="8" r="3.5"/></svg></div>
+      <div class="ic" style="left:6%;top:61%;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/></svg></div>
+      <div class="ic" style="left:7%;top:80%;z-index:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg><span class="ring r2"></span><span class="tip tip--right"><span class="bub r2t">Support ticket resolved — contact moved to the happy segment.</span></span></div>
+      <div class="ic" style="left:88%;top:8%;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></svg></div>
+      <div class="ic" style="left:94%;top:25%;z-index:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="6" r="2.5"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="9" r="2.5"/><path d="M7 8.5v7M9.4 6.6c4 0 5.6 1 5.6 3.4"/></svg><span class="ring r3"></span><span class="tip tip--left"><span class="bub r3t">Deal closed in your CRM — tag synced to the list.</span></span></div>
+      <div class="ic" style="left:81%;top:41%;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9l4-5h8l4 5-8 11z"/><path d="M4 9h16"/></svg></div>
+      <div class="ic" style="left:92%;top:58%;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l2.5-3h5L13 7M3 7h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+      <div class="ic" style="left:25%;top:80%;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></div>
+      <div class="ic" style="left:71%;top:86%;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></div>
+      <div class="ic" style="left:84%;top:76%;z-index:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 5.5 8-5.5"/></svg><span class="ring r4"></span><span class="tip tip--left"><span class="bub r4t">Purchase in your store — receipt and follow-up sent.</span></span></div>
+    </div>
+
+    <div class="content">
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="12" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="44 32"/><circle cx="17" cy="29" r="1.8" fill="currentColor"/></svg>
+      </div>
+      <h2 class="title">FluentCRM keeps your customer data in sync across every tool</h2>
+      <p class="sub">Connect your stack once. When a contact changes anywhere, FluentCRM updates the record and fires the right automation.</p>
+      <a class="cta" href="#"><span>Explore integrations</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg></a>
+    </div>
+  </div>
+
+  <script>
+    // The hero is CSS-driven (scan sweep, rings, and tooltips all loop on a shared 12s/3s
+    // timeline copied verbatim from the reference). The only script re-scopes nothing stateful;
+    // it simply guards against the field showing on very narrow embeds where the tiles would
+    // overlap the copy. Re-scoped to this section root.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-agent-scan-hero');
+      if (!sec) return;
+      var stage = sec.querySelector('.stage');
+      var field = sec.querySelector('.field');
+      function fit() { field.style.display = stage.clientWidth < 680 ? 'none' : ''; }
+      fit();
+      if (window.ResizeObserver) { new ResizeObserver(fit).observe(stage); }
+      else { addEventListener('resize', fit); }
+    })();
+  </script>
+</section>

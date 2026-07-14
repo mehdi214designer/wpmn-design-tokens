@@ -1,0 +1,206 @@
+<!-- WPMN Section: Stack Scroll Reveal — a pinned deck of case-study cards that scroll-scrub: each card grows as the front one peels away with a perspective tilt (from an HTML/Framer reference, scroll math + the --u fluid-layout engine kept verbatim, fully tokenized) -->
+<section class="wpmn-sec-stack-scroll-reveal">
+  <style>
+    .wpmn-sec-stack-scroll-reveal, .wpmn-sec-stack-scroll-reveal *{margin:0;padding:0;box-sizing:border-box}
+    .wpmn-sec-stack-scroll-reveal{
+      /* soft page bg + accent; the 4 card surfaces are set per nth-child below as deepening
+         brand/dark shades so the whole deck re-skins per data-brand */
+      --ssr-bg:color-mix(in srgb, var(--color-text-primary) 3%, var(--color-surface-primary));
+      --ssr-accent:var(--btn-bg-enable);
+      --ssr-cat:color-mix(in srgb, var(--color-text-primary-invert) 75%, transparent);
+      --u:1; /* px per design px, set by JS from container width */
+      position:relative;display:block;
+      background:var(--ssr-bg);
+      height:calc(152px + 570vh);
+      font-family:var(--font-family-base);
+    }
+    .wpmn-sec-stack-scroll-reveal img{border:0;box-shadow:none;max-width:none;display:block}
+
+    .wpmn-sec-stack-scroll-reveal .wssr-headline{position:absolute;top:0;left:0;right:0;height:100vh;padding:80px 20px 0;display:flex;justify-content:flex-start;flex-direction:column;align-items:center;z-index:0}
+    .wpmn-sec-stack-scroll-reveal .wssr-headline h2{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-semibold);letter-spacing:-0.03em;text-align:center;color:var(--ssr-accent);max-width:20ch}
+    .wpmn-sec-stack-scroll-reveal .wssr-spacer{height:152px}
+    .wpmn-sec-stack-scroll-reveal .wssr-sticky{position:sticky;top:0;height:100vh;z-index:1;display:flex;align-items:center;justify-content:center;padding:0 20px}
+    .wpmn-sec-stack-scroll-reveal .wssr-stack{position:relative;width:min(100%, 1000px);height:calc(526.6px * var(--u))}
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap{position:absolute;left:0;width:100%;top:calc(var(--peek) * var(--u) * 1px);height:calc(500px * var(--u));transform-origin:50% 100%;will-change:transform}
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap:nth-child(1){z-index:4}
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap:nth-child(2){z-index:3}
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap:nth-child(3){z-index:2}
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap:nth-child(4){z-index:1}
+    .wpmn-sec-stack-scroll-reveal .wssr-inner{width:100%;height:100%;transform-origin:50% 100%;will-change:transform}
+    .wpmn-sec-stack-scroll-reveal .wssr-card{width:100%;height:100%;background:var(--color-surface-secondary);border-radius:var(--radius-lg);padding:calc(10px * var(--u)) calc(10px * var(--u)) calc(10px * var(--u)) calc(36px * var(--u));display:flex;justify-content:space-between;align-items:flex-start;color:var(--color-text-primary-invert);overflow:hidden}
+    /* deepening brand/dark card surfaces, set in CSS so the pairing audit reads them as dark */
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap:nth-child(1) .wssr-card{background:var(--btn-bg-enable)}
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap:nth-child(2) .wssr-card{background:var(--btn-bg-hovered)}
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap:nth-child(3) .wssr-card{background:color-mix(in srgb, var(--btn-bg-enable) 55%, var(--color-surface-secondary))}
+    .wpmn-sec-stack-scroll-reveal .wssr-wrap:nth-child(4) .wssr-card{background:var(--color-surface-secondary)}
+    .wpmn-sec-stack-scroll-reveal .wssr-copy{padding:calc(36px * var(--u)) calc(48px * var(--u)) 0 0;display:flex;flex-direction:column;gap:calc(24px * var(--u));flex:1 1 auto;min-width:0}
+    .wpmn-sec-stack-scroll-reveal .wssr-num{font-size:var(--font-size-h4);line-height:1;font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-stack-scroll-reveal .wssr-meta{display:flex;flex-direction:column;gap:calc(12px * var(--u))}
+    .wpmn-sec-stack-scroll-reveal .wssr-cat{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:0.06em;color:var(--ssr-cat)}
+    .wpmn-sec-stack-scroll-reveal .wssr-title{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-bold);letter-spacing:-0.03em;color:var(--color-text-primary-invert)}
+    .wpmn-sec-stack-scroll-reveal .wssr-desc{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);font-weight:var(--font-weight-regular);color:var(--color-text-secondary-invert)}
+    .wpmn-sec-stack-scroll-reveal .wssr-img{flex:none;width:calc(408px * var(--u));height:100%;border-radius:var(--radius-md);object-fit:cover}
+
+    /* narrow container: column cards (toggled by JS on container width) */
+    .wpmn-sec-stack-scroll-reveal.wssr-narrow .wssr-stack{height:calc(1300px * var(--u))}
+    .wpmn-sec-stack-scroll-reveal.wssr-narrow .wssr-wrap{height:calc(1250px * var(--u))}
+    .wpmn-sec-stack-scroll-reveal.wssr-narrow .wssr-card{flex-direction:column;padding:calc(48px * var(--u)) calc(40px * var(--u));gap:calc(40px * var(--u))}
+    .wpmn-sec-stack-scroll-reveal.wssr-narrow .wssr-copy{padding:0}
+    .wpmn-sec-stack-scroll-reveal.wssr-narrow .wssr-img{width:100%;flex:1 1 auto;min-height:0}
+
+    /* reduced motion: drop the scrub, lay the deck out as a readable stacked list */
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-stack-scroll-reveal{height:auto;padding:var(--primitive-space-96) var(--primitive-space-32)}
+      .wpmn-sec-stack-scroll-reveal .wssr-headline{position:static;height:auto;padding:0 0 var(--primitive-space-48)}
+      .wpmn-sec-stack-scroll-reveal .wssr-spacer{display:none}
+      .wpmn-sec-stack-scroll-reveal .wssr-sticky{position:static;height:auto;display:block;padding:0}
+      .wpmn-sec-stack-scroll-reveal .wssr-stack{width:100%;max-width:1000px;margin:0 auto;height:auto;display:flex;flex-direction:column;gap:var(--primitive-space-24)}
+      .wpmn-sec-stack-scroll-reveal .wssr-wrap{position:relative;top:auto;height:auto;transform:none !important}
+      .wpmn-sec-stack-scroll-reveal .wssr-inner{transform:none !important}
+      .wpmn-sec-stack-scroll-reveal .wssr-card{height:auto;min-height:280px}
+    }
+  </style>
+
+  <div class="wssr-headline"><h2>How FluentCRM drives real results</h2></div>
+  <div class="wssr-spacer"></div>
+  <div class="wssr-sticky">
+    <div class="wssr-stack">
+
+      <div class="wssr-wrap" data-base="1" data-boost="1.12" data-lift="0" style="--peek:0">
+        <div class="wssr-inner">
+          <div class="wssr-card">
+            <div class="wssr-copy">
+              <p class="wssr-num">01</p>
+              <div class="wssr-meta">
+                <p class="wssr-cat">Ecommerce</p>
+                <h3 class="wssr-title">42% more revenue from automated cart recovery</h3>
+              </div>
+              <p class="wssr-desc">Abandoned-cart sequences and smart segments turned one-time buyers into repeat customers, on autopilot.</p>
+            </div>
+            <img class="wssr-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="wssr-wrap" data-base="0.88" data-boost="1.28" data-lift="-22" style="--peek:13.06">
+        <div class="wssr-inner">
+          <div class="wssr-card">
+            <div class="wssr-copy">
+              <p class="wssr-num">02</p>
+              <div class="wssr-meta">
+                <p class="wssr-cat">SaaS</p>
+                <h3 class="wssr-title">Onboarding that turns signups into active users</h3>
+              </div>
+              <p class="wssr-desc">Behavior-based email journeys guide every new user to their first win, without anyone lifting a finger.</p>
+            </div>
+            <img class="wssr-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="wssr-wrap" data-base="0.76" data-boost="1.5" data-lift="-39" style="--peek:22.07">
+        <div class="wssr-inner">
+          <div class="wssr-card">
+            <div class="wssr-copy">
+              <p class="wssr-num">03</p>
+              <div class="wssr-meta">
+                <p class="wssr-cat">Creators</p>
+                <h3 class="wssr-title">From list to launch in a single afternoon</h3>
+              </div>
+              <p class="wssr-desc">Landing pages, opt-ins, and broadcasts in one place, with no extra tools to wire together.</p>
+            </div>
+            <img class="wssr-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="wssr-wrap" data-base="0.64" data-boost="1.8" data-lift="-47" style="--peek:26.58">
+        <div class="wssr-inner">
+          <div class="wssr-card">
+            <div class="wssr-copy">
+              <p class="wssr-num">04</p>
+              <div class="wssr-meta">
+                <p class="wssr-cat">Agencies</p>
+                <h3 class="wssr-title">Manage every client's list from one dashboard</h3>
+              </div>
+              <p class="wssr-desc">Tags, automations, and reporting that scale cleanly across dozens of client accounts.</p>
+            </div>
+            <img class="wssr-img" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=900&q=80" alt="">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Scroll math kept verbatim from the reference: the section pins for 30vh, then each card N
+    // grows (scale base -> base*boost with a small lift) over [S, S+N*110vh] while the front card
+    // exits (translateY -736*u + rotateX 15deg) over its own 100vh window. A lerp (0.12) smooths
+    // the scrubbed value. The --u multiplier (stack width / 1000) drives the fluid layout.
+    // Re-scoped to this section root; skipped entirely under reduced motion (CSS lays it flat).
+    (function () {
+      var root = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-stack-scroll-reveal');
+      if (!root || root.getAttribute('data-init')) return;
+      root.setAttribute('data-init', '1');
+
+      var stack = root.querySelector('.wssr-stack');
+      var wraps = [].slice.call(root.querySelectorAll('.wssr-wrap'));
+      var inners = wraps.map(function (w) { return w.querySelector('.wssr-inner'); });
+      var smooth = null;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+
+      function measure() {
+        var u = stack.clientWidth / 1000;
+        root.style.setProperty('--u', u);
+        root.classList.toggle('wssr-narrow', root.clientWidth < 810);
+        return u;
+      }
+
+      function update() {
+        var vh = window.innerHeight;
+        var u = stack.clientWidth / 1000;
+        var scrolled = -root.getBoundingClientRect().top;
+        if (smooth === null) smooth = scrolled;
+        var S = 152 + 0.3 * vh;
+
+        wraps.forEach(function (wrap, i) {
+          var n = i + 1;
+          var base = parseFloat(wrap.getAttribute('data-base'));
+          var boost = parseFloat(wrap.getAttribute('data-boost'));
+          var lift = parseFloat(wrap.getAttribute('data-lift'));
+
+          var pg = clamp01((smooth - S) / (n * 1.1 * vh));
+          var sc = base + (base * boost - base) * pg;
+          var ty = lift * pg * u;
+          wrap.style.transform = 'perspective(500px) translateY(' + ty.toFixed(2) + 'px) scale(' + sc.toFixed(4) + ')';
+
+          var pe = clamp01((smooth - (S + (n - 1) * 1.1 * vh)) / vh);
+          inners[i].style.transform = 'perspective(500px) translateY(' + (-736 * pe * u).toFixed(2) + 'px) rotateX(' + (15 * pe).toFixed(2) + 'deg)';
+        });
+      }
+
+      function frame() {
+        var target = -root.getBoundingClientRect().top;
+        if (smooth === null) smooth = target;
+        smooth += (target - smooth) * 0.12;
+        if (Math.abs(target - smooth) < 0.1) smooth = target;
+        update();
+        requestAnimationFrame(frame);
+      }
+
+      if (reduced) { measure(); return; }
+
+      window.addEventListener('scroll', function () { smooth = -root.getBoundingClientRect().top; update(); }, { passive: true });
+      window.addEventListener('resize', function () { measure(); update(); });
+
+      root.__update = function () { smooth = -root.getBoundingClientRect().top; measure(); update(); };
+
+      measure();
+      update();
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</section>

@@ -1,0 +1,37 @@
+{
+  "id": "feature-color-switcher",
+  "name": "Feature Color Switcher",
+  "type": "html",
+  "status": "stable",
+  "description": "Four feature cards beside one tall panel that color-shifts through brand-tinted states and crossfades mockups. Drive is scroll-spy on desktop (active card = nearest viewport center) plus hover and click; the active card tints and the panel fill tweens to a matching brand shade.",
+  "files": { "html": "sections/feature-color-switcher/section.html" },
+  "prompt": "sections/feature-color-switcher/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-feature-color-switcher",
+  "interactions": [
+    "desktop scroll-spy (verbatim): on scroll/resize, active card = the one whose vertical center is nearest innerHeight/2 (gated to innerWidth >= 901)",
+    "hover (mouseenter, desktop) and click also set the active card",
+    "active card background tints to its brand shade (.4s); panel fill tweens between four brand tints via data-active (.5s); matching panel layer crossfades opacity (.5s)",
+    "below 900px the grid stacks to one column and the panel moves above the cards (order -1)",
+    "prefers-reduced-motion: card/panel/layer transitions disabled"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-text-primary",
+    "--btn-bg-enable",
+    "--radius-xsm",
+    "--radius-sm",
+    "--spacing-icon-size-lg",
+    "--font-family-base",
+    "--font-size-body-base",
+    "--font-lh-body-base",
+    "--font-weight-bold"
+  ],
+  "brands": "all",
+  "themes": ["light", "dark"],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "role": "Features",
+  "span": 2,
+  "tags": ["feature switcher", "scrollspy", "color shift", "crossfade", "sticky panel", "tabs", "feature cards", "scroll driven", "split layout"]
+}

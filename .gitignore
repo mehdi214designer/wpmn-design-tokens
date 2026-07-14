@@ -25,6 +25,10 @@ npm-debug.log*
 /Products/
 /automation/
 /evals/
+/scratch/
+/skills/
+/.trash/
+/__pycache__/
 *.command
 *.skill
 *.bak

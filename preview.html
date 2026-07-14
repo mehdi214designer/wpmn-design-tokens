@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WPMN — Fullscreen Section Preview</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #07090c; font-family: 'Work Sans', system-ui, sans-serif; }
+  #frame { position: fixed; inset: 0; width: 100vw; height: 100vh; border: 0; background: #fff; }
+
+  /* floating control bar */
+  #bar {
+    position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; gap: 8px; align-items: center;
+    padding: 8px 10px; border-radius: 12px;
+    background: rgba(20,22,26,0.82); backdrop-filter: blur(8px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35); color: #f1f2f4;
+    font-size: 13px; transition: opacity .2s ease;
+  }
+  #bar.hidden { opacity: 0; pointer-events: none; }
+  #bar select, #bar button {
+    font: inherit; color: #f1f2f4; background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 6px 8px; cursor: pointer;
+  }
+  #bar select { max-width: 230px; }
+  #bar button:hover { background: rgba(255,255,255,0.16); }
+  #bar .nav { padding: 6px 10px; font-weight: 600; }
+  #bar label { display: flex; gap: 5px; align-items: center; cursor: pointer; white-space: nowrap; }
+  #bar .sep { width: 1px; height: 22px; background: rgba(255,255,255,0.14); }
+  #hint { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 10;
+    color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: .02em; }
+</style>
+</head>
+<body>
+  <div id="bar">
+    <button class="nav" id="prev" title="Previous (←)">‹</button>
+    <select id="section" title="Section"></select>
+    <button class="nav" id="next" title="Next (→)">›</button>
+    <span class="sep"></span>
+    <select id="brand" title="Brand"></select>
+    <label><input type="checkbox" id="theme"> Dark</label>
+    <span class="sep"></span>
+    <button id="hideBar" title="Hide bar (b)">Hide</button>
+  </div>
+  <div id="hint">← / → switch sections · B toggle bar · D dark</div>
+  <iframe id="frame" title="Fullscreen section preview"></iframe>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var frame = $('#frame'), selSection = $('#section'), selBrand = $('#brand'),
+      chkTheme = $('#theme'), bar = $('#bar'), hint = $('#hint');
+
+  var BRAND_LABELS = {
+    wpmanagenia: 'WPManageNinja', fluentforms: 'FluentForms', fluentcrm: 'FluentCRM',
+    ninjatables: 'NinjaTables', wpsocialninja: 'WP Social Ninja', fluentsupport: 'FluentSupport',
+    fluentaffiliate: 'FluentAffiliate', fluentboards: 'FluentBoards', fluentcart: 'FluentCart',
+    fluentplayer: 'FluentPlayer', fluentmembers: 'FluentMembers', fluentbooking: 'FluentBooking',
+    fluentcommunity: 'FluentCommunity', paymattic: 'Paymattic', fluentsmtp: 'FluentSMTP', azonpress: 'AzonPress'
+  };
+
+  // load order matters: primitives -> brand-primitives -> tokens -> typography
+  var TOKEN_FILES = ['primitives.css', 'brand-primitives.css', 'tokens.css', 'typography.css'];
+  var FONT_IMPORT = "@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');";
+
+  var sections = [];     // [{id, name, html}]
+  var brands = [];
+  var tokenCss = '';     // the four token files, inlined in order
+
+  function qp() { return new URLSearchParams(location.search); }
+
+  function stripImports(css) { return css.replace(/@import[^;]+;/g, ''); }
+
+  function syncUrl(id) {
+    var p = qp();
+    p.set('id', id);
+    if (selBrand.value) p.set('brand', selBrand.value); else p.delete('brand');
+    if (chkTheme.checked) p.set('theme', 'dark'); else p.delete('theme');
+    history.replaceState(null, '', location.pathname + '?' + p.toString());
+  }
+
+  function render() {
+    var id = selSection.value;
+    var sec = sections.find(function (s) { return s.id === id; });
+    if (!sec) return;
+    var html = sec.html;
+    // a brand pick must win even if a section pins its own data-brand on the root
+    if (selBrand.value) html = html.replace(/(<section\b[^>]*?)\sdata-brand="[^"]*"/i, '$1');
+    var brandAttr = selBrand.value ? ' data-brand="' + selBrand.value + '"' : '';
+    var themeAttr = chkTheme.checked ? ' data-theme="dark"' : '';
+    // Inline the token CSS (no @import chain / no <link> race) so brand + theme apply reliably;
+    // the section's own scoped <style> + <script> still run exactly as shipped.
+    var srcdoc =
+      '<!DOCTYPE html><html' + brandAttr + themeAttr + '><head><meta charset="utf-8">' +
+      '<style>' + FONT_IMPORT + tokenCss +
+      'html,body{margin:0}body{background:var(--color-surface-primary)}</style>' +
+      '</head><body>' + html + '</body></html>';
+    frame.srcdoc = srcdoc;
+    syncUrl(id);
+  }
+
+  function move(delta) {
+    var i = selSection.selectedIndex + delta;
+    if (i < 0) i = sections.length - 1;
+    if (i >= sections.length) i = 0;
+    selSection.selectedIndex = i;
+    render();
+  }
+
+  selSection.addEventListener('change', render);
+  selBrand.addEventListener('change', render);
+  chkTheme.addEventListener('change', render);
+  $('#prev').addEventListener('click', function () { move(-1); });
+  $('#next').addEventListener('click', function () { move(1); });
+  $('#hideBar').addEventListener('click', function () { bar.classList.add('hidden'); hint.style.opacity = 0; });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
+    if (e.key === 'ArrowRight') move(1);
+    else if (e.key === 'ArrowLeft') move(-1);
+    else if (e.key.toLowerCase() === 'b') { bar.classList.toggle('hidden'); hint.style.opacity = bar.classList.contains('hidden') ? 0 : ''; }
+    else if (e.key.toLowerCase() === 'd') { chkTheme.checked = !chkTheme.checked; render(); }
+  });
+
+  // boot: load token CSS + registry + each section's html, then render
+  Promise.all([
+    Promise.all(TOKEN_FILES.map(function (f) { return fetch(f).then(function (r) { return r.text(); }); })),
+    fetch('registry.json').then(function (r) { return r.json(); })
+  ]).then(function (res) {
+    tokenCss = res[0].map(stripImports).join('\n');
+    var reg = res[1];
+
+    brands = reg.brands || [];
+    selBrand.innerHTML = '<option value="">Default brand</option>' +
+      brands.map(function (b) { return '<option value="' + b + '">' + (BRAND_LABELS[b] || b) + '</option>'; }).join('');
+
+    var htmlSecs = (reg.components || []).filter(function (c) {
+      return c.type === 'html' && c.files && c.files.html;
+    }).sort(function (a, b) { return (a.name || a.id).localeCompare(b.name || b.id); });
+
+    return Promise.all(htmlSecs.map(function (c) {
+      return fetch(c.files.html).then(function (r) { return r.text(); }).then(function (html) {
+        return { id: c.id, name: c.name || c.id, html: html };
+      });
+    }));
+  }).then(function (loaded) {
+    sections = loaded;
+    selSection.innerHTML = sections.map(function (s) {
+      return '<option value="' + s.id + '">' + s.name + '</option>';
+    }).join('');
+
+    var p = qp();
+    if (p.get('id') && sections.some(function (s) { return s.id === p.get('id'); })) selSection.value = p.get('id');
+    if (p.get('brand')) selBrand.value = p.get('brand');
+    if (p.get('theme') === 'dark') chkTheme.checked = true;
+
+    render();
+  }).catch(function (err) {
+    document.body.insertAdjacentHTML('beforeend',
+      '<div style="position:fixed;inset:0;display:grid;place-items:center;color:#fff;font-size:14px;padding:24px;text-align:center">' +
+      'Could not load sections. Serve the repo first: <code style="color:#9fbfff">python3 serve.py</code><br>then open ' +
+      '<code style="color:#9fbfff">http://localhost:8910/preview.html</code><br><br>' + String(err) + '</div>');
+  });
+})();
+</script>
+</body>
+</html>
