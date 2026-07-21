@@ -30,6 +30,96 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.5.0] — 2026-07-21
+
+### Added
+- **`wpmn-live-redesign` skill** — retheme a *live* website onto the design system with layout
+  kept 1:1 by mirroring the real page (actual DOM/screenshots) and re-skinning it in place,
+  instead of reconstructing it section-by-section from scratch. Ships with its own tooling
+  (`scripts/mirror.py`, `tokenize.py`, `aspect.py`, `check.mjs`) and a `brand-ramps.json`
+  reference. Use for any request that includes a live URL.
+- **`wpmn-redesign` and `wpmn-live-redesign` both tracked in git and listed in the Skill
+  Library** (`demo.html`) so the team can download either directly. `wpmn-redesign` handles
+  uploaded HTML files/screenshots with no live source; `wpmn-live-redesign` handles a live URL
+  by mirroring the real page instead of reconstructing it. `wpmn-redesign` briefly sat in
+  `Junk/` mid-session before this decision — it's back in `skills-src/` and tracked normally,
+  nothing was lost.
+- **Plugins & Extensions page** (`demo.html`) — new nav tab for internal WPMN plugins/extensions
+  that each live in their own private GitHub repo. Metadata (id, name, description, repo, optional
+  branch) lives in `plugins-registry.json` at the repo root — an entry with no `repo` renders as
+  "Coming soon". Download button hits `api/plugin-download.js`, a new Vercel serverless function
+  that reads a `GITHUB_TOKEN` environment variable server-side and streams back a zip of the
+  repo's branch straight from GitHub's zipball API — no GitHub Release needs to exist, it just
+  zips whatever's on the branch right now. The token and the private repos are never exposed to
+  the browser. This route only exists on the live deployment (`wpmn-design-tokens.vercel.app`),
+  not local dev (`serve.py` has no equivalent on purpose, by choice — the token only lives in
+  Vercel). `GITHUB_TOKEN` is now set in Vercel; seeded with two real entries, `wpmn-design-checker`
+  and `wpmn-demo-seeder` (`mehdi214designer/<repo>`) — both descriptions are placeholders since
+  those repos are private and couldn't be read to write real ones, worth a pass to tighten the
+  wording.
+
+## [1.4.0] — 2026-07-14
+
+Live Vercel hosting + Skill/Prompt Library + git-tracking fixes.
+
+### Added
+- **Live hosting on Vercel** — `wpmn-design-tokens.vercel.app`, auto-redeploys on every push to
+  `master`. `vercel.json` rewrites `/` to `/demo.html`. The icon browser now works there too:
+  `api/hugeicons.js` and `api/icon-raw.js` (Vercel serverless functions) read the licensed
+  `@hugeicons/react-pro` package during the build (auth via an `NPM_TOKEN` environment variable),
+  serving the same data the local dev server already did.
+- **Skill Library** (`demo.html`) — new nav page listing the 5 WPMN Claude Skills
+  (`wpmn-design-system`, `wpmn-landing-page-design`, `wpmn-section-import`, `wpmn-design-qna`,
+  `wpmn-visual`) with descriptions read live from each `SKILL.md`, a detail popup with the full
+  "how to use" text, and a one-click download of the packaged `.skill`.
+- **Prompt Library** (`demo.html`) — new nav page listing every section's `prompt.md` from
+  `registry.json`, searchable by name, with a detail popup and download button.
+- **5 packaged `.skill` files now tracked in git** (previously gitignored) so they're downloadable
+  from the live site: `wpmn-design-system.skill`, `wpmn-landing-page-design.skill`,
+  `wpmn-section-import.skill`, `wpmn-design-qna.skill`, `wpmn-visual.skill`. `ui-ux-pro-max.skill`
+  (third-party, not WPMN-authored) intentionally stays out of git and out of the library.
+- **6 sections that existed locally but never reached GitHub** are now tracked: `agent-scan-hero`,
+  `animated-bento-showcase`, `dark-feature-list`, `feature-color-autocycle`,
+  `feature-color-switcher`, `stack-scroll-reveal`.
+- **New `wpmn-redesign` skill** — retheme-only 1:1 layout preservation for existing pages/designs
+  (typo, colors, spacing, buttons, inputs, icons mapped to tokens/components, nothing added,
+  removed, or rearranged). Separate from `wpmn-section-import` (which registers new library
+  sections) and `wpmn-page-builder` (which composes new pages from the library) — neither fits
+  "redesign this existing page, keep the layout exactly."
+
+### Fixed
+- **Stale `index.html` removed** — a pre-`demo.html` legacy file at the repo root had a JSX syntax
+  bug and was silently winning over the `/` → `/demo.html` rewrite on Vercel (blank screen on the
+  live site). Replaced with a one-line redirect stub.
+- **`WPMN Save` was silently dropping new files** — it ran `git add -u` (tracked-file edits only),
+  so any brand-new file never made it to GitHub (this is how the above 6 sections, `vercel.json`,
+  and the skill packages all went missing). Switched to `git add -A`. `.gitignore` cleaned up
+  first (`scratch/`, `.trash/`, `__pycache__/` now properly excluded) so this doesn't sweep in junk.
+- **`demo.html` missing `--color-surface-icon-brand`** — present in `tokens.css` but never synced
+  into `demo.html`'s duplicated `<style>` block, so brand-tinted icon chips silently rendered
+  transparent. Added to both light and dark token blocks.
+
+### Changed
+- `WPMN Pack Skill.command` now also drops a loose copy of the generated `SKILL.md` at
+  `skills-src/wpmn-design-system/SKILL.md` so the Skill Library page can read its description live
+  without unzipping the package.
+- `skills/wpmn-visual/` (a skill source sitting outside the tracked-source convention) folded into
+  `skills-src/wpmn-visual/` alongside the other skill sources.
+
+### Removed
+- **Repo-wide cleanup** — moved everything that wasn't the design system itself out to
+  `Claud Cowork/Junk/wpmn-design-tokens-cleanup-2026-07-15/` or the right `Products/` folder:
+  - Stray product output that had leaked into the repo (some even committed to git):
+    `FluentForms-FullPage.html`, `FluentForms-Hero.html` → `Products/FluentForms/`;
+    3 `FluentPlayer-Home_*_2026-06-23.html` files → `Products/FluentPlayer/`.
+  - Dead/superseded experiments: `showcase_v2/` (an old demo prototype superseded by `demo.html`),
+    `library.html` and `preview.html` (orphaned, nothing referenced them), `netlify.toml` (dead
+    since hosting moved to Vercel).
+  - Backup/scratch cruft: `demo.html.bak`, `_wt_test`, `_conv_hgap.mjs`, `__pycache__/`, an orphaned
+    root-level `SKILL.md` duplicate, and `ui-ux-pro-max.skill` (third-party, never belonged in this
+    repo).
+  - `.gitignore` trimmed to drop the one-off exclusion rules for files that no longer exist.
+
 ## [1.3.0] — 2026-07-06
 
 Icon browser in the demo + four new sections + surface-pairing enforcement.

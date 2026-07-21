@@ -1,0 +1,160 @@
+<h2 class="sr-only">Step-by-step multi-select wizard to build on-brand marketing visuals from the WPMN component library</h2>
+<style>
+.wz{background:var(--surface-2);border:0.5px solid var(--border);border-radius:12px;overflow:hidden}
+.wz-top{padding:16px 20px;border-bottom:0.5px solid var(--border)}
+.wz-bar{height:4px;background:var(--surface-0);border-radius:999px;overflow:hidden;margin-top:10px}
+.wz-fill{height:100%;background:var(--text-accent);width:0;transition:width .25s ease}
+.wz-body{padding:20px;min-height:240px}
+.wz-eye{font-size:12px;color:var(--text-accent);font-weight:500;margin:0 0 6px}
+.wz-q{font-size:18px;font-weight:500;margin:0 0 4px}
+.wz-hint{font-size:13px;color:var(--text-muted);margin:0 0 16px}
+.wz-grid{display:flex;flex-wrap:wrap;gap:8px}
+.wz-opt{border:0.5px solid var(--border-strong);background:var(--surface-2);border-radius:10px;padding:10px 14px;font-size:14px;cursor:pointer;transition:all .12s ease;display:inline-flex;align-items:center;gap:10px}
+.wz-opt:hover{background:var(--surface-1)}
+.wz-opt[aria-pressed="true"]{background:var(--bg-accent);border-color:var(--border-accent);color:var(--text-accent)}
+.wz-box{width:17px;height:17px;border:1.5px solid var(--border-strong);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex:none}
+.wz-opt[aria-pressed="true"] .wz-box{background:var(--text-accent);border-color:var(--text-accent)}
+.wz-box .ti{opacity:0}
+.wz-opt[aria-pressed="true"] .wz-box .ti{opacity:1}
+.wz-card{align-items:flex-start;border-radius:12px;padding:13px 15px;text-align:left;min-width:205px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.wz-foot{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-top:0.5px solid var(--border)}
+.wz-btn{border:0.5px solid var(--border-strong);background:var(--surface-2);border-radius:8px;padding:8px 16px;font-size:14px;cursor:pointer}
+.wz-btn:hover{background:var(--surface-1)}
+.wz-btn[disabled]{opacity:.4;cursor:not-allowed}
+.wz-go{background:var(--text-accent);color:#fff;border-color:var(--text-accent)}
+.wz-rev{font-size:14px;line-height:1.9}.wz-rev b{font-weight:500}
+.wz-tot{font-size:13px;border-radius:8px;padding:10px 12px;margin:0 0 14px;background:var(--bg-accent);color:var(--text-accent)}
+.wz-tot.warn{background:var(--bg-warning);color:var(--text-warning)}
+textarea.wz-ta,input.wz-in{width:100%;box-sizing:border-box;font-size:14px;font-family:var(--font-sans);border:0.5px solid var(--border-strong);border-radius:8px;padding:10px 12px;background:var(--surface-2);color:var(--text-primary)}
+textarea.wz-ta{min-height:80px;resize:vertical}
+</style>
+<div class="wz">
+  <div class="wz-top">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:15px;font-weight:500"><i class="ti ti-sparkles" aria-hidden="true" style="font-size:16px;vertical-align:-2px;margin-right:6px"></i>New marketing visual</span>
+      <span id="wzCount" style="font-size:12px;color:var(--text-muted)"></span>
+    </div>
+    <div class="wz-bar"><div class="wz-fill" id="wzFill"></div></div>
+  </div>
+  <div class="wz-body" id="wzBody">Loading…</div>
+  <div class="wz-foot">
+    <button class="wz-btn" id="wzBack"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+    <button class="wz-btn" id="wzNext">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+  </div>
+</div>
+<script>
+(function(){
+var FILE='yDivKet2GaytFdz0YI1YrS';
+var brands=['WPManageNinja','FluentForms','FluentCRM','FluentBooking','FluentCommunity','FluentBoards','FluentSupport','FluentSMTP','FluentAffiliate','FluentCart','NinjaTables','WP Social Ninja','Paymattic','AzonPress','FluentPlayer'];
+var a={}, i=0;
+function has(id,v){return (a[id]||[]).indexOf(v)>-1;}
+function seq(){
+  var s=['product','type'], t=a.type||[];
+  if(t.indexOf('Featured Image')>-1) s=s.concat(['f_tmpl','f_heading','f_paragraph','f_tag','f_image']);
+  if(t.indexOf('Social Media')>-1) s=s.concat(['s_tmpl','s_size','s_image','s_text']);
+  if(t.indexOf('Cover Image')>-1) s=s.concat(['c_platform','c_occasion','c_percentage']);
+  if(t.length) s.push('review');
+  return s;
+}
+function def(id){
+  var m={
+    product:{q:'Which product(s)?',hint:'Pick one or more — sets brand colors and logo.',kind:'multi',opts:brands},
+    type:{q:'What do you want to build?',hint:'Tick any combination — the flow adds steps for each.',kind:'cards',opts:[
+      ['Featured Image','Blog / release header, 1910×1000','ti-photo'],
+      ['Social Media','Feed, story or milestone post','ti-square'],
+      ['Cover Image','Facebook, X or LinkedIn banner','ti-layout-navbar']]},
+    f_tmpl:{g:'Featured image',q:'Template(s)',hint:'Pick one or more layouts.',kind:'multi',opts:['Template 1','Template 2','Template 3','Template 4','Template 6','Template 7','Template 8','Release note']},
+    f_heading:{g:'Featured image',q:'Heading',hint:'Main title on the image.',kind:'text',ph:"e.g. What's New in FluentSupport 2.4.0"},
+    f_paragraph:{g:'Featured image',q:'Paragraph',hint:'Short supporting line. Optional.',kind:'ta',ph:'e.g. Smarter ticket views, faster replies, cleaner workflow.'},
+    f_tag:{g:'Featured image',q:'Tag / category',hint:'Small pill label. Optional.',kind:'text',ph:'e.g. Release Notes'},
+    f_image:{g:'Featured image',q:'Image',hint:'How to fill the picture. Component stays intact either way.',kind:'image'},
+    s_tmpl:{g:'Social media',q:'Template(s)',hint:'Pick one or more layouts.',kind:'multi',opts:['Template 1','Template 2','Template 3','Template 4','Template 5']},
+    s_size:{g:'Social media',q:'Size(s)',hint:'Pick every size you need.',kind:'multi',opts:['Square 1:1','Portrait 4:5','Story 9:16']},
+    s_image:{g:'Social media',q:'Image',hint:'How to fill the picture.',kind:'image'},
+    s_text:{g:'Social media',q:'Post text',hint:'Headline or caption.',kind:'ta',ph:'e.g. 200,000+ active installations — thank you!'},
+    c_platform:{g:'Cover image',q:'Platform(s)',hint:'Pick one or more.',kind:'multi',opts:['Facebook cover','X cover','LinkedIn cover']},
+    c_occasion:{g:'Cover image',q:'Occasion(s)',hint:'Pick any that apply.',kind:'multi',opts:['None','Halloween','BFCM','Christmas','New Year','Summer Sale','Sale (no theme)']},
+    c_percentage:{g:'Cover image',q:'Discount amount?',hint:'Skip if no sale.',kind:'text',ph:'e.g. 40',suffix:'% off'},
+    review:{q:'Ready to build',hint:'Claude builds every combination on a new page.',kind:'review'}
+  };
+  return m[id];
+}
+var body=document.getElementById('wzBody'),fill=document.getElementById('wzFill'),count=document.getElementById('wzCount'),back=document.getElementById('wzBack'),next=document.getElementById('wzNext');
+function tick(){return '<span class="wz-box"><i class="ti ti-check" aria-hidden="true"></i></span>';}
+function total(){
+  var p=(a.product||[]).length||1, t=a.type||[], n=0;
+  if(t.indexOf('Featured Image')>-1) n+=p*Math.max(1,(a.f_tmpl||[]).length);
+  if(t.indexOf('Social Media')>-1) n+=p*Math.max(1,(a.s_tmpl||[]).length)*Math.max(1,(a.s_size||[]).length);
+  if(t.indexOf('Cover Image')>-1) n+=p*Math.max(1,(a.c_platform||[]).length)*Math.max(1,(a.c_occasion||[]).length);
+  return n;
+}
+function render(){
+  var s=seq(), id=s[i], d=def(id);
+  count.textContent='Step '+(i+1)+' of '+s.length;
+  fill.style.width=Math.round((i+1)/s.length*100)+'%';
+  back.style.visibility=i===0?'hidden':'visible';
+  var h=(d.g?'<p class="wz-eye">'+d.g+'</p>':'')+'<p class="wz-q">'+d.q+'</p>'+(d.hint?'<p class="wz-hint">'+d.hint+'</p>':'');
+  if(d.kind==='multi'){
+    h+='<div class="wz-grid">'+d.opts.map(function(o){return '<button class="wz-opt" data-v="'+o+'" aria-pressed="'+has(id,o)+'">'+tick()+o+'</button>';}).join('')+'</div>';
+  } else if(d.kind==='cards'){
+    h+='<div class="wz-grid">'+d.opts.map(function(o){return '<button class="wz-opt wz-card" data-v="'+o[0]+'" aria-pressed="'+has(id,o[0])+'">'+tick()+'<i class="ti '+o[2]+'" aria-hidden="true" style="font-size:20px"></i><span><span style="font-size:14px;font-weight:500">'+o[0]+'</span><br><span style="font-size:12px;color:var(--text-muted)">'+o[1]+'</span></span></button>';}).join('')+'</div>';
+  } else if(d.kind==='text'){
+    h+='<div style="display:flex;align-items:center;gap:8px"><input class="wz-in" id="wzInput" placeholder="'+d.ph+'" value="'+(a[id]||'')+'">'+(d.suffix?'<span style="font-size:14px;color:var(--text-secondary)">'+d.suffix+'</span>':'')+'</div>';
+  } else if(d.kind==='ta'){
+    h+='<textarea class="wz-ta" id="wzInput" placeholder="'+d.ph+'">'+(a[id]||'')+'</textarea>';
+  } else if(d.kind==='image'){
+    var srcs=[['Keep template default','ti-photo-check'],['Capture from a URL','ti-camera'],['Describe for AI art','ti-wand'],["I'll upload my own",'ti-upload']];
+    h+='<div class="wz-grid">'+srcs.map(function(o){return '<button class="wz-opt" data-src="'+o[0]+'" aria-pressed="'+has(id+'_src',o[0])+'"><i class="ti '+o[1]+'" aria-hidden="true"></i>'+o[0]+'</button>';}).join('')+'</div>';
+    var sel=a[id+'_src']||[]; var show=sel.indexOf('Capture from a URL')>-1||sel.indexOf('Describe for AI art')>-1;
+    h+='<div style="margin-top:12px;'+(show?'':'display:none')+'"><textarea class="wz-ta" id="wzInput" placeholder="Paste a URL to screenshot, and/or describe the art you want">'+(a[id+'_detail']||'')+'</textarea></div>';
+    h+='<p class="wz-hint" style="margin-top:8px">To upload your own, send the wizard then attach the image in chat.</p>';
+  } else if(d.kind==='review'){
+    var n=total(); h+='<div class="wz-tot'+(n>12?' warn':'')+'">'+(n>12?'<i class="ti ti-alert-triangle" aria-hidden="true" style="vertical-align:-2px;margin-right:4px"></i>':'')+'You are about to build '+n+' visual'+(n===1?'':'s')+'.</div>';
+    h+='<div class="wz-rev">'+summary()+'</div>';
+  }
+  body.innerHTML=h; wire(id,d);
+  next.textContent=id==='review'?'Build it ↗':'Next';
+  next.className=id==='review'?'wz-btn wz-go':'wz-btn';
+  updateNext(id);
+}
+function wire(id,d){
+  if(d.kind==='multi'||d.kind==='cards'){
+    body.querySelectorAll('.wz-opt').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-v');var cur=a[id]||[];var k=cur.indexOf(v);if(k>-1)cur.splice(k,1);else cur.push(v);a[id]=cur;b.setAttribute('aria-pressed',cur.indexOf(v)>-1);updateNext(id);};});
+  } else if(d.kind==='text'||d.kind==='ta'){
+    var inp=document.getElementById('wzInput');inp.oninput=function(){a[id]=inp.value;};
+  } else if(d.kind==='image'){
+    body.querySelectorAll('[data-src]').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-src');var cur=a[id+'_src']||[];var k=cur.indexOf(v);if(k>-1)cur.splice(k,1);else cur.push(v);a[id+'_src']=cur;render();};});
+    var inp=document.getElementById('wzInput');if(inp)inp.oninput=function(){a[id+'_detail']=inp.value;};
+  }
+}
+function need(id){
+  if(id==='product'||id==='type') return (a[id]||[]).length>0;
+  if(id==='f_tmpl'||id==='s_tmpl'||id==='s_size'||id==='c_platform') return (a[id]||[]).length>0;
+  return true;
+}
+function updateNext(id){ next.disabled=!need(id); }
+back.onclick=function(){if(i>0){i--;render();}};
+next.onclick=function(){var s=seq(),id=s[i];if(!need(id))return;if(id==='review')build();else{i++;render();}};
+function img(id){var sel=a[id+'_src']||[];if(!sel.length)return '';return sel.join(', ')+(a[id+'_detail']?': '+a[id+'_detail']:'');}
+function summary(){
+  var L=[['Products',(a.product||[]).join(', ')],['Asset types',(a.type||[]).join(', ')]];
+  if((a.type||[]).indexOf('Featured Image')>-1) L=L.concat([['FI templates',(a.f_tmpl||[]).join(', ')],['FI heading',a.f_heading],['FI paragraph',a.f_paragraph],['FI tag',a.f_tag],['FI image',img('f_image')]]);
+  if((a.type||[]).indexOf('Social Media')>-1) L=L.concat([['SM templates',(a.s_tmpl||[]).join(', ')],['SM sizes',(a.s_size||[]).join(', ')],['SM image',img('s_image')],['SM text',a.s_text]]);
+  if((a.type||[]).indexOf('Cover Image')>-1) L=L.concat([['Cover platforms',(a.c_platform||[]).join(', ')],['Cover occasions',(a.c_occasion||[]).join(', ')],['Cover discount',a.c_percentage?a.c_percentage+'% off':'']]);
+  return L.filter(function(r){return r[1];}).map(function(r){return '<div><b>'+r[0]+':</b> '+r[1]+'</div>';}).join('');
+}
+function build(){
+  var t=a.type||[];
+  var out=['Build marketing visuals in the Marketing Visual System Figma file ('+FILE+'). Only instance and rebrand the existing components in that file — never create a new file and never recreate or redraw any component. For every combination below: instance the matching component, set the brand by switching the Primitives variable mode to the product (never apply custom color), set the logo via the "Logo of" variant if the template has one, edit the copy (Work Sans, fall back to Work Sans for any font that will not load), and place any requested image as a standalone object beside the design for copy-paste (do not inject it into the slot or break the component). Put everything on a new page.',''];
+  out.push('Products: '+(a.product||[]).join(', '));
+  out.push('Asset types: '+t.join(', '));
+  if(t.indexOf('Featured Image')>-1){out.push('','Featured image:');out.push('- Templates: '+(a.f_tmpl||[]).join(', '));if(a.f_heading)out.push('- Heading: '+a.f_heading);if(a.f_paragraph)out.push('- Paragraph: '+a.f_paragraph);if(a.f_tag)out.push('- Tag: '+a.f_tag);if(img('f_image'))out.push('- Image: '+img('f_image'));}
+  if(t.indexOf('Social Media')>-1){out.push('','Social media:');out.push('- Templates: '+(a.s_tmpl||[]).join(', '));out.push('- Sizes: '+(a.s_size||[]).join(', '));if(a.s_text)out.push('- Text: '+a.s_text);if(img('s_image'))out.push('- Image: '+img('s_image'));}
+  if(t.indexOf('Cover Image')>-1){out.push('','Cover image:');out.push('- Platforms: '+(a.c_platform||[]).join(', '));if((a.c_occasion||[]).length)out.push('- Occasions: '+(a.c_occasion||[]).join(', '));if(a.c_percentage)out.push('- Discount: '+a.c_percentage+'% off');}
+  body.innerHTML='<div style="text-align:center;padding:30px 0"><i class="ti ti-circle-check" style="font-size:34px;color:var(--text-accent)" aria-hidden="true"></i><p class="wz-q" style="margin-top:10px">Sent to Claude</p><p class="wz-hint">Building '+total()+' visual'+(total()===1?'':'s')+'…</p></div>';
+  next.disabled=true;back.style.visibility='hidden';count.textContent='Done';fill.style.width='100%';
+  sendPrompt(out.join('\n'));
+}
+render();
+})();
+</script>

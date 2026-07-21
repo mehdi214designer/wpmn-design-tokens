@@ -1,0 +1,14 @@
+[
+  {
+    "id": "wpmn-design-checker",
+    "name": "WPMN Design Checker",
+    "description": "Internal tool for checking WPMN pages against the design system. Edit this description in plugins-registry.json, I couldn't read the private repo to write a real one.",
+    "repo": "mehdi214designer/wpmn-design-checker"
+  },
+  {
+    "id": "wpmn-demo-seeder",
+    "name": "WPMN Demo Seeder",
+    "description": "Internal tool for seeding demo content. Edit this description in plugins-registry.json, I couldn't read the private repo to write a real one.",
+    "repo": "mehdi214designer/wpmn-demo-seeder"
+  }
+]

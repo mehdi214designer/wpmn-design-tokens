@@ -1,6 +1,6 @@
 {
   "name": "wpmn-design-tokens",
-  "version": "1.3.0",
+  "version": "1.5.0",
   "description": "WPMN Design System — tokens, components, and brand variables for WPManageNinja products",
   "main": "index.js",
   "module": "index.js",

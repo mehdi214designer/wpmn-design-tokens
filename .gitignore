@@ -26,13 +26,7 @@ npm-debug.log*
 /automation/
 /evals/
 /scratch/
-/skills/
 /.trash/
 /__pycache__/
 *.command
-*.skill
 *.bak
-_conv_hgap.mjs
-_wt_test
-/SKILL.md
-/FluentForms-Hero.html
