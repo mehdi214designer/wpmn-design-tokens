@@ -30,6 +30,27 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+### Fixed
+- **`wpmn-live-redesign` skill** — hardened from real Paymattic + FluentBooking runs (2026-07-21).
+  `scripts/tokenize.py` renamed to `scripts/snap_tokens.py`: the old name shadowed Python's stdlib
+  `tokenize` module for anything importing it, breaking `mirror.py` with a misleading "unknown
+  brand" error. `scripts/mirror.py`'s asset sweep now also catches
+  `<dotlottie-player>`/`<lottie-player>` `src`/`data-src` (missed a 2MB Lottie animation on
+  FluentBooking, previously had to be `curl`ed in by hand).
+
+### Changed
+- **`wpmn-live-redesign` SKILL.md** — added: content-gap vs heading→body gap guidance (content-gap
+  lives on the supporting paragraph's `margin-bottom`, not the heading's — biggest time-sink on
+  both runs), a note that the visual gap includes inherited margin from the preceding element,
+  explicit scope caveat on `check.mjs` (token-membership only, doesn't check heading→body gap,
+  line-height pairing, button anatomy, or shadow/single-primary rules), a "how to actually swap in
+  real components" method (classify buttons by computed fill not class, theme selectors outrank
+  single-class rules, `:is(a,button)` for submit buttons, `data-brand` must be on `<html>`), a
+  "what is NOT a button" category guard (accordion triggers, social icon links, tab labels), and
+  caveats for Work Sans reflow and `file://` blocking JSON/media fetches. Phase 5's concrete
+  patterns list grew with verified examples from both runs. Nothing removed — the core method
+  (mirror-then-reskin, the Phase 4 scoping rules, Phase 5's not-a-token list) held up both times.
+
 ## [1.5.0] — 2026-07-21
 
 ### Added

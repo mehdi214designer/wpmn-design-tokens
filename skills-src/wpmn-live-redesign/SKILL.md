@@ -50,6 +50,9 @@ Copy `assets/wpmn-reskin.css` into the workdir and adapt. It is authored CSS, no
 - **Work Sans**, forced with `!important` (must beat inline `font-family`). Exclude only real glyph
   containers: `svg, path, use, g, .dashicons, [class^="fa-"]`.
   **Do not exclude `[class*="icon"]`** — that matches `.kt-svg-icon-list-text`, which is *text*.
+  **Caveat:** Work Sans is wider than most source fonts, so headings can wrap an extra line and
+  total page height grows a little (a Paymattic hero H1 went 3→4 lines). Not a bug, don't mistake
+  it for a layout break.
 - **`[data-aos]{opacity:1;transform:none}`** — animate-on-scroll elements stay invisible otherwise.
 - **Hide inline video iframes** so the poster/mockup behind them shows.
 - **`p { margin-block:16px }`** at low specificity — the UA default `1em` lands off-scale.
@@ -63,8 +66,8 @@ Copy `assets/wpmn-reskin.css` into the workdir and adapt. It is authored CSS, no
 ## Phase 3 — Token snap
 
 ```bash
-python3 scripts/tokenize.py <workdir> <brand-key>     # e.g. fluentcommunity
-python3 scripts/aspect.py   <workdir>                 # ratio-hack → aspect-ratio
+python3 scripts/snap_tokens.py <workdir> <brand-key>  # e.g. fluentcommunity
+python3 scripts/aspect.py      <workdir>              # ratio-hack → aspect-ratio
 ```
 
 Rewrites `page.html` (inline styles + every `<style>` block) and all `.css` files.
@@ -81,6 +84,24 @@ Rewrites `page.html` (inline styles + every `<style>` block) and all `.css` file
 Headings 61/49/39/31/25/20 · Body 20/18/16/14/13/10 · **Button 23/20/18/16/13**
 Weights 400/500/600/700 · Spacing 0,2,4,8,12,16,20,24,32,40,48,56,64,80,96,120,160,192,224,256
 Radii 8/12/16/32
+
+### Content-gap vs heading→body gap — fix the right element
+
+The single biggest time-sink on both runs. A **header block** is a heading plus its supporting
+paragraph. Two different gaps, two different nodes, do not confuse them:
+
+- **Heading→body gap** (h1+16, h2+12, h3+12, h4+8, h5+8, h6+8) is the **heading's**
+  `margin-bottom`.
+- **Content-gap to the next block** (m 24, xl 48, etc.) is the **supporting paragraph's**
+  `margin-bottom`, not the heading's. Fixing the heading's margin here does nothing — a checker
+  that measures block-to-block distance won't move, because the paragraph is what's actually
+  carrying that space.
+
+**The visual gap includes inherited margin.** A checker that measures rendered gap (element top −
+previous element bottom) sees `your token + the previous element's own margin`. Setting a CTA
+group to `margin-top:24px` still reads as 36px if the element above it already carries a 12px
+`margin-bottom` — the fix is zeroing the *preceding* element's margin, not shrinking your token.
+(`:has(+ .cta)` on the preceding sibling is one way to target it.)
 
 ---
 
@@ -118,7 +139,14 @@ clears real violations without touching layout.
 
 If a checker flags the rest, prove it rather than arguing: measure one element at 1440 / 1280 /
 1024 and show the number moves. No fixed token can match a moving value. The checker should read
-*specified* values for spacing, not computed ones.
+*specified* values for spacing, not computed ones. **This is the tie-breaker for every spacing
+dispute** — it settled every one that came up on both reference runs.
+
+**Concrete patterns hit (verified this way, both runs):**
+
+- Negative full-bleed row margins: `-99px @1440 → -24px @1280` (Paymattic).
+- Auto-centred row/container margins: `.site-container`, a pricing row: `204 → 124 → 0`.
+- `dotlottie-player` margins: `121 → 116 → 0` (FluentBooking).
 
 ---
 
@@ -130,6 +158,19 @@ node scripts/check.mjs "file://<workdir>/page.html"    # needs playwright chromi
 
 Computed-style scan against the token sets. **Never trust that the find/replace ran.**
 
+**A clean `check.mjs` is necessary, not sufficient.** It only checks token *membership* for
+colour, type-size, spacing and radius. It does **not** check, and a page can pass it while
+failing all of the following on a stricter checker:
+
+- heading→body gap (h1+16 … h6+8) and hero-vs-section-header gap
+- content-gap between blocks (see Phase 3 — this is the #1 miss)
+- line-height paired to the type scale (61→73, 49→59, 31→37, 18→27, 16→24, 14→21, 13→20…)
+- per-size button anatomy (height / padding / font-size / weight / glow)
+- shadow token match, single-primary-per-section
+
+Don't declare a page done off a clean `check.mjs` alone — run whatever fuller anatomy/pairing
+checker is available before handoff, or manually verify these against Phase 3/7 by eye.
+
 Then integrity-check — this catches the §4 corruptions, which a token scan will not:
 
 - HTML entity count before vs after
@@ -139,6 +180,10 @@ Then integrity-check — this catches the §4 corruptions, which a token scan wi
 
 Then visual QA. **Caveat:** headless full-page screenshots intermittently drop images that are
 present and loaded. Confirm with a per-element screenshot before "fixing" a blank area.
+
+**Caveat:** `file://` blocks JSON/media fetches, both headless and in the Chrome extension. A
+perfectly mirrored page can still show a missing Lottie animation or analytics fetch under
+`file://` — it resolves once served over `http`. Don't chase it as a real defect.
 
 ---
 
@@ -160,6 +205,41 @@ but still runs the source site's own buttons and icons. On both reference builds
 Also surface, don't silently decide: brands with no accent token. Paymattic's purple and promo
 cyans have no WPMN equivalent, so nearest-token mapping turns them neutral (purple → slate,
 cyan → green). That is a visible brand change.
+
+### If Mhasan chooses real components — how to actually swap them in
+
+Adopting `.wpmn-btn` / Input over a mirrored theme (came up mid-FluentBooking) isn't just
+find-replace-class. Do it in this order:
+
+1. **Classify by computed fill, not by class name.** Kadence/FluentForms buttons don't map
+   cleanly by class. Read each button's rendered `background-color`: opaque → primary,
+   transparent → secondary. Bucket height to the nearest of 32/40/48/56/64 for the size. Inline
+   text links (height ≤ 24) are **tertiary**, not a boxed size — forcing a 32px box is wrong.
+2. **Theme selectors outrank single-class rules.** `wpmn-components.css` is authored at
+   single-class specificity, and the theme's own selectors (e.g.
+   `.kadence-column… .ff-btn-submit`) beat it, so the component silently loses. Restate the
+   Button/Input spec in the reskin layer at higher specificity or with `!important`, copied
+   verbatim from the design system.
+3. **Form submit buttons are `<button>`, not `<a>`.** A selector like `a.wpmn-btn` misses them —
+   use `:is(a,button).wpmn-btn`.
+4. **`data-brand` must be on `<html>`**, or every button renders default-blue regardless of the
+   product.
+
+### What is NOT a button
+
+The most repeated false-positive across both runs. A height-based checker buckets every
+`<button>`/`<a>` as a CTA. These are **not** CTAs and must not take button anatomy:
+
+- Accordion/FAQ triggers (`kt-accordion-header`, `kt-tab-title` used as a panel toggle).
+- Social icon links (`social-button`) — these are icon buttons; `SocialIcons` is 32×32 with zero
+  padding, so a "btn-xs needs 16px padding" rule would fail our *own* component. Icon buttons are
+  exempt from text-button padding.
+- Tabs / toggle labels — retheme them, but they're controls, not primary/secondary CTAs.
+
+**The same class serves different roles on different sites — always classify by role per site,
+never assume the class.** On Paymattic, `.kt-tab-title` was both content headings (→ h5 25px) and
+control labels (→ btn 20px) at once. On FluentBooking, every `.kt-tab-title` was a control label
+(all → btn 20px). Same selector, different answer each time — check it fresh per site.
 
 ---
 

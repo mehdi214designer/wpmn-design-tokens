@@ -4,7 +4,13 @@ Generic: colours map to the NEAREST token (brand ramp + neutrals + feedback),
 lengths snap to the spacing / radius / type scales. Handles px, rem, em,
 3-digit hex, rgb()/rgba(), and radius longhands.
 
-  usage: tokenize2.py <root-dir> <brand-key>
+Named snap_tokens.py (not tokenize.py) on purpose: a script called
+tokenize.py sitting on sys.path shadows Python's own stdlib `tokenize`
+module for anything else that imports it, which broke mirror.py in a
+confusing way (argv landed in the wrong module, surfaced as an unrelated
+"unknown brand" error). Don't rename this back.
+
+  usage: snap_tokens.py <root-dir> <brand-key>
 """
 import re, os, sys, glob, json
 

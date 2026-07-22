@@ -50,6 +50,15 @@ def asset_refs(text):
                 refs.add(u)
     for u in re.findall(r'url\(\s*["\']?((?:wp-content|wp-includes)/[^"\')]+)["\']?\s*\)', text):
         refs.add(u)
+    # Lottie / dotlottie animations aren't <img src=""> or url() — they're a
+    # <dotlottie-player>/<lottie-player> element's src or data-src, usually
+    # pointing at a .json/.lottie file. Missed on FluentBooking (a 2MB
+    # animation had to be curled in by hand). Catch both attribute names.
+    for m in re.findall(r'<(?:dotlottie-player|lottie-player)\b[^>]*?\s(?:src|data-src)=["\']'
+                        r'((?:wp-content|wp-includes)/[^"\']+)["\']', text, flags=re.I):
+        refs.add(m)
+    for m in re.findall(r'\bdata-src=["\']((?:wp-content|wp-includes)/[^"\']+)["\']', text):
+        refs.add(m)
     return refs
 
 def main():
