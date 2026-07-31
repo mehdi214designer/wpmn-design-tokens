@@ -1,0 +1,66 @@
+{
+  "id": "analytics-bento",
+  "name": "Analytics Bento",
+  "type": "html",
+  "status": "stable",
+  "description": "Dark analytics dashboard bento: a Projects Stats table (icon rows with budget and progress badges), a Performance Analytic up/down bar chart with tooltip pills and a Daily selector, and a tall Integration Analytic card with an area chart (peak tooltip) over a list of platform integrations with progress badges.",
+  "files": {
+    "html": "sections/analytics-bento/section.html"
+  },
+  "prompt": "sections/analytics-bento/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-analytics-bento",
+  "interactions": [
+    "cards fade up on first view (IntersectionObserver, 600ms wpmn-adb-up, staggered)",
+    "Performance chart: purple bars scaleY from the center baseline up and orange bars scaleY down, 700ms cubic-bezier(.22,1,.36,1), per-bar transition-delay",
+    "Integration area chart: the line strokes in via stroke-dashoffset (wpmn-adb-draw, 1.4s) with a gradient fill and a peak dot + tooltip",
+    "cards brighten their border on hover",
+    "prefers-reduced-motion: bar grow + line draw off, reveals rendered in place"
+  ],
+  "tokensUsed": [
+    "--color-surface-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--color-warning-primary",
+    "--btn-bg-enable",
+    "--radius-lg",
+    "--radius-sm",
+    "--radius-xsm",
+    "--font-family-base",
+    "--font-size-h4",
+    "--font-size-h5",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-size-body-label",
+    "--font-lh-h4",
+    "--font-lh-h5",
+    "--font-lh-body-base",
+    "--font-lh-body-small",
+    "--font-lh-body-label",
+    "--font-weight-semibold",
+    "--font-weight-medium"
+  ],
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "role": "Showcase",
+  "span": 2,
+  "tags": [
+    "bento",
+    "dashboard",
+    "analytics",
+    "dark",
+    "bar chart",
+    "area chart",
+    "stats table",
+    "integrations",
+    "progress",
+    "product ui"
+  ]
+}

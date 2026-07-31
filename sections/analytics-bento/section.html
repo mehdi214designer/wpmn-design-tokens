@@ -1,0 +1,219 @@
+<!-- WPMN Section: Analytics Bento — dark analytics dashboard bento (Projects Stats table, Performance up/down bar chart, Integration Analytic area chart + integration list), all token-based CSS/SVG (from a screenshot, tokenized, motion added). Classes are adb-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-analytics-bento">
+  <style>
+@keyframes wpmn-adb-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes wpmn-adb-draw{to{stroke-dashoffset:0}}
+    .wpmn-sec-analytics-bento{
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --adb-card:color-mix(in srgb, var(--color-text-primary-invert) 4%, var(--color-surface-secondary));
+      --adb-panel:color-mix(in srgb, var(--color-text-primary-invert) 6%, var(--color-surface-secondary));
+      --adb-line:color-mix(in srgb, var(--color-text-primary-invert) 8%, transparent);
+      --adb-line2:color-mix(in srgb, var(--color-text-primary-invert) 14%, transparent);
+      --adb-muted:color-mix(in srgb, var(--color-text-primary-invert) 45%, transparent);
+      --adb-faint:color-mix(in srgb, var(--color-text-primary-invert) 22%, transparent);
+      --adb-track:color-mix(in srgb, var(--color-text-primary-invert) 6%, transparent);
+      --adb-badge:color-mix(in srgb, var(--btn-bg-enable) 26%, var(--color-surface-secondary));
+      --adb-tile:linear-gradient(150deg, color-mix(in srgb, var(--btn-bg-enable) 30%, var(--color-surface-secondary)), color-mix(in srgb, var(--btn-bg-enable) 16%, var(--color-surface-secondary)));
+      --adb-area:color-mix(in srgb, var(--btn-bg-enable) 22%, transparent);
+    }
+    .wpmn-sec-analytics-bento .adb-wrap{max-width:1200px;margin:0 auto}
+    .wpmn-sec-analytics-bento .adb-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:var(--primitive-space-24);align-items:start}
+    .wpmn-sec-analytics-bento .adb-left{display:flex;flex-direction:column;gap:var(--primitive-space-24)}
+    .wpmn-sec-analytics-bento .adb-card{background:var(--adb-card);border:1px solid var(--adb-line);border-radius:var(--radius-lg);padding:var(--primitive-space-32);transition:border-color .25s ease}
+    .wpmn-sec-analytics-bento .adb-card:hover{border-color:var(--adb-line2)}
+    .wpmn-sec-analytics-bento h3{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert);margin:0}
+    .wpmn-sec-analytics-bento .adb-sub{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert);margin:var(--primitive-space-4) 0 0}
+
+    /* progress badge */
+    .wpmn-sec-analytics-bento .adb-pct{display:inline-flex;align-items:center;gap:var(--primitive-space-4);padding:var(--primitive-space-4) var(--primitive-space-8);border-radius:var(--radius-xsm);background:var(--adb-badge);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert);white-space:nowrap}
+    .wpmn-sec-analytics-bento .adb-pct svg{width:12px;height:12px;color:var(--btn-bg-enable)}
+
+    /* projects table */
+    .wpmn-sec-analytics-bento .adb-thead{display:grid;grid-template-columns:1fr auto auto;gap:var(--primitive-space-24);padding:var(--primitive-space-24) 0 var(--primitive-space-16);border-bottom:1px solid var(--adb-line);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary-invert)}
+    .wpmn-sec-analytics-bento .adb-thead .adb-r{justify-self:end}
+    .wpmn-sec-analytics-bento .adb-row{display:grid;grid-template-columns:1fr auto auto;gap:var(--primitive-space-24);align-items:center;padding:var(--primitive-space-16) 0;border-bottom:1px solid var(--adb-line)}
+    .wpmn-sec-analytics-bento .adb-row:last-child{border-bottom:0}
+    .wpmn-sec-analytics-bento .adb-item{display:flex;align-items:center;gap:var(--primitive-space-16);min-width:0}
+    .wpmn-sec-analytics-bento .adb-tile{flex:none;width:44px;height:44px;border-radius:var(--radius-sm);background:var(--adb-tile);display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert)}
+    .wpmn-sec-analytics-bento .adb-tile svg{width:20px;height:20px}
+    .wpmn-sec-analytics-bento .adb-nm{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-analytics-bento .adb-by{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
+    .wpmn-sec-analytics-bento .adb-budget{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-primary-invert);justify-self:end}
+
+    /* performance chart */
+    .wpmn-sec-analytics-bento .adb-phead{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--primitive-space-32)}
+    .wpmn-sec-analytics-bento .adb-chip{display:inline-flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-8) var(--primitive-space-12);border-radius:var(--radius-xsm);background:var(--adb-panel);border:1px solid var(--adb-line2);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary-invert)}
+    .wpmn-sec-analytics-bento .adb-chip svg{width:14px;height:14px;color:var(--color-text-secondary-invert)}
+    .wpmn-sec-analytics-bento .adb-perf{position:relative;height:210px}
+    .wpmn-sec-analytics-bento .adb-baseline{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--adb-line2)}
+    .wpmn-sec-analytics-bento .adb-bars{position:absolute;inset:0 0 26px;display:flex;align-items:stretch;gap:var(--primitive-space-8)}
+    .wpmn-sec-analytics-bento .adb-col{flex:1;position:relative;display:flex;flex-direction:column;justify-content:center}
+    .wpmn-sec-analytics-bento .adb-coltrack{position:absolute;inset:0;border-radius:var(--radius-xsm);background:var(--adb-track)}
+    .wpmn-sec-analytics-bento .adb-up,.wpmn-sec-analytics-bento .adb-dn{position:relative;width:100%;border-radius:var(--radius-xsm);transform:scaleY(0);transition:transform .7s cubic-bezier(.22,1,.36,1)}
+    .wpmn-sec-analytics-bento .adb-up{align-self:flex-end;margin-bottom:1px;height:calc(var(--h) * 1%);background:var(--btn-bg-enable);transform-origin:bottom}
+    .wpmn-sec-analytics-bento .adb-dn{align-self:flex-start;margin-top:1px;height:calc(var(--h) * 1%);background:var(--color-warning-primary);transform-origin:top}
+    .wpmn-sec-analytics-bento.adb-inview .adb-up,.wpmn-sec-analytics-bento.adb-inview .adb-dn{transform:scaleY(1)}
+    .wpmn-sec-analytics-bento .adb-xlabels{position:absolute;left:0;right:0;bottom:0;display:flex;gap:var(--primitive-space-8)}
+    .wpmn-sec-analytics-bento .adb-xlabels span{flex:1;text-align:center;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);color:var(--adb-muted)}
+    .wpmn-sec-analytics-bento .adb-tip{position:absolute;z-index:2;display:inline-flex;align-items:center;gap:var(--primitive-space-4);padding:var(--primitive-space-4) var(--primitive-space-8);border-radius:999px;background:var(--adb-card);border:1px solid;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary-invert);white-space:nowrap}
+    .wpmn-sec-analytics-bento .adb-tip svg{width:12px;height:12px}
+    .wpmn-sec-analytics-bento .adb-tip.adb-tp{left:16%;top:16%;border-color:color-mix(in srgb, var(--btn-bg-enable) 60%, transparent)}
+    .wpmn-sec-analytics-bento .adb-tip.adb-tp svg{color:var(--btn-bg-enable)}
+    .wpmn-sec-analytics-bento .adb-tip.adb-to{left:30%;top:66%;border-color:color-mix(in srgb, var(--color-warning-primary) 60%, transparent)}
+    .wpmn-sec-analytics-bento .adb-tip.adb-to svg{color:var(--color-warning-primary)}
+
+    /* integration analytic */
+    .wpmn-sec-analytics-bento .adb-right h3{font-size:var(--font-size-h4);line-height:var(--font-lh-h4)}
+    .wpmn-sec-analytics-bento .adb-rsub{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary-invert);margin:var(--primitive-space-8) 0 var(--primitive-space-32)}
+    .wpmn-sec-analytics-bento .adb-areawrap{position:relative;margin-bottom:var(--primitive-space-32)}
+    .wpmn-sec-analytics-bento .adb-areawrap svg{display:block;width:100%;height:170px}
+    .wpmn-sec-analytics-bento .adb-areawrap stop.adb-s0{stop-color:var(--adb-area)}
+    .wpmn-sec-analytics-bento .adb-areawrap stop.adb-s1{stop-color:transparent}
+    .wpmn-sec-analytics-bento .adb-aline{fill:none;stroke:var(--btn-bg-enable);stroke-width:2;stroke-dasharray:900;stroke-dashoffset:900}
+    .wpmn-sec-analytics-bento.adb-inview .adb-aline{animation:wpmn-adb-draw 1.4s ease-out forwards}
+    .wpmn-sec-analytics-bento .adb-adot{fill:var(--btn-bg-enable)}
+    .wpmn-sec-analytics-bento .adb-atip{position:absolute;left:30%;top:2px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:var(--primitive-space-4);padding:var(--primitive-space-4) var(--primitive-space-12);border-radius:999px;background:var(--adb-card);border:1px solid color-mix(in srgb, var(--btn-bg-enable) 60%, transparent);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary-invert)}
+    .wpmn-sec-analytics-bento .adb-atip svg{width:12px;height:12px;color:var(--btn-bg-enable)}
+    .wpmn-sec-analytics-bento .adb-intg{display:flex;align-items:center;gap:var(--primitive-space-16);padding:var(--primitive-space-16) 0;border-top:1px solid var(--adb-line)}
+    .wpmn-sec-analytics-bento .adb-ilogo{flex:none;width:44px;height:44px;border-radius:999px;background:var(--adb-panel);display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert)}
+    .wpmn-sec-analytics-bento .adb-ilogo svg{width:22px;height:22px}
+    .wpmn-sec-analytics-bento .adb-itext{flex:1;min-width:0}
+    .wpmn-sec-analytics-bento .adb-itext .adb-in{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-analytics-bento .adb-itext .adb-id{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
+
+    .wpmn-sec-analytics-bento .adb-reveal{opacity:0}
+    .wpmn-sec-analytics-bento.adb-inview .adb-reveal{animation:wpmn-adb-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-analytics-bento.adb-inview .adb-perfcard{animation-delay:80ms}
+    .wpmn-sec-analytics-bento.adb-inview .adb-right{animation-delay:140ms}
+
+    @media(max-width:1199px){.wpmn-sec-analytics-bento{padding:var(--primitive-space-96) var(--primitive-space-40)}}
+    @media(max-width:900px){.wpmn-sec-analytics-bento .adb-grid{grid-template-columns:1fr}}
+    @media(max-width:768px){.wpmn-sec-analytics-bento{padding:var(--primitive-space-64) var(--primitive-space-20)}}
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-analytics-bento .adb-up,.wpmn-sec-analytics-bento .adb-dn{transform:scaleY(1);transition:none}
+      .wpmn-sec-analytics-bento .adb-aline{stroke-dashoffset:0;animation:none}
+      .wpmn-sec-analytics-bento .adb-card{transition:none}
+      .wpmn-sec-analytics-bento .adb-reveal{opacity:1;animation:none}
+    }
+  </style>
+  <div class="adb-wrap">
+    <div class="adb-grid">
+      <div class="adb-left">
+
+        <!-- Projects Stats -->
+        <div class="adb-card adb-reveal">
+          <h3>Projects Stats</h3>
+          <p class="adb-sub">Updated 37 minutes ago</p>
+          <div class="adb-thead"><span>Item</span><span class="adb-r">Budget</span><span class="adb-r">Progress</span></div>
+          <div class="adb-row">
+            <div class="adb-item"><span class="adb-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 16l8 4 8-4" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span><div><div class="adb-nm">Nexus Industries</div><div class="adb-by">Jane Cooper</div></div></div>
+            <div class="adb-budget">$32,400</div>
+            <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>99.9%</span>
+          </div>
+          <div class="adb-row">
+            <div class="adb-item"><span class="adb-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 7l4 2.25v4.5L12 16l-4-2.25v-4.5L12 7z" stroke="currentColor" stroke-width="1.1"/></svg></span><div><div class="adb-nm">Aurora Innovations</div><div class="adb-by">Esther Howard</div></div></div>
+            <div class="adb-budget">$256,910</div>
+            <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>72.7%</span>
+          </div>
+          <div class="adb-row">
+            <div class="adb-item"><span class="adb-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><div><div class="adb-nm">Innovio Labs</div><div class="adb-by">Jenny Wilson</div></div></div>
+            <div class="adb-budget">$8,220</div>
+            <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>99.9%</span>
+          </div>
+          <div class="adb-row">
+            <div class="adb-item"><span class="adb-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 16l8 4 8-4" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span><div><div class="adb-nm">Infinity Systems</div><div class="adb-by">Cody Fisher</div></div></div>
+            <div class="adb-budget">$74,000</div>
+            <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>21.5%</span>
+          </div>
+        </div>
+
+        <!-- Performance Analytic -->
+        <div class="adb-card adb-perfcard adb-reveal">
+          <div class="adb-phead">
+            <h3>Performance Analytic</h3>
+            <span class="adb-chip">Daily <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="adb-perf" aria-hidden="true">
+            <div class="adb-baseline"></div>
+            <div class="adb-bars">
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-up" style="--h:82;transition-delay:0ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-dn" style="--h:40;transition-delay:60ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-dn" style="--h:58;transition-delay:120ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-up" style="--h:34;transition-delay:180ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-up" style="--h:60;transition-delay:240ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-up" style="--h:46;transition-delay:300ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-dn" style="--h:70;transition-delay:360ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-up" style="--h:56;transition-delay:420ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-up" style="--h:38;transition-delay:480ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-up" style="--h:52;transition-delay:540ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-dn" style="--h:44;transition-delay:600ms"></span></div>
+              <div class="adb-col"><span class="adb-coltrack"></span><span class="adb-up" style="--h:36;transition-delay:660ms"></span></div>
+            </div>
+            <div class="adb-xlabels"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span></div>
+            <span class="adb-tip adb-tp"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>82.4%</span>
+            <span class="adb-tip adb-to"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>64.8%</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Integration Analytic -->
+      <div class="adb-card adb-right adb-reveal">
+        <h3>Integration Analytic</h3>
+        <p class="adb-rsub">Data-driven insights for optimized system integration</p>
+        <div class="adb-areawrap" aria-hidden="true">
+          <svg viewBox="0 0 600 170" preserveAspectRatio="none">
+            <defs><linearGradient id="wpmn-adb-fill" x1="0" y1="0" x2="0" y2="1"><stop class="adb-s0" offset="0"/><stop class="adb-s1" offset="1"/></linearGradient></defs>
+            <path d="M0 120 C60 120 90 118 120 108 C150 98 168 40 210 40 C252 40 270 104 320 122 C380 143 420 140 470 130 C520 122 560 108 600 100 L600 170 L0 170 Z" fill="url(#wpmn-adb-fill)"/>
+            <path class="adb-aline" d="M0 120 C60 120 90 118 120 108 C150 98 168 40 210 40 C252 40 270 104 320 122 C380 143 420 140 470 130 C520 122 560 108 600 100"/>
+            <circle class="adb-adot" cx="210" cy="40" r="4"/>
+          </svg>
+          <span class="adb-atip"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>99.2%</span>
+        </div>
+
+        <div class="adb-intg">
+          <span class="adb-ilogo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4 4 0 0 0-6.9 3.7A11.4 11.4 0 0 1 3.7 4.6a4 4 0 0 0 1.2 5.4c-.6 0-1.2-.2-1.8-.5a4 4 0 0 0 3.2 4c-.5.1-1.1.2-1.7.1a4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 18.1 11.3 11.3 0 0 0 8.1 20c7.3 0 11.4-6.2 11.4-11.6v-.5c.8-.6 1.5-1.3 2-2z"/></svg></span>
+          <div class="adb-itext"><div class="adb-in">Twitter</div><div class="adb-id">Streamlined Twitter content integration</div></div>
+          <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>99.9%</span>
+        </div>
+        <div class="adb-intg">
+          <span class="adb-ilogo"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></span>
+          <div class="adb-itext"><div class="adb-in">Instagram</div><div class="adb-id">Seamless Instagram content integration</div></div>
+          <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>90.0%</span>
+        </div>
+        <div class="adb-intg">
+          <span class="adb-ilogo"><svg viewBox="0 0 24 24" fill="none"><path d="M6 15c3.5 2.5 8.5 2.5 12 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 16c.6.6 1 1.4 1 2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 6.5C8 5 9.3 4 11 4s3 1 3 2.7c0 1.5-1 2.3-2.6 2.6-1.1.2-1.4.6-1.4 1.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="14" r=".6" fill="currentColor"/></svg></span>
+          <div class="adb-itext"><div class="adb-in">Amazon</div><div class="adb-id">Integrated selling on Amazon</div></div>
+          <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>94.2%</span>
+        </div>
+        <div class="adb-intg">
+          <span class="adb-ilogo"><svg viewBox="0 0 24 24" fill="none"><g stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 16v-4"/><path d="M9 16v-6"/><path d="M12 16v-5"/></g><path d="M15 16v-6a4 4 0 0 1 4 4 2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+          <div class="adb-itext"><div class="adb-in">Soundcloud</div><div class="adb-id">Streamlined Soundcloud audio integration</div></div>
+          <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>89.2%</span>
+        </div>
+        <div class="adb-intg">
+          <span class="adb-ilogo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20l1.4-4A8 8 0 1 1 9 19.2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 9c0 4 2 6 6 6 .6 0-1.2-1.6-1.6-1.6-.7 0-1 .8-1.7.6C10.4 13.9 10 12 10 11c0-.5.2-1 .2-1z" fill="currentColor"/></svg></span>
+          <div class="adb-itext"><div class="adb-in">WhatsApp</div><div class="adb-id">Seamless WhatsApp messaging integration</div></div>
+          <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>99.2%</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+    // Motion (my call): cards reveal on first view; performance bars grow from the center baseline
+    // and the integration area chart draws its line in. Scoped to this section.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-analytics-bento');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) { sec.classList.add('adb-inview'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { sec.classList.add('adb-inview'); io.disconnect(); } });
+      }, { threshold: 0.15 });
+      io.observe(sec);
+    })();
+  </script>
+</section>
