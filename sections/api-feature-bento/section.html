@@ -1,0 +1,241 @@
+<!-- WPMN Section: API Feature Bento — dark 2-column bento of four feature cards (floating version chips, a command palette, a browser/IDE mock, a bar chart), all token-based CSS/SVG (from a screenshot, tokenized, motion added). Classes are afb-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-api-feature-bento">
+  <style>
+@keyframes wpmn-afb-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes wpmn-afb-float{0%,100%{transform:translateY(0) var(--afb-rot)}50%{transform:translateY(-7px) var(--afb-rot)}}
+    .wpmn-sec-api-feature-bento{
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      position:relative;overflow:hidden;
+      --afb-card:color-mix(in srgb, var(--color-text-primary-invert) 4%, var(--color-surface-secondary));
+      --afb-panel:color-mix(in srgb, var(--color-text-primary-invert) 6%, var(--color-surface-secondary));
+      --afb-chip:color-mix(in srgb, var(--color-text-primary-invert) 8%, var(--color-surface-secondary));
+      --afb-line:color-mix(in srgb, var(--color-text-primary-invert) 8%, transparent);
+      --afb-line2:color-mix(in srgb, var(--color-text-primary-invert) 14%, transparent);
+      --afb-muted:color-mix(in srgb, var(--color-text-primary-invert) 40%, transparent);
+      --afb-faint:color-mix(in srgb, var(--color-text-primary-invert) 22%, transparent);
+      --afb-bars:color-mix(in srgb, var(--color-text-primary-invert) 7%, transparent);
+    }
+    /* faint vertical line texture */
+    .wpmn-sec-api-feature-bento::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:repeating-linear-gradient(90deg, var(--afb-line) 0 1px, transparent 1px 96px);-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%);opacity:.6}
+    .wpmn-sec-api-feature-bento .afb-wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto}
+
+    .wpmn-sec-api-feature-bento .afb-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-24);grid-template-areas:"themes pavyon" "search pavyon" "search cosmic"}
+    .wpmn-sec-api-feature-bento .afb-themes{grid-area:themes}
+    .wpmn-sec-api-feature-bento .afb-search{grid-area:search}
+    .wpmn-sec-api-feature-bento .afb-pavyon{grid-area:pavyon}
+    .wpmn-sec-api-feature-bento .afb-cosmic{grid-area:cosmic}
+
+    .wpmn-sec-api-feature-bento .afb-card{position:relative;overflow:hidden;background:var(--afb-card);border:1px solid var(--afb-line);border-radius:var(--radius-lg);padding:var(--primitive-space-32);display:flex;flex-direction:column;transition:border-color .25s ease, transform .25s ease}
+    .wpmn-sec-api-feature-bento .afb-card:hover{border-color:var(--afb-line2);transform:translateY(-3px)}
+    .wpmn-sec-api-feature-bento .afb-ic{width:32px;height:32px;color:var(--color-text-primary-invert);opacity:.9;margin-bottom:var(--primitive-space-24)}
+    .wpmn-sec-api-feature-bento .afb-ic svg{width:100%;height:100%}
+    .wpmn-sec-api-feature-bento h3{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert);margin:0 0 var(--primitive-space-16)}
+    .wpmn-sec-api-feature-bento .afb-desc{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary-invert);margin:0;max-width:42ch}
+
+    /* themes: floating version chips */
+    .wpmn-sec-api-feature-bento .afb-chips{position:relative;flex:1;min-height:190px;margin-top:var(--primitive-space-24)}
+    .wpmn-sec-api-feature-bento .afb-chip{position:absolute;display:inline-flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-8) var(--primitive-space-16);border-radius:var(--radius-sm);background:var(--afb-chip);border:1px solid var(--afb-line2);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert);white-space:nowrap;box-shadow:var(--shadow-soft-500);animation:wpmn-afb-float 5s ease-in-out infinite}
+    .wpmn-sec-api-feature-bento .afb-chip svg{width:15px;height:15px}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c1{--afb-rot:rotate(-9deg);left:2%;top:34%;animation-delay:0s;color:var(--color-warning-primary)}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c1 span{color:var(--color-text-primary-invert)}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c2{--afb-rot:rotate(7deg);right:0;top:6%;animation-delay:.6s}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c2 svg{color:var(--btn-bg-enable)}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c3{--afb-rot:rotate(-4deg);right:6%;top:40%;animation-delay:1.1s}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c4{--afb-rot:rotate(6deg);right:16%;top:66%;animation-delay:1.6s}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c4 svg{color:var(--btn-bg-enable)}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c5{--afb-rot:rotate(-7deg);left:8%;top:80%;animation-delay:.3s}
+    .wpmn-sec-api-feature-bento .afb-chip.afb-c5 svg{color:var(--btn-bg-enable)}
+
+    /* command palette */
+    .wpmn-sec-api-feature-bento .afb-palette{margin-top:var(--primitive-space-24);background:var(--afb-panel);border:1px solid var(--afb-line);border-radius:var(--radius-md);overflow:hidden}
+    .wpmn-sec-api-feature-bento .afb-pinput{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-16);border-bottom:1px solid var(--afb-line)}
+    .wpmn-sec-api-feature-bento .afb-pinput svg{width:18px;height:18px;color:var(--afb-faint)}
+    .wpmn-sec-api-feature-bento .afb-pinput .afb-ph{flex:1;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--afb-faint)}
+    .wpmn-sec-api-feature-bento .afb-kbd{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert);padding:var(--primitive-space-4) var(--primitive-space-8);border-radius:var(--radius-xsm);background:var(--afb-chip);border:1px solid var(--afb-line2)}
+    .wpmn-sec-api-feature-bento .afb-plabel{display:flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-16) var(--primitive-space-16) var(--primitive-space-8);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
+    .wpmn-sec-api-feature-bento .afb-count{min-width:18px;height:18px;padding:0 var(--primitive-space-4);border-radius:999px;background:var(--afb-chip);border:1px solid var(--afb-line2);display:inline-flex;align-items:center;justify-content:center;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label)}
+    .wpmn-sec-api-feature-bento .afb-prow{position:relative;display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-12) var(--primitive-space-16);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-primary-invert)}
+    .wpmn-sec-api-feature-bento .afb-prow svg{width:16px;height:16px;color:var(--color-text-secondary-invert)}
+    .wpmn-sec-api-feature-bento .afb-prow .afb-nm{flex:1}
+    .wpmn-sec-api-feature-bento .afb-prow.afb-on{background:var(--afb-chip)}
+    .wpmn-sec-api-feature-bento .afb-prow.afb-on::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;border-radius:999px;background:var(--color-text-primary-invert)}
+    .wpmn-sec-api-feature-bento .afb-badge{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);padding:var(--primitive-space-2) var(--primitive-space-8);border-radius:999px;color:var(--color-text-primary-invert)}
+    .wpmn-sec-api-feature-bento .afb-badge.afb-active{background:color-mix(in srgb, var(--btn-bg-enable) 38%, var(--color-surface-secondary))}
+    .wpmn-sec-api-feature-bento .afb-badge.afb-pending{background:color-mix(in srgb, var(--color-warning-primary) 40%, var(--color-surface-secondary))}
+
+    /* browser / IDE mock */
+    .wpmn-sec-api-feature-bento .afb-headline{display:flex;align-items:center;gap:var(--primitive-space-12);margin-bottom:var(--primitive-space-16)}
+    .wpmn-sec-api-feature-bento .afb-headline .afb-ic{margin:0;width:26px;height:26px}
+    .wpmn-sec-api-feature-bento .afb-headline h3{margin:0}
+    .wpmn-sec-api-feature-bento .afb-browser{margin-top:var(--primitive-space-24);flex:1;background:var(--afb-panel);border:1px solid var(--afb-line);border-radius:var(--radius-md) var(--radius-md) 0 0;overflow:hidden;display:flex;flex-direction:column;min-height:340px}
+    .wpmn-sec-api-feature-bento .afb-titlebar{display:flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-12) var(--primitive-space-16);border-bottom:1px solid var(--afb-line)}
+    .wpmn-sec-api-feature-bento .afb-dot{width:9px;height:9px;border-radius:999px;background:var(--afb-line2)}
+    .wpmn-sec-api-feature-bento .afb-url{margin:0 auto;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--afb-muted)}
+    .wpmn-sec-api-feature-bento .afb-menubar{display:flex;gap:var(--primitive-space-16);padding:var(--primitive-space-8) var(--primitive-space-16);border-bottom:1px solid var(--afb-line);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);color:var(--afb-muted)}
+    .wpmn-sec-api-feature-bento .afb-bwbody{display:grid;grid-template-columns:0.9fr 1.1fr 1.4fr;flex:1;min-height:0}
+    .wpmn-sec-api-feature-bento .afb-nav,.wpmn-sec-api-feature-bento .afb-tree{padding:var(--primitive-space-12);border-right:1px solid var(--afb-line);display:flex;flex-direction:column;gap:var(--primitive-space-4)}
+    .wpmn-sec-api-feature-bento .afb-navi{display:flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-8);border-radius:var(--radius-xsm);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
+    .wpmn-sec-api-feature-bento .afb-navi svg{width:14px;height:14px}
+    .wpmn-sec-api-feature-bento .afb-navi.afb-on{background:var(--afb-chip);color:var(--color-text-primary-invert)}
+    .wpmn-sec-api-feature-bento .afb-treei{display:flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-4) var(--primitive-space-8);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);color:var(--afb-muted)}
+    .wpmn-sec-api-feature-bento .afb-treei svg{width:13px;height:13px}
+    .wpmn-sec-api-feature-bento .afb-treei.afb-on{color:var(--color-text-primary-invert)}
+    .wpmn-sec-api-feature-bento .afb-code{padding:var(--primitive-space-12);overflow:hidden;display:flex;flex-direction:column;gap:var(--primitive-space-4);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label)}
+    .wpmn-sec-api-feature-bento .afb-cl{display:flex;gap:var(--primitive-space-12);white-space:nowrap}
+    .wpmn-sec-api-feature-bento .afb-ln{color:var(--afb-faint);min-width:16px;text-align:right}
+    .wpmn-sec-api-feature-bento .afb-cm{color:var(--afb-muted)}
+    .wpmn-sec-api-feature-bento .afb-kw{color:var(--btn-bg-enable)}
+    .wpmn-sec-api-feature-bento .afb-st{color:var(--color-warning-primary)}
+    .wpmn-sec-api-feature-bento .afb-tx{color:var(--color-text-secondary-invert)}
+
+    /* cosmic chart */
+    .wpmn-sec-api-feature-bento .afb-chart{margin-top:auto;padding-top:var(--primitive-space-24);display:flex;align-items:flex-end;gap:var(--primitive-space-16);height:190px}
+    .wpmn-sec-api-feature-bento .afb-cgroup{flex:1;display:flex;flex-direction:column;align-items:center;gap:var(--primitive-space-8);height:100%}
+    .wpmn-sec-api-feature-bento .afb-cbars{position:relative;flex:1;width:100%;display:flex;justify-content:center;align-items:flex-end;gap:var(--primitive-space-8)}
+    .wpmn-sec-api-feature-bento .afb-track{position:absolute;top:0;bottom:0;width:22px;border-radius:var(--radius-xsm) var(--radius-xsm) 0 0;background:var(--afb-bars)}
+    .wpmn-sec-api-feature-bento .afb-track.afb-t1{left:calc(50% - 25px)}
+    .wpmn-sec-api-feature-bento .afb-track.afb-t2{right:calc(50% - 25px)}
+    .wpmn-sec-api-feature-bento .afb-bar{width:22px;border-radius:var(--radius-xsm) var(--radius-xsm) 0 0;transform:scaleY(0);transform-origin:bottom;transition:transform .8s cubic-bezier(.22,1,.36,1);height:calc(var(--h) * 1%)}
+    .wpmn-sec-api-feature-bento.afb-inview .afb-bar{transform:scaleY(1)}
+    .wpmn-sec-api-feature-bento .afb-bar.afb-o{background:var(--color-warning-primary)}
+    .wpmn-sec-api-feature-bento .afb-bar.afb-p{background:var(--btn-bg-enable)}
+    .wpmn-sec-api-feature-bento .afb-clabel{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
+
+    /* reveal */
+    .wpmn-sec-api-feature-bento .afb-reveal{opacity:0}
+    .wpmn-sec-api-feature-bento.afb-inview .afb-reveal{animation:wpmn-afb-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-api-feature-bento.afb-inview .afb-search{animation-delay:80ms}
+    .wpmn-sec-api-feature-bento.afb-inview .afb-pavyon{animation-delay:160ms}
+    .wpmn-sec-api-feature-bento.afb-inview .afb-cosmic{animation-delay:240ms}
+
+    @media(max-width:1199px){.wpmn-sec-api-feature-bento{padding:var(--primitive-space-96) var(--primitive-space-40)}}
+    @media(max-width:900px){
+      .wpmn-sec-api-feature-bento .afb-grid{grid-template-columns:1fr;grid-template-areas:"themes" "search" "pavyon" "cosmic"}
+      .wpmn-sec-api-feature-bento .afb-bwbody{grid-template-columns:1fr 1.3fr}
+      .wpmn-sec-api-feature-bento .afb-nav{display:none}
+    }
+    @media(max-width:768px){.wpmn-sec-api-feature-bento{padding:var(--primitive-space-64) var(--primitive-space-20)}}
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-api-feature-bento .afb-chip{animation:none}
+      .wpmn-sec-api-feature-bento .afb-bar{transform:scaleY(1);transition:none}
+      .wpmn-sec-api-feature-bento .afb-card{transition:none}
+      .wpmn-sec-api-feature-bento .afb-reveal{opacity:1;animation:none}
+    }
+  </style>
+  <div class="afb-wrap">
+    <div class="afb-grid">
+
+      <!-- Customizable UI Themes -->
+      <article class="afb-card afb-themes afb-reveal">
+        <span class="afb-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 7l4 2.25v4.5L12 16l-4-2.25v-4.5L12 7z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+        <h3>Customizable UI<br>Themes</h3>
+        <p class="afb-desc">"With this feature, users can customize the look of the platform or app to their liking by changing their colors, fonts and interface layout."</p>
+        <div class="afb-chips" aria-hidden="true">
+          <span class="afb-chip afb-c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 6 6 .5-4.5 4 1.5 6-5-3.2-5 3.2 1.5-6L4 8.5 10 8z"/></svg><span>Qupe V 1.2</span></span>
+          <span class="afb-chip afb-c2"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="currentColor"/></svg>Flashlane V 2.1</span>
+          <span class="afb-chip afb-c3"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5z"/></svg>Modex Company API</span>
+          <span class="afb-chip afb-c4"><svg viewBox="0 0 24 24" fill="none"><g fill="currentColor"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="8" cy="16" r="3"/><circle cx="16" cy="16" r="3"/></g></svg>Pavyon V 1.1</span>
+          <span class="afb-chip afb-c5"><svg viewBox="0 0 24 24" fill="none"><path d="M20 13a8 8 0 1 1-9-9 6 6 0 0 0 9 9z" fill="currentColor"/></svg>Cosmic V 1.0</span>
+        </div>
+      </article>
+
+      <!-- Advanced search -->
+      <article class="afb-card afb-search afb-reveal">
+        <span class="afb-ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        <h3>Advanced search</h3>
+        <p class="afb-desc">Advanced search provides users with detailed filtering and customized search options, enabling more specific and in-depth searches based on particular criteria.</p>
+        <div class="afb-palette" aria-hidden="true">
+          <div class="afb-pinput">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12l3-6 2 4 2-7 2 9 2-4 3 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="afb-ph">Advanced search...</span>
+            <span class="afb-kbd">⌘ + K</span>
+          </div>
+          <div class="afb-plabel">API's <span class="afb-count">3</span></div>
+          <div class="afb-prow"><svg viewBox="0 0 24 24" fill="none"><path d="M20 13a8 8 0 1 1-9-9 6 6 0 0 0 9 9z" fill="currentColor"/></svg><span class="afb-nm">Cosmic Company API</span><span class="afb-badge afb-active">Active</span></div>
+          <div class="afb-prow afb-on"><svg viewBox="0 0 24 24" fill="none"><g fill="currentColor"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="8" cy="16" r="3"/><circle cx="16" cy="16" r="3"/></g></svg><span class="afb-nm">Pavyon Company API</span><span class="afb-badge afb-active">Active</span></div>
+          <div class="afb-prow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 6 6 .5-4.5 4 1.5 6-5-3.2-5 3.2 1.5-6L4 8.5 10 8z"/></svg><span class="afb-nm">Qupe Company API</span><span class="afb-badge afb-pending">Pending</span></div>
+          <div class="afb-plabel">Version <span class="afb-count">3</span></div>
+          <div class="afb-prow"><svg viewBox="0 0 24 24" fill="none"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span class="afb-nm">Cosmic Company API V 1.0</span></div>
+          <div class="afb-prow"><svg viewBox="0 0 24 24" fill="none"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span class="afb-nm">Flashlane Company API v 1.3</span></div>
+        </div>
+      </article>
+
+      <!-- Pavyon API -->
+      <article class="afb-card afb-pavyon afb-reveal">
+        <div class="afb-headline">
+          <span class="afb-ic"><svg viewBox="0 0 24 24" fill="none"><g fill="currentColor"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="8" cy="16" r="3"/><circle cx="16" cy="16" r="3"/></g></svg></span>
+          <h3>Pavyon API</h3>
+        </div>
+        <p class="afb-desc">The editable nature of APIs may vary depending on the features allowed and policies set by the API provider. Your APIs under control with Pavyon.</p>
+        <div class="afb-browser" aria-hidden="true">
+          <div class="afb-titlebar"><span class="afb-dot"></span><span class="afb-dot"></span><span class="afb-dot"></span><span class="afb-url">app.pavyon.com</span></div>
+          <div class="afb-menubar"><span>File</span><span>Edit</span><span>View</span><span>Find</span><span>Navigate</span><span>Editor</span><span>Window</span><span>Help</span></div>
+          <div class="afb-bwbody">
+            <div class="afb-nav">
+              <div class="afb-navi"><svg viewBox="0 0 24 24" fill="none"><g fill="currentColor"><circle cx="8" cy="8" r="2.4"/><circle cx="16" cy="8" r="2.4"/><circle cx="8" cy="16" r="2.4"/><circle cx="16" cy="16" r="2.4"/></g></svg>Pavyon</div>
+              <div class="afb-navi"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>Overview</div>
+              <div class="afb-navi afb-on"><svg viewBox="0 0 24 24" fill="none"><g fill="currentColor"><circle cx="8" cy="8" r="2.4"/><circle cx="16" cy="8" r="2.4"/><circle cx="8" cy="16" r="2.4"/><circle cx="16" cy="16" r="2.4"/></g></svg>API's</div>
+              <div class="afb-navi"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18l5-6 4 3 6-8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Analytics</div>
+              <div class="afb-navi"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>Products</div>
+              <div class="afb-navi"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M4 20a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.3"/></svg>Community</div>
+            </div>
+            <div class="afb-tree">
+              <div class="afb-treei afb-on"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.2"/></svg>Pavyon Api</div>
+              <div class="afb-treei" style="padding-left:20px"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.2"/></svg>Web APIs</div>
+              <div class="afb-treei" style="padding-left:20px"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.2"/></svg>Data APIs</div>
+              <div class="afb-treei afb-on" style="padding-left:20px"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.2"/></svg>Graphical UI (GUI) APIs</div>
+          <div class="afb-treei" style="padding-left:20px"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.2"/></svg>Hardware APIs</div>
+              <div class="afb-treei" style="padding-left:20px"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.2"/></svg>Database APIs</div>
+              <div class="afb-treei"><svg viewBox="0 0 24 24" fill="none"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z" stroke="currentColor" stroke-width="1.2"/></svg>Cosmic API</div>
+              <div class="afb-treei"><svg viewBox="0 0 24 24" fill="none"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z" stroke="currentColor" stroke-width="1.2"/></svg>Flashlane API</div>
+              <div class="afb-treei"><svg viewBox="0 0 24 24" fill="none"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z" stroke="currentColor" stroke-width="1.2"/></svg>Mangrove API</div>
+            </div>
+            <div class="afb-code">
+              <div class="afb-cl"><span class="afb-ln">1</span><span class="afb-cm">// Importing a single module</span></div>
+              <div class="afb-cl"><span class="afb-ln">2</span><span><span class="afb-kw">import</span> <span class="afb-tx">moduleName</span> <span class="afb-kw">from</span> <span class="afb-st">'modulePath'</span>;</span></div>
+              <div class="afb-cl"><span class="afb-ln">3</span><span></span></div>
+              <div class="afb-cl"><span class="afb-ln">4</span><span class="afb-cm">// Importing multiple modules</span></div>
+              <div class="afb-cl"><span class="afb-ln">5</span><span><span class="afb-kw">import</span> <span class="afb-tx">{ module1, module2 }</span> <span class="afb-kw">from</span> <span class="afb-st">'modulePath'</span>;</span></div>
+              <div class="afb-cl"><span class="afb-ln">6</span><span></span></div>
+              <div class="afb-cl"><span class="afb-ln">7</span><span class="afb-cm">// Importing an entire module as an object</span></div>
+              <div class="afb-cl"><span class="afb-ln">8</span><span><span class="afb-kw">import</span> <span class="afb-tx">* as moduleObject</span> <span class="afb-kw">from</span> <span class="afb-st">'modulePath'</span>;</span></div>
+              <div class="afb-cl"><span class="afb-ln">9</span><span></span></div>
+              <div class="afb-cl"><span class="afb-ln">10</span><span class="afb-cm">// Importing a default and named exports</span></div>
+              <div class="afb-cl"><span class="afb-ln">11</span><span><span class="afb-kw">import</span> <span class="afb-tx">defaultExport, { namedExport1 }</span> <span class="afb-kw">from</span> <span class="afb-st">'modulePath'</span>;</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Cosmic API -->
+      <article class="afb-card afb-cosmic afb-reveal">
+        <span class="afb-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M20 13a8 8 0 1 1-9-9 6 6 0 0 0 9 9z" fill="currentColor"/><path d="M17 3l.6 1.7L19.3 5l-1.7.6L17 7.3 16.4 5.6 14.7 5l1.7-.6z" fill="currentColor"/></svg></span>
+        <h3>Cosmic API</h3>
+        <p class="afb-desc">The editable nature of APIs may vary depending on the features allowed and policies set by the API provider.</p>
+        <div class="afb-chart" aria-hidden="true">
+          <div class="afb-cgroup"><div class="afb-cbars"><span class="afb-track afb-t1"></span><span class="afb-track afb-t2"></span><span class="afb-bar afb-o" style="--h:88;transition-delay:0ms"></span><span class="afb-bar afb-p" style="--h:56;transition-delay:80ms"></span></div><span class="afb-clabel">Mon</span></div>
+          <div class="afb-cgroup"><div class="afb-cbars"><span class="afb-track afb-t1"></span><span class="afb-track afb-t2"></span><span class="afb-bar afb-o" style="--h:40;transition-delay:120ms"></span><span class="afb-bar afb-p" style="--h:52;transition-delay:200ms"></span></div><span class="afb-clabel">Tue</span></div>
+          <div class="afb-cgroup"><div class="afb-cbars"><span class="afb-track afb-t1"></span><span class="afb-track afb-t2"></span><span class="afb-bar afb-o" style="--h:58;transition-delay:240ms"></span><span class="afb-bar afb-p" style="--h:80;transition-delay:320ms"></span></div><span class="afb-clabel">Wed</span></div>
+          <div class="afb-cgroup"><div class="afb-cbars"><span class="afb-track afb-t1"></span><span class="afb-track afb-t2"></span><span class="afb-bar afb-o" style="--h:78;transition-delay:360ms"></span><span class="afb-bar afb-p" style="--h:96;transition-delay:440ms"></span></div><span class="afb-clabel">Thu</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <script>
+    // Motion (my call): cards reveal on first view (staggered); version chips float gently and the
+    // Cosmic bar chart grows from the baseline; cards lift on hover. Scoped to this section.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-api-feature-bento');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) { sec.classList.add('afb-inview'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { sec.classList.add('afb-inview'); io.disconnect(); } });
+      }, { threshold: 0.15 });
+      io.observe(sec);
+    })();
+  </script>
+</section>

@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.5.0",
-  "generatedAt": "2026-07-31T05:08:32.352Z",
+  "generatedAt": "2026-07-31T05:20:06.213Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -1204,6 +1204,72 @@
         "dismissible"
       ],
       "role": "Announcement"
+    },
+    {
+      "id": "api-feature-bento",
+      "name": "API Feature Bento",
+      "type": "html",
+      "status": "stable",
+      "description": "Dark 2-column feature bento of four cards over a faint vertical-line backdrop: Customizable Themes with floating version chips, Advanced search with a command-palette mock (status badges), a wide Pavyon API browser/IDE mock (nav, API file tree, syntax-highlighted code), and Cosmic API with an animated paired bar chart.",
+      "files": {
+        "html": "sections/api-feature-bento/section.html"
+      },
+      "prompt": "sections/api-feature-bento/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-api-feature-bento",
+      "interactions": [
+        "cards fade up on first view (IntersectionObserver, 600ms wpmn-afb-up, staggered 80ms per card)",
+        "version chips float gently: translateY +/-7px, 5s ease-in-out infinite, per-chip delay, each keeping its tilt via a --afb-rot custom property",
+        "Cosmic bar chart: bars scaleY 0 -> 1 from the baseline once in view, 800ms cubic-bezier(.22,1,.36,1), per-bar transition-delay",
+        "cards lift 3px and brighten their border on hover (250ms)",
+        "prefers-reduced-motion: chip float + bar grow + hover off, everything rendered in final state"
+      ],
+      "tokensUsed": [
+        "--color-surface-secondary",
+        "--color-text-primary-invert",
+        "--color-text-secondary-invert",
+        "--color-warning-primary",
+        "--btn-bg-enable",
+        "--radius-lg",
+        "--radius-md",
+        "--radius-sm",
+        "--radius-xsm",
+        "--shadow-soft-500",
+        "--font-family-base",
+        "--font-size-h4",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h4",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-lh-body-label",
+        "--font-weight-semibold",
+        "--font-weight-medium"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "role": "Features",
+      "span": 2,
+      "tags": [
+        "bento",
+        "feature grid",
+        "dark",
+        "api",
+        "command palette",
+        "code editor",
+        "bar chart",
+        "floating chips",
+        "product ui",
+        "developer"
+      ]
     },
     {
       "id": "app-scan-hero",
