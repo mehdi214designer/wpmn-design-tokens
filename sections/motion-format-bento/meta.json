@@ -1,0 +1,66 @@
+{
+  "id": "motion-format-bento",
+  "name": "Motion Format Bento",
+  "type": "html",
+  "status": "stable",
+  "description": "Dark 3-column motion feature set: a card with floating gradient app tiles, a purple hero card with a beating gradient heart inside orbit rings (a dot circling), and a right column of two folder-notch cards (browser icons; an accent 'Lottie' card). All artwork is token CSS/SVG.",
+  "files": {
+    "html": "sections/motion-format-bento/section.html"
+  },
+  "prompt": "sections/motion-format-bento/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-motion-format-bento",
+  "interactions": [
+    "cards fade up on first view (IntersectionObserver, 600ms wpmn-mfb-up, staggered 80ms)",
+    "left app tiles float: translateY +/-8px, 5.5s ease-in-out infinite, per-tile delay",
+    "center heart beats (wpmn-mfb-beat 2.4s: scale pulses on an off-beat) with a glow, while a dot orbits the rings (wpmn-mfb-spin 14s linear)",
+    "cards lift 3px on hover",
+    "right cards use an SVG folder-notch silhouette (raised top-right tab), fill in the card/accent color",
+    "prefers-reduced-motion: float/beat/orbit off, reveals rendered in place"
+  ],
+  "tokensUsed": [
+    "--color-surface-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--color-warning-primary",
+    "--color-error-primary",
+    "--color-success-primary",
+    "--btn-bg-enable",
+    "--radius-lg",
+    "--radius-md",
+    "--shadow-soft-500",
+    "--font-family-base",
+    "--font-size-h3",
+    "--font-size-h4",
+    "--font-size-body-medium",
+    "--font-size-body-small",
+    "--font-lh-h3",
+    "--font-lh-h4",
+    "--font-lh-body-medium",
+    "--font-lh-body-small",
+    "--font-weight-bold"
+  ],
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "role": "Features",
+  "span": 2,
+  "tags": [
+    "bento",
+    "dark",
+    "motion",
+    "lottie",
+    "hero card",
+    "folder notch",
+    "floating tiles",
+    "heart",
+    "animation",
+    "product"
+  ]
+}

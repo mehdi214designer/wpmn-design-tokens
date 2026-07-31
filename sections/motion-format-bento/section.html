@@ -1,0 +1,160 @@
+<!-- WPMN Section: Motion Format Bento — dark 3-column feature set (floating app tiles, a purple hero card with a pulsing heart in orbit rings, a folder-notch browser card, a folder-notch accent card), all token-based CSS/SVG (from a screenshot, tokenized, motion added). Classes are mfb-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-motion-format-bento">
+  <style>
+@keyframes wpmn-mfb-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes wpmn-mfb-float{0%,100%{transform:translateY(0) var(--mfb-rot)}50%{transform:translateY(-8px) var(--mfb-rot)}}
+@keyframes wpmn-mfb-beat{0%,100%{transform:scale(1)}18%{transform:scale(1.09)}36%{transform:scale(1)}54%{transform:scale(1.05)}}
+@keyframes wpmn-mfb-spin{to{transform:rotate(360deg)}}
+    .wpmn-sec-motion-format-bento{
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --mfb-card:color-mix(in srgb, var(--color-text-primary-invert) 4%, var(--color-surface-secondary));
+      --mfb-tile:color-mix(in srgb, var(--color-text-primary-invert) 7%, var(--color-surface-secondary));
+      --mfb-line:color-mix(in srgb, var(--color-text-primary-invert) 10%, transparent);
+      --mfb-ring:color-mix(in srgb, var(--color-text-primary-invert) 22%, transparent);
+      --mfb-heart:linear-gradient(150deg, var(--color-warning-primary), color-mix(in srgb, var(--color-warning-primary) 55%, var(--color-error-primary)));
+      --mfb-t-warn:linear-gradient(150deg, color-mix(in srgb, var(--color-warning-primary) 60%, var(--color-surface-secondary)), color-mix(in srgb, var(--color-warning-primary) 30%, var(--color-surface-secondary)));
+      --mfb-t-succ:linear-gradient(150deg, color-mix(in srgb, var(--color-success-primary) 60%, var(--color-surface-secondary)), color-mix(in srgb, var(--color-success-primary) 30%, var(--color-surface-secondary)));
+      --mfb-t-brand:linear-gradient(150deg, color-mix(in srgb, var(--btn-bg-enable) 60%, var(--color-surface-secondary)), color-mix(in srgb, var(--btn-bg-enable) 30%, var(--color-surface-secondary)));
+    }
+    .wpmn-sec-motion-format-bento .mfb-wrap{max-width:1200px;margin:0 auto}
+    .wpmn-sec-motion-format-bento .mfb-grid{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:var(--primitive-space-24);align-items:stretch}
+    .wpmn-sec-motion-format-bento .mfb-col{display:flex;flex-direction:column;gap:var(--primitive-space-24)}
+
+    .wpmn-sec-motion-format-bento .mfb-card{position:relative;isolation:isolate;border-radius:var(--radius-lg);padding:var(--primitive-space-32);display:flex;flex-direction:column;overflow:hidden;transition:transform .25s ease}
+    .wpmn-sec-motion-format-bento .mfb-card:hover{transform:translateY(-3px)}
+    .wpmn-sec-motion-format-bento .mfb-dark{background:var(--mfb-card);border:1px solid var(--mfb-line)}
+    .wpmn-sec-motion-format-bento .mfb-purple{background:var(--btn-bg-enable)}
+    .wpmn-sec-motion-format-bento h3{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-bold);letter-spacing:-0.01em;color:var(--color-text-primary-invert);margin:0 0 var(--primitive-space-12)}
+    .wpmn-sec-motion-format-bento .mfb-desc{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);margin:0}
+    .wpmn-sec-motion-format-bento .mfb-foot{margin-top:auto;padding-top:var(--primitive-space-40)}
+
+    /* notch shape for the right-column cards */
+    .wpmn-sec-motion-format-bento .mfb-notch{border-radius:0}
+    .wpmn-sec-motion-format-bento .mfb-shape{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
+    .wpmn-sec-motion-format-bento .mfb-shape .mfb-fill-dark{fill:var(--mfb-card)}
+    .wpmn-sec-motion-format-bento .mfb-shape .mfb-fill-succ{fill:var(--color-success-primary)}
+
+    /* app tiles (left) */
+    .wpmn-sec-motion-format-bento .mfb-tiles{position:relative;flex:1;min-height:180px}
+    .wpmn-sec-motion-format-bento .mfb-apptile{position:absolute;width:64px;height:64px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert);box-shadow:var(--shadow-soft-500);animation:wpmn-mfb-float 5.5s ease-in-out infinite}
+    .wpmn-sec-motion-format-bento .mfb-apptile svg{width:30px;height:30px}
+    .wpmn-sec-motion-format-bento .mfb-apptile.mfb-a1{left:6%;top:6%;background:var(--mfb-t-warn);--mfb-rot:rotate(0);animation-delay:0s}
+    .wpmn-sec-motion-format-bento .mfb-apptile.mfb-a2{right:14%;top:20%;background:var(--mfb-t-succ);--mfb-rot:rotate(0);animation-delay:.8s}
+    .wpmn-sec-motion-format-bento .mfb-apptile.mfb-a3{left:24%;top:54%;background:var(--mfb-t-brand);--mfb-rot:rotate(0);animation-delay:1.5s}
+
+    /* hero heart (center) */
+    .wpmn-sec-motion-format-bento .mfb-purple .mfb-desc,.wpmn-sec-motion-format-bento .mfb-purple .mfb-kicker{color:var(--color-text-secondary-invert)}
+    .wpmn-sec-motion-format-bento .mfb-kicker{text-align:center;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);margin-bottom:var(--primitive-space-8)}
+    .wpmn-sec-motion-format-bento .mfb-stage{position:relative;flex:1;min-height:260px;display:flex;align-items:center;justify-content:center;margin:var(--primitive-space-16) 0 var(--primitive-space-40)}
+    .wpmn-sec-motion-format-bento .mfb-orbit{position:absolute;border-radius:999px;border:1px solid var(--mfb-ring)}
+    .wpmn-sec-motion-format-bento .mfb-orbit.mfb-o1{width:210px;height:210px}
+    .wpmn-sec-motion-format-bento .mfb-orbit.mfb-o2{width:150px;height:150px}
+    .wpmn-sec-motion-format-bento .mfb-spin{position:absolute;width:210px;height:210px;animation:wpmn-mfb-spin 14s linear infinite}
+    .wpmn-sec-motion-format-bento .mfb-spin i{position:absolute;width:8px;height:8px;border-radius:999px;background:var(--color-text-primary-invert);left:50%;margin-left:-4px;bottom:-4px;box-shadow:0 0 10px 2px color-mix(in srgb, var(--color-text-primary-invert) 60%, transparent)}
+    .wpmn-sec-motion-format-bento .mfb-heart{position:relative;width:96px;height:96px;color:var(--color-warning-primary);filter:drop-shadow(0 8px 30px color-mix(in srgb, var(--color-warning-primary) 55%, transparent));animation:wpmn-mfb-beat 2.4s ease-in-out infinite}
+    .wpmn-sec-motion-format-bento .mfb-heart svg{width:100%;height:100%}
+    .wpmn-sec-motion-format-bento .mfb-heart .mfb-hg0{stop-color:var(--color-warning-primary)}
+    .wpmn-sec-motion-format-bento .mfb-heart .mfb-hg1{stop-color:color-mix(in srgb, var(--color-warning-primary) 55%, var(--color-error-primary))}
+
+    /* browser tiles (right top) */
+    .wpmn-sec-motion-format-bento .mfb-browsers{display:flex;gap:var(--primitive-space-12);margin-bottom:var(--primitive-space-32)}
+    .wpmn-sec-motion-format-bento .mfb-btile{width:52px;height:52px;border-radius:var(--radius-md);background:var(--mfb-tile);display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert)}
+    .wpmn-sec-motion-format-bento .mfb-btile svg{width:26px;height:26px}
+
+    /* lottie card (right bottom) */
+    .wpmn-sec-motion-format-bento .mfb-succ h3,.wpmn-sec-motion-format-bento .mfb-succ .mfb-desc{color:var(--color-text-primary-invert)}
+    .wpmn-sec-motion-format-bento .mfb-wordmark{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-bold);letter-spacing:.06em;color:var(--color-text-primary-invert);margin-bottom:var(--primitive-space-40)}
+    .wpmn-sec-motion-format-bento .mfb-learn{color:var(--color-text-primary-invert);text-decoration:underline;text-underline-offset:2px}
+
+    .wpmn-sec-motion-format-bento .mfb-reveal{opacity:0}
+    .wpmn-sec-motion-format-bento.mfb-inview .mfb-reveal{animation:wpmn-mfb-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-motion-format-bento.mfb-inview .mfb-c2{animation-delay:80ms}
+    .wpmn-sec-motion-format-bento.mfb-inview .mfb-c3{animation-delay:160ms}
+    .wpmn-sec-motion-format-bento.mfb-inview .mfb-c4{animation-delay:240ms}
+
+    @media(max-width:1199px){.wpmn-sec-motion-format-bento{padding:var(--primitive-space-96) var(--primitive-space-40)}}
+    @media(max-width:900px){.wpmn-sec-motion-format-bento .mfb-grid{grid-template-columns:1fr}}
+    @media(max-width:768px){.wpmn-sec-motion-format-bento{padding:var(--primitive-space-64) var(--primitive-space-20)}}
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-motion-format-bento .mfb-apptile,.wpmn-sec-motion-format-bento .mfb-heart,.wpmn-sec-motion-format-bento .mfb-spin{animation:none}
+      .wpmn-sec-motion-format-bento .mfb-card{transition:none}
+      .wpmn-sec-motion-format-bento .mfb-reveal{opacity:1;animation:none}
+    }
+  </style>
+  <div class="mfb-wrap">
+    <div class="mfb-grid">
+
+      <!-- Left: motion super power -->
+      <div class="mfb-card mfb-dark mfb-reveal">
+        <div class="mfb-tiles" aria-hidden="true">
+          <span class="mfb-apptile mfb-a1"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <span class="mfb-apptile mfb-a2"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9c-3 2-6 1-7-1s-1-5 -2-9z" fill="currentColor"/></svg></span>
+          <span class="mfb-apptile mfb-a3"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="mfb-foot">
+          <h3>A motion super power for teams</h3>
+          <p class="mfb-desc">Move faster together and keep everyone on the same page.</p>
+        </div>
+      </div>
+
+      <!-- Center: interactive format -->
+      <div class="mfb-card mfb-purple mfb-reveal mfb-c2">
+        <div class="mfb-kicker">Click -clickity-click</div>
+        <div class="mfb-stage" aria-hidden="true">
+          <span class="mfb-orbit mfb-o1"></span>
+          <span class="mfb-orbit mfb-o2"></span>
+          <span class="mfb-spin"><i></i></span>
+          <span class="mfb-heart">
+            <svg viewBox="0 0 24 24"><defs><linearGradient id="wpmn-mfb-heart" x1="0" y1="0" x2="0" y2="1"><stop class="mfb-hg0" offset="0"/><stop class="mfb-hg1" offset="1"/></linearGradient></defs><path d="M12 21C5 16 3 12 3 8.5 3 5.5 5.3 3.5 8 3.5c1.7 0 3.2.9 4 2.2.8-1.3 2.3-2.2 4-2.2 2.7 0 5 2 5 5 0 3.5-2 7.5-9 12.5z" fill="url(#wpmn-mfb-heart)"/></svg>
+          </span>
+        </div>
+        <div class="mfb-foot">
+          <h3>Interactive format</h3>
+          <p class="mfb-desc">Access the power of interactive lottie animations, delighting your users every step of the way.</p>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div class="mfb-col">
+        <!-- browser card -->
+        <div class="mfb-card mfb-notch mfb-reveal mfb-c3" style="flex:1">
+          <svg class="mfb-shape" viewBox="0 0 400 360" fill="none" preserveAspectRatio="none" aria-hidden="true"><path class="mfb-fill-dark" d="M0 26 A8 8 0 0 1 8 18 H242 A8 8 0 0 0 248 16 L272 2 A8 8 0 0 1 278 0 H392 A8 8 0 0 1 400 8 V352 A8 8 0 0 1 392 360 H8 A8 8 0 0 1 0 352 Z"/></svg>
+          <div class="mfb-browsers" aria-hidden="true">
+            <span class="mfb-btile"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M12 8.6h8M8.7 13.6l-4 6.9M15.3 13.6l4 6.9" stroke="currentColor" stroke-width="1.4"/></svg></span>
+            <span class="mfb-btile"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7c-1-2-3-3-5-3 2 2 2 4 1 6-2 3-6 2-7 5-.8 2 .3 5 3 6a8 8 0 0 0 8-14z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+            <span class="mfb-btile"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 12l4-6-6 4-2 8z" fill="currentColor"/></svg></span>
+          </div>
+          <div class="mfb-foot">
+            <h3>Have fun in the browser</h3>
+            <p class="mfb-desc">Works on Windows, Mac or any OS with a browser, no downloads needed.</p>
+          </div>
+        </div>
+        <!-- lottie card -->
+        <div class="mfb-card mfb-notch mfb-succ mfb-reveal mfb-c4" style="flex:1">
+          <svg class="mfb-shape" viewBox="0 0 400 360" fill="none" preserveAspectRatio="none" aria-hidden="true"><path class="mfb-fill-succ" d="M0 26 A8 8 0 0 1 8 18 H242 A8 8 0 0 0 248 16 L272 2 A8 8 0 0 1 278 0 H392 A8 8 0 0 1 400 8 V352 A8 8 0 0 1 392 360 H8 A8 8 0 0 1 0 352 Z"/></svg>
+          <div class="mfb-wordmark">Lottie</div>
+          <div class="mfb-foot">
+            <h3>The new standard for motion design</h3>
+            <p class="mfb-desc">The format for lightweight and high-quality, dynamic animations. <a class="mfb-learn" href="#" onclick="return false">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+    // Motion (my call): cards reveal on view; app tiles float, the heart beats and a dot orbits the rings. Scoped.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-motion-format-bento');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) { sec.classList.add('mfb-inview'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { sec.classList.add('mfb-inview'); io.disconnect(); } });
+      }, { threshold: 0.15 });
+      io.observe(sec);
+    })();
+  </script>
+</section>
