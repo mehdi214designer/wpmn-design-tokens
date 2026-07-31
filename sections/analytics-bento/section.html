@@ -19,7 +19,9 @@
       --adb-area:color-mix(in srgb, var(--btn-bg-enable) 22%, transparent);
     }
     .wpmn-sec-analytics-bento .adb-wrap{max-width:1200px;margin:0 auto}
-    .wpmn-sec-analytics-bento .adb-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:var(--primitive-space-24);align-items:start}
+    .wpmn-sec-analytics-bento .adb-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:var(--primitive-space-24);align-items:stretch}
+    .wpmn-sec-analytics-bento .adb-right{display:flex;flex-direction:column}
+    .wpmn-sec-analytics-bento .adb-intglist{flex:1;display:flex;flex-direction:column;justify-content:space-between}
     .wpmn-sec-analytics-bento .adb-left{display:flex;flex-direction:column;gap:var(--primitive-space-24)}
     .wpmn-sec-analytics-bento .adb-card{background:var(--adb-card);border:1px solid var(--adb-line);border-radius:var(--radius-lg);padding:var(--primitive-space-32);transition:border-color .25s ease}
     .wpmn-sec-analytics-bento .adb-card:hover{border-color:var(--adb-line2)}
@@ -173,6 +175,7 @@
           <span class="adb-atip"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>99.2%</span>
         </div>
 
+        <div class="adb-intglist">
         <div class="adb-intg">
           <span class="adb-ilogo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4 4 0 0 0-6.9 3.7A11.4 11.4 0 0 1 3.7 4.6a4 4 0 0 0 1.2 5.4c-.6 0-1.2-.2-1.8-.5a4 4 0 0 0 3.2 4c-.5.1-1.1.2-1.7.1a4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 18.1 11.3 11.3 0 0 0 8.1 20c7.3 0 11.4-6.2 11.4-11.6v-.5c.8-.6 1.5-1.3 2-2z"/></svg></span>
           <div class="adb-itext"><div class="adb-in">Twitter</div><div class="adb-id">Streamlined Twitter content integration</div></div>
@@ -197,6 +200,7 @@
           <span class="adb-ilogo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20l1.4-4A8 8 0 1 1 9 19.2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 9c0 4 2 6 6 6 .6 0-1.2-1.6-1.6-1.6-.7 0-1 .8-1.7.6C10.4 13.9 10 12 10 11c0-.5.2-1 .2-1z" fill="currentColor"/></svg></span>
           <div class="adb-itext"><div class="adb-in">WhatsApp</div><div class="adb-id">Seamless WhatsApp messaging integration</div></div>
           <span class="adb-pct"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>99.2%</span>
+        </div>
         </div>
       </div>
 
