@@ -1,0 +1,75 @@
+{
+  "id": "gifting-feature-bento",
+  "name": "Gifting Feature Bento",
+  "type": "html",
+  "status": "stable",
+  "description": "Colorful color-blocked bento for a gifting app: six vibrant tinted cards (Customization with a card + editor toolbar, Scheduling with a date wheel + Set Date, Wallet with a cash card, Inbox with a message list, Send Gifts with a scattered gift-card pile, Reminders with a phone notification). Pastel blocks map to hoisted token tints; all artwork is token CSS/SVG.",
+  "files": {
+    "html": "sections/gifting-feature-bento/section.html"
+  },
+  "prompt": "sections/gifting-feature-bento/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-gifting-feature-bento",
+  "interactions": [
+    "cards fade up in a staggered sweep on first view (IntersectionObserver, 600ms wpmn-gvb-up, 70ms per card)",
+    "cards lift 3px on hover (250ms)",
+    "prefers-reduced-motion: hover + reveal off, everything rendered in final state"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--color-success-primary",
+    "--color-warning-primary",
+    "--color-error-primary",
+    "--btn-bg-enable",
+    "--radius-lg",
+    "--radius-md",
+    "--radius-sm",
+    "--radius-xsm",
+    "--shadow-soft-100",
+    "--shadow-soft-300",
+    "--shadow-soft-500",
+    "--font-family-base",
+    "--font-size-h4",
+    "--font-size-h5",
+    "--font-size-body-medium",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-size-body-label",
+    "--font-lh-h4",
+    "--font-lh-h5",
+    "--font-lh-body-medium",
+    "--font-lh-body-base",
+    "--font-lh-body-small",
+    "--font-lh-body-label",
+    "--font-weight-bold",
+    "--font-weight-semibold"
+  ],
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "role": "Features",
+  "span": 2,
+  "tags": [
+    "bento",
+    "colorful",
+    "feature grid",
+    "color blocks",
+    "gifting",
+    "app features",
+    "wallet",
+    "inbox",
+    "scheduling",
+    "reminders"
+  ]
+}
