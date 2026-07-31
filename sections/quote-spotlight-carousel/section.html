@@ -1,0 +1,148 @@
+<!-- WPMN Section: Quote Spotlight Carousel — pastel gradient testimonial with a large image, an overlapping avatar monogram, a big centered quote, name + role, and a dark dot-carousel pill (from a screenshot, tokenized, motion added). All sub-classes are qsc-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-quote-spotlight-carousel">
+  <style>
+@keyframes wpmn-qsc-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-quote-spotlight-carousel{
+      color:var(--color-text-primary);font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      background:var(--qsc-bg);text-align:center;
+      --qsc-bg:linear-gradient(155deg, color-mix(in srgb, var(--btn-bg-enable) 13%, var(--color-surface-primary)) 0%, color-mix(in srgb, var(--btn-bg-enable) 5%, var(--color-surface-primary)) 52%, var(--color-surface-primary) 100%);
+      --qsc-tile:linear-gradient(150deg, color-mix(in srgb, var(--btn-bg-enable) 82%, var(--color-text-primary-invert)), var(--btn-bg-enable));
+      --qsc-dot:color-mix(in srgb, var(--color-text-primary-invert) 38%, transparent);
+      --qsc-ctl-hover:color-mix(in srgb, var(--color-text-primary-invert) 12%, transparent);
+    }
+    .wpmn-sec-quote-spotlight-carousel .qsc-wrap{max-width:980px;margin:0 auto}
+
+    /* image + overlapping avatar */
+    .wpmn-sec-quote-spotlight-carousel .qsc-media{position:relative;margin:0 auto var(--primitive-space-96);width:100%}
+    .wpmn-sec-quote-spotlight-carousel .qsc-img{display:block;width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:var(--radius-lg)}
+    .wpmn-sec-quote-spotlight-carousel .qsc-avatar{position:absolute;left:50%;bottom:0;transform:translate(-50%,50%);width:150px;height:150px;border-radius:999px;background:var(--btn-bg-enable);background-image:var(--qsc-tile);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-bold);color:var(--color-text-primary-invert);box-shadow:0 0 0 8px var(--color-surface-primary), var(--shadow-soft-500)}
+
+    /* quote + attribution */
+    .wpmn-sec-quote-spotlight-carousel .qsc-stage{transition:opacity .3s ease}
+    .wpmn-sec-quote-spotlight-carousel .qsc-quote{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-bold);letter-spacing:-0.01em;color:var(--color-text-primary);max-width:900px;margin:0 auto var(--primitive-space-32);text-wrap:balance}
+    .wpmn-sec-quote-spotlight-carousel .qsc-name{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-quote-spotlight-carousel .qsc-role{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);margin-top:var(--primitive-space-4)}
+
+    /* dot-carousel pill */
+    .wpmn-sec-quote-spotlight-carousel .qsc-controls{display:inline-flex;align-items:center;gap:var(--primitive-space-8);margin-top:var(--primitive-space-48);padding:var(--primitive-space-8);border-radius:999px;background:var(--color-surface-secondary)}
+    .wpmn-sec-quote-spotlight-carousel .qsc-arrow{width:44px;height:44px;border-radius:999px;border:0;background:none;color:var(--color-text-primary-invert);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 120ms ease}
+    .wpmn-sec-quote-spotlight-carousel .qsc-arrow:hover{background:var(--qsc-ctl-hover)}
+    .wpmn-sec-quote-spotlight-carousel .qsc-arrow svg{width:20px;height:20px}
+    .wpmn-sec-quote-spotlight-carousel .qsc-arrow:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--btn-bg-focused)}
+    .wpmn-sec-quote-spotlight-carousel .qsc-dots{display:inline-flex;align-items:center;gap:var(--primitive-space-8);padding:0 var(--primitive-space-8)}
+    .wpmn-sec-quote-spotlight-carousel .qsc-dot{width:8px;height:8px;border-radius:999px;border:0;padding:0;background:var(--qsc-dot);cursor:pointer;transition:width 200ms ease, background-color 200ms ease}
+    .wpmn-sec-quote-spotlight-carousel .qsc-dot.qsc-on{width:22px;background:var(--color-text-primary-invert)}
+
+    /* reveal */
+    .wpmn-sec-quote-spotlight-carousel .qsc-reveal{opacity:0}
+    .wpmn-sec-quote-spotlight-carousel.qsc-inview .qsc-reveal{animation:wpmn-qsc-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-quote-spotlight-carousel.qsc-inview .qsc-stage{animation-delay:120ms}
+    .wpmn-sec-quote-spotlight-carousel.qsc-inview .qsc-controls{animation-delay:220ms}
+
+    @media(max-width:1199px){.wpmn-sec-quote-spotlight-carousel{padding:var(--primitive-space-96) var(--primitive-space-40)}}
+    @media(max-width:768px){
+      .wpmn-sec-quote-spotlight-carousel{padding:var(--primitive-space-64) var(--primitive-space-20)}
+      .wpmn-sec-quote-spotlight-carousel .qsc-img{aspect-ratio:4/3}
+      .wpmn-sec-quote-spotlight-carousel .qsc-avatar{width:112px;height:112px}
+      .wpmn-sec-quote-spotlight-carousel .qsc-media{margin-bottom:var(--primitive-space-80)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-quote-spotlight-carousel .qsc-stage,.wpmn-sec-quote-spotlight-carousel .qsc-dot,.wpmn-sec-quote-spotlight-carousel .qsc-arrow{transition:none}
+      .wpmn-sec-quote-spotlight-carousel .qsc-reveal{opacity:1;animation:none}
+    }
+  </style>
+  <div class="qsc-wrap">
+    <div class="qsc-media qsc-reveal">
+      <img class="qsc-img" alt="" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=80">
+      <span class="qsc-avatar">SR</span>
+    </div>
+
+    <div class="qsc-stage qsc-reveal">
+      <p class="qsc-quote">“FluentCRM has been such an indispensable asset in my workflow, when I need to launch very specific campaigns for my clients. And even for me to see what actually converts.”</p>
+      <div class="qsc-name">Srishti Gupta Roy</div>
+      <div class="qsc-role">Brand Strategist</div>
+    </div>
+
+    <div class="qsc-controls qsc-reveal">
+      <button class="qsc-arrow qsc-prev" type="button" aria-label="Previous testimonial">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="qsc-dots"></div>
+      <button class="qsc-arrow qsc-next" type="button" aria-label="Next testimonial">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <script>
+    // Motion (my call): a spotlight carousel — image + overlapping avatar + quote crossfade between
+    // testimonials; prev/next and dots switch the active one (wrap-around); everything reveals on view.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-quote-spotlight-carousel');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var SLIDES = [
+        { img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=80', ini: 'SR',
+          q: '“FluentCRM has been such an indispensable asset in my workflow, when I need to launch very specific campaigns for my clients. And even for me to see what actually converts.”',
+          n: 'Srishti Gupta Roy', r: 'Brand Strategist' },
+        { img: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=1400&q=80', ini: 'MB',
+          q: '“FluentForms turned our lead capture around. Multi-step forms that used to take days now take an afternoon, and they just work on every device.”',
+          n: 'Marcus Bell', r: 'Growth Lead' },
+        { img: 'https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&w=1400&q=80', ini: 'AD',
+          q: '“One data layer across email, forms, and CRM means no more stitching tools together. Everything finally talks, and my small team ships like a much bigger one.”',
+          n: 'Ana Duarte', r: 'Founder' },
+        { img: 'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1400&q=80', ini: 'KW',
+          q: '“Automations I set once keep paying off. FluentCRM quietly handles onboarding, follow-ups, and re-engagement while I focus on the actual work.”',
+          n: 'Kenji Watanabe', r: 'Consultant' }
+      ];
+
+      var img = sec.querySelector('.qsc-img');
+      var avatar = sec.querySelector('.qsc-avatar');
+      var quote = sec.querySelector('.qsc-quote');
+      var name = sec.querySelector('.qsc-name');
+      var role = sec.querySelector('.qsc-role');
+      var stage = sec.querySelector('.qsc-stage');
+      var media = sec.querySelector('.qsc-media');
+      var dotsWrap = sec.querySelector('.qsc-dots');
+      var prev = sec.querySelector('.qsc-prev');
+      var next = sec.querySelector('.qsc-next');
+
+      var dots = SLIDES.map(function (_, i) {
+        var b = document.createElement('button');
+        b.className = 'qsc-dot';
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+        b.addEventListener('click', function () { show(i); });
+        dotsWrap.appendChild(b);
+        return b;
+      });
+
+      var active = 0, t = null;
+      function apply(i) {
+        var s = SLIDES[i];
+        img.src = s.img; avatar.textContent = s.ini;
+        quote.innerHTML = s.q; name.textContent = s.n; role.textContent = s.r;
+        dots.forEach(function (d, k) { d.classList.toggle('qsc-on', k === i); });
+      }
+      function show(i) {
+        active = (i + SLIDES.length) % SLIDES.length;
+        if (reduced) { apply(active); return; }
+        stage.style.opacity = 0; media.style.opacity = 0;
+        clearTimeout(t);
+        t = setTimeout(function () { apply(active); stage.style.opacity = 1; media.style.opacity = 1; }, 220);
+      }
+      media.style.transition = 'opacity .3s ease';
+
+      prev.addEventListener('click', function () { show(active - 1); });
+      next.addEventListener('click', function () { show(active + 1); });
+
+      apply(0);
+      if (reduced || !('IntersectionObserver' in window)) { sec.classList.add('qsc-inview'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { sec.classList.add('qsc-inview'); io.disconnect(); } });
+      }, { threshold: 0.2 });
+      io.observe(sec);
+    })();
+  </script>
+</section>

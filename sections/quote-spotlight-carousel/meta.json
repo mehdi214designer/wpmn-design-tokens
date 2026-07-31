@@ -1,0 +1,62 @@
+{
+  "id": "quote-spotlight-carousel",
+  "name": "Quote Spotlight Carousel",
+  "type": "html",
+  "status": "stable",
+  "description": "Pastel-gradient testimonial spotlight: a wide rounded image with a circular avatar monogram overlapping its bottom edge, a big centered quote, name and role, and a dark dot-carousel pill. Prev/next and dots crossfade between testimonials with wrap-around.",
+  "files": {
+    "html": "sections/quote-spotlight-carousel/section.html"
+  },
+  "prompt": "sections/quote-spotlight-carousel/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-quote-spotlight-carousel",
+  "interactions": [
+    "spotlight carousel: prev/next and dots switch the active testimonial with wrap-around; the image + overlapping avatar and the quote/name/role crossfade (opacity .3s, content swapped after 220ms)",
+    "the active dot widens (8px -> 22px) and brightens to invert; others stay muted",
+    "media + stage + controls reveal on first view (IntersectionObserver, 600ms wpmn-qsc-up, staggered)",
+    "arrow hover fill at 120ms; focus-visible inset ring via --btn-bg-focused",
+    "prefers-reduced-motion: crossfade/transitions off, content swaps instantly, reveals render in place"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary",
+    "--color-text-secondary",
+    "--color-text-primary-invert",
+    "--btn-bg-enable",
+    "--btn-bg-focused",
+    "--radius-lg",
+    "--shadow-soft-500",
+    "--font-family-base",
+    "--font-size-h3",
+    "--font-size-body-medium",
+    "--font-size-body-small",
+    "--font-lh-h3",
+    "--font-lh-body-medium",
+    "--font-lh-body-small",
+    "--font-weight-bold",
+    "--font-weight-semibold"
+  ],
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Trust & Social Proof",
+  "role": "Testimonial",
+  "span": 2,
+  "tags": [
+    "testimonial",
+    "carousel",
+    "quote",
+    "spotlight",
+    "avatar",
+    "dot carousel",
+    "social proof",
+    "image",
+    "gradient"
+  ]
+}
