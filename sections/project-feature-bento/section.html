@@ -1,0 +1,209 @@
+<!-- WPMN Section: Project Feature Bento — dark project-management feature bento (kanban board, version-control automations, collaborative doc, sprints, keyboard speed), all token-based CSS/SVG (from a screenshot, tokenized, motion added). Version-control marks are generic branch/merge/commit glyphs, not third-party logos. Classes are pfb-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-project-feature-bento">
+  <style>
+@keyframes wpmn-pfb-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes wpmn-pfb-dash{to{stroke-dashoffset:-24}}
+    .wpmn-sec-project-feature-bento{
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --pfb-card:color-mix(in srgb, var(--color-text-primary-invert) 4%, var(--color-surface-secondary));
+      --pfb-panel:color-mix(in srgb, var(--color-text-primary-invert) 6%, var(--color-surface-secondary));
+      --pfb-tile:color-mix(in srgb, var(--color-text-primary-invert) 9%, var(--color-surface-secondary));
+      --pfb-line:color-mix(in srgb, var(--color-text-primary-invert) 9%, transparent);
+      --pfb-line2:color-mix(in srgb, var(--color-text-primary-invert) 14%, transparent);
+      --pfb-muted:color-mix(in srgb, var(--color-text-primary-invert) 45%, transparent);
+      --pfb-faint:color-mix(in srgb, var(--color-text-primary-invert) 25%, transparent);
+    }
+    .wpmn-sec-project-feature-bento .pfb-wrap{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:var(--primitive-space-24)}
+    .wpmn-sec-project-feature-bento .pfb-row{display:grid;gap:var(--primitive-space-24)}
+    .wpmn-sec-project-feature-bento .pfb-row1{grid-template-columns:1fr 1fr}
+    .wpmn-sec-project-feature-bento .pfb-row2{grid-template-columns:1fr 1fr 1fr}
+    .wpmn-sec-project-feature-bento .pfb-card{position:relative;overflow:hidden;background:var(--pfb-card);border:1px solid var(--pfb-line);border-radius:var(--radius-lg);padding:var(--primitive-space-32);display:flex;flex-direction:column;transition:border-color .25s ease, transform .25s ease}
+    .wpmn-sec-project-feature-bento .pfb-card:hover{border-color:var(--pfb-line2);transform:translateY(-3px)}
+    .wpmn-sec-project-feature-bento h3{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-bold);letter-spacing:-0.01em;color:var(--color-text-primary-invert);margin:0 0 var(--primitive-space-12);max-width:14ch}
+    .wpmn-sec-project-feature-bento .pfb-desc{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary-invert);margin:0;max-width:40ch}
+    .wpmn-sec-project-feature-bento .pfb-arrow{position:absolute;top:var(--primitive-space-32);right:var(--primitive-space-32);width:38px;height:38px;border-radius:999px;border:1px solid var(--pfb-line2);background:none;color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 120ms ease}
+    .wpmn-sec-project-feature-bento .pfb-arrow:hover{background:var(--pfb-tile)}
+    .wpmn-sec-project-feature-bento .pfb-arrow svg{width:18px;height:18px}
+    .wpmn-sec-project-feature-bento .pfb-mock{margin-top:var(--primitive-space-32);flex:1;position:relative}
+
+    /* kanban */
+    .wpmn-sec-project-feature-bento .pfb-kb{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-16)}
+    .wpmn-sec-project-feature-bento .pfb-kcol{background:var(--pfb-panel);border:1px solid var(--pfb-line);border-radius:var(--radius-md);padding:var(--primitive-space-12);min-height:180px}
+    .wpmn-sec-project-feature-bento .pfb-kh{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary-invert);margin-bottom:var(--primitive-space-12)}
+    .wpmn-sec-project-feature-bento .pfb-story{position:relative;background:var(--pfb-tile);border:1px solid var(--pfb-line2);border-radius:var(--radius-sm);padding:var(--primitive-space-12) var(--primitive-space-12) var(--primitive-space-12) var(--primitive-space-16);margin-bottom:var(--primitive-space-12);box-shadow:var(--shadow-soft-500)}
+    .wpmn-sec-project-feature-bento .pfb-story::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:999px;background:var(--pfb-bar)}
+    .wpmn-sec-project-feature-bento .pfb-story.pfb-tilt{transform:rotate(-5deg)}
+    .wpmn-sec-project-feature-bento .pfb-b-warn{--pfb-bar:var(--color-warning-primary)}
+    .wpmn-sec-project-feature-bento .pfb-b-brand{--pfb-bar:var(--btn-bg-enable)}
+    .wpmn-sec-project-feature-bento .pfb-b-error{--pfb-bar:var(--color-error-primary)}
+    .wpmn-sec-project-feature-bento .pfb-b-succ{--pfb-bar:var(--color-success-primary)}
+    .wpmn-sec-project-feature-bento .pfb-stt{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert);margin-bottom:var(--primitive-space-8)}
+    .wpmn-sec-project-feature-bento .pfb-meta{display:flex;align-items:center;gap:var(--primitive-space-8)}
+    .wpmn-sec-project-feature-bento .pfb-id::before{content:"#"}
+    .wpmn-sec-project-feature-bento .pfb-id{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);padding:var(--primitive-space-2) var(--primitive-space-8);border-radius:var(--radius-xsm);background:color-mix(in srgb, var(--color-error-primary) 30%, var(--color-surface-secondary));color:var(--color-text-primary-invert)}
+    .wpmn-sec-project-feature-bento .pfb-prog{display:inline-flex;align-items:center;gap:var(--primitive-space-4);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);padding:var(--primitive-space-2) var(--primitive-space-8);border-radius:999px;background:color-mix(in srgb, var(--btn-bg-enable) 26%, var(--color-surface-secondary));color:var(--color-text-primary-invert)}
+    .wpmn-sec-project-feature-bento .pfb-prog svg{width:11px;height:11px}
+    .wpmn-sec-project-feature-bento .pfb-av{margin-left:auto;width:22px;height:22px;border-radius:999px;background:var(--pfb-tile);border:1px solid var(--pfb-line2)}
+
+    /* vcs */
+    .wpmn-sec-project-feature-bento .pfb-vcs{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:var(--primitive-space-40);min-height:180px}
+    .wpmn-sec-project-feature-bento .pfb-conn{position:absolute;inset:0;width:100%;height:100%}
+    .wpmn-sec-project-feature-bento .pfb-conn path{fill:none;stroke:var(--pfb-line2);stroke-width:1.5;stroke-dasharray:4 4;animation:wpmn-pfb-dash 1.4s linear infinite}
+    .wpmn-sec-project-feature-bento .pfb-node{position:relative;z-index:1;width:76px;height:76px;border-radius:999px;background:var(--pfb-panel);border:1px solid var(--pfb-line2);display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert);box-shadow:var(--shadow-soft-500)}
+    .wpmn-sec-project-feature-bento .pfb-node svg{width:34px;height:34px}
+
+    /* docs */
+    .wpmn-sec-project-feature-bento .pfb-doc{position:relative;background:var(--pfb-panel);border:1px solid var(--pfb-line);border-radius:var(--radius-md);padding:var(--primitive-space-16);box-shadow:var(--shadow-soft-500)}
+    .wpmn-sec-project-feature-bento .pfb-dt{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-project-feature-bento .pfb-dm{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);color:var(--color-text-secondary-invert);margin-bottom:var(--primitive-space-16)}
+    .wpmn-sec-project-feature-bento .pfb-dh{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert);margin-bottom:var(--primitive-space-8)}
+    .wpmn-sec-project-feature-bento .pfb-dl{height:7px;border-radius:999px;background:var(--pfb-tile);margin-bottom:var(--primitive-space-8)}
+    .wpmn-sec-project-feature-bento .pfb-tag{position:absolute;display:inline-flex;align-items:center;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);padding:var(--primitive-space-2) var(--primitive-space-8);border-radius:var(--radius-xsm);color:var(--color-text-primary-invert)}
+    .wpmn-sec-project-feature-bento .pfb-tag.pfb-t1{right:14px;top:52px;background:color-mix(in srgb, var(--color-warning-primary) 42%, var(--color-surface-secondary))}
+    .wpmn-sec-project-feature-bento .pfb-tag.pfb-t2{left:24px;bottom:14px;background:color-mix(in srgb, var(--btn-bg-enable) 42%, var(--color-surface-secondary))}
+    .wpmn-sec-project-feature-bento .pfb-tag.pfb-t3{right:30px;bottom:34px;background:color-mix(in srgb, var(--color-error-primary) 40%, var(--color-surface-secondary))}
+
+    /* sprints */
+    .wpmn-sec-project-feature-bento .pfb-sprint{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-12);border-radius:var(--radius-sm);margin-bottom:var(--primitive-space-8);opacity:.5}
+    .wpmn-sec-project-feature-bento .pfb-sprint.pfb-on{background:var(--pfb-panel);border:1px solid var(--pfb-line2);box-shadow:var(--shadow-soft-500);opacity:1}
+    .wpmn-sec-project-feature-bento .pfb-sicon{flex:none;width:30px;height:30px;border-radius:999px;background:var(--pfb-tile);display:flex;align-items:center;justify-content:center;color:var(--color-text-secondary-invert)}
+    .wpmn-sec-project-feature-bento .pfb-sicon svg{width:15px;height:15px}
+    .wpmn-sec-project-feature-bento .pfb-sbody{flex:1;min-width:0}
+    .wpmn-sec-project-feature-bento .pfb-sname{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-project-feature-bento .pfb-sbar{height:6px;border-radius:999px;background:var(--pfb-tile);margin-top:var(--primitive-space-8);overflow:hidden}
+    .wpmn-sec-project-feature-bento .pfb-sbar i{display:block;height:100%;width:0;border-radius:999px;background:var(--color-success-primary);transition:width 1s cubic-bezier(.22,1,.36,1) .2s}
+    .wpmn-sec-project-feature-bento.pfb-inview .pfb-sbar i{width:62%}
+    .wpmn-sec-project-feature-bento .pfb-smeta{font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);color:var(--color-text-secondary-invert);margin-top:var(--primitive-space-4)}
+
+    /* speed keys */
+    .wpmn-sec-project-feature-bento .pfb-keys{display:grid;grid-template-columns:1fr 1.4fr;gap:var(--primitive-space-12)}
+    .wpmn-sec-project-feature-bento .pfb-key{background:var(--pfb-tile);border:1px solid var(--pfb-line2);border-radius:var(--radius-md);box-shadow:0 4px 0 0 var(--pfb-line);padding:var(--primitive-space-16);min-height:66px;display:flex;flex-direction:column;justify-content:space-between;color:var(--color-text-primary-invert)}
+    .wpmn-sec-project-feature-bento .pfb-key .pfb-ksym{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base)}
+    .wpmn-sec-project-feature-bento .pfb-key .pfb-klabel{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert)}
+
+    .wpmn-sec-project-feature-bento .pfb-reveal{opacity:0}
+    .wpmn-sec-project-feature-bento.pfb-inview .pfb-reveal{animation:wpmn-pfb-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-project-feature-bento.pfb-inview .pfb-row1 .pfb-card:nth-child(2){animation-delay:80ms}
+    .wpmn-sec-project-feature-bento.pfb-inview .pfb-row2 .pfb-card:nth-child(1){animation-delay:140ms}
+    .wpmn-sec-project-feature-bento.pfb-inview .pfb-row2 .pfb-card:nth-child(2){animation-delay:200ms}
+    .wpmn-sec-project-feature-bento.pfb-inview .pfb-row2 .pfb-card:nth-child(3){animation-delay:260ms}
+
+    @media(max-width:1199px){.wpmn-sec-project-feature-bento{padding:var(--primitive-space-96) var(--primitive-space-40)}}
+    @media(max-width:900px){
+      .wpmn-sec-project-feature-bento .pfb-row1,.wpmn-sec-project-feature-bento .pfb-row2{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){.wpmn-sec-project-feature-bento{padding:var(--primitive-space-64) var(--primitive-space-20)}}
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-project-feature-bento .pfb-conn path{animation:none}
+      .wpmn-sec-project-feature-bento .pfb-sbar i{width:62%;transition:none}
+      .wpmn-sec-project-feature-bento .pfb-card{transition:none}
+      .wpmn-sec-project-feature-bento .pfb-reveal{opacity:1;animation:none}
+    }
+  </style>
+  <div class="pfb-wrap">
+
+    <div class="pfb-row pfb-row1">
+      <!-- Kanban -->
+      <div class="pfb-card pfb-reveal">
+        <h3>Kanban Boards</h3>
+        <p class="pfb-desc">Move stories through custom workflows and manage views through powerful spaces &amp; filters.</p>
+        <button class="pfb-arrow" type="button" aria-label="Learn more"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="pfb-mock pfb-kb" aria-hidden="true">
+          <div class="pfb-kcol">
+            <div class="pfb-kh">Ready for Dev</div>
+            <div class="pfb-story pfb-b-warn pfb-tilt">
+              <div class="pfb-stt">Research into story dialogue techniques</div>
+              <div class="pfb-meta"><span class="pfb-id">32024</span><span class="pfb-prog"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 12l4-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>In Progress</span></div>
+            </div>
+          </div>
+          <div class="pfb-kcol">
+            <div class="pfb-kh">In Development</div>
+            <div class="pfb-story pfb-b-brand">
+              <div class="pfb-stt">Research into story dialogue techniques</div>
+              <div class="pfb-meta"><span class="pfb-id">32029</span><span class="pfb-prog"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 12l4-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>In Progress</span><span class="pfb-av"></span></div>
+            </div>
+            <div class="pfb-story pfb-b-succ">
+              <div class="pfb-stt">Introduce fully responsive nav across all breakpoints</div>
+              <div class="pfb-meta"><span class="pfb-id">32041</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VCS -->
+      <div class="pfb-card pfb-reveal">
+        <h3>VCS Automations</h3>
+        <p class="pfb-desc">Seamless integrations with your Git host and many other tools mean FluentBoards updates while you work.</p>
+        <button class="pfb-arrow" type="button" aria-label="Learn more"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="pfb-mock pfb-vcs" aria-hidden="true">
+          <svg class="pfb-conn" viewBox="0 0 400 180" preserveAspectRatio="none"><path d="M60 40 H150 V130"/><path d="M200 30 V130"/><path d="M340 40 H250 V130"/></svg>
+          <span class="pfb-node"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="6" r="2.4" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="18" r="2.4" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/><path d="M6 8.4v7.2M8.2 7.4C13 8 15.6 9 15.6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pfb-node"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="18" r="2.4" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18" r="2.4" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6" r="2.4" stroke="currentColor" stroke-width="1.6"/><path d="M12 8.4v3a4 4 0 0 0 4 4h0M12 11.4a4 4 0 0 1-4 4h0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="pfb-node"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2.4" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="18" r="2.4" stroke="currentColor" stroke-width="1.6"/><path d="M12 8.4v7.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pfb-row pfb-row2">
+      <!-- Docs -->
+      <div class="pfb-card pfb-reveal">
+        <h3>Collaborative Docs</h3>
+        <p class="pfb-desc">Create specs, PRDs, and more using realtime editing with dynamic content integration.</p>
+        <button class="pfb-arrow" type="button" aria-label="Learn more"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="pfb-mock" aria-hidden="true">
+          <div class="pfb-doc">
+            <div class="pfb-dt">Product Requirements Doc</div>
+            <div class="pfb-dm">Last saved 4 hours ago ★</div>
+            <div class="pfb-dh">Customer Stories</div>
+            <div class="pfb-dl" style="width:100%"></div>
+            <div class="pfb-dl" style="width:82%"></div>
+            <div class="pfb-dl" style="width:60%;margin-bottom:0"></div>
+            <span class="pfb-tag pfb-t1">Alan</span>
+            <span class="pfb-tag pfb-t2">Karl</span>
+            <span class="pfb-tag pfb-t3">Jenny</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprints -->
+      <div class="pfb-card pfb-reveal">
+        <h3>Sprints</h3>
+        <p class="pfb-desc">Use iterations to manage recurring sprints, track story points, and more.</p>
+        <button class="pfb-arrow" type="button" aria-label="Learn more"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="pfb-mock" aria-hidden="true">
+          <div class="pfb-sprint"><span class="pfb-sicon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 3 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 12v-4M4 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><div class="pfb-sbody"><div class="pfb-sname">Growth Sprint Week 12</div></div></div>
+          <div class="pfb-sprint pfb-on"><span class="pfb-sicon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 3 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 12v-4M4 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><div class="pfb-sbody"><div class="pfb-sname">Onboarding Revamp Sprint</div><div class="pfb-sbar"><i></i></div><div class="pfb-smeta">Started: Jun 12 to Jun 23 · 14 · 06</div></div></div>
+          <div class="pfb-sprint"><span class="pfb-sicon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 3 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 12v-4M4 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><div class="pfb-sbody"><div class="pfb-sname">Training Hub Rebuild</div></div></div>
+        </div>
+      </div>
+
+      <!-- Speed -->
+      <div class="pfb-card pfb-reveal">
+        <h3>Speed &amp; Efficiency</h3>
+        <p class="pfb-desc">Quick load times combined with keyboard shortcuts let you work faster than ever.</p>
+        <div class="pfb-mock pfb-keys" aria-hidden="true">
+          <div class="pfb-key"><span class="pfb-ksym">⌘</span><span class="pfb-klabel">command</span></div>
+          <div class="pfb-key"><span class="pfb-ksym">Let's Goooo! ✨</span><span class="pfb-klabel">shortcut</span></div>
+          <div class="pfb-key"><span class="pfb-ksym">^</span><span class="pfb-klabel">control</span></div>
+          <div class="pfb-key"><span class="pfb-ksym">⌥</span><span class="pfb-klabel">option</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    // Motion (my call): cards reveal on view; VCS connector lines flow (dashed), the active sprint bar fills. Scoped.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-project-feature-bento');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) { sec.classList.add('pfb-inview'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { sec.classList.add('pfb-inview'); io.disconnect(); } });
+      }, { threshold: 0.12 });
+      io.observe(sec);
+    })();
+  </script>
+</section>

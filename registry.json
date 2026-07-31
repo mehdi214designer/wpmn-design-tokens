@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.5.0",
-  "generatedAt": "2026-07-31T06:17:42.844Z",
+  "generatedAt": "2026-07-31T06:23:51.738Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -4022,6 +4022,75 @@
         "cards",
         "pricing",
         "store"
+      ]
+    },
+    {
+      "id": "project-feature-bento",
+      "name": "Project Feature Bento",
+      "type": "html",
+      "status": "stable",
+      "description": "Dark project-management feature bento: Kanban Boards (tilted story cards with status pills), VCS Automations (three version-control node tiles joined by flowing dashed connectors), Collaborative Docs (a doc card with floating comment tags), Sprints (progress rows with the active sprint filling its bar), and Speed & Efficiency (keyboard keycaps). All artwork is token CSS/SVG.",
+      "files": {
+        "html": "sections/project-feature-bento/section.html"
+      },
+      "prompt": "sections/project-feature-bento/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-project-feature-bento",
+      "interactions": [
+        "cards fade up on first view (IntersectionObserver, 600ms wpmn-pfb-up, staggered per card)",
+        "VCS connector lines flow: dashed strokes animate stroke-dashoffset (wpmn-pfb-dash, 1.4s linear infinite)",
+        "the active sprint bar fills width 0 -> 62% when in view (1s cubic-bezier)",
+        "cards brighten their border + lift 3px on hover; arrow buttons fill on hover",
+        "prefers-reduced-motion: dash flow + bar fill off, reveals rendered in place"
+      ],
+      "tokensUsed": [
+        "--color-surface-secondary",
+        "--color-text-primary-invert",
+        "--color-text-secondary-invert",
+        "--color-success-primary",
+        "--color-warning-primary",
+        "--color-error-primary",
+        "--btn-bg-enable",
+        "--radius-lg",
+        "--radius-md",
+        "--radius-sm",
+        "--radius-xsm",
+        "--shadow-soft-500",
+        "--font-family-base",
+        "--font-size-h4",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h4",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-lh-body-label",
+        "--font-weight-bold",
+        "--font-weight-semibold",
+        "--font-weight-medium"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "role": "Features",
+      "span": 2,
+      "tags": [
+        "bento",
+        "dark",
+        "project management",
+        "kanban",
+        "sprints",
+        "docs",
+        "integrations",
+        "keyboard",
+        "product ui",
+        "developer"
       ]
     },
     {
