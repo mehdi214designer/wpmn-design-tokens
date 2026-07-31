@@ -1,0 +1,238 @@
+<!-- WPMN Section: Commerce Features Bento — light diagonal-large 2x2 bento of commerce feature cards with product-UI mocks (provider list + checkout, cart node diagram, sales-channels table, order-management menu + status cards), all token-based CSS/SVG (from a screenshot, tokenized, motion added). Classes are cfb-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-commerce-features-bento">
+  <style>
+@keyframes wpmn-cfb-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-commerce-features-bento{
+      background:var(--cfb-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --cfb-bg:linear-gradient(135deg, color-mix(in srgb, var(--btn-bg-enable) 7%, var(--color-surface-primary)) 0%, var(--color-surface-primary) 42%, color-mix(in srgb, var(--btn-bg-enable) 5%, var(--color-surface-primary)) 100%);
+      --cfb-panel:color-mix(in srgb, var(--color-text-primary) 2%, var(--color-surface-primary));
+      --cfb-line:color-mix(in srgb, var(--color-text-primary) 12%, transparent);
+      --cfb-line2:color-mix(in srgb, var(--color-text-primary) 7%, transparent);
+      --cfb-muted:color-mix(in srgb, var(--color-text-primary) 45%, transparent);
+      --cfb-fill:color-mix(in srgb, var(--color-text-primary) 5%, var(--color-surface-primary));
+      --cfb-tint-green:color-mix(in srgb, var(--color-success-primary) 15%, var(--color-surface-primary));
+      --cfb-tint-red:color-mix(in srgb, var(--color-error-primary) 15%, var(--color-surface-primary));
+    }
+    .wpmn-sec-commerce-features-bento .cfb-wrap{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:var(--primitive-space-24)}
+    .wpmn-sec-commerce-features-bento .cfb-row{display:grid;gap:var(--primitive-space-24)}
+    .wpmn-sec-commerce-features-bento .cfb-r1{grid-template-columns:1.35fr 1fr}
+    .wpmn-sec-commerce-features-bento .cfb-r2{grid-template-columns:1fr 1.5fr}
+    .wpmn-sec-commerce-features-bento .cfb-card{background:var(--color-surface-primary);border:1px solid var(--cfb-line2);border-radius:var(--radius-lg);padding:var(--primitive-space-32);box-shadow:var(--shadow-soft-300);display:flex;flex-direction:column;gap:var(--primitive-space-24);transition:box-shadow .25s ease, transform .25s ease}
+    .wpmn-sec-commerce-features-bento .cfb-card:hover{box-shadow:var(--shadow-soft-500);transform:translateY(-3px)}
+    .wpmn-sec-commerce-features-bento h3{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-bold);letter-spacing:-0.01em;color:var(--color-text-primary);margin:0 0 var(--primitive-space-8)}
+    .wpmn-sec-commerce-features-bento .cfb-desc{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin:0;max-width:42ch}
+    .wpmn-sec-commerce-features-bento .cfb-mock{flex:1}
+
+    /* generic mock bits */
+    .wpmn-sec-commerce-features-bento .cfb-p{background:var(--cfb-panel);border:1px solid var(--cfb-line2);border-radius:var(--radius-md);padding:var(--primitive-space-16)}
+    .wpmn-sec-commerce-features-bento .cfb-tile{flex:none;width:34px;height:34px;border-radius:var(--radius-xsm);background:var(--cfb-fill);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-bold);color:var(--color-text-secondary)}
+    .wpmn-sec-commerce-features-bento .cfb-tog{flex:none;width:34px;height:20px;border-radius:999px;background:var(--cfb-line);position:relative}
+    .wpmn-sec-commerce-features-bento .cfb-tog.cfb-on{background:var(--color-success-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-tog::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:999px;background:var(--color-surface-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-tog.cfb-on::after{left:16px}
+    .wpmn-sec-commerce-features-bento .cfb-grip{color:var(--cfb-muted);letter-spacing:1px;font-size:var(--font-size-body-small)}
+    .wpmn-sec-commerce-features-bento .cfb-btn{display:inline-flex;align-items:center;gap:var(--primitive-space-8);padding:var(--primitive-space-12) var(--primitive-space-16);border-radius:var(--radius-xsm);border:1px solid var(--cfb-line);background:var(--color-surface-primary);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-chip{display:inline-flex;align-items:center;gap:var(--primitive-space-4);padding:var(--primitive-space-4) var(--primitive-space-8);border-radius:var(--radius-xsm);border:1px solid var(--cfb-line);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-commerce-features-bento .cfb-rowline{display:flex;align-items:center;gap:var(--primitive-space-12)}
+    .wpmn-sec-commerce-features-bento .cfb-nm{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-radio{flex:none;width:18px;height:18px;border-radius:999px;border:1.5px solid var(--cfb-line);position:relative}
+    .wpmn-sec-commerce-features-bento .cfb-radio.cfb-sel{border-color:var(--btn-bg-enable)}
+    .wpmn-sec-commerce-features-bento .cfb-radio.cfb-sel::after{content:"";position:absolute;inset:3px;border-radius:999px;background:var(--btn-bg-enable)}
+    .wpmn-sec-commerce-features-bento .cfb-check{color:var(--color-success-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-check svg{width:16px;height:16px}
+
+    /* global sales: two mini panels */
+    .wpmn-sec-commerce-features-bento .cfb-duo{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-16)}
+    .wpmn-sec-commerce-features-bento .cfb-newbtn{display:flex;align-items:center;justify-content:center;gap:var(--primitive-space-8);padding:var(--primitive-space-12);border:1px solid var(--cfb-line);border-radius:var(--radius-sm);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary);margin-bottom:var(--primitive-space-12)}
+    .wpmn-sec-commerce-features-bento .cfb-provider{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-12);border:1px solid var(--cfb-line2);border-radius:var(--radius-sm);background:var(--color-surface-primary);margin-bottom:var(--primitive-space-12)}
+    .wpmn-sec-commerce-features-bento .cfb-provider .cfb-nm{flex:1}
+    .wpmn-sec-commerce-features-bento .cfb-cond{display:flex;align-items:center;justify-content:space-between;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);margin:var(--primitive-space-8) 0}
+    .wpmn-sec-commerce-features-bento .cfb-conds{display:flex;gap:var(--primitive-space-8);flex-wrap:wrap}
+    .wpmn-sec-commerce-features-bento .cfb-seg{display:flex;gap:var(--primitive-space-4);padding:var(--primitive-space-4);background:var(--cfb-fill);border-radius:var(--radius-xsm);margin-bottom:var(--primitive-space-12)}
+    .wpmn-sec-commerce-features-bento .cfb-seg span{flex:1;text-align:center;padding:var(--primitive-space-8);border-radius:calc(var(--radius-xsm) - 2px);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-commerce-features-bento .cfb-seg span.cfb-on{background:var(--color-surface-primary);color:var(--color-text-primary);font-weight:var(--font-weight-medium);box-shadow:var(--shadow-soft-100)}
+    .wpmn-sec-commerce-features-bento .cfb-ship{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-12);border:1px solid var(--cfb-line2);border-radius:var(--radius-sm);margin-bottom:var(--primitive-space-8)}
+    .wpmn-sec-commerce-features-bento .cfb-ship .cfb-nm{flex:1;font-weight:var(--font-weight-medium)}
+    .wpmn-sec-commerce-features-bento .cfb-lbl{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);margin-bottom:var(--primitive-space-8)}
+
+    /* cart node diagram */
+    .wpmn-sec-commerce-features-bento .cfb-nodes{position:relative;display:flex;flex-direction:column;gap:var(--primitive-space-32);padding:var(--primitive-space-16) 0}
+    .wpmn-sec-commerce-features-bento .cfb-node{background:var(--color-surface-primary);border:1px solid var(--cfb-line2);border-radius:var(--radius-md);box-shadow:var(--shadow-soft-300);overflow:hidden;align-self:flex-end;width:78%}
+    .wpmn-sec-commerce-features-bento .cfb-node.cfb-cart{align-self:flex-start}
+    .wpmn-sec-commerce-features-bento .cfb-nhead{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-12) var(--primitive-space-16)}
+    .wpmn-sec-commerce-features-bento .cfb-nhead .cfb-nm{flex:1}
+    .wpmn-sec-commerce-features-bento .cfb-dot{width:8px;height:8px;border-radius:999px;background:var(--color-success-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-prov2{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-12) var(--primitive-space-16);border-top:1px solid var(--cfb-line2)}
+    .wpmn-sec-commerce-features-bento .cfb-prov2 .cfb-nm{flex:1;font-weight:var(--font-weight-medium)}
+    .wpmn-sec-commerce-features-bento .cfb-connect{position:absolute;left:20%;right:26%;top:64px;height:44px;border-left:1.5px solid var(--cfb-line);border-bottom:1.5px solid var(--cfb-line);border-bottom-left-radius:12px}
+
+    /* omnichannel table */
+    .wpmn-sec-commerce-features-bento .cfb-scfhead{display:flex;align-items:center;gap:var(--primitive-space-12);padding-bottom:var(--primitive-space-16);border-bottom:1px solid var(--cfb-line2)}
+    .wpmn-sec-commerce-features-bento .cfb-scfrow{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-12);align-items:center;padding:var(--primitive-space-16) 0;border-bottom:1px solid var(--cfb-line2)}
+    .wpmn-sec-commerce-features-bento .cfb-scfrow:last-child{border-bottom:0}
+    .wpmn-sec-commerce-features-bento .cfb-trend{display:inline-flex;align-items:center;gap:var(--primitive-space-4);padding:var(--primitive-space-2) var(--primitive-space-8);border-radius:999px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-commerce-features-bento .cfb-up{background:var(--cfb-tint-green);color:var(--color-success-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-down{background:var(--cfb-tint-red);color:var(--color-error-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-money{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);margin-top:var(--primitive-space-4)}
+    .wpmn-sec-commerce-features-bento .cfb-prod{display:flex;align-items:center;gap:var(--primitive-space-12)}
+    .wpmn-sec-commerce-features-bento .cfb-thumb{flex:none;width:36px;height:36px;border-radius:var(--radius-xsm);background:var(--cfb-fill)}
+    .wpmn-sec-commerce-features-bento .cfb-more{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--cfb-muted)}
+
+    /* order management */
+    .wpmn-sec-commerce-features-bento .cfb-om{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-16);align-items:start}
+    .wpmn-sec-commerce-features-bento .cfb-menu{position:relative;background:var(--color-surface-primary);border:1px solid var(--cfb-line2);border-radius:var(--radius-md);box-shadow:var(--shadow-soft-300);padding:var(--primitive-space-8);display:flex;flex-direction:column;gap:var(--primitive-space-2)}
+    .wpmn-sec-commerce-features-bento .cfb-mi{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-8) var(--primitive-space-12);border-radius:var(--radius-xsm);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-mi svg{width:16px;height:16px;color:var(--color-text-secondary)}
+    .wpmn-sec-commerce-features-bento .cfb-mi.cfb-sel{background:var(--cfb-fill)}
+    .wpmn-sec-commerce-features-bento .cfb-cursor{position:absolute;right:-10px;bottom:38px;display:inline-flex;align-items:center;gap:var(--primitive-space-4)}
+    .wpmn-sec-commerce-features-bento .cfb-cursor .cfb-tag{padding:var(--primitive-space-2) var(--primitive-space-8);border-radius:var(--radius-xsm);background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-commerce-features-bento .cfb-cursor svg{width:16px;height:16px;color:var(--btn-bg-enable)}
+    .wpmn-sec-commerce-features-bento .cfb-status{display:flex;align-items:flex-start;gap:var(--primitive-space-12);padding:var(--primitive-space-16);border:1px solid var(--cfb-line2);border-radius:var(--radius-md);margin-bottom:var(--primitive-space-12);background:var(--color-surface-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-sicon{flex:none;width:20px;height:20px}
+    .wpmn-sec-commerce-features-bento .cfb-sicon.cfb-done{color:var(--color-success-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-sicon.cfb-wait{color:var(--btn-bg-enable)}
+    .wpmn-sec-commerce-features-bento .cfb-stext{flex:1;min-width:0}
+    .wpmn-sec-commerce-features-bento .cfb-stext .cfb-st{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-commerce-features-bento .cfb-stext .cfb-ss{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-commerce-features-bento .cfb-time{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--cfb-muted);white-space:nowrap}
+
+    .wpmn-sec-commerce-features-bento .cfb-reveal{opacity:0}
+    .wpmn-sec-commerce-features-bento.cfb-inview .cfb-reveal{animation:wpmn-cfb-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-commerce-features-bento.cfb-inview .cfb-card:nth-child(2){animation-delay:80ms}
+    .wpmn-sec-commerce-features-bento.cfb-inview .cfb-r2 .cfb-card:nth-child(1){animation-delay:120ms}
+    .wpmn-sec-commerce-features-bento.cfb-inview .cfb-r2 .cfb-card:nth-child(2){animation-delay:180ms}
+
+    @media(max-width:1199px){.wpmn-sec-commerce-features-bento{padding:var(--primitive-space-96) var(--primitive-space-40)}}
+    @media(max-width:900px){
+      .wpmn-sec-commerce-features-bento .cfb-row{grid-template-columns:1fr}
+      .wpmn-sec-commerce-features-bento .cfb-duo,.wpmn-sec-commerce-features-bento .cfb-om{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){.wpmn-sec-commerce-features-bento{padding:var(--primitive-space-64) var(--primitive-space-20)}}
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-commerce-features-bento .cfb-card{transition:none}
+      .wpmn-sec-commerce-features-bento .cfb-reveal{opacity:1;animation:none}
+    }
+  </style>
+  <div class="cfb-wrap">
+
+    <div class="cfb-row cfb-r1">
+      <!-- Global sales -->
+      <div class="cfb-card cfb-reveal">
+        <div class="cfb-mock cfb-duo" aria-hidden="true">
+          <div class="cfb-p">
+            <div class="cfb-newbtn"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>New fulfillment provider</div>
+            <div class="cfb-provider"><span class="cfb-grip">⣿</span><span class="cfb-tile">GLS</span><span class="cfb-nm">GLS</span><span class="cfb-tog cfb-on"></span></div>
+            <div class="cfb-cond"><span>Show if</span><span>Edit</span></div>
+            <div class="cfb-conds"><span class="cfb-chip"><svg viewBox="0 0 24 24" fill="none" width="12" height="12"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.2"/></svg>Region</span><span class="cfb-chip">&lt;500</span><span class="cfb-chip">€</span></div>
+            <div class="cfb-provider" style="margin-top:var(--primitive-space-12);margin-bottom:0"><span class="cfb-grip">⣿</span><span class="cfb-tile">FX</span><span class="cfb-nm">FedEx</span><span class="cfb-tog"></span></div>
+          </div>
+          <div class="cfb-p">
+            <div class="cfb-nm" style="margin-bottom:var(--primitive-space-12)">Checkout</div>
+            <div class="cfb-lbl">Delivery</div>
+            <div class="cfb-seg"><span class="cfb-on">✓ Home</span><span>Parcel shop</span></div>
+            <div class="cfb-lbl">Shipping</div>
+            <div class="cfb-ship"><span class="cfb-radio cfb-sel"></span><span class="cfb-nm">Express shipping</span><span class="cfb-tile" style="width:28px;height:20px;font-size:var(--font-size-body-label)">GLS</span></div>
+            <div class="cfb-ship" style="margin-bottom:0"><span class="cfb-radio"></span><span class="cfb-nm">Standard shipping</span><span class="cfb-tile" style="width:28px;height:20px;font-size:var(--font-size-body-label)">GLS</span></div>
+          </div>
+        </div>
+        <div>
+          <h3>Global sales from day one</h3>
+          <p class="cfb-desc">Control currencies, payment &amp; fulfillment providers, tax, shipping options, and more.</p>
+        </div>
+      </div>
+
+      <!-- Cart & checkout -->
+      <div class="cfb-card cfb-reveal">
+        <div class="cfb-mock" aria-hidden="true">
+          <div class="cfb-nodes">
+            <div class="cfb-connect"></div>
+            <div class="cfb-node">
+              <div class="cfb-nhead"><span class="cfb-tile"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="cfb-nm">Payment</span><span class="cfb-dot"></span></div>
+              <div class="cfb-prov2"><span class="cfb-tile">S</span><span class="cfb-nm">Stripe</span><span class="cfb-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+              <div class="cfb-prov2"><span class="cfb-tile">K</span><span class="cfb-nm">Klarna</span><span class="cfb-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            </div>
+            <div class="cfb-node cfb-cart">
+              <div class="cfb-nhead"><span class="cfb-tile"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M4 5h2l2 11h9l2-7H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.3" fill="currentColor"/><circle cx="17" cy="20" r="1.3" fill="currentColor"/></svg></span><span class="cfb-nm">Cart</span><span class="cfb-dot"></span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Cart &amp; checkout</h3>
+          <p class="cfb-desc">A lightning-fast Cart API complete with discounts, gift cards, shipping, and payment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cfb-row cfb-r2">
+      <!-- Omnichannel -->
+      <div class="cfb-card cfb-reveal">
+        <div class="cfb-mock cfb-p" aria-hidden="true">
+          <div class="cfb-scfhead"><span class="cfb-tile"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M6 3v6M6 15v6M18 3v4M18 13v8M6 9a3 3 0 0 0 0 6M18 7a3 3 0 0 1 0 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><span class="cfb-nm">Sales channels</span></div>
+          <div class="cfb-scfrow" style="border-bottom:1px solid var(--cfb-line2);color:var(--color-text-secondary);font-size:var(--font-size-body-small);padding:var(--primitive-space-12) 0"><span>Title</span><span>Available products</span></div>
+          <div class="cfb-scfrow">
+            <div><div class="cfb-rowline"><span class="cfb-nm">Marketplace</span><span class="cfb-trend cfb-up">↗ 8%</span></div><div class="cfb-money">€130,098.01</div></div>
+            <div class="cfb-prod"><span class="cfb-thumb"></span><div><div class="cfb-nm" style="font-weight:var(--font-weight-medium)">Classic bathrobe</div><div class="cfb-more">+ 467 more</div></div></div>
+          </div>
+          <div class="cfb-scfrow">
+            <div><div class="cfb-rowline"><span class="cfb-nm">Physical store</span><span class="cfb-trend cfb-down">↘ 2%</span></div><div class="cfb-money">€99,781.32</div></div>
+            <div class="cfb-prod"><span class="cfb-thumb"></span><div><div class="cfb-nm" style="font-weight:var(--font-weight-medium)">Poplin sleepwear</div><div class="cfb-more">+ 148 more</div></div></div>
+          </div>
+          <div class="cfb-scfrow">
+            <div><div class="cfb-rowline"><span class="cfb-nm">Website</span><span class="cfb-trend cfb-up">↗ 11%</span></div></div>
+            <div class="cfb-prod"><span class="cfb-thumb"></span><div><div class="cfb-nm" style="font-weight:var(--font-weight-medium)">Night shirts</div></div></div>
+          </div>
+        </div>
+        <div>
+          <h3>Omnichannel ready</h3>
+          <p class="cfb-desc">Sell through marketplaces, physical stores, etc., and manage from one unified overview.</p>
+        </div>
+      </div>
+
+      <!-- Order management -->
+      <div class="cfb-card cfb-reveal">
+        <div>
+          <h3>Powerful order management features</h3>
+          <p class="cfb-desc">Fulfill from multiple locations, instantly create return and exchange flows, and much more.</p>
+        </div>
+        <div class="cfb-mock cfb-om" aria-hidden="true">
+          <div class="cfb-menu">
+            <div class="cfb-mi"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.5"/></svg>Capture payment</div>
+            <div class="cfb-mi"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9h13l-3-3M20 15H7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Allocate items</div>
+            <div class="cfb-mi cfb-sel"><svg viewBox="0 0 24 24" fill="none"><path d="M10 8L6 12l4 4M6 12h9a4 4 0 0 1 0 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Return items</div>
+            <div class="cfb-mi"><svg viewBox="0 0 24 24" fill="none"><path d="M4 8h12l-3-3M20 16H8l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Exchange items</div>
+            <div class="cfb-mi"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Cancel order</div>
+            <div class="cfb-cursor"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3l16 7-7 2-2 7z"/></svg><span class="cfb-tag">eCom Manager</span></div>
+          </div>
+          <div>
+            <div class="cfb-status">
+              <span class="cfb-sicon cfb-done"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor" opacity=".16"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div class="cfb-stext"><div class="cfb-st">Items shipped</div><div class="cfb-ss">Shipping from Nordhavn Warehouse</div></div>
+              <span class="cfb-time">8 hours ago</span>
+            </div>
+            <div class="cfb-status" style="margin-bottom:0">
+              <span class="cfb-sicon cfb-wait"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 12l0-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <div class="cfb-stext"><div class="cfb-st">Awaits shipping</div><div class="cfb-ss">Shipping from Nordhavn Warehouse</div></div>
+              <span class="cfb-time">1 day ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    // Motion (my call): cards fade up in a staggered diagonal on first view; cards lift on hover. Scoped.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-commerce-features-bento');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) { sec.classList.add('cfb-inview'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { sec.classList.add('cfb-inview'); io.disconnect(); } });
+      }, { threshold: 0.12 });
+      io.observe(sec);
+    })();
+  </script>
+</section>

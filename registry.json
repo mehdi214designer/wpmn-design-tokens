@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.5.0",
-  "generatedAt": "2026-07-31T05:35:37.582Z",
+  "generatedAt": "2026-07-31T05:43:12.384Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -1826,6 +1826,77 @@
         "off canvas"
       ],
       "role": "Content"
+    },
+    {
+      "id": "commerce-features-bento",
+      "name": "Commerce Features Bento",
+      "type": "html",
+      "status": "stable",
+      "description": "Light diagonal-large 2x2 commerce feature bento with product-UI mocks: Global sales (fulfillment provider list with toggles + a checkout panel), Cart & checkout (a payment/cart node diagram), Omnichannel ready (a sales-channels table with trend badges), and Powerful order management (an actions context menu with a cursor tag + order status cards).",
+      "files": {
+        "html": "sections/commerce-features-bento/section.html"
+      },
+      "prompt": "sections/commerce-features-bento/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-commerce-features-bento",
+      "interactions": [
+        "cards fade up in a staggered diagonal on first view (IntersectionObserver, 600ms wpmn-cfb-up)",
+        "cards lift 3px and deepen their shadow on hover (250ms)",
+        "prefers-reduced-motion: hover + reveal off, everything rendered in final state"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--color-success-primary",
+        "--color-error-primary",
+        "--btn-bg-enable",
+        "--radius-lg",
+        "--radius-md",
+        "--radius-sm",
+        "--radius-xsm",
+        "--shadow-soft-100",
+        "--shadow-soft-300",
+        "--shadow-soft-500",
+        "--font-family-base",
+        "--font-size-h4",
+        "--font-size-body-medium",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h4",
+        "--font-lh-body-medium",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-lh-body-label",
+        "--font-weight-bold",
+        "--font-weight-semibold",
+        "--font-weight-medium"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "role": "Features",
+      "span": 2,
+      "tags": [
+        "bento",
+        "feature grid",
+        "light",
+        "ecommerce",
+        "product ui",
+        "checkout",
+        "order management",
+        "toggles",
+        "node diagram",
+        "table"
+      ]
     },
     {
       "id": "comparison-table",
