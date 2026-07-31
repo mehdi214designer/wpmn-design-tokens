@@ -81,8 +81,10 @@
     .wpmn-sec-commerce-features-bento .cfb-more{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--cfb-muted)}
 
     /* order management */
-    .wpmn-sec-commerce-features-bento .cfb-om{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-16);align-items:start}
-    .wpmn-sec-commerce-features-bento .cfb-menu{position:relative;background:var(--color-surface-primary);border:1px solid var(--cfb-line2);border-radius:var(--radius-md);box-shadow:var(--shadow-soft-300);padding:var(--primitive-space-8);display:flex;flex-direction:column;gap:var(--primitive-space-2)}
+    .wpmn-sec-commerce-features-bento .cfb-om{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-16);align-items:stretch}
+    .wpmn-sec-commerce-features-bento .cfb-menu{position:relative;background:var(--color-surface-primary);border:1px solid var(--cfb-line2);border-radius:var(--radius-md);box-shadow:var(--shadow-soft-300);padding:var(--primitive-space-8);display:flex;flex-direction:column;justify-content:space-between;gap:var(--primitive-space-2)}
+    .wpmn-sec-commerce-features-bento .cfb-statuscol{display:flex;flex-direction:column;justify-content:space-between;gap:var(--primitive-space-12)}
+    .wpmn-sec-commerce-features-bento .cfb-statuscol .cfb-status{margin-bottom:0}
     .wpmn-sec-commerce-features-bento .cfb-mi{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-8) var(--primitive-space-12);border-radius:var(--radius-xsm);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary)}
     .wpmn-sec-commerce-features-bento .cfb-mi svg{width:16px;height:16px;color:var(--color-text-secondary)}
     .wpmn-sec-commerce-features-bento .cfb-mi.cfb-sel{background:var(--cfb-fill)}
@@ -205,7 +207,7 @@
             <div class="cfb-mi"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Cancel order</div>
             <div class="cfb-cursor"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3l16 7-7 2-2 7z"/></svg><span class="cfb-tag">eCom Manager</span></div>
           </div>
-          <div>
+          <div class="cfb-statuscol">
             <div class="cfb-status">
               <span class="cfb-sicon cfb-done"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor" opacity=".16"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               <div class="cfb-stext"><div class="cfb-st">Items shipped</div><div class="cfb-ss">Shipping from Nordhavn Warehouse</div></div>
