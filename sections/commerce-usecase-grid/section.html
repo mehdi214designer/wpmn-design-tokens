@@ -1,0 +1,237 @@
+<!-- WPMN Section: Commerce Usecase Grid — light 3x2 grid of commerce use-case cards, each a device mock (browser/phone) over an icon + title + description, all token-based CSS/SVG (from a screenshot, tokenized, motion added). Classes are cug-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-commerce-usecase-grid">
+  <style>
+@keyframes wpmn-cug-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-commerce-usecase-grid{
+      background:var(--cug-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --cug-bg:color-mix(in srgb, var(--color-text-primary) 3%, var(--color-surface-primary));
+      --cug-mock:linear-gradient(180deg, color-mix(in srgb, var(--btn-bg-enable) 7%, var(--color-surface-primary)), color-mix(in srgb, var(--color-text-primary) 3%, var(--color-surface-primary)));
+      --cug-line:color-mix(in srgb, var(--color-text-primary) 12%, transparent);
+      --cug-line2:color-mix(in srgb, var(--color-text-primary) 7%, transparent);
+      --cug-fill:color-mix(in srgb, var(--color-text-primary) 8%, var(--color-surface-primary));
+      --cug-fill2:color-mix(in srgb, var(--color-text-primary) 5%, var(--color-surface-primary));
+      --cug-muted:color-mix(in srgb, var(--color-text-primary) 45%, transparent);
+      --cug-green:color-mix(in srgb, var(--color-success-primary) 15%, var(--color-surface-primary));
+      --cug-warn:color-mix(in srgb, var(--color-warning-primary) 18%, var(--color-surface-primary));
+    }
+    .wpmn-sec-commerce-usecase-grid .cug-wrap{max-width:1200px;margin:0 auto}
+    .wpmn-sec-commerce-usecase-grid .cug-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--primitive-space-24)}
+    .wpmn-sec-commerce-usecase-grid .cug-card{background:var(--color-surface-primary);border:1px solid var(--cug-line2);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft-300);transition:box-shadow .25s ease, transform .25s ease}
+    .wpmn-sec-commerce-usecase-grid .cug-card:hover{box-shadow:var(--shadow-soft-500);transform:translateY(-3px)}
+    .wpmn-sec-commerce-usecase-grid .cug-mock{position:relative;height:210px;overflow:hidden;background:var(--cug-mock);border-bottom:1px solid var(--cug-line2)}
+    .wpmn-sec-commerce-usecase-grid .cug-body{padding:var(--primitive-space-24) var(--primitive-space-32) var(--primitive-space-32)}
+    .wpmn-sec-commerce-usecase-grid .cug-head{display:flex;align-items:center;gap:var(--primitive-space-12);margin-bottom:var(--primitive-space-12)}
+    .wpmn-sec-commerce-usecase-grid .cug-ic{width:24px;height:24px;color:var(--color-text-primary)}
+    .wpmn-sec-commerce-usecase-grid .cug-ic svg{width:100%;height:100%}
+    .wpmn-sec-commerce-usecase-grid h3{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-bold);letter-spacing:-0.01em;color:var(--color-text-primary);margin:0}
+    .wpmn-sec-commerce-usecase-grid .cug-desc{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin:0;max-width:34ch}
+
+    /* device kit */
+    .wpmn-sec-commerce-usecase-grid .cug-win{position:absolute;left:24px;right:-40px;top:22px;background:var(--color-surface-primary);border:1px solid var(--cug-line2);border-radius:var(--radius-md);box-shadow:var(--shadow-soft-300);overflow:hidden}
+    .wpmn-sec-commerce-usecase-grid .cug-bar{display:flex;align-items:center;gap:5px;padding:var(--primitive-space-8) var(--primitive-space-12);border-bottom:1px solid var(--cug-line2)}
+    .wpmn-sec-commerce-usecase-grid .cug-tl{width:7px;height:7px;border-radius:999px;background:var(--cug-line)}
+    .wpmn-sec-commerce-usecase-grid .cug-addr{flex:1;height:8px;margin-left:var(--primitive-space-8);border-radius:999px;background:var(--cug-fill)}
+    .wpmn-sec-commerce-usecase-grid .cug-sk{height:8px;border-radius:999px;background:var(--cug-fill)}
+    .wpmn-sec-commerce-usecase-grid .cug-body-in{padding:var(--primitive-space-16);display:flex;flex-direction:column;gap:var(--primitive-space-8)}
+
+    /* 1 ecommerce */
+    .wpmn-sec-commerce-usecase-grid .cug-eco{display:grid;grid-template-columns:1fr 1fr;gap:var(--primitive-space-12);padding:var(--primitive-space-16)}
+    .wpmn-sec-commerce-usecase-grid .cug-price{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-commerce-usecase-grid .cug-swatch{display:flex;gap:5px;margin-top:var(--primitive-space-8)}
+    .wpmn-sec-commerce-usecase-grid .cug-swatch i{width:10px;height:10px;border-radius:999px}
+    .wpmn-sec-commerce-usecase-grid .cug-photo{border-radius:var(--radius-xsm);background:var(--cug-fill)}
+    .wpmn-sec-commerce-usecase-grid .cug-pop{position:absolute;right:8px;top:34px;width:56%;background:var(--color-surface-primary);border:1px solid var(--cug-line2);border-radius:var(--radius-sm);box-shadow:var(--shadow-soft-500);padding:var(--primitive-space-12)}
+    .wpmn-sec-commerce-usecase-grid .cug-pay{margin-top:var(--primitive-space-8);height:26px;border-radius:var(--radius-xsm);background:var(--color-surface-secondary);color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-semibold)}
+
+    /* 2 marketplace */
+    .wpmn-sec-commerce-usecase-grid .cug-mkt{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--primitive-space-8);padding:var(--primitive-space-16)}
+    .wpmn-sec-commerce-usecase-grid .cug-mkt .cug-photo{height:70px}
+    .wpmn-sec-commerce-usecase-grid .cug-av{position:absolute;width:34px;height:34px;border-radius:999px;background:var(--cug-fill);box-shadow:0 0 0 3px var(--color-surface-primary), 0 0 0 4px var(--btn-bg-enable);display:flex;align-items:center;justify-content:center;color:var(--btn-bg-enable)}
+    .wpmn-sec-commerce-usecase-grid .cug-av svg{width:18px;height:18px}
+    .wpmn-sec-commerce-usecase-grid .cug-av.cug-a1{left:14px;top:46px}
+    .wpmn-sec-commerce-usecase-grid .cug-av.cug-a2{left:30px;top:96px}
+    .wpmn-sec-commerce-usecase-grid .cug-av.cug-a3{right:24px;top:70px;color:var(--color-text-primary-invert);background:var(--btn-bg-enable);box-shadow:0 0 0 3px var(--color-surface-primary)}
+
+    /* 3 subscription */
+    .wpmn-sec-commerce-usecase-grid .cug-subrow{display:flex;align-items:center;gap:var(--primitive-space-12);padding:var(--primitive-space-8) var(--primitive-space-12);border:1px solid var(--cug-line2);border-radius:var(--radius-sm);margin-bottom:var(--primitive-space-8)}
+    .wpmn-sec-commerce-usecase-grid .cug-subrow.cug-sel{border-color:var(--btn-bg-enable)}
+    .wpmn-sec-commerce-usecase-grid .cug-cal{flex:none;width:26px;height:26px;border-radius:var(--radius-xsm);background:var(--cug-fill);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-bold);color:var(--color-text-secondary)}
+    .wpmn-sec-commerce-usecase-grid .cug-visa{margin-left:auto;display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);color:var(--color-text-secondary)}
+    .wpmn-sec-commerce-usecase-grid .cug-visa b{font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-commerce-usecase-grid .cug-vcard{width:26px;height:17px;border-radius:3px;background:color-mix(in srgb, var(--btn-bg-enable) 70%, var(--color-surface-secondary))}
+
+    /* 4 OMS */
+    .wpmn-sec-commerce-usecase-grid .cug-oms{padding:var(--primitive-space-16);position:relative}
+    .wpmn-sec-commerce-usecase-grid .cug-omslabel{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);margin-bottom:var(--primitive-space-12)}
+    .wpmn-sec-commerce-usecase-grid .cug-omsrow{display:flex;align-items:center;gap:var(--primitive-space-8);margin-bottom:var(--primitive-space-8)}
+    .wpmn-sec-commerce-usecase-grid .cug-cb{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--cug-line);flex:none}
+    .wpmn-sec-commerce-usecase-grid .cug-cb.cug-on{background:var(--btn-bg-enable);border-color:var(--btn-bg-enable)}
+    .wpmn-sec-commerce-usecase-grid .cug-tag{margin-left:auto;font-size:var(--font-size-body-label);line-height:var(--font-lh-body-label);font-weight:var(--font-weight-medium);padding:var(--primitive-space-2) var(--primitive-space-8);border-radius:999px}
+    .wpmn-sec-commerce-usecase-grid .cug-tag.cug-paid{background:var(--cug-green);color:var(--color-success-primary)}
+    .wpmn-sec-commerce-usecase-grid .cug-tag.cug-unf{background:var(--cug-warn);color:var(--color-warning-primary)}
+    .wpmn-sec-commerce-usecase-grid .cug-oms svg.cug-curve{position:absolute;right:0;bottom:0;width:60%;height:70px}
+    .wpmn-sec-commerce-usecase-grid .cug-oms .cug-cline{fill:none;stroke:var(--btn-bg-enable);stroke-width:2}
+    .wpmn-sec-commerce-usecase-grid .cug-oms .cug-cdot{fill:var(--btn-bg-enable)}
+
+    /* 5 b2b */
+    .wpmn-sec-commerce-usecase-grid .cug-b2b{padding:var(--primitive-space-16)}
+    .wpmn-sec-commerce-usecase-grid .cug-seg2{display:inline-flex;gap:5px;padding:5px;background:var(--cug-fill);border-radius:var(--radius-xsm);margin-bottom:var(--primitive-space-12)}
+    .wpmn-sec-commerce-usecase-grid .cug-seg2 i{width:12px;height:12px;border-radius:4px;background:var(--cug-line)}
+    .wpmn-sec-commerce-usecase-grid .cug-seg2 i.cug-on{background:var(--color-surface-primary);box-shadow:0 0 0 1.5px var(--btn-bg-enable)}
+    .wpmn-sec-commerce-usecase-grid .cug-figure{height:96px;border-radius:var(--radius-sm);background:linear-gradient(180deg, color-mix(in srgb, var(--btn-bg-enable) 14%, var(--color-surface-primary)), var(--cug-fill))}
+
+    /* 6 pos */
+    .wpmn-sec-commerce-usecase-grid .cug-phone{position:absolute;left:36px;top:26px;width:120px;height:210px;border-radius:22px;background:var(--color-surface-secondary);padding:8px;box-shadow:var(--shadow-soft-500)}
+    .wpmn-sec-commerce-usecase-grid .cug-screen{height:100%;border-radius:16px;background:var(--color-surface-primary);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--primitive-space-8);text-align:center}
+    .wpmn-sec-commerce-usecase-grid .cug-nfc{width:30px;height:30px;color:var(--btn-bg-enable)}
+    .wpmn-sec-commerce-usecase-grid .cug-tap{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-commerce-usecase-grid .cug-amt{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-bold);color:var(--color-text-primary)}
+    .wpmn-sec-commerce-usecase-grid .cug-mc{position:absolute;right:20px;top:96px;width:150px;height:96px;border-radius:var(--radius-md);background:var(--cug-fill);border:1px solid var(--cug-line2);box-shadow:var(--shadow-soft-300);transform:rotate(-12deg)}
+    .wpmn-sec-commerce-usecase-grid .cug-mc::after{content:"";position:absolute;right:14px;bottom:14px;width:34px;height:20px;border-radius:999px;background:linear-gradient(90deg, color-mix(in srgb, var(--color-warning-primary) 70%, transparent), color-mix(in srgb, var(--color-error-primary) 60%, transparent))}
+
+    .wpmn-sec-commerce-usecase-grid .cug-reveal{opacity:0}
+    .wpmn-sec-commerce-usecase-grid.cug-inview .cug-reveal{animation:wpmn-cug-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-commerce-usecase-grid.cug-inview .cug-card:nth-child(2){animation-delay:70ms}
+    .wpmn-sec-commerce-usecase-grid.cug-inview .cug-card:nth-child(3){animation-delay:140ms}
+    .wpmn-sec-commerce-usecase-grid.cug-inview .cug-card:nth-child(4){animation-delay:210ms}
+    .wpmn-sec-commerce-usecase-grid.cug-inview .cug-card:nth-child(5){animation-delay:280ms}
+    .wpmn-sec-commerce-usecase-grid.cug-inview .cug-card:nth-child(6){animation-delay:350ms}
+
+    @media(max-width:1199px){.wpmn-sec-commerce-usecase-grid{padding:var(--primitive-space-96) var(--primitive-space-40)}}
+    @media(max-width:900px){.wpmn-sec-commerce-usecase-grid .cug-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.wpmn-sec-commerce-usecase-grid{padding:var(--primitive-space-64) var(--primitive-space-20)}.wpmn-sec-commerce-usecase-grid .cug-grid{grid-template-columns:1fr}}
+    @media(prefers-reduced-motion:reduce){
+      .wpmn-sec-commerce-usecase-grid .cug-card{transition:none}
+      .wpmn-sec-commerce-usecase-grid .cug-reveal{opacity:1;animation:none}
+    }
+  </style>
+  <div class="cug-wrap">
+    <div class="cug-grid">
+
+      <!-- Ecommerce -->
+      <article class="cug-card cug-reveal">
+        <div class="cug-mock" aria-hidden="true">
+          <div class="cug-win">
+            <div class="cug-bar"><span class="cug-tl"></span><span class="cug-tl"></span><span class="cug-tl"></span><span class="cug-addr"></span></div>
+            <div class="cug-eco">
+              <div><div class="cug-sk" style="width:60%"></div><div class="cug-price" style="margin-top:8px">$179.99</div><div class="cug-swatch"><i style="background:var(--btn-bg-enable)"></i><i style="background:var(--color-warning-primary)"></i><i style="background:var(--color-error-primary)"></i><i style="background:var(--cug-line)"></i></div></div>
+              <div class="cug-photo" style="height:74px"></div>
+            </div>
+          </div>
+          <div class="cug-pop">
+            <div class="cug-sk" style="width:50%"></div>
+            <div style="display:flex;gap:8px;margin-top:8px;align-items:center"><span class="cug-photo" style="width:26px;height:26px"></span><span class="cug-sk" style="flex:1"></span></div>
+            <div class="cug-pay">Pay</div>
+          </div>
+        </div>
+        <div class="cug-body">
+          <div class="cug-head"><span class="cug-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h2l2 11h9l2-7H7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.4" fill="currentColor"/><circle cx="17" cy="20" r="1.4" fill="currentColor"/></svg></span><h3>Ecommerce</h3></div>
+          <p class="cug-desc">Build a multi-region and multi-channel store with endless customizations.</p>
+        </div>
+      </article>
+
+      <!-- Marketplace -->
+      <article class="cug-card cug-reveal">
+        <div class="cug-mock" aria-hidden="true">
+          <div class="cug-win">
+            <div class="cug-bar"><span class="cug-tl"></span><span class="cug-tl"></span><span class="cug-tl"></span><span class="cug-addr"></span></div>
+            <div class="cug-mkt"><span class="cug-photo"></span><span class="cug-photo"></span><span class="cug-photo"></span></div>
+          </div>
+          <span class="cug-av cug-a1"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="cug-av cug-a2"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6"/></svg></span>
+          <span class="cug-av cug-a3"><svg viewBox="0 0 24 24" fill="none"><path d="M6 15c3 2 9 2 12 0M9 9h.01M15 9h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="cug-body">
+          <div class="cug-head"><span class="cug-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9l1-4h14l1 4M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><h3>Marketplace</h3></div>
+          <p class="cug-desc">Set up a marketplace with multiple vendors.</p>
+        </div>
+      </article>
+
+      <!-- Subscription -->
+      <article class="cug-card cug-reveal">
+        <div class="cug-mock" aria-hidden="true">
+          <div class="cug-win">
+            <div class="cug-bar"><span class="cug-tl"></span><span class="cug-tl"></span><span class="cug-tl"></span><span class="cug-addr"></span></div>
+            <div class="cug-body-in">
+              <div class="cug-subrow cug-sel"><span class="cug-cal">18</span><span class="cug-sk" style="width:34%"></span><span class="cug-visa"><span class="cug-vcard"></span><b>4242</b> $7.99</span></div>
+              <div class="cug-subrow"><span class="cug-cal">18</span><span class="cug-sk" style="width:34%"></span><span class="cug-visa"><span class="cug-vcard"></span><b>4242</b> $7.99</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="cug-body">
+          <div class="cug-head"><span class="cug-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 14-5m2-2v4h-4M20 12a8 8 0 0 1-14 5m-2 2v-4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Subscription Business</h3></div>
+          <p class="cug-desc">Handle subscription-based orders and set up custom renewal logic.</p>
+        </div>
+      </article>
+
+      <!-- OMS -->
+      <article class="cug-card cug-reveal">
+        <div class="cug-mock" aria-hidden="true">
+          <div class="cug-win" style="right:24px">
+            <div class="cug-oms">
+              <div class="cug-omslabel">Total Sales</div>
+              <div class="cug-omsrow"><span class="cug-cb cug-on"></span><span class="cug-sk" style="width:30%"></span><span class="cug-tag cug-paid">✓ Paid</span></div>
+              <div class="cug-omsrow"><span class="cug-cb"></span><span class="cug-sk" style="width:30%"></span><span class="cug-tag cug-unf">Unfulfilled</span></div>
+              <svg class="cug-curve" viewBox="0 0 160 70" fill="none" preserveAspectRatio="none"><path class="cug-cline" d="M0 60 C40 60 60 20 90 20 C120 20 130 44 160 44"/><circle class="cug-cdot" cx="90" cy="20" r="4"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="cug-body">
+          <div class="cug-head"><span class="cug-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><h3>Order Management System</h3></div>
+          <p class="cug-desc">Handle orders from multiple channels and route to your fulfillment services.</p>
+        </div>
+      </article>
+
+      <!-- B2B -->
+      <article class="cug-card cug-reveal">
+        <div class="cug-mock" aria-hidden="true">
+          <div class="cug-win">
+            <div class="cug-bar"><span class="cug-tl"></span><span class="cug-tl"></span><span class="cug-tl"></span><span class="cug-addr"></span></div>
+            <div class="cug-b2b">
+              <div class="cug-seg2"><i></i><i class="cug-on"></i><i></i></div>
+              <div class="cug-figure"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cug-body">
+          <div class="cug-head"><span class="cug-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V6l7-3v18M11 21V9l7 3v9M4 21h16M8 8h.01M8 12h.01M14 13h.01M14 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>B2B Store</h3></div>
+          <p class="cug-desc">Set unique price lists, discounts, and product access for B2B customers.</p>
+        </div>
+      </article>
+
+      <!-- POS -->
+      <article class="cug-card cug-reveal">
+        <div class="cug-mock" aria-hidden="true">
+          <div class="cug-phone">
+            <div class="cug-screen">
+              <span class="cug-nfc"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9a8 8 0 0 1 0 6M10 7a12 12 0 0 1 0 10M14 9a8 8 0 0 1 0 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+              <span class="cug-tap">Tap to pay</span>
+              <span class="cug-amt">$29.99</span>
+            </div>
+          </div>
+          <div class="cug-mc"></div>
+        </div>
+        <div class="cug-body">
+          <div class="cug-head"><span class="cug-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="3" width="10" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M11 18h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><h3>Point of Sales (POS)</h3></div>
+          <p class="cug-desc">Support POS systems and in-store purchases.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <script>
+    // Motion (my call): cards fade up in a staggered sweep on first view; cards lift on hover. Scoped.
+    (function () {
+      var sec = document.currentScript ? document.currentScript.parentElement : document.querySelector('.wpmn-sec-commerce-usecase-grid');
+      if (!sec) return;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) { sec.classList.add('cug-inview'); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { sec.classList.add('cug-inview'); io.disconnect(); } });
+      }, { threshold: 0.1 });
+      io.observe(sec);
+    })();
+  </script>
+</section>
