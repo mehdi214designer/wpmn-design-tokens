@@ -1134,7 +1134,13 @@
           width={width}
           style={{ display:'block', ...style }}
           className={className}
-          onError={e => { e.target.style.opacity = 0.15; }}
+          onError={e => {
+            var img = e.target;
+            /* Local path failed (e.g. opened standalone) — try GitHub RAW once,
+               then fade if that also fails. */
+            if (!img.dataset.fbk) { img.dataset.fbk = '1'; img.src = RAW_LIB_BASE + src; }
+            else { img.style.opacity = 0.15; }
+          }}
         />
       );
     };
@@ -1147,6 +1153,46 @@
       ['black',    'Black',    '#ffffff',                    '#000'],
       ['white',    'White',    '#07090c',                    '#fff'],
     ];
+
+    /* Logo tile with one-click SVG copy — fetches the .svg source and
+       writes the raw markup to the clipboard. */
+    const LogoCopyCard = ({ brand, variant, type, label, bg, fg = '#000', height }) => {
+      const [st, setSt] = useState('idle'); // idle | ok | fail
+      const copy = async () => {
+        try {
+          const svg = await fetchTextLibSafe(`logos/${brand}/${variant}-${type}.svg`);
+          await navigator.clipboard.writeText(svg.trim());
+          setSt('ok');
+        } catch (e) {
+          console.warn('[DS] logo SVG copy failed:', e.message);
+          setSt('fail');
+        }
+        setTimeout(() => setSt('idle'), 1400);
+      };
+      const dark = fg === '#fff';
+      const feedback = st === 'ok' ? 'Copied SVG' : st === 'fail' ? 'Copy failed' : '';
+      return (
+        <div>
+          <div
+            onClick={copy}
+            role="button"
+            tabIndex={0}
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); } }}
+            title={'Copy ' + label + ' SVG'}
+            style={{ position:'relative', background:bg, borderRadius:12, padding:'20px 16px', display:'flex', alignItems:'center', justifyContent:'center', minHeight:72, border:'1px solid var(--color-border-primary)', cursor:'pointer' }}
+          >
+            <Logo brand={brand} variant={variant} type={type} height={height} />
+            <span style={{ position:'absolute', top:6, right:6, width:22, height:22, display:'flex', alignItems:'center', justifyContent:'center', borderRadius:6, background: dark ? 'rgba(255,255,255,0.16)' : 'rgba(0,0,0,0.06)', color: fg, opacity:0.55, pointerEvents:'none' }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </span>
+            {feedback && (
+              <span style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', borderRadius:12, background: st === 'fail' ? 'rgba(190,32,32,0.94)' : 'rgba(15,17,20,0.94)', color:'#fff', fontSize:12, fontWeight:700, letterSpacing:'0.02em' }}>{feedback}</span>
+            )}
+          </div>
+          <div style={{ fontSize:11, fontWeight:600, color:'var(--color-text-secondary)', textAlign:'center', marginTop:8 }}>{label}</div>
+        </div>
+      );
+    };
 
     /* ── Pages ─────────────────────────────────────────────── */
 
@@ -1293,30 +1339,21 @@
           {/* Logos showcase */}
           <div className="section">
             <div className="section-title">Logos — All Variants</div>
+            <div style={{ marginTop:-4, marginBottom:20, fontSize:13, color:'var(--color-text-secondary)' }}>Click any logo to copy its SVG source.</div>
 
             {/* Logo (wordmark) */}
             <div style={{ marginBottom:8, fontSize:12, fontWeight:700, color:'var(--color-text-secondary)', textTransform:'uppercase', letterSpacing:'0.06em' }}>Wordmark</div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:12, marginBottom:24 }}>
-              {LOGO_VARIANTS.map(([type, label, bg]) => (
-                <div key={type}>
-                  <div style={{ background:bg, borderRadius:12, padding:'20px 16px', display:'flex', alignItems:'center', justifyContent:'center', minHeight:72, border:'1px solid var(--color-border-primary)' }}>
-                    <Logo brand={b.key} variant="logo" type={type} height={24} />
-                  </div>
-                  <div style={{ fontSize:11, fontWeight:600, color:'var(--color-text-secondary)', textAlign:'center', marginTop:8 }}>{label}</div>
-                </div>
+              {LOGO_VARIANTS.map(([type, label, bg, fg]) => (
+                <LogoCopyCard key={type} brand={b.key} variant="logo" type={type} label={label} bg={bg} fg={fg} height={24} />
               ))}
             </div>
 
             {/* Icon */}
             <div style={{ marginBottom:8, fontSize:12, fontWeight:700, color:'var(--color-text-secondary)', textTransform:'uppercase', letterSpacing:'0.06em' }}>Icon</div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:12 }}>
-              {LOGO_VARIANTS.map(([type, label, bg]) => (
-                <div key={type}>
-                  <div style={{ background:bg, borderRadius:12, padding:'20px 16px', display:'flex', alignItems:'center', justifyContent:'center', minHeight:72, border:'1px solid var(--color-border-primary)' }}>
-                    <Logo brand={b.key} variant="icon" type={type} height={36} />
-                  </div>
-                  <div style={{ fontSize:11, fontWeight:600, color:'var(--color-text-secondary)', textAlign:'center', marginTop:8 }}>{label}</div>
-                </div>
+              {LOGO_VARIANTS.map(([type, label, bg, fg]) => (
+                <LogoCopyCard key={type} brand={b.key} variant="icon" type={type} label={label} bg={bg} fg={fg} height={36} />
               ))}
             </div>
           </div>

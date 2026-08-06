@@ -30,13 +30,35 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.5.1] — 2026-08-06
+
+### Added
+- **Demo — one-click logo SVG copy** (2026-08-06). Every logo tile in a brand page's "Logos — All
+  Variants" showcase (wordmark + icon, all 5 variants) is now click-to-copy. Clicking a tile fetches
+  that variant's `.svg` source and writes the raw markup to the clipboard, with a "Copied SVG" flash;
+  keyboard-accessible (Enter/Space). New `LogoCopyCard` component in `demo.html`, reusing the same
+  `fetchTextLibSafe` + clipboard path the Hugeicons copy already used. Demo-only, no token/component
+  or public API change.
+
 ### Fixed
+- **Demo `Logo` component — GitHub RAW fallback** (2026-08-06). Logos now fall back to
+  `RAW_LIB_BASE + src` when the local `logos/<brand>/…svg` path 404s (e.g. `demo.html` opened
+  standalone, outside the local server) instead of just fading out. Fixes every logo rendering broken
+  in a standalone preview; no effect when the demo is served normally. Demo-only.
 - **`wpmn-live-redesign` skill** — hardened from real Paymattic + FluentBooking runs (2026-07-21).
   `scripts/tokenize.py` renamed to `scripts/snap_tokens.py`: the old name shadowed Python's stdlib
   `tokenize` module for anything importing it, breaking `mirror.py` with a misleading "unknown
   brand" error. `scripts/mirror.py`'s asset sweep now also catches
   `<dotlottie-player>`/`<lottie-player>` `src`/`data-src` (missed a 2MB Lottie animation on
   FluentBooking, previously had to be `curl`ed in by hand).
+- **`scripts/snap_tokens.py` 3-digit hex color bug** (found 2026-07-22, live FluentSupport run) —
+  the 3-digit hex regex excluded a trailing `;` from its lookahead, meaning `border:1px solid
+  #ccc;` (the single most common real CSS shorthand pattern) silently never got snapped to a
+  token, on every past retheme run, not just this one. 133 instances found unsnapped across one
+  page's downloaded plugin CSS before the fix; 0 after. The `(?<!&)` lookbehind alone already
+  fully disambiguates real hex from HTML entities (`&#038;`), so the extra `;` exclusion in the
+  lookahead was unnecessary and wrong — removed, now matches the (already-correct) 6-digit
+  pattern's lookahead. Verified: entity protection and the 6-digit case are both unaffected.
 
 ### Changed
 - **`wpmn-live-redesign` SKILL.md** — added: content-gap vs heading→body gap guidance (content-gap

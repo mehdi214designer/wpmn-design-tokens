@@ -17,7 +17,11 @@ Screenshot rebuilding is only for static input with no live source (that's `wpmn
 
 ---
 
-## Phase 1 — Mirror
+## Step 0 — Mirror (no changes)
+
+Turn the live page into an offline mirror, as-is. Fetch online → offline. **Zero design changes
+happen in this step** — no tokens, no fonts, no colours, nothing. The only goal is a local copy
+that renders identically to the live page.
 
 ```bash
 python3 scripts/mirror.py https://<site> <workdir>
@@ -40,6 +44,36 @@ What the script does, and why each step exists:
   *inside* the downloaded CSS (fonts, background images), rewritten relative to each stylesheet.
 
 **Gate: render `page.html` and confirm it matches the live page before applying anything.**
+
+---
+
+## Step 1 — Colors (neutral + brand)
+
+Map every colour on the page onto the WPMN neutral and brand primitive ramps — but not blindly.
+Classify each distinct colour found before snapping it:
+
+- **Brand/neutral drift (snap it).** Multiple near-duplicate shades of the *site's own* brand hue
+  — e.g. FluentSupport is green, and its CSS has `#00b36d`, `#00a866`, `#009c5f`... scattered
+  across different blocks/plugins. This is drift, not intent. Snap each to the **nearest
+  primitive** swatch in that brand's ramp — a literal hex value, not a semantic `--token`
+  reference. (This is what `snap_tokens.py`'s nearest-colour match already does — keep that
+  behaviour for this case.)
+- **Intentional off-brand colour (leave it).** A colour from a genuinely different hue family,
+  used deliberately and consistently for its own purpose — e.g. a blue badge/callout on an
+  otherwise all-green FluentSupport page. This is **not a violation to fix**. It is the site's own
+  deliberate choice and must be left exactly as-is, not force-mapped into the green ramp or
+  flattened to a neutral.
+
+**How to tell drift from intent:** check hue distance from the brand's own primary hue. A colour
+that's a shade/tint/tone of the *same* hue (small hue delta, differs mainly in lightness or
+saturation) is drift. A colour from a clearly different hue family is a deliberate accent — leave
+it, and name it explicitly in the handoff as a documented exception (same judgment call Phase 7
+already applies to accent-less brands — apply it here too, during the colour pass itself, not
+only at handoff).
+
+The token-snap script cannot judge intent on its own — it will snap every hex value it matches.
+After running it, manually check any off-brand-hue colour it touched and revert it if it turns out
+to be intentional.
 
 ---
 

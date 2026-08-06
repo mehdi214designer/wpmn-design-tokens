@@ -87,8 +87,16 @@ def transform(text):
         return nearest_colour(val)
     # (?<!&) — never touch HTML numeric entities: `&#038;` contains "#038",
     # which a bare 3-digit hex pattern happily eats and turns into mojibake.
+    # The lookbehind alone fully disambiguates entities (they start `&#`) from
+    # real hex colours, so the lookahead only needs to block a longer hex
+    # value's leading 3 chars. It used to ALSO exclude a trailing `;` on the
+    # 3-digit pattern — meaning the single most common real CSS pattern,
+    # `border:1px solid #ccc;`, silently never got snapped at all (found on
+    # FluentSupport's rangeslider.css, a third-party plugin file downstream
+    # scripts do reach). Fixed: only exclude a following hex digit, like the
+    # 6-digit pattern already correctly does.
     out = re.sub(r'(?<!&)#[0-9a-fA-F]{6}\b(?![0-9a-fA-F])', hexrep, out)
-    out = re.sub(r'(?<!&)#[0-9a-fA-F]{3}\b(?![0-9a-fA-F;])', hexrep, out)
+    out = re.sub(r'(?<!&)#[0-9a-fA-F]{3}\b(?![0-9a-fA-F])', hexrep, out)
     # ---- rgb()/rgba() -> nearest token (keep alpha)
     def rgbrep(m):
         r, g, b = (int(float(x)) for x in (m.group(1), m.group(2), m.group(3)))
