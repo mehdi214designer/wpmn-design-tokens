@@ -5,7 +5,7 @@ Recreate the WPMN Design System Breadcrumbs exactly. `<nav aria-label="Breadcrum
 ## Item
 
 - Inline-flex, gap 8px, padding 12px, radius 16.8px
-- Work Sans 18px/20px, weight 500, nowrap, `transition: color 120ms ease, background-color 120ms ease`
+- Manrope 18px/20px, weight 500, nowrap, `transition: color 120ms ease, background-color 120ms ease`
 - Icon-first item (home): padding-left/right 20px, 18px home icon (HugeIcons solid-rounded style, currentColor)
 - Items with `href` are links; the current item has no href, gets `aria-current="page"`, `cursor: default; pointer-events: none`
 - Separator between items: 12px arrow-right glyph (solid rounded chevron, currentColor)

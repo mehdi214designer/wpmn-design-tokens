@@ -39,7 +39,7 @@ Load `/figma:figma-use` first. Work incrementally and screenshot after each desi
 1. Instance the component onto the new page, away from (0,0). Name it `N · Product — purpose (WxH)`.
 2. Logo: find the `All Logos` instance, set its variant prop `Logo of` to the product. Keep the other props.
 3. Brand color: recolor the root/background fill and accents to the product brand (table below).
-4. Copy: edit the text layers. Font is **Work Sans**. If a layer uses a font that won't load (e.g. Axiforma), set its `fontName` to Work Sans (Regular/Medium/SemiBold/Bold to match weight) then set the text. Wrap font loads in try/catch.
+4. Copy: edit the text layers. Font is **Manrope**. If a layer uses a font that won't load (e.g. Axiforma), set its `fontName` to Manrope (Regular/Medium/SemiBold/Bold to match weight) then set the text. Wrap font loads in try/catch.
 5. Covers only: to make it a sale/seasonal cover, find the badge instance inside (its main component lives in the `Badge` set) and `swapComponent` to the matching `Type=` + same `Size`, then edit the "%" text. Badge types: Halloween, BFCM, Christmas, New Year, Valentin's Day, Women's Day, Summer Sale, Sale Only, Installation, Review, Dual.
 6. Screenshot to verify. Check logo, brand color, copy, alignment.
 

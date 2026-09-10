@@ -127,12 +127,12 @@ export default function Demo() {
           <Section title="Typography" description="Font styles for headings and body text.">
             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div style={{ padding: 24, borderRadius: 12, backgroundColor: 'var(--input-fill-default)', border: '1px solid var(--color-border-primary)' }}>
-                <Text variant="h1">Heading 1 — Work Sans Bold 61px</Text>
-                <Text variant="h2">Heading 2 — Work Sans Bold 49px</Text>
-                <Text variant="h3">Heading 3 — Work Sans SemiBold 39px</Text>
-                <Text variant="h4">Heading 4 — Work Sans SemiBold 31px</Text>
-                <Text variant="h5">Heading 5 — Work Sans Medium 25px</Text>
-                <Text variant="h6">Heading 6 — Work Sans Medium 20px</Text>
+                <Text variant="h1">Heading 1 — Manrope Bold 61px</Text>
+                <Text variant="h2">Heading 2 — Manrope Bold 49px</Text>
+                <Text variant="h3">Heading 3 — Manrope SemiBold 39px</Text>
+                <Text variant="h4">Heading 4 — Manrope SemiBold 31px</Text>
+                <Text variant="h5">Heading 5 — Manrope Medium 25px</Text>
+                <Text variant="h6">Heading 6 — Manrope Medium 20px</Text>
               </div>
               <div style={{ padding: 24, borderRadius: 12, backgroundColor: 'var(--input-fill-default)', border: '1px solid var(--color-border-primary)' }}>
                 <Text variant="body-large">Body Large — 20px desktop</Text>

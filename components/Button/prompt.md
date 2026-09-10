@@ -9,7 +9,7 @@ An inline-flex element: `[iconLeft?] [label] [spinner? when loading] [iconRight?
 ## Base styles (all buttons)
 
 - `display: inline-flex; align-items: center; justify-content: center`
-- `font-family: 'Work Sans', sans-serif` (token `--font-family-base`)
+- `font-family: 'Manrope', sans-serif` (token `--font-family-base`)
 - `border: 1.5px solid transparent` placeholder, overridden per type/state
 - `transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease`
 - `cursor: pointer; text-decoration: none; overflow: hidden; outline: none`

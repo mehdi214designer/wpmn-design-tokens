@@ -111,7 +111,7 @@ def transform(text):
     # inside real words and identifiers (interaction, pointer, pinterest,
     # /fonts/inter/...) and a global replace corrupts copy, CSS and paths.
     out = re.sub(r'(font-family\s*:\s*)([^;{}]+)',
-                 lambda m: m.group(1) + "'Work Sans', sans-serif", out, flags=re.I)
+                 lambda m: m.group(1) + "'Manrope', sans-serif", out, flags=re.I)
     out = re.sub(r'(font-weight\s*:\s*)(100|200|300)\b', r'\g<1>400', out, flags=re.I)
     out = re.sub(r'(font-size\s*:\s*)(-?\d*\.?\d+(?:px|rem))\b',
                  lambda m: m.group(1) + snap_lengths(m.group(2), FONTSZ, ("px","rem")), out, flags=re.I)

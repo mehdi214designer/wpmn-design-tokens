@@ -29,8 +29,8 @@
      text color    var(--color-text-primary)          (…-invert on dark surfaces)
      surfaces      var(--color-surface-primary | -secondary | -alt)
      type          USE the .text-* classes in markup (.text-h1 … .text-h6, .text-body-large |
-                   -base | -small) — they auto-swap at 768px. The --font-size-* vars are the
-                   same values, only for custom CSS where a class can't be used.
+                   -base | -small) — sizes are fluid via clamp(), so they scale without a
+                   breakpoint. The --font-size-* vars hold the same clamp()s for custom CSS.
      spacing       var(--primitive-space-8 … -120)     (8/12/16/20/24/32/40/48/64/80/96/120)
      radius        var(--radius-xsm | -sm | -md | -lg)  = 8/12/16/32px (these 4 semantic
                    tokens only; do NOT use --primitive-radius-*; there is no --radius-xxs)
@@ -753,12 +753,12 @@
   --spacing-section-gap-mobile: 48px;
   --spacing-section-padding-tb-mobile: 64px;
 
-  /* --- Heading-to-body Spacing --- */
-  --spacing-h-xxl-to-large: 16px;
-  --spacing-h-xl-to-medium: 12px;
-  --spacing-h-l-to-medium: 12px;
-  --spacing-h-m-to-base: 8px;
-  --spacing-h-s-to-base: 8px;
+  /* --- Heading-to-body Spacing (Typography v2 pair gaps) --- */
+  --spacing-h-xxl-to-large: 18px;
+  --spacing-h-xl-to-medium: 16px;
+  --spacing-h-l-to-medium: 14px;
+  --spacing-h-m-to-base: 10px;
+  --spacing-h-s-to-base: 10px;
   --spacing-h-xs-to-small: 8px;
 
   /* --- Content-gap Spacing (Figma: Spacing-new/Content-gap) --- */
@@ -991,68 +991,88 @@
 
 /* ==== typography.css ================================================== */
 /**
- * WPMN Design System — Typography
- * Collection: Typography (Desktop + Mobile modes)
+ * WPMN Design System — Typography (v2)
+ * Collection: Typography — single-family, fluid
  *
- * Font family: Work Sans
- * Weights: Regular (400) · Medium (500) · Semi Bold (600) · Bold (700)
+ * Font family: Manrope
+ * Weights: Light (300, reserved) · Regular (400) · Medium (500) · SemiBold (600) · Bold (700)
  *
- * Desktop is the default. Mobile values are applied via @media query.
- * Token naming: --font-size-{scope}-{variant}, --font-lh-{scope}-{variant}
+ * Sizes are fluid via clamp(min, vw, max): the mobile floor is baked into each step, so
+ * there is no separate mobile type mode. Line-heights are unitless ratios, so they stay
+ * proportional as a size clamps down (exact desktop px are noted in the comments).
+ * Token naming: --font-size-{scope}, --font-lh-{scope}, --font-ls-{scope} (letter-spacing)
  */
 
 /* ============================================================
    FONT IMPORT
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
 
 :root {
 
   /* ============================================================
      FONT FAMILY & WEIGHTS
      ============================================================ */
-  --font-family-base:      'Work Sans', sans-serif;
+  --font-family-base:      'Manrope', system-ui, -apple-system, sans-serif;
+  --font-weight-light:     300;
   --font-weight-regular:   400;
   --font-weight-medium:    500;
   --font-weight-semibold:  600;
   --font-weight-bold:      700;
 
   /* ============================================================
-     DESKTOP — Font Sizes
+     FONT SIZES — fluid (clamp: mobile floor → desktop max)
      ============================================================ */
-  --font-size-h1:           61px;
-  --font-size-h2:           49px;
-  --font-size-h3:           39px;
-  --font-size-h4:           31px;
-  --font-size-h5:           25px;
-  --font-size-h6:           20px;
+  --font-size-h1:           clamp(34px, 5.2vw, 54px);
+  --font-size-h2:           clamp(30px, 4.4vw, 45px);
+  --font-size-h3:           clamp(27px, 3.6vw, 37px);
+  --font-size-h4:           clamp(24px, 3vw,   31px);
+  --font-size-h5:           clamp(21px, 2.5vw, 26px);
+  --font-size-h6:           clamp(19px, 2.1vw, 22px);
 
-  --font-size-body-large:   20px;
-  --font-size-body-medium:  18px;
+  --font-size-body-large:   clamp(18px, 1.6vw, 20px);
+  --font-size-body-medium:  clamp(17px, 1.4vw, 18px);
   --font-size-body-base:    16px;
   --font-size-body-small:   14px;
   --font-size-body-label:   13px;
   --font-size-body-mono:    10px;
 
   /* ============================================================
-     DESKTOP — Line Heights
+     LINE HEIGHTS — unitless ratios (scale with the clamp)
      ============================================================ */
-  --font-lh-h1:             73px;
-  --font-lh-h2:             59px;
-  --font-lh-h3:             47px;
-  --font-lh-h4:             37px;
-  --font-lh-h5:             30px;
-  --font-lh-h6:             24px;
+  --font-lh-h1:             1.204;   /* 54 / 65 */
+  --font-lh-h2:             1.200;   /* 45 / 54 */
+  --font-lh-h3:             1.216;   /* 37 / 45 */
+  --font-lh-h4:             1.194;   /* 31 / 37 */
+  --font-lh-h5:             1.192;   /* 26 / 31 */
+  --font-lh-h6:             1.182;   /* 22 / 26 */
 
-  --font-lh-body-large:     30px;
-  --font-lh-body-medium:    27px;
-  --font-lh-body-base:      24px;
-  --font-lh-body-small:     21px;
-  --font-lh-body-label:     20px;
-  --font-lh-body-mono:      15px;
+  --font-lh-body-large:     1.65;    /* 20 / 33 */
+  --font-lh-body-medium:    1.667;   /* 18 / 30 */
+  --font-lh-body-base:      1.688;   /* 16 / 27 */
+  --font-lh-body-small:     1.714;   /* 14 / 24 */
+  --font-lh-body-label:     1.538;   /* 13 / 20 */
+  --font-lh-body-mono:      1.6;     /* 10 / 16 */
 
   /* ============================================================
-     BUTTON — Font Sizes & Line Heights (same on Desktop + Mobile)
+     LETTER SPACING (tracking)
+     ============================================================ */
+  --font-ls-h1:             -0.03em;
+  --font-ls-h2:             -0.028em;
+  --font-ls-h3:             -0.024em;
+  --font-ls-h4:             -0.02em;
+  --font-ls-h5:             -0.018em;
+  --font-ls-h6:             -0.016em;
+
+  --font-ls-body-large:     -0.005em;
+  --font-ls-body-medium:    -0.004em;
+  --font-ls-body-base:      -0.003em;
+  --font-ls-body-small:     0em;
+  --font-ls-body-label:     0.02em;
+  --font-ls-body-mono:      0.08em;
+
+  /* ============================================================
+     BUTTON — Font Sizes & Line Heights (unchanged; render in Manrope)
      ============================================================ */
   --font-size-btn-xl:       23px;
   --font-size-btn-lg:       20px;
@@ -1069,61 +1089,26 @@
 }
 
 /* ============================================================
-   MOBILE — Font Sizes
-   ============================================================ */
-@media (max-width: 768px) {
-  :root {
-    --font-size-h1:           32px;
-    --font-size-h2:           28px;
-    --font-size-h3:           25px;
-    --font-size-h4:           22px;
-    --font-size-h5:           20px;
-    --font-size-h6:           18px;
-
-    --font-size-body-large:   18px;
-    --font-size-body-medium:  16px;
-    --font-size-body-base:    14px;
-    --font-size-body-small:   12px;
-    --font-size-body-label:   11px;
-    --font-size-body-mono:    10px;
-
-    --font-lh-h1:             38px;
-    --font-lh-h2:             34px;
-    --font-lh-h3:             30px;
-    --font-lh-h4:             26px;
-    --font-lh-h5:             24px;
-    --font-lh-h6:             22px;
-
-    --font-lh-body-large:     27px;
-    --font-lh-body-medium:    24px;
-    --font-lh-body-base:      21px;
-    --font-lh-body-small:     18px;
-    --font-lh-body-label:     17px;
-    --font-lh-body-mono:      15px;
-  }
-}
-
-/* ============================================================
    UTILITY CLASSES
    ============================================================ */
 
-/* Headings */
-.text-h1 { font-family: var(--font-family-base); font-size: var(--font-size-h1); line-height: var(--font-lh-h1); font-weight: var(--font-weight-bold); }
-.text-h2 { font-family: var(--font-family-base); font-size: var(--font-size-h2); line-height: var(--font-lh-h2); font-weight: var(--font-weight-bold); }
-.text-h3 { font-family: var(--font-family-base); font-size: var(--font-size-h3); line-height: var(--font-lh-h3); font-weight: var(--font-weight-semibold); }
-.text-h4 { font-family: var(--font-family-base); font-size: var(--font-size-h4); line-height: var(--font-lh-h4); font-weight: var(--font-weight-semibold); }
-.text-h5 { font-family: var(--font-family-base); font-size: var(--font-size-h5); line-height: var(--font-lh-h5); font-weight: var(--font-weight-medium); }
-.text-h6 { font-family: var(--font-family-base); font-size: var(--font-size-h6); line-height: var(--font-lh-h6); font-weight: var(--font-weight-medium); }
+/* Headings — weight follows the step: h1 Bold, h2/h3 SemiBold, h4/h5/h6 Medium */
+.text-h1 { font-family: var(--font-family-base); font-size: var(--font-size-h1); line-height: var(--font-lh-h1); font-weight: var(--font-weight-bold);     letter-spacing: var(--font-ls-h1); text-wrap: balance; }
+.text-h2 { font-family: var(--font-family-base); font-size: var(--font-size-h2); line-height: var(--font-lh-h2); font-weight: var(--font-weight-semibold); letter-spacing: var(--font-ls-h2); text-wrap: balance; }
+.text-h3 { font-family: var(--font-family-base); font-size: var(--font-size-h3); line-height: var(--font-lh-h3); font-weight: var(--font-weight-semibold); letter-spacing: var(--font-ls-h3); text-wrap: balance; }
+.text-h4 { font-family: var(--font-family-base); font-size: var(--font-size-h4); line-height: var(--font-lh-h4); font-weight: var(--font-weight-medium);   letter-spacing: var(--font-ls-h4); text-wrap: balance; }
+.text-h5 { font-family: var(--font-family-base); font-size: var(--font-size-h5); line-height: var(--font-lh-h5); font-weight: var(--font-weight-medium);   letter-spacing: var(--font-ls-h5); text-wrap: balance; }
+.text-h6 { font-family: var(--font-family-base); font-size: var(--font-size-h6); line-height: var(--font-lh-h6); font-weight: var(--font-weight-medium);   letter-spacing: var(--font-ls-h6); text-wrap: balance; }
 
 /* Body */
-.text-body-large  { font-family: var(--font-family-base); font-size: var(--font-size-body-large);  line-height: var(--font-lh-body-large);  font-weight: var(--font-weight-regular); }
-.text-body-medium { font-family: var(--font-family-base); font-size: var(--font-size-body-medium); line-height: var(--font-lh-body-medium); font-weight: var(--font-weight-regular); }
-.text-body-base   { font-family: var(--font-family-base); font-size: var(--font-size-body-base);   line-height: var(--font-lh-body-base);   font-weight: var(--font-weight-regular); }
-.text-body-small  { font-family: var(--font-family-base); font-size: var(--font-size-body-small);  line-height: var(--font-lh-body-small);  font-weight: var(--font-weight-regular); }
-.text-body-label  { font-family: var(--font-family-base); font-size: var(--font-size-body-label);  line-height: var(--font-lh-body-label);  font-weight: var(--font-weight-medium); }
-.text-body-mono   { font-family: monospace;                font-size: var(--font-size-body-mono);   line-height: var(--font-lh-body-mono);   font-weight: var(--font-weight-regular); }
+.text-body-large  { font-family: var(--font-family-base); font-size: var(--font-size-body-large);  line-height: var(--font-lh-body-large);  font-weight: var(--font-weight-regular);  letter-spacing: var(--font-ls-body-large);  text-wrap: pretty; }
+.text-body-medium { font-family: var(--font-family-base); font-size: var(--font-size-body-medium); line-height: var(--font-lh-body-medium); font-weight: var(--font-weight-regular);  letter-spacing: var(--font-ls-body-medium); text-wrap: pretty; }
+.text-body-base   { font-family: var(--font-family-base); font-size: var(--font-size-body-base);   line-height: var(--font-lh-body-base);   font-weight: var(--font-weight-regular);  letter-spacing: var(--font-ls-body-base);   text-wrap: pretty; }
+.text-body-small  { font-family: var(--font-family-base); font-size: var(--font-size-body-small);  line-height: var(--font-lh-body-small);  font-weight: var(--font-weight-medium);   letter-spacing: var(--font-ls-body-small);  text-wrap: pretty; }
+.text-body-label  { font-family: var(--font-family-base); font-size: var(--font-size-body-label);  line-height: var(--font-lh-body-label);  font-weight: var(--font-weight-semibold); letter-spacing: var(--font-ls-body-label);  text-wrap: pretty; }
+.text-body-mono   { font-family: var(--font-family-base); font-size: var(--font-size-body-mono);   line-height: var(--font-lh-body-mono);   font-weight: var(--font-weight-bold);     letter-spacing: var(--font-ls-body-mono); text-transform: uppercase; font-variant-numeric: tabular-nums; }
 
-/* Button text */
+/* Button text (sizes unchanged; family is Manrope via --font-family-base) */
 .text-btn-xl { font-family: var(--font-family-base); font-size: var(--font-size-btn-xl); line-height: var(--font-lh-btn-xl); font-weight: var(--font-weight-semibold); }
 .text-btn-lg { font-family: var(--font-family-base); font-size: var(--font-size-btn-lg); line-height: var(--font-lh-btn-lg); font-weight: var(--font-weight-semibold); }
 .text-btn-md { font-family: var(--font-family-base); font-size: var(--font-size-btn-md); line-height: var(--font-lh-btn-md); font-weight: var(--font-weight-semibold); }

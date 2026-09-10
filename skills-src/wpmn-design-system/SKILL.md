@@ -32,7 +32,7 @@ sections/
 ### To build a page
 
 1. **Load the CSS.** Link `foundations/wpmn-bundle.css` then `components/wpmn-components.css` in `<head>`. The bundle is primitives + brand-primitives + tokens + typography already merged in cascade order, so one file covers all foundations.
-2. **Set the brand.** Put `data-brand="<key>"` on `<html>`. This is REQUIRED, skip it and every product renders default WPManageNinja blue. Add `data-theme="dark"` for dark mode. Mobile type + some spacing auto-swap at `max-width: 768px`, you don't write mobile sizes by hand.
+2. **Set the brand.** Put `data-brand="<key>"` on `<html>`. This is REQUIRED, skip it and every product renders default WPManageNinja blue. Add `data-theme="dark"` for dark mode. Type is fluid via `clamp()` (mobile floor baked in), so there's no separate mobile type mode; some spacing/color still swaps at `max-width: 768px`. You don't write mobile sizes by hand.
 3. **Compose from sections first.** For each block (hero, features, pricing, FAQ, footer, etc.) pick a section by role from `sections/` and the index in `reference/WPMN-Design-System.md` (section 13). Copy its `sections/<id>.html` in as-is, each is self-contained (scoped style + markup + scoped script) and re-skins from `data-brand`. Only hand-build a block when nothing fits.
 4. **Use real components** for navbar, footer, buttons, inputs: the `.wpmn-*` classes in `components/`. Don't hand-roll them.
 5. **Use the real logo.** Pull the SVG string from `logos.json` (`logos[brand][variant]`) and inline it, picked by surface (see Logo rules below). Never use a placeholder box, raster, or plain text as the logo.
@@ -76,11 +76,11 @@ Each heading has exactly one correct body size and one gap token:
 
 | Heading | Body | Gap token | Gap |
 |---|---|---|---|
-| h1 (xxl) | body-large | `--spacing-h-xxl-to-large` | 16px |
-| h2 (xl) | body-medium | `--spacing-h-xl-to-medium` | 12px |
-| h3 (l) | body-medium | `--spacing-h-l-to-medium` | 12px |
-| h4 (m) | body-base | `--spacing-h-m-to-base` | 8px |
-| h5 (s) | body-base | `--spacing-h-s-to-base` | 8px |
+| h1 (xxl) | body-large | `--spacing-h-xxl-to-large` | 18px |
+| h2 (xl) | body-medium | `--spacing-h-xl-to-medium` | 16px |
+| h3 (l) | body-medium | `--spacing-h-l-to-medium` | 14px |
+| h4 (m) | body-base | `--spacing-h-m-to-base` | 10px |
+| h5 (s) | body-base | `--spacing-h-s-to-base` | 10px |
 | h6 (xs) | body-small | `--spacing-h-xs-to-small` | 8px |
 
 - Use the `.text-*` classes in markup. Don't mix `.text-*` and `--font-size-*` on the same element.

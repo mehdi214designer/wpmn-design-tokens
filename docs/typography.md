@@ -1,32 +1,36 @@
 # Typography
 
-**Font family:** Work Sans (`'Work Sans', sans-serif`)
-**Weights:** Regular 400 · Medium 500 · SemiBold 600 · Bold 700
+**Font family:** Manrope (`'Manrope', system-ui, sans-serif`), Google Fonts
+**Weights:** Light 300 (reserved) · Regular 400 · Medium 500 · SemiBold 600 · Bold 700
 **Source:** `typography.css`
+
+Sizes are fluid via `clamp(mobile floor → desktop)` — the mobile floor is baked into each step,
+so there is no separate mobile mode. Line-heights are unitless ratios (desktop px in parentheses);
+tracking is letter-spacing (`--font-ls-*`).
 
 ---
 
-## Type Scale — Desktop
+## Type Scale — Headings
 
-| Token class | Size | Line height | Weight | Use |
-|---|---|---|---|---|
-| `.text-h1` | 61px | 73px | Bold 700 | Hero headlines |
-| `.text-h2` | 49px | 59px | Bold 700 | Section headlines |
-| `.text-h3` | 39px | 47px | SemiBold 600 | Sub-section headlines |
-| `.text-h4` | 31px | 37px | SemiBold 600 | Card titles, page titles |
-| `.text-h5` | 25px | 30px | Medium 500 | Feature titles |
-| `.text-h6` | 20px | 24px | Medium 500 | Small labels, captions |
+| Token class | Size (floor → desktop) | Line height | Weight | Tracking | Use |
+|---|---|---|---|---|---|
+| `.text-h1` | 34 → 54 | 1.204 (65) | Bold 700 | −0.03em | Hero headlines |
+| `.text-h2` | 30 → 45 | 1.200 (54) | SemiBold 600 | −0.028em | Section headlines |
+| `.text-h3` | 27 → 37 | 1.216 (45) | SemiBold 600 | −0.024em | Sub-section headlines |
+| `.text-h4` | 24 → 31 | 1.194 (37) | Medium 500 | −0.02em | Card titles, statement lines |
+| `.text-h5` | 21 → 26 | 1.192 (31) | Medium 500 | −0.018em | Feature titles |
+| `.text-h6` | 19 → 22 | 1.182 (26) | Medium 500 | −0.016em | Small labels, captions |
 
-## Body Scale — Desktop
+## Body Scale
 
-| Token class | Size | Line height | Weight | Use |
-|---|---|---|---|---|
-| `.text-body-large` | 20px | 30px | Regular 400 | Hero subtext, intro paragraphs |
-| `.text-body-medium` | 18px | 27px | Regular 400 | Standard body copy |
-| `.text-body-base` | 16px | 24px | Regular 400 | Default paragraph text |
-| `.text-body-small` | 14px | 21px | Regular 400 | Supporting text, hints |
-| `.text-body-label` | 13px | 20px | Medium 500 | Labels, badges, captions |
-| `.text-body-mono` | 10px | 15px | Regular 400 | Code, tokens, monospace |
+| Token class | Size | Line height | Weight | Tracking | Use |
+|---|---|---|---|---|---|
+| `.text-body-large` | 18 → 20 | 1.65 (33) | Regular 400 | −0.005em | Hero subtext, intro paragraphs |
+| `.text-body-medium` | 17 → 18 | 1.667 (30) | Regular 400 | −0.004em | Standard body copy |
+| `.text-body-base` | 16 | 1.688 (27) | Regular 400 | −0.003em | Default paragraph text |
+| `.text-body-small` | 14 | 1.714 (24) | Medium 500 | 0 | Supporting text, nav, hints |
+| `.text-body-label` | 13 | 1.538 (20) | SemiBold 600 | 0.02em | Eyebrows, badges, captions |
+| `.text-body-mono` | 10 | 1.6 (16) | Bold 700 | 0.08em | Uppercase micro labels, tabular (Manrope) |
 
 ## Button Scale
 
@@ -38,21 +42,14 @@
 | `.text-btn-sm` | 16px | 18px | Medium 500 |
 | `.text-btn-xs` | 13px | 16px | Medium 500 |
 
+Button sizes are fixed (not fluid) and render in Manrope.
+
 ---
 
-## Mobile Overrides (`max-width: 768px`)
+## Fluid sizing (no breakpoint)
 
-| Token | Desktop | Mobile |
-|---|---|---|
-| H1 | 61px | 32px |
-| H2 | 49px | 28px |
-| H3 | 39px | 25px |
-| H4 | 31px | 22px |
-| H5 | 25px | 20px |
-| H6 | 20px | 18px |
-| body-large | 20px | 18px |
-| body-base | 16px | 14px |
-| body-small | 14px | 12px |
+Headings and `body-large` / `body-medium` scale smoothly with the viewport via `clamp()`; the rest
+are fixed. There is no `@media` type mode. Note: `body-base` stays 16px on mobile.
 
 ---
 
@@ -62,4 +59,4 @@
 - Centered section text: max-width 800px
 - All section headings, subtext, and CTAs are center-aligned
 - Highlighted/accented words use `--color-primary` (brand token) — never gray or hardcoded hex
-- Never use a font other than Work Sans
+- Never use a font other than Manrope

@@ -40,7 +40,7 @@ The brand color system is off until you set `data-brand` on `<html>`. Skip it an
 
 - **`data-brand="<key>"` on `<html>`** is REQUIRED. It overrides `--primitive-primary-*` and `--primitive-accent-*` for the whole subtree. All semantic tokens cascade from there automatically.
 - **`data-theme="dark"`** switches to dark mode.
-- **Mobile auto-swaps at `max-width: 768px`** for type sizes and a few spacing/color tokens. You don't write mobile font sizes by hand.
+- **Type sizes are fluid via `clamp()`** — no breakpoint, the mobile floor is baked into each step. A few spacing/color tokens still swap at `max-width: 768px`. You don't write mobile font sizes by hand.
 
 **Cascade order** (this is the load order, each layer feeds the next):
 
@@ -285,11 +285,11 @@ Spacing is named tokens only, picked by intent. Values are desktop; the named ga
 
 | Token | Value |
 |---|---|
-| `--spacing-h-xxl-to-large` | 16px |
-| `--spacing-h-xl-to-medium` | 12px |
-| `--spacing-h-l-to-medium` | 12px |
-| `--spacing-h-m-to-base` | 8px |
-| `--spacing-h-s-to-base` | 8px |
+| `--spacing-h-xxl-to-large` | 18px |
+| `--spacing-h-xl-to-medium` | 16px |
+| `--spacing-h-l-to-medium` | 14px |
+| `--spacing-h-m-to-base` | 10px |
+| `--spacing-h-s-to-base` | 10px |
 | `--spacing-h-xs-to-small` | 8px |
 
 **Family 2 - content gap** (`--spacing-content-gap-*`), between blocks, keyed by the block's heading:
@@ -331,28 +331,30 @@ If no named token fits, snap to the nearest `--primitive-space-*` step (4, 8, 12
 
 ## 7. Typography
 
-**Font family:** Work Sans (`'Work Sans', sans-serif`), loaded from Google Fonts. Weights: Regular 400, Medium 500, Semi Bold 600, Bold 700.
+**Font family:** Manrope (`'Manrope', system-ui, sans-serif`), loaded from Google Fonts. Weights: Light 300 (reserved), Regular 400, Medium 500, Semi Bold 600, Bold 700.
 
-Use the `.text-*` classes in markup. They pair size + line-height + weight and auto-swap at 768px. The `--font-size-*` / `--font-lh-*` vars hold the same values, only for custom CSS where you can't add a class. Don't mix both on one element.
+Use the `.text-*` classes in markup. They pair size + line-height + weight + letter-spacing. Sizes are fluid via `clamp()` with the mobile floor baked in, so there's no separate mobile mode. The `--font-size-*` / `--font-lh-*` / `--font-ls-*` vars hold the same values, only for custom CSS where you can't add a class. Don't mix both on one element.
 
-### 7a. Type scale (desktop / mobile)
+### 7a. Type scale (fluid)
 
-| Class | Weight | Desktop size / line-height | Mobile size / line-height |
-|---|---|---|---|
-| `.text-h1` | Bold 700 | 61 / 73 | 32 / 38 |
-| `.text-h2` | Bold 700 | 49 / 59 | 28 / 34 |
-| `.text-h3` | Semibold 600 | 39 / 47 | 25 / 30 |
-| `.text-h4` | Semibold 600 | 31 / 37 | 22 / 26 |
-| `.text-h5` | Medium 500 | 25 / 30 | 20 / 24 |
-| `.text-h6` | Medium 500 | 20 / 24 | 18 / 22 |
-| `.text-body-large` | Regular 400 | 20 / 30 | 18 / 27 |
-| `.text-body-medium` | Regular 400 | 18 / 27 | 16 / 24 |
-| `.text-body-base` | Regular 400 | 16 / 24 | 14 / 21 |
-| `.text-body-small` | Regular 400 | 14 / 21 | 12 / 18 |
-| `.text-body-label` | Medium 500 | 13 / 20 | 11 / 17 |
-| `.text-body-mono` | Regular 400 (monospace) | 10 / 15 | 10 / 15 |
+Sizes are `clamp(mobile floor → desktop)`. Line-heights are unitless ratios (desktop px in parentheses); tracking is letter-spacing.
 
-Button text classes (same on desktop + mobile): `.text-btn-xl` 23/28 semibold, `.text-btn-lg` 20/24 semibold, `.text-btn-md` 18/20 semibold, `.text-btn-sm` 16/18 medium, `.text-btn-xs` 13/16 medium.
+| Class | Weight | Size (floor → desktop) | Line-height | Tracking |
+|---|---|---|---|---|
+| `.text-h1` | Bold 700 | 34 → 54 | 1.204 (65) | −0.03em |
+| `.text-h2` | Semibold 600 | 30 → 45 | 1.200 (54) | −0.028em |
+| `.text-h3` | Semibold 600 | 27 → 37 | 1.216 (45) | −0.024em |
+| `.text-h4` | Medium 500 | 24 → 31 | 1.194 (37) | −0.02em |
+| `.text-h5` | Medium 500 | 21 → 26 | 1.192 (31) | −0.018em |
+| `.text-h6` | Medium 500 | 19 → 22 | 1.182 (26) | −0.016em |
+| `.text-body-large` | Regular 400 | 18 → 20 | 1.65 (33) | −0.005em |
+| `.text-body-medium` | Regular 400 | 17 → 18 | 1.667 (30) | −0.004em |
+| `.text-body-base` | Regular 400 | 16 | 1.688 (27) | −0.003em |
+| `.text-body-small` | Medium 500 | 14 | 1.714 (24) | 0 |
+| `.text-body-label` | Semibold 600 | 13 | 1.538 (20) | 0.02em |
+| `.text-body-mono` | Bold 700 (Manrope, uppercase, tabular) | 10 | 1.6 (16) | 0.08em |
+
+Button text classes (fixed sizes, Manrope): `.text-btn-xl` 23/28 semibold, `.text-btn-lg` 20/24 semibold, `.text-btn-md` 18/20 semibold, `.text-btn-sm` 16/18 medium, `.text-btn-xs` 13/16 medium.
 
 ### 7b. Canonical heading to body pairings (authoritative)
 
@@ -360,11 +362,11 @@ This is the canon. Each heading has one correct body size and one gap token.
 
 | Heading | Body | Gap token | Gap |
 |---|---|---|---|
-| h1 (xxl) | body-large | `--spacing-h-xxl-to-large` | 16 |
-| h2 (xl) | body-medium | `--spacing-h-xl-to-medium` | 12 |
-| h3 (l) | body-medium | `--spacing-h-l-to-medium` | 12 |
-| h4 (m) | body-base | `--spacing-h-m-to-base` | 8 |
-| h5 (s) | body-base | `--spacing-h-s-to-base` | 8 |
+| h1 (xxl) | body-large | `--spacing-h-xxl-to-large` | 18 |
+| h2 (xl) | body-medium | `--spacing-h-xl-to-medium` | 16 |
+| h3 (l) | body-medium | `--spacing-h-l-to-medium` | 14 |
+| h4 (m) | body-base | `--spacing-h-m-to-base` | 10 |
+| h5 (s) | body-base | `--spacing-h-s-to-base` | 10 |
 | h6 (xs) | body-small | `--spacing-h-xs-to-small` | 8 |
 
 **Hero rule:** the hero header is always `text-h1` (xxl) + `body-large`, and it's the one and only H1 on the page. Section headers use `text-h2` / `text-h3` with `body-large` / `body-medium`.
@@ -551,7 +553,7 @@ Button: `.wpmn-social-icon-btn`. 7 platforms, sizable, light + dark.
 ```
 
 ### Text - typography utility classes
-Headings `.text-h1 … .text-h6`, body `.text-body-large .text-body-medium .text-body-base .text-body-small .text-body-label .text-body-mono`, button text `.text-btn-xl … .text-btn-xs`. Sizes swap automatically at 768px.
+Headings `.text-h1 … .text-h6`, body `.text-body-large .text-body-medium .text-body-base .text-body-small .text-body-label .text-body-mono`, button text `.text-btn-xl … .text-btn-xs`. Sizes are fluid via `clamp()`, no breakpoint.
 
 ```html
 <h1 class="text-h1">From first click to loyal customer</h1>

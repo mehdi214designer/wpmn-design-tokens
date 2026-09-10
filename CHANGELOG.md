@@ -30,6 +30,34 @@ follow [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.6.0] — 2026-09-10
+
+### Changed
+- **Typography → v2 (Manrope, fluid scale).** Whole-system type restyle. Font family Work Sans →
+  Manrope. Sizes are now fluid `clamp(mobile floor → desktop)`, so the `@media (max-width:768px)`
+  type block is gone (spacing/color mobile overrides stay). Line-heights are now unitless ratios
+  instead of px. Per-step weights adjusted: h2 700→600, h4 600→500, body-small 400→500, body-label
+  500→600, body-mono now Bold 700 + Manrope uppercase/tabular (was Regular monospace). Heading sizes
+  changed (h1 61→54, h2 49→45, h3 39→37, h5 25→26, h6 20→22; body sizes unchanged). Class and token
+  names are unchanged (`.text-*`, `--font-size-*`, `--font-lh-*`), so every section and component
+  inherits the new type with no markup edits. `wpmn-bundle.css` rebuilt.
+- **Pair gaps** (`--spacing-h-*-to-*`): 16/12/12/8/8/8 → 18/16/14/10/10/8.
+- **Components** now render in Manrope via `--font-family-base`; the stale `'Work Sans'` CSS fallback
+  was swapped to `'Manrope'` in Breadcrumbs, Button, Footer, Input, NavBar (Badge stays SF Pro by
+  design). Input label weight 500 → 600 to match body-label. `wpmn-components.css` rebuilt.
+- Docs synced to match: `WPMN-Design-System.md`, `wpmn-design-guideline.md`, `llms.txt`, the
+  design-system skill source + `WPMN Pack Skill.command`, and the demo typography page.
+
+### Added
+- **Letter-spacing tokens** `--font-ls-*` (tracking per step) and `--font-weight-light` (300,
+  reserved). The `.text-*` classes now set `letter-spacing` plus `text-wrap` (balance on headings,
+  pretty on body).
+
+### Note
+- Line-height tokens changed from px to unitless ratios. Anything reading `--font-lh-*` expecting a
+  px value should re-check (they resolve to the same desktop px against each step's size). Body base
+  now stays 16px on mobile (was 14).
+
 ## [1.5.1] — 2026-08-06
 
 ### Added

@@ -22,7 +22,7 @@ Load `index.css` order: primitives → brand-primitives → tokens → typograph
 
 `color-mix()` over tokens is the approved pattern for tints, never a raw literal.
 
-## Typography (Work Sans, tokens swap automatically at 768px)
+## Typography (Manrope, tokens swap automatically at 768px)
 
 | Reference | Token pair |
 |---|---|

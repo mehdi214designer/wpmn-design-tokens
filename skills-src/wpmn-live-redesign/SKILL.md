@@ -81,10 +81,10 @@ to be intentional.
 
 Copy `assets/wpmn-reskin.css` into the workdir and adapt. It is authored CSS, not snapped values:
 
-- **Work Sans**, forced with `!important` (must beat inline `font-family`). Exclude only real glyph
+- **Manrope**, forced with `!important` (must beat inline `font-family`). Exclude only real glyph
   containers: `svg, path, use, g, .dashicons, [class^="fa-"]`.
   **Do not exclude `[class*="icon"]`** — that matches `.kt-svg-icon-list-text`, which is *text*.
-  **Caveat:** Work Sans is wider than most source fonts, so headings can wrap an extra line and
+  **Caveat:** Manrope is wider than most source fonts, so headings can wrap an extra line and
   total page height grows a little (a Paymattic hero H1 went 3→4 lines). Not a bug, don't mistake
   it for a layout break.
 - **`[data-aos]{opacity:1;transform:none}`** — animate-on-scroll elements stay invisible otherwise.
@@ -146,7 +146,7 @@ document containing prose, markup and URLs.** This caused three separate corrupt
 
 | Mistake | Damage |
 |---|---|
-| Matching bare font names (`inter`) | `cursor:pointer` → `cursor:po'Work Sans'`; `.wp-social-link-pinterest`; `/fonts/inter/` paths 404'd; body copy "interaction" → "'Work Sans'action". 164 hits. |
+| Matching bare font names (`inter`) | `cursor:pointer` → `cursor:po'Manrope'`; `.wp-social-link-pinterest`; `/fonts/inter/` paths 404'd; body copy "interaction" → "'Manrope'action". 164 hits. |
 | Unguarded `#[0-9a-f]{3}` | Ate HTML entities: `&#038;` → `&#12207d;`, rendering as a CJK glyph. 23 hits. |
 | Bare `\{([^{}]*)\}` on HTML | Also matches JS object literals and inline JSON. |
 

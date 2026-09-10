@@ -14,7 +14,7 @@ The reference implementation is the source of truth. Fetch it and reproduce stru
 - Radius: cards/tiles 16px (--radius-md), section containers/mockup wrappers 32px (--radius-lg).
 - All colors via semantic tokens (--color-*, --btn-bg-*). Never hardcode brand colors; `data-brand` on any ancestor re-skins the section.
 - Class scoping: every rule is prefixed with `.wpmn-sec-integration-grid` so sections can coexist on one page.
-- Font: Work Sans via the WPMN typography tokens.
+- Font: Manrope via the WPMN typography tokens.
 
 ## Surface and text pairing (hard rule)
 

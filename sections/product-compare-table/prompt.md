@@ -23,7 +23,7 @@ The reference implementation is the source of truth. Fetch it and reproduce stru
 - Competitor names stay generic (Competitor A/B/C); the hero column is the Fluent product being sold.
 - All colors via semantic tokens (`--color-*`, `--btn-bg-*`). Never hardcode brand colors; `data-brand` on any ancestor re-skins the section, including the ring.
 - Class scoping: every rule is prefixed with `.wpmn-sec-product-compare-table` so sections can coexist on one page.
-- Font: Work Sans via the WPMN typography tokens. Never write raw mobile font-size overrides — the tokens swap at 768px.
+- Font: Manrope via the WPMN typography tokens. Never write raw mobile font-size overrides — the tokens swap at 768px.
 
 ## Surface and text pairing (hard rule)
 

@@ -4,7 +4,7 @@ Recreate the WPMN Design System Footer exactly. Token system: `https://raw.githu
 
 ## Shell
 
-- `<footer>`: width 100%, bg `--color-surface-primary`, padding `96px 120px`, flex column, `gap: 128px`, Work Sans
+- `<footer>`: width 100%, bg `--color-surface-primary`, padding `96px 120px`, flex column, `gap: 128px`, Manrope
 
 ## Top section (flex row, space-between, gap 40px, align flex-start)
 

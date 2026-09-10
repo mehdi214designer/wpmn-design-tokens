@@ -116,7 +116,7 @@ DON'T: The Best <span style="color: var(--color-text-brand)">Form Builder</span>
 
 ## 4. Typography
 
-**Font:** Work Sans only. Never substitute.
+**Font:** Manrope only. Never substitute.
 **Weights:** Regular 400, Medium 500, SemiBold 600, Bold 700
 
 ### Figma text styles → CSS utility classes
@@ -146,7 +146,7 @@ DON'T: The Best <span style="color: var(--color-text-brand)">Form Builder</span>
 - Centered section text max width: 800px always
 - All section headings, subtext, toggles, CTAs: center-aligned
 - Never hardcode font sizes — always use the CSS class or Figma text style
-- Never use a font other than Work Sans
+- Never use a font other than Manrope
 
 ---
 
@@ -505,7 +505,7 @@ These cannot be overridden by convenience, time pressure, or creative preference
 
 1. **Never use primitive tokens directly in components** — use semantic tokens. Exception: highlighted heading text uses `--primitive-primary-500`.
 2. **Never hardcode hex colors** in Figma or CSS.
-3. **Never use a font other than Work Sans.**
+3. **Never use a font other than Manrope.**
 4. **Never place dark text on a dark surface** or white text on a light surface.
 5. **Never use a placeholder box as a logo** — always use the actual SVG file.
 6. **Never float a mockup directly on white** — always wrap it in a surface container.

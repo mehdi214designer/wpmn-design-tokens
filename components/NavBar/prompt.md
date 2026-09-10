@@ -14,7 +14,7 @@ Recreate the WPMN Design System NavBar exactly. Responsive header, breakpoint 76
 
 ### Nav links
 - List: flex, gap 8px, no list styling
-- Link: inline-flex centered, padding `10px 12px`, Work Sans 18px/27px regular, color `--color-text-secondary` (#4e5d78), radius 8px, `transition: color 120ms ease, background-color 120ms ease`, `white-space: nowrap`
+- Link: inline-flex centered, padding `10px 12px`, Manrope 18px/27px regular, color `--color-text-secondary` (#4e5d78), radius 8px, `transition: color 120ms ease, background-color 120ms ease`, `white-space: nowrap`
 - Hover: color `--color-text-primary`, bg `--primitive-light-25` (#f6f7f8)
 - Active link: color `--btn-bg-enable`, weight 500, `aria-current="page"`
 

@@ -4,14 +4,14 @@ Recreate the WPMN Design System Input exactly. Token system: `https://raw.github
 
 ## Anatomy (vertical stack, gap 6px, width 100%)
 
-1. Label (optional): Work Sans 13px/20px, weight 500, color `--input-label-color`. Required fields append ` *` colored `--color-error-primary` (#ff3333) via CSS `::after`.
+1. Label (optional): Manrope 13px/20px, weight 500, color `--input-label-color`. Required fields append ` *` colored `--color-error-primary` (#ff3333) via CSS `::after`.
 2. Field wrap: `position: relative`, holds the input plus absolutely-positioned icons.
 3. Message (optional): hint, error, or success text. 14px/21px regular. Hint color `--input-hint-color`, error `--input-text-error` (#ff0000), success `--input-text-success` (#22b814). Priority: error > success > hint.
 
 ## Field base
 
 - Width 100%, height 48px (md). lg = 56px, sm = 40px.
-- Padding `0 12px`, Work Sans 14px/21px regular
+- Padding `0 12px`, Manrope 14px/21px regular
 - Typed value color `--input-text-active` (#272e3c), placeholder `--input-text-default` (#a6aebb)
 - `border: 1px solid --input-stroke-default` (#c9ced6), `border-radius: 8px`
 - `transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease`

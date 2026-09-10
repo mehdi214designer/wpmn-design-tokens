@@ -269,11 +269,11 @@ Every gap is a named token, picked by intent. Values are desktop. Spacing tokens
 ### Heading-to-body gap — under a heading, by heading scale
 | Token | Value | Pairs with |
 |---|---|---|
-| `--spacing-h-xxl-to-large` | 16px | text-h1 + body-large (hero) |
-| `--spacing-h-xl-to-medium` | 12px | text-h2 + body-medium |
-| `--spacing-h-l-to-medium` | 12px | text-h3 + body-medium |
-| `--spacing-h-m-to-base` | 8px | text-h4 + body-base |
-| `--spacing-h-s-to-base` | 8px | text-h5 + body-base |
+| `--spacing-h-xxl-to-large` | 18px | text-h1 + body-large (hero) |
+| `--spacing-h-xl-to-medium` | 16px | text-h2 + body-medium |
+| `--spacing-h-l-to-medium` | 14px | text-h3 + body-medium |
+| `--spacing-h-m-to-base` | 10px | text-h4 + body-base |
+| `--spacing-h-s-to-base` | 10px | text-h5 + body-base |
 | `--spacing-h-xs-to-small` | 8px | text-h6 + body-small |
 
 ### Button-in-section gap — around the CTA group / between buttons

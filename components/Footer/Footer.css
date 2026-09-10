@@ -16,7 +16,7 @@
   flex-direction: column;
   gap: 128px;
   box-sizing: border-box;
-  font-family: var(--font-family-base, 'Work Sans', sans-serif);
+  font-family: var(--font-family-base, 'Manrope', sans-serif);
 }
 
 /* ── Top: 4 columns ───────────────────────────────────────────── */

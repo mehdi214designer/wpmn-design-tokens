@@ -1,6 +1,6 @@
 # Build Spec: WPMN Text (Typography)
 
-Recreate the WPMN typography system and (optionally) the polymorphic Text component. Font: **Work Sans** via Google Fonts, weights 400/500/600/700.
+Recreate the WPMN typography system and (optionally) the polymorphic Text component. Font: **Manrope** via Google Fonts, weights 400/500/600/700.
 
 ## Type scale (Desktop / Mobile at max-width 768px)
 

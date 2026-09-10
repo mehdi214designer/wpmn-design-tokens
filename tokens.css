@@ -110,12 +110,12 @@
   --spacing-section-gap-mobile: 48px;
   --spacing-section-padding-tb-mobile: 64px;
 
-  /* --- Heading-to-body Spacing --- */
-  --spacing-h-xxl-to-large: 16px;
-  --spacing-h-xl-to-medium: 12px;
-  --spacing-h-l-to-medium: 12px;
-  --spacing-h-m-to-base: 8px;
-  --spacing-h-s-to-base: 8px;
+  /* --- Heading-to-body Spacing (Typography v2 pair gaps) --- */
+  --spacing-h-xxl-to-large: 18px;
+  --spacing-h-xl-to-medium: 16px;
+  --spacing-h-l-to-medium: 14px;
+  --spacing-h-m-to-base: 10px;
+  --spacing-h-s-to-base: 10px;
   --spacing-h-xs-to-small: 8px;
 
   /* --- Content-gap Spacing (Figma: Spacing-new/Content-gap) --- */
