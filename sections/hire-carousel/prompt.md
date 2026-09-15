@@ -21,7 +21,7 @@ This spec is the source of truth. Fetch the reference implementation and reprodu
 
 - Section `--color-surface-primary`, padding 64px/20px/96px (48/16/72 <1180). Header `.hc-head` max-width 640px, centered: a 999px `.hc-pill` (surface-primary, `inset 0 0 0 1px var(--hc-border)` ring, a play glyph tinted `--color-warning-primary`), an h4 heading (semibold, -0.3px), a body-base sub in `--color-text-secondary`.
 - Rail is a 440px-tall flex row, 12px gap. Cards are `--radius-md`, `--hc-muted` fill (`color-mix(text-primary 5%, surface-primary)`), 96px collapsed / 1000px open, `overflow:hidden`.
-- Collapsed tab: `writing-mode:vertical-rl`, name (body-small semibold) + role (body-small `--color-text-secondary`). Character: a token-SVG bust anchored bottom-left, colored by the card's `--hc-fig` (`color-mix(hue 55%, text-primary)`), where each agent sets `--hc-hue` (warning, brand, coral, success, error).
+- Collapsed tab: `writing-mode:vertical-rl`, name (body-small semibold) + role (body-small `--color-text-secondary`). Character: the reference character illustration `<img>` anchored bottom-left (148px collapsed, 300px open, sliding left), kept as provided.
 - Open content: a headline block (top-left, kicker + h6 line) and the app window `.hc-win` (white surface-primary card, top corners `--radius-md`, `--shadow-soft-500`, `--hc-border`, a bottom fade to `--hc-muted`). The window has a header (a brand `.hc-logo` chip + app name), a left contact column (contact, pipeline/tags/order/invoice, `--radius-xsm` chips) and a right activity column (Activity/Notes/Task tabs with a `--color-text-primary` underline, timeline rows with round status icons). A dark `.hc-tooltip` overlaps the character.
 - Buttons: none. Chips/badges/dots use 999px (never buttons). All icons are inline token SVG.
 
@@ -35,4 +35,4 @@ Load `https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/mast
 
 ## Output format
 
-A single self-contained `<section class="wpmn-sec-hire-carousel">` with scoped `<style>`, a `.hc-rail` / `.hc-dots` mount, and a scoped IIFE `<script>` that resolves its root via `document.currentScript.parentElement` and queries within it. No external dependencies; every font falls back to `--font-family-base`, and every character, logo and icon is token CSS/SVG (no third-party brand logos). All sub-classes are `hc-`-prefixed and the keyframe is `wpmn-hc-`-prefixed so host styles can't leak in.
+A single self-contained `<section class="wpmn-sec-hire-carousel">` with scoped `<style>`, a `.hc-rail` / `.hc-dots` mount, and a scoped IIFE `<script>` that resolves its root via `document.currentScript.parentElement` and queries within it. Fonts fall back to `--font-family-base`, and the CRM logo and all feed icons are token CSS/SVG; the character portraits are the original reference `<img>` illustrations kept as-is. All sub-classes are `hc-`-prefixed and the keyframe is `wpmn-hc-`-prefixed so host styles can't leak in.
