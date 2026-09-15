@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.6.0",
-  "generatedAt": "2026-09-15T06:53:34.103Z",
+  "generatedAt": "2026-09-15T07:01:25.137Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -3123,6 +3123,80 @@
         "editorial"
       ],
       "role": "Hero"
+    },
+    {
+      "id": "hire-carousel",
+      "name": "Hire Carousel",
+      "type": "html",
+      "status": "stable",
+      "description": "A 'set up once, runs itself' hero with an expanding, auto-cycling carousel of automation agents: four collapsed vertical cards (rotated name/role + a token-SVG character) and one open card showing a headline, a large character, and an FluentCRM-style app window with a typewriter tooltip.",
+      "files": {
+        "html": "sections/hire-carousel/section.html"
+      },
+      "prompt": "sections/hire-carousel/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-hire-carousel",
+      "interactions": [
+        "one card is open at a time; opening animates flex-basis + width 96px->1000px over 700ms cubic-bezier(.65,.05,.2,1), the character grows 150px->300px and slides, and the content cross-fades in (400ms, 150ms delay)",
+        "auto-advance: setInterval steps to the next agent every 5000ms; any interaction resets the timer",
+        "clicking a card, pressing Enter/Space on a focused card, or clicking a mobile dot opens that agent",
+        "the open card's tooltip types its string char by char (32ms/char) with a blinking cursor (wpmn-hc-blink 1s steps(1))",
+        "under 760px the rail collapses to a single card plus a dot switcher; 1040-760px the whole rail scales to fit the viewport",
+        "prefers-reduced-motion: no auto-advance, no typewriter (full tooltip shown), transitions and cursor blink off"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-surface-secondary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--btn-bg-enable",
+        "--color-success-primary",
+        "--color-warning-primary",
+        "--color-error-primary",
+        "--radius-xsm",
+        "--radius-md",
+        "--shadow-soft-500",
+        "--shadow-soft-700",
+        "--font-family-base",
+        "--font-size-h4",
+        "--font-size-h6",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-lh-h4",
+        "--font-lh-h6",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-weight-medium",
+        "--font-weight-semibold",
+        "--primitive-space-4",
+        "--primitive-space-8",
+        "--primitive-space-12",
+        "--primitive-space-16"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Interactive",
+      "role": "Hero",
+      "span": 2,
+      "tags": [
+        "hero",
+        "carousel",
+        "expanding",
+        "automation",
+        "agents",
+        "crm",
+        "auto-cycle",
+        "typewriter",
+        "product ui",
+        "interactive"
+      ]
     },
     {
       "id": "horizontal-scroll",

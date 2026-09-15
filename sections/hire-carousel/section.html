@@ -1,0 +1,307 @@
+<!-- WPMN Section: Hire Carousel — a "set up once, runs itself" hero with an expanding, auto-cycling carousel of automation agents. Four collapsed vertical cards (rotated name/role + a token-SVG character) and one open card showing a headline, a large token-SVG character, and an FluentCRM-style app window with a typewriter tooltip. HTML import of a reference recreation: the JS engine (data model, 5s auto-advance, 32ms typewriter, click/keys, mobile dots) is kept verbatim and only re-scoped; every font, character, logo and icon is rebuilt as token CSS/SVG (no images, no third-party logos). Classes are hc-prefixed and keyframes wpmn-hc-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-hire-carousel">
+  <style>
+@keyframes wpmn-hc-blink{50%{opacity:0}}
+    .wpmn-sec-hire-carousel{
+      background:var(--color-surface-primary);color:var(--color-text-primary);
+      font-family:var(--font-family-base);letter-spacing:-.11px;
+      padding:64px 20px 96px;overflow:hidden;
+      --hc-muted:color-mix(in srgb, var(--color-text-primary) 5%, var(--color-surface-primary));
+      --hc-border:color-mix(in srgb, var(--color-text-primary) 11%, transparent);
+      --hc-chip:color-mix(in srgb, var(--color-text-primary) 5%, var(--color-surface-primary));
+      --hc-line:color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+      --hc-dot:color-mix(in srgb, var(--color-text-primary) 18%, var(--color-surface-primary));
+      --hc-coral:color-mix(in srgb, var(--color-warning-primary) 55%, var(--color-error-primary));
+      --card-w-open:1000px;--card-w-closed:96px;--card-h:440px;--gap:12px;
+    }
+    .wpmn-sec-hire-carousel *{box-sizing:border-box}
+
+    /* header */
+    .wpmn-sec-hire-carousel .hc-head{max-width:640px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:var(--primitive-space-16);text-align:center}
+    .wpmn-sec-hire-carousel .hc-pill{display:inline-flex;align-items:center;gap:6px;padding:5px var(--primitive-space-12);border-radius:999px;background:var(--color-surface-primary);box-shadow:inset 0 0 0 1px var(--hc-border);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-hire-carousel .hc-pill svg{width:16px;height:16px;color:var(--color-warning-primary)}
+    .wpmn-sec-hire-carousel .hc-head h2{font-size:var(--font-size-h4);line-height:var(--font-lh-h4);font-weight:var(--font-weight-semibold);letter-spacing:-.3px;color:var(--color-text-primary);margin:0}
+    .wpmn-sec-hire-carousel .hc-head p{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);max-width:620px;margin:0}
+
+    /* carousel */
+    .wpmn-sec-hire-carousel .hc-stage{margin-top:48px;display:flex;justify-content:center}
+    .wpmn-sec-hire-carousel .hc-rail{display:flex;gap:var(--gap);height:var(--card-h)}
+    .wpmn-sec-hire-carousel .hc-card{position:relative;flex:0 0 var(--card-w-closed);width:var(--card-w-closed);height:var(--card-h);background:var(--hc-muted);border-radius:var(--radius-md);overflow:hidden;cursor:pointer;transition:flex-basis .7s cubic-bezier(.65,.05,.2,1),width .7s cubic-bezier(.65,.05,.2,1)}
+    .wpmn-sec-hire-carousel .hc-card.is-open{flex-basis:var(--card-w-open);width:var(--card-w-open);cursor:default}
+
+    /* collapsed label */
+    .wpmn-sec-hire-carousel .hc-tab{position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:25;display:flex;align-items:center;gap:var(--primitive-space-8);writing-mode:vertical-rl;transition:opacity .3s}
+    .wpmn-sec-hire-carousel .hc-tab .hc-n{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);white-space:nowrap;color:var(--color-text-primary)}
+    .wpmn-sec-hire-carousel .hc-tab .hc-r{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);white-space:nowrap;color:var(--color-text-secondary)}
+    .wpmn-sec-hire-carousel .hc-card.is-open .hc-tab{opacity:0;pointer-events:none}
+
+    /* character */
+    .wpmn-sec-hire-carousel .hc-avatar{position:absolute;bottom:0;left:-14px;z-index:10;user-select:none;pointer-events:none;width:150px;color:var(--hc-fig);transition:all .6s cubic-bezier(.65,.05,.2,1)}
+    .wpmn-sec-hire-carousel .hc-avatar svg{display:block;width:100%;height:auto}
+    .wpmn-sec-hire-carousel .hc-card.is-open .hc-avatar{width:300px;left:-30px}
+    .wpmn-sec-hire-carousel .hc-h0{--hc-hue:var(--color-warning-primary)}
+    .wpmn-sec-hire-carousel .hc-h1{--hc-hue:var(--btn-bg-enable)}
+    .wpmn-sec-hire-carousel .hc-h2{--hc-hue:var(--hc-coral)}
+    .wpmn-sec-hire-carousel .hc-h3{--hc-hue:var(--color-success-primary)}
+    .wpmn-sec-hire-carousel .hc-h4{--hc-hue:var(--color-error-primary)}
+    .wpmn-sec-hire-carousel .hc-card{--hc-fig:color-mix(in srgb, var(--hc-hue) 55%, var(--color-text-primary))}
+
+    /* expanded content */
+    .wpmn-sec-hire-carousel .hc-content{position:absolute;inset:0;opacity:0;transition:opacity .4s ease .15s;pointer-events:none}
+    .wpmn-sec-hire-carousel .hc-card.is-open .hc-content{opacity:1;pointer-events:auto}
+    .wpmn-sec-hire-carousel .hc-headline{position:absolute;left:32px;top:32px;width:320px;z-index:20}
+    .wpmn-sec-hire-carousel .hc-headline .hc-role{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);margin-bottom:var(--primitive-space-8)}
+    .wpmn-sec-hire-carousel .hc-headline .hc-role b{color:var(--color-text-primary);font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-hire-carousel .hc-headline p{font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);letter-spacing:-.15px;color:var(--color-text-primary);margin:0}
+
+    /* app window */
+    .wpmn-sec-hire-carousel .hc-win{position:absolute;left:368px;top:32px;width:600px;height:500px;background:var(--color-surface-primary);border:1px solid var(--hc-border);border-bottom:0;border-radius:var(--radius-md) var(--radius-md) 0 0;overflow:hidden;box-shadow:var(--shadow-soft-500);display:flex;flex-direction:column}
+    .wpmn-sec-hire-carousel .hc-winhead{height:46px;flex-shrink:0;display:flex;align-items:center;gap:10px;padding:0 var(--primitive-space-16);border-bottom:1px solid var(--hc-border)}
+    .wpmn-sec-hire-carousel .hc-logo{width:18px;height:18px;flex-shrink:0;border-radius:var(--radius-xsm);background:var(--btn-bg-enable);color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-hire-carousel .hc-logo svg{width:11px;height:11px}
+    .wpmn-sec-hire-carousel .hc-winhead .hc-wname{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-hire-carousel .hc-winbody{display:flex;flex:1;min-height:0}
+
+    /* left contact column */
+    .wpmn-sec-hire-carousel .hc-coll{width:240px;flex-shrink:0;border-right:1px solid var(--hc-border)}
+    .wpmn-sec-hire-carousel .hc-contact{display:flex;align-items:center;gap:var(--primitive-space-12);padding:14px var(--primitive-space-16);border-bottom:1px solid var(--hc-border)}
+    .wpmn-sec-hire-carousel .hc-cavatar{width:28px;height:28px;flex-shrink:0;border-radius:999px;background:var(--hc-chip);color:var(--color-text-secondary);display:flex;align-items:flex-end;justify-content:center;overflow:hidden;border:.7px solid var(--hc-border)}
+    .wpmn-sec-hire-carousel .hc-cavatar svg{width:22px;height:24px}
+    .wpmn-sec-hire-carousel .hc-cn{font-size:var(--font-size-body-small);line-height:1.33;font-weight:var(--font-weight-medium)}
+    .wpmn-sec-hire-carousel .hc-cs{font-size:var(--font-size-body-small);line-height:1.33;color:var(--color-text-secondary)}
+    .wpmn-sec-hire-carousel .hc-fields{display:flex;flex-direction:column;gap:22px;padding:20px var(--primitive-space-16)}
+    .wpmn-sec-hire-carousel .hc-field .hc-lbl{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);display:block;margin-bottom:9px}
+    .wpmn-sec-hire-carousel .hc-field .hc-val{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);text-transform:capitalize}
+    .wpmn-sec-hire-carousel .hc-tags{display:flex;gap:10px}
+    .wpmn-sec-hire-carousel .hc-tag{display:flex;align-items:center;gap:6px;height:24px;padding:0 var(--primitive-space-8);border-radius:var(--radius-xsm);background:var(--hc-chip);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary)}
+    .wpmn-sec-hire-carousel .hc-tag svg{width:12px;height:12px}
+    .wpmn-sec-hire-carousel .hc-invoice{display:flex;align-items:center;gap:14px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-hire-carousel .hc-paid{display:flex;align-items:center;gap:6px}
+    .wpmn-sec-hire-carousel .hc-paid svg{width:12px;height:12px}
+
+    /* right activity column */
+    .wpmn-sec-hire-carousel .hc-colr{flex:1;min-width:0}
+    .wpmn-sec-hire-carousel .hc-tabs{display:flex;align-items:center;gap:var(--primitive-space-4);padding:0 var(--primitive-space-8);border-bottom:1px solid var(--hc-border)}
+    .wpmn-sec-hire-carousel .hc-tabs button,.wpmn-sec-hire-carousel .hc-tabs span{padding:10px var(--primitive-space-8);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);background:none;border:0;position:relative;cursor:default;font-family:inherit}
+    .wpmn-sec-hire-carousel .hc-tabs .hc-on{color:var(--color-text-primary)}
+    .wpmn-sec-hire-carousel .hc-tabs .hc-on::after{content:"";position:absolute;left:8px;right:8px;bottom:0;height:2px;background:var(--color-text-primary);border-radius:999px}
+    .wpmn-sec-hire-carousel .hc-feed{padding:20px var(--primitive-space-16)}
+    .wpmn-sec-hire-carousel .hc-row{display:flex;gap:var(--primitive-space-12)}
+    .wpmn-sec-hire-carousel .hc-gut{display:flex;flex-direction:column;align-items:center}
+    .wpmn-sec-hire-carousel .hc-ic{width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--color-text-secondary)}
+    .wpmn-sec-hire-carousel .hc-ic svg{width:15px;height:15px}
+    .wpmn-sec-hire-carousel .hc-line{width:1px;flex:1;background:var(--hc-line);margin:var(--primitive-space-4) 0}
+    .wpmn-sec-hire-carousel .hc-row:last-child .hc-line{display:none}
+    .wpmn-sec-hire-carousel .hc-body{padding-bottom:var(--primitive-space-16)}
+    .wpmn-sec-hire-carousel .hc-body .hc-t{font-size:var(--font-size-body-small);line-height:1.33;font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-hire-carousel .hc-body .hc-s{font-size:var(--font-size-body-small);line-height:1.33;color:var(--color-text-secondary);margin-top:2px}
+    .wpmn-sec-hire-carousel .hc-body .hc-s b{color:var(--color-text-primary);font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-hire-carousel .hc-win.hc-single .hc-coll{display:none}
+
+    /* typing tooltip */
+    .wpmn-sec-hire-carousel .hc-tooltip{position:absolute;left:214px;top:250px;z-index:30;width:210px;background:var(--color-surface-secondary);color:var(--color-text-primary-invert);padding:11px 14px;border-radius:var(--radius-md) var(--radius-md) var(--radius-md) var(--radius-xsm);font-size:var(--font-size-body-small);line-height:1.35;box-shadow:var(--shadow-soft-700)}
+    .wpmn-sec-hire-carousel .hc-typed{white-space:pre-wrap}
+    .wpmn-sec-hire-carousel .hc-cursor{display:inline-block;width:1.5px;height:11px;margin:0 1px;vertical-align:-1px;background:color-mix(in srgb, var(--color-text-primary-invert) 75%, transparent);animation:wpmn-hc-blink 1s steps(1) infinite}
+
+    /* bottom fade on the window */
+    .wpmn-sec-hire-carousel .hc-win::after{content:"";position:absolute;left:0;right:0;bottom:0;height:60px;z-index:6;pointer-events:none;background:linear-gradient(to top, var(--hc-muted), transparent)}
+
+    /* mobile switcher dots */
+    .wpmn-sec-hire-carousel .hc-dots{display:none;justify-content:center;gap:var(--primitive-space-8);margin-top:24px}
+    .wpmn-sec-hire-carousel .hc-dots button{width:8px;height:8px;border-radius:999px;border:0;background:var(--hc-dot);cursor:pointer;padding:0}
+    .wpmn-sec-hire-carousel .hc-dots button.is-on{background:var(--color-text-primary);width:22px;border-radius:999px}
+
+    /* responsive */
+    @media (max-width:1180px){.wpmn-sec-hire-carousel{padding:48px 16px 72px}}
+    @media (max-width:1040px){
+      .wpmn-sec-hire-carousel .hc-stage{overflow:hidden}
+      .wpmn-sec-hire-carousel .hc-rail{transform:scale(calc((100vw - 32px)/1000));transform-origin:top center}
+    }
+    @media (max-width:760px){
+      .wpmn-sec-hire-carousel .hc-rail{transform:none;gap:0;height:auto}
+      .wpmn-sec-hire-carousel .hc-card{display:none}
+      .wpmn-sec-hire-carousel .hc-card.is-open{display:block;flex-basis:100%;width:100%;height:auto;background:transparent;overflow:visible}
+      .wpmn-sec-hire-carousel .hc-card.is-open .hc-tab,.wpmn-sec-hire-carousel .hc-avatar,.wpmn-sec-hire-carousel .hc-card.is-open .hc-tooltip{display:none}
+      .wpmn-sec-hire-carousel .hc-content{position:static;opacity:1;height:auto;display:flex;flex-direction:column;gap:18px}
+      .wpmn-sec-hire-carousel .hc-headline{position:static;width:100%}
+      .wpmn-sec-hire-carousel .hc-win{position:static;width:100%;height:auto;border-bottom:1px solid var(--hc-border);border-radius:var(--radius-md)}
+      .wpmn-sec-hire-carousel .hc-win::after{display:none}
+      .wpmn-sec-hire-carousel .hc-coll{display:none}
+      .wpmn-sec-hire-carousel .hc-winbody{min-height:220px}
+      .wpmn-sec-hire-carousel .hc-dots{display:flex}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-hire-carousel .hc-card,.wpmn-sec-hire-carousel .hc-avatar,.wpmn-sec-hire-carousel .hc-content{transition:none !important}
+      .wpmn-sec-hire-carousel .hc-cursor{animation:none !important}
+    }
+  </style>
+
+  <div class="hc-head">
+    <span class="hc-pill">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 5L8 8L4 11V5Z" fill="currentColor"/><path d="M9 5L13 8L9 11V5Z" fill="currentColor" opacity="0.7"/></svg>
+      Automate
+    </span>
+    <h2>Set up once. Runs on its own.</h2>
+    <p>Meet the automations doing the busywork for you. Each one runs an entire process on its own, on a schedule, or triggered by a form, a payment, a new contact, right inside the tools you already run.</p>
+  </div>
+
+  <div class="hc-stage">
+    <div class="hc-rail"></div>
+  </div>
+  <div class="hc-dots"></div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var check = '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--color-success-primary)"/><path d="M7.5 12.3l3 3 6-6.6" stroke="var(--color-text-primary-invert)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var gDup = '<svg viewBox="0 0 16 16" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="6.5" y="6.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>';
+    var gTag = '<svg viewBox="0 0 16 16" fill="none"><path d="M2.5 2.5h5l6 6-5 5-6-6z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="5.5" cy="5.5" r="1" fill="currentColor"/></svg>';
+    var gAuto = '<svg viewBox="0 0 16 16" fill="none"><path d="M9 1.5L3 9h4l-1 5.5L13 6.5H8.2z" fill="currentColor"/></svg>';
+    var gStart = '<svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M6.5 5.5l4 2.5-4 2.5z" fill="currentColor"/></svg>';
+    var figure = '<svg viewBox="0 0 200 240" preserveAspectRatio="xMidYMax meet" fill="currentColor" aria-hidden="true"><circle cx="100" cy="66" r="46"/><path d="M18 240c0-47 37-82 82-82s82 35 82 82z"/></svg>';
+    var cav = '<svg viewBox="0 0 40 44" fill="currentColor" aria-hidden="true"><circle cx="20" cy="15" r="9"/><path d="M4 44c0-9 7-16 16-16s16 7 16 16z"/></svg>';
+    var logoMark = '<span class="hc-logo"><svg viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>';
+
+    // Vera's panel is the full FluentCRM activity view. The other four panels are
+    // role-matched fills (only Vera was captured expanded in the reference).
+    var people = [
+      { name:'Miles', role:'Outreach Operator', hue:0,
+        headline:'Sends the first touch before a lead ever goes cold.',
+        app:'FluentCRM', tooltip:'First touch sent to 24 new leads, 3 already replied.',
+        feed:[['sent','Sequence started','24 leads entered "Cold Outbound"'],
+              ['check','Reply detected','Positive intent from 3 contacts'],
+              ['auto','Meeting booked','Fri 10:30 with Acme Co.']] },
+      { name:'Marcus', role:'Marketing Producer', hue:1,
+        headline:'Turns one brief into a week of on-brand content.',
+        app:'FluentCRM', tooltip:'5 posts drafted and queued for next week.',
+        feed:[['sent','Draft generated','5 posts from 1 campaign brief'],
+              ['check','Brand check passed','Tone and voice within guidelines'],
+              ['auto','Scheduled','Queued Mon to Fri, 9:00 AM']] },
+      { name:'Vera', role:'Operations Agent', hue:2,
+        headline:'Syncs every payment to your CRM the second it lands.',
+        app:'FluentCRM', tooltip:'$4,012 payment matched to Order 1743, approved for onboarding.',
+        crm:true },
+      { name:'Rafael', role:'Briefing Analyst', hue:3,
+        headline:'Delivers your morning brief before the first meeting.',
+        app:'FluentCommunity', tooltip:'Morning brief posted to Leadership space, 8 items.',
+        feed:[['sent','Sources gathered','12 threads, 3 dashboards scanned'],
+              ['check','Summary written','8 priority items, ranked'],
+              ['auto','Posted to Leadership','Delivered 7:45 AM']] },
+      { name:'Theo', role:'Lead Scout', hue:4,
+        headline:'Finds and qualifies new leads while you sleep.',
+        app:'FluentCRM', tooltip:'37 qualified leads added to your pipeline.',
+        feed:[['sent','Prospects found','120 matched your ICP'],
+              ['check','Enriched & scored','37 passed the fit threshold'],
+              ['auto','Added to CRM','Synced to "New" pipeline']] }
+    ];
+
+    var rail = sec.querySelector('.hc-rail');
+    var dots = sec.querySelector('.hc-dots');
+    var active = 2, timer = null, typeTimer = null;
+
+    function veraCRM(){
+      return '' +
+      '<div class="hc-winhead">' + logoMark + '<span class="hc-wname">FluentCRM</span></div>' +
+      '<div class="hc-winbody">' +
+        '<div class="hc-coll">' +
+          '<div class="hc-contact"><span class="hc-cavatar">' + cav + '</span>' +
+            '<div><div class="hc-cn">Morgan H.</div><div class="hc-cs">Call &middot; Text &middot; Email</div></div></div>' +
+          '<div class="hc-fields">' +
+            '<div class="hc-field"><span class="hc-lbl">Pipeline</span><div class="hc-val">Onboarding</div></div>' +
+            '<div class="hc-field"><span class="hc-lbl">Tags</span><div class="hc-tags">' +
+              '<span class="hc-tag">customer</span><span class="hc-tag">approved ' + check + '</span></div></div>' +
+            '<div class="hc-field"><span class="hc-lbl">Order</span><div class="hc-val">1872</div></div>' +
+            '<div class="hc-field"><span class="hc-lbl">Invoice</span>' +
+              '<div class="hc-invoice"><span>INV-1228</span><span class="hc-paid">' + check + 'Paid</span></div></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="hc-colr">' +
+          '<div class="hc-tabs"><button class="hc-on">Activity</button><span>Notes</span><span>Task</span><span>Email</span></div>' +
+          '<div class="hc-feed">' +
+            row(check,'Payment matched','INV-1228 to Order 1743, <b>$4,012.46</b>') +
+            row(gDup,'Duplicate check passed','no match in processed_approvals') +
+            row(gTag,'Tag applied','Approved') +
+            row(gAuto,'Next automation','Onboarding sequence now eligible') +
+            row(gStart,'Started','',true) +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }
+    function row(icon,title,sub,last){
+      return '<div class="hc-row"><div class="hc-gut"><span class="hc-ic">' + icon + '</span>' + (last?'':'<span class="hc-line"></span>') + '</div>' +
+        '<div class="hc-body"><p class="hc-t">' + title + '</p>' + (sub?'<p class="hc-s">'+sub+'</p>':'') + '</div></div>';
+    }
+    function dot(c){ return '<span class="hc-ic" style="width:8px;height:8px;border-radius:999px;background:'+c+'"></span>'; }
+    function genPanel(p){
+      var icons = { sent:dot('var(--btn-bg-enable)'), check:check, auto:dot('var(--color-text-secondary)') };
+      return '<div class="hc-winhead"><span class="hc-wname">' + p.app + '</span></div>' +
+      '<div class="hc-winbody"><div class="hc-colr">' +
+        '<div class="hc-tabs"><button class="hc-on">Activity</button><span>Notes</span><span>Task</span></div>' +
+        '<div class="hc-feed">' + p.feed.map(function(f,i){ return row(icons[f[0]]||dot('var(--color-text-secondary)'),f[1],f[2],i===p.feed.length-1); }).join('') + '</div>' +
+      '</div></div>';
+    }
+
+    function build(){
+      rail.innerHTML = people.map(function(p,i){
+        return '<div class="hc-card hc-h' + p.hue + (i===active?' is-open':'') + '" data-i="' + i + '" role="button" tabindex="0" aria-label="' + p.name + ', ' + p.role + '">' +
+          '<div class="hc-tab"><span class="hc-n">' + p.name + '</span><span class="hc-r">' + p.role + '</span></div>' +
+          '<span class="hc-avatar">' + figure + '</span>' +
+          '<div class="hc-content">' +
+            '<div class="hc-headline"><div class="hc-role"><b>' + p.name + '</b> &middot; ' + p.role + '</div><p>' + p.headline + '</p></div>' +
+            '<div class="hc-win ' + (p.crm?'':'hc-single') + '">' + (p.crm?veraCRM():genPanel(p)) + '</div>' +
+            '<div class="hc-tooltip"><span class="hc-typed"></span><span class="hc-cursor"></span></div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+      dots.innerHTML = people.map(function(p,i){ return '<button data-i="' + i + '" class="' + (i===active?'is-on':'') + '" aria-label="' + p.name + '"></button>'; }).join('');
+      bind();
+      startType();
+    }
+
+    function setActive(i){
+      active = (i+people.length)%people.length;
+      [].forEach.call(rail.children,function(c,k){ c.classList.toggle('is-open',k===active); });
+      [].forEach.call(dots.children,function(c,k){ c.classList.toggle('is-on',k===active); });
+      startType();
+      resetAuto();
+    }
+    function bind(){
+      rail.querySelectorAll('.hc-card').forEach(function(c){
+        c.addEventListener('click',function(){ setActive(+c.dataset.i); });
+        c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setActive(+c.dataset.i); } });
+      });
+      dots.querySelectorAll('button').forEach(function(b){ b.addEventListener('click',function(){ setActive(+b.dataset.i); }); });
+    }
+
+    // typing tooltip on the active card
+    function startType(){
+      clearInterval(typeTimer);
+      var card = rail.children[active];
+      var el = card.querySelector('.hc-typed');
+      if(!el) return;
+      var full = people[active].tooltip;
+      if(reduce){ el.textContent = full; return; }
+      var n = 0;
+      el.textContent = '';
+      typeTimer = setInterval(function(){
+        n++; el.textContent = full.slice(0,n);
+        if(n>=full.length) clearInterval(typeTimer);
+      }, 32);
+    }
+    // test hook (rAF/intervals get throttled in hidden preview docs)
+    window.__sectionType = function(){ var el=rail.children[active].querySelector('.hc-typed'); el.textContent=people[active].tooltip; };
+
+    function resetAuto(){
+      clearInterval(timer);
+      if(reduce) return;
+      timer = setInterval(function(){ setActive(active+1); }, 5000);
+    }
+
+    build();
+    resetAuto();
+  })();
+  </script>
+</section>
