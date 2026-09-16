@@ -25,23 +25,24 @@
     .wpmn-sec-testimonial-spotlight-carousel .tsc-viewport{margin-top:56px}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-track{display:flex;gap:var(--primitive-space-24);transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform}
 
-    .wpmn-sec-testimonial-spotlight-carousel .tsc-card{position:relative;flex:0 0 auto;width:540px;max-width:84vw;margin-top:22px;background:var(--tsc-card);border:1px solid var(--tsc-line);border-radius:var(--radius-lg);padding:var(--primitive-space-32);opacity:.45;transform:scale(.94);transition:opacity .5s ease,transform .5s cubic-bezier(.22,1,.36,1),background-color .5s ease;cursor:pointer}
-    .wpmn-sec-testimonial-spotlight-carousel .tsc-card.is-active{opacity:1;transform:scale(1);background:var(--tsc-card-on);cursor:default}
-    /* folder tab */
-    .wpmn-sec-testimonial-spotlight-carousel .tsc-tab{position:absolute;top:-14px;left:32px;width:88px;height:16px;border-radius:var(--radius-sm) var(--radius-sm) 0 0;background:var(--tsc-card);border:1px solid var(--tsc-line);border-bottom:0;transition:background-color .5s ease}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-card{position:relative;flex:0 0 auto;width:560px;max-width:84vw;margin-top:22px;background:var(--tsc-card);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:var(--primitive-space-32);padding-bottom:84px;opacity:.4;transition:opacity .55s ease,background-color .55s ease;cursor:pointer}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-card.is-active{opacity:1;background:var(--tsc-card-on);cursor:default}
+    /* folder tab (top-left) */
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-tab{position:absolute;top:-16px;left:0;width:160px;height:18px;border-radius:var(--radius-md) var(--radius-md) 0 0;background:var(--tsc-card);transition:background-color .55s ease}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-card.is-active .tsc-tab{background:var(--tsc-card-on)}
+    /* bottom-left logo notch: cut out of the card with the panel color */
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-notch{position:absolute;left:0;bottom:0;width:200px;height:52px;background:var(--color-surface-secondary);border-top-right-radius:var(--radius-md);z-index:1}
 
     .wpmn-sec-testimonial-spotlight-carousel .tsc-top{display:flex;align-items:center;gap:var(--primitive-space-12);margin-bottom:var(--primitive-space-24)}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-avatar{width:52px;height:52px;flex:none;border-radius:999px;background:var(--tsc-avbg);color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-base);font-weight:var(--font-weight-semibold);letter-spacing:.02em}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-name{font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-role{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-warning-primary);margin-top:2px}
-    .wpmn-sec-testimonial-spotlight-carousel .tsc-quote{font-size:var(--font-size-body-medium);line-height:1.6;color:var(--color-text-secondary-invert);margin:0 0 var(--primitive-space-32)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-quote{font-size:var(--font-size-body-medium);line-height:1.6;color:var(--color-text-secondary-invert);margin:0}
 
-    .wpmn-sec-testimonial-spotlight-carousel .tsc-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--primitive-space-16)}
-    .wpmn-sec-testimonial-spotlight-carousel .tsc-logo{display:inline-flex;align-items:center;gap:var(--primitive-space-8);color:var(--color-text-primary-invert);font-size:var(--font-size-body-base);font-weight:var(--font-weight-semibold);letter-spacing:-.01em}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-logo{position:absolute;left:2px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:var(--primitive-space-8);color:var(--color-text-primary-invert);font-size:var(--font-size-body-base);font-weight:var(--font-weight-semibold);letter-spacing:-.01em}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-logo .tsc-mark{width:22px;height:22px;flex:none;display:flex;align-items:center;justify-content:center;color:var(--btn-bg-enable)}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-logo .tsc-mark svg{width:100%;height:100%}
-    .wpmn-sec-testimonial-spotlight-carousel .tsc-rating{display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-rating{position:absolute;right:32px;bottom:26px;z-index:2;display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-stars{display:inline-flex;gap:2px;color:var(--color-warning-primary)}
     .wpmn-sec-testimonial-spotlight-carousel .tsc-stars svg{width:16px;height:16px}
 
@@ -116,10 +117,9 @@
           '<div class="tsc-top"><span class="tsc-avatar">' + initials(t.name) + '</span>' +
             '<div><div class="tsc-name">' + t.name + '</div><div class="tsc-role">' + t.role + '</div></div></div>' +
           '<p class="tsc-quote">' + t.quote + '</p>' +
-          '<div class="tsc-foot">' +
-            '<span class="tsc-logo">' + mark + t.logo + '</span>' +
-            '<span class="tsc-rating">' + t.rating + '<span class="tsc-stars">' + stars() + '</span></span>' +
-          '</div>' +
+          '<span class="tsc-notch"></span>' +
+          '<span class="tsc-logo">' + mark + t.logo + '</span>' +
+          '<span class="tsc-rating">' + t.rating + '<span class="tsc-stars">' + stars() + '</span></span>' +
         '</article>';
       }).join('');
       dotsWrap.innerHTML = items.map(function(t,i){ return '<button data-i="' + i + '" class="' + (i===active?'is-on':'') + '" aria-label="Go to testimonial ' + (i+1) + '"></button>'; }).join('');
