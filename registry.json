@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.6.0",
-  "generatedAt": "2026-09-16T04:58:15.797Z",
+  "generatedAt": "2026-09-16T09:07:41.015Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -3013,6 +3013,79 @@
       ]
     },
     {
+      "id": "glass-icon-showcase",
+      "name": "Glass Icon Showcase",
+      "type": "html",
+      "status": "stable",
+      "description": "A two-column icon-pack showcase: a left column with a brand mark, pill badge, big two-line heading, and community chip, and a right 4x4 grid of glassmorphic tiles, each a white rounded tile holding a token-gradient glyph with a glass highlight.",
+      "files": {
+        "html": "sections/glass-icon-showcase/section.html"
+      },
+      "prompt": "sections/glass-icon-showcase/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-glass-icon-showcase",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the copy fades up (wpmn-gis-up 600ms) and the 16 tiles pop in on a diagonal stagger (wpmn-gis-pop 550ms)",
+        "tiles lift and deepen their shadow on hover (200ms)",
+        "each glyph is filled with a per-tile token gradient plus an invert highlight for the glass look",
+        "prefers-reduced-motion: copy and tiles rendered in place, no animation or hover transition"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--btn-bg-enable",
+        "--color-success-primary",
+        "--color-warning-primary",
+        "--color-error-primary",
+        "--radius-xsm",
+        "--radius-sm",
+        "--radius-lg",
+        "--shadow-soft-300",
+        "--shadow-soft-500",
+        "--shadow-soft-700",
+        "--font-family-base",
+        "--font-size-h1",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-lh-h1",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-weight-regular",
+        "--font-weight-bold",
+        "--font-weight-semibold",
+        "--primitive-space-8",
+        "--primitive-space-16",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-40",
+        "--primitive-space-64",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "role": "Showcase",
+      "span": 2,
+      "tags": [
+        "icons",
+        "glassmorphism",
+        "grid",
+        "showcase",
+        "gradient",
+        "freebie",
+        "split",
+        "product ui"
+      ]
+    },
+    {
       "id": "hero-standard",
       "name": "Hero 4",
       "type": "html",
@@ -3337,6 +3410,77 @@
         "tiles"
       ],
       "role": "Integrations"
+    },
+    {
+      "id": "integration-recipes-split",
+      "name": "Integration Recipes Split",
+      "type": "html",
+      "status": "stable",
+      "description": "A two-column integrations hero: a left grid of app tiles that fades at the left edge and pops in on view, and a right column with a kicker, heading, sub, and two buttons (primary + ghost).",
+      "files": {
+        "html": "sections/integration-recipes-split/section.html"
+      },
+      "prompt": "sections/integration-recipes-split/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-integration-recipes-split",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the 24 tiles pop in staggered (wpmn-irs-pop 500ms, 28ms/tile) and the copy column fades up (wpmn-irs-up 600ms, 120ms delay)",
+        "buttons shift background on hover/active (180ms)",
+        "the tile grid is faded at the left edge with an alpha mask; the mask is dropped when the columns stack under 900px",
+        "prefers-reduced-motion: tiles and copy rendered in place, no animation"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--btn-bg-enable",
+        "--btn-bg-hovered",
+        "--btn-bg-focused",
+        "--btn-bg-glow",
+        "--color-success-primary",
+        "--color-warning-primary",
+        "--color-error-primary",
+        "--radius-xsm",
+        "--radius-md",
+        "--shadow-soft-300",
+        "--font-family-base",
+        "--font-size-h2",
+        "--font-size-body-medium",
+        "--font-size-body-base",
+        "--font-lh-h2",
+        "--font-lh-body-medium",
+        "--font-lh-body-base",
+        "--font-weight-regular",
+        "--font-weight-semibold",
+        "--primitive-space-12",
+        "--primitive-space-16",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-40",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "role": "Integrations",
+      "span": 2,
+      "tags": [
+        "integrations",
+        "logos",
+        "grid",
+        "split",
+        "recipes",
+        "apps",
+        "cta",
+        "product ui"
+      ]
     },
     {
       "id": "logo-cloud",
@@ -4034,6 +4178,81 @@
         "versus",
         "products",
         "features"
+      ]
+    },
+    {
+      "id": "product-library-hero",
+      "name": "Product Library Hero",
+      "type": "html",
+      "status": "stable",
+      "description": "A centered hero (pill, bold heading, sub, primary button) over a three-row band of app tiles that fades at both edges, with a glowing brand tile at the center, above a muted trusted-by row of placeholder wordmarks.",
+      "files": {
+        "html": "sections/product-library-hero/section.html"
+      },
+      "prompt": "sections/product-library-hero/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-product-library-hero",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the tiles pop in staggered outward from the center (wpmn-plh-pop 500ms)",
+        "the center brand tile pulses a brand-tinted glow (wpmn-plh-glow 3s ease-in-out, starting 1s in)",
+        "the tile band is faded at both edges with an alpha mask; the primary button shifts on hover",
+        "prefers-reduced-motion: tiles rendered in place, no pop or glow"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-surface-secondary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--btn-bg-enable",
+        "--btn-bg-hovered",
+        "--btn-bg-glow",
+        "--color-success-primary",
+        "--color-warning-primary",
+        "--color-error-primary",
+        "--radius-xsm",
+        "--radius-md",
+        "--shadow-soft-300",
+        "--font-family-base",
+        "--font-size-h1",
+        "--font-size-h6",
+        "--font-size-body-medium",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-lh-h1",
+        "--font-lh-h6",
+        "--font-lh-body-medium",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-weight-bold",
+        "--font-weight-semibold",
+        "--primitive-space-8",
+        "--primitive-space-16",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-40",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact",
+      "role": "Hero",
+      "span": 2,
+      "tags": [
+        "hero",
+        "product library",
+        "tiles",
+        "grid",
+        "glow",
+        "trusted by",
+        "logos",
+        "cta"
       ]
     },
     {

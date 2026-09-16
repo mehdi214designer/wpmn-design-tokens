@@ -1,0 +1,105 @@
+<!-- WPMN Section: Glass Icon Showcase — a two-column icon-pack showcase. Left: a brand mark, a pill badge, a big two-line heading, and a community chip. Right: a 4x4 grid of glassmorphic tiles (white rounded tiles with soft shadow, each holding a token-gradient glyph with a glass highlight). Built from a screenshot, tokenized, motion added. Glyphs are generic placeholders (content swapped on use) — no images, no third-party logos. Classes are gis-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-glass-icon-showcase">
+  <style>
+@keyframes wpmn-gis-pop{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes wpmn-gis-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-glass-icon-showcase{
+      background:color-mix(in srgb, var(--color-text-primary) 2%, var(--color-surface-primary));color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --gis-tile:var(--color-surface-primary);
+      --gis-line:color-mix(in srgb, var(--color-text-primary) 6%, transparent);
+    }
+    .wpmn-sec-glass-icon-showcase *{box-sizing:border-box}
+    .wpmn-sec-glass-icon-showcase .gis-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:var(--primitive-space-64);align-items:center}
+
+    .wpmn-sec-glass-icon-showcase .gis-copy{opacity:0}
+    .wpmn-sec-glass-icon-showcase.is-inview .gis-copy{animation:wpmn-gis-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-glass-icon-showcase .gis-brand{display:inline-flex;align-items:center;gap:var(--primitive-space-8);margin-bottom:var(--primitive-space-40)}
+    .wpmn-sec-glass-icon-showcase .gis-brand .gis-bmark{width:26px;height:26px;border-radius:var(--radius-sm);background:linear-gradient(150deg, var(--btn-bg-enable), color-mix(in srgb, var(--btn-bg-enable) 50%, var(--color-error-primary)));display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert)}
+    .wpmn-sec-glass-icon-showcase .gis-brand .gis-bmark svg{width:15px;height:15px}
+    .wpmn-sec-glass-icon-showcase .gis-brand .gis-bname{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);letter-spacing:.02em;color:var(--color-text-secondary)}
+    .wpmn-sec-glass-icon-showcase .gis-pill{display:inline-flex;align-items:center;padding:6px var(--primitive-space-16);border-radius:999px;background:color-mix(in srgb, var(--color-error-primary) 14%, var(--color-surface-primary));color:var(--color-error-primary);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);margin-bottom:var(--primitive-space-16)}
+    .wpmn-sec-glass-icon-showcase h2{font-size:var(--font-size-h1);line-height:var(--font-lh-h1);font-weight:var(--font-weight-bold);letter-spacing:-.02em;color:var(--color-text-primary);margin:0}
+    .wpmn-sec-glass-icon-showcase .gis-sub2{display:block;font-weight:var(--font-weight-regular);color:var(--color-text-secondary)}
+    .wpmn-sec-glass-icon-showcase .gis-chip{display:inline-flex;align-items:center;gap:var(--primitive-space-8);margin-top:var(--primitive-space-32);padding:var(--primitive-space-8) var(--primitive-space-16);border-radius:999px;background:var(--color-surface-primary);box-shadow:var(--shadow-soft-300);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-glass-icon-showcase .gis-chip b{color:var(--color-text-primary);font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-glass-icon-showcase .gis-chip .gis-cmark{width:18px;height:18px;border-radius:var(--radius-xsm);background:linear-gradient(150deg, var(--color-warning-primary), var(--color-error-primary));flex:none}
+
+    .wpmn-sec-glass-icon-showcase .gis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--primitive-space-24)}
+    .wpmn-sec-glass-icon-showcase .gis-glass{aspect-ratio:1;border-radius:var(--radius-lg);background:var(--gis-tile);border:1px solid var(--gis-line);box-shadow:var(--shadow-soft-500);display:flex;align-items:center;justify-content:center;opacity:0;transition:transform .2s ease,box-shadow .2s ease}
+    .wpmn-sec-glass-icon-showcase.is-inview .gis-glass{animation:wpmn-gis-pop .55s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-glass-icon-showcase .gis-glass:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft-700)}
+    .wpmn-sec-glass-icon-showcase .gis-glass svg{width:52%;height:52%}
+
+    @media (max-width:900px){
+      .wpmn-sec-glass-icon-showcase .gis-wrap{grid-template-columns:1fr;gap:var(--primitive-space-40)}
+    }
+    @media (max-width:768px){
+      .wpmn-sec-glass-icon-showcase{padding:64px var(--primitive-space-24)}
+      .wpmn-sec-glass-icon-showcase .gis-grid{gap:var(--primitive-space-16)}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-glass-icon-showcase .gis-copy,.wpmn-sec-glass-icon-showcase .gis-glass{opacity:1 !important;animation:none !important}
+      .wpmn-sec-glass-icon-showcase .gis-glass{transition:none !important}
+    }
+  </style>
+
+  <div class="gis-wrap">
+    <div class="gis-copy">
+      <div class="gis-brand">
+        <span class="gis-bmark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18c6 0 12-4 12-12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="7" cy="7" r="2.4" fill="currentColor"/></svg></span>
+        <span class="gis-bname">STUDIO</span>
+      </div>
+      <span class="gis-pill">+50 Freebie Icons</span>
+      <h2>Iconly<span class="gis-sub2">Glass icons</span></h2>
+      <div class="gis-chip"><span class="gis-cmark"></span>Free in the <b>community</b></div>
+    </div>
+
+    <div class="gis-grid"></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    // glyph silhouettes (viewBox 0 0 48 48), filled with a per-tile token gradient
+    var paths = [
+      'M8 17a3 3 0 0 1 3-3h8l4 4h14a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3z',
+      'M16 20v-3a8 8 0 0 1 16 0v3h2a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V23a3 3 0 0 1 3-3zm4 0h8v-3a4 4 0 0 0-8 0z',
+      'M14 18h20l-2 18a3 3 0 0 1-3 3H19a3 3 0 0 1-3-3zm4 0a6 6 0 0 1 12 0',
+      'M24 40S9 31 9 20a7 7 0 0 1 15-4 7 7 0 0 1 15 4c0 11-15 20-15 20z',
+      'M24 15a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm14 9l3-2-3-5-3 1a11 11 0 0 0-2-1l-1-4h-6l-1 4a11 11 0 0 0-2 1l-3-1-3 5 3 2a11 11 0 0 0 0 2l-3 2 3 5 3-1a11 11 0 0 0 2 1l1 4h6l1-4a11 11 0 0 0 2-1l3 1 3-5-3-2a11 11 0 0 0 0-2z',
+      'M10 16h28a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V18a2 2 0 0 1 2-2zm1 3 13 9 13-9',
+      'M16 34a9 9 0 0 1-1-18 11 11 0 0 1 21 3 7 7 0 0 1-2 15z',
+      'M24 9l13 5v9c0 9-6 14-13 16-7-2-13-7-13-16v-9z'
+    ];
+    var pairs = [
+      ['var(--color-success-primary)','color-mix(in srgb, var(--color-success-primary) 55%, var(--btn-bg-enable))'],
+      ['var(--color-error-primary)','color-mix(in srgb, var(--color-error-primary) 55%, var(--color-warning-primary))'],
+      ['var(--btn-bg-enable)','color-mix(in srgb, var(--btn-bg-enable) 55%, var(--color-success-primary))'],
+      ['var(--color-warning-primary)','color-mix(in srgb, var(--color-warning-primary) 55%, var(--color-error-primary))'],
+      ['color-mix(in srgb, var(--btn-bg-enable) 70%, var(--color-error-primary))','var(--btn-bg-enable)'],
+      ['color-mix(in srgb, var(--color-error-primary) 70%, var(--btn-bg-enable))','var(--color-error-primary)']
+    ];
+    function tile(i){
+      var p = paths[i%paths.length], pr = pairs[i%pairs.length], id = 'wpmn-gis-g' + i;
+      return '<div class="gis-glass" style="animation-delay:' + ((i%4 + Math.floor(i/4))*50) + 'ms">' +
+        '<svg viewBox="0 0 48 48" aria-hidden="true">' +
+          '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">' +
+            '<stop offset="0" stop-color="' + pr[0] + '"/><stop offset="1" stop-color="' + pr[1] + '"/>' +
+          '</linearGradient></defs>' +
+          '<path d="' + p + '" fill="url(#' + id + ')"/>' +
+          '<ellipse cx="18" cy="16" rx="9" ry="5" fill="var(--color-text-primary-invert)" opacity="0.25"/>' +
+        '</svg></div>';
+    }
+    var grid = sec.querySelector('.gis-grid'), html = '';
+    for(var i=0;i<16;i++) html += tile(i);
+    grid.innerHTML = html;
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.12});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+  })();
+  </script>
+</section>

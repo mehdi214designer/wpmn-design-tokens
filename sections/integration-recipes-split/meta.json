@@ -1,0 +1,25 @@
+{
+  "id": "integration-recipes-split",
+  "name": "Integration Recipes Split",
+  "type": "html",
+  "status": "stable",
+  "description": "A two-column integrations hero: a left grid of app tiles that fades at the left edge and pops in on view, and a right column with a kicker, heading, sub, and two buttons (primary + ghost).",
+  "files": { "html": "sections/integration-recipes-split/section.html" },
+  "prompt": "sections/integration-recipes-split/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-integration-recipes-split",
+  "interactions": [
+    "on first view (IntersectionObserver adds .is-inview) the 24 tiles pop in staggered (wpmn-irs-pop 500ms, 28ms/tile) and the copy column fades up (wpmn-irs-up 600ms, 120ms delay)",
+    "buttons shift background on hover/active (180ms)",
+    "the tile grid is faded at the left edge with an alpha mask; the mask is dropped when the columns stack under 900px",
+    "prefers-reduced-motion: tiles and copy rendered in place, no animation"
+  ],
+  "tokensUsed": ["--color-surface-primary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--btn-bg-enable","--btn-bg-hovered","--btn-bg-focused","--btn-bg-glow","--color-success-primary","--color-warning-primary","--color-error-primary","--radius-xsm","--radius-md","--shadow-soft-300","--font-family-base","--font-size-h2","--font-size-body-medium","--font-size-body-base","--font-lh-h2","--font-lh-body-medium","--font-lh-body-base","--font-weight-regular","--font-weight-semibold","--primitive-space-12","--primitive-space-16","--primitive-space-24","--primitive-space-32","--primitive-space-40","--primitive-space-96"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "role": "Integrations",
+  "span": 2,
+  "tags": ["integrations","logos","grid","split","recipes","apps","cta","product ui"]
+}

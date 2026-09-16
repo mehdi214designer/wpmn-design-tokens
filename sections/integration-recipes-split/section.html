@@ -1,0 +1,92 @@
+<!-- WPMN Section: Integration Recipes Split — a two-column integrations hero. Left: a masked grid of app tiles (white rounded tiles with token-SVG glyphs, fading at the left edge). Right: a kicker, heading, sub, and two buttons (primary + ghost, both btn-token, radius-xsm — never pills). Built from a screenshot, tokenized, motion added. Tiles are generic placeholder glyphs (content swapped on use) — no images, no third-party logos. Classes are irs-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-integration-recipes-split">
+  <style>
+@keyframes wpmn-irs-pop{from{opacity:0;transform:translateY(14px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes wpmn-irs-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-integration-recipes-split{
+      background:var(--color-surface-primary);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --irs-tile:var(--color-surface-primary);
+      --irs-line:color-mix(in srgb, var(--color-text-primary) 8%, transparent);
+      --irs-soft:color-mix(in srgb, var(--color-text-primary) 4%, var(--color-surface-primary));
+    }
+    .wpmn-sec-integration-recipes-split *{box-sizing:border-box}
+    .wpmn-sec-integration-recipes-split .irs-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:var(--primitive-space-40);align-items:center}
+
+    .wpmn-sec-integration-recipes-split .irs-gridwrap{-webkit-mask-image:linear-gradient(to right, transparent, black 26%, black 100%);mask-image:linear-gradient(to right, transparent, black 26%, black 100%)}
+    .wpmn-sec-integration-recipes-split .irs-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--primitive-space-16)}
+    .wpmn-sec-integration-recipes-split .irs-tile{aspect-ratio:1;border-radius:var(--radius-md);background:var(--irs-tile);border:1px solid var(--irs-line);box-shadow:var(--shadow-soft-300);display:flex;align-items:center;justify-content:center;color:var(--irs-ic);opacity:0}
+    .wpmn-sec-integration-recipes-split.is-inview .irs-tile{animation:wpmn-irs-pop .5s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-integration-recipes-split .irs-tile svg{width:46%;height:46%}
+
+    .wpmn-sec-integration-recipes-split .irs-copy{opacity:0}
+    .wpmn-sec-integration-recipes-split.is-inview .irs-copy{animation:wpmn-irs-up .6s cubic-bezier(.22,1,.36,1) both;animation-delay:120ms}
+    .wpmn-sec-integration-recipes-split .irs-kicker{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);color:var(--btn-bg-enable);margin-bottom:var(--primitive-space-16)}
+    .wpmn-sec-integration-recipes-split h2{font-size:var(--font-size-h2);line-height:var(--font-lh-h2);font-weight:var(--font-weight-regular);letter-spacing:-.01em;color:var(--color-text-primary);margin:0 0 var(--primitive-space-16);max-width:16ch}
+    .wpmn-sec-integration-recipes-split .irs-sub{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin:0 0 var(--primitive-space-32);max-width:42ch}
+    .wpmn-sec-integration-recipes-split .irs-actions{display:flex;gap:var(--primitive-space-12);flex-wrap:wrap}
+    .wpmn-sec-integration-recipes-split .irs-btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 var(--primitive-space-24);border-radius:var(--radius-xsm);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);cursor:pointer;text-decoration:none;transition:background-color .18s ease,box-shadow .18s ease}
+    .wpmn-sec-integration-recipes-split .irs-btn-primary{background:var(--btn-bg-enable);color:var(--color-text-primary-invert);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-integration-recipes-split .irs-btn-primary:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-integration-recipes-split .irs-btn-primary:active{background:var(--btn-bg-focused)}
+    .wpmn-sec-integration-recipes-split .irs-btn-ghost{background:var(--color-surface-primary);color:var(--btn-bg-enable);box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--btn-bg-enable) 45%, transparent)}
+    .wpmn-sec-integration-recipes-split .irs-btn-ghost:hover{background:color-mix(in srgb, var(--btn-bg-enable) 8%, var(--color-surface-primary))}
+
+    @media (max-width:900px){
+      .wpmn-sec-integration-recipes-split .irs-wrap{grid-template-columns:1fr;gap:var(--primitive-space-40)}
+      .wpmn-sec-integration-recipes-split .irs-gridwrap{-webkit-mask-image:none;mask-image:none;order:2}
+    }
+    @media (max-width:768px){ .wpmn-sec-integration-recipes-split{padding:64px var(--primitive-space-24)} }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-integration-recipes-split .irs-tile,.wpmn-sec-integration-recipes-split .irs-copy{opacity:1 !important;animation:none !important}
+    }
+  </style>
+
+  <div class="irs-wrap">
+    <div class="irs-gridwrap">
+      <div class="irs-grid"></div>
+    </div>
+    <div class="irs-copy">
+      <div class="irs-kicker">Integrations</div>
+      <h2>Pre-built recipes for the most popular tools</h2>
+      <p class="irs-sub">Easily connect your workflows with all of the other tools in your stack, no code required.</p>
+      <div class="irs-actions">
+        <a class="irs-btn irs-btn-primary" href="#" onclick="return false">Explore Solutions</a>
+        <a class="irs-btn irs-btn-ghost" href="#" onclick="return false">View all Integrations</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var glyphs = [
+      '<svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="4" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 16H3z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v9H9l-4 4z" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.6-7-9.5A3.5 3.5 0 0 1 12 8a3.5 3.5 0 0 1 7 3.5C19 16.4 12 21 12 21z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor" opacity="0.6"/><rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor" opacity="0.6"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.4"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>'
+    ];
+    var tints = ['var(--btn-bg-enable)','var(--color-success-primary)','var(--color-warning-primary)','var(--color-error-primary)',
+      'color-mix(in srgb, var(--btn-bg-enable), var(--color-success-primary))',
+      'color-mix(in srgb, var(--color-warning-primary), var(--color-error-primary))'];
+    var grid = sec.querySelector('.irs-grid');
+    var N = 24, html = '';
+    for(var i=0;i<N;i++){
+      html += '<div class="irs-tile" style="--irs-ic:' + tints[i%tints.length] + ';animation-delay:' + (i*28) + 'ms">' + glyphs[i%glyphs.length] + '</div>';
+    }
+    grid.innerHTML = html;
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.15});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+  })();
+  </script>
+</section>
