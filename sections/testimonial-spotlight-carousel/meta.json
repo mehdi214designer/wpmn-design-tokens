@@ -1,0 +1,75 @@
+{
+  "id": "testimonial-spotlight-carousel",
+  "name": "Testimonial Spotlight Carousel",
+  "type": "html",
+  "status": "stable",
+  "description": "A dark testimonial slider on a rounded panel: a centered highlighted card (avatar, name, gold role, quote, brand mark, star rating, folder tab) between dimmed peeking neighbors, with dash pagination that auto-advances and re-centers the active card.",
+  "files": {
+    "html": "sections/testimonial-spotlight-carousel/section.html"
+  },
+  "prompt": "sections/testimonial-spotlight-carousel/prompt.md",
+  "dependsOn": [
+    "index.css"
+  ],
+  "baseClass": "wpmn-sec-testimonial-spotlight-carousel",
+  "interactions": [
+    "header + carousel fade up on first view (IntersectionObserver adds .is-inview; wpmn-tsc-up 600ms, carousel staggered 120ms)",
+    "one card is active and centered; the track translateX is computed from the active card's offset so it sits mid-viewport, active card scales to 1 and brightens while neighbors dim to .45 and scale .94 (500-600ms cubic-bezier)",
+    "auto-advance: setInterval steps to the next testimonial every 5000ms and resets on any interaction",
+    "clicking a card or dash, or pressing Enter/Space on a focused card, activates that testimonial",
+    "the active dash widens and turns brand-blue",
+    "window resize re-centers the active card (120ms debounce)",
+    "prefers-reduced-motion: no auto-advance, transitions off, active card shown in place"
+  ],
+  "tokensUsed": [
+    "--color-surface-primary",
+    "--color-surface-secondary",
+    "--color-text-primary-invert",
+    "--color-text-secondary-invert",
+    "--btn-bg-enable",
+    "--color-warning-primary",
+    "--radius-sm",
+    "--radius-lg",
+    "--font-family-base",
+    "--font-size-h1",
+    "--font-size-h6",
+    "--font-size-body-medium",
+    "--font-size-body-base",
+    "--font-size-body-small",
+    "--font-lh-h1",
+    "--font-lh-h6",
+    "--font-lh-body-medium",
+    "--font-lh-body-small",
+    "--font-weight-medium",
+    "--font-weight-semibold",
+    "--font-weight-bold",
+    "--primitive-space-8",
+    "--primitive-space-12",
+    "--primitive-space-16",
+    "--primitive-space-24",
+    "--primitive-space-32",
+    "--primitive-space-40",
+    "--primitive-space-96"
+  ],
+  "brands": "all",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "category": "Sections",
+  "subcategory": "Trust & Social Proof",
+  "role": "Testimonial",
+  "span": 2,
+  "tags": [
+    "testimonial",
+    "carousel",
+    "slider",
+    "spotlight",
+    "dark",
+    "reviews",
+    "social proof",
+    "stars",
+    "auto-cycle",
+    "interactive"
+  ]
+}

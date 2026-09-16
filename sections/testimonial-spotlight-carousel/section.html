@@ -1,0 +1,172 @@
+<!-- WPMN Section: Testimonial Spotlight Carousel — a dark testimonial slider on a rounded panel. A centered, highlighted card (avatar, name, gold role, quote, brand mark, star rating, folder tab) sits between dimmed peeking neighbors; dash pagination tracks position; it auto-advances and re-centers the active card. Built from a screenshot, tokenized, motion added. Avatars are monogram initials and brand marks are generic placeholders (content is swapped on use) — no images, no third-party logos. Classes are tsc-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-testimonial-spotlight-carousel">
+  <style>
+@keyframes wpmn-tsc-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+    .wpmn-sec-testimonial-spotlight-carousel{
+      background:var(--color-surface-primary);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-32) var(--primitive-space-24);
+      --tsc-card:color-mix(in srgb, var(--color-text-primary-invert) 5%, var(--color-surface-secondary));
+      --tsc-card-on:color-mix(in srgb, var(--color-text-primary-invert) 9%, var(--color-surface-secondary));
+      --tsc-line:color-mix(in srgb, var(--color-text-primary-invert) 12%, transparent);
+      --tsc-avbg:color-mix(in srgb, var(--btn-bg-enable) 34%, var(--color-surface-secondary));
+      --tsc-dot:color-mix(in srgb, var(--color-text-primary-invert) 20%, transparent);
+    }
+    .wpmn-sec-testimonial-spotlight-carousel *{box-sizing:border-box}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-panel{max-width:1360px;margin:0 auto;background:var(--color-surface-secondary);color:var(--color-text-primary-invert);border-radius:var(--radius-lg);padding:var(--primitive-space-96) var(--primitive-space-40);overflow:hidden}
+
+    /* header */
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--primitive-space-16)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-badge{display:inline-flex;align-items:center;padding:6px var(--primitive-space-16);border-radius:999px;border:1px solid color-mix(in srgb, var(--color-warning-primary) 60%, transparent);color:var(--color-warning-primary);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-testimonial-spotlight-carousel h2{font-size:var(--font-size-h1);line-height:var(--font-lh-h1);font-weight:var(--font-weight-bold);letter-spacing:-.02em;color:var(--color-text-primary-invert);margin:0;max-width:18ch}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-sub{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);margin:0;max-width:60ch}
+
+    /* carousel */
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-viewport{margin-top:56px}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-track{display:flex;gap:var(--primitive-space-24);transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform}
+
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-card{position:relative;flex:0 0 auto;width:540px;max-width:84vw;margin-top:22px;background:var(--tsc-card);border:1px solid var(--tsc-line);border-radius:var(--radius-lg);padding:var(--primitive-space-32);opacity:.45;transform:scale(.94);transition:opacity .5s ease,transform .5s cubic-bezier(.22,1,.36,1),background-color .5s ease;cursor:pointer}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-card.is-active{opacity:1;transform:scale(1);background:var(--tsc-card-on);cursor:default}
+    /* folder tab */
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-tab{position:absolute;top:-14px;left:32px;width:88px;height:16px;border-radius:var(--radius-sm) var(--radius-sm) 0 0;background:var(--tsc-card);border:1px solid var(--tsc-line);border-bottom:0;transition:background-color .5s ease}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-card.is-active .tsc-tab{background:var(--tsc-card-on)}
+
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-top{display:flex;align-items:center;gap:var(--primitive-space-12);margin-bottom:var(--primitive-space-24)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-avatar{width:52px;height:52px;flex:none;border-radius:999px;background:var(--tsc-avbg);color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-base);font-weight:var(--font-weight-semibold);letter-spacing:.02em}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-name{font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-role{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-medium);color:var(--color-warning-primary);margin-top:2px}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-quote{font-size:var(--font-size-body-medium);line-height:1.6;color:var(--color-text-secondary-invert);margin:0 0 var(--primitive-space-32)}
+
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--primitive-space-16)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-logo{display:inline-flex;align-items:center;gap:var(--primitive-space-8);color:var(--color-text-primary-invert);font-size:var(--font-size-body-base);font-weight:var(--font-weight-semibold);letter-spacing:-.01em}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-logo .tsc-mark{width:22px;height:22px;flex:none;display:flex;align-items:center;justify-content:center;color:var(--btn-bg-enable)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-logo .tsc-mark svg{width:100%;height:100%}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-rating{display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-stars{display:inline-flex;gap:2px;color:var(--color-warning-primary)}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-stars svg{width:16px;height:16px}
+
+    /* pagination */
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-dots{display:flex;justify-content:center;gap:var(--primitive-space-8);margin-top:48px}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-dots button{width:26px;height:6px;padding:0;border:0;border-radius:999px;background:var(--tsc-dot);cursor:pointer;transition:width .4s ease,background-color .4s ease}
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-dots button.is-on{width:40px;background:var(--btn-bg-enable)}
+
+    /* reveal */
+    .wpmn-sec-testimonial-spotlight-carousel .tsc-reveal{opacity:0}
+    .wpmn-sec-testimonial-spotlight-carousel.is-inview .tsc-reveal{animation:wpmn-tsc-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-testimonial-spotlight-carousel.is-inview .tsc-r2{animation-delay:120ms}
+
+    @media (max-width:768px){
+      .wpmn-sec-testimonial-spotlight-carousel{padding:var(--primitive-space-16)}
+      .wpmn-sec-testimonial-spotlight-carousel .tsc-panel{padding:64px var(--primitive-space-24)}
+      .wpmn-sec-testimonial-spotlight-carousel .tsc-card{width:82vw;padding:var(--primitive-space-24)}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-testimonial-spotlight-carousel .tsc-reveal{opacity:1 !important;animation:none !important}
+      .wpmn-sec-testimonial-spotlight-carousel .tsc-track,.wpmn-sec-testimonial-spotlight-carousel .tsc-card,.wpmn-sec-testimonial-spotlight-carousel .tsc-tab,.wpmn-sec-testimonial-spotlight-carousel .tsc-dots button{transition:none !important}
+    }
+  </style>
+
+  <div class="tsc-panel">
+    <div class="tsc-head tsc-reveal">
+      <span class="tsc-badge">Testimonial</span>
+      <h2>Results Backed by Clients</h2>
+      <p class="tsc-sub">Hear directly from the teams we have helped scale, transform, and win, real stories of growth, collaboration, and measurable impact.</p>
+    </div>
+
+    <div class="tsc-viewport tsc-reveal tsc-r2">
+      <div class="tsc-track"></div>
+    </div>
+    <div class="tsc-dots"></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var star = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>';
+    var mark = '<span class="tsc-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="7" cy="10" r="3" fill="currentColor"/><circle cx="14" cy="7" r="3" fill="currentColor" opacity="0.7"/><circle cx="14" cy="14" r="3" fill="currentColor" opacity="0.5"/></svg></span>';
+
+    // Placeholder testimonials — swapped per use.
+    var items = [
+      { name:'Dana Okafor', role:'Head of Growth, Northwind', logo:'Northwind', rating:'5.0',
+        quote:'The team gave our funnel real clarity. We finally had a voice that resonated and a plan we could run. They did not just consult, they became an extension of our team, driving results we thought were out of reach.' },
+      { name:'Rhea Malhotra', role:'Co-founder, Brightleaf', logo:'Brightleaf', rating:'5.0',
+        quote:'They took our marketing from scattered to strategic. A data-led approach, sharp creative, and hands-on guidance helped us scale fast. Leads doubled, engagement surged, and we finally had a clear, cohesive voice to build on.' },
+      { name:'Karthik Mehra', role:'Head of Studio, Harbor', logo:'Harbor', rating:'5.0',
+        quote:'Partnering with them transformed our strategy from plan to execution. Their team brought creativity we were missing. We saw better targeting, more reach, and steady growth across every platform we run.' },
+      { name:'Lena Fischer', role:'VP Marketing, Cobalt', logo:'Cobalt', rating:'5.0',
+        quote:'Every sprint moved a real number. Onboarding got tighter, campaigns shipped on time, and reporting stopped being a guessing game. It felt less like a vendor relationship and more like a partnership.' },
+      { name:'Marco Ruiz', role:'Founder, Fernway', logo:'Fernway', rating:'5.0',
+        quote:'We came in unsure and left with momentum. The positioning was bold, the execution was calm, and the results held up week after week. Exactly the direction we needed, delivered without the drama.' }
+    ];
+
+    var track = sec.querySelector('.tsc-track');
+    var dotsWrap = sec.querySelector('.tsc-dots');
+    var active = Math.floor(items.length/2), timer = null;
+
+    function initials(n){ return n.split(' ').map(function(w){return w[0];}).slice(0,2).join('').toUpperCase(); }
+    function stars(){ var s=''; for(var i=0;i<5;i++) s+=star; return s; }
+
+    function build(){
+      track.innerHTML = items.map(function(t,i){
+        return '<article class="tsc-card' + (i===active?' is-active':'') + '" data-i="' + i + '" role="button" tabindex="0" aria-label="Testimonial from ' + t.name + '">' +
+          '<span class="tsc-tab"></span>' +
+          '<div class="tsc-top"><span class="tsc-avatar">' + initials(t.name) + '</span>' +
+            '<div><div class="tsc-name">' + t.name + '</div><div class="tsc-role">' + t.role + '</div></div></div>' +
+          '<p class="tsc-quote">' + t.quote + '</p>' +
+          '<div class="tsc-foot">' +
+            '<span class="tsc-logo">' + mark + t.logo + '</span>' +
+            '<span class="tsc-rating">' + t.rating + '<span class="tsc-stars">' + stars() + '</span></span>' +
+          '</div>' +
+        '</article>';
+      }).join('');
+      dotsWrap.innerHTML = items.map(function(t,i){ return '<button data-i="' + i + '" class="' + (i===active?'is-on':'') + '" aria-label="Go to testimonial ' + (i+1) + '"></button>'; }).join('');
+      bind();
+      center(false);
+    }
+
+    function center(animate){
+      var card = track.children[active];
+      if(!card) return;
+      if(!animate) track.style.transition = 'none';
+      var vp = track.parentElement.clientWidth;
+      var x = vp/2 - (card.offsetLeft + card.offsetWidth/2);
+      track.style.transform = 'translateX(' + x + 'px)';
+      if(!animate){ void track.offsetWidth; track.style.transition = ''; }
+    }
+
+    function setActive(i){
+      active = (i+items.length)%items.length;
+      [].forEach.call(track.children,function(c,k){ c.classList.toggle('is-active',k===active); });
+      [].forEach.call(dotsWrap.children,function(c,k){ c.classList.toggle('is-on',k===active); });
+      center(true);
+      resetAuto();
+    }
+    function bind(){
+      track.querySelectorAll('.tsc-card').forEach(function(c){
+        c.addEventListener('click',function(){ setActive(+c.dataset.i); });
+        c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setActive(+c.dataset.i); } });
+      });
+      dotsWrap.querySelectorAll('button').forEach(function(b){ b.addEventListener('click',function(){ setActive(+b.dataset.i); }); });
+    }
+    function resetAuto(){
+      clearInterval(timer);
+      if(reduce) return;
+      timer = setInterval(function(){ setActive(active+1); }, 5000);
+    }
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.15});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+
+    var rt;
+    window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ center(false); }, 120); });
+
+    build();
+    resetAuto();
+  })();
+  </script>
+</section>
