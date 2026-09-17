@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.6.0",
-  "generatedAt": "2026-09-17T09:03:37.247Z",
+  "generatedAt": "2026-09-17T09:48:45.317Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -1461,6 +1461,79 @@
         "overlap"
       ],
       "role": "Showcase"
+    },
+    {
+      "id": "aurora-arc-hero",
+      "name": "Aurora Arc Hero",
+      "type": "html",
+      "status": "stable",
+      "description": "A dark centered agency hero with a glowing aurora arc behind the content, an 'open for projects' status pill, a headline with slanted brand highlight blocks, a book-a-call CTA (avatar + button), and a bottom trust bar with an avatar stack, star rating, client count, and a faded logo row.",
+      "files": {
+        "html": "sections/aurora-arc-hero/section.html"
+      },
+      "prompt": "sections/aurora-arc-hero/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-aurora-arc-hero",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the pill, heading, sub, and CTA fade up in sequence (wpmn-zv-up 500-600ms, staggered 80/160/240ms)",
+        "the aurora arc breathes its opacity (wpmn-zv-breathe 6s) and the status dot pulses (wpmn-zv-pulse 1.8s)",
+        "the primary button shifts background on hover; the trust bar and logo row fade at the right edge with an alpha mask",
+        "prefers-reduced-motion: reveals shown in place, arc and dot animations off"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-surface-secondary",
+        "--color-text-primary",
+        "--color-text-primary-invert",
+        "--color-text-secondary-invert",
+        "--btn-bg-enable",
+        "--btn-bg-hovered",
+        "--btn-bg-glow",
+        "--color-success-primary",
+        "--color-warning-primary",
+        "--color-error-primary",
+        "--radius-xsm",
+        "--radius-md",
+        "--font-family-base",
+        "--font-size-h1",
+        "--font-size-h6",
+        "--font-size-body-medium",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h6",
+        "--font-lh-body-medium",
+        "--font-lh-body-small",
+        "--font-weight-semibold",
+        "--font-weight-bold",
+        "--primitive-space-8",
+        "--primitive-space-16",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Banners & Impact",
+      "role": "Hero",
+      "span": 2,
+      "tags": [
+        "hero",
+        "dark",
+        "aurora",
+        "glow",
+        "agency",
+        "highlight",
+        "cta",
+        "trust bar",
+        "rating",
+        "logos"
+      ]
     },
     {
       "id": "before-after-slider",

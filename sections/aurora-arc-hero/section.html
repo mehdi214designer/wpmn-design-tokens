@@ -1,0 +1,141 @@
+<!-- WPMN Section: Aurora Arc Hero — a dark centered agency hero with a glowing aurora arc behind the content, an "open for projects" status pill, a headline with slanted brand highlight blocks, a book-a-call CTA (avatar + button), and a bottom trust bar (avatar stack, star rating, client count, faded logo row). Built from a screenshot, tokenized, motion added. Avatars are monograms and logos are generic placeholders (content swapped on use) — no images, no third-party logos. Classes are zv-prefixed and keyframes wpmn-zv-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-aurora-arc-hero">
+  <style>
+@keyframes wpmn-zv-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes wpmn-zv-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes wpmn-zv-breathe{0%,100%{opacity:.85}50%{opacity:1}}
+    .wpmn-sec-aurora-arc-hero{
+      position:relative;overflow:hidden;isolation:isolate;
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32) 0;
+      --zv-line:color-mix(in srgb, var(--color-text-primary-invert) 10%, transparent);
+      --zv-panel:color-mix(in srgb, var(--color-text-primary-invert) 7%, var(--color-surface-secondary));
+    }
+    .wpmn-sec-aurora-arc-hero *{box-sizing:border-box;margin:0}
+
+    /* aurora arc glow */
+    .wpmn-sec-aurora-arc-hero .zv-arc{position:absolute;left:50%;top:-46%;width:min(1500px,150%);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;z-index:-1;pointer-events:none;
+      background:radial-gradient(closest-side, transparent 76%, color-mix(in srgb, var(--btn-bg-enable) 70%, transparent) 84%, color-mix(in srgb, var(--color-text-primary-invert) 60%, transparent) 88%, transparent 92%);
+      filter:blur(6px);animation:wpmn-zv-breathe 6s ease-in-out infinite}
+    .wpmn-sec-aurora-arc-hero .zv-glow{position:absolute;left:50%;top:-10%;width:520px;height:320px;transform:translateX(-50%);z-index:-1;pointer-events:none;
+      background:radial-gradient(closest-side, color-mix(in srgb, var(--btn-bg-enable) 45%, transparent), transparent 70%);filter:blur(30px)}
+
+    .wpmn-sec-aurora-arc-hero .zv-wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center}
+
+    /* status pill */
+    .wpmn-sec-aurora-arc-hero .zv-status{display:inline-flex;align-items:center;gap:var(--primitive-space-8);padding:5px 6px 5px 5px;border-radius:999px;background:var(--zv-panel);border:1px solid var(--zv-line);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary-invert);opacity:0}
+    .wpmn-sec-aurora-arc-hero.is-inview .zv-status{animation:wpmn-zv-up .5s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-aurora-arc-hero .zv-open{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:var(--color-surface-primary);color:var(--color-text-primary);font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-aurora-arc-hero .zv-live{width:8px;height:8px;border-radius:999px;background:var(--color-success-primary);animation:wpmn-zv-pulse 1.8s ease-in-out infinite}
+    .wpmn-sec-aurora-arc-hero .zv-status .zv-arrow{width:22px;height:22px;border-radius:999px;background:var(--color-surface-primary);color:var(--color-text-primary);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-aurora-arc-hero .zv-status .zv-arrow svg{width:12px;height:12px}
+
+    /* heading with highlight blocks */
+    .wpmn-sec-aurora-arc-hero h1{margin:var(--primitive-space-32) 0 var(--primitive-space-24);font-size:var(--font-size-h1);line-height:1.06;font-weight:var(--font-weight-bold);letter-spacing:-.02em;color:var(--color-text-primary-invert);max-width:16ch;opacity:0}
+    .wpmn-sec-aurora-arc-hero.is-inview h1{animation:wpmn-zv-up .6s cubic-bezier(.22,1,.36,1) both;animation-delay:80ms}
+    .wpmn-sec-aurora-arc-hero .zv-hl{display:inline-block;padding:0 .28em;margin:0 .04em;transform:skewX(-9deg);border-radius:var(--radius-xsm)}
+    .wpmn-sec-aurora-arc-hero .zv-hl > span{display:inline-block;transform:skewX(9deg)}
+    .wpmn-sec-aurora-arc-hero .zv-hl-a{background:var(--btn-bg-enable)}
+    .wpmn-sec-aurora-arc-hero .zv-hl-a > span{color:color-mix(in srgb, var(--color-text-primary-invert) 82%, var(--btn-bg-enable))}
+    .wpmn-sec-aurora-arc-hero .zv-hl-b{background:color-mix(in srgb, var(--btn-bg-enable) 72%, var(--color-surface-secondary))}
+    .wpmn-sec-aurora-arc-hero .zv-hl-b > span{color:color-mix(in srgb, var(--color-text-primary-invert) 72%, var(--btn-bg-enable))}
+
+    .wpmn-sec-aurora-arc-hero .zv-sub{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary-invert);max-width:44ch;opacity:0}
+    .wpmn-sec-aurora-arc-hero.is-inview .zv-sub{animation:wpmn-zv-up .6s cubic-bezier(.22,1,.36,1) both;animation-delay:160ms}
+
+    /* CTA */
+    .wpmn-sec-aurora-arc-hero .zv-cta{display:flex;align-items:center;gap:var(--primitive-space-16);margin-top:40px;opacity:0}
+    .wpmn-sec-aurora-arc-hero.is-inview .zv-cta{animation:wpmn-zv-up .6s cubic-bezier(.22,1,.36,1) both;animation-delay:240ms}
+    .wpmn-sec-aurora-arc-hero .zv-face{width:54px;height:54px;border-radius:var(--radius-md);flex:none;display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-base);font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert);background:color-mix(in srgb, var(--btn-bg-enable) 45%, var(--color-surface-secondary));box-shadow:0 8px 30px color-mix(in srgb, var(--btn-bg-enable) 45%, transparent)}
+    .wpmn-sec-aurora-arc-hero .zv-btn{display:inline-flex;align-items:center;gap:var(--primitive-space-16);height:64px;padding:0 8px 0 26px;border-radius:var(--radius-xsm);background:var(--btn-bg-enable);color:var(--color-text-primary-invert);font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);text-decoration:none;box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3));transition:background-color .18s ease}
+    .wpmn-sec-aurora-arc-hero .zv-btn:hover{background:var(--btn-bg-hovered)}
+    .wpmn-sec-aurora-arc-hero .zv-btn .zv-circ{width:48px;height:48px;border-radius:var(--radius-xsm);background:var(--color-surface-primary);color:var(--color-text-primary);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-aurora-arc-hero .zv-btn .zv-circ svg{width:20px;height:20px}
+
+    /* trust bar */
+    .wpmn-sec-aurora-arc-hero .zv-trust{margin-top:80px;border-top:1px solid var(--zv-line);display:flex;align-items:center;gap:40px;padding:28px 0;-webkit-mask-image:linear-gradient(90deg, black 60%, transparent);mask-image:linear-gradient(90deg, black 72%, transparent)}
+    .wpmn-sec-aurora-arc-hero .zv-proof{display:flex;align-items:center;gap:var(--primitive-space-16);flex:none}
+    .wpmn-sec-aurora-arc-hero .zv-avatars{display:flex}
+    .wpmn-sec-aurora-arc-hero .zv-av{width:38px;height:38px;border-radius:999px;margin-left:-10px;border:2px solid var(--color-surface-secondary);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-label);line-height:1;font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-aurora-arc-hero .zv-avatars > :first-child{margin-left:0}
+    .wpmn-sec-aurora-arc-hero .zv-rate{display:flex;flex-direction:column;gap:2px}
+    .wpmn-sec-aurora-arc-hero .zv-stars{display:inline-flex;align-items:center;gap:3px;font-size:var(--font-size-body-small);line-height:1;font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-aurora-arc-hero .zv-stars .zv-star{display:inline-flex;color:var(--color-warning-primary)}
+    .wpmn-sec-aurora-arc-hero .zv-stars .zv-star svg{width:13px;height:13px}
+    .wpmn-sec-aurora-arc-hero .zv-clients{font-size:var(--font-size-body-small);line-height:1;color:var(--color-text-secondary-invert)}
+    .wpmn-sec-aurora-arc-hero .zv-logos{display:flex;align-items:center;gap:44px}
+    .wpmn-sec-aurora-arc-hero .zv-logo{display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-h6);line-height:1;font-weight:var(--font-weight-semibold);color:color-mix(in srgb, var(--color-text-primary-invert) 55%, transparent);white-space:nowrap}
+    .wpmn-sec-aurora-arc-hero .zv-logo svg{width:22px;height:22px}
+
+    @media (max-width:768px){
+      .wpmn-sec-aurora-arc-hero{padding:64px var(--primitive-space-24) 0}
+      .wpmn-sec-aurora-arc-hero .zv-cta{flex-direction:column}
+      .wpmn-sec-aurora-arc-hero .zv-trust{flex-direction:column;align-items:flex-start;gap:24px;-webkit-mask-image:none;mask-image:none}
+      .wpmn-sec-aurora-arc-hero .zv-logos{flex-wrap:wrap;gap:24px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-aurora-arc-hero .zv-status,.wpmn-sec-aurora-arc-hero h1,.wpmn-sec-aurora-arc-hero .zv-sub,.wpmn-sec-aurora-arc-hero .zv-cta{opacity:1 !important;animation:none !important}
+      .wpmn-sec-aurora-arc-hero .zv-arc,.wpmn-sec-aurora-arc-hero .zv-live{animation:none !important}
+    }
+  </style>
+
+  <div class="zv-arc"></div>
+  <div class="zv-glow"></div>
+
+  <div class="zv-wrap">
+    <span class="zv-status">
+      <span class="zv-open"><span class="zv-live"></span>Open</span>
+      for new projects
+      <span class="zv-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </span>
+
+    <h1><span class="zv-hl zv-hl-a"><span>Elevate</span></span> your brand with impactful <span class="zv-hl zv-hl-b"><span>design.</span></span></h1>
+
+    <p class="zv-sub">Good design strengthens your brand voice, builds trust with your audience, and turns visuals into meaningful results.</p>
+
+    <div class="zv-cta">
+      <span class="zv-face">MB</span>
+      <a class="zv-btn" href="#" onclick="return false">Book a call with me
+        <span class="zv-circ"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+
+    <div class="zv-trust">
+      <div class="zv-proof">
+        <div class="zv-avatars"></div>
+        <div class="zv-rate">
+          <span class="zv-stars"></span>
+          <span class="zv-clients">8k+ happy clients</span>
+        </div>
+      </div>
+      <div class="zv-logos"></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var star = '<span class="zv-star"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg></span>';
+    var mark = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.4" fill="currentColor"/></svg>';
+
+    var tints = ['var(--btn-bg-enable)','var(--color-warning-primary)','var(--color-success-primary)','var(--color-error-primary)'];
+    var inits = ['JD','AK','RM','LF'];
+    sec.querySelector('.zv-avatars').innerHTML = inits.map(function(n,i){
+      return '<span class="zv-av" style="background:' + tints[i%tints.length] + '">' + n + '</span>';
+    }).join('');
+
+    sec.querySelector('.zv-stars').innerHTML = star + star + star + star + star + '<span style="margin-left:5px">4.8 / 5</span>';
+
+    var logos = ['Layers','Circooles','Catalog','Quotient','Hourglass'];
+    sec.querySelector('.zv-logos').innerHTML = logos.map(function(n){
+      return '<span class="zv-logo">' + mark + n + '</span>';
+    }).join('');
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.15});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+  })();
+  </script>
+</section>
