@@ -1,0 +1,133 @@
+<!-- WPMN Section: Sticky Stagger Cards — a dark split section with a sticky left intro (heading, sub, button, social proof) and a right column of five cards that pin at staggered tops so they pile up leaving 20px lips. HTML import: the pure-CSS sticky-stagger mechanic and the per-letter roll-hover button JS are kept verbatim; the brand font, icon PNGs and avatar photos are replaced with token-SVG glyphs and monogram avatars (content swapped on use), no images and no third-party logos. The pill button is rebuilt with the button tokens at --radius-xsm (never a pill). Classes are alt-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-sticky-stagger-cards">
+  <style>
+    .wpmn-sec-sticky-stagger-cards{
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      padding:150px var(--primitive-space-24);
+      --alt-border:color-mix(in srgb, var(--color-text-primary-invert) 20%, transparent);
+      --alt-chip:color-mix(in srgb, var(--color-text-primary-invert) 22%, var(--color-surface-secondary));
+      --alt-av:color-mix(in srgb, var(--btn-bg-enable) 45%, var(--color-surface-secondary));
+    }
+    .wpmn-sec-sticky-stagger-cards *{box-sizing:border-box;margin:0}
+    .wpmn-sec-sticky-stagger-cards .alt-container{max-width:1400px;margin:0 auto}
+
+    .wpmn-sec-sticky-stagger-cards .alt-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--primitive-space-16);align-items:center;margin-bottom:50px}
+    .wpmn-sec-sticky-stagger-cards .alt-meta-item{display:flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);letter-spacing:-0.5px;color:var(--color-text-primary-invert)}
+    .wpmn-sec-sticky-stagger-cards .alt-meta-item svg{width:12px;height:12px;color:var(--color-text-primary-invert)}
+    .wpmn-sec-sticky-stagger-cards .alt-meta-arrow{justify-content:flex-end}
+
+    .wpmn-sec-sticky-stagger-cards .alt-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .wpmn-sec-sticky-stagger-cards .alt-intro{align-self:start;position:sticky;top:100px;display:flex;flex-direction:column;gap:30px;max-width:621px}
+    .wpmn-sec-sticky-stagger-cards .alt-intro h2{font-size:var(--font-size-h1);line-height:var(--font-lh-h1);font-weight:var(--font-weight-semibold);letter-spacing:-1px;color:var(--color-text-primary-invert);max-width:560px;margin:0}
+    .wpmn-sec-sticky-stagger-cards .alt-sub{font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);letter-spacing:-0.6px;color:var(--color-text-secondary-invert);max-width:550px;margin:0}
+    .wpmn-sec-sticky-stagger-cards .alt-cta-row{display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+
+    .wpmn-sec-sticky-stagger-cards .alt-btn{display:inline-flex;align-items:center;gap:10px;background:var(--color-surface-primary);color:var(--color-text-primary);border-radius:var(--radius-xsm);padding:13px 22px;font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);letter-spacing:-0.5px;text-decoration:none;white-space:nowrap;box-shadow:var(--shadow-soft-300)}
+    .wpmn-sec-sticky-stagger-cards .alt-btn svg{width:12px;height:12px}
+    .wpmn-sec-sticky-stagger-cards .alt-roll{display:inline-flex;overflow:hidden;line-height:1.15}
+    .wpmn-sec-sticky-stagger-cards .alt-roll span{position:relative;display:inline-block;transition:transform .5s cubic-bezier(.6,0,.2,1);transition-delay:calc(var(--i) * 18ms);white-space:pre}
+    .wpmn-sec-sticky-stagger-cards .alt-roll span::after{content:attr(data-c);position:absolute;left:0;top:100%}
+    .wpmn-sec-sticky-stagger-cards .alt-btn:hover .alt-roll span{transform:translateY(-100%)}
+
+    .wpmn-sec-sticky-stagger-cards .alt-social{display:flex;align-items:center;gap:var(--primitive-space-12)}
+    .wpmn-sec-sticky-stagger-cards .alt-avatars{display:flex}
+    .wpmn-sec-sticky-stagger-cards .alt-av,.wpmn-sec-sticky-stagger-cards .alt-more{width:40px;height:40px;border-radius:var(--radius-xsm);margin-left:-12px;border:2px solid var(--color-surface-secondary);display:flex;align-items:center;justify-content:center;font-size:var(--font-size-body-small);line-height:1;font-weight:var(--font-weight-semibold);letter-spacing:-0.5px;color:var(--color-text-primary-invert)}
+    .wpmn-sec-sticky-stagger-cards .alt-avatars > :first-child{margin-left:0}
+    .wpmn-sec-sticky-stagger-cards .alt-av{background:var(--alt-av)}
+    .wpmn-sec-sticky-stagger-cards .alt-more{background:var(--alt-chip)}
+    .wpmn-sec-sticky-stagger-cards .alt-social p{font-size:var(--font-size-body-base);line-height:1.1;font-weight:var(--font-weight-semibold);letter-spacing:-0.5px;color:var(--color-text-primary-invert);max-width:280px;margin:0}
+
+    .wpmn-sec-sticky-stagger-cards .alt-cards{display:flex;flex-direction:column;gap:20px;justify-self:end;width:420px;max-width:100%}
+    .wpmn-sec-sticky-stagger-cards .alt-card{position:sticky;display:flex;flex-direction:column;justify-content:space-between;width:420px;max-width:100%;height:350px;padding:25px;background:var(--color-surface-secondary);border:1px solid var(--alt-border);border-radius:var(--radius-xsm)}
+    .wpmn-sec-sticky-stagger-cards .alt-card:nth-child(1){top:100px}
+    .wpmn-sec-sticky-stagger-cards .alt-card:nth-child(2){top:120px}
+    .wpmn-sec-sticky-stagger-cards .alt-card:nth-child(3){top:140px}
+    .wpmn-sec-sticky-stagger-cards .alt-card:nth-child(4){top:160px}
+    .wpmn-sec-sticky-stagger-cards .alt-card:nth-child(5){top:180px}
+    .wpmn-sec-sticky-stagger-cards .alt-card-icon{width:60px;height:60px;color:var(--color-text-primary-invert)}
+    .wpmn-sec-sticky-stagger-cards .alt-card-text{display:flex;flex-direction:column;gap:15px;padding-bottom:10px}
+    .wpmn-sec-sticky-stagger-cards .alt-card-text h3{font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);letter-spacing:-0.6px;color:var(--color-text-primary-invert);margin:0}
+    .wpmn-sec-sticky-stagger-cards .alt-card-text p{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-medium);letter-spacing:-0.5px;color:var(--color-text-secondary-invert);margin:0}
+
+    @media (max-width:999px){
+      .wpmn-sec-sticky-stagger-cards .alt-grid{grid-template-columns:1fr;gap:60px}
+      .wpmn-sec-sticky-stagger-cards .alt-intro{position:static;max-width:none}
+      .wpmn-sec-sticky-stagger-cards .alt-cards{justify-self:stretch;width:100%}
+      .wpmn-sec-sticky-stagger-cards .alt-card{width:100%;height:auto;min-height:300px;gap:40px}
+      .wpmn-sec-sticky-stagger-cards .alt-meta{grid-template-columns:1fr 1fr}
+      .wpmn-sec-sticky-stagger-cards .alt-meta-arrow{display:none}
+    }
+    @media (max-width:768px){ .wpmn-sec-sticky-stagger-cards{padding:64px var(--primitive-space-24)} }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-sticky-stagger-cards .alt-roll span{transition:none}
+    }
+  </style>
+
+  <div class="alt-container">
+    <div class="alt-meta">
+      <div class="alt-meta-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
+        <span>AI Automation</span>
+      </div>
+      <div></div>
+      <div class="alt-meta-item"><span>Edition 07</span></div>
+      <div class="alt-meta-item alt-meta-arrow">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <div class="alt-grid">
+      <div class="alt-intro">
+        <h2>Better design, simplified.</h2>
+        <p class="alt-sub">A flexible design subscription gives you high-quality creative work, delivered quickly, refined continuously, and tailored to your brand.</p>
+        <div class="alt-cta-row">
+          <a class="alt-btn" href="#" onclick="return false">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="alt-roll" aria-label="View Pricing"></span>
+          </a>
+          <div class="alt-social">
+            <div class="alt-avatars">
+              <span class="alt-av">AR</span><span class="alt-av">KM</span><span class="alt-av">LF</span><span class="alt-av">MR</span>
+              <span class="alt-more">+81</span>
+            </div>
+            <p>Trusted by directors of influential companies</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alt-cards"></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var CARDS = [
+      { icon:'<svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M7 8h10M7 16h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg>',
+        title:'Predictable Pricing', text:'Access dedicated design support through a simple monthly model. No hidden fees, no surprises, just consistent creative work tailored to your needs.' },
+      { icon:'<svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg>',
+        title:'Limitless Requests', text:'Submit as many design requests as you need. We keep refining and improving until everything aligns perfectly with your vision.' },
+      { icon:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>',
+        title:'Fast Delivery', text:'Speed meets quality. A streamlined workflow keeps your projects moving forward quickly without sacrificing attention to detail.' },
+      { icon:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+        title:'Senior Design Team', text:'Work with experienced designers who understand strategy, aesthetics, and performance, delivering work that strengthens your brand.' },
+      { icon:'<svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v10H9l-4 4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+        title:'Clear Collaboration', text:'Stay connected with the team through simple, transparent communication that keeps feedback flowing and projects moving.' }
+    ];
+    sec.querySelector('.alt-cards').innerHTML = CARDS.map(function(c){
+      return '<div class="alt-card"><span class="alt-card-icon">' + c.icon + '</span>' +
+        '<div class="alt-card-text"><h3>' + c.title + '</h3><p>' + c.text + '</p></div></div>';
+    }).join('');
+
+    sec.querySelectorAll('.alt-roll').forEach(function(el){
+      var text = el.getAttribute('aria-label') || 'View Pricing';
+      el.innerHTML = [].map.call(text, function(c,i){
+        var ch = c === ' ' ? ' ' : c;
+        return '<span style="--i:' + i + '" data-c="' + ch + '">' + ch + '</span>';
+      }).join('');
+    });
+    window.__sectionUpdate = function(){};
+  })();
+  </script>
+</section>

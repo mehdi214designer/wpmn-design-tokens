@@ -1,0 +1,27 @@
+{
+  "id": "flip-deck-scroll",
+  "name": "Flip Deck Scroll",
+  "type": "html",
+  "status": "stable",
+  "description": "A sticky 100vh viewport with a long scroll runway that scrubs a 3D card deck through rotateX (four gradient-media faces pre-rotated and backface-gated), over a giant drifting uppercase serif ticker stripe.",
+  "files": { "html": "sections/flip-deck-scroll/section.html" },
+  "prompt": "sections/flip-deck-scroll/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-flip-deck-scroll",
+  "interactions": [
+    "the section is a sticky 100vh over a 4098px runway; scroll position drives progress across six 250px windows starting at 649/900/1799/2050/2949/3200px",
+    "the deck rotateX = 90 * (summed window progress), scrubbed with a scroll lerp of 0.12; faces (pre-rotated k*180) are shown only while within +-180deg of edge-on",
+    "the serif ticker stripe translates -120px per window and each row drifts continuously (wpmn-td-drift 36s linear infinite)",
+    "card media scales 1.05 to 1 on hover; the corner arrow swaps along the diagonal on hover (450ms)",
+    "dual drive: a scroll listener plus requestAnimationFrame keep it working where rAF is suspended; window.__sectionUpdate re-syncs",
+    "under 809px the deck flattens to a stacked list (no 3D, no runway); prefers-reduced-motion stops the ticker drift and media transition"
+  ],
+  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-primary-invert","--btn-bg-enable","--color-success-primary","--color-warning-primary","--color-error-primary","--radius-md","--radius-xsm","--font-family-base","--font-size-h1","--font-size-h5","--font-size-body-small","--font-lh-h5","--font-lh-body-small","--font-weight-regular","--primitive-space-12","--primitive-space-16"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "role": "Showcase",
+  "span": 2,
+  "tags": ["3d","flip","scroll","scrub","sticky","deck","portfolio","cases","ticker","dark"]
+}

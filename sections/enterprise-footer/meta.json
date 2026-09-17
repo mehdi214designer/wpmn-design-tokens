@@ -1,0 +1,24 @@
+{
+  "id": "enterprise-footer",
+  "name": "Enterprise Footer",
+  "type": "html",
+  "status": "stable",
+  "description": "A dark bordered-panel mega footer: a left brand panel (logo + star rating badge) beside a six-column link grid, over a bottom bar with follow, legal links, and copyright, separated by divider hairlines.",
+  "files": { "html": "sections/enterprise-footer/section.html" },
+  "prompt": "sections/enterprise-footer/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-enterprise-footer",
+  "interactions": [
+    "container-width responsive: a ResizeObserver measures the section's own width and toggles fch-md (<900px) and fch-sm (<560px) — layout adapts to the container, not the viewport",
+    "fch-md stacks the brand panel over the links, hides the rating badge, and drops the grid to two columns; fch-sm tightens padding and wraps the bottom bar",
+    "links fade to a brand-tint hover color; the social and legal links shift on hover (200ms)"
+  ],
+  "tokensUsed": ["--color-surface-secondary","--color-text-primary-invert","--color-text-secondary-invert","--btn-bg-enable","--color-warning-primary","--radius-sm","--font-family-base","--font-size-h5","--font-size-body-small","--font-lh-h5","--font-lh-body-small","--font-weight-medium","--font-weight-bold","--primitive-space-8","--primitive-space-12"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Lists & Feeds",
+  "role": "Footer",
+  "span": 2,
+  "tags": ["footer","mega footer","links","dark","enterprise","panels","sitemap","container query"]
+}

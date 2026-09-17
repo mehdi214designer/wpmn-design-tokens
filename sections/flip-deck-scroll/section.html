@@ -1,0 +1,132 @@
+<!-- WPMN Section: Flip Deck Scroll — a sticky 100vh viewport with a long scroll runway that scrubs a 3D card deck through rotateX (four faces pre-rotated 0/180/360/540, gated by backface), over a giant drifting serif ticker stripe. HTML import: the scroll-scrub engine (windows, lerp 0.12, rotateX math, face gating, stripe translate, dual scroll/rAF drive) is kept verbatim and re-scoped; the brand fonts and the hotlinked case videos/posters are replaced with token-gradient media (content swapped on use), no images/video and no third-party logos. Classes are td-prefixed and keyframes wpmn-td-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-flip-deck-scroll">
+  <style>
+@keyframes wpmn-td-drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .wpmn-sec-flip-deck-scroll{
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      --td-radius:var(--radius-md);
+      --td-card-w:min(500px, 88vw);
+      --td-media-a:linear-gradient(135deg, var(--btn-bg-enable), color-mix(in srgb, var(--btn-bg-enable) 55%, var(--color-error-primary)));
+      --td-media-b:linear-gradient(135deg, var(--color-success-primary), color-mix(in srgb, var(--color-success-primary) 55%, var(--btn-bg-enable)));
+      --td-media-c:linear-gradient(135deg, var(--color-warning-primary), var(--color-error-primary));
+      --td-media-d:linear-gradient(135deg, var(--color-error-primary), var(--btn-bg-enable));
+    }
+    .wpmn-sec-flip-deck-scroll *{box-sizing:border-box;margin:0}
+
+    .wpmn-sec-flip-deck-scroll .td-section{position:relative;background:var(--color-surface-secondary);height:calc(100vh + 4098px)}
+    .wpmn-sec-flip-deck-scroll .td-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+
+    .wpmn-sec-flip-deck-scroll .td-stripe{position:absolute;left:0;right:0;top:50%;height:120px;margin-top:-60px;overflow:visible;z-index:0;pointer-events:none}
+    .wpmn-sec-flip-deck-scroll .td-stripe-clip{position:absolute;inset:0;overflow:hidden}
+    .wpmn-sec-flip-deck-scroll .td-stripe-rows{will-change:transform}
+    .wpmn-sec-flip-deck-scroll .td-row{height:120px;margin-bottom:120px;overflow:hidden;white-space:nowrap}
+    .wpmn-sec-flip-deck-scroll .td-ticker{display:inline-flex;align-items:center;height:120px;font-size:var(--font-size-h1);line-height:1.2;letter-spacing:-0.03em;text-transform:uppercase;font-weight:var(--font-weight-regular);color:color-mix(in srgb, var(--color-text-primary-invert) 90%, transparent);animation:wpmn-td-drift 36s linear infinite}
+    .wpmn-sec-flip-deck-scroll .td-ticker span{padding-right:300px}
+
+    .wpmn-sec-flip-deck-scroll .td-scene{position:absolute;left:50%;top:50%;width:var(--td-card-w);height:calc(var(--td-card-w) * 0.754);transform:translate(-50%,-50%);perspective:1000px;z-index:1}
+    .wpmn-sec-flip-deck-scroll .td-deck{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+    .wpmn-sec-flip-deck-scroll .td-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--td-radius);overflow:hidden;background:var(--color-surface-secondary);display:block;text-decoration:none;color:inherit}
+    .wpmn-sec-flip-deck-scroll .td-media{position:absolute;inset:0;background:var(--td-media);transform:scale(1.05);transition:transform .6s cubic-bezier(.3,0,.2,1)}
+    .wpmn-sec-flip-deck-scroll .td-face:hover .td-media{transform:scale(1)}
+    .wpmn-sec-flip-deck-scroll .td-shade{position:absolute;inset:0;background:var(--color-surface-secondary);-webkit-mask:linear-gradient(transparent 0%, black 100%);mask:linear-gradient(transparent 0%, black 100%)}
+    .wpmn-sec-flip-deck-scroll .td-caption{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:var(--primitive-space-12);padding:var(--primitive-space-16) var(--primitive-space-16)}
+    .wpmn-sec-flip-deck-scroll .td-name{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-regular);letter-spacing:-0.02em;color:var(--color-text-primary-invert)}
+    .wpmn-sec-flip-deck-scroll .td-tags{display:flex;gap:6px}
+    .wpmn-sec-flip-deck-scroll .td-tag{background:var(--color-surface-primary);color:var(--color-text-primary);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);letter-spacing:-0.02em;padding:5px 10px;border-radius:var(--radius-xsm);white-space:nowrap}
+    .wpmn-sec-flip-deck-scroll .td-arrow{position:absolute;top:14px;right:14px;width:24px;height:24px;overflow:hidden;pointer-events:none;color:var(--color-text-primary-invert)}
+    .wpmn-sec-flip-deck-scroll .td-arrow svg{position:absolute;inset:0;width:24px;height:24px;transition:transform .45s cubic-bezier(.3,0,.2,1)}
+    .wpmn-sec-flip-deck-scroll .td-arrow svg.td-b{transform:translate(-24px,24px)}
+    .wpmn-sec-flip-deck-scroll .td-face:hover .td-arrow svg.td-a{transform:translate(24px,-24px)}
+    .wpmn-sec-flip-deck-scroll .td-face:hover .td-arrow svg.td-b{transform:translate(0,0)}
+
+    @media (max-width:809px){
+      .wpmn-sec-flip-deck-scroll .td-section{height:auto}
+      .wpmn-sec-flip-deck-scroll .td-sticky{position:static;height:auto;padding:60px var(--primitive-space-16);display:flex;flex-direction:column;gap:var(--primitive-space-24)}
+      .wpmn-sec-flip-deck-scroll .td-stripe{display:none}
+      .wpmn-sec-flip-deck-scroll .td-scene{position:static;width:100%;height:auto;transform:none;perspective:none}
+      .wpmn-sec-flip-deck-scroll .td-deck{position:static;transform:none !important}
+      .wpmn-sec-flip-deck-scroll .td-face{position:relative;inset:auto;height:calc((100vw - 32px) * 0.754);margin-bottom:20px;transform:none !important;display:block}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-flip-deck-scroll .td-ticker{animation:none}
+      .wpmn-sec-flip-deck-scroll .td-media{transition:none}
+    }
+  </style>
+
+  <div class="td-section">
+    <div class="td-sticky">
+      <div class="td-stripe"><div class="td-stripe-clip"><div class="td-stripe-rows"></div></div></div>
+      <div class="td-scene"><div class="td-deck"></div></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    // placeholder case data (swap media/links/copy per use)
+    var PROJECTS = [
+      { name:'Northwind', title:'Northwind', tags:['Design','Development','Branding'], href:'#', media:'a' },
+      { name:'Brightleaf', title:'Brightleaf', tags:['3D','Design','Development'], href:'#', media:'b' },
+      { name:'Harbor', title:'Harbor', tags:['Design','Branding','Development'], href:'#', media:'c' },
+      { name:'Cobalt', title:'Cobalt', tags:['Design','Branding','UI Kit'], href:'#', media:'d' }
+    ];
+    var ARROW = '<svg viewBox="0 0 24 24" fill="none"><path d="M18.5 5.5 L5.5 18.5 M18.5 5.5 L8.5 5.5 M18.5 5.5 L18.5 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    var deck = sec.querySelector('.td-deck');
+    var rowsEl = sec.querySelector('.td-stripe-rows');
+    var section = sec.querySelector('.td-section');
+
+    PROJECTS.forEach(function(p,k){
+      var a = document.createElement('a');
+      a.className = 'td-face';
+      a.href = p.href; if(p.href!=='#'){ a.target='_blank'; a.rel='noopener'; }
+      a.style.transform = 'rotateX(' + (k*180) + 'deg)';
+      a.innerHTML =
+        '<div class="td-media" style="--td-media:var(--td-media-' + p.media + ')"></div>' +
+        '<div class="td-shade"></div>' +
+        '<div class="td-arrow">' + ARROW.replace('<svg','<svg class="td-a"') + ARROW.replace('<svg','<svg class="td-b"') + '</div>' +
+        '<div class="td-caption"><span class="td-name">' + p.title + '</span>' +
+          '<span class="td-tags">' + p.tags.map(function(t){ return '<span class="td-tag">' + t + '</span>'; }).join('') + '</span></div>';
+      deck.appendChild(a);
+
+      var row = document.createElement('div');
+      row.className = 'td-row';
+      var names = ('<span>' + p.name + '</span>').repeat(4);
+      row.innerHTML = '<div class="td-ticker">' + names + names + '</div>';
+      rowsEl.appendChild(row);
+    });
+
+    var faces = [].slice.call(deck.children);
+    var W = [649, 900, 1799, 2050, 2949, 3200];
+    var clamp01 = function(x){ return Math.max(0, Math.min(1, x)); };
+    var narrow = function(){ return matchMedia('(max-width: 809px)').matches; };
+    var smooth = window.scrollY;
+
+    function update(){
+      if(narrow()){ faces.forEach(function(f){ f.style.display='block'; }); return; }
+      var rel = smooth - section.offsetTop;
+      var p = 0;
+      for(var i=0;i<W.length;i++) p += clamp01((rel - W[i]) / 250);
+      var theta = 90 * p;
+      deck.style.transform = 'rotateX(' + theta.toFixed(3) + 'deg)';
+      rowsEl.style.transform = 'translateY(' + (-120 * p).toFixed(2) + 'px)';
+      faces.forEach(function(f,k){
+        f.style.display = Math.abs(theta - k*180) < 180.5 ? 'block' : 'none';
+      });
+    }
+    function frame(){
+      var target = window.scrollY;
+      smooth += (target - smooth) * 0.12;
+      if(Math.abs(target - smooth) < 0.1) smooth = target;
+      update();
+      requestAnimationFrame(frame);
+    }
+    window.addEventListener('scroll', function(){ smooth = window.scrollY; update(); }, {passive:true});
+    window.addEventListener('resize', update);
+    window.__sectionUpdate = function(){ smooth = window.scrollY; update(); };
+    update();
+    requestAnimationFrame(frame);
+  })();
+  </script>
+</section>

@@ -1,0 +1,24 @@
+{
+  "id": "sticky-stagger-cards",
+  "name": "Sticky Stagger Cards",
+  "type": "html",
+  "status": "stable",
+  "description": "A dark split section with a sticky left intro (heading, sub, roll-hover button, social proof) beside a right column of five cards that pin at staggered tops and pile up leaving 20px lips, purely with CSS sticky.",
+  "files": { "html": "sections/sticky-stagger-cards/section.html" },
+  "prompt": "sections/sticky-stagger-cards/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-sticky-stagger-cards",
+  "interactions": [
+    "the left intro is position:sticky top:100px; the five cards are each position:sticky with staggered tops 100/120/140/160/180px so they stack leaving 20px lips as you scroll (pure CSS, no JS transforms)",
+    "the button label rolls per-letter on hover: each letter translateY -100% with an 18ms-per-index delay, revealing its duplicate (JS splits the label into spans)",
+    "under 999px the grid stacks and cards go full width; prefers-reduced-motion disables the letter roll"
+  ],
+  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-primary-invert","--color-text-secondary-invert","--btn-bg-enable","--radius-xsm","--shadow-soft-300","--font-family-base","--font-size-h1","--font-size-h6","--font-size-body-base","--font-size-body-small","--font-lh-h1","--font-lh-h6","--font-lh-body-base","--font-weight-medium","--font-weight-semibold","--primitive-space-8","--primitive-space-12","--primitive-space-16","--primitive-space-24"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "role": "Features",
+  "span": 2,
+  "tags": ["sticky","stagger","cards","stack","split","dark","features","scroll","pricing"]
+}
