@@ -3,7 +3,7 @@
   "name": "WPMN Design System",
   "description": "AI-friendly component library and CSS design token system for 16 WPManageNinja product brands. Fetch a component's prompt.md to rebuild it from spec, or fetch its source files to use the code directly. Load token CSS first.",
   "version": "1.6.0",
-  "generatedAt": "2026-09-17T09:48:45.317Z",
+  "generatedAt": "2026-09-17T10:06:42.452Z",
   "baseUrl": "https://raw.githubusercontent.com/mehdi214designer/wpmn-design-tokens/master/",
   "aiEntryPoint": "llms.txt",
   "tokens": {
@@ -3358,6 +3358,73 @@
       ]
     },
     {
+      "id": "hero-services",
+      "name": "Hero Services",
+      "type": "html",
+      "status": "stable",
+      "description": "A warm split hero: a left column (kicker, big heading, sub, primary + ghost buttons, footer note) beside a right bento of four numbered service cards, each with a number, title, description, arrow chip, and a real photo.",
+      "files": {
+        "html": "sections/hero-services/section.html"
+      },
+      "prompt": "sections/hero-services/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-hero-services",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the left column and the four cards fade up (wpmn-hs-up 600ms), the cards staggered 70/140/210ms",
+        "buttons shift background on hover; each card photo carries a warm warning-tint overlay",
+        "prefers-reduced-motion: content rendered in place, no animation"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--color-warning-primary",
+        "--btn-bg-glow",
+        "--radius-xsm",
+        "--radius-md",
+        "--radius-lg",
+        "--font-family-base",
+        "--font-size-h1",
+        "--font-size-h6",
+        "--font-size-body-medium",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-lh-h6",
+        "--font-lh-body-medium",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-weight-medium",
+        "--font-weight-semibold",
+        "--primitive-space-8",
+        "--primitive-space-12",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "role": "Hero",
+      "span": 2,
+      "tags": [
+        "hero",
+        "services",
+        "bento",
+        "cards",
+        "agency",
+        "ai",
+        "warm",
+        "photos"
+      ]
+    },
+    {
       "id": "hero-standard",
       "name": "Hero 4",
       "type": "html",
@@ -4337,6 +4404,73 @@
       ]
     },
     {
+      "id": "pricing-engagements",
+      "name": "Pricing Engagements",
+      "type": "html",
+      "status": "stable",
+      "description": "A warm pricing band: a left intro, a row of three engagement cards with the middle one recommended and highlighted, and a real photo bleeding off the right edge.",
+      "files": {
+        "html": "sections/pricing-engagements/section.html"
+      },
+      "prompt": "sections/pricing-engagements/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-pricing-engagements",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the intro and the three cards fade up staggered (wpmn-pe-up 600ms, 80/160ms)",
+        "the recommended card carries a warning border, a warning glow, a Recommended badge, a warning icon tile, and a solid warning button; the others use ghost buttons",
+        "the right photo bleeds past the section padding with a warm warning-tint overlay",
+        "prefers-reduced-motion: content rendered in place, no animation"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--color-warning-primary",
+        "--btn-bg-glow",
+        "--radius-xsm",
+        "--radius-md",
+        "--radius-lg",
+        "--font-family-base",
+        "--font-size-h2",
+        "--font-size-h5",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h5",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-weight-medium",
+        "--font-weight-semibold",
+        "--primitive-space-8",
+        "--primitive-space-12",
+        "--primitive-space-16",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Grids",
+      "role": "Pricing",
+      "span": 2,
+      "tags": [
+        "pricing",
+        "engagement",
+        "plans",
+        "cards",
+        "recommended",
+        "warm",
+        "photos"
+      ]
+    },
+    {
       "id": "pricing-table",
       "name": "Pricing 1",
       "type": "html",
@@ -4449,6 +4583,68 @@
         "billing switch",
         "enterprise",
         "feature list"
+      ]
+    },
+    {
+      "id": "process-steps",
+      "name": "Process Steps",
+      "type": "html",
+      "status": "stable",
+      "description": "A warm process band: a left intro beside four numbered steps over a wide real photo band.",
+      "files": {
+        "html": "sections/process-steps/section.html"
+      },
+      "prompt": "sections/process-steps/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-process-steps",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the intro, the four steps (staggered 70/140/210ms), and the photo band fade up (wpmn-ps-up 600-700ms)",
+        "the photo band carries a warm warning-tint overlay",
+        "prefers-reduced-motion: content rendered in place, no animation"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-warning-primary",
+        "--radius-lg",
+        "--font-family-base",
+        "--font-size-h2",
+        "--font-size-h6",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-lh-h2",
+        "--font-lh-h6",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-weight-regular",
+        "--font-weight-medium",
+        "--font-weight-semibold",
+        "--primitive-space-8",
+        "--primitive-space-16",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "How It Works",
+      "role": "How It Works",
+      "span": 2,
+      "tags": [
+        "process",
+        "steps",
+        "timeline",
+        "numbers",
+        "how it works",
+        "warm",
+        "photos"
       ]
     },
     {
@@ -5813,6 +6009,70 @@
       ]
     },
     {
+      "id": "testimonials-results",
+      "name": "Testimonials Results",
+      "type": "html",
+      "status": "stable",
+      "description": "A warm testimonial band: a left column with heading, two stats and a case-studies link, a middle column of two quotes with authors, and a right real portrait photo in a tinted glass frame.",
+      "files": {
+        "html": "sections/testimonials-results/section.html"
+      },
+      "prompt": "sections/testimonials-results/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-testimonials-results",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the three columns fade up staggered (wpmn-tr-up 600ms, 90/180ms)",
+        "the portrait bleeds past the section padding with a warm warning-tint overlay",
+        "prefers-reduced-motion: content rendered in place, no animation"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--color-warning-primary",
+        "--radius-lg",
+        "--font-family-base",
+        "--font-size-h1",
+        "--font-size-h2",
+        "--font-size-h6",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h2",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-weight-regular",
+        "--font-weight-medium",
+        "--font-weight-semibold",
+        "--font-weight-bold",
+        "--primitive-space-12",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "role": "Testimonial",
+      "span": 2,
+      "tags": [
+        "testimonials",
+        "quotes",
+        "results",
+        "stats",
+        "portrait",
+        "warm",
+        "photos"
+      ]
+    },
+    {
       "id": "timeline-roadmap",
       "name": "Roadmap 1",
       "type": "html",
@@ -5858,6 +6118,74 @@
         "quarters"
       ],
       "role": "Roadmap"
+    },
+    {
+      "id": "trusted-stats",
+      "name": "Trusted Stats",
+      "type": "html",
+      "status": "stable",
+      "description": "A three-part trust band: left heading with primary + ghost buttons, a middle trusted-by placeholder logo grid over three headline stats, and a right real photo visual with a floating caption card.",
+      "files": {
+        "html": "sections/trusted-stats/section.html"
+      },
+      "prompt": "sections/trusted-stats/prompt.md",
+      "dependsOn": [
+        "index.css"
+      ],
+      "baseClass": "wpmn-sec-trusted-stats",
+      "interactions": [
+        "on first view (IntersectionObserver adds .is-inview) the three columns fade up staggered (wpmn-ts-up 600ms, 90/180ms)",
+        "buttons shift background on hover; the photo carries a warm warning-tint overlay with a floating caption card",
+        "prefers-reduced-motion: content rendered in place, no animation"
+      ],
+      "tokensUsed": [
+        "--color-surface-primary",
+        "--color-text-primary",
+        "--color-text-secondary",
+        "--color-text-primary-invert",
+        "--color-warning-primary",
+        "--btn-bg-glow",
+        "--radius-xsm",
+        "--radius-md",
+        "--radius-lg",
+        "--shadow-soft-500",
+        "--font-family-base",
+        "--font-size-h2",
+        "--font-size-h3",
+        "--font-size-h6",
+        "--font-size-body-base",
+        "--font-size-body-small",
+        "--font-size-body-label",
+        "--font-lh-h2",
+        "--font-lh-body-base",
+        "--font-lh-body-small",
+        "--font-weight-medium",
+        "--font-weight-semibold",
+        "--font-weight-bold",
+        "--primitive-space-8",
+        "--primitive-space-12",
+        "--primitive-space-24",
+        "--primitive-space-32",
+        "--primitive-space-96"
+      ],
+      "brands": "all",
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "category": "Sections",
+      "subcategory": "Trust & Social Proof",
+      "role": "Clients",
+      "span": 2,
+      "tags": [
+        "trust",
+        "logos",
+        "stats",
+        "clients",
+        "social proof",
+        "warm",
+        "photos"
+      ]
     },
     {
       "id": "work-portfolio",

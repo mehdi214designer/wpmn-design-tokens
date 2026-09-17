@@ -1,0 +1,78 @@
+<!-- WPMN Section: Process Steps — a warm process band: left (kicker, heading, sub, footer note) and right (four numbered steps over a wide real photo band). Image mode, tokenized, motion added. The photo is a verified Unsplash image with a warm token tint; the orange accent maps to the warning token (content swapped on use). Classes are ps-prefixed and keyframes wpmn-ps-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-process-steps">
+  <style>
+@keyframes wpmn-ps-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-process-steps{
+      background:var(--ps-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --ps-bg:color-mix(in srgb, var(--color-warning-primary) 5%, var(--color-surface-primary));
+      --ps-line:color-mix(in srgb, var(--color-text-primary) 12%, transparent);
+      --ps-tint:color-mix(in srgb, var(--color-warning-primary) 22%, transparent);
+    }
+    .wpmn-sec-process-steps *{box-sizing:border-box;margin:0}
+    .wpmn-sec-process-steps .ps-wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,2fr);gap:56px;align-items:start}
+
+    .wpmn-sec-process-steps .ps-left{opacity:0}
+    .wpmn-sec-process-steps.is-inview .ps-left{animation:wpmn-ps-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-process-steps .ps-kicker{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);letter-spacing:.12em;text-transform:uppercase;color:var(--color-warning-primary);margin-bottom:var(--primitive-space-24)}
+    .wpmn-sec-process-steps h2{font-size:var(--font-size-h2);line-height:1.1;font-weight:var(--font-weight-medium);letter-spacing:-.02em;color:var(--color-text-primary);margin-bottom:var(--primitive-space-16);max-width:8ch}
+    .wpmn-sec-process-steps .ps-sub{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);max-width:26ch;margin-bottom:40px}
+    .wpmn-sec-process-steps .ps-note{display:flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+    .wpmn-sec-process-steps .ps-note::before{content:"";width:6px;height:6px;border-radius:999px;box-shadow:inset 0 0 0 4px var(--color-warning-primary)}
+
+    .wpmn-sec-process-steps .ps-right{display:flex;flex-direction:column;gap:44px}
+    .wpmn-sec-process-steps .ps-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+    .wpmn-sec-process-steps .ps-step{opacity:0}
+    .wpmn-sec-process-steps.is-inview .ps-step{animation:wpmn-ps-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-process-steps.is-inview .ps-step:nth-child(2){animation-delay:70ms}
+    .wpmn-sec-process-steps.is-inview .ps-step:nth-child(3){animation-delay:140ms}
+    .wpmn-sec-process-steps.is-inview .ps-step:nth-child(4){animation-delay:210ms}
+    .wpmn-sec-process-steps .ps-num{font-size:var(--font-size-h2);line-height:1;font-weight:var(--font-weight-regular);color:var(--color-warning-primary);letter-spacing:-.02em}
+    .wpmn-sec-process-steps .ps-tick{width:1px;height:34px;background:var(--ps-line);margin:14px 0 20px}
+    .wpmn-sec-process-steps .ps-step h3{font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);margin-bottom:8px}
+    .wpmn-sec-process-steps .ps-step p{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);max-width:22ch}
+
+    .wpmn-sec-process-steps .ps-band{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:24/8;opacity:0}
+    .wpmn-sec-process-steps.is-inview .ps-band{animation:wpmn-ps-up .7s cubic-bezier(.22,1,.36,1) both;animation-delay:200ms}
+    .wpmn-sec-process-steps .ps-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .wpmn-sec-process-steps .ps-band::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg, transparent 55%, var(--ps-tint));mix-blend-mode:multiply}
+
+    @media (max-width:980px){
+      .wpmn-sec-process-steps .ps-wrap{grid-template-columns:1fr;gap:40px}
+      .wpmn-sec-process-steps .ps-steps{grid-template-columns:1fr 1fr;gap:32px}
+      .wpmn-sec-process-steps .ps-band{aspect-ratio:16/9}
+    }
+    @media (max-width:768px){ .wpmn-sec-process-steps{padding:64px var(--primitive-space-24)} }
+    @media (prefers-reduced-motion:reduce){ .wpmn-sec-process-steps .ps-left,.wpmn-sec-process-steps .ps-step,.wpmn-sec-process-steps .ps-band{opacity:1 !important;animation:none !important} }
+  </style>
+
+  <div class="ps-wrap">
+    <div class="ps-left">
+      <div class="ps-kicker">Our process</div>
+      <h2>From insight to impact.</h2>
+      <p class="ps-sub">A human-centered process powered by AI.</p>
+      <div class="ps-note">Collaborative. Transparent. Results-driven.</div>
+    </div>
+
+    <div class="ps-right">
+      <div class="ps-steps">
+        <div class="ps-step"><div class="ps-num">01</div><div class="ps-tick"></div><h3>Discover</h3><p>We learn your goals, users, and challenges.</p></div>
+        <div class="ps-step"><div class="ps-num">02</div><div class="ps-tick"></div><h3>Strategize</h3><p>We define the right AI solution and roadmap.</p></div>
+        <div class="ps-step"><div class="ps-num">03</div><div class="ps-tick"></div><h3>Build</h3><p>We design, train, and build with precision.</p></div>
+        <div class="ps-step"><div class="ps-num">04</div><div class="ps-tick"></div><h3>Optimize</h3><p>We measure, refine, and continuously improve.</p></div>
+      </div>
+      <div class="ps-band"><img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&w=1400&q=80" alt="Abstract process visual" loading="lazy"></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.12});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+  })();
+  </script>
+</section>

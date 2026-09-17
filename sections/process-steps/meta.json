@@ -1,0 +1,24 @@
+{
+  "id": "process-steps",
+  "name": "Process Steps",
+  "type": "html",
+  "status": "stable",
+  "description": "A warm process band: a left intro beside four numbered steps over a wide real photo band.",
+  "files": { "html": "sections/process-steps/section.html" },
+  "prompt": "sections/process-steps/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-process-steps",
+  "interactions": [
+    "on first view (IntersectionObserver adds .is-inview) the intro, the four steps (staggered 70/140/210ms), and the photo band fade up (wpmn-ps-up 600-700ms)",
+    "the photo band carries a warm warning-tint overlay",
+    "prefers-reduced-motion: content rendered in place, no animation"
+  ],
+  "tokensUsed": ["--color-surface-primary","--color-text-primary","--color-text-secondary","--color-warning-primary","--radius-lg","--font-family-base","--font-size-h2","--font-size-h6","--font-size-body-base","--font-size-body-small","--font-lh-h2","--font-lh-h6","--font-lh-body-base","--font-lh-body-small","--font-weight-regular","--font-weight-medium","--font-weight-semibold","--primitive-space-8","--primitive-space-16","--primitive-space-24","--primitive-space-32","--primitive-space-96"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "How It Works",
+  "role": "How It Works",
+  "span": 2,
+  "tags": ["process","steps","timeline","numbers","how it works","warm","photos"]
+}

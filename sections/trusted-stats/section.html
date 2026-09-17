@@ -1,0 +1,100 @@
+<!-- WPMN Section: Trusted Stats — a three-part trust band: left (kicker, heading, sub, primary + ghost buttons), middle (a "trusted by" placeholder logo grid over three headline stats), and right (a tall real photo visual with a floating caption card). Image mode, tokenized, motion added. The photo is a verified Unsplash image with a warm token tint; logos are generic placeholders and the orange accent maps to the warning token (content swapped on use). Classes are ts-prefixed and keyframes wpmn-ts-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-trusted-stats">
+  <style>
+@keyframes wpmn-ts-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-trusted-stats{
+      background:var(--ts-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);overflow:hidden;
+      --ts-bg:color-mix(in srgb, var(--color-warning-primary) 5%, var(--color-surface-primary));
+      --ts-line:color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+      --ts-tint:color-mix(in srgb, var(--color-warning-primary) 24%, transparent);
+    }
+    .wpmn-sec-trusted-stats *{box-sizing:border-box;margin:0}
+    .wpmn-sec-trusted-stats .ts-wrap{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr .8fr;gap:48px;align-items:center}
+
+    .wpmn-sec-trusted-stats .ts-col{opacity:0}
+    .wpmn-sec-trusted-stats.is-inview .ts-col{animation:wpmn-ts-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-trusted-stats.is-inview .ts-mid{animation-delay:90ms}
+    .wpmn-sec-trusted-stats.is-inview .ts-vis{animation-delay:180ms}
+
+    .wpmn-sec-trusted-stats .ts-kicker{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);letter-spacing:.12em;text-transform:uppercase;color:var(--color-warning-primary);margin-bottom:var(--primitive-space-24)}
+    .wpmn-sec-trusted-stats h2{font-size:var(--font-size-h2);line-height:1.1;font-weight:var(--font-weight-medium);letter-spacing:-.02em;color:var(--color-text-primary);margin-bottom:var(--primitive-space-24);max-width:12ch}
+    .wpmn-sec-trusted-stats .ts-sub{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);max-width:34ch;margin-bottom:32px}
+    .wpmn-sec-trusted-stats .ts-actions{display:flex;gap:var(--primitive-space-12);flex-wrap:wrap}
+    .wpmn-sec-trusted-stats .ts-btn{display:inline-flex;align-items:center;gap:var(--primitive-space-12);height:52px;padding:0 var(--primitive-space-24);border-radius:var(--radius-xsm);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);text-decoration:none;border:0;cursor:pointer;transition:background-color .18s ease}
+    .wpmn-sec-trusted-stats .ts-btn .ts-ic{width:26px;height:26px;border-radius:999px;display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-trusted-stats .ts-btn .ts-ic svg{width:13px;height:13px}
+    .wpmn-sec-trusted-stats .ts-pri{background:var(--color-warning-primary);color:var(--color-text-primary-invert);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+    .wpmn-sec-trusted-stats .ts-pri:hover{background:color-mix(in srgb, var(--color-warning-primary) 88%, var(--color-text-primary))}
+    .wpmn-sec-trusted-stats .ts-pri .ts-ic{background:var(--color-surface-primary);color:var(--color-text-primary)}
+    .wpmn-sec-trusted-stats .ts-ghost{background:var(--color-surface-primary);color:var(--color-text-primary);box-shadow:inset 0 0 0 1px var(--ts-line)}
+    .wpmn-sec-trusted-stats .ts-ghost .ts-ic{background:color-mix(in srgb, var(--color-text-primary) 6%, var(--color-surface-primary));color:var(--color-text-primary)}
+
+    .wpmn-sec-trusted-stats .ts-lbl{font-size:var(--font-size-body-label);line-height:1;font-weight:var(--font-weight-semibold);letter-spacing:.14em;text-transform:uppercase;color:var(--color-text-secondary);padding-bottom:16px;border-bottom:1px solid var(--ts-line);margin-bottom:28px}
+    .wpmn-sec-trusted-stats .ts-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 20px;margin-bottom:36px}
+    .wpmn-sec-trusted-stats .ts-logo{display:inline-flex;align-items:center;gap:var(--primitive-space-8);font-size:var(--font-size-h6);line-height:1;font-weight:var(--font-weight-bold);letter-spacing:-.01em;color:color-mix(in srgb, var(--color-text-primary) 55%, transparent);white-space:nowrap}
+    .wpmn-sec-trusted-stats .ts-logo svg{width:20px;height:20px}
+    .wpmn-sec-trusted-stats .ts-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:28px;border-top:1px solid var(--ts-line)}
+    .wpmn-sec-trusted-stats .ts-stat b{display:block;font-size:var(--font-size-h3);line-height:1;font-weight:var(--font-weight-semibold);color:var(--color-warning-primary);margin-bottom:10px}
+    .wpmn-sec-trusted-stats .ts-stat span{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+
+    .wpmn-sec-trusted-stats .ts-vis{position:relative;align-self:stretch;min-height:440px;border-radius:var(--radius-lg) 0 0 var(--radius-lg);overflow:hidden}
+    .wpmn-sec-trusted-stats .ts-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .wpmn-sec-trusted-stats .ts-vis::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg, transparent 45%, var(--ts-tint));mix-blend-mode:multiply}
+    .wpmn-sec-trusted-stats .ts-flt{position:absolute;left:18px;bottom:18px;z-index:1;max-width:190px;background:var(--color-surface-primary);border-radius:var(--radius-md);padding:14px 16px;box-shadow:var(--shadow-soft-500)}
+    .wpmn-sec-trusted-stats .ts-flt .ts-ft{display:flex;align-items:center;gap:6px;font-size:var(--font-size-body-small);line-height:1;font-weight:var(--font-weight-semibold);color:var(--color-text-primary);margin-bottom:8px}
+    .wpmn-sec-trusted-stats .ts-flt .ts-ft::before{content:"";width:7px;height:7px;border-radius:999px;box-shadow:inset 0 0 0 4px var(--color-warning-primary)}
+    .wpmn-sec-trusted-stats .ts-flt p{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary)}
+
+    @media (max-width:980px){
+      .wpmn-sec-trusted-stats .ts-wrap{grid-template-columns:1fr 1fr}
+      .wpmn-sec-trusted-stats .ts-vis{grid-column:1 / -1;min-height:320px;border-radius:var(--radius-lg)}
+    }
+    @media (max-width:768px){
+      .wpmn-sec-trusted-stats{padding:64px var(--primitive-space-24)}
+      .wpmn-sec-trusted-stats .ts-wrap{grid-template-columns:1fr;gap:40px}
+    }
+    @media (prefers-reduced-motion:reduce){ .wpmn-sec-trusted-stats .ts-col{opacity:1 !important;animation:none !important} }
+  </style>
+
+  <div class="ts-wrap">
+    <div class="ts-col ts-left">
+      <div class="ts-kicker">Trusted by innovators</div>
+      <h2>Built with trust. Backed by results.</h2>
+      <p class="ts-sub">We partner with forward-thinking teams to design and build AI products that create measurable impact.</p>
+      <div class="ts-actions">
+        <a class="ts-btn ts-pri" href="#" onclick="return false">Start a project <span class="ts-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="ts-btn ts-ghost" href="#" onclick="return false">View our approach <span class="ts-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="ts-col ts-mid">
+      <div class="ts-lbl">Trusted by</div>
+      <div class="ts-logos"></div>
+      <div class="ts-stats">
+        <div class="ts-stat"><b>30+</b><span>AI products delivered</span></div>
+        <div class="ts-stat"><b>98%</b><span>Client satisfaction rate</span></div>
+        <div class="ts-stat"><b>40%</b><span>Avg. improvement in model performance</span></div>
+      </div>
+    </div>
+
+    <div class="ts-col ts-vis">
+      <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=900&q=80" alt="Abstract product visual" loading="lazy">
+      <div class="ts-flt"><div class="ts-ft">AI with purpose.</div><p>Outcomes that move your business forward.</p></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var mark = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.4" fill="currentColor"/></svg>';
+    var logos = ['Stripe','Notion','Dafiti','Replit','Vanta','Brex'];
+    sec.querySelector('.ts-logos').innerHTML = logos.map(function(n){ return '<span class="ts-logo">' + mark + n + '</span>'; }).join('');
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.12});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+  })();
+  </script>
+</section>

@@ -1,0 +1,24 @@
+{
+  "id": "trusted-stats",
+  "name": "Trusted Stats",
+  "type": "html",
+  "status": "stable",
+  "description": "A three-part trust band: left heading with primary + ghost buttons, a middle trusted-by placeholder logo grid over three headline stats, and a right real photo visual with a floating caption card.",
+  "files": { "html": "sections/trusted-stats/section.html" },
+  "prompt": "sections/trusted-stats/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-trusted-stats",
+  "interactions": [
+    "on first view (IntersectionObserver adds .is-inview) the three columns fade up staggered (wpmn-ts-up 600ms, 90/180ms)",
+    "buttons shift background on hover; the photo carries a warm warning-tint overlay with a floating caption card",
+    "prefers-reduced-motion: content rendered in place, no animation"
+  ],
+  "tokensUsed": ["--color-surface-primary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--color-warning-primary","--btn-bg-glow","--radius-xsm","--radius-md","--radius-lg","--shadow-soft-500","--font-family-base","--font-size-h2","--font-size-h3","--font-size-h6","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-lh-h2","--font-lh-body-base","--font-lh-body-small","--font-weight-medium","--font-weight-semibold","--font-weight-bold","--primitive-space-8","--primitive-space-12","--primitive-space-24","--primitive-space-32","--primitive-space-96"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Trust & Social Proof",
+  "role": "Clients",
+  "span": 2,
+  "tags": ["trust","logos","stats","clients","social proof","warm","photos"]
+}

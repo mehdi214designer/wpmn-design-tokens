@@ -1,0 +1,113 @@
+<!-- WPMN Section: Pricing Engagements — a warm pricing band: left (kicker, heading, sub, footer note), a row of three engagement cards (the middle one recommended and highlighted), and a real photo bleeding off the right edge. Image mode, tokenized, motion added. The photo is a verified Unsplash image with a warm token tint; the orange accent maps to the warning token (content swapped on use). Classes are pe-prefixed and keyframes wpmn-pe-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-pricing-engagements">
+  <style>
+@keyframes wpmn-pe-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-pricing-engagements{
+      background:var(--pe-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);overflow:hidden;
+      --pe-bg:color-mix(in srgb, var(--color-warning-primary) 5%, var(--color-surface-primary));
+      --pe-line:color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+      --pe-tint:color-mix(in srgb, var(--color-warning-primary) 24%, transparent);
+      --pe-tile:color-mix(in srgb, var(--color-text-primary) 5%, var(--color-surface-primary));
+    }
+    .wpmn-sec-pricing-engagements *{box-sizing:border-box;margin:0}
+    .wpmn-sec-pricing-engagements .pe-wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,2.2fr) minmax(0,.5fr);gap:40px;align-items:center}
+
+    .wpmn-sec-pricing-engagements .pe-left{opacity:0}
+    .wpmn-sec-pricing-engagements.is-inview .pe-left{animation:wpmn-pe-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-pricing-engagements .pe-kicker{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);font-weight:var(--font-weight-semibold);letter-spacing:.12em;text-transform:uppercase;color:var(--color-warning-primary);margin-bottom:var(--primitive-space-24)}
+    .wpmn-sec-pricing-engagements h2{font-size:var(--font-size-h2);line-height:1.1;font-weight:var(--font-weight-medium);letter-spacing:-.02em;color:var(--color-text-primary);margin-bottom:var(--primitive-space-16);max-width:10ch}
+    .wpmn-sec-pricing-engagements .pe-sub{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);max-width:30ch;margin-bottom:40px}
+    .wpmn-sec-pricing-engagements .pe-note{display:flex;align-items:flex-start;gap:var(--primitive-space-8);font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);max-width:26ch}
+    .wpmn-sec-pricing-engagements .pe-note::before{content:"";width:6px;height:6px;margin-top:6px;border-radius:999px;box-shadow:inset 0 0 0 4px var(--color-warning-primary);flex:none}
+
+    .wpmn-sec-pricing-engagements .pe-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+    .wpmn-sec-pricing-engagements .pe-card{position:relative;background:var(--color-surface-primary);border:1px solid var(--pe-line);border-radius:var(--radius-lg);padding:28px 26px;display:flex;flex-direction:column;opacity:0}
+    .wpmn-sec-pricing-engagements.is-inview .pe-card{animation:wpmn-pe-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-pricing-engagements.is-inview .pe-card:nth-child(2){animation-delay:80ms}
+    .wpmn-sec-pricing-engagements.is-inview .pe-card:nth-child(3){animation-delay:160ms}
+    .wpmn-sec-pricing-engagements .pe-card.pe-reco{border-color:var(--color-warning-primary);box-shadow:0 18px 50px color-mix(in srgb, var(--color-warning-primary) 22%, transparent)}
+    .wpmn-sec-pricing-engagements .pe-badge{position:absolute;top:20px;right:20px;padding:5px 12px;border-radius:999px;background:var(--color-warning-primary);color:var(--color-text-primary-invert);font-size:var(--font-size-body-label);line-height:1;font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-pricing-engagements .pe-tile{width:48px;height:48px;border-radius:var(--radius-md);background:var(--pe-tile);color:var(--color-text-primary);display:flex;align-items:center;justify-content:center;margin-bottom:26px}
+    .wpmn-sec-pricing-engagements .pe-card.pe-reco .pe-tile{background:var(--color-warning-primary);color:var(--color-text-primary-invert)}
+    .wpmn-sec-pricing-engagements .pe-tile svg{width:22px;height:22px}
+    .wpmn-sec-pricing-engagements .pe-card h3{font-size:var(--font-size-h5);line-height:var(--font-lh-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-primary);margin-bottom:10px}
+    .wpmn-sec-pricing-engagements .pe-card .pe-desc{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);margin-bottom:20px;max-width:26ch}
+    .wpmn-sec-pricing-engagements .pe-div{height:1px;background:var(--pe-line);margin-bottom:20px}
+    .wpmn-sec-pricing-engagements .pe-feats{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+    .wpmn-sec-pricing-engagements .pe-feats li{display:flex;align-items:center;gap:10px;font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-primary)}
+    .wpmn-sec-pricing-engagements .pe-feats li::before{content:"";width:6px;height:6px;border-radius:999px;box-shadow:inset 0 0 0 4px var(--color-warning-primary);flex:none}
+    .wpmn-sec-pricing-engagements .pe-btn{margin-top:auto;display:inline-flex;align-items:center;justify-content:space-between;gap:var(--primitive-space-12);height:48px;padding:0 18px;border-radius:var(--radius-xsm);font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);font-weight:var(--font-weight-semibold);text-decoration:none;cursor:pointer;border:0}
+    .wpmn-sec-pricing-engagements .pe-btn svg{width:15px;height:15px}
+    .wpmn-sec-pricing-engagements .pe-btn.pe-ghost{background:var(--color-surface-primary);color:var(--color-text-primary);box-shadow:inset 0 0 0 1px var(--pe-line)}
+    .wpmn-sec-pricing-engagements .pe-btn.pe-solid{background:var(--color-warning-primary);color:var(--color-text-primary-invert);box-shadow:inset 3px 4px 4px 0 var(--btn-bg-glow, rgba(255,255,255,0.3))}
+
+    .wpmn-sec-pricing-engagements .pe-vis{position:relative;align-self:stretch;min-height:520px;margin-right:calc(-1 * var(--primitive-space-32));border-radius:var(--radius-lg) 0 0 var(--radius-lg);overflow:hidden}
+    .wpmn-sec-pricing-engagements .pe-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .wpmn-sec-pricing-engagements .pe-vis::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg, transparent 40%, var(--pe-tint));mix-blend-mode:multiply}
+
+    @media (max-width:1080px){
+      .wpmn-sec-pricing-engagements .pe-wrap{grid-template-columns:1fr}
+      .wpmn-sec-pricing-engagements .pe-vis{display:none}
+    }
+    @media (max-width:820px){
+      .wpmn-sec-pricing-engagements{padding:64px var(--primitive-space-24)}
+      .wpmn-sec-pricing-engagements .pe-cards{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion:reduce){ .wpmn-sec-pricing-engagements .pe-left,.wpmn-sec-pricing-engagements .pe-card{opacity:1 !important;animation:none !important} }
+  </style>
+
+  <div class="pe-wrap">
+    <div class="pe-left">
+      <div class="pe-kicker">Pricing / Engagement models</div>
+      <h2>Flexible engagements. Real outcomes.</h2>
+      <p class="pe-sub">Choose the model that fits your goals. Scale as you grow.</p>
+      <div class="pe-note">All engagements include strategy, design &amp; ongoing support.</div>
+    </div>
+
+    <div class="pe-cards">
+      <article class="pe-card">
+        <span class="pe-tile"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="1.6" fill="currentColor"/><path d="M7 15h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <h3>Pilot Sprint</h3>
+        <p class="pe-desc">Validate your idea with speed and clarity.</p>
+        <div class="pe-div"></div>
+        <ul class="pe-feats"><li>2-4 week engagement</li><li>Focused use case</li><li>Strategy &amp; prototype</li></ul>
+        <a class="pe-btn pe-ghost" href="#" onclick="return false">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </article>
+
+      <article class="pe-card pe-reco">
+        <span class="pe-badge">Recommended</span>
+        <span class="pe-tile"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="1.6" fill="currentColor"/><path d="M7 15h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <h3>Build &amp; Scale</h3>
+        <p class="pe-desc">End-to-end development for lasting impact.</p>
+        <div class="pe-div"></div>
+        <ul class="pe-feats"><li>Custom AI solution</li><li>Full-cycle delivery</li><li>Integration &amp; training</li></ul>
+        <a class="pe-btn pe-solid" href="#" onclick="return false">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </article>
+
+      <article class="pe-card">
+        <span class="pe-tile"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="16" cy="12" r="1.5" fill="currentColor"/></svg></span>
+        <h3>Retained Partner</h3>
+        <p class="pe-desc">Ongoing AI innovation and continuous growth.</p>
+        <div class="pe-div"></div>
+        <ul class="pe-feats"><li>Monthly partnership</li><li>Continuous optimization</li><li>Priority support</li></ul>
+        <a class="pe-btn pe-ghost" href="#" onclick="return false">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </article>
+    </div>
+
+    <div class="pe-vis">
+      <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Abstract engagement visual" loading="lazy">
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.12});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+  })();
+  </script>
+</section>

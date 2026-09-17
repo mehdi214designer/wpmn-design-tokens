@@ -1,0 +1,24 @@
+{
+  "id": "hero-services",
+  "name": "Hero Services",
+  "type": "html",
+  "status": "stable",
+  "description": "A warm split hero: a left column (kicker, big heading, sub, primary + ghost buttons, footer note) beside a right bento of four numbered service cards, each with a number, title, description, arrow chip, and a real photo.",
+  "files": { "html": "sections/hero-services/section.html" },
+  "prompt": "sections/hero-services/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-hero-services",
+  "interactions": [
+    "on first view (IntersectionObserver adds .is-inview) the left column and the four cards fade up (wpmn-hs-up 600ms), the cards staggered 70/140/210ms",
+    "buttons shift background on hover; each card photo carries a warm warning-tint overlay",
+    "prefers-reduced-motion: content rendered in place, no animation"
+  ],
+  "tokensUsed": ["--color-surface-primary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--color-warning-primary","--btn-bg-glow","--radius-xsm","--radius-md","--radius-lg","--font-family-base","--font-size-h1","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-lh-h6","--font-lh-body-medium","--font-lh-body-base","--font-lh-body-small","--font-weight-medium","--font-weight-semibold","--primitive-space-8","--primitive-space-12","--primitive-space-24","--primitive-space-32","--primitive-space-96"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "role": "Hero",
+  "span": 2,
+  "tags": ["hero","services","bento","cards","agency","ai","warm","photos"]
+}
