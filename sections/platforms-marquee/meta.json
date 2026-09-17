@@ -1,0 +1,27 @@
+{
+  "id": "platforms-marquee",
+  "name": "Platforms Marquee",
+  "type": "html",
+  "status": "stable",
+  "description": "A heading row over two infinite logo marquees scrolling in opposite directions, edge-faded and pausing on hover; each tile is a colored rounded tile with a token-SVG glyph.",
+  "files": { "html": "sections/platforms-marquee/section.html" },
+  "prompt": "sections/platforms-marquee/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-platforms-marquee",
+  "interactions": [
+    "two rows scroll infinitely via a CSS transform loop (wpmn-pm-scroll, translateX(calc(-50% - gap/2)), 55s linear infinite); each track holds the tile set duplicated for a seamless loop",
+    "the second row runs in reverse (.pm-rev sets animation-direction:reverse)",
+    "hovering the rows pauses both tracks (animation-play-state:paused)",
+    "tiles scale 1.05 and cast a token drop-shadow on hover (300ms); the link arrow slides 6px on hover",
+    "both row edges fade with an alpha mask-image",
+    "prefers-reduced-motion: the marquee animation and tile transitions are off (tracks render static)"
+  ],
+  "tokensUsed": ["--color-surface-primary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--btn-bg-enable","--btn-bg-hovered","--color-success-primary","--color-warning-primary","--color-error-primary","--radius-sm","--shadow-soft-300","--font-family-base","--font-size-h3","--font-size-h6","--font-size-body-medium","--font-lh-h3","--font-lh-h6","--font-lh-body-medium","--font-weight-regular","--font-weight-medium","--font-weight-bold","--primitive-space-12","--primitive-space-16","--primitive-space-24"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Scroll & Motion",
+  "role": "Integrations",
+  "span": 2,
+  "tags": ["marquee","logos","platforms","integrations","infinite scroll","ticker","social","product ui"]
+}

@@ -1,0 +1,96 @@
+<!-- WPMN Section: Platforms Marquee — a heading row plus two infinite logo marquees scrolling in opposite directions, edge-faded, pausing on hover. HTML import of a WP Social Ninja recreation: the CSS marquee engine (translateX loop, reverse row, hover-pause, edge mask) is kept verbatim and re-scoped; the brand font and the ~40 hotlinked platform logos are replaced with token placeholder tiles (colored rounded tiles with token-SVG glyphs — content swapped on use), no images and no third-party logos. Classes are pm-prefixed and the keyframe is wpmn-pm-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-platforms-marquee">
+  <style>
+@keyframes wpmn-pm-scroll{to{transform:translateX(calc(-50% - var(--pm-gap)/2))}}
+    .wpmn-sec-platforms-marquee{
+      background:var(--pm-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:100px 0;overflow:hidden;
+      --pm-bg:color-mix(in srgb, var(--color-error-primary) 8%, var(--color-surface-primary));
+      --pm-card:100px;--pm-gap:25px;--pm-speed:55s;
+    }
+    .wpmn-sec-platforms-marquee *{box-sizing:border-box}
+
+    .wpmn-sec-platforms-marquee .pm-head{max-width:1220px;margin:0 auto 64px;padding:0 var(--primitive-space-24);display:grid;grid-template-columns:minmax(0,646px) minmax(0,1fr);gap:48px;align-items:start}
+    .wpmn-sec-platforms-marquee .pm-head h2{font-size:var(--font-size-h3);line-height:var(--font-lh-h3);font-weight:var(--font-weight-regular);letter-spacing:-.2px;color:var(--color-text-primary);margin:0}
+    .wpmn-sec-platforms-marquee .pm-head h2 strong{font-weight:var(--font-weight-bold)}
+    .wpmn-sec-platforms-marquee .pm-right{padding-top:4px}
+    .wpmn-sec-platforms-marquee .pm-right p{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);margin:0 0 20px}
+    .wpmn-sec-platforms-marquee .pm-link{display:inline-flex;align-items:center;gap:var(--primitive-space-12);font-size:var(--font-size-h6);line-height:var(--font-lh-h6);font-weight:var(--font-weight-medium);color:var(--btn-bg-enable);text-decoration:none}
+    .wpmn-sec-platforms-marquee .pm-link svg{width:17px;height:12px;transition:transform .3s ease}
+    .wpmn-sec-platforms-marquee .pm-link:hover{color:var(--btn-bg-hovered)}
+    .wpmn-sec-platforms-marquee .pm-link:hover svg{transform:translateX(6px)}
+
+    .wpmn-sec-platforms-marquee .pm-rows{display:flex;flex-direction:column;gap:22px;-webkit-mask-image:linear-gradient(90deg, transparent, black 6%, black 94%, transparent);mask-image:linear-gradient(90deg, transparent, black 6%, black 94%, transparent)}
+    .wpmn-sec-platforms-marquee .pm-row{display:flex;overflow:hidden}
+    .wpmn-sec-platforms-marquee .pm-track{display:flex;gap:var(--pm-gap);padding-left:var(--pm-gap);flex:none;will-change:transform;animation:wpmn-pm-scroll var(--pm-speed) linear infinite}
+    .wpmn-sec-platforms-marquee .pm-row.pm-rev .pm-track{animation-direction:reverse}
+    .wpmn-sec-platforms-marquee .pm-rows:hover .pm-track{animation-play-state:paused}
+
+    .wpmn-sec-platforms-marquee .pm-logo{width:var(--pm-card);height:var(--pm-card);border-radius:var(--radius-sm);flex:none;display:flex;align-items:center;justify-content:center;color:var(--color-text-primary-invert);box-shadow:var(--shadow-soft-300);transition:transform .3s ease-in-out,filter .3s ease-in-out}
+    .wpmn-sec-platforms-marquee .pm-logo svg{width:46%;height:46%}
+    .wpmn-sec-platforms-marquee .pm-logo:hover{transform:scale(1.05);filter:drop-shadow(0 10px 15px color-mix(in srgb, var(--color-text-primary) 15%, transparent))}
+
+    @media (max-width:900px){
+      .wpmn-sec-platforms-marquee{padding:64px 0}
+      .wpmn-sec-platforms-marquee .pm-head{grid-template-columns:1fr;gap:var(--primitive-space-24);margin-bottom:44px}
+      .wpmn-sec-platforms-marquee .pm-right p{margin-bottom:var(--primitive-space-16)}
+    }
+    @media (max-width:560px){
+      .wpmn-sec-platforms-marquee{--pm-card:76px;--pm-gap:16px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-platforms-marquee .pm-track{animation:none}
+      .wpmn-sec-platforms-marquee .pm-logo{transition:none}
+    }
+  </style>
+
+  <div class="pm-head">
+    <h2>Embed social media tools from <strong>30+ platforms</strong> and easily display them on your WordPress websites</h2>
+    <div class="pm-right">
+      <p>Connect the platforms and displays you want to increase trust, follower count, and sales.</p>
+      <a class="pm-link" href="#" onclick="return false">See all platforms
+        <svg viewBox="0 0 17 12" fill="currentColor" aria-hidden="true"><path d="M16.53 6.53a.75.75 0 000-1.06L11.76.7a.75.75 0 10-1.06 1.06L14.94 6l-4.24 4.24a.75.75 0 101.06 1.06l4.77-4.77zM0 6.75h16v-1.5H0v1.5z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="pm-rows">
+    <div class="pm-row"><div class="pm-track" data-track="fwd"></div></div>
+    <div class="pm-row pm-rev"><div class="pm-track" data-track="rev"></div></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var glyphs = [
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H9l-4 4z" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="12" rx="3"/><circle cx="12" cy="13" r="3.2"/><path d="M8 7l1.4-2h5.2L16 7" stroke-linejoin="round"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21S4 15.5 4 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.5 12 21 12 21z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><path d="M6 7h13l-1.5 9H8.5L7 5H4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.4" fill="currentColor"/><circle cx="17" cy="20" r="1.4" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a6 6 0 0 0-6 6v3l-2 3v1h16v-1l-2-3V9a6 6 0 0 0-6-6zm0 18a2.5 2.5 0 0 0 2.4-2h-4.8A2.5 2.5 0 0 0 12 21z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><circle cx="7" cy="12" r="2.4" fill="currentColor"/><circle cx="17" cy="6.5" r="2.4" fill="currentColor"/><circle cx="17" cy="17.5" r="2.4" fill="currentColor"/><path d="M9 11l6-3.5M9 13l6 3.5" stroke="currentColor" stroke-width="1.6"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 4 19.2v-3.3a6.7 6.7 0 1 1 3-5.6 3.4 3.4 0 0 1-6.7 0 3.3 3.3 0 1 1 1.7 2.9V12A6.7 6.7 0 1 0 12 2z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><path d="M8 4l-1 4H3l-.4 2h4L6 14H2l-.4 2h4L5 20h2l.6-4h4L11 20h2l.6-4H18l.4-2h-4l.6-4H19l.4-2h-4L16 4h-2l-.6 4h-4L10 4H8zm1.4 6h4l-.6 4h-4l.6-4z" fill="currentColor"/></svg>'
+    ];
+    var tints = ['var(--btn-bg-enable)','var(--color-success-primary)','var(--color-warning-primary)','var(--color-error-primary)',
+      'color-mix(in srgb, var(--btn-bg-enable), var(--color-error-primary))',
+      'color-mix(in srgb, var(--color-warning-primary), var(--color-error-primary))',
+      'color-mix(in srgb, var(--btn-bg-enable), var(--color-success-primary))',
+      'color-mix(in srgb, var(--color-success-primary), var(--color-warning-primary))'];
+    var N = 20, base = [];
+    for(var i=0;i<N;i++){
+      base.push('<span class="pm-logo" style="background:' + tints[i%tints.length] + '" role="img" aria-label="Platform ' + (i+1) + '">' + glyphs[i%glyphs.length] + '</span>');
+    }
+    var fwd = base.concat(base).join('');           // duplicate for a seamless loop
+    var rev = base.slice().reverse();
+    var revHtml = rev.concat(rev).join('');
+    sec.querySelector('[data-track="fwd"]').innerHTML = fwd;
+    sec.querySelector('[data-track="rev"]').innerHTML = revHtml;
+  })();
+  </script>
+</section>
