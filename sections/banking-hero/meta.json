@@ -1,0 +1,20 @@
+{
+  "id": "banking-hero",
+  "name": "Banking Hero",
+  "type": "html",
+  "status": "stable",
+  "description": "A digital-banking hero: a left heading with an accent squiggle, a right sub and dark demo button, then a three-card row (a large Personal card with a photo and a floating account widget, plus narrow Business and Freelance gradient cards with vertical labels).",
+  "files": { "html": "sections/banking-hero/section.html" },
+  "prompt": "sections/banking-hero/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-banking-hero",
+  "interactions": ["see prompt.md; IntersectionObserver reveal on view with staggered fade-up; hover states; prefers-reduced-motion renders in place"],
+  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--color-text-secondary-invert","--btn-bg-enable","--color-warning-primary","--color-success-primary","--color-error-primary","--radius-xsm","--radius-sm","--radius-md","--radius-lg","--font-family-base","--font-size-h1","--font-size-h3","--font-size-h4","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-weight-medium","--font-weight-semibold","--font-weight-bold","--primitive-space-8","--primitive-space-16","--primitive-space-24","--primitive-space-32","--primitive-space-96"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Banners & Impact",
+  "role": "Hero",
+  "span": 2,
+  "tags": ["hero","banking","fintech","cards","widget","gradient","photo"]
+}

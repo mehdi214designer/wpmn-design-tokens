@@ -1,0 +1,80 @@
+<!-- WPMN Section: Floating Navbar — a dark rounded pill navbar floating on a light page: wordmark, center links (one with a "+" mega toggle), a cart count, and a CTA button. Under 860px the links collapse into a toggled dropdown. Image mode, tokenized, motion added. The yellow accent maps to the warning token; the cart/CTA are placeholders (content swapped on use). Classes are fn-prefixed and keyframes wpmn-fn-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-floating-navbar">
+  <style>
+@keyframes wpmn-fn-drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+    .wpmn-sec-floating-navbar{
+      background:color-mix(in srgb, var(--color-warning-primary) 5%, var(--color-surface-primary));color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-24) var(--primitive-space-32);
+      --fn-line:color-mix(in srgb, var(--color-text-primary-invert) 14%, transparent);
+      --fn-hover:color-mix(in srgb, var(--color-text-primary-invert) 10%, var(--color-surface-secondary));
+    }
+    .wpmn-sec-floating-navbar *{box-sizing:border-box;margin:0}
+    .wpmn-sec-floating-navbar .fn-bar{max-width:1240px;margin:0 auto;position:relative;background:var(--color-surface-secondary);color:var(--color-text-primary-invert);border-radius:var(--radius-lg);display:flex;align-items:center;gap:var(--primitive-space-24);padding:12px 14px 12px 26px}
+    .wpmn-sec-floating-navbar .fn-brand{font-size:var(--font-size-h6);line-height:1;font-weight:var(--font-weight-bold);letter-spacing:-.01em;color:var(--color-text-primary-invert);text-decoration:none}
+    .wpmn-sec-floating-navbar .fn-brand b{color:var(--color-warning-primary)}
+    .wpmn-sec-floating-navbar .fn-links{display:flex;align-items:center;gap:var(--primitive-space-24);margin:0 auto}
+    .wpmn-sec-floating-navbar .fn-link{display:inline-flex;align-items:center;gap:5px;font-size:var(--font-size-body-base);line-height:1;font-weight:var(--font-weight-medium);color:var(--color-text-secondary-invert);text-decoration:none;background:none;border:0;cursor:pointer;font-family:inherit;transition:color .18s ease}
+    .wpmn-sec-floating-navbar .fn-link:hover{color:var(--color-text-primary-invert)}
+    .wpmn-sec-floating-navbar .fn-link .fn-plus{color:var(--color-warning-primary);font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-floating-navbar .fn-right{display:flex;align-items:center;gap:var(--primitive-space-16)}
+    .wpmn-sec-floating-navbar .fn-cart{display:inline-flex;align-items:center;gap:6px;font-size:var(--font-size-body-base);line-height:1;color:var(--color-text-secondary-invert);text-decoration:none}
+    .wpmn-sec-floating-navbar .fn-cart svg{width:18px;height:18px}
+    .wpmn-sec-floating-navbar .fn-cta{display:inline-flex;align-items:center;gap:var(--primitive-space-8);height:44px;padding:0 20px;border-radius:var(--radius-xsm);background:var(--color-warning-primary);color:var(--color-text-primary-invert);font-size:var(--font-size-body-base);line-height:1;font-weight:var(--font-weight-semibold);text-decoration:none;transition:background-color .18s ease}
+    .wpmn-sec-floating-navbar .fn-cta:hover{background:color-mix(in srgb, var(--color-warning-primary) 88%, var(--color-text-primary))}
+    .wpmn-sec-floating-navbar .fn-cta svg{width:15px;height:15px}
+    .wpmn-sec-floating-navbar .fn-burger{display:none;width:44px;height:44px;border-radius:var(--radius-xsm);border:1px solid var(--fn-line);background:none;color:var(--color-text-primary-invert);cursor:pointer;align-items:center;justify-content:center}
+    .wpmn-sec-floating-navbar .fn-burger svg{width:20px;height:20px}
+
+    .wpmn-sec-floating-navbar .fn-drawer{display:none}
+
+    @media (max-width:860px){
+      .wpmn-sec-floating-navbar .fn-links{display:none}
+      .wpmn-sec-floating-navbar .fn-cart{display:none}
+      .wpmn-sec-floating-navbar .fn-burger{display:flex}
+      .wpmn-sec-floating-navbar .fn-brand{margin-right:auto}
+      .wpmn-sec-floating-navbar .fn-drawer{position:absolute;left:0;right:0;top:calc(100% + 10px);background:var(--color-surface-secondary);border-radius:var(--radius-md);padding:14px;flex-direction:column;gap:4px;z-index:5}
+      .wpmn-sec-floating-navbar.fn-open .fn-drawer{display:flex;animation:wpmn-fn-drop .25s ease both}
+      .wpmn-sec-floating-navbar .fn-drawer a{padding:12px 14px;border-radius:var(--radius-xsm);font-size:var(--font-size-body-base);line-height:1;color:var(--color-text-secondary-invert);text-decoration:none}
+      .wpmn-sec-floating-navbar .fn-drawer a:hover{background:var(--fn-hover);color:var(--color-text-primary-invert)}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-floating-navbar .fn-link,.wpmn-sec-floating-navbar .fn-cta{transition:none}
+      .wpmn-sec-floating-navbar.fn-open .fn-drawer{animation:none}
+    }
+  </style>
+
+  <nav class="fn-bar" aria-label="Primary">
+    <a class="fn-brand" href="#" onclick="return false"><b>aelixa</b>.</a>
+    <div class="fn-links">
+      <a class="fn-link" href="#" onclick="return false">Home</a>
+      <a class="fn-link" href="#" onclick="return false">About</a>
+      <button class="fn-link" type="button">Pages <span class="fn-plus">+</span></button>
+      <a class="fn-link" href="#" onclick="return false">Blog</a>
+      <a class="fn-link" href="#" onclick="return false">Contact</a>
+    </div>
+    <div class="fn-right">
+      <a class="fn-cart" href="#" onclick="return false"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6h15l-1.5 9H8L6 4H3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.4" fill="currentColor"/><circle cx="18" cy="20" r="1.4" fill="currentColor"/></svg>(0)</a>
+      <a class="fn-cta" href="#" onclick="return false">Book A Call <svg viewBox="0 0 24 24" fill="none"><path d="M17 7L7 17M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <button class="fn-burger" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="fn-drawer">
+      <a href="#" onclick="return false">Home</a>
+      <a href="#" onclick="return false">About</a>
+      <a href="#" onclick="return false">Pages</a>
+      <a href="#" onclick="return false">Blog</a>
+      <a href="#" onclick="return false">Contact</a>
+    </div>
+  </nav>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var burger = sec.querySelector('.fn-burger');
+    burger.addEventListener('click', function(){
+      var open = sec.classList.toggle('fn-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+  </script>
+</section>

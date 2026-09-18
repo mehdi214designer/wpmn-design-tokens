@@ -1,0 +1,20 @@
+{
+  "id": "marketing-split-hero",
+  "name": "Marketing Split Hero",
+  "type": "html",
+  "status": "stable",
+  "description": "A centered two-tone headline over a split: a dark about card (kicker, heading, copy, two buttons, a nested case card) beside a portrait photo with two floating stat cards, above a faded logo strip.",
+  "files": { "html": "sections/marketing-split-hero/section.html" },
+  "prompt": "sections/marketing-split-hero/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-marketing-split-hero",
+  "interactions": ["see prompt.md; IntersectionObserver reveal on view with staggered fade-up; hover states; prefers-reduced-motion renders in place"],
+  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--color-text-secondary-invert","--btn-bg-enable","--color-warning-primary","--color-success-primary","--color-error-primary","--radius-xsm","--radius-sm","--radius-md","--radius-lg","--font-family-base","--font-size-h1","--font-size-h3","--font-size-h4","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-weight-medium","--font-weight-semibold","--font-weight-bold","--primitive-space-8","--primitive-space-16","--primitive-space-24","--primitive-space-32","--primitive-space-96"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Banners & Impact",
+  "role": "Hero",
+  "span": 2,
+  "tags": ["hero","marketing","portfolio","split","stats","logos","portrait"]
+}

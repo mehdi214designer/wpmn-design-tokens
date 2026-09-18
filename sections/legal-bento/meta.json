@@ -1,0 +1,20 @@
+{
+  "id": "legal-bento",
+  "name": "Legal Bento",
+  "type": "html",
+  "status": "stable",
+  "description": "A monochrome services bento: five light cards (title, arrow chip, token-SVG line illustration or tag cloud) around one large dark feature card with an isometric wireframe, a highlighted line, and social chips.",
+  "files": { "html": "sections/legal-bento/section.html" },
+  "prompt": "sections/legal-bento/prompt.md",
+  "dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-legal-bento",
+  "interactions": ["see prompt.md; IntersectionObserver reveal on view with staggered fade-up; hover states; prefers-reduced-motion renders in place"],
+  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--color-text-secondary-invert","--btn-bg-enable","--color-warning-primary","--color-success-primary","--color-error-primary","--radius-xsm","--radius-sm","--radius-md","--radius-lg","--font-family-base","--font-size-h1","--font-size-h3","--font-size-h4","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-weight-medium","--font-weight-semibold","--font-weight-bold","--primitive-space-8","--primitive-space-16","--primitive-space-24","--primitive-space-32","--primitive-space-96"],
+  "brands": "all",
+  "themes": ["light","dark"],
+  "category": "Sections",
+  "subcategory": "Grids",
+  "role": "Features",
+  "span": 2,
+  "tags": ["bento","grid","services","monochrome","legal","illustration","dark card"]
+}

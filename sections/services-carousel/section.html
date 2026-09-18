@@ -1,0 +1,118 @@
+<!-- WPMN Section: Services Carousel — a services showcase: a header (kicker, big heading, sub, two links) over a draggable horizontal carousel of service cards (tinted photo, label, arrow chip) with a scroll-linked progress bar. Image mode, tokenized, motion added. Photos are verified Unsplash images desaturated with a dark token tint; the yellow accent maps to the warning token (content swapped on use). Classes are sc-prefixed and keyframes wpmn-sc-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-services-carousel">
+  <style>
+@keyframes wpmn-sc-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .wpmn-sec-services-carousel{
+      background:var(--sc-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --sc-bg:color-mix(in srgb, var(--color-warning-primary) 4%, var(--color-surface-primary));
+      --sc-line:color-mix(in srgb, var(--color-text-primary) 12%, transparent);
+      --sc-shade:color-mix(in srgb, var(--color-surface-secondary) 55%, transparent);
+    }
+    .wpmn-sec-services-carousel *{box-sizing:border-box;margin:0}
+    .wpmn-sec-services-carousel .sc-wrap{max-width:1240px;margin:0 auto}
+
+    .wpmn-sec-services-carousel .sc-head{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end;margin-bottom:44px;opacity:0}
+    .wpmn-sec-services-carousel.is-inview .sc-head{animation:wpmn-sc-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-services-carousel .sc-kicker{font-size:var(--font-size-body-small);line-height:1;font-weight:var(--font-weight-medium);color:var(--color-text-primary);margin-bottom:20px}
+    .wpmn-sec-services-carousel h2{font-size:var(--font-size-h1);line-height:1.02;font-weight:var(--font-weight-bold);letter-spacing:-.02em;color:var(--color-text-primary);max-width:8ch}
+    .wpmn-sec-services-carousel .sc-sub{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);margin-bottom:16px}
+    .wpmn-sec-services-carousel .sc-links{display:flex;gap:28px}
+    .wpmn-sec-services-carousel .sc-links a{display:inline-flex;align-items:center;gap:6px;font-size:var(--font-size-body-base);line-height:1;font-weight:var(--font-weight-semibold);color:var(--color-error-primary);text-decoration:none}
+    .wpmn-sec-services-carousel .sc-links a svg{width:13px;height:13px}
+
+    .wpmn-sec-services-carousel .sc-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;cursor:grab;scrollbar-width:none}
+    .wpmn-sec-services-carousel .sc-track::-webkit-scrollbar{display:none}
+    .wpmn-sec-services-carousel .sc-track.sc-drag{cursor:grabbing;scroll-snap-type:none}
+    .wpmn-sec-services-carousel .sc-card{position:relative;flex:0 0 clamp(200px,22%,260px);aspect-ratio:3/4;border-radius:var(--radius-md);overflow:hidden;scroll-snap-align:start;background:var(--color-surface-secondary);opacity:0}
+    .wpmn-sec-services-carousel.is-inview .sc-card{animation:wpmn-sc-up .5s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-services-carousel.is-inview .sc-card:nth-child(2){animation-delay:60ms}
+    .wpmn-sec-services-carousel.is-inview .sc-card:nth-child(3){animation-delay:120ms}
+    .wpmn-sec-services-carousel.is-inview .sc-card:nth-child(4){animation-delay:180ms}
+    .wpmn-sec-services-carousel.is-inview .sc-card:nth-child(5){animation-delay:240ms}
+    .wpmn-sec-services-carousel .sc-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:transform .4s ease;pointer-events:none}
+    .wpmn-sec-services-carousel .sc-card:hover img{transform:scale(1.05)}
+    .wpmn-sec-services-carousel .sc-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, var(--sc-shade))}
+    .wpmn-sec-services-carousel .sc-cap{position:absolute;left:14px;right:14px;bottom:14px;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+    .wpmn-sec-services-carousel .sc-cap b{font-size:var(--font-size-body-small);line-height:1.2;font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert);max-width:14ch}
+    .wpmn-sec-services-carousel .sc-chip{width:38px;height:38px;flex:none;border-radius:999px;background:var(--color-surface-secondary);color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-services-carousel .sc-card:first-child .sc-chip{background:var(--color-warning-primary);color:var(--color-text-primary-invert)}
+    .wpmn-sec-services-carousel .sc-chip svg{width:15px;height:15px}
+
+    .wpmn-sec-services-carousel .sc-progress{margin-top:28px;height:2px;background:var(--sc-line);border-radius:999px;position:relative;overflow:hidden}
+    .wpmn-sec-services-carousel .sc-fill{position:absolute;left:0;top:0;height:100%;width:30%;background:var(--color-error-primary);border-radius:999px}
+
+    @media (max-width:768px){
+      .wpmn-sec-services-carousel{padding:64px var(--primitive-space-24)}
+      .wpmn-sec-services-carousel .sc-head{grid-template-columns:1fr;gap:24px}
+      .wpmn-sec-services-carousel .sc-card{flex-basis:76%}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-services-carousel .sc-head,.wpmn-sec-services-carousel .sc-card{opacity:1 !important;animation:none !important}
+      .wpmn-sec-services-carousel .sc-card img{transition:none}
+    }
+  </style>
+
+  <div class="sc-wrap">
+    <div class="sc-head">
+      <div>
+        <div class="sc-kicker">/ Services We Offer</div>
+        <h2>Certified Excellence</h2>
+      </div>
+      <div>
+        <p class="sc-sub">From repairs and installations to preventative maintenance, we have got you covered. Choose reliability.</p>
+        <div class="sc-links">
+          <a href="#" onclick="return false">View All Services <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#" onclick="return false">Call For Booking <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sc-track"></div>
+    <div class="sc-progress"><span class="sc-fill"></span></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var CARDS = [
+      ['Furnaces','https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=700&q=80'],
+      ['Central Air Conditioning','https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80'],
+      ['Tankless Water Heater','https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80'],
+      ['Underfloor Heating System','https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=700&q=80'],
+      ['New House Plumbing','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80']
+    ];
+    var arrow = '<svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var track = sec.querySelector('.sc-track');
+    track.innerHTML = CARDS.map(function(c){
+      return '<article class="sc-card"><img src="' + c[1] + '" alt="' + c[0] + '" loading="lazy" draggable="false"><div class="sc-cap"><b>' + c[0] + '</b><span class="sc-chip">' + arrow + '</span></div></article>';
+    }).join('');
+
+    var fill = sec.querySelector('.sc-fill');
+    function updateProgress(){
+      var max = track.scrollWidth - track.clientWidth;
+      var ratio = max > 0 ? track.scrollLeft / max : 0;
+      var vis = Math.max(0.18, track.clientWidth / track.scrollWidth);
+      fill.style.width = (vis * 100) + '%';
+      fill.style.transform = 'translateX(' + (ratio * (100 / vis - 100)) + '%)';
+    }
+    track.addEventListener('scroll', updateProgress, {passive:true});
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    // pointer drag to scroll
+    var down = false, startX = 0, startL = 0;
+    track.addEventListener('pointerdown', function(e){ down = true; startX = e.clientX; startL = track.scrollLeft; track.classList.add('sc-drag'); track.setPointerCapture(e.pointerId); });
+    track.addEventListener('pointermove', function(e){ if(!down) return; track.scrollLeft = startL - (e.clientX - startX); });
+    function end(){ down = false; track.classList.remove('sc-drag'); }
+    track.addEventListener('pointerup', end);
+    track.addEventListener('pointercancel', end);
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.12});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+  })();
+  </script>
+</section>

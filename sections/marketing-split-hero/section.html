@@ -1,0 +1,127 @@
+<!-- WPMN Section: Marketing Split Hero — a centered headline (with a two-tone treatment and an inline accent icon) over a split: a dark "about" card (kicker, heading, copy, two buttons, a nested case card) beside a portrait photo with two floating stat cards, above a faded logo strip. Image mode, tokenized, motion added. The portrait is a verified Unsplash image; the yellow accent maps to the warning token, logos and the case thumb are placeholders (content swapped on use). Classes are ms-prefixed and keyframes wpmn-ms-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-marketing-split-hero">
+  <style>
+@keyframes wpmn-ms-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes wpmn-ms-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    .wpmn-sec-marketing-split-hero{
+      background:var(--ms-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) var(--primitive-space-32);
+      --ms-bg:color-mix(in srgb, var(--color-warning-primary) 6%, var(--color-surface-primary));
+      --ms-mute:color-mix(in srgb, var(--color-text-primary) 40%, transparent);
+      --ms-line:color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+      --ms-innerline:color-mix(in srgb, var(--color-text-primary-invert) 16%, transparent);
+      --ms-inner:color-mix(in srgb, var(--color-text-primary-invert) 5%, var(--color-surface-secondary));
+      --ms-thumb:linear-gradient(150deg, color-mix(in srgb, var(--color-error-primary) 40%, var(--color-surface-primary)), color-mix(in srgb, var(--color-warning-primary) 30%, var(--color-surface-primary)));
+    }
+    .wpmn-sec-marketing-split-hero *{box-sizing:border-box;margin:0}
+    .wpmn-sec-marketing-split-hero .ms-wrap{max-width:1200px;margin:0 auto}
+
+    .wpmn-sec-marketing-split-hero .ms-head{text-align:center;max-width:880px;margin:0 auto 56px;opacity:0}
+    .wpmn-sec-marketing-split-hero.is-inview .ms-head{animation:wpmn-ms-up .6s cubic-bezier(.22,1,.36,1) both}
+    .wpmn-sec-marketing-split-hero .ms-kicker{display:inline-flex;align-items:center;gap:6px;font-size:var(--font-size-body-small);line-height:1;font-weight:var(--font-weight-semibold);letter-spacing:.14em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:24px}
+    .wpmn-sec-marketing-split-hero .ms-kicker b{color:var(--color-warning-primary)}
+    .wpmn-sec-marketing-split-hero h1{font-size:var(--font-size-h1);line-height:1.05;font-weight:var(--font-weight-bold);letter-spacing:-.02em;color:var(--color-text-primary)}
+    .wpmn-sec-marketing-split-hero h1 .ms-dim{color:var(--ms-mute)}
+    .wpmn-sec-marketing-split-hero h1 .ms-hicon{display:inline-flex;align-items:center;justify-content:center;width:.86em;height:.86em;border-radius:var(--radius-md);background:var(--color-warning-primary);color:var(--color-text-primary-invert);vertical-align:-.12em;margin:0 .06em}
+    .wpmn-sec-marketing-split-hero h1 .ms-hicon svg{width:56%;height:56%}
+    .wpmn-sec-marketing-split-hero .ms-sub{margin-top:24px;font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);max-width:58ch;margin-left:auto;margin-right:auto}
+
+    .wpmn-sec-marketing-split-hero .ms-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:44px}
+    .wpmn-sec-marketing-split-hero .ms-panel{opacity:0}
+    .wpmn-sec-marketing-split-hero.is-inview .ms-panel{animation:wpmn-ms-up .6s cubic-bezier(.22,1,.36,1) both;animation-delay:120ms}
+    .wpmn-sec-marketing-split-hero.is-inview .ms-vis{animation-delay:200ms}
+
+    /* dark about card */
+    .wpmn-sec-marketing-split-hero .ms-about{background:var(--color-surface-secondary);color:var(--color-text-primary-invert);border-radius:var(--radius-lg);padding:34px;display:flex;flex-direction:column}
+    .wpmn-sec-marketing-split-hero .ms-akick{display:inline-flex;align-items:center;gap:6px;font-size:var(--font-size-body-small);line-height:1;font-weight:var(--font-weight-medium);color:var(--color-text-secondary-invert);margin-bottom:26px}
+    .wpmn-sec-marketing-split-hero .ms-akick b{color:var(--color-warning-primary)}
+    .wpmn-sec-marketing-split-hero .ms-about h3{font-size:var(--font-size-h3);line-height:1.08;font-weight:var(--font-weight-bold);color:var(--color-text-primary-invert);margin-bottom:18px}
+    .wpmn-sec-marketing-split-hero .ms-about h3 span{color:color-mix(in srgb, var(--color-text-primary-invert) 42%, transparent)}
+    .wpmn-sec-marketing-split-hero .ms-about .ms-adesc{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary-invert);max-width:44ch;margin-bottom:26px}
+    .wpmn-sec-marketing-split-hero .ms-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+    .wpmn-sec-marketing-split-hero .ms-btn{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 20px;border-radius:var(--radius-xsm);font-size:var(--font-size-body-base);line-height:1;font-weight:var(--font-weight-semibold);text-decoration:none}
+    .wpmn-sec-marketing-split-hero .ms-btn svg{width:14px;height:14px}
+    .wpmn-sec-marketing-split-hero .ms-btn.ms-solid{background:var(--color-warning-primary);color:var(--color-text-primary-invert)}
+    .wpmn-sec-marketing-split-hero .ms-btn.ms-lite{background:var(--color-surface-primary);color:var(--color-text-primary)}
+    .wpmn-sec-marketing-split-hero .ms-case{margin-top:auto;display:flex;align-items:center;gap:16px;background:var(--ms-inner);border:1px solid var(--ms-innerline);border-radius:var(--radius-md);padding:16px}
+    .wpmn-sec-marketing-split-hero .ms-cthumb{width:72px;height:72px;flex:none;border-radius:var(--radius-sm);background:var(--ms-thumb)}
+    .wpmn-sec-marketing-split-hero .ms-ctitle{font-size:var(--font-size-body-base);line-height:1.3;font-weight:var(--font-weight-semibold);color:var(--color-text-primary-invert);margin-bottom:8px}
+    .wpmn-sec-marketing-split-hero .ms-clink{display:inline-flex;align-items:center;gap:5px;font-size:var(--font-size-body-small);line-height:1;font-weight:var(--font-weight-semibold);color:var(--color-warning-primary);text-decoration:none}
+    .wpmn-sec-marketing-split-hero .ms-clink svg{width:12px;height:12px}
+
+    /* portrait + floating stats */
+    .wpmn-sec-marketing-split-hero .ms-vis{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:460px;background:var(--color-surface-secondary)}
+    .wpmn-sec-marketing-split-hero .ms-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .wpmn-sec-marketing-split-hero .ms-stats{position:absolute;left:16px;right:16px;bottom:16px;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .wpmn-sec-marketing-split-hero .ms-stat{background:var(--color-surface-primary);border-radius:var(--radius-md);padding:14px 16px}
+    .wpmn-sec-marketing-split-hero .ms-stat b{display:block;font-size:var(--font-size-h4);line-height:1;font-weight:var(--font-weight-bold);color:var(--color-text-primary);margin-bottom:6px}
+    .wpmn-sec-marketing-split-hero .ms-stat b i{font-style:normal;color:var(--color-warning-primary)}
+    .wpmn-sec-marketing-split-hero .ms-stat p{font-size:var(--font-size-body-small);line-height:1.3;color:var(--color-text-secondary);margin-bottom:12px}
+    .wpmn-sec-marketing-split-hero .ms-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;background:color-mix(in srgb, var(--color-text-primary) 6%, var(--color-surface-primary));font-size:var(--font-size-body-label);line-height:1;font-weight:var(--font-weight-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-marketing-split-hero .ms-pill::before{content:"";width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-bottom:5px solid var(--color-success-primary)}
+
+    /* logo strip */
+    .wpmn-sec-marketing-split-hero .ms-logos{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;padding-top:12px;-webkit-mask-image:linear-gradient(90deg, transparent, black 12%, black 88%, transparent);mask-image:linear-gradient(90deg, transparent, black 12%, black 88%, transparent);opacity:0}
+    .wpmn-sec-marketing-split-hero.is-inview .ms-logos{animation:wpmn-ms-up .6s cubic-bezier(.22,1,.36,1) both;animation-delay:280ms}
+    .wpmn-sec-marketing-split-hero .ms-logo{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-h6);line-height:1;font-weight:var(--font-weight-bold);color:color-mix(in srgb, var(--color-text-primary) 45%, transparent);white-space:nowrap}
+    .wpmn-sec-marketing-split-hero .ms-logo svg{width:20px;height:20px}
+
+    @media (max-width:900px){
+      .wpmn-sec-marketing-split-hero .ms-split{grid-template-columns:1fr}
+      .wpmn-sec-marketing-split-hero .ms-vis{min-height:380px}
+    }
+    @media (max-width:768px){ .wpmn-sec-marketing-split-hero{padding:64px var(--primitive-space-24)} }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-marketing-split-hero .ms-head,.wpmn-sec-marketing-split-hero .ms-panel,.wpmn-sec-marketing-split-hero .ms-logos{opacity:1 !important;animation:none !important}
+    }
+  </style>
+
+  <div class="ms-wrap">
+    <div class="ms-head">
+      <div class="ms-kicker"><b>↪</b> Welcome to Aelixa</div>
+      <h1>Your Next Best Marketing <span class="ms-hicon"><svg viewBox="0 0 24 24" fill="none"><path d="M14 8a5 5 0 0 1 0 8H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 13l-3 3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> <span class="ms-dim">Decision Starts Here</span></h1>
+      <p class="ms-sub">A digital marketer helping businesses grow through SEO, paid campaigns, and content strategy. Browse the work, the numbers do the talking.</p>
+    </div>
+
+    <div class="ms-split">
+      <div class="ms-panel ms-about">
+        <div class="ms-akick"><b>↪</b> About the strategist</div>
+        <h3>Strategy first. <span>Always.</span></h3>
+        <p class="ms-adesc">I lead brand and design projects from a clear brief, combining strategic thinking and visual sensitivity to build systems that are coherent and durable.</p>
+        <div class="ms-btns">
+          <a class="ms-btn ms-solid" href="#" onclick="return false">More About Me <svg viewBox="0 0 24 24" fill="none"><path d="M14 8a5 5 0 0 1 0 8H8M10 13l-3 3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="ms-btn ms-lite" href="#" onclick="return false">See Services <svg viewBox="0 0 24 24" fill="none"><path d="M14 8a5 5 0 0 1 0 8H8M10 13l-3 3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="ms-case">
+          <span class="ms-cthumb"></span>
+          <div><div class="ms-ctitle">Increasing brand engagement from 10K to 50K</div>
+          <a class="ms-clink" href="#" onclick="return false">See Details <svg viewBox="0 0 24 24" fill="none"><path d="M14 8a5 5 0 0 1 0 8H8M10 13l-3 3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+      </div>
+
+      <div class="ms-panel ms-vis">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Strategist portrait" loading="lazy">
+        <div class="ms-stats">
+          <div class="ms-stat"><b>3.8<i>x</i></b><p>Across all paid ad campaigns</p><span class="ms-pill">64% above industry avg</span></div>
+          <div class="ms-stat"><b>+240<i>%</i></b><p>Via SEO, average 8 months</p><span class="ms-pill">Compounding, not paid</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ms-logos"></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var mark = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2.6" fill="currentColor"/></svg>';
+    var logos = ['CozyNest','LuxeAura','ZestyBite','DigiMinds','Enerva'];
+    sec.querySelector('.ms-logos').innerHTML = logos.map(function(n){ return '<span class="ms-logo">' + mark + n + '</span>'; }).join('');
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ sec.classList.add('is-inview'); io.disconnect(); } }); }, {threshold:0.1});
+      io.observe(sec);
+    } else { sec.classList.add('is-inview'); }
+  })();
+  </script>
+</section>
