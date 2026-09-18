@@ -8,7 +8,12 @@
   "prompt": "sections/banking-hero/prompt.md",
   "dependsOn": ["index.css"],
   "baseClass": "wpmn-sec-banking-hero",
-  "interactions": ["see prompt.md; IntersectionObserver reveal on view with staggered fade-up; hover states; prefers-reduced-motion renders in place"],
+  "interactions": [
+    "the three plan cards are an expanding row: one is open at a time (Personal starts open), the others collapse to vertical-label tiles; opening animates flex-grow over 550ms cubic-bezier(.22,1,.36,1) while the collapsed label cross-fades out and the content + arrow fade in",
+    "clicking, hovering, or pressing Enter/Space on a card opens it (aria-selected tracks state)",
+    "header and cards fade up on first view (IntersectionObserver, wpmn-bh-up 600ms, cards staggered 80/160ms)",
+    "under 900px the row stacks vertically (labels horizontal); prefers-reduced-motion turns transitions off and shows the open card"
+  ],
   "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--color-text-secondary-invert","--btn-bg-enable","--color-warning-primary","--color-success-primary","--color-error-primary","--radius-xsm","--radius-sm","--radius-md","--radius-lg","--font-family-base","--font-size-h1","--font-size-h3","--font-size-h4","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-size-body-label","--font-weight-medium","--font-weight-semibold","--font-weight-bold","--primitive-space-8","--primitive-space-16","--primitive-space-24","--primitive-space-32","--primitive-space-96"],
   "brands": "all",
   "themes": ["light","dark"],
