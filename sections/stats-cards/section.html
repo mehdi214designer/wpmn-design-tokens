@@ -1,0 +1,110 @@
+<!-- WPMN Section: Stats Cards — a dark two-column results block: a left intro (badge, heading, sub, primary + secondary buttons) beside three stacked stat cards, each a token-gradient icon tile plus a count-up number, label, and description. HTML import: the count-up-on-scroll engine (IntersectionObserver, easeOutCubic, data-to/format/suffix, __sectionUpdate hook) is kept verbatim and re-scoped; the brand fonts are replaced with the base family, colors are tokenized, buttons use --radius-xsm, and the gradient tiles and icons are token CSS/SVG (content swapped on use). Classes are st-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-stats-cards">
+  <style>
+    .wpmn-sec-stats-cards{
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      padding:var(--primitive-space-96) 25px;
+      --st-card:color-mix(in srgb, var(--color-text-primary-invert) 6%, var(--color-surface-secondary));
+      --st-badge:color-mix(in srgb, var(--color-text-primary-invert) 10%, var(--color-surface-secondary));
+      --st-sec:color-mix(in srgb, var(--color-text-primary-invert) 10%, transparent);
+      --st-sec-h:color-mix(in srgb, var(--color-text-primary-invert) 16%, transparent);
+      --st-tile:linear-gradient(150deg, color-mix(in srgb, var(--color-success-primary) 80%, var(--color-surface-secondary)), color-mix(in srgb, var(--color-warning-primary) 55%, var(--color-success-primary)));
+    }
+    .wpmn-sec-stats-cards *{box-sizing:border-box;margin:0}
+    .wpmn-sec-stats-cards a{text-decoration:none;color:inherit}
+    .wpmn-sec-stats-cards .st-in{max-width:1200px;margin:0 auto;display:flex;align-items:flex-start;gap:64px}
+
+    .wpmn-sec-stats-cards .st-intro{flex:0 0 410px;max-width:410px;display:flex;flex-direction:column;gap:32px}
+    .wpmn-sec-stats-cards .st-badge{display:inline-flex;align-items:center;gap:6px;width:max-content;padding:5px 12px;background:var(--st-badge);border-radius:var(--radius-xsm);font-size:var(--font-size-body-small);line-height:1.4;color:var(--color-text-primary-invert)}
+    .wpmn-sec-stats-cards .st-badge svg{width:16px;height:16px;color:var(--color-warning-primary)}
+    .wpmn-sec-stats-cards .st-copy{display:flex;flex-direction:column;gap:24px}
+    .wpmn-sec-stats-cards .st-copy h2{font-weight:var(--font-weight-regular);font-size:var(--font-size-h2);line-height:1.15;letter-spacing:-.01em;color:var(--color-text-primary-invert)}
+    .wpmn-sec-stats-cards .st-copy p{font-size:var(--font-size-body-base);line-height:1.5;letter-spacing:-.02em;color:var(--color-text-secondary-invert)}
+    .wpmn-sec-stats-cards .st-actions{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+    .wpmn-sec-stats-cards .st-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--primitive-space-8);border-radius:var(--radius-xsm);font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);line-height:1.5;letter-spacing:-.02em;transition:background-color .2s ease}
+    .wpmn-sec-stats-cards .st-primary{background:var(--color-surface-primary);color:var(--color-text-primary);padding:9px 19px}
+    .wpmn-sec-stats-cards .st-primary:hover{background:color-mix(in srgb, var(--color-surface-primary) 92%, var(--color-text-primary))}
+    .wpmn-sec-stats-cards .st-secondary{background:var(--st-sec);color:var(--color-text-primary-invert);padding:10px 12px 10px 20px}
+    .wpmn-sec-stats-cards .st-secondary:hover{background:var(--st-sec-h)}
+    .wpmn-sec-stats-cards .st-secondary .st-arrow{width:22px;height:22px;border-radius:999px;background:var(--color-surface-primary);color:var(--color-text-primary);display:grid;place-items:center;flex-shrink:0}
+    .wpmn-sec-stats-cards .st-secondary .st-arrow svg{width:11px;height:11px}
+
+    .wpmn-sec-stats-cards .st-cards{flex:1;display:flex;flex-direction:column;gap:16px;padding-top:10px}
+    .wpmn-sec-stats-cards .st-card{display:flex;align-items:stretch;min-height:155px;background:var(--st-card);border-radius:var(--radius-sm);overflow:hidden}
+    .wpmn-sec-stats-cards .st-tile{flex:0 0 180px;position:relative;display:grid;place-items:center;background:var(--st-tile)}
+    .wpmn-sec-stats-cards .st-icon{width:74px;height:74px;display:grid;place-items:center;color:var(--color-text-primary-invert)}
+    .wpmn-sec-stats-cards .st-icon svg{width:40px;height:40px}
+    .wpmn-sec-stats-cards .st-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:26px 22px 22px}
+    .wpmn-sec-stats-cards .st-num{font-weight:var(--font-weight-bold);font-size:var(--font-size-h3);line-height:1;letter-spacing:-.01em;color:var(--color-text-primary-invert)}
+    .wpmn-sec-stats-cards .st-ct{display:flex;flex-direction:column;gap:2px}
+    .wpmn-sec-stats-cards .st-ct .st-label{font-size:var(--font-size-body-base);font-weight:var(--font-weight-medium);line-height:1.5;letter-spacing:-.01em;color:var(--color-text-primary-invert)}
+    .wpmn-sec-stats-cards .st-ct .st-desc{font-size:var(--font-size-body-small);line-height:1.5;letter-spacing:-.01em;color:var(--color-text-secondary-invert)}
+
+    @media (max-width:900px){
+      .wpmn-sec-stats-cards .st-in{flex-direction:column;gap:40px}
+      .wpmn-sec-stats-cards .st-intro{flex-basis:auto;max-width:100%}
+      .wpmn-sec-stats-cards .st-cards{width:100%}
+    }
+    @media (max-width:520px){
+      .wpmn-sec-stats-cards{padding:64px var(--primitive-space-24)}
+      .wpmn-sec-stats-cards .st-card{flex-direction:column}
+      .wpmn-sec-stats-cards .st-tile{flex-basis:120px}
+      .wpmn-sec-stats-cards .st-actions{flex-wrap:wrap}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-stats-cards .st-btn{transition:none}
+    }
+  </style>
+
+  <div class="st-in">
+    <div class="st-intro">
+      <span class="st-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.6 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg> Who we are</span>
+      <div class="st-copy">
+        <h2>Built by people who get results.</h2>
+        <p>We focus on outcomes that matter, building systems that quietly deliver results month after month.</p>
+      </div>
+      <div class="st-actions">
+        <a class="st-btn st-primary" href="#" onclick="return false">Book a Demo</a>
+        <a class="st-btn st-secondary" href="#" onclick="return false">How we work <span class="st-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+    </div>
+
+    <div class="st-cards">
+      <div class="st-card">
+        <div class="st-tile"><span class="st-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></div>
+        <div class="st-body"><div class="st-num" data-to="1500" data-format="comma" data-suffix="+">0+</div><div class="st-ct"><div class="st-label">Hours saved monthly</div><div class="st-desc">Time reclaimed through automated, hands-off workflows.</div></div></div>
+      </div>
+      <div class="st-card">
+        <div class="st-tile"><span class="st-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></div>
+        <div class="st-body"><div class="st-num" data-to="35" data-suffix="%">0%</div><div class="st-ct"><div class="st-label">Reduction in manual work</div><div class="st-desc">Repetitive tasks replaced with reliable systems.</div></div></div>
+      </div>
+      <div class="st-card">
+        <div class="st-tile"><span class="st-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></div>
+        <div class="st-body"><div class="st-num" data-to="45" data-suffix=" days">0 days</div><div class="st-ct"><div class="st-label">Time to measurable ROI</div><div class="st-desc">Businesses notice measurable impact within weeks.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    function fmt(n, comma){ return comma ? n.toLocaleString('en-US') : String(n); }
+    function countUp(el){
+      var to = +el.dataset.to, comma = el.dataset.format === 'comma', suffix = el.dataset.suffix || '', dur = 1400, start = performance.now();
+      function step(now){
+        var t = Math.min((now - start) / dur, 1), eased = 1 - Math.pow(1 - t, 3), val = Math.round(eased * to);
+        el.textContent = fmt(val, comma) + suffix;
+        if(t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var nums = [].slice.call(sec.querySelectorAll('.st-num'));
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); io.unobserve(e.target); } }); }, {threshold:0.6});
+      nums.forEach(function(n){ io.observe(n); });
+    } else { nums.forEach(countUp); }
+    window.__sectionUpdate = function(){ nums.forEach(countUp); };
+  })();
+  </script>
+</section>

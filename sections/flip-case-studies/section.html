@@ -1,0 +1,82 @@
+<!-- WPMN Section: Flip Case Studies — a centered header over a column of case-study cards inside a perspective container: each card flips flat at viewport center and tilts on X, scaling down as it moves away, while the active card's image parallax-zooms. HTML import: the scroll-linked flip engine (rotateX/scale from each card's center vs viewport center, image zoom, scroll + rAF drive, __sectionUpdate hook) is kept verbatim and re-scoped; the brand font is replaced with the base family, the accent maps to a token mix, and images are verified Unsplash (content swapped on use). Classes are fcs-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-flip-case-studies">
+  <style>
+    .wpmn-sec-flip-case-studies{
+      background:var(--fcs-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      max-width:1260px;margin:0 auto;padding:80px 30px;
+      --fcs-bg:color-mix(in srgb, var(--color-success-primary) 6%, var(--color-surface-primary));
+      --fcs-accent:color-mix(in srgb, var(--color-success-primary) 55%, var(--color-warning-primary));
+      --fcs-scrim:color-mix(in srgb, var(--color-surface-secondary) 72%, transparent);
+    }
+    .wpmn-sec-flip-case-studies *{box-sizing:border-box;margin:0}
+    .wpmn-sec-flip-case-studies a{text-decoration:none;color:inherit}
+    .wpmn-sec-flip-case-studies .fcs-head{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;margin-bottom:48px}
+    .wpmn-sec-flip-case-studies .fcs-pill{display:inline-flex;align-items:center;gap:var(--primitive-space-8);padding:10px 14px;border-radius:999px}
+    .wpmn-sec-flip-case-studies .fcs-pill .fcs-dot{width:8px;height:8px;border-radius:999px;background:var(--fcs-accent)}
+    .wpmn-sec-flip-case-studies .fcs-pill span{font-size:var(--font-size-body-small);line-height:1.4;color:var(--fcs-accent);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-flip-case-studies .fcs-head h2{font-size:var(--font-size-h2);font-weight:var(--font-weight-semibold);line-height:1.17;letter-spacing:-.01em;max-width:500px;color:var(--color-text-primary)}
+    .wpmn-sec-flip-case-studies .fcs-head .fcs-sub{font-size:var(--font-size-body-medium);line-height:1.55;color:var(--color-text-secondary)}
+
+    .wpmn-sec-flip-case-studies .fcs-cards{perspective:2000px;display:flex;flex-direction:column;align-items:center;gap:20px}
+    .wpmn-sec-flip-case-studies .fcs-case{position:relative;width:100%;max-width:1200px;aspect-ratio:2/1;border-radius:var(--radius-lg);overflow:hidden;transform-origin:center center;will-change:transform;box-shadow:0 30px 60px -30px color-mix(in srgb, var(--color-text-primary) 35%, transparent);background:var(--color-surface-secondary)}
+    .wpmn-sec-flip-case-studies .fcs-media{position:absolute;inset:0;overflow:hidden}
+    .wpmn-sec-flip-case-studies .fcs-media img{width:100%;height:100%;object-fit:cover;transform-origin:center center;will-change:transform}
+    .wpmn-sec-flip-case-studies .fcs-scrim{position:absolute;inset:0;background:linear-gradient(to top, var(--fcs-scrim) 0%, color-mix(in srgb, var(--fcs-scrim) 35%, transparent) 32%, transparent 60%)}
+    .wpmn-sec-flip-case-studies .fcs-body{position:absolute;left:0;bottom:0;padding:40px 97px 40px 40px;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+    .wpmn-sec-flip-case-studies .fcs-tag{background:var(--color-surface-primary);border-radius:999px;padding:6px 14px;font-size:var(--font-size-body-small);font-weight:var(--font-weight-semibold);line-height:1.4;color:var(--color-text-primary)}
+    .wpmn-sec-flip-case-studies .fcs-title{font-size:var(--font-size-h4);font-weight:var(--font-weight-medium);line-height:1.2;color:var(--color-text-primary-invert)}
+    .wpmn-sec-flip-case-studies .fcs-desc{font-size:var(--font-size-body-medium);font-weight:var(--font-weight-regular);line-height:1.33;color:var(--color-text-secondary-invert);max-width:1063px}
+
+    @media (max-width:900px){
+      .wpmn-sec-flip-case-studies .fcs-body{padding:28px}
+      .wpmn-sec-flip-case-studies .fcs-cards{perspective:1400px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-flip-case-studies .fcs-case,.wpmn-sec-flip-case-studies .fcs-media img{transform:none !important}
+    }
+  </style>
+
+  <div class="fcs-head">
+    <span class="fcs-pill"><span class="fcs-dot"></span><span>Case Studies</span></span>
+    <h2>Growth you can actually measure</h2>
+    <p class="fcs-sub">We focus on what matters, engagement, leads, and revenue.</p>
+  </div>
+
+  <div class="fcs-cards"></div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var CASES = [
+      ['Beauty','Radiance','Helped a growing beauty brand increase engagement, strengthen its identity, and turn social attention into sales.','photo-1523275335684-37898b6baf30'],
+      ['Fitness','UrbanFit','Built a content-driven growth strategy that boosted community engagement and attracted new members.','photo-1517180102446-f3ece451e9d8'],
+      ['Lifestyle','Brew House','Expanded local reach through targeted content and campaigns that increased awareness and customer visits.','photo-1497366216548-37526070297c'],
+      ['Fashion','Trendify','Elevated brand visibility with trend-focused content that increased engagement and drove more sales.','photo-1486312338219-ce68d2c6f44d'],
+      ['Fintech','FinCore','Implemented a performance-focused strategy that generated qualified leads and improved conversions.','photo-1506905925346-21bda4d32df4'],
+      ['Technology','NovaTech','Combined organic content and paid media to increase product awareness, trial sign-ups, and revenue.','photo-1460925895917-afdab827c52f']
+    ];
+    sec.querySelector('.fcs-cards').innerHTML = CASES.map(function(c){
+      return '<a class="fcs-case" href="#" onclick="return false"><div class="fcs-media"><img src="https://images.unsplash.com/' + c[3] + '?auto=format&fit=crop&w=1200&q=80" alt="' + c[1] + '" loading="lazy"></div><div class="fcs-scrim"></div><div class="fcs-body"><span class="fcs-tag">' + c[0] + '</span><h3 class="fcs-title">' + c[1] + '</h3><p class="fcs-desc">' + c[2] + '</p></div></a>';
+    }).join('');
+
+    var cards = [].slice.call(sec.querySelectorAll('.fcs-case'));
+    var MAX_ANGLE = 48, MIN_SCALE = 0.8, IMG_ZOOM = 0.10;
+    function clamp(v,a,b){ return Math.min(b, Math.max(a, v)); }
+    function update(){
+      var vc = window.innerHeight / 2, range = window.innerHeight * 0.9;
+      cards.forEach(function(card){
+        var r = card.getBoundingClientRect(), center = r.top + r.height/2, p = clamp((center - vc)/range, -1, 1), a = Math.abs(p);
+        card.style.transform = 'rotateX(' + (-p * MAX_ANGLE).toFixed(2) + 'deg) scale(' + (1 - a * (1 - MIN_SCALE)).toFixed(3) + ')';
+        var img = card.querySelector('.fcs-media img');
+        if(img) img.style.transform = 'scale(' + (1 + (1 - a) * IMG_ZOOM).toFixed(3) + ')';
+      });
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    (function tick(){ update(); requestAnimationFrame(tick); })();
+    window.__sectionUpdate = update;
+    update();
+  })();
+  </script>
+</section>

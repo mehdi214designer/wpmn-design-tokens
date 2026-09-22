@@ -1,0 +1,131 @@
+<!-- WPMN Section: Services Rows — a dark services block: a split header (eyebrow, big two-tone heading, right label + count) over numbered service rows, each with a white curtain that wipes left-to-right on hover (flipping the text dark), a photo that pops upright, and a go tile that flips light; then a centered two-tone sub-heading and three support cards that expand on hover with a rolling "learn more" label. HTML import: the CSS hover choreography (curtain wipe, photo rotate/scale pop, go flip, flex-grow card expand, label roll) is kept verbatim and re-scoped; the brand font is replaced with the base family, colors are tokenized, and images are verified Unsplash (content swapped on use). Classes are avs-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-services-rows">
+  <style>
+    .wpmn-sec-services-rows{
+      background:var(--color-surface-secondary);color:var(--color-text-primary-invert);
+      font-family:var(--font-family-base);
+      padding:96px 0 50px;overflow:clip;
+      --avs-tile:color-mix(in srgb, var(--color-text-primary-invert) 8%, var(--color-surface-secondary));
+      --avs-line:color-mix(in srgb, var(--color-text-primary-invert) 18%, transparent);
+      --avs-gray:color-mix(in srgb, var(--color-text-primary-invert) 55%, transparent);
+      --avs-shade:color-mix(in srgb, var(--color-surface-secondary) 72%, transparent);
+      --avs-pad:80px;--avs-ease:cubic-bezier(.33,0,.2,1);
+    }
+    .wpmn-sec-services-rows *{box-sizing:border-box;margin:0}
+    .wpmn-sec-services-rows a{text-decoration:none}
+
+    .wpmn-sec-services-rows .avs-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding:0 var(--avs-pad) 72px}
+    .wpmn-sec-services-rows .avs-eyebrow{display:flex;align-items:center;gap:8px;color:var(--color-text-primary-invert);font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);letter-spacing:.22em;line-height:1.4;text-transform:uppercase;white-space:nowrap}
+    .wpmn-sec-services-rows .avs-dot{width:6px;height:6px;background:var(--color-text-primary-invert)}
+    .wpmn-sec-services-rows .avs-h2{margin-top:22px;color:var(--color-text-primary-invert);font-size:var(--font-size-h2);font-weight:var(--font-weight-medium);letter-spacing:-.03em;line-height:1.14}
+    .wpmn-sec-services-rows .avs-h2 > span{color:var(--avs-gray)}
+    .wpmn-sec-services-rows .avs-headr{text-align:right}
+    .wpmn-sec-services-rows .avs-headr .avs-eyebrow{justify-content:flex-end}
+    .wpmn-sec-services-rows .avs-count{margin-top:4px;color:var(--color-text-primary-invert);font-size:var(--font-size-h2);font-weight:var(--font-weight-regular);letter-spacing:-.03em;line-height:1}
+    .wpmn-sec-services-rows .avs-lineel{height:1px;margin:0 var(--avs-pad);background:var(--avs-line)}
+
+    .wpmn-sec-services-rows .avs-row{position:relative;display:flex;align-items:flex-start;min-height:210px;padding:30px var(--avs-pad);cursor:pointer;isolation:isolate}
+    .wpmn-sec-services-rows .avs-curtain{position:absolute;inset:0;z-index:0;background:var(--color-surface-primary);transform:scaleX(0);transform-origin:left center;transition:transform .5s var(--avs-ease)}
+    .wpmn-sec-services-rows .avs-row:hover .avs-curtain{transform:scaleX(1)}
+    .wpmn-sec-services-rows .avs-row > *:not(.avs-curtain){position:relative;z-index:1}
+    .wpmn-sec-services-rows .avs-num,.wpmn-sec-services-rows .avs-title{color:var(--color-text-primary-invert);font-size:var(--font-size-h6);font-weight:var(--font-weight-medium);letter-spacing:-.02em;line-height:1.25;transition:color .5s var(--avs-ease)}
+    .wpmn-sec-services-rows .avs-num{width:82px;flex-shrink:0}
+    .wpmn-sec-services-rows .avs-title{width:340px;flex-shrink:0}
+    .wpmn-sec-services-rows .avs-feats{flex:1;display:flex;flex-direction:column;gap:9px;min-width:0}
+    .wpmn-sec-services-rows .avs-feat{display:flex;gap:11px}
+    .wpmn-sec-services-rows .avs-plus,.wpmn-sec-services-rows .avs-ftext{color:var(--color-text-secondary-invert);font-size:var(--font-size-body-base);letter-spacing:-.01em;line-height:1.5;transition:color .5s var(--avs-ease)}
+    .wpmn-sec-services-rows .avs-row:hover .avs-num,.wpmn-sec-services-rows .avs-row:hover .avs-title,.wpmn-sec-services-rows .avs-row:hover .avs-plus,.wpmn-sec-services-rows .avs-row:hover .avs-ftext{color:var(--color-text-primary)}
+    .wpmn-sec-services-rows .avs-right{display:flex;gap:10px;flex-shrink:0}
+    .wpmn-sec-services-rows .avs-photo{width:240px;height:150px;border-radius:var(--radius-xsm);overflow:hidden;opacity:0;transform:rotate(25deg) scale(.35);transition:transform .55s cubic-bezier(.19,1,.22,1),opacity .45s var(--avs-ease);will-change:transform}
+    .wpmn-sec-services-rows .avs-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius-xsm)}
+    .wpmn-sec-services-rows .avs-row:hover .avs-photo{opacity:1;transform:rotate(0deg) scale(1)}
+    .wpmn-sec-services-rows .avs-go{width:58px;height:150px;display:flex;align-items:center;justify-content:center;background:var(--avs-tile);border-radius:var(--radius-xsm);color:var(--color-text-primary-invert);transition:background-color .5s var(--avs-ease),color .5s var(--avs-ease)}
+    .wpmn-sec-services-rows .avs-row:hover .avs-go{background:var(--color-surface-primary);color:var(--color-text-primary)}
+    .wpmn-sec-services-rows .avs-arrow{width:15px;height:15px;flex-shrink:0}
+
+    .wpmn-sec-services-rows .avs-sub{margin:0;padding:100px var(--avs-pad) 56px;text-align:center;color:var(--avs-gray)}
+    .wpmn-sec-services-rows .avs-sub > span{color:var(--color-text-primary-invert)}
+
+    .wpmn-sec-services-rows .avs-cards{display:flex;gap:10px;padding:0 var(--avs-pad) 96px}
+    .wpmn-sec-services-rows .avs-card{position:relative;flex:1 1 0%;height:420px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:24px;border-radius:var(--radius-lg);overflow:clip;background:var(--color-surface-secondary);transition:flex-grow .6s var(--avs-ease)}
+    .wpmn-sec-services-rows .avs-card:hover{flex-grow:3.05}
+    .wpmn-sec-services-rows .avs-cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg)}
+    .wpmn-sec-services-rows .avs-cshade{position:absolute;inset:0 0 45%;background:linear-gradient(var(--avs-shade), transparent)}
+    .wpmn-sec-services-rows .avs-ctitle{position:relative;color:var(--color-text-primary-invert);font-size:var(--font-size-h6);font-weight:var(--font-weight-medium);letter-spacing:-.02em;line-height:1.22;max-width:220px}
+    .wpmn-sec-services-rows .avs-lm{position:relative;display:flex;align-items:center;gap:10px;padding:12px 16px 12px 20px;background:var(--color-surface-primary);border-radius:var(--radius-sm);color:var(--color-text-primary)}
+    .wpmn-sec-services-rows .avs-lmroll{display:block;height:18px;overflow:hidden;font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);letter-spacing:.08em;line-height:18px;text-transform:uppercase}
+    .wpmn-sec-services-rows .avs-lmroll span{display:block;transition:transform .3s var(--avs-ease)}
+    .wpmn-sec-services-rows .avs-card:hover .avs-lmroll span{transform:translateY(-18px)}
+
+    @media (max-width:1199px){
+      .wpmn-sec-services-rows{--avs-pad:40px}
+      .wpmn-sec-services-rows .avs-title{width:240px}
+      .wpmn-sec-services-rows .avs-card{height:330px}
+      .wpmn-sec-services-rows .avs-ctitle{max-width:150px}
+    }
+    @media (max-width:809px){
+      .wpmn-sec-services-rows{--avs-pad:24px;padding:64px 0 40px}
+      .wpmn-sec-services-rows .avs-head{flex-direction:column;align-items:flex-start;gap:28px;padding-bottom:48px}
+      .wpmn-sec-services-rows .avs-headr{text-align:left}
+      .wpmn-sec-services-rows .avs-headr .avs-eyebrow{justify-content:flex-start}
+      .wpmn-sec-services-rows .avs-row{flex-wrap:wrap;gap:16px;min-height:0;padding:24px var(--avs-pad)}
+      .wpmn-sec-services-rows .avs-num{width:48px}
+      .wpmn-sec-services-rows .avs-title{width:calc(100% - 64px)}
+      .wpmn-sec-services-rows .avs-feats{flex-basis:100%}
+      .wpmn-sec-services-rows .avs-photo{display:none}
+      .wpmn-sec-services-rows .avs-go{width:48px;height:48px}
+      .wpmn-sec-services-rows .avs-sub{padding:64px var(--avs-pad) 40px}
+      .wpmn-sec-services-rows .avs-cards{flex-direction:column;height:auto}
+      .wpmn-sec-services-rows .avs-card{flex:0 0 auto;height:330px;width:100%}
+      .wpmn-sec-services-rows .avs-card:hover{flex-grow:0}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-services-rows .avs-curtain,.wpmn-sec-services-rows .avs-photo,.wpmn-sec-services-rows .avs-go,.wpmn-sec-services-rows .avs-card,.wpmn-sec-services-rows .avs-num,.wpmn-sec-services-rows .avs-title,.wpmn-sec-services-rows .avs-plus,.wpmn-sec-services-rows .avs-ftext,.wpmn-sec-services-rows .avs-lmroll span{transition:none}
+    }
+  </style>
+
+  <header class="avs-head">
+    <div>
+      <p class="avs-eyebrow"><span class="avs-dot"></span>What We Provide</p>
+      <h2 class="avs-h2">Taking the guesswork<br><span>out of moving home</span></h2>
+    </div>
+    <div class="avs-headr">
+      <p class="avs-eyebrow">Services</p>
+      <p class="avs-count">+004</p>
+    </div>
+  </header>
+
+  <div class="avs-lineel"></div>
+  <div class="avs-rows"></div>
+
+  <h2 class="avs-h2 avs-sub"><span>Support beyond</span> buying and selling</h2>
+  <div class="avs-cards"></div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var arrow = '<svg class="avs-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg>';
+    var ROWS = [
+      ['01','Buying Advisory',['Area and street-level research','Survey and condition review','Offer strategy and negotiation','Completion management'],'photo-1517180102446-f3ece451e9d8'],
+      ['02','Selling Advisory',['Pricing and market timing','Staging, styling and photography','Qualified buyer shortlisting','Chain and exchange handling'],'photo-1497366216548-37526070297c'],
+      ['03','Lettings and Rentals',['Off-market rental access','Landlord and tenant vetting','Tenancy and deposit handling','Renewal and rent review'],'photo-1523275335684-37898b6baf30'],
+      ['04','Ongoing Advisory',['Portfolio performance review','Refinance and mortgage timing','Refurbishment planning','Annual valuation and strategy'],'photo-1486312338219-ce68d2c6f44d']
+    ];
+    sec.querySelector('.avs-rows').innerHTML = ROWS.map(function(r){
+      var feats = r[2].map(function(f){ return '<div class="avs-feat"><span class="avs-plus">+</span><p class="avs-ftext">' + f + '</p></div>'; }).join('');
+      return '<a class="avs-row" href="#" onclick="return false"><div class="avs-curtain"></div><p class="avs-num">' + r[0] + '</p><p class="avs-title">' + r[1] + '</p><div class="avs-feats">' + feats + '</div>' +
+        '<div class="avs-right"><div class="avs-photo"><img src="https://images.unsplash.com/' + r[3] + '?auto=format&fit=crop&w=480&q=80" alt="" loading="lazy"></div><div class="avs-go">' + arrow + '</div></div></a><div class="avs-lineel"></div>';
+    }).join('');
+
+    var CARDS = [
+      ['Mortgage Services','photo-1506905925346-21bda4d32df4'],
+      ['Property Management','photo-1460925895917-afdab827c52f'],
+      ['Construction and Development','photo-1551288049-bebda4e38f71']
+    ];
+    sec.querySelector('.avs-cards').innerHTML = CARDS.map(function(c){
+      return '<a class="avs-card" href="#" onclick="return false"><img class="avs-cimg" src="https://images.unsplash.com/' + c[1] + '?auto=format&fit=crop&w=1200&q=80" alt="' + c[0] + '" loading="lazy"><div class="avs-cshade"></div><p class="avs-ctitle">' + c[0] + '</p>' +
+        '<span class="avs-lm"><span class="avs-lmroll"><span>Learn More</span><span>Learn More</span></span>' + arrow + '</span></a>';
+    }).join('');
+  })();
+  </script>
+</section>

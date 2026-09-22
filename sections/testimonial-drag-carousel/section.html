@@ -1,0 +1,96 @@
+<!-- WPMN Section: Testimonial Drag Carousel — a centered header (heading, sub, gradient CTA) over a full-bleed, infinitely draggable testimonial carousel with momentum: tall photo cards with a caption overlay (quote, name, role); video-type cards fade the caption to a glassy Play pill on hover. HTML import: the infinite-drag engine (offset wrap over the loop width, velocity momentum decay, click-suppress after drag, __sectionUpdate hook) is kept verbatim and re-scoped; the brand font is replaced with the base family, colors are tokenized, the CTA uses --radius-xsm, and photos are verified Unsplash (content swapped on use). Classes are cc-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-testimonial-drag-carousel">
+  <style>
+    .wpmn-sec-testimonial-drag-carousel{
+      background:var(--color-surface-primary);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:80px 30px;overflow:clip;
+      --cc-cw:340px;--cc-ch:540px;--cc-gap:24px;
+      --cc-ease:cubic-bezier(0.4,0,0.2,1);
+      --cc-cta:linear-gradient(142deg, var(--btn-bg-enable) 18%, color-mix(in srgb, var(--btn-bg-enable) 55%, var(--color-surface-secondary)) 78%);
+      --cc-pill:color-mix(in srgb, var(--color-surface-secondary) 55%, transparent);
+      --cc-shade:color-mix(in srgb, var(--color-surface-secondary) 80%, transparent);
+    }
+    .wpmn-sec-testimonial-drag-carousel *{box-sizing:border-box;margin:0}
+    .wpmn-sec-testimonial-drag-carousel .cc-header{text-align:center;max-width:620px;margin:0 auto 80px}
+    .wpmn-sec-testimonial-drag-carousel .cc-header h2{font-size:var(--font-size-h1);line-height:1.1;font-weight:var(--font-weight-bold);letter-spacing:-.02em;color:var(--color-text-primary)}
+    .wpmn-sec-testimonial-drag-carousel .cc-header p{font-size:var(--font-size-body-medium);line-height:1.4;font-weight:var(--font-weight-medium);letter-spacing:-.02em;color:var(--color-text-secondary);margin-top:20px}
+    .wpmn-sec-testimonial-drag-carousel .cc-cta{display:inline-flex;align-items:center;justify-content:center;margin-top:32px;padding:14px 24px;background-color:var(--btn-bg-enable);background-image:var(--cc-cta);border-radius:var(--radius-xsm);color:var(--color-text-primary-invert);font-size:var(--font-size-body-base);line-height:1.25;font-weight:var(--font-weight-semibold);letter-spacing:-.01em;text-decoration:none;transition:filter .25s var(--cc-ease)}
+    .wpmn-sec-testimonial-drag-carousel .cc-cta:hover{filter:brightness(1.08)}
+
+    .wpmn-sec-testimonial-drag-carousel .cc-viewport{margin:0 -30px;height:var(--cc-ch);cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;overflow:hidden}
+    .wpmn-sec-testimonial-drag-carousel .cc-viewport.cc-dragging{cursor:grabbing}
+    .wpmn-sec-testimonial-drag-carousel .cc-track{display:flex;height:100%;will-change:transform}
+    .wpmn-sec-testimonial-drag-carousel .cc-card{position:relative;flex:0 0 var(--cc-cw);width:var(--cc-cw);height:var(--cc-ch);margin-right:var(--cc-gap);border-radius:var(--radius-lg);overflow:hidden;background:var(--color-surface-secondary)}
+    .wpmn-sec-testimonial-drag-carousel .cc-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;transition:transform .6s var(--cc-ease)}
+    .wpmn-sec-testimonial-drag-carousel .cc-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 42%, var(--cc-shade))}
+    .wpmn-sec-testimonial-drag-carousel .cc-card.cc-video:hover .cc-photo{transform:scale(1.03)}
+    .wpmn-sec-testimonial-drag-carousel .cc-caption{position:absolute;left:0;right:0;bottom:0;z-index:10;padding:32px 24px;color:var(--color-text-primary-invert);transition:opacity .3s var(--cc-ease)}
+    .wpmn-sec-testimonial-drag-carousel .cc-qmark{font-size:var(--font-size-h3);line-height:.5;height:.4em;color:color-mix(in srgb, var(--color-text-primary-invert) 55%, transparent);margin-bottom:12px}
+    .wpmn-sec-testimonial-drag-carousel .cc-quote{font-size:var(--font-size-body-base);line-height:1.5;font-weight:var(--font-weight-medium);letter-spacing:-.01em;margin-bottom:12px;max-width:292px;color:var(--color-text-primary-invert)}
+    .wpmn-sec-testimonial-drag-carousel .cc-name{font-size:var(--font-size-body-small);line-height:1.3;font-weight:var(--font-weight-bold);color:var(--color-text-primary-invert)}
+    .wpmn-sec-testimonial-drag-carousel .cc-role{font-size:var(--font-size-body-small);line-height:1.3;font-weight:var(--font-weight-medium);color:var(--color-text-secondary-invert);margin-top:4px}
+    .wpmn-sec-testimonial-drag-carousel .cc-card.cc-video:hover .cc-caption{opacity:0}
+    .wpmn-sec-testimonial-drag-carousel .cc-play{position:absolute;right:24px;bottom:32px;z-index:20;display:inline-flex;align-items:center;gap:4px;padding:12px 16px 12px 12px;background:var(--cc-pill);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:999px;color:var(--color-text-primary-invert);font-size:var(--font-size-body-base);line-height:1.5;font-weight:var(--font-weight-medium);opacity:0;transition:opacity .3s var(--cc-ease);pointer-events:none}
+    .wpmn-sec-testimonial-drag-carousel .cc-play svg{width:30px;height:30px}
+    .wpmn-sec-testimonial-drag-carousel .cc-card.cc-video:hover .cc-play{opacity:1}
+
+    @media (max-width:767px){
+      .wpmn-sec-testimonial-drag-carousel{padding:40px 20px 44px}
+      .wpmn-sec-testimonial-drag-carousel .cc-header{margin-bottom:64px}
+      .wpmn-sec-testimonial-drag-carousel .cc-viewport{margin:0 -20px}
+    }
+    @media (prefers-reduced-motion:reduce){ .wpmn-sec-testimonial-drag-carousel .cc-photo{transition:none} }
+  </style>
+
+  <div class="cc-header">
+    <h2>Loved by the best</h2>
+    <p>Recognized as a leader, this is where the best go to build.</p>
+    <a class="cc-cta" href="#" onclick="return false">Start free trial</a>
+  </div>
+
+  <div class="cc-viewport">
+    <div class="cc-track"></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var POOL = ['photo-1522202176988-66273c2fd55f','photo-1542744173-8e7e53415bb0','photo-1517180102446-f3ece451e9d8','photo-1497366216548-37526070297c','photo-1523275335684-37898b6baf30','photo-1486312338219-ce68d2c6f44d','photo-1506905925346-21bda4d32df4','photo-1460925895917-afdab827c52f','photo-1551288049-bebda4e38f71','photo-1498050108023-c5249f4df085'];
+    var CARDS = [
+      {type:'quote',quote:'It is so much faster. I can experiment, launch things on my own, and everything feels consistent.',name:'Tim Slade',role:'Founder, eLearning Academy'},
+      {type:'quote',quote:'I did a full year of research on platforms and this won in every single category.',name:'Dana Malstaff',role:'Founder, BossMom'},
+      {type:'video',quote:'It made it possible for one person with an idea to build a real business around community. That is the future.',name:'Dave Gerhardt',role:'Founder, ExitFive'},
+      {type:'quote',quote:'We share the same philosophy: connection is the heart of community, and the platform brings that to life.',name:'Tamara Grominsky',role:'Founder, PMM Camp'},
+      {type:'video',quote:'If you are building anything today, community needs to be part of your strategy. Not later. Now.',name:'Pat Flynn',role:'Founder, Smart Passive Income'},
+      {type:'quote',quote:'It approaches community holistically and gave me the structure I needed.',name:'Noele Flowers',role:'Director of Community, Articulate'},
+      {type:'quote',quote:'My AI agent is amazing. Now I only bring in people who care, and I can focus entirely on value.',name:'Seth David',role:'Founder, Nerd Enterprises'},
+      {type:'video',quote:'With the app builder, I combined our app and our community into one branded app, in under 10 minutes.',name:'Mila Clarke',role:'Glucose Guide'},
+      {type:'quote',quote:'After three years, it has been essential for uniting thousands of creators at every growth stage.',name:'Ali Abdaal',role:'Productivity Expert'},
+      {type:'video',quote:'After launching the app, I immediately saw double the messages. Members told me it changed everything.',name:'Felippe Nardi',role:'Founder, Inside the Show'}
+    ];
+    var PLAY = '<svg viewBox="0 0 32 32" fill="none"><path d="M12 9.5v13l11-6.5-11-6.5z" fill="currentColor"/></svg>';
+    function cardHTML(c,i){
+      var src = 'https://images.unsplash.com/' + POOL[i % POOL.length] + '?auto=format&fit=crop&w=680&q=80';
+      return '<div class="cc-card cc-' + c.type + '"><img class="cc-photo" src="' + src + '" alt="' + c.name + '" draggable="false" loading="lazy">' +
+        '<div class="cc-caption"><div class="cc-qmark">“</div><div class="cc-quote">' + c.quote + '</div><div class="cc-name">' + c.name + '</div><div class="cc-role">' + c.role + '</div></div>' +
+        (c.type === 'video' ? '<div class="cc-play">' + PLAY + '<span>Play</span></div>' : '') + '</div>';
+    }
+    var track = sec.querySelector('.cc-track'), viewport = sec.querySelector('.cc-viewport');
+    var one = CARDS.map(cardHTML).join('');
+    track.innerHTML = one + one + one;
+
+    var PITCH = 340 + 24, LOOP = CARDS.length * PITCH;
+    var offset = 284, velocity = 0, dragging = false, lastX = 0, lastT = 0, moved = 0;
+    function apply(){ var w = ((offset % LOOP) + LOOP) % LOOP; track.style.transform = 'translateX(' + (w - LOOP).toFixed(2) + 'px)'; }
+    viewport.addEventListener('pointerdown', function(e){ dragging = true; moved = 0; velocity = 0; lastX = e.clientX; lastT = performance.now(); viewport.classList.add('cc-dragging'); viewport.setPointerCapture(e.pointerId); });
+    viewport.addEventListener('pointermove', function(e){ if(!dragging) return; var dx = e.clientX - lastX, now = performance.now(); offset += dx; moved += Math.abs(dx); if(now - lastT > 0) velocity = dx / (now - lastT) * 16.7; lastX = e.clientX; lastT = now; apply(); });
+    function endDrag(){ dragging = false; viewport.classList.remove('cc-dragging'); }
+    viewport.addEventListener('pointerup', endDrag); viewport.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('click', function(e){ if(moved > 5){ e.stopPropagation(); e.preventDefault(); } }, true);
+    function frame(){ if(!dragging && Math.abs(velocity) > 0.05){ offset += velocity; velocity *= 0.95; apply(); } requestAnimationFrame(frame); }
+    window.__sectionUpdate = function(px){ if(typeof px === 'number') offset = px; velocity = 0; apply(); };
+    apply(); requestAnimationFrame(frame);
+  })();
+  </script>
+</section>

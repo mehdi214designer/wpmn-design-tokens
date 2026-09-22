@@ -1,0 +1,109 @@
+<!-- WPMN Section: Portfolio Stack — a top meta bar over a three-column row: a left sticky title/link, a middle sticky card stack (each card a dark panel with a blurred bleeding backdrop and a sharp centered inner image plus meta), and a right sticky "see all" pill. As you scroll, each covered card scales down and lifts while the active card's inner image parallax-zooms. HTML import: the sticky-stack engine (scale/lift driven by the next card's climb, parallax zoom, z-index stacking, scroll + rAF drive, __sectionUpdate hook) is kept verbatim and re-scoped; the brand font is replaced with the base family, colors are tokenized, and images are verified Unsplash (content swapped on use). Classes are fuel-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-portfolio-stack">
+  <style>
+    .wpmn-sec-portfolio-stack{
+      background:var(--color-surface-primary);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:24px 24px 120px;display:flex;flex-direction:column;align-items:center;gap:80px;
+      --fuel-hair:color-mix(in srgb, var(--color-text-primary) 16%, transparent);
+      --fuel-pill:color-mix(in srgb, var(--color-text-primary) 4%, var(--color-surface-primary));
+      --fuel-cw:800px;--fuel-stick:50px;
+    }
+    .wpmn-sec-portfolio-stack *{box-sizing:border-box;margin:0;padding:0}
+    .wpmn-sec-portfolio-stack a{text-decoration:none;color:inherit}
+    .wpmn-sec-portfolio-stack .fuel-top{width:100%;max-width:1440px;padding-bottom:12px;border-bottom:1px solid var(--fuel-hair);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium)}
+    .wpmn-sec-portfolio-stack .fuel-top .fuel-r{text-align:right}
+    .wpmn-sec-portfolio-stack .fuel-top .fuel-diamond{font-size:var(--font-size-body-label);vertical-align:middle;margin-right:6px}
+
+    .wpmn-sec-portfolio-stack .fuel-bottom{width:100%;max-width:1440px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+    .wpmn-sec-portfolio-stack .fuel-side{width:250px;flex-shrink:0;position:sticky;top:0;padding:244px 0 200px}
+    .wpmn-sec-portfolio-stack .fuel-left{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+    .wpmn-sec-portfolio-stack .fuel-title{font-size:var(--font-size-h2);line-height:1;font-weight:var(--font-weight-bold);letter-spacing:-.03em}
+    .wpmn-sec-portfolio-stack .fuel-hairline{width:100%;height:1px;background:var(--fuel-hair)}
+    .wpmn-sec-portfolio-stack .fuel-joinwrap{position:relative;width:100%}
+    .wpmn-sec-portfolio-stack .fuel-join{font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary);display:inline-flex;align-items:center}
+    .wpmn-sec-portfolio-stack .fuel-joinwrap::after{content:"";position:absolute;top:-6px;right:0;width:8px;height:8px;border-top:1px solid var(--color-text-primary);border-right:1px solid var(--color-text-primary)}
+    .wpmn-sec-portfolio-stack .fuel-right{display:flex;justify-content:center;align-items:center}
+    .wpmn-sec-portfolio-stack .fuel-seeall{display:inline-flex;align-items:center;gap:16px;background:var(--fuel-pill);border-radius:var(--radius-xsm);padding:3px 16px 3px 3px;color:var(--color-text-primary);font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);transition:transform .3s ease}
+    .wpmn-sec-portfolio-stack .fuel-seeall:hover{transform:translateY(-2px)}
+    .wpmn-sec-portfolio-stack .fuel-thumb{width:64px;height:64px;border-radius:var(--radius-xsm);background:linear-gradient(140deg, var(--btn-bg-enable), color-mix(in srgb, var(--btn-bg-enable) 50%, var(--color-warning-primary)))}
+
+    .wpmn-sec-portfolio-stack .fuel-mid{flex:1;max-width:892px;padding:0 46px;display:flex;flex-direction:column;align-items:center;gap:24px}
+    .wpmn-sec-portfolio-stack .fuel-cardwrap{width:100%;max-width:var(--fuel-cw);position:sticky;top:var(--fuel-stick);display:flex;flex-direction:column;gap:20px;will-change:transform;transform-origin:center top}
+    .wpmn-sec-portfolio-stack .fuel-card{position:relative;width:100%;aspect-ratio:800/452;background:var(--color-surface-secondary);border-radius:var(--radius-xsm);overflow:clip}
+    .wpmn-sec-portfolio-stack .fuel-bg{position:absolute;inset:-22px -40px;overflow:clip;filter:blur(8px);opacity:.95}
+    .wpmn-sec-portfolio-stack .fuel-bg img{width:100%;height:100%;object-fit:cover;display:block}
+    .wpmn-sec-portfolio-stack .fuel-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54%;aspect-ratio:1392/752;border-radius:var(--radius-xsm);overflow:clip}
+    .wpmn-sec-portfolio-stack .fuel-inner img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
+    .wpmn-sec-portfolio-stack .fuel-meta{width:100%;display:flex;justify-content:space-between;align-items:flex-start;padding-right:10px;font-size:var(--font-size-body-small);line-height:1.35;font-weight:var(--font-weight-bold);letter-spacing:-.02em}
+    .wpmn-sec-portfolio-stack .fuel-meta .fuel-cat{color:var(--color-text-secondary)}
+
+    @media (max-width:900px){
+      .wpmn-sec-portfolio-stack .fuel-bottom{flex-direction:column}
+      .wpmn-sec-portfolio-stack .fuel-side{position:static;width:100%;padding:0 0 32px}
+      .wpmn-sec-portfolio-stack .fuel-right{justify-content:flex-start}
+      .wpmn-sec-portfolio-stack .fuel-mid{max-width:100%;padding:0}
+      .wpmn-sec-portfolio-stack .fuel-cardwrap{position:static;transform:none !important}
+      .wpmn-sec-portfolio-stack .fuel-inner{width:62%}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-portfolio-stack .fuel-cardwrap,.wpmn-sec-portfolio-stack .fuel-inner img{transform:none !important}
+    }
+  </style>
+
+  <div class="fuel-top"><div><span class="fuel-diamond">◆</span>(02)</div><div>(Portfolio)</div><div class="fuel-r">© 2025</div></div>
+
+  <div class="fuel-bottom">
+    <div class="fuel-side fuel-left">
+      <div class="fuel-title">FX-25’</div>
+      <div class="fuel-hairline"></div>
+      <div class="fuel-joinwrap"><a class="fuel-join" href="#" onclick="return false">Join Us Now</a></div>
+    </div>
+
+    <div class="fuel-mid"></div>
+
+    <div class="fuel-side fuel-right">
+      <a class="fuel-seeall" href="#" onclick="return false"><span class="fuel-thumb"></span><span>See all (07)</span></a>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var POOL = ['photo-1618005182384-a83a8bd57fbe','photo-1620641788421-7a1c342ea42e','photo-1557682250-33bd709cbe85','photo-1557683316-973673baf926'];
+    var PROJECTS = [
+      {roll:'(01)',title:'Vellfire Calibration',cat:'Art Direction',year:'© 2025'},
+      {roll:'(02)',title:'Dunwill Lanson',cat:'Photography',year:'© 2024'},
+      {roll:'(03)',title:'Noara Willis',cat:'Strategy',year:'© 2025'},
+      {roll:'(04)',title:'Nike Studios',cat:'Art Direction',year:'© 2025'}
+    ];
+    sec.querySelector('.fuel-mid').innerHTML = PROJECTS.map(function(p,i){
+      var src = 'https://images.unsplash.com/' + POOL[i % POOL.length] + '?auto=format&fit=crop&w=1200&q=80';
+      return '<div class="fuel-cardwrap" data-card="' + i + '"><div class="fuel-card"><div class="fuel-bg"><img src="' + src + '" alt="" loading="lazy"></div><div class="fuel-inner"><img src="' + src + '" alt="' + p.title + '" loading="lazy"></div></div>' +
+        '<div class="fuel-meta"><span>' + p.roll + '</span><span><span>' + p.title + '</span><br><span class="fuel-cat">' + p.cat + '</span></span><span>' + p.year + '</span></div></div>';
+    }).join('');
+
+    var wraps = [].slice.call(sec.querySelectorAll('.fuel-cardwrap'));
+    var inners = wraps.map(function(w){ return w.querySelector('.fuel-inner img'); });
+    var STICK = 50;
+    function clamp(v,a,b){ return Math.min(b, Math.max(a, v)); }
+    function mobile(){ return window.matchMedia('(max-width: 900px)').matches; }
+    function update(){
+      if(mobile()){ wraps.forEach(function(w){ w.style.transform = ''; }); return; }
+      for(var i=0;i<wraps.length;i++){
+        var wrap = wraps[i], next = wraps[i+1], p = 0;
+        if(next){ var nr = next.getBoundingClientRect(); p = clamp((window.innerHeight - nr.top) / (window.innerHeight - STICK), 0, 1); }
+        wrap.style.transform = 'translateY(' + (-80 * p).toFixed(1) + 'px) scale(' + (1 - 0.25 * p).toFixed(4) + ')';
+        wrap.style.zIndex = i;
+        var cr = wrap.getBoundingClientRect(), center = (cr.top + cr.height/2) / window.innerHeight;
+        var zoom = 1 + 0.10 * (1 - Math.min(Math.abs(center - 0.5) * 2, 1));
+        if(inners[i]) inners[i].style.transform = 'scale(' + zoom.toFixed(4) + ')';
+      }
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    (function loop(){ update(); requestAnimationFrame(loop); })();
+    window.__sectionUpdate = update;
+  })();
+  </script>
+</section>
