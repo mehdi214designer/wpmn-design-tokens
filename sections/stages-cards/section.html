@@ -1,0 +1,83 @@
+<!-- WPMN Section: Stages Cards — a centered eyebrow + heading over four numbered stage cards (dotted number ring, title, description) that fade up on load in a staggered, alternating-offset grid, above a continuously scrolling uppercase marquee strip. HTML import: the card/marquee build and the CSS reveal + scroll are kept verbatim and re-scoped; the brand font is replaced with the base family and colors are tokenized (content swapped on use). Classes are stg-prefixed and keyframes wpmn-stg-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-stages-cards">
+  <style>
+@keyframes wpmn-stg-in{to{opacity:1;transform:none}}
+@keyframes wpmn-stg-scroll{to{transform:translateX(-50%)}}
+    .wpmn-sec-stages-cards{
+      background:var(--stg-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      --stg-bg:color-mix(in srgb, var(--color-text-primary) 4%, var(--color-surface-primary));
+      --stg-dot:color-mix(in srgb, var(--color-text-primary) 26%, transparent);
+    }
+    .wpmn-sec-stages-cards *{box-sizing:border-box;margin:0}
+    .wpmn-sec-stages-cards .stg-sec{padding:var(--primitive-space-96) 0 90px;overflow:hidden}
+    .wpmn-sec-stages-cards .stg-in{max-width:1440px;margin:0 auto;padding:0 var(--primitive-space-40)}
+
+    .wpmn-sec-stages-cards .stg-eyebrow{display:flex;align-items:center;justify-content:center;gap:10px;font-size:var(--font-size-body-small);line-height:1;letter-spacing:.22em;text-transform:uppercase;color:var(--color-text-primary);margin-bottom:26px}
+    .wpmn-sec-stages-cards .stg-eyebrow::before{content:"";width:7px;height:7px;background:var(--color-text-primary);display:inline-block}
+    .wpmn-sec-stages-cards .stg-h{text-align:center;font-size:var(--font-size-h2);line-height:1.14;font-weight:var(--font-weight-medium);letter-spacing:-.04em;color:var(--color-text-primary);margin-bottom:72px}
+    .wpmn-sec-stages-cards .stg-h .stg-muted{color:var(--color-text-secondary)}
+
+    .wpmn-sec-stages-cards .stg-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:start}
+    .wpmn-sec-stages-cards .stg-card{background:var(--color-surface-primary);border-radius:var(--radius-lg);padding:40px;height:358px;display:flex;flex-direction:column;opacity:0;transform:translateY(24px);animation:wpmn-stg-in .7s cubic-bezier(.2,.7,.2,1) forwards}
+    .wpmn-sec-stages-cards .stg-card:nth-child(2n){margin-top:-26px}
+    .wpmn-sec-stages-cards .stg-card:nth-child(1){animation-delay:.05s}
+    .wpmn-sec-stages-cards .stg-card:nth-child(2){animation-delay:.15s}
+    .wpmn-sec-stages-cards .stg-card:nth-child(3){animation-delay:.25s}
+    .wpmn-sec-stages-cards .stg-card:nth-child(4){animation-delay:.35s}
+    .wpmn-sec-stages-cards .stg-ring{width:86px;height:86px;border-radius:999px;border:1.5px dotted var(--stg-dot);display:flex;align-items:center;justify-content:center;flex:none}
+    .wpmn-sec-stages-cards .stg-ring span{font-size:var(--font-size-h6);line-height:1;font-weight:var(--font-weight-medium);color:var(--color-text-primary)}
+    .wpmn-sec-stages-cards .stg-body{margin-top:auto}
+    .wpmn-sec-stages-cards .stg-t{font-size:var(--font-size-h6);line-height:1.2;font-weight:var(--font-weight-medium);letter-spacing:-.02em;color:var(--color-text-primary);margin-bottom:11px}
+    .wpmn-sec-stages-cards .stg-d{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary)}
+
+    .wpmn-sec-stages-cards .stg-marq{background:var(--color-surface-primary);overflow:hidden;padding:26px 0;-webkit-mask-image:linear-gradient(90deg, transparent, black 5%, black 95%, transparent);mask-image:linear-gradient(90deg, transparent, black 5%, black 95%, transparent)}
+    .wpmn-sec-stages-cards .stg-track{display:flex;width:max-content;animation:wpmn-stg-scroll 32s linear infinite}
+    .wpmn-sec-stages-cards .stg-it{display:flex;align-items:center;gap:56px;padding-right:56px;white-space:nowrap}
+    .wpmn-sec-stages-cards .stg-it span{font-size:var(--font-size-body-small);line-height:1;letter-spacing:.14em;text-transform:uppercase;color:var(--color-text-primary)}
+    .wpmn-sec-stages-cards .stg-it::after{content:"";width:7px;height:7px;background:var(--color-text-primary);flex:none}
+
+    @media (max-width:1100px){
+      .wpmn-sec-stages-cards .stg-in{padding:0 var(--primitive-space-32)}
+      .wpmn-sec-stages-cards .stg-cards{grid-template-columns:repeat(2,1fr);gap:16px}
+      .wpmn-sec-stages-cards .stg-card:nth-child(2n){margin-top:0}
+    }
+    @media (max-width:600px){
+      .wpmn-sec-stages-cards .stg-sec{padding:64px 0 60px}
+      .wpmn-sec-stages-cards .stg-in{padding:0 var(--primitive-space-24)}
+      .wpmn-sec-stages-cards .stg-cards{grid-template-columns:1fr}
+      .wpmn-sec-stages-cards .stg-card{height:auto;min-height:300px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-stages-cards .stg-card{opacity:1;transform:none;animation:none}
+      .wpmn-sec-stages-cards .stg-track{animation:none}
+    }
+  </style>
+
+  <div class="stg-sec">
+    <div class="stg-in">
+      <p class="stg-eyebrow">Stages of a sale</p>
+      <h2 class="stg-h">From first brief <span class="stg-muted">to final keys</span></h2>
+      <div class="stg-cards"></div>
+    </div>
+  </div>
+  <div class="stg-marq"><div class="stg-track"></div></div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var CARDS = [
+      ["01","Brief & Shortlist","We learn what you actually want, then cut the market to a handful worth seeing."],
+      ["02","Viewings & Due Diligence","Visits arranged around you, with surveys and searches read properly before you commit."],
+      ["03","Offer & Negotiation","We price the offer on evidence, then hold the line through every counter and condition."],
+      ["04","Exchange & Handover","Solicitors, lenders and chain all chased daily until the keys are in your hand."]
+    ];
+    var MARQ = ["London property specialists","Buying, selling and letting","Off-market access","Valuations within 48 hours","Established 1994"];
+    sec.querySelector('.stg-cards').innerHTML = CARDS.map(function(c){
+      return '<div class="stg-card"><div class="stg-ring"><span>' + c[0] + '</span></div><div class="stg-body"><div class="stg-t">' + c[1] + '</div><div class="stg-d">' + c[2] + '</div></div></div>';
+    }).join('');
+    var one = '<div class="stg-it">' + MARQ.map(function(m){ return '<span>' + m + '</span>'; }).join('') + '</div>';
+    sec.querySelector('.stg-track').innerHTML = one + one;
+  })();
+  </script>
+</section>

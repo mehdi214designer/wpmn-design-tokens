@@ -1,0 +1,70 @@
+<!-- WPMN Section: AI Photos Hero — a centered hero (heading, sub, button) over a large slowly rotating ring of image cards, with a three-up feature row below. HTML import: the ring build and the CSS spin are kept and re-scoped; the brand fonts are replaced with the base family, the button uses the button tokens at --radius-xsm, and the ring images are verified Unsplash photos (content swapped on use). Classes are fbx-prefixed and keyframes wpmn-fbx-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-ai-photos-hero">
+  <style>
+@keyframes wpmn-fbx-spin{to{transform:rotate(360deg)}}
+    .wpmn-sec-ai-photos-hero{
+      background:var(--color-surface-primary);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      position:relative;width:100%;min-height:1120px;overflow:hidden;isolation:isolate;
+      --fbx-r:720px;--fbx-cw:245px;--fbx-ch:215px;--fbx-spin:90s;
+      --fbx-line:color-mix(in srgb, var(--color-text-primary) 9%, transparent);
+    }
+    .wpmn-sec-ai-photos-hero *{box-sizing:border-box;margin:0}
+    .wpmn-sec-ai-photos-hero .fbx-ring{position:absolute;left:50%;top:60%;width:0;height:0;z-index:1;animation:wpmn-fbx-spin var(--fbx-spin) linear infinite}
+    .wpmn-sec-ai-photos-hero .fbx-card{position:absolute;width:var(--fbx-cw);height:var(--fbx-ch);margin:calc(var(--fbx-ch) / -2) 0 0 calc(var(--fbx-cw) / -2);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft-500);transform:rotate(var(--fbx-a)) translateY(calc(-1 * var(--fbx-r)))}
+    .wpmn-sec-ai-photos-hero .fbx-card img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .wpmn-sec-ai-photos-hero .fbx-inner{position:relative;z-index:3;max-width:760px;margin:0 auto;padding:250px 24px 90px;text-align:center}
+    .wpmn-sec-ai-photos-hero .fbx-inner h1{font-size:var(--font-size-h1);line-height:1.12;font-weight:var(--font-weight-medium);letter-spacing:-.01em;color:var(--color-text-primary);margin-bottom:22px}
+    .wpmn-sec-ai-photos-hero .fbx-sub{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);max-width:560px;margin:0 auto 30px}
+    .wpmn-sec-ai-photos-hero .fbx-btn{display:inline-flex;align-items:center;gap:var(--primitive-space-12);background:var(--color-surface-secondary);color:var(--color-text-primary-invert);border:0;cursor:pointer;font-size:var(--font-size-body-base);line-height:1;font-weight:var(--font-weight-semibold);padding:16px 30px;border-radius:var(--radius-xsm);text-decoration:none;transition:background-color .2s ease}
+    .wpmn-sec-ai-photos-hero .fbx-btn svg{width:18px;height:18px;transition:transform .2s ease}
+    .wpmn-sec-ai-photos-hero .fbx-btn:hover{background:color-mix(in srgb, var(--color-surface-secondary) 86%, var(--color-text-primary-invert))}
+    .wpmn-sec-ai-photos-hero .fbx-btn:hover svg{transform:translateX(4px)}
+
+    .wpmn-sec-ai-photos-hero .fbx-feats{position:relative;z-index:3;max-width:1000px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(3,1fr)}
+    .wpmn-sec-ai-photos-hero .fbx-feat{text-align:center;padding:0 28px;position:relative}
+    .wpmn-sec-ai-photos-hero .fbx-feat + .fbx-feat::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--fbx-line)}
+    .wpmn-sec-ai-photos-hero .fbx-feat h3{font-size:var(--font-size-h5);line-height:1.2;font-weight:var(--font-weight-medium);color:var(--color-text-primary);margin-bottom:10px}
+    .wpmn-sec-ai-photos-hero .fbx-feat p{font-size:var(--font-size-body-small);line-height:var(--font-lh-body-small);color:var(--color-text-secondary);max-width:220px;margin:0 auto}
+
+    @media (max-width:820px){
+      .wpmn-sec-ai-photos-hero{min-height:0;--fbx-r:440px;--fbx-cw:150px;--fbx-ch:130px}
+      .wpmn-sec-ai-photos-hero .fbx-ring{top:340px}
+      .wpmn-sec-ai-photos-hero .fbx-inner{padding:150px 20px 60px}
+      .wpmn-sec-ai-photos-hero .fbx-feats{grid-template-columns:1fr;gap:28px;padding-bottom:60px}
+      .wpmn-sec-ai-photos-hero .fbx-feat + .fbx-feat::before{display:none}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-ai-photos-hero .fbx-ring{animation:none}
+      .wpmn-sec-ai-photos-hero .fbx-btn,.wpmn-sec-ai-photos-hero .fbx-btn svg{transition:none}
+    }
+  </style>
+
+  <div class="fbx-ring"></div>
+  <div class="fbx-inner">
+    <h1>Create stunning AI-generated photos instantly</h1>
+    <p class="fbx-sub">Transform your ideas into breathtaking visuals with cutting-edge AI technology.</p>
+    <a class="fbx-btn" href="#" onclick="return false">Start Generating Now
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+  <div class="fbx-feats">
+    <div class="fbx-feat"><h3>Realistic Results</h3><p>Photos that look professionally crafted.</p></div>
+    <div class="fbx-feat"><h3>Fast Generation</h3><p>Turn ideas into images in seconds.</p></div>
+    <div class="fbx-feat"><h3>Diverse Styles</h3><p>Choose from a wide range of artistic options.</p></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var POOL = ['photo-1618005182384-a83a8bd57fbe','photo-1620641788421-7a1c342ea42e','photo-1557682250-33bd709cbe85','photo-1557683316-973673baf926','photo-1523275335684-37898b6baf30','photo-1506905925346-21bda4d32df4','photo-1517180102446-f3ece451e9d8','photo-1497366216548-37526070297c','photo-1460925895917-afdab827c52f','photo-1551288049-bebda4e38f71','photo-1486312338219-ce68d2c6f44d','photo-1498050108023-c5249f4df085'];
+    var N = 16, ring = sec.querySelector('.fbx-ring'), html = '';
+    for(var i=0;i<N;i++){
+      var src = 'https://images.unsplash.com/' + POOL[i % POOL.length] + '?auto=format&fit=crop&w=500&q=70';
+      html += '<div class="fbx-card" style="--fbx-a:' + (i * (360/N)) + 'deg"><img src="' + src + '" alt="AI generated example" loading="lazy"></div>';
+    }
+    ring.innerHTML = html;
+  })();
+  </script>
+</section>

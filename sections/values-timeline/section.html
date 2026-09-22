@@ -1,0 +1,121 @@
+<!-- WPMN Section: Values Timeline — a centered header over an auto-advancing alternating timeline: a center line whose fill animates over 4.5s then advances to the next step, swapping a left/right content block (number, title, description, image). A sticky pause button freezes the run. HTML import: the timeline engine (fill animation-end advance, alternating render, pause toggle, __sectionGo hook) is kept verbatim and re-scoped; the brand font is replaced with the base family, the accent maps to the warning token, and images are verified Unsplash (content swapped on use). Classes are val-prefixed and keyframes wpmn-val-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-values-timeline">
+  <style>
+@keyframes wpmn-val-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes wpmn-val-fill{to{height:100%}}
+    .wpmn-sec-values-timeline{
+      background:var(--color-surface-primary);color:var(--color-text-secondary);
+      font-family:var(--font-family-base);
+      max-width:1200px;margin:0 auto;padding:80px 24px 100px;position:relative;
+      --val-peach:color-mix(in srgb, var(--color-warning-primary) 16%, var(--color-surface-primary));
+      --val-track:color-mix(in srgb, var(--color-text-primary) 12%, transparent);
+      --val-ring:color-mix(in srgb, var(--color-warning-primary) 14%, transparent);
+      --val-dur:4.5s;
+    }
+    .wpmn-sec-values-timeline *{box-sizing:border-box;margin:0}
+
+    .wpmn-sec-values-timeline .val-pause{position:sticky;top:24px;float:left;margin-left:-8px;width:44px;height:44px;border-radius:var(--radius-sm);background:var(--color-surface-primary);box-shadow:var(--shadow-soft-300), inset 0 0 0 1px var(--val-track);display:flex;align-items:center;justify-content:center;cursor:pointer;border:0;z-index:20}
+    .wpmn-sec-values-timeline .val-pause svg{width:16px;height:16px;color:var(--color-text-primary)}
+
+    .wpmn-sec-values-timeline .val-head{text-align:center;margin-bottom:80px}
+    .wpmn-sec-values-timeline .val-pill{display:inline-block;padding:6px 16px;border-radius:999px;background:var(--val-peach);color:var(--color-warning-primary);font-size:var(--font-size-body-small);line-height:1;font-weight:var(--font-weight-medium);margin-bottom:22px}
+    .wpmn-sec-values-timeline .val-head h2{font-size:var(--font-size-h2);line-height:1.1;font-weight:var(--font-weight-semibold);letter-spacing:-.03em;color:var(--color-text-primary);margin-bottom:20px}
+    .wpmn-sec-values-timeline .val-head p{font-size:var(--font-size-body-medium);line-height:var(--font-lh-body-medium);color:var(--color-text-secondary);max-width:760px;margin:0 auto}
+
+    .wpmn-sec-values-timeline .val-stage{display:grid;grid-template-columns:1fr 44px 1fr;align-items:center;gap:56px;min-height:520px}
+    .wpmn-sec-values-timeline .val-side{min-width:0}
+    .wpmn-sec-values-timeline .val-side.val-l{text-align:right}
+    .wpmn-sec-values-timeline .val-side.val-r{text-align:left}
+    .wpmn-sec-values-timeline .val-content{display:inline-flex;flex-direction:column;max-width:432px;width:100%}
+    .wpmn-sec-values-timeline .val-side.val-l .val-content{align-items:flex-end}
+    .wpmn-sec-values-timeline .val-num{font-size:var(--font-size-body-small);line-height:1;color:var(--color-text-secondary);margin-bottom:6px}
+    .wpmn-sec-values-timeline .val-num b{font-weight:var(--font-weight-semibold);color:var(--color-text-primary)}
+    .wpmn-sec-values-timeline .val-title{font-size:var(--font-size-h4);line-height:1.2;font-weight:var(--font-weight-regular);color:var(--color-text-primary);margin-bottom:16px}
+    .wpmn-sec-values-timeline .val-desc{font-size:var(--font-size-body-base);line-height:var(--font-lh-body-base);color:var(--color-text-secondary);margin-bottom:24px;max-width:400px}
+    .wpmn-sec-values-timeline .val-img{width:100%;max-width:432px;height:280px;object-fit:cover;border-radius:var(--radius-xsm);display:block}
+    .wpmn-sec-values-timeline .val-anim{animation:wpmn-val-in .6s cubic-bezier(.2,.7,.2,1)}
+
+    .wpmn-sec-values-timeline .val-line{position:relative;display:flex;flex-direction:column;align-items:center;height:420px;align-self:center}
+    .wpmn-sec-values-timeline .val-peak{width:15px;height:15px;border-radius:999px;background:var(--val-peach);flex:none;box-shadow:0 0 0 4px var(--val-ring);z-index:2}
+    .wpmn-sec-values-timeline .val-track{position:relative;width:2px;flex:1;background:var(--val-track);margin-top:-2px}
+    .wpmn-sec-values-timeline .val-fill{position:absolute;left:-0.5px;top:0;width:3px;height:0;background:var(--color-warning-primary);border-radius:999px}
+    .wpmn-sec-values-timeline .val-fill.val-run{animation:wpmn-val-fill var(--val-dur) linear forwards}
+    .wpmn-sec-values-timeline .val-lead{position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);width:15px;height:15px;border-radius:999px;background:var(--color-warning-primary);box-shadow:0 0 0 4px var(--val-ring)}
+    .wpmn-sec-values-timeline.val-paused .val-fill.val-run{animation-play-state:paused}
+
+    @media (max-width:820px){
+      .wpmn-sec-values-timeline{padding:56px 18px 72px}
+      .wpmn-sec-values-timeline .val-head{margin-bottom:48px}
+      .wpmn-sec-values-timeline .val-stage{grid-template-columns:28px 1fr;gap:20px;min-height:0;align-items:start}
+      .wpmn-sec-values-timeline .val-line{height:auto;min-height:360px;order:0}
+      .wpmn-sec-values-timeline .val-side.val-l,.wpmn-sec-values-timeline .val-side.val-r{text-align:left;grid-column:2}
+      .wpmn-sec-values-timeline .val-side.val-l .val-content{align-items:flex-start}
+      .wpmn-sec-values-timeline .val-side.val-empty{display:none}
+      .wpmn-sec-values-timeline .val-content{max-width:none}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-values-timeline .val-fill.val-run{animation:none}
+      .wpmn-sec-values-timeline .val-anim{animation:none}
+    }
+  </style>
+
+  <button class="val-pause" aria-label="Pause">
+    <svg class="val-picon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg>
+  </button>
+
+  <div class="val-head">
+    <span class="val-pill">Our Values</span>
+    <h2>Built on values. Driven by quality.</h2>
+    <p>We combine honest communication, thoughtful planning, and dependable craftsmanship to deliver projects that stand strong and create lasting value.</p>
+  </div>
+
+  <div class="val-stage">
+    <div class="val-side val-l"></div>
+    <div class="val-line">
+      <span class="val-peak"></span>
+      <span class="val-track"><span class="val-fill"><span class="val-lead"></span></span></span>
+    </div>
+    <div class="val-side val-r"></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var STEPS = [
+      ["01 — Quality First","Quality First","We set the standard early, then hold every stage of the work to it.","https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=900&q=80"],
+      ["02 — Reliability","Reliable Partnership","From conversation to delivery, we keep communication clear and promises kept.","https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80"],
+      ["03 — Precision","Every Detail Matters","Thoughtful planning and precise execution ensure quality at every stage.","https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80"],
+      ["04 — Integrity","Built on Integrity","Strong projects begin with honest relationships and doing things right.","https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=900&q=80"],
+      ["05 — Innovation","Better Building","We use modern techniques and practical solutions to work more efficiently.","https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80"],
+      ["06 — Craftsmanship","Expertise in Every Detail","Our skilled team brings experience and craft to every project.","https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"]
+    ];
+    var i = 0, paused = false;
+    var sideL = sec.querySelector('.val-l'), sideR = sec.querySelector('.val-r');
+    var fill = sec.querySelector('.val-fill'), pause = sec.querySelector('.val-pause'), picon = sec.querySelector('.val-picon');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function content(s){
+      var num = s[0].split('—');
+      return '<div class="val-content val-anim"><div class="val-num">' + num[0].trim() + ' — <b>' + num[1].trim() + '</b></div>' +
+        '<h3 class="val-title">' + s[1] + '</h3><p class="val-desc">' + s[2] + '</p>' +
+        '<img class="val-img" src="' + s[3] + '" alt="' + s[1] + '" loading="lazy"></div>';
+    }
+    function render(){
+      var s = STEPS[i], left = i % 2 === 0;
+      sideL.innerHTML = left ? content(s) : ''; sideL.classList.toggle('val-empty', !left);
+      sideR.innerHTML = left ? '' : content(s); sideR.classList.toggle('val-empty', left);
+    }
+    function runFill(){ if(reduce) return; fill.classList.remove('val-run'); void fill.offsetWidth; fill.classList.add('val-run'); }
+    function go(n){ i = (n + STEPS.length) % STEPS.length; render(); runFill(); }
+    fill.addEventListener('animationend', function(){ if(!paused) go(i + 1); });
+    pause.onclick = function(){
+      paused = !paused;
+      sec.classList.toggle('val-paused', paused);
+      pause.setAttribute('aria-label', paused ? 'Play' : 'Pause');
+      picon.innerHTML = paused ? '<path d="M8 5v14l11-7z"/>' : '<rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/>';
+    };
+    window.__sectionGo = go;
+    go(0);
+  })();
+  </script>
+</section>

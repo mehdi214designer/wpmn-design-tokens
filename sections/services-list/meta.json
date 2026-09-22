@@ -1,0 +1,12 @@
+{
+  "id": "services-list","name": "Services List","type": "html","status": "stable",
+  "description": "A stacked list of service items, each with a mono label row (label + index, accent tick), an oversized heading, and a two-column body (image + description, plus a plus-bulleted capability list with a tick decoration).",
+  "files": { "html": "sections/services-list/section.html" },
+  "prompt": "sections/services-list/prompt.md","dependsOn": ["index.css"],
+  "baseClass": "wpmn-sec-services-list",
+  "interactions": ["see prompt.md — the reference interaction/motion is kept verbatim and re-scoped; prefers-reduced-motion renders in place"],
+  "tokensUsed": ["--color-surface-primary","--color-surface-secondary","--color-text-primary","--color-text-secondary","--color-text-primary-invert","--btn-bg-enable","--color-warning-primary","--radius-xsm","--radius-sm","--radius-md","--radius-lg","--shadow-soft-300","--shadow-soft-500","--font-family-base","--font-size-h1","--font-size-h2","--font-size-h4","--font-size-h5","--font-size-h6","--font-size-body-medium","--font-size-body-base","--font-size-body-small","--font-weight-regular","--font-weight-medium","--font-weight-semibold","--primitive-space-24","--primitive-space-32","--primitive-space-40","--primitive-space-96"],
+  "brands": "all","themes": ["light","dark"],
+  "category": "Sections","subcategory": "Lists & Feeds","role": "Features","span": 2,
+  "tags": ["services","list","capabilities","index","editorial","bullets"]
+}

@@ -1,0 +1,65 @@
+<!-- WPMN Section: Services List — a stacked list of service items, each with a mono label row (label + /index, accent tick), an oversized heading, and a two-column body (image + description on the left, a plus-bulleted capability list + tick decoration on the right). HTML import: the item build is kept and re-scoped; the brand fonts are replaced with the base family, the accent maps to the warning token, and the images are verified Unsplash (content swapped on use). Classes are csl-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-services-list">
+  <style>
+    .wpmn-sec-services-list{
+      background:var(--color-surface-primary);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      max-width:1440px;margin:0 auto;padding:72px 52px 96px;
+      --csl-line:color-mix(in srgb, var(--color-text-primary) 14%, transparent);
+      --csl-idx:color-mix(in srgb, var(--color-text-primary) 26%, transparent);
+    }
+    .wpmn-sec-services-list *{box-sizing:border-box;margin:0}
+    .wpmn-sec-services-list .csl-item{padding:52px 0 0}
+    .wpmn-sec-services-list .csl-item + .csl-item{margin-top:64px}
+
+    .wpmn-sec-services-list .csl-top{position:relative;display:flex;align-items:baseline;justify-content:space-between;font-size:var(--font-size-body-small);line-height:1;letter-spacing:-.03em;text-transform:uppercase;color:var(--color-text-secondary);padding-bottom:16px;margin-bottom:44px;border-bottom:1px solid var(--csl-line)}
+    .wpmn-sec-services-list .csl-top .csl-idx{color:var(--csl-idx);font-size:var(--font-size-h6)}
+    .wpmn-sec-services-list .csl-top::after{content:"";position:absolute;left:0;bottom:-1px;width:20px;height:3px;background:var(--color-warning-primary)}
+
+    .wpmn-sec-services-list .csl-h{font-size:var(--font-size-h1);line-height:.98;font-weight:var(--font-weight-medium);letter-spacing:-.05em;color:var(--color-text-primary);margin-bottom:56px}
+
+    .wpmn-sec-services-list .csl-body{display:grid;grid-template-columns:minmax(0,400px) minmax(0,644px);justify-content:space-between;gap:48px;align-items:start}
+    .wpmn-sec-services-list .csl-left{max-width:400px}
+    .wpmn-sec-services-list .csl-img{width:290px;max-width:100%;aspect-ratio:500/333;object-fit:cover;border-radius:var(--radius-sm);display:block;margin-bottom:26px}
+    .wpmn-sec-services-list .csl-desc{font-size:var(--font-size-body-medium);line-height:1.3;letter-spacing:-.02em;color:var(--color-text-secondary);max-width:400px}
+
+    .wpmn-sec-services-list .csl-right{max-width:644px}
+    .wpmn-sec-services-list .csl-list{display:flex;flex-direction:column;gap:16px;margin-bottom:30px}
+    .wpmn-sec-services-list .csl-row{display:flex;gap:14px;align-items:baseline;font-size:var(--font-size-body-base);line-height:1.35;letter-spacing:-.01em;color:var(--color-text-secondary)}
+    .wpmn-sec-services-list .csl-row .csl-p{color:var(--color-warning-primary);flex:none;font-size:var(--font-size-body-base);font-weight:var(--font-weight-semibold)}
+    .wpmn-sec-services-list .csl-row .csl-t{color:var(--color-text-primary)}
+    .wpmn-sec-services-list .csl-ticks{height:40px;background-image:repeating-linear-gradient(90deg, var(--csl-line) 0 1px, transparent 1px 8px);-webkit-mask-image:linear-gradient(90deg, black 82%, transparent);mask-image:linear-gradient(90deg, black 82%, transparent);opacity:.9}
+
+    @media (max-width:900px){
+      .wpmn-sec-services-list{padding:48px 22px 64px}
+      .wpmn-sec-services-list .csl-h{margin-bottom:36px}
+      .wpmn-sec-services-list .csl-body{grid-template-columns:1fr;gap:36px}
+      .wpmn-sec-services-list .csl-img{width:100%}
+      .wpmn-sec-services-list .csl-ticks{display:none}
+    }
+  </style>
+
+  <div class="csl-host"></div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var ITEMS = [
+      { label:'Foundation', idx:'01', title:'Brand Identity', img:'https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&w=500&q=80',
+        desc:'The foundation of every project, how your brand looks, feels, and communicates.',
+        bullets:['Positioning and messaging frameworks','Visual identity systems','Brand guidelines for consistent use','Digital-first brand systems','Branded assets across campaigns and touchpoints'] },
+      { label:'Growth', idx:'02', title:'Strategy', img:'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=500&q=80',
+        desc:'Where insight turns into direction, the plan behind how your brand grows and scales.',
+        bullets:['Market and audience research','Competitive positioning','Growth and content strategy','Channel and campaign planning','Measurement and optimization'] }
+    ];
+    sec.querySelector('.csl-host').innerHTML = ITEMS.map(function(it){
+      var bullets = it.bullets.map(function(b){ return '<div class="csl-row"><span class="csl-p">+</span><span class="csl-t">' + b + '</span></div>'; }).join('');
+      return '<div class="csl-item">' +
+        '<div class="csl-top"><span>' + it.label + '</span><span class="csl-idx">/' + it.idx + '</span></div>' +
+        '<h2 class="csl-h">' + it.title + '</h2>' +
+        '<div class="csl-body"><div class="csl-left"><img class="csl-img" src="' + it.img + '" alt="' + it.title + '" loading="lazy"><p class="csl-desc">' + it.desc + '</p></div>' +
+        '<div class="csl-right"><div class="csl-list">' + bullets + '</div><div class="csl-ticks"></div></div></div></div>';
+    }).join('');
+  })();
+  </script>
+</section>
