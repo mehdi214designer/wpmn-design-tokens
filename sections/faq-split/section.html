@@ -1,0 +1,113 @@
+<!-- WPMN Section: FAQ Split — a two-column FAQ: a left intro (tag rule, oversized heading, sub, tick ruler, note, contact + call button) beside a right single-open accordion (JS max-height transitions, plus-to-x icon). HTML import: the accordion engine (single-open, JS max-height, resize re-measure) is kept verbatim and re-scoped; the brand fonts are replaced with the base family, the accent maps to the warning token, the button uses --radius-xsm, and the avatar is a verified Unsplash image (content swapped on use). Classes are fqs-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-faq-split">
+  <style>
+    .wpmn-sec-faq-split{
+      background:var(--fqs-bg);color:var(--color-text-primary);
+      font-family:var(--font-family-base);
+      padding:120px 20px 160px;display:flex;justify-content:center;
+      --fqs-bg:color-mix(in srgb, var(--color-text-primary) 3%, var(--color-surface-primary));
+      --fqs-rule:color-mix(in srgb, var(--color-text-primary) 14%, transparent);
+    }
+    .wpmn-sec-faq-split *{box-sizing:border-box;margin:0}
+    .wpmn-sec-faq-split .fqs-content{width:100%;max-width:1440px;display:flex;justify-content:space-between;gap:80px}
+
+    .wpmn-sec-faq-split .fqs-left{width:682px;max-width:44%;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
+    .wpmn-sec-faq-split .fqs-tag{display:flex;flex-direction:column;gap:18px}
+    .wpmn-sec-faq-split .fqs-taglabel{font-size:var(--font-size-body-small);line-height:1;letter-spacing:.02em;text-transform:uppercase;color:var(--color-text-secondary)}
+    .wpmn-sec-faq-split .fqs-tagrule{position:relative;height:1px;background:var(--fqs-rule)}
+    .wpmn-sec-faq-split .fqs-tagrule::before{content:"";position:absolute;left:0;top:-1px;width:20px;height:3px;background:var(--color-warning-primary)}
+    .wpmn-sec-faq-split .fqs-heading{margin-top:28px;font-size:var(--font-size-h1);line-height:1;font-weight:var(--font-weight-medium);letter-spacing:-.05em;color:var(--color-text-secondary)}
+    .wpmn-sec-faq-split .fqs-sub{margin-top:24px;max-width:560px;font-size:var(--font-size-body-medium);line-height:1.3;letter-spacing:-.02em;color:var(--color-text-secondary)}
+    .wpmn-sec-faq-split .fqs-sub .fqs-dash{margin-right:6px}
+    .wpmn-sec-faq-split .fqs-ticks{height:36px;margin:8px 0;max-width:642px;background-image:repeating-linear-gradient(90deg, var(--fqs-rule) 0 1px, transparent 1px 17px);background-position:bottom;background-repeat:repeat-x;background-size:100% 12px}
+    .wpmn-sec-faq-split .fqs-bottom{display:flex;flex-direction:column;gap:32px}
+    .wpmn-sec-faq-split .fqs-note{font-size:var(--font-size-body-medium);line-height:1.3;letter-spacing:-.02em;color:var(--color-text-secondary);max-width:360px}
+    .wpmn-sec-faq-split .fqs-details{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+    .wpmn-sec-faq-split .fqs-contact{display:flex;align-items:center;gap:16px}
+    .wpmn-sec-faq-split .fqs-contact img{width:60px;height:60px;border-radius:var(--radius-xsm);object-fit:cover;display:block}
+    .wpmn-sec-faq-split .fqs-name{font-size:var(--font-size-body-base);letter-spacing:-.02em;color:var(--color-text-primary);line-height:1.4}
+    .wpmn-sec-faq-split .fqs-role{font-size:var(--font-size-body-small);letter-spacing:-.02em;color:var(--color-text-secondary)}
+    .wpmn-sec-faq-split .fqs-cta{display:inline-flex;align-items:center;gap:var(--primitive-space-8);background:var(--color-warning-primary);color:var(--color-text-primary-invert);border-radius:var(--radius-xsm);padding:16px 20px;font-size:var(--font-size-body-small);line-height:1;letter-spacing:-.03em;text-transform:uppercase;font-weight:var(--font-weight-semibold);text-decoration:none;transition:transform .2s ease,background-color .2s ease}
+    .wpmn-sec-faq-split .fqs-cta:hover{transform:translateY(-1px);background:color-mix(in srgb, var(--color-warning-primary) 90%, var(--color-text-primary))}
+    .wpmn-sec-faq-split .fqs-cta svg{width:16px;height:16px}
+
+    .wpmn-sec-faq-split .fqs-acc{width:682px;max-width:50%;display:flex;flex-direction:column;gap:12px}
+    .wpmn-sec-faq-split .fqs-item{border-radius:var(--radius-sm);background:var(--fqs-bg);transition:background-color .3s ease;overflow:hidden}
+    .wpmn-sec-faq-split .fqs-item.is-open{background:var(--color-surface-primary);box-shadow:var(--shadow-soft-300)}
+    .wpmn-sec-faq-split .fqs-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 24px;background:none;border:0;cursor:pointer;font-family:inherit;font-size:var(--font-size-h6);letter-spacing:-.02em;color:var(--color-text-secondary);text-align:left;line-height:1.3}
+    .wpmn-sec-faq-split .fqs-item.is-open .fqs-q{color:var(--color-text-primary)}
+    .wpmn-sec-faq-split .fqs-icon{position:relative;width:22px;height:22px;flex-shrink:0}
+    .wpmn-sec-faq-split .fqs-icon::before,.wpmn-sec-faq-split .fqs-icon::after{content:"";position:absolute;top:50%;left:50%;background:var(--color-warning-primary);transform:translate(-50%,-50%)}
+    .wpmn-sec-faq-split .fqs-icon::before{width:22px;height:2px}
+    .wpmn-sec-faq-split .fqs-icon::after{width:2px;height:22px;transition:transform .3s ease}
+    .wpmn-sec-faq-split .fqs-item.is-open .fqs-icon::after{transform:translate(-50%,-50%) rotate(90deg)}
+    .wpmn-sec-faq-split .fqs-a{overflow:hidden;max-height:0;transition:max-height .35s ease}
+    .wpmn-sec-faq-split .fqs-a p{padding:0 24px 22px;max-width:560px;font-size:var(--font-size-body-base);line-height:1.35;letter-spacing:-.02em;color:var(--color-text-secondary)}
+
+    @media (max-width:1000px){
+      .wpmn-sec-faq-split .fqs-content{flex-direction:column;gap:48px}
+      .wpmn-sec-faq-split .fqs-left,.wpmn-sec-faq-split .fqs-acc{width:100%;max-width:100%}
+      .wpmn-sec-faq-split .fqs-ticks{display:none}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wpmn-sec-faq-split .fqs-a,.wpmn-sec-faq-split .fqs-icon::after,.wpmn-sec-faq-split .fqs-item{transition:none}
+    }
+  </style>
+
+  <div class="fqs-content">
+    <div class="fqs-left">
+      <div>
+        <div class="fqs-tag"><span class="fqs-taglabel">FAQ</span><div class="fqs-tagrule"></div></div>
+        <h2 class="fqs-heading">Clearing doubts and concerns</h2>
+        <p class="fqs-sub"><span class="fqs-dash">——</span>Explore the most common questions about working with us, all in one place.</p>
+      </div>
+      <div class="fqs-ticks" aria-hidden="true"></div>
+      <div class="fqs-bottom">
+        <p class="fqs-note">Book a quick chat and we'll walk you through how we do things.</p>
+        <div class="fqs-details">
+          <div class="fqs-contact">
+            <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=200&q=80" alt="Project manager" loading="lazy">
+            <div><div class="fqs-name">Lynn Bergmann</div><div class="fqs-role">Project Manager</div></div>
+          </div>
+          <a class="fqs-cta" href="#" onclick="return false">Book a call
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="fqs-acc"></div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var FAQS = [
+      ['What kind of projects do you take on?','We focus on brand identity, digital products, and websites that need both design clarity and technical polish.'],
+      ['How do you approach new projects?','We start by understanding your goals and constraints, then outline clear milestones so you know what is coming next.'],
+      ['What is a realistic project timeline?','Most branding or smaller websites are ready in 2-4 weeks. Larger sites run 6-12 weeks, depending on scope.'],
+      ['Who actually does the work?','Every project is led by senior designers and developers. No handoffs to juniors figuring things out on the fly.'],
+      ['How do we communicate during the process?','We keep it simple: one main contact, weekly updates, and quick replies when you need us.'],
+      ['What happens after launch?','We can stay involved, fixing issues, rolling out updates, or handling ongoing support if that is part of your plan.'],
+      ['Do you work with startups as well as big companies?','Yes. We have helped founders launch their first product and supported global teams scaling into new markets.'],
+      ['How do you measure success for a project?','Success is measured by how your audience responds, engagement, conversions, and long-term growth. We track performance and share insights.'],
+      ['Can we start small and scale later?','Yes. Many clients begin with a focused project like a brand refresh, then expand into campaigns, strategy, and ongoing support.']
+    ];
+    var acc = sec.querySelector('.fqs-acc');
+    acc.innerHTML = FAQS.map(function(f,i){
+      return '<div class="fqs-item' + (i===0?' is-open':'') + '"><button class="fqs-q" aria-expanded="' + (i===0) + '"><span>' + f[0] + '</span><span class="fqs-icon" aria-hidden="true"></span></button><div class="fqs-a"><p>' + f[1] + '</p></div></div>';
+    }).join('');
+    var items = [].slice.call(acc.querySelectorAll('.fqs-item'));
+    function setH(item){ var a = item.querySelector('.fqs-a'); a.style.maxHeight = item.classList.contains('is-open') ? a.scrollHeight + 'px' : '0px'; }
+    items.forEach(function(item){
+      item.querySelector('.fqs-q').addEventListener('click', function(){
+        var open = item.classList.contains('is-open');
+        items.forEach(function(it){ it.classList.remove('is-open'); it.querySelector('.fqs-q').setAttribute('aria-expanded','false'); setH(it); });
+        if(!open){ item.classList.add('is-open'); item.querySelector('.fqs-q').setAttribute('aria-expanded','true'); setH(item); }
+      });
+    });
+    items.forEach(setH);
+    window.addEventListener('resize', function(){ var o = items.find(function(it){ return it.classList.contains('is-open'); }); if(o) setH(o); });
+  })();
+  </script>
+</section>

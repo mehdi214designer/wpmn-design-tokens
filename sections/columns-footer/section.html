@@ -1,0 +1,105 @@
+<!-- WPMN Section: Columns Footer — a light multi-column footer: a wordmark, a six-group link grid, a social + compliance-badge row, a divider, and a bottom bar (copyright, mini links, language selector). HTML import: structure and hover behavior kept; the brand font falls back to the base family, colors are tokenized, and the logo, social icons and badges are token SVG/placeholders (content swapped on use). Classes are cf-prefixed so host/demo rules can't leak in. -->
+<section class="wpmn-sec-columns-footer">
+  <style>
+    .wpmn-sec-columns-footer{
+      background:var(--color-surface-primary);color:var(--color-text-primary);
+      font-family:var(--font-family-base);border-top:1px solid var(--cf-line);
+      --cf-line:color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+    }
+    .wpmn-sec-columns-footer *{box-sizing:border-box;margin:0;padding:0}
+    .wpmn-sec-columns-footer a{text-decoration:none;color:inherit}
+    .wpmn-sec-columns-footer ul{list-style:none}
+    .wpmn-sec-columns-footer .cf-wrap{max-width:1200px;margin:0 auto;padding:80px 24px 40px}
+    .wpmn-sec-columns-footer .cf-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:64px}
+    .wpmn-sec-columns-footer .cf-logo .cf-mark{width:34px;height:34px;border-radius:999px;background:var(--btn-bg-enable);color:var(--color-text-primary-invert);display:flex;align-items:center;justify-content:center}
+    .wpmn-sec-columns-footer .cf-logo .cf-mark svg{width:19px;height:19px}
+    .wpmn-sec-columns-footer .cf-logo .cf-word{font-size:var(--font-size-h5);line-height:1;font-weight:var(--font-weight-bold);letter-spacing:-.01em;color:var(--color-text-primary)}
+
+    .wpmn-sec-columns-footer .cf-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:32px 24px}
+    .wpmn-sec-columns-footer .cf-col{display:flex;flex-direction:column;gap:36px}
+    .wpmn-sec-columns-footer .cf-head{font-size:var(--font-size-body-small);font-weight:var(--font-weight-semibold);line-height:1.4;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-primary);margin-bottom:16px}
+    .wpmn-sec-columns-footer .cf-group ul{display:flex;flex-direction:column;gap:16px}
+    .wpmn-sec-columns-footer .cf-link{font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);line-height:1.4;letter-spacing:-.01em;color:var(--color-text-secondary);transition:color .15s ease}
+    .wpmn-sec-columns-footer .cf-link:hover{color:var(--color-text-primary)}
+
+    .wpmn-sec-columns-footer .cf-mid{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:72px;flex-wrap:wrap}
+    .wpmn-sec-columns-footer .cf-socials{display:flex;gap:14px}
+    .wpmn-sec-columns-footer .cf-soc{width:34px;height:34px;border-radius:999px;border:1px solid var(--cf-line);display:flex;align-items:center;justify-content:center;color:var(--color-text-primary);opacity:.85;transition:opacity .15s ease}
+    .wpmn-sec-columns-footer .cf-soc:hover{opacity:1}
+    .wpmn-sec-columns-footer .cf-soc svg{width:16px;height:16px}
+    .wpmn-sec-columns-footer .cf-badges{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .wpmn-sec-columns-footer .cf-badge{display:flex;align-items:center;gap:9px;font-size:var(--font-size-body-label);font-weight:var(--font-weight-semibold);line-height:1.2;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.03em}
+    .wpmn-sec-columns-footer .cf-badge .cf-shield{width:34px;height:40px;border-radius:var(--radius-xsm);border:1px solid var(--cf-line);display:flex;align-items:center;justify-content:center;color:var(--color-text-secondary)}
+    .wpmn-sec-columns-footer .cf-badge .cf-shield svg{width:16px;height:16px}
+
+    .wpmn-sec-columns-footer .cf-hr{height:1px;background:var(--cf-line);margin:40px 0 24px}
+    .wpmn-sec-columns-footer .cf-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .wpmn-sec-columns-footer .cf-copy{font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-secondary)}
+    .wpmn-sec-columns-footer .cf-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .wpmn-sec-columns-footer .cf-mini{font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-secondary);transition:color .15s ease}
+    .wpmn-sec-columns-footer .cf-mini:hover{color:var(--color-text-primary)}
+    .wpmn-sec-columns-footer .cf-dot{color:color-mix(in srgb, var(--color-text-primary) 30%, transparent);font-size:var(--font-size-body-small)}
+    .wpmn-sec-columns-footer .cf-lang{display:inline-flex;align-items:center;gap:8px;font-size:var(--font-size-body-small);font-weight:var(--font-weight-medium);color:var(--color-text-primary);cursor:pointer}
+    .wpmn-sec-columns-footer .cf-lang svg{width:14px;height:14px;color:var(--color-text-secondary)}
+
+    @media (max-width:1080px){ .wpmn-sec-columns-footer .cf-cols{grid-template-columns:repeat(3,1fr);gap:44px 24px} }
+    @media (max-width:680px){
+      .wpmn-sec-columns-footer .cf-wrap{padding:56px 20px 32px}
+      .wpmn-sec-columns-footer .cf-cols{grid-template-columns:repeat(2,1fr);gap:40px 20px}
+      .wpmn-sec-columns-footer .cf-mid{flex-direction:column;align-items:flex-start;gap:28px}
+      .wpmn-sec-columns-footer .cf-bottom{flex-direction:column;align-items:flex-start;gap:16px}
+    }
+  </style>
+
+  <div class="cf-wrap">
+    <span class="cf-logo"><span class="cf-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2.4"/></svg></span><span class="cf-word">Community</span></span>
+
+    <div class="cf-cols"></div>
+
+    <div class="cf-mid">
+      <div class="cf-socials"></div>
+      <div class="cf-badges"></div>
+    </div>
+
+    <div class="cf-hr"></div>
+
+    <div class="cf-bottom">
+      <p class="cf-copy">© 2026 Community. All rights reserved.</p>
+      <div class="cf-links"><a class="cf-mini" href="#" onclick="return false">99.9% Uptime</a><span class="cf-dot">·</span><a class="cf-mini" href="#" onclick="return false">Privacy Policy</a><span class="cf-dot">·</span><a class="cf-mini" href="#" onclick="return false">Terms</a><span class="cf-dot">·</span><a class="cf-mini" href="#" onclick="return false">Cookie Policy</a><span class="cf-dot">·</span><a class="cf-mini" href="#" onclick="return false">Trust &amp; Safety</a></div>
+      <span class="cf-lang">English <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var sec = document.currentScript.parentElement;
+    var COLS = [
+      [["Website",["Home","Pricing","Careers","Affiliate program","Partner program"]],["Platform",["Overview","Branded app","Customer stories","Support"]]],
+      [["Community",["Discussions","Courses","Events","Chat","Customization","Gamification"]],["Grow & Earn",["Website builder","Email marketing","Payments","Analytics","Studios","Discover"]]],
+      [["AI & Automation",["AI assistant","AI agents","AI workflows","Workflows","Integrations","Headless","MCP"]]],
+      [["Learn more",["Blog","Customer stories","Event hub","Launch guide","ROI calculator","Academy"]]],
+      [["Get help",["Community","Knowledge base","Customer success","Payment migration","Email migration","Course migration","Experts"]]]
+    ];
+    sec.querySelector('.cf-cols').innerHTML = COLS.map(function(col){
+      return '<div class="cf-col">' + col.map(function(g){
+        return '<div class="cf-group"><h3 class="cf-head">' + g[0] + '</h3><ul>' + g[1].map(function(l){ return '<li><a class="cf-link" href="#" onclick="return false">' + l + '</a></li>'; }).join('') + '</ul></div>';
+      }).join('') + '</div>';
+    }).join('');
+
+    var socials = [
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 3h3l-7 8 8 10h-6l-5-6-5 6H3l7-9L2 3h6l4 5z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H20v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21H9z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.7 2 12 2 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.3 22 12 22 12zm-12 3V9l5 3z"/></svg>',
+      '<svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>'
+    ];
+    sec.querySelector('.cf-socials').innerHTML = socials.map(function(s){ return '<a class="cf-soc" href="#" onclick="return false" aria-label="Social">' + s + '</a>'; }).join('');
+
+    var shield = '<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z" stroke="currentColor" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var badges = ['SOC 2 Certified','GDPR Compliant','CCPA Compliant','PCI SAQ Compliant'];
+    sec.querySelector('.cf-badges').innerHTML = badges.map(function(b){
+      var parts = b.split(' '); var top = parts.shift();
+      return '<span class="cf-badge"><span class="cf-shield">' + shield + '</span><span>' + top + '<br>' + parts.join(' ') + '</span></span>';
+    }).join('');
+  })();
+  </script>
+</section>
